@@ -1,0 +1,15 @@
+# 줄바꿈을 리포에 항상 LF로 고정한다.
+# 이게 없으면 Windows/Mac 어느 쪽의 git 전역 설정(core.autocrlf)이냐에 따라
+# 같은 파일이 커밋마다 CRLF/LF로 오갈 수 있고, 그러면 실제 코드 변경이 없어도
+# diff가 파일 전체를 바꾼 것처럼 나오거나 병합 충돌이 생긴다.
+* text=auto eol=lf
+
+# 바이너리는 그대로 둔다 (줄바꿈 변환 대상이 아님)
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.ico binary
+*.jks binary
+*.p8 binary
+*.p12 binary
+*.mobileprovision binary

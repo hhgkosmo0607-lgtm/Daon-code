@@ -63,7 +63,7 @@ XP        레슨 완료 10 + 만점 보너스 5 + 하루목표 20
 ✅ Phase 1    Expo Router 배선, 화면 흐름
 ✅ Phase 2    로컬 콘텐츠 + 문제 4유형 렌더링
 🔶 Phase 3    Supabase — 이메일/익명 로그인 완료, 구글·카카오 남음
-⬜ Phase 4    submitAnswer Edge Function  ← 다음 작업
+🔶 Phase 4    submitAnswer Edge Function — 코드 작성 완료, 배포·실기기 검증 필요  ← 다음 작업
 ⬜ Phase 5    복습 시스템 (라이트너 박스)
 ⬜ Phase 6    푸시 알림, EAS Update
 ⬜ Phase 7    콘텐츠 JSON 변환 (40레슨 중 1개 완료)
@@ -72,9 +72,20 @@ XP        레슨 완료 10 + 만점 보너스 5 + 하루목표 20
 
 ### 지금 앱의 실제 상태
 
-화면은 뜨고 문제도 풀리지만, **레슨을 완료해도 진도가 저장되지 않습니다.**
-`submitAnswer` Edge Function이 없어서 XP·스트릭도 적립되지 않아요.
-Phase 4를 해야 "학습 앱"으로 동작합니다.
+`submit-answer` Edge Function을 작성했습니다(`supabase/functions/submit-answer/`).
+레슨을 풀면 채점·XP·스트릭을 서버가 확정하고, 진도(progress)와 다음 레슨 잠금 해제까지
+반영하도록 클라이언트(레슨 화면, 결과 화면)도 함께 연결했습니다.
+
+다만 아직 **배포하지 않았고 실제 Supabase 프로젝트로 검증하지 않았습니다.**
+`README.md`의 "Phase 4 배포하기" 절차대로 배포한 뒤, 같은 곳의 검증 체크리스트를
+직접 확인해야 "완료"로 표시할 수 있습니다.
+
+**임시 처리 한 가지**: 온보딩(Phase 6)이 아직 없어서 "나중에 하기" 버튼이 존재하지
+않습니다. 그 자리를 `AuthContext`가 임시로 대신해서, 세션이 없으면 앱 시작 시 자동으로
+익명 로그인을 시도합니다(`features/auth/AuthContext.tsx`). 온보딩을 만들 때 이 로직을
+그 화면의 버튼 핸들러로 옮겨야 합니다. 또한 "게스트로 놓친 XP를 돌려받아요" 환급
+로직(`pendingBonus` 조회 API)은 이번 작업 범위에 없어 아직 없습니다 — 로그인
+화면(Phase 6)을 만들 때 함께 구현해야 합니다.
 
 ---
 
@@ -93,20 +104,26 @@ npm install
 npx expo start          # Expo Go로 QR 스캔
 ```
 
-### 2. Phase 4 — 저장되게 만들기
+### 2. Phase 4 — 배포하고 검증하기
 
+코드는 작성됐습니다(`supabase/functions/submit-answer/`). 남은 건 배포와 실기기 검증입니다.
+
+```bash
+npx supabase login
+npx supabase link --project-ref <프로젝트 참조 ID>
+npx supabase functions deploy submit-answer
 ```
-submitAnswer Edge Function
-  - 채점 결과로 progress 갱신
-  - XP 계산 (재도전 0, 게스트 80%, 하루목표 1회)
-  - 스트릭 갱신 (Asia/Seoul)
-  - 배치고사 통과 시 건너뛴 레슨 행 생성
 
-검증할 것
+검증할 것 (루트 `README.md`의 체크리스트와 동일)
+  - 레슨 하나(1-2)를 실제로 풀고 홈 화면에 진도·다음 레슨 잠금 해제가 반영되는지
   - 클라이언트가 progress에 직접 UPDATE 시도 → 거부되는지
   - 같은 레슨 두 번 풀어도 XP 중복 안 되는지
-  - 게스트로 쌓고 로그인 시 보너스가 정확히 가산되는지
-```
+  - 게스트(익명) XP가 정상의 80%만 지급되는지
+  - 하루 목표 보너스가 그날 1회만 지급되는지
+
+아직 없는 것 (Phase 6 온보딩과 함께 구현 예정)
+  - 배치고사 통과 시 건너뛴 레슨 행 생성 — 배치고사 자체가 없어서 보류
+  - 게스트→로그인 전환 시 "놓친 XP 환급"(pendingBonus) — 로그인 화면이 없어서 보류
 
 ### 3. Phase 7 — 콘텐츠 채우기
 

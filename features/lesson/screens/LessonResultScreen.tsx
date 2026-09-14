@@ -2,34 +2,23 @@ import { useRouter } from 'expo-router';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import type { SubmitAnswerResult } from '../../../shared/lib/edgeFunctions';
 import { colors, radius, spacing } from '../../../shared/theme/theme';
-import { calculateXp } from '../domain/scoring';
 import type { Lesson } from '../domain/types';
 
 /*
  * 레슨 완료 화면.
  *
- * 여기 표시되는 XP는 "예상치"다. 실제 지급은 서버(submitAnswer Edge Function)가
- * 다시 계산해서 확정한다. (기획서 아키텍처 원칙: 클라이언트 계산은 신뢰하지 않음)
- * Phase 4에서 이 화면이 서버 응답값을 받아 표시하도록 교체할 예정.
+ * 여기 표시되는 XP·스트릭은 submitAnswer Edge Function이 서버에서 확정한 값이다.
+ * (기획서 아키텍처 원칙: 클라이언트 계산은 신뢰하지 않음)
  */
 interface Props {
   lesson: Lesson;
-  correctCount: number;
-  total: number;
+  result: SubmitAnswerResult;
 }
 
-export function LessonResultScreen({ lesson, correctCount, total }: Props) {
+export function LessonResultScreen({ lesson, result }: Props) {
   const router = useRouter();
-
-  // TODO(Phase 4): 아래 값들은 서버 응답으로 대체한다.
-  const xp = calculateXp({
-    correctCount,
-    totalCount: total,
-    alreadyCompleted: false,
-    isAnonymous: false,
-    reachesDailyGoalFirstTime: false,
-  });
 
   return (
     <SafeAreaView style={styles.container}>
@@ -39,9 +28,14 @@ export function LessonResultScreen({ lesson, correctCount, total }: Props) {
         <Text style={styles.subtitle}>{lesson.title}</Text>
 
         <View style={styles.stats}>
-          <Stat label="획득 XP" value={`+${xp.total}`} />
-          <Stat label="정답" value={`${correctCount}/${total}`} />
+          <Stat label="획득 XP" value={`+${result.xp.total}`} />
+          <Stat label="정답" value={`${result.correctCount}/${result.totalCount}`} />
+          <Stat label="스트릭" value={`🔥 ${result.streak.streak}`} />
         </View>
+
+        {result.alreadyCompleted && (
+          <Text style={styles.note}>이미 완료한 레슨이라 XP는 지급되지 않았어요</Text>
+        )}
       </View>
 
       <Pressable style={styles.button} onPress={() => router.replace('/')}>
@@ -73,12 +67,13 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.md,
     paddingHorizontal: spacing.lg,
     alignItems: 'center',
-    minWidth: 110,
+    minWidth: 90,
     borderWidth: 1,
     borderColor: colors.border,
   },
   statValue: { fontSize: 22, fontWeight: '800', color: colors.primary },
   statLabel: { fontSize: 13, color: colors.textMuted, marginTop: 2 },
+  note: { fontSize: 13, color: colors.textMuted, marginTop: spacing.lg },
   button: {
     backgroundColor: colors.primary,
     borderRadius: radius.md,

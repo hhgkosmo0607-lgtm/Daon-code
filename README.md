@@ -9,12 +9,35 @@
 ✅ Phase 1  Expo Router 배선, 홈 → 레슨 화면 흐름
 ✅ Phase 2  로컬 콘텐츠 + 문제 4유형 렌더링
 🔶 Phase 3  Supabase 연동 — 이메일/익명 로그인 완료, 구글·카카오 남음
-⬜ Phase 4  submitAnswer Edge Function
+🔶 Phase 4  submitAnswer Edge Function — 코드 작성 완료, 배포·실기기 검증 필요
 ⬜ Phase 5  복습 시스템 (라이트너 박스)
 ⬜ Phase 6  푸시 알림, EAS Update
 ⬜ Phase 7  콘텐츠 40레슨 채우기
 ⬜ Phase 8  출시 준비
 ```
+
+### Phase 4 배포하기
+
+```bash
+# 최초 1회
+npx supabase login
+npx supabase link --project-ref <프로젝트 참조 ID>
+
+# submit-answer 함수 배포
+npx supabase functions deploy submit-answer
+```
+
+`submit-answer`는 `features/lesson/domain/`의 채점·XP·스트릭 로직과
+`content/` 콘텐츠 JSON을 상대 경로로 그대로 import한다(중복 관리 방지).
+새 레슨의 JSON을 추가하면 `features/lesson/data/contentRepository.ts`와
+`supabase/functions/_shared/content.ts` 양쪽에 import를 추가해야 한다.
+
+**검증 체크리스트** (기획서 Phase 4 완료 기준)
+- [ ] 레슨 하나(1-2)를 실제로 풀고 홈 화면에 진도·다음 레슨 잠금 해제가 반영되는지
+- [ ] 같은 레슨을 두 번 풀어도 XP가 중복 지급되지 않는지 (`alreadyCompleted`)
+- [ ] 게스트(익명) 계정은 정상 XP의 80%만 받는지
+- [ ] 하루 목표 보너스가 그날 1회만 지급되는지
+- [ ] 클라이언트에서 `progress`/`daily_xp`/`profiles` xp 컬럼에 직접 `update()`를 시도하면 RLS로 거부되는지
 
 ## 실행
 

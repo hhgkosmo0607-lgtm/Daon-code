@@ -1,6 +1,7 @@
 import { useRouter } from 'expo-router';
+import { useEffect, useRef } from 'react';
 
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { ProgressBar } from '../../../shared/components/ProgressBar';
@@ -8,6 +9,7 @@ import { colors, radius, spacing } from '../../../shared/theme/theme';
 import { FeedbackBanner } from '../components/FeedbackBanner';
 import { QuestionView } from '../components/QuestionView';
 import { useLesson } from '../hooks/useLesson';
+import { useSubmitLesson } from '../hooks/useSubmitLesson';
 import { LessonResultScreen } from './LessonResultScreen';
 
 /*
@@ -19,9 +21,33 @@ import { LessonResultScreen } from './LessonResultScreen';
 export function LessonScreen({ lessonId }: { lessonId: string }) {
   const router = useRouter();
   const lessonState = useLesson(lessonId);
+  const submitState = useSubmitLesson();
+  const hasSubmittedRef = useRef(false);
 
-  const { lesson, current, index, total, answer, setAnswer, checked, lastCorrect, canCheck, check, next, isLast, finished, correctCount } =
-    lessonState;
+  const {
+    lesson,
+    current,
+    index,
+    total,
+    answer,
+    setAnswer,
+    checked,
+    lastCorrect,
+    canCheck,
+    check,
+    next,
+    isLast,
+    finished,
+    answers,
+  } = lessonState;
+
+  // 레슨이 끝나는 순간 딱 한 번, 서버에 채점·XP·진도 반영을 요청한다.
+  useEffect(() => {
+    if (finished && lesson && !hasSubmittedRef.current) {
+      hasSubmittedRef.current = true;
+      submitState.submit(lessonId, answers);
+    }
+  }, [finished, lesson, lessonId, answers, submitState]);
 
   // 아직 콘텐츠가 준비되지 않은 레슨
   if (!lesson || total === 0) {
@@ -36,7 +62,29 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
   }
 
   if (finished) {
-    return <LessonResultScreen lesson={lesson} correctCount={correctCount} total={total} />;
+    if (submitState.status === 'error') {
+      return (
+        <SafeAreaView style={styles.center}>
+          <Text style={styles.muted}>{submitState.message}</Text>
+          <Pressable
+            style={styles.ghostButton}
+            onPress={() => submitState.submit(lessonId, answers)}
+          >
+            <Text style={styles.ghostButtonText}>다시 시도</Text>
+          </Pressable>
+        </SafeAreaView>
+      );
+    }
+
+    if (submitState.status !== 'done') {
+      return (
+        <SafeAreaView style={styles.center}>
+          <ActivityIndicator color={colors.primary} />
+        </SafeAreaView>
+      );
+    }
+
+    return <LessonResultScreen lesson={lesson} result={submitState.result} />;
   }
 
   return (

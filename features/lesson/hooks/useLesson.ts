@@ -22,6 +22,8 @@ export function useLesson(lessonId: string) {
   const [correctCount, setCorrectCount] = useState(0);
   /** 오답 문제 id — 레슨 종료 후 오답노트 저장에 쓴다 */
   const [wrongIds, setWrongIds] = useState<string[]>([]);
+  /** 문제 id별 제출한 답 — 레슨 종료 시 submitAnswer에 그대로 보낸다 */
+  const [answers, setAnswers] = useState<Record<string, number | number[]>>({});
 
   const current = questions[index];
   const isLast = index >= questions.length - 1;
@@ -38,6 +40,7 @@ export function useLesson(lessonId: string) {
 
     const ok = isCorrect(current, answer);
     setChecked(true);
+    setAnswers((prev) => ({ ...prev, [current.id]: answer }));
 
     if (ok) {
       setCorrectCount((n) => n + 1);
@@ -67,6 +70,7 @@ export function useLesson(lessonId: string) {
     lastCorrect,
     correctCount,
     wrongIds,
+    answers,
     isLast,
     finished,
     canCheck,
