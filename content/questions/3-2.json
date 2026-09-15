@@ -1,0 +1,81 @@
+[
+  {
+    "id": "3-2-q1",
+    "lessonId": "3-2",
+    "type": "choice",
+    "prompt": "\"구매하기\"를 \"주문하기\"로 바꾸려면 어느 부분을 고쳐야 할까요?",
+    "code": "<button className=\"bg-blue-500\">구매하기</button>",
+    "options": ["button", "className=\"bg-blue-500\"", "구매하기", "< > 기호들"],
+    "answer": 2,
+    "explanation": "태그와 태그 사이에 있는 글자가 화면에 보이는 텍스트예요."
+  },
+  {
+    "id": "3-2-q2",
+    "lessonId": "3-2",
+    "type": "choice",
+    "prompt": "\"환영합니다!\" 문구는 코드의 어디에 있을까요?",
+    "code": "1  function Welcome() {\n2    return (\n3      <div className=\"container\">\n4        <h1>환영합니다!</h1>\n5      </div>\n6    )\n7  }",
+    "options": ["3번 줄", "4번 줄", "1번 줄", "6번 줄"],
+    "answer": 1,
+    "explanation": "<h1>과 </h1> 사이의 글자가 실제로 화면에 나타나요."
+  },
+  {
+    "id": "3-2-q3",
+    "lessonId": "3-2",
+    "type": "choice",
+    "prompt": "아래 중 화면에 보이는 글자가 아닌 것은?",
+    "code": "<p className=\"title\">안녕하세요</p>",
+    "options": ["안녕하세요", "title", "둘 다 보인다", "둘 다 안 보인다"],
+    "answer": 1,
+    "explanation": "title은 이 태그에 붙은 이름표일 뿐, 화면에 글자로 나타나지 않아요."
+  },
+  {
+    "id": "3-2-q4",
+    "lessonId": "3-2",
+    "type": "blank",
+    "prompt": "화면에 \"장바구니가 비어있습니다\"라고 보여주려면?",
+    "code": "<p>___</p>",
+    "options": ["장바구니가 비어있습니다", "className=\"empty\"", "p", "return"],
+    "answer": 0,
+    "explanation": "태그 사이에 보여주고 싶은 문구를 그대로 적으면 돼요."
+  },
+  {
+    "id": "3-2-q5",
+    "lessonId": "3-2",
+    "type": "choice",
+    "prompt": "문구를 고쳤는데 화면에 이렇게 보입니다. 원인은?",
+    "code": "{환영합니다!}",
+    "options": [
+      "중괄호 {}를 실수로 같이 써서, 문자 그대로 화면에 나타난 것",
+      "변수 이름과 문자열을 혼동해서 생기는 항상 나는 현상",
+      "폰트가 없어서",
+      "따옴표를 안 써서 생기는 문제"
+    ],
+    "answer": 0,
+    "explanation": "{}는 \"여기 안에 자바스크립트 값을 넣을게\"라는 특별한 기호예요. 고정된 글자엔 안 씁니다."
+  },
+  {
+    "id": "3-2-q6",
+    "lessonId": "3-2",
+    "type": "choice",
+    "prompt": "{userName}처럼 중괄호로 감싸진 부분은 무엇을 의미할까요?",
+    "code": "<p>안녕하세요, {userName}님!</p>",
+    "options": [
+      "고정된 글자가 아니라, 변수에 담긴 값을 그 자리에 끼워 넣는 것",
+      "그냥 장식 기호",
+      "에러가 있다는 표시",
+      "주석(설명글)"
+    ],
+    "answer": 0,
+    "explanation": "userName이 \"김철수\"라면 화면엔 \"안녕하세요, 김철수님!\"으로 보여요."
+  },
+  {
+    "id": "3-2-q7",
+    "lessonId": "3-2",
+    "type": "compare",
+    "prompt": "버튼 문구를 \"다음\"에서 \"완료\"로 바꾸려 합니다. 더 적절한 요청은?",
+    "options": ["버튼 글자 바꿔줘", "'다음' 버튼을 '완료'로 바꿔줘"],
+    "answer": 1,
+    "explanation": "버튼이 여러 개 있을 수 있으니, 어떤 버튼인지 정확히 짚어줘야 해요."
+  }
+]

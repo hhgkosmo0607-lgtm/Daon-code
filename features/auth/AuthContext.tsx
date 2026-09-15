@@ -1,7 +1,6 @@
 import type { Session, User } from '@supabase/supabase-js';
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
 import { supabase } from '../../shared/lib/supabase';
-import { signInAsGuest } from './authActions';
 
 /*
  * 로그인 상태를 앱 전체에서 공유한다.
@@ -32,26 +31,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     // 앱 시작 시 저장된 세션 복구.
-    // 온보딩(Phase 6)이 아직 없어서 "나중에 하기" 버튼이 존재하지 않는다 —
-    // 그 자리를 임시로 대신해서, 세션이 아예 없으면 여기서 게스트로 자동 로그인한다.
-    // (기획서 6번: "나중에 하기"도 화면엔 안 보이지만 내부적으로 익명 계정을 만든다)
-    // 온보딩이 생기면 이 로직은 그 화면의 버튼 핸들러로 옮긴다.
-    supabase.auth.getSession().then(async ({ data }) => {
-      if (data.session) {
-        setSession(data.session);
-        setLoading(false);
-        return;
-      }
-
-      try {
-        const guest = await signInAsGuest();
-        setSession(guest.session);
-      } catch (e) {
-        console.warn('[auth] 게스트 자동 로그인 실패 — Supabase에서 Anonymous sign-ins가 켜져 있는지 확인하세요', e);
-        setSession(null);
-      } finally {
-        setLoading(false);
-      }
+    // 게스트 세션은 온보딩 위저드의 "나중에 하기" 버튼(AuthScreen 재사용)에서
+    // 명시적으로 만든다 — 여기서는 있는 세션을 복구만 하고, 없다고 임의로
+    // 만들지 않는다. (세션 없음 = 아직 로그인 전이거나 온보딩 전 상태)
+    supabase.auth.getSession().then(({ data }) => {
+      setSession(data.session);
+      setLoading(false);
     });
 
     // 로그인/로그아웃/토큰갱신 시 자동 반영

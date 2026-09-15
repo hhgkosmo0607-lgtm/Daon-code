@@ -1,0 +1,92 @@
+[
+  {
+    "id": "9-4-q1",
+    "lessonId": "9-4",
+    "type": "choice",
+    "prompt": "로그인 성공 후 홈으로 이동했는데, 뒤로 가기를 누르면 다시 로그인 화면으로 돌아갑니다. 왜 이럴까요?",
+    "code": "// 로그인 성공 시\nrouter.push('/')",
+    "options": [
+      "원래 정상 동작이다, 문제 없음",
+      "push는 이전 화면(로그인)을 기록에 남겨두기 때문에, 뒤로 가기로 다시 갈 수 있다",
+      "router.push는 원래 뒤로 가기 자체를 막아버리는 함수라서",
+      "로그인 정보가 세션에 제대로 저장이 안 돼서"
+    ],
+    "answer": 1,
+    "explanation": "push는 화면을 \"쌓아 올리는\" 이동이라 이전 화면이 기록에 남아요. 로그인처럼 다시 돌아가면 안 되는 화면 다음엔 다른 방법이 필요합니다."
+  },
+  {
+    "id": "9-4-q2",
+    "lessonId": "9-4",
+    "type": "choice",
+    "prompt": "뒤로 가기로 로그인 화면에 다시 못 돌아가게 만드는 줄은?",
+    "code": "1  function LoginScreen() {\n2    const router = useRouter()\n3    const handleLogin = async () => {\n4      await signIn()\n5      router.replace('/')\n6    }\n7  }",
+    "options": ["3번", "5번", "2번", "1번"],
+    "answer": 1,
+    "explanation": "router.replace('/')가 로그인 화면을 이동 기록에서 지우고 홈으로 바꿔치기해요."
+  },
+  {
+    "id": "9-4-q3",
+    "lessonId": "9-4",
+    "type": "choice",
+    "prompt": "router.push와 router.replace의 차이는?",
+    "options": [
+      "push는 이전 화면을 기록에 남기고, replace는 이전 화면을 지우고 현재 화면으로 바꿔치기한다",
+      "완전히 같은 기능이다",
+      "replace가 항상 더 빠르다",
+      "push만 실제로 이동한다"
+    ],
+    "answer": 0,
+    "explanation": "로그인, 배치고사 결과처럼 \"다시 돌아가면 안 되는\" 화면 다음엔 replace를 씁니다."
+  },
+  {
+    "id": "9-4-q4",
+    "lessonId": "9-4",
+    "type": "blank",
+    "prompt": "결제 완료 후 뒤로 가기로 다시 결제 화면에 못 돌아가게 하려면?",
+    "code": "router.___('/order-complete')",
+    "options": ["replace", "push", "back", "fetch"],
+    "answer": 0,
+    "explanation": "replace를 쓰면 결제 화면이 이동 기록에서 사라져서, 뒤로 가기를 눌러도 다시 결제하려는 상태로 안 돌아가요."
+  },
+  {
+    "id": "9-4-q5",
+    "lessonId": "9-4",
+    "type": "choice",
+    "prompt": "뒤로 가기를 눌렀는데 앱이 완전히 꺼져버립니다. 가능한 원인은?",
+    "options": [
+      "더 이상 뒤로 갈 화면 기록이 없어서 (예: replace를 많이 써서 기록이 비어있음)",
+      "항상 나는 정상 동작이다",
+      "router.back()과 router.replace()를 같이 써서 충돌난 것",
+      "Link 컴포넌트 안에 onPress를 잘못 넣어서"
+    ],
+    "answer": 0,
+    "explanation": "뒤로 갈 기록이 하나도 없으면 시스템이 앱 종료로 처리하는 경우가 있어요. replace를 남발하면 이런 일이 생길 수 있습니다."
+  },
+  {
+    "id": "9-4-q6",
+    "lessonId": "9-4",
+    "type": "choice",
+    "prompt": "온보딩(첫 화면 안내) 완료 후 홈으로 이동할 때 push가 아니라 replace를 쓰는 이유로 가장 알맞은 것은?",
+    "options": [
+      "속도가 더 빨라서",
+      "온보딩 화면으로 뒤로 가기 해서 다시 보게 만들 필요가 없어서",
+      "replace만 진짜로 작동해서",
+      "이유 없음, 아무거나 써도 됨"
+    ],
+    "answer": 1,
+    "explanation": "온보딩은 한 번 보면 다시 볼 필요 없는 화면이라, 뒤로 가기 기록에서도 빼는 게 자연스러워요."
+  },
+  {
+    "id": "9-4-q7",
+    "lessonId": "9-4",
+    "type": "order",
+    "prompt": "화면 이동 방법을 고를 때 판단 순서를 맞춰보세요.",
+    "options": [
+      "필요 없으면 replace, 필요하면 push를 고른다",
+      "선택한 방법으로 라우팅 코드를 작성한다",
+      "이 화면에 다시 돌아갈 필요가 있는지 생각한다"
+    ],
+    "answer": [2, 0, 1],
+    "explanation": "무작정 push만 쓰기보다, \"뒤로 가도 되는 화면인가\"를 먼저 판단하는 습관이 자연스러운 흐름을 만들어요."
+  }
+]

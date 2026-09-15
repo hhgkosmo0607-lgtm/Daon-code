@@ -1,0 +1,92 @@
+[
+  {
+    "id": "10-2-q1",
+    "lessonId": "10-2",
+    "type": "choice",
+    "prompt": "isLoading이 하는 역할은?",
+    "code": "function ProductList() {\n  const [isLoading, setIsLoading] = useState(true)\n  const [products, setProducts] = useState([])\n\n  useEffect(() => {\n    fetch('/api/products')\n      .then(res => res.json())\n      .then(data => {\n        setProducts(data)\n        setIsLoading(false)\n      })\n  }, [])\n\n  if (isLoading) return <ActivityIndicator />\n  return <ProductGrid products={products} />\n}",
+    "options": [
+      "데이터를 아직 못 받아온 동안, 스피너 같은 대기 화면을 보여줄지 결정한다",
+      "상품 개수를 센다",
+      "에러를 저장한다",
+      "아무 역할 없음"
+    ],
+    "answer": 0,
+    "explanation": "서버 응답은 시간이 걸려요. 그 사이에 빈 화면 대신 \"로딩 중\" 표시를 보여주기 위한 상태예요."
+  },
+  {
+    "id": "10-2-q2",
+    "lessonId": "10-2",
+    "type": "choice",
+    "prompt": "로딩 중일 때 스피너를 보여주는 줄은?",
+    "code": "1  function ProductList() {\n2    const [isLoading, setIsLoading] = useState(true)\n3    const [products, setProducts] = useState([])\n4\n5    useEffect(() => {\n6      fetch('/api/products')\n7        .then(res => res.json())\n8        .then(data => {\n9          setProducts(data)\n10          setIsLoading(false)\n11        })\n12   }, [])\n13\n14   if (isLoading) return <ActivityIndicator />\n15   return <ProductGrid products={products} />\n16 }",
+    "options": ["10번", "14번", "5번", "2번"],
+    "answer": 1,
+    "explanation": "if (isLoading) return <ActivityIndicator />가 로딩 중일 때 스피너를 보여주고 나머지 코드 실행을 멈추는 부분이에요."
+  },
+  {
+    "id": "10-2-q3",
+    "lessonId": "10-2",
+    "type": "choice",
+    "prompt": "isLoading이 true일 때와 false일 때 화면 차이는?",
+    "options": [
+      "true면 대기 화면(스피너)을, false면 실제 데이터 화면을 보여준다",
+      "항상 같은 화면이 보인다",
+      "true일 때만 데이터가 존재한다",
+      "관계 없음"
+    ],
+    "answer": 0,
+    "explanation": "이 값 하나로 \"기다리는 중\"과 \"준비 완료\"를 구분해서 다른 화면을 보여줘요."
+  },
+  {
+    "id": "10-2-q4",
+    "lessonId": "10-2",
+    "type": "blank",
+    "prompt": "데이터를 다 받아온 다음, 로딩 표시를 꺼야 합니다. 빈칸은?",
+    "code": "setProducts(data)\nset___(false)",
+    "options": ["IsLoading", "Products", "Error", "Data"],
+    "answer": 0,
+    "explanation": "setIsLoading(false)로 로딩 상태를 꺼줘야 화면이 실제 데이터를 보여주는 쪽으로 넘어가요."
+  },
+  {
+    "id": "10-2-q5",
+    "lessonId": "10-2",
+    "type": "choice",
+    "prompt": "화면이 스피너만 계속 돌고 절대 안 끝납니다. 원인으로 가장 가능성 높은 것은?",
+    "code": "useEffect(() => {\n  fetch('/api/products')\n    .then(res => res.json())\n    .then(data => setProducts(data))\n}, [])",
+    "options": [
+      "setIsLoading(false)를 호출하는 부분이 빠져서, isLoading이 계속 true로 남아있다",
+      "products state를 아직 선언하지 않아서",
+      "fetch 주소 끝에 슬래시(/)가 빠져서",
+      "정상 동작이다"
+    ],
+    "answer": 0,
+    "explanation": "데이터를 받았어도 isLoading을 false로 바꿔주지 않으면, 화면은 계속 로딩 중이라고 착각해요."
+  },
+  {
+    "id": "10-2-q6",
+    "lessonId": "10-2",
+    "type": "choice",
+    "prompt": "isLoading, isError, isPending처럼 is로 시작하는 변수 이름을 보면 짐작할 수 있는 것은?",
+    "options": [
+      "대부분 참/거짓(boolean) 상태를 나타낸다는 신호",
+      "항상 배열(목록)을 저장한다는 뜻",
+      "함수라는 뜻",
+      "컴포넌트 이름이라는 뜻"
+    ],
+    "answer": 0,
+    "explanation": "2-2에서 배운 것처럼 is로 시작하는 이름은 참/거짓 상태를 담는다는 관례예요. 로딩·에러 상태에서 특히 자주 보입니다."
+  },
+  {
+    "id": "10-2-q7",
+    "lessonId": "10-2",
+    "type": "compare",
+    "prompt": "로딩 처리에 대해 더 나은 요청은?",
+    "options": [
+      "로딩 표시 넣어줘",
+      "데이터를 fetch하는 동안 isLoading을 true로, 받아온 뒤엔 false로 바꿔서 그동안 스피너를 보여줘"
+    ],
+    "answer": 1,
+    "explanation": "언제 켜지고 언제 꺼져야 하는지까지 짚어주면, \"로딩이 안 꺼지는\" 버그를 예방하기 쉬워져요."
+  }
+]

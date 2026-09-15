@@ -1,0 +1,93 @@
+[
+  {
+    "id": "2-4-q1",
+    "lessonId": "2-4",
+    "type": "choice",
+    "prompt": "아래 코드는 무엇을 담고 있을까요?",
+    "code": "const fruits = [\"사과\", \"바나나\", \"포도\"]",
+    "options": [
+      "과일 이름 여러 개를 순서대로 담은 목록",
+      "과일 하나에 대한 자세한 정보",
+      "함수",
+      "참/거짓 값"
+    ],
+    "answer": 0,
+    "explanation": "대괄호 []는 여러 개를 순서대로 나열한 배열이에요."
+  },
+  {
+    "id": "2-4-q2",
+    "lessonId": "2-4",
+    "type": "choice",
+    "prompt": "아래에서 \"한 사람에 대한 여러 정보를 묶어둔\" 부분은?",
+    "code": "const user = { name: \"김철수\", age: 25 }",
+    "options": ["user 전체", "name만", "age만", "25만"],
+    "answer": 0,
+    "explanation": "중괄호 {}는 관련된 정보들을 이름표와 함께 묶어둔 객체예요."
+  },
+  {
+    "id": "2-4-q3",
+    "lessonId": "2-4",
+    "type": "choice",
+    "prompt": "배열과 객체의 차이를 가장 잘 설명한 것은?",
+    "options": [
+      "배열은 순서 있는 목록, 객체는 이름표 붙은 정보 뭉치",
+      "둘은 완전히 같다",
+      "배열은 숫자만, 객체는 글자만 담을 수 있다",
+      "객체가 배열보다 항상 크다"
+    ],
+    "answer": 0,
+    "explanation": "상품 여러 개는 배열, 상품 하나의 이름·가격·재고는 객체예요."
+  },
+  {
+    "id": "2-4-q4",
+    "lessonId": "2-4",
+    "type": "choice",
+    "prompt": "사용자 이름을 꺼내려면?",
+    "code": "const user = { name: \"김철수\", age: 25 }",
+    "options": ["user[0]", "user.name", "user.age", "user[\"0\"]"],
+    "answer": 1,
+    "explanation": "객체에서 값을 꺼낼 땐 이름표를 점(.)으로 붙여서 써요."
+  },
+  {
+    "id": "2-4-q5",
+    "lessonId": "2-4",
+    "type": "choice",
+    "prompt": "이 코드에서 문제가 생기는 이유는?",
+    "code": "const fruits = [\"사과\", \"바나나\"]\nconsole.log(fruits.name)",
+    "options": [
+      "배열에는 .name이라는 이름표가 없어서 undefined가 나옴",
+      "과일 이름이 틀려서",
+      "배열은 원래 못 쓴다",
+      "console.log가 잘못됐다"
+    ],
+    "answer": 0,
+    "explanation": "배열은 순서(번호)로 꺼내야 해요(fruits[0])."
+  },
+  {
+    "id": "2-4-q6",
+    "lessonId": "2-4",
+    "type": "choice",
+    "prompt": "아래 코드는 무엇을 나타낼까요?",
+    "code": "const products = [\n  { name: \"티셔츠\", price: 20000 },\n  { name: \"청바지\", price: 45000 }\n]",
+    "options": [
+      "상품 여러 개(배열)를, 각각 이름과 가격 정보(객체)로 담은 것",
+      "상품 하나에 대한 정보",
+      "에러 메시지 목록",
+      "함수 목록"
+    ],
+    "answer": 0,
+    "explanation": "\"배열 안에 객체가 여러 개\" 구조로, 상품 목록·댓글 목록에 흔히 쓰여요."
+  },
+  {
+    "id": "2-4-q7",
+    "lessonId": "2-4",
+    "type": "compare",
+    "prompt": "학생 3명의 이름과 점수를 저장하려 합니다. 더 적절한 구조는?",
+    "options": [
+      "const students = [\"김철수\", 90, \"이영희\", 85]",
+      "const students = [\n  { name: \"김철수\", score: 90 },\n  { name: \"이영희\", score: 85 }\n]"
+    ],
+    "answer": 1,
+    "explanation": "A는 이름과 점수가 뒤섞여 어떤 게 누구 것인지 헷갈려요. B처럼 객체로 묶으면 명확합니다."
+  }
+]

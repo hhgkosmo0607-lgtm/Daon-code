@@ -1,0 +1,92 @@
+[
+  {
+    "id": "12-2-q1",
+    "lessonId": "12-2",
+    "type": "choice",
+    "prompt": "name: string은 무슨 뜻일까요?",
+    "code": "function greet(name: string) {\n  return `안녕, ${name}!`\n}",
+    "options": [
+      "name이라는 값은 반드시 문자열(string)이어야 한다는 약속",
+      "name이라는 변수를 문자열로 바꾸라는 명령",
+      "아무 의미 없는 장식",
+      "에러 메시지"
+    ],
+    "answer": 0,
+    "explanation": "타입스크립트는 \"이 값은 이런 종류여야 해\"라고 미리 약속해두는 도구예요. 2-3에서 배운 문자열/숫자 구분을 코드 차원에서 강제하는 거예요."
+  },
+  {
+    "id": "12-2-q2",
+    "lessonId": "12-2",
+    "type": "choice",
+    "prompt": "User라는 타입에 age가 숫자여야 한다고 정해둔 줄은?",
+    "code": "1  interface User {\n2    name: string\n3    age: number\n4  }\n5\n6  function printUser(user: User) {\n7    console.log(user.name)\n8  }",
+    "options": ["2번", "3번", "6번", "7번"],
+    "answer": 1,
+    "explanation": "age: number가 \"age는 반드시 숫자\"라고 정해둔 부분이에요."
+  },
+  {
+    "id": "12-2-q3",
+    "lessonId": "12-2",
+    "type": "choice",
+    "prompt": "일반 자바스크립트(JS)와 타입스크립트(TS)의 차이는?",
+    "options": [
+      "TS는 JS에 \"이 값은 어떤 종류여야 하는지\" 미리 적어두는 기능이 추가된 것",
+      "완전히 다른 프로그래밍 언어다",
+      "TS가 항상 더 빠르게 실행된다",
+      "차이 없다"
+    ],
+    "answer": 0,
+    "explanation": "TS는 JS 위에 타입 약속을 더한 것이에요. 실행되기 전에 \"이 값이 틀렸다\"는 걸 미리 알려줘서 실수를 줄여줍니다."
+  },
+  {
+    "id": "12-2-q4",
+    "lessonId": "12-2",
+    "type": "blank",
+    "prompt": "가격은 항상 숫자여야 합니다. 빈칸은?",
+    "code": "function setPrice(price: ___) { /* ... */ }",
+    "options": ["number", "string", "boolean", "void"],
+    "answer": 0,
+    "explanation": "number는 \"이 값은 숫자여야 한다\"는 타입 약속이에요."
+  },
+  {
+    "id": "12-2-q5",
+    "lessonId": "12-2",
+    "type": "choice",
+    "prompt": "이 에러를 만났습니다. 원인으로 가장 가능성 높은 것은?",
+    "code": "Type 'string' is not assignable to type 'number'.",
+    "options": [
+      "숫자가 와야 하는 자리에 문자열 값을 넣으려 해서",
+      "number 타입은 원래 존재하지 않아서",
+      "파일이 삭제돼서",
+      "실행하면 자동으로 사라지는 경고일 뿐이다"
+    ],
+    "answer": 0,
+    "explanation": "타입스크립트가 실행 전에 \"이 자리엔 숫자가 와야 하는데 문자열을 넣으려 하네요\"라고 미리 알려준 거예요."
+  },
+  {
+    "id": "12-2-q6",
+    "lessonId": "12-2",
+    "type": "choice",
+    "prompt": "함수 매개변수에 age?: number처럼 물음표가 붙어있으면 짐작할 수 있는 것은?",
+    "options": [
+      "이 값은 꼭 안 넘겨줘도 되는, 선택적인 값이라는 뜻",
+      "항상 에러가 나는 값",
+      "숫자만 가능하다는 뜻(다른 것과 동일)",
+      "아무 의미 없음"
+    ],
+    "answer": 0,
+    "explanation": "물음표(?)는 \"있어도 되고 없어도 되는 값\"이라는 표시예요."
+  },
+  {
+    "id": "12-2-q7",
+    "lessonId": "12-2",
+    "type": "compare",
+    "prompt": "타입 에러를 AI에게 설명할 때 더 나은 요청은?",
+    "options": [
+      "타입 에러 나요",
+      "Type 'string' is not assignable to type 'number' 에러가 나는데, price에 숫자 대신 문자열을 넣고 있는 것 같아요"
+    ],
+    "answer": 1,
+    "explanation": "정확한 메시지와 어디서 났는지 짚어주면 AI가 타입 불일치 지점을 바로 찾아줘요."
+  }
+]

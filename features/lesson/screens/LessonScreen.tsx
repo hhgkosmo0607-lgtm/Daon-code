@@ -1,16 +1,20 @@
 import { useRouter } from 'expo-router';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { ProgressBar } from '../../../shared/components/ProgressBar';
 import { colors, radius, spacing } from '../../../shared/theme/theme';
+import { useAuth } from '../../auth/AuthContext';
 import { FeedbackBanner } from '../components/FeedbackBanner';
 import { QuestionView } from '../components/QuestionView';
 import { useLesson } from '../hooks/useLesson';
 import { useSubmitLesson } from '../hooks/useSubmitLesson';
 import { LessonResultScreen } from './LessonResultScreen';
+
+/** 1단계 도중 게스트 XP 차등을 미리 인지시키는 배너. (기획서 6번) */
+const GUEST_NOTICE_LESSON_ID = '1-3';
 
 /*
  * 레슨 풀이 화면.
@@ -23,6 +27,9 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
   const lessonState = useLesson(lessonId);
   const submitState = useSubmitLesson();
   const hasSubmittedRef = useRef(false);
+  const { isGuest } = useAuth();
+  const [noticeDismissed, setNoticeDismissed] = useState(false);
+  const showGuestNotice = isGuest && lessonId === GUEST_NOTICE_LESSON_ID && !noticeDismissed;
 
   const {
     lesson,
@@ -99,6 +106,15 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
         </Text>
       </View>
 
+      {showGuestNotice && (
+        <View style={styles.guestNotice}>
+          <Text style={styles.guestNoticeText}>게스트 모드로 진행 중 (XP 80%) · 로그인하면 전체 XP</Text>
+          <Pressable onPress={() => setNoticeDismissed(true)} hitSlop={8}>
+            <Text style={styles.guestNoticeClose}>✕</Text>
+          </Pressable>
+        </View>
+      )}
+
       <ScrollView contentContainerStyle={styles.body} keyboardShouldPersistTaps="handled">
         <QuestionView
           question={current}
@@ -143,6 +159,21 @@ const styles = StyleSheet.create({
   },
   close: { fontSize: 20, color: colors.textMuted },
   counter: { fontSize: 13, color: colors.textMuted, minWidth: 36, textAlign: 'right' },
+  guestNotice: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: spacing.sm,
+    marginHorizontal: spacing.md,
+    marginBottom: spacing.sm,
+    padding: spacing.sm,
+    backgroundColor: '#FFF4EC',
+    borderRadius: radius.sm,
+    borderWidth: 1,
+    borderColor: colors.accent,
+  },
+  guestNoticeText: { flex: 1, fontSize: 12, color: colors.accent, fontWeight: '600' },
+  guestNoticeClose: { fontSize: 14, color: colors.accent, fontWeight: '700' },
   body: { padding: spacing.md, paddingBottom: spacing.xl },
   footer: { padding: spacing.md },
   checkButton: {

@@ -1,0 +1,92 @@
+[
+  {
+    "id": "10-1-q1",
+    "lessonId": "10-1",
+    "type": "choice",
+    "prompt": "이 코드는 무엇을 하고 있을까요?",
+    "code": "useEffect(() => {\n  fetch('https://api.example.com/products')\n    .then(res => res.json())\n    .then(data => setProducts(data))\n}, [])",
+    "options": [
+      "서버 주소로 데이터를 요청해서, 받은 결과를 state에 저장한다",
+      "화면을 지운다",
+      "서버에 데이터를 삭제 요청한다",
+      "아무 일도 안 한다"
+    ],
+    "answer": 0,
+    "explanation": "fetch()는 서버에 \"이 데이터 좀 줘\"라고 요청하는 함수예요. .then()으로 응답이 왔을 때 할 일을 이어서 씁니다."
+  },
+  {
+    "id": "10-1-q2",
+    "lessonId": "10-1",
+    "type": "choice",
+    "prompt": "실제로 서버에 요청을 보내는 줄은?",
+    "code": "1  function ProductList() {\n2    const [products, setProducts] = useState([])\n3\n4    useEffect(() => {\n5      fetch('/api/products')\n6        .then(res => res.json())\n7        .then(data => setProducts(data))\n8    }, [])\n9\n10   return <View>{products.map(p => <Text key={p.id}>{p.name}</Text>)}</View>\n11 }",
+    "options": ["2번", "5번", "7번", "10번"],
+    "answer": 1,
+    "explanation": "fetch('/api/products')가 실제로 서버에 요청을 보내는 줄이에요."
+  },
+  {
+    "id": "10-1-q3",
+    "lessonId": "10-1",
+    "type": "choice",
+    "prompt": "fetch와 useState는 각각 무슨 역할일까요?",
+    "options": [
+      "fetch는 서버에서 데이터를 가져오는 역할, useState는 가져온 데이터를 기억해서 화면에 반영하는 역할",
+      "둘 다 같은 역할이다",
+      "useState가 서버 요청을 한다",
+      "fetch가 화면을 그린다"
+    ],
+    "answer": 0,
+    "explanation": "가져오는 것(fetch)과 기억하는 것(useState)은 서로 다른 역할이에요. 대부분 이 둘을 같이 씁니다."
+  },
+  {
+    "id": "10-1-q4",
+    "lessonId": "10-1",
+    "type": "blank",
+    "prompt": "화면이 처음 뜰 때 딱 한 번만 데이터를 가져오려면 빈칸에 뭐가 들어가야 할까요?",
+    "code": "useEffect(() => { fetch(/* ... */) }, ___)",
+    "options": ["[]", "[1]", "null", "undefined"],
+    "answer": 0,
+    "explanation": "빈 배열 []은 \"처음 한 번만 실행\"을 의미해요 (5-4에서 다룬 useEffect 내용과 연결됩니다)."
+  },
+  {
+    "id": "10-1-q5",
+    "lessonId": "10-1",
+    "type": "choice",
+    "prompt": "이 에러가 났습니다. 가장 가능성 높은 원인은?",
+    "code": "TypeError: Failed to fetch",
+    "options": [
+      "요청한 주소가 틀렸거나 서버가 꺼져있거나 인터넷이 끊겼을 가능성",
+      "코드 디자인이 별로라서",
+      "useState를 안 써서",
+      ".then()을 안 붙여서 나는 문법 경고일 뿐이다"
+    ],
+    "answer": 0,
+    "explanation": "\"Failed to fetch\"는 요청 자체가 서버까지 도달하지 못했다는 뜻이에요. 주소, 서버 상태, 인터넷 연결을 순서대로 확인해보세요."
+  },
+  {
+    "id": "10-1-q6",
+    "lessonId": "10-1",
+    "type": "choice",
+    "prompt": ".then()이 여러 번 이어져 있는 코드를 보면 짐작할 수 있는 것은?",
+    "options": [
+      "앞의 결과가 끝나야 다음 작업이 시작되는, 순서대로 진행되는 흐름이다",
+      "여러 서버에 동시에 요청을 보낸다는 뜻",
+      "에러 처리 코드다",
+      "함수를 여러 번 복사해뒀다는 뜻"
+    ],
+    "answer": 0,
+    "explanation": "요청 → 응답 변환 → state 저장, 이렇게 순서가 있는 작업을 .then()으로 이어 붙인 거예요."
+  },
+  {
+    "id": "10-1-q7",
+    "lessonId": "10-1",
+    "type": "compare",
+    "prompt": "상품 목록이 안 뜨는 문제를 AI에게 설명할 때 더 나은 요청은?",
+    "options": [
+      "상품이 안 보여요",
+      "fetch('/api/products') 요청을 콘솔에서 확인했는데 응답이 빈 배열로 와요, 서버 쪽 데이터나 API 주소를 확인해줘"
+    ],
+    "answer": 1,
+    "explanation": "무엇을 확인했고 어떤 결과였는지 구체적으로 전달하면 AI가 원인 범위를 훨씬 빨리 좁혀요."
+  }
+]

@@ -1,0 +1,92 @@
+[
+  {
+    "id": "12-1-q1",
+    "lessonId": "12-1",
+    "type": "choice",
+    "prompt": "await가 붙은 줄은 어떻게 실행될까요?",
+    "code": "async function loadUser() {\n  const response = await fetch('/api/user')\n  const user = await response.json()\n  console.log(user)\n}",
+    "options": [
+      "그 작업이 끝날 때까지 다음 줄로 안 넘어가고 기다린다",
+      "무시하고 바로 다음 줄로 넘어간다",
+      "에러를 발생시킨다",
+      "아무 의미 없는 장식이다"
+    ],
+    "answer": 0,
+    "explanation": "await는 \"이 작업이 끝날 때까지 기다렸다가 다음으로 가\"라는 뜻이에요. 서버 응답처럼 시간이 걸리는 작업에 씁니다."
+  },
+  {
+    "id": "12-1-q2",
+    "lessonId": "12-1",
+    "type": "choice",
+    "prompt": "이 함수가 \"기다리는 코드를 쓸 수 있는 함수\"라는 걸 알려주는 부분은?",
+    "code": "1  async function loadUser() {\n2    const response = await fetch('/api/user')\n3    const user = await response.json()\n4    return user\n5  }",
+    "options": ["1번의 async", "2번의 fetch", "3번의 response", "4번의 return"],
+    "answer": 0,
+    "explanation": "async 키워드가 붙어야 그 함수 안에서 await를 쓸 수 있어요."
+  },
+  {
+    "id": "12-1-q3",
+    "lessonId": "12-1",
+    "type": "choice",
+    "prompt": "async가 붙은 함수와 안 붙은 일반 함수의 차이는?",
+    "options": [
+      "async가 붙어야 그 함수 안에서 await를 쓸 수 있다",
+      "차이 없다",
+      "async가 붙으면 더 빨라진다",
+      "async는 에러를 만드는 키워드다"
+    ],
+    "answer": 0,
+    "explanation": "await는 async 함수 안에서만 쓸 수 있는 문법이에요. 짝처럼 같이 다닙니다."
+  },
+  {
+    "id": "12-1-q4",
+    "lessonId": "12-1",
+    "type": "blank",
+    "prompt": "서버 응답을 기다렸다가 다음 코드를 실행하려 합니다. 빈칸은?",
+    "code": "const data = ___ fetch('/api/data')",
+    "options": ["await", "return", "const", "function"],
+    "answer": 0,
+    "explanation": "await가 \"이 요청이 끝날 때까지 기다려줘\"라는 뜻이에요."
+  },
+  {
+    "id": "12-1-q5",
+    "lessonId": "12-1",
+    "type": "choice",
+    "prompt": "이 코드에서 에러가 났습니다. 원인은?",
+    "code": "function loadUser() {\n  const user = await fetch('/api/user')\n}\n\nSyntaxError: await is only valid in async functions",
+    "options": [
+      "함수 앞에 async가 빠져서, await를 쓸 수 없는 상태",
+      "fetch 주소가 틀려서",
+      "await는 함수 이름 앞에서만 쓸 수 있어서",
+      "user라는 이름이 틀려서"
+    ],
+    "answer": 0,
+    "explanation": "await를 쓰려면 그 함수가 반드시 async 함수여야 해요. async function loadUser()로 고치면 해결돼요."
+  },
+  {
+    "id": "12-1-q6",
+    "lessonId": "12-1",
+    "type": "choice",
+    "prompt": "코드에 await가 여러 번 나오는 걸 보면 짐작할 수 있는 것은?",
+    "options": [
+      "서버 응답처럼 시간이 걸리는 작업을 순서대로 여러 번 기다리고 있다는 것",
+      "코드에 에러가 여러 개 있다는 뜻",
+      "아무 의미 없음",
+      "함수가 삭제될 예정이라는 뜻"
+    ],
+    "answer": 0,
+    "explanation": "await가 많다는 건 \"기다려야 하는 일\"이 여러 단계라는 뜻이에요. 로그인 확인 후 데이터 요청처럼 순서가 중요한 작업에 흔해요."
+  },
+  {
+    "id": "12-1-q7",
+    "lessonId": "12-1",
+    "type": "compare",
+    "prompt": "비동기 코드에서 에러가 났을 때 더 나은 요청은?",
+    "options": [
+      "에러 나요",
+      "async 함수 안에서 await fetch를 쓰는데 'await is only valid in async functions'라는 에러가 나요"
+    ],
+    "answer": 1,
+    "explanation": "정확한 에러 메시지를 그대로 전달하면 AI가 async 키워드 누락 같은 원인을 바로 짚어줘요."
+  }
+]

@@ -1,0 +1,88 @@
+[
+  {
+    "id": "3-3-q1",
+    "lessonId": "3-3",
+    "type": "choice",
+    "prompt": "아래 코드에서 \"지금까지 몇 번 눌렀는지\"를 기억하는 부분은?",
+    "code": "const [count, setCount] = useState(0)",
+    "options": ["useState(0) 전체", "count만", "setCount만", "기억하는 부분이 없다"],
+    "answer": 0,
+    "explanation": "useState(0)은 \"0에서 시작하는 값을 기억해줘\"라는 뜻이에요. 이렇게 기억되는 값을 state라고 불러요."
+  },
+  {
+    "id": "3-3-q2",
+    "lessonId": "3-3",
+    "type": "choice",
+    "prompt": "버튼을 누르면 어떤 일이 일어날까요?",
+    "code": "const [count, setCount] = useState(0)\n\n<button onClick={() => setCount(count + 1)}>\n  {count}\n</button>",
+    "options": [
+      "count 값이 1 늘어나고, 화면의 숫자도 함께 바뀐다",
+      "아무 일도 일어나지 않는다",
+      "버튼이 사라진다",
+      "페이지가 새로고침된다"
+    ],
+    "answer": 0,
+    "explanation": "setCount가 실행되면 화면의 {count}도 자동으로 새 값으로 바뀌어요."
+  },
+  {
+    "id": "3-3-q3",
+    "lessonId": "3-3",
+    "type": "choice",
+    "prompt": "일반 변수와 useState 값의 결정적 차이는?",
+    "options": [
+      "일반 변수를 바꿔도 화면이 자동으로 안 바뀌지만, useState 값은 화면이 자동으로 바뀐다",
+      "둘은 완전히 똑같다",
+      "useState는 숫자만 담을 수 있다",
+      "일반 변수가 더 빠르다"
+    ],
+    "answer": 0,
+    "explanation": "React에게 \"이 값이 바뀌면 화면을 다시 그려줘\"라고 알려주는 특별한 방법이 useState예요."
+  },
+  {
+    "id": "3-3-q4",
+    "lessonId": "3-3",
+    "type": "blank",
+    "prompt": "좋아요 개수를 기억하려면?",
+    "code": "const [likeCount, setLikeCount] = ___(0)",
+    "options": ["useState", "const", "map", "props"],
+    "answer": 0,
+    "explanation": "값을 기억하고 화면에 반영하려면 useState를 씁니다."
+  },
+  {
+    "id": "3-3-q5",
+    "lessonId": "3-3",
+    "type": "choice",
+    "prompt": "버튼을 눌러도 화면 숫자가 안 바뀝니다. 원인은?",
+    "code": "const [count, setCount] = useState(0)\n\n<button onClick={() => count = count + 1}>\n  {count}\n</button>",
+    "options": [
+      "setCount를 안 쓰고 count를 직접 바꾸려고 해서",
+      "버튼이 고장나서",
+      "useState를 두 번 써서",
+      "원래 안 되는 기능이다"
+    ],
+    "answer": 0,
+    "explanation": "반드시 setCount라는 전용 도구를 통해야 React가 \"값이 바뀌었으니 화면을 다시 그려야겠다\"고 알아채요."
+  },
+  {
+    "id": "3-3-q6",
+    "lessonId": "3-3",
+    "type": "choice",
+    "prompt": "isOpen은 어떤 값을 기억할까요?",
+    "code": "const [isOpen, setIsOpen] = useState(false)",
+    "options": ["메뉴나 창이 열려있는지 아닌지 (참/거짓)", "열린 횟수 (숫자)", "열린 사람 이름", "열린 시각"],
+    "answer": 0,
+    "explanation": "is~로 시작하고 초기값이 false면 대부분 \"열림/닫힘\" 같은 참거짓 상태예요."
+  },
+  {
+    "id": "3-3-q7",
+    "lessonId": "3-3",
+    "type": "compare",
+    "prompt": "메뉴가 열리고 닫히는 기능을 만들려 합니다. 더 적절한 코드는?",
+    "options": [
+      "let isOpen = false\n<button onClick={() => isOpen = true}>열기</button>",
+      "const [isOpen, setIsOpen] = useState(false)\n<button onClick={() => setIsOpen(true)}>열기</button>"
+    ],
+    "answer": 1,
+    "explanation": "A처럼 그냥 변수로 하면 값은 바뀌어도 화면은 그대로예요."
+  }
+]

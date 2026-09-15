@@ -1,0 +1,80 @@
+[
+  {
+    "id": "2-3-q1",
+    "lessonId": "2-3",
+    "type": "choice",
+    "prompt": "아래 세 줄에서 \"숫자\"로 저장된 것은?",
+    "code": "const age = 25\nconst ageText = \"25\"\nconst isAdult = true",
+    "options": ["age", "ageText", "isAdult", "셋 다 숫자다"],
+    "answer": 0,
+    "explanation": "따옴표가 없는 25는 진짜 숫자예요. \"25\"는 겉보기엔 같아도 사실은 글자(문자열)입니다."
+  },
+  {
+    "id": "2-3-q2",
+    "lessonId": "2-3",
+    "type": "choice",
+    "prompt": "아래 중 문자열은?",
+    "code": "const price = 3000\nconst category = \"전자제품\"\nconst inStock = false",
+    "options": ["price", "category", "inStock", "없음"],
+    "answer": 1,
+    "explanation": "따옴표로 감싸져 있으면 문자열이에요. 사람이 읽는 텍스트라고 생각하면 됩니다."
+  },
+  {
+    "id": "2-3-q3",
+    "lessonId": "2-3",
+    "type": "choice",
+    "prompt": "숫자와 숫자처럼 생긴 문자열을 더하면?",
+    "code": "const a = 5 + 5        // 숫자 + 숫자\nconst b = \"5\" + \"5\"    // 문자열 + 문자열",
+    "options": ["a는 10, b는 10", "a는 10, b는 \"55\"", "a도 b도 \"55\"", "둘 다 에러가 난다"],
+    "answer": 1,
+    "explanation": "문자열끼리 +는 이어붙이기예요. 따옴표 유무가 실제 동작을 완전히 바꿉니다."
+  },
+  {
+    "id": "2-3-q4",
+    "lessonId": "2-3",
+    "type": "blank",
+    "prompt": "이 값에는 어떤 종류가 들어가야 할까요?",
+    "code": "const isLoggedIn = ___",
+    "options": ["true", "\"true\"", "1", "\"로그인됨\""],
+    "answer": 0,
+    "explanation": "예/아니오로 답할 수 있는 값은 참/거짓으로 저장해요. \"true\"는 그냥 글자일 뿐입니다."
+  },
+  {
+    "id": "2-3-q5",
+    "lessonId": "2-3",
+    "type": "choice",
+    "prompt": "가격 계산을 하려는데 이런 결과가 나왔습니다. 원인은?",
+    "code": "5 + \"5\"  결과: \"55\"",
+    "options": [
+      "가격을 숫자가 아니라 문자열로 받아와서 더했을 가능성",
+      "숫자와 문자열을 더하면 원래 에러가 나야 하는데 안 나는 것뿐이다",
+      "AI가 계산을 못해서",
+      "5와 \"5\"는 같은 값이라 더하기 자체가 의미 없다"
+    ],
+    "answer": 0,
+    "explanation": "서버나 입력창에서 받아온 값이 숫자처럼 보여도 실제로는 문자열인 경우가 흔해요."
+  },
+  {
+    "id": "2-3-q6",
+    "lessonId": "2-3",
+    "type": "choice",
+    "prompt": "null이라는 값은 어떤 의미로 읽어야 할까요?",
+    "options": [
+      "숫자 0",
+      "의도적으로 \"아직 값이 없음\"을 나타내는 표시",
+      "에러 메시지",
+      "빈 문자열"
+    ],
+    "answer": 1,
+    "explanation": "로그인 전에는 user = null로 뒀다가, 로그인하면 실제 정보로 바뀌는 식으로 쓰여요."
+  },
+  {
+    "id": "2-3-q7",
+    "lessonId": "2-3",
+    "type": "compare",
+    "prompt": "전화번호를 저장하려 합니다. 더 적절한 코드는?",
+    "options": ["const phone = 01012345678", "const phone = \"010-1234-5678\""],
+    "answer": 1,
+    "explanation": "전화번호는 계산할 일이 없고, 하이픈이나 맨 앞 0을 그대로 표시해야 해서 문자열이 맞아요."
+  }
+]

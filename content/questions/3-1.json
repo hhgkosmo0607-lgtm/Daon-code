@@ -1,0 +1,69 @@
+[
+  {
+    "id": "3-1-q1",
+    "lessonId": "3-1",
+    "type": "choice",
+    "prompt": "이 버튼 색을 파란색에서 빨간색으로 바꾸려면 어디를 고쳐야 할까요?",
+    "code": "<button className=\"bg-blue-500\">구매하기</button>",
+    "options": ["button이라는 글자", "bg-blue-500 부분", "구매하기라는 글자", "< 기호"],
+    "answer": 1,
+    "explanation": "bg-blue-500은 \"배경색을 파란색 500번 진하기로\"라는 뜻이에요. bg는 background의 줄임말입니다."
+  },
+  {
+    "id": "3-1-q2",
+    "lessonId": "3-1",
+    "type": "choice",
+    "prompt": "아래 코드에서 색상을 지정하는 부분은?",
+    "code": "<div style={{ backgroundColor: \"yellow\", padding: \"10px\" }}>\n  안내문구\n</div>",
+    "options": ["div", "backgroundColor: \"yellow\"", "padding: \"10px\"", "안내문구"],
+    "answer": 1,
+    "explanation": "style={{ }} 안에 직접 색상 값을 넣는 방식도 자주 쓰여요."
+  },
+  {
+    "id": "3-1-q3",
+    "lessonId": "3-1",
+    "type": "choice",
+    "prompt": "아래 둘 중 \"보이는 모습\"을 바꾸는 쪽은?",
+    "code": "A: <button className=\"bg-blue-500\">\nB: <button onClick={handleClick}>",
+    "options": ["A", "B", "둘 다 같은 방식", "둘 다 다름"],
+    "answer": 0,
+    "explanation": "className은 스타일(색, 크기), onClick은 클릭했을 때 실행할 동작을 연결하는 부분이라 성격이 달라요."
+  },
+  {
+    "id": "3-1-q4",
+    "lessonId": "3-1",
+    "type": "blank",
+    "prompt": "버튼을 초록색으로 만들려면?",
+    "code": "<button className=\"___\">확인</button>",
+    "options": ["bg-green-500", "text-green-500", "border-green-500", "green"],
+    "answer": 0,
+    "explanation": "bg-가 배경색, text-는 글자색, border-는 테두리색이에요."
+  },
+  {
+    "id": "3-1-q5",
+    "lessonId": "3-1",
+    "type": "choice",
+    "prompt": "색을 바꿨다고 생각했는데 화면에 변화가 없습니다. 가장 흔한 원인은?",
+    "options": ["파일을 저장하지 않아서", "다른 곳에도 같은 클래스가 있어서 우선순위가 밀려서", "다른 컴포넌트를 고치고 있어서", "빨간색이 존재하지 않아서"],
+    "answer": 0,
+    "explanation": "에디터에서 고친 내용은 저장(Ctrl+S / Cmd+S)해야 반영돼요."
+  },
+  {
+    "id": "3-1-q6",
+    "lessonId": "3-1",
+    "type": "choice",
+    "prompt": "bg-blue-500에서 숫자 500은 무슨 의미일까요?",
+    "options": ["색상의 진하기 정도 (숫자가 클수록 진함)", "버튼의 크기", "클릭 횟수", "아무 의미 없는 장식"],
+    "answer": 0,
+    "explanation": "보통 100(연함)부터 900(진함)까지 숫자로 진하기를 표현해요."
+  },
+  {
+    "id": "3-1-q7",
+    "lessonId": "3-1",
+    "type": "compare",
+    "prompt": "버튼을 강조색으로 바꾸려 합니다. 더 적절한 요청은?",
+    "options": ["버튼 좀 눈에 띄게 해줘", "구매하기 버튼 배경색을 bg-orange-500으로 바꿔줘"],
+    "answer": 1,
+    "explanation": "B처럼 구체적인 클래스명을 언급하면 AI가 정확히 어디를 고칠지 헷갈리지 않아요."
+  }
+]

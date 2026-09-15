@@ -1,5 +1,5 @@
 import { useRouter } from 'expo-router';
-import { Fragment } from 'react';
+import { Fragment, useEffect } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -19,22 +19,45 @@ import { useUserProgress } from '../hooks/useUserProgress';
  * 상태는 Supabase progress 테이블에서 읽어온다 (useUserProgress).
  * 로그인 전에는 빈 맵이라 1단계 첫 레슨만 열어둔다.
  */
+
+/**
+ * 디자인/UI 작업 중 모든 레슨을 자유롭게 눌러볼 수 있게 잠금을 해제한다.
+ * 완료 표시(●)는 실제 진도를 그대로 보여주고, "잠김"만 없앤다.
+ * 출시 전에는 반드시 false로 되돌려야 한다.
+ */
+const UNLOCK_ALL_LESSONS_FOR_DEV = true;
+
 export function HomeScreen() {
   const router = useRouter();
   const stages = getStages();
   const lessons = getLessons();
 
   const { user, isGuest } = useAuth();
-  const { profile, statusMap } = useUserProgress();
+  const { profile, statusMap, loading } = useUserProgress();
 
   const firstLessonId = lessons[0]?.id;
 
   const statusOf = (lessonId: string) => {
     const fromServer = statusMap[lessonId];
     if (fromServer) return fromServer;
+    if (UNLOCK_ALL_LESSONS_FOR_DEV) return 'open';
     // 진도 기록이 없어도 맨 첫 레슨은 항상 열어둔다 (진입점 확보)
     return lessonId === firstLessonId ? 'open' : 'locked';
   };
+
+  // 배치고사를 안 본 게스트가 1단계(5레슨)를 다 풀면 그 시점에 로그인을 강제한다.
+  // (기획서 6번 — "게스트로 놓친 XP를 돌려받아요") isGuest가 true라서
+  // AuthScreen이 알아서 "나중에 하기"를 숨긴다.
+  useEffect(() => {
+    if (loading || !isGuest) return;
+    const stage1Lessons = lessons.filter((l) => l.stage === 1);
+    const stage1AllDone =
+      stage1Lessons.length > 0 && stage1Lessons.every((l) => statusOf(l.id) === 'completed');
+    if (stage1AllDone) {
+      router.replace('/auth');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loading, isGuest, statusMap]);
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>

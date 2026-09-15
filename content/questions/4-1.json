@@ -1,0 +1,92 @@
+[
+  {
+    "id": "4-1-q1",
+    "lessonId": "4-1",
+    "type": "choice",
+    "prompt": "화면에 이런 빨간 글씨가 떴습니다. 가장 먼저 해야 할 일은?",
+    "code": "TypeError: Cannot read property 'name' of undefined",
+    "options": [
+      "당황해서 전부 지우고 다시 시작한다",
+      "메시지를 천천히 읽어서 뭐가 문제인지 파악한다",
+      "무조건 컴퓨터를 재시작한다",
+      "못 본 척 넘어간다"
+    ],
+    "answer": 1,
+    "explanation": "에러 메시지는 \"고장났다\"는 알림이 아니라 \"여기가 문제예요\"라고 알려주는 힌트예요."
+  },
+  {
+    "id": "4-1-q2",
+    "lessonId": "4-1",
+    "type": "choice",
+    "prompt": "아래 에러에서 \"종류(무슨 문제인지)\"에 해당하는 부분은?",
+    "code": "TypeError: Cannot read property 'name' of undefined",
+    "options": ["TypeError", "Cannot read property", "'name'", "undefined"],
+    "answer": 0,
+    "explanation": "콜론(:) 앞부분이 에러의 종류예요. TypeError는 \"값의 종류가 예상과 달라서 생긴 문제\"라는 뜻입니다."
+  },
+  {
+    "id": "4-1-q3",
+    "lessonId": "4-1",
+    "type": "choice",
+    "prompt": "에러 메시지의 \"위치\"는 보통 어디서 확인할 수 있을까요?",
+    "options": [
+      "에러 메시지의 색깔",
+      "메시지 아래/옆에 함께 뜨는 파일명과 줄 번호",
+      "메시지의 글자 크기",
+      "메시지가 뜬 시각"
+    ],
+    "answer": 1,
+    "explanation": "이 위치부터 살펴보면 원인을 좁히기 쉬워져요."
+  },
+  {
+    "id": "4-1-q4",
+    "lessonId": "4-1",
+    "type": "blank",
+    "prompt": "에러 메시지를 읽을 때 확인해야 할 3가지는?",
+    "code": "종류, 위치, ___",
+    "options": ["설명(무슨 상황인지)", "색깔", "크기", "시간"],
+    "answer": 0,
+    "explanation": "종류(무슨 에러), 위치(어디서), 설명(구체적으로 뭐가 잘못됐는지)이 핵심 정보예요."
+  },
+  {
+    "id": "4-1-q5",
+    "lessonId": "4-1",
+    "type": "choice",
+    "prompt": "에러가 떴는데 무슨 뜻인지 전혀 모르겠습니다. 가장 좋은 다음 행동은?",
+    "options": [
+      "에러 메시지 전체를 복사해서 AI에게 \"이 에러가 뭔지 설명해줘\"라고 물어본다",
+      "에러가 사라질 때까지 아무 코드나 지워본다",
+      "프로젝트를 처음부터 새로 시작한다",
+      "에러를 무시하고 계속 진행한다"
+    ],
+    "answer": 0,
+    "explanation": "완벽히 이해 못 해도 괜찮아요. 메시지 전체를 보여주면 AI가 해석해주고 고치는 방법도 알려줍니다."
+  },
+  {
+    "id": "4-1-q6",
+    "lessonId": "4-1",
+    "type": "choice",
+    "prompt": "아래 두 상황 중 \"지금 당장 AI에게 물어봐야 할\" 쪽과 \"잠시 기다려봐도 되는\" 쪽을 짝지으면?",
+    "code": "상황 A: 코드 수정 후 저장하자마자\n        \"Unexpected token\" 에러가 뜸\n\n상황 B: npm run dev를 실행했는데\n        터미널이 아무것도 안 뜨고 멈춰있음 (5분째)",
+    "options": [
+      "A=기다려도 됨, B=바로 물어봐야 함",
+      "A=바로 물어봐야 함, B=일단 좀 더 기다려도 됨(초기 설치 중일 수 있음)",
+      "둘 다 즉시 물어봐야 함",
+      "둘 다 기다려도 됨"
+    ],
+    "answer": 1,
+    "explanation": "문법 에러는 코드에 실제 문제가 있다는 명확한 신호지만, 처음 실행 시 멈춰 보이는 건 의존성 설치 중일 수 있어요."
+  },
+  {
+    "id": "4-1-q7",
+    "lessonId": "4-1",
+    "type": "compare",
+    "prompt": "에러가 났을 때 AI에게 더 나은 요청은?",
+    "options": [
+      "에러 나요 고쳐주세요",
+      "TypeError: Cannot read property 'name' of undefined 라는 에러가 떴어요"
+    ],
+    "answer": 1,
+    "explanation": "정확한 메시지를 그대로 전달하면 AI가 훨씬 정확하게 원인을 찾을 수 있어요."
+  }
+]

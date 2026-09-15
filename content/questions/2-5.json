@@ -1,0 +1,88 @@
+[
+  {
+    "id": "2-5-q1",
+    "lessonId": "2-5",
+    "type": "choice",
+    "prompt": "아래 코드는 무엇을 하고 있을까요?",
+    "code": "const fruits = [\"사과\", \"바나나\", \"포도\"]\nfruits.map(fruit => <li>{fruit}</li>)",
+    "options": [
+      "배열에 있는 각 항목마다 화면에 보여줄 요소를 하나씩 만든다",
+      "배열을 지운다",
+      "배열 순서를 뒤집는다",
+      "배열에서 하나만 뽑는다"
+    ],
+    "answer": 0,
+    "explanation": "map()은 목록을 하나씩 돌면서 각각을 다른 모양으로 바꿔주는 역할이에요."
+  },
+  {
+    "id": "2-5-q2",
+    "lessonId": "2-5",
+    "type": "choice",
+    "prompt": "아래 코드에서 \"반복\"이 일어나는 줄은?",
+    "code": "1  function FruitList() {\n2    const fruits = [\"사과\", \"바나나\"]\n3    return (\n4      <ul>\n5        {fruits.map(f => <li>{f}</li>)}\n6      </ul>\n7    )\n8  }",
+    "options": ["2번", "5번", "4번", "7번"],
+    "answer": 1,
+    "explanation": "과일이 2개면 <li>도 2개 생겨요."
+  },
+  {
+    "id": "2-5-q3",
+    "lessonId": "2-5",
+    "type": "choice",
+    "prompt": "map()을 쓰지 않고 항목이 100개인 목록을 보여주려면?",
+    "options": ["<li>를 100번 직접 써야 한다", "자동으로 알아서 나온다", "불가능하다", "10개까지만 가능하다"],
+    "answer": 0,
+    "explanation": "데이터가 몇 개든 자동으로 화면에 반영되게 해주는 게 map()의 역할이에요."
+  },
+  {
+    "id": "2-5-q4",
+    "lessonId": "2-5",
+    "type": "blank",
+    "prompt": "상품 목록을 반복해서 보여주려면?",
+    "code": "{products.___(p => <ProductCard product={p} />)}",
+    "options": ["map", "delete", "find", "sort"],
+    "answer": 0,
+    "explanation": "\"목록의 각 항목마다 화면 조각을 하나씩 만들어줘\"라는 의도이므로 map이 맞아요."
+  },
+  {
+    "id": "2-5-q5",
+    "lessonId": "2-5",
+    "type": "choice",
+    "prompt": "콘솔에 이런 경고가 떴습니다. 무슨 뜻일까요?",
+    "code": "Warning: Each child in a list should have a unique \"key\" prop.",
+    "options": [
+      "목록 항목마다 구분할 이름표(key)를 안 달아줘서 나는 경고",
+      "데이터가 하나도 없다는 뜻",
+      "map() 함수 자체를 잘못 써서 나는 문법 에러",
+      "화면에 보여줄 항목이 너무 많다는 경고"
+    ],
+    "answer": 0,
+    "explanation": "보통 key={item.id}처럼 고유값을 넣어주면 해결돼요. AI에게 \"key 경고가 뜨는데 고쳐줘\"라고 하면 됩니다."
+  },
+  {
+    "id": "2-5-q6",
+    "lessonId": "2-5",
+    "type": "choice",
+    "prompt": "아래 코드에서 p는 무엇을 가리킬까요?",
+    "code": "products.map(p => <li>{p.name}</li>)",
+    "options": [
+      "products 배열 안의 항목 하나하나 (한 상품)",
+      "products 배열 전체",
+      "화면 전체",
+      "아무 의미 없는 글자"
+    ],
+    "answer": 0,
+    "explanation": "\"지금 돌고 있는 그 항목 하나\"를 임시로 부르는 이름이에요. 다른 이름이어도 상관없습니다."
+  },
+  {
+    "id": "2-5-q7",
+    "lessonId": "2-5",
+    "type": "compare",
+    "prompt": "댓글 목록을 전부 보여주는 더 적절한 코드는?",
+    "options": [
+      "<div>{comments[0]}</div>",
+      "{comments.map(c => <div key={c.id}>{c.content}</div>)}"
+    ],
+    "answer": 1,
+    "explanation": "A는 첫 번째 댓글 하나만 보여줘요. 전부 보여주려면 map()이 필요합니다."
+  }
+]

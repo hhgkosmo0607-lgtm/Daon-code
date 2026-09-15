@@ -1,0 +1,87 @@
+[
+  {
+    "id": "9-3-q1",
+    "lessonId": "9-3",
+    "type": "choice",
+    "prompt": "주소가 /products/42일 때, 화면에 뭐라고 표시될까요?",
+    "code": "// 주소: /products/42\nfunction ProductDetail() {\n  const { id } = useLocalSearchParams()\n  return <Text>상품 번호: {id}</Text>\n}",
+    "options": ["상품 번호: id", "상품 번호: 42", "상품 번호: undefined", "에러가 난다"],
+    "answer": 1,
+    "explanation": "useLocalSearchParams()는 주소에 담긴 값을 꺼내오는 함수예요. [id].tsx 파일이 그 자리에 실제 42를 담아줍니다."
+  },
+  {
+    "id": "9-3-q2",
+    "lessonId": "9-3",
+    "type": "choice",
+    "prompt": "주소에서 넘어온 값을 꺼내는 줄은?",
+    "code": "1  function OrderDetail() {\n2    const { orderId } = useLocalSearchParams()\n3    const [order, setOrder] = useState(null)\n4\n5    useEffect(() => {\n6      fetchOrder(orderId).then(setOrder)\n7    }, [orderId])\n8\n9    return <Text>{order?.status}</Text>\n10 }",
+    "options": ["2번", "3번", "6번", "9번"],
+    "answer": 0,
+    "explanation": "useLocalSearchParams()로 주소에 담긴 orderId를 꺼내고 있어요."
+  },
+  {
+    "id": "9-3-q3",
+    "lessonId": "9-3",
+    "type": "choice",
+    "prompt": "props(2-6에서 배운 것)와 URL 파라미터의 공통점은?",
+    "options": [
+      "둘 다 \"부모\"나 \"주소\"로부터 화면에 값을 전달하는 방법이다",
+      "완전히 다른 개념이라 관련 없다",
+      "props가 항상 더 정확하다",
+      "URL 파라미터는 숫자만 담을 수 있다"
+    ],
+    "answer": 0,
+    "explanation": "props는 컴포넌트 간에, URL 파라미터는 주소를 통해 값을 전달한다는 점만 다르고, \"값을 건네받는다\"는 개념 자체는 같아요."
+  },
+  {
+    "id": "9-3-q4",
+    "lessonId": "9-3",
+    "type": "blank",
+    "prompt": "라우트 파일 [id].tsx 안에서 그 id 값을 꺼내려면?",
+    "code": "const { id } = ___()",
+    "options": ["useLocalSearchParams", "useState", "useEffect", "useRouter"],
+    "answer": 0,
+    "explanation": "useLocalSearchParams()가 지금 주소에 담긴 값을 꺼내주는 함수예요."
+  },
+  {
+    "id": "9-3-q5",
+    "lessonId": "9-3",
+    "type": "choice",
+    "prompt": "주소가 /products/7인데 이 조건이 항상 거짓으로 나옵니다. 원인은?",
+    "code": "const { id } = useLocalSearchParams()\nif (id === 7) { /* 항상 실행 안 됨 */ }",
+    "options": [
+      "id는 숫자 7이 아니라 문자열 \"7\"이라서, ===로 비교하면 다르다고 판단됨",
+      "===는 원래 숫자끼리만 비교할 수 있어서 에러가 나야 한다",
+      "useLocalSearchParams를 useEffect 밖에서 써서",
+      "id라는 이름이 예약어라서 못 쓴다"
+    ],
+    "answer": 0,
+    "explanation": "주소에 담긴 값은 전부 문자열이에요. 숫자로 비교하려면 Number(id)처럼 변환해야 해요 (2-3에서 배운 문자열/숫자 구분이 여기서도 적용됩니다)."
+  },
+  {
+    "id": "9-3-q6",
+    "lessonId": "9-3",
+    "type": "choice",
+    "prompt": "주소 /search?keyword=신발 에서 keyword=신발 부분을 부르는 이름은?",
+    "options": [
+      "그냥 장식",
+      "쿼리 파라미터 — 검색어처럼 있어도 되고 없어도 되는 값을 주소에 담는 방식",
+      "에러 메시지",
+      "파일 이름"
+    ],
+    "answer": 1,
+    "explanation": "물음표(?) 뒤에 오는 값들을 쿼리 파라미터라고 불러요. 검색, 필터, 정렬 옵션처럼 선택적인 값에 자주 씁니다."
+  },
+  {
+    "id": "9-3-q7",
+    "lessonId": "9-3",
+    "type": "compare",
+    "prompt": "검색 기능을 요청할 때 더 나은 방식은?",
+    "options": [
+      "검색 기능 만들어줘",
+      "검색창에 입력한 값을 주소의 쿼리 파라미터(?keyword=)로 담아서 결과 화면에 전달해줘"
+    ],
+    "answer": 1,
+    "explanation": "값이 어떻게 전달되길 원하는지 구체적으로 짚으면, 뒤로가기/새로고침해도 검색 결과가 유지되는 자연스러운 구조로 만들어줘요."
+  }
+]

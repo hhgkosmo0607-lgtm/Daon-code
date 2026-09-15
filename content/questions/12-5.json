@@ -1,0 +1,92 @@
+[
+  {
+    "id": "12-5-q1",
+    "lessonId": "12-5",
+    "type": "choice",
+    "prompt": "이 package.json을 보고 짐작할 수 있는 것은?",
+    "code": "{\n  \"dependencies\": {\n    \"next\": \"14.0.0\",\n    \"react\": \"^18.2.0\"\n  }\n}",
+    "options": [
+      "Next.js라는 프레임워크로 만들어진 프로젝트다",
+      "Python으로 만들어진 프로젝트다",
+      "아무것도 알 수 없다",
+      "반드시 에러가 있는 프로젝트다"
+    ],
+    "answer": 0,
+    "explanation": "package.json의 dependencies를 보면 이 프로젝트가 어떤 프레임워크/도구로 만들어졌는지 짐작할 수 있어요. next가 있으면 Next.js 프로젝트입니다."
+  },
+  {
+    "id": "12-5-q2",
+    "lessonId": "12-5",
+    "type": "choice",
+    "prompt": "이 폴더 구조에서 \"이 프로젝트가 Next.js로 만들어졌다\"는 힌트를 주는 파일은?",
+    "code": "project/\n  app/\n    layout.tsx\n    page.tsx\n  next.config.js\n  package.json",
+    "options": ["next.config.js", "package.json", "layout.tsx", "page.tsx"],
+    "answer": 0,
+    "explanation": "각 프레임워크마다 자기만의 설정 파일 이름이 있어요. next.config.js는 Next.js 프로젝트라는 확실한 신호예요."
+  },
+  {
+    "id": "12-5-q3",
+    "lessonId": "12-5",
+    "type": "choice",
+    "prompt": "라이브러리(12-3)와 프레임워크의 차이는?",
+    "options": [
+      "라이브러리는 필요할 때 가져다 쓰는 도구, 프레임워크는 프로젝트의 전체 구조와 규칙을 정해주는 큰 틀",
+      "완전히 같은 것이다",
+      "프레임워크가 항상 더 작다",
+      "라이브러리는 설치할 필요가 없다"
+    ],
+    "answer": 0,
+    "explanation": "React는 라이브러리, Next.js나 Expo는 그 위에 파일 구조·라우팅 규칙까지 정해주는 프레임워크예요."
+  },
+  {
+    "id": "12-5-q4",
+    "lessonId": "12-5",
+    "type": "blank",
+    "prompt": "이 앱(다온코드)이 사용하는 프레임워크는 무엇일까요?",
+    "code": "\"dependencies\": { \"expo\": \"~57.0.21\" /* ... */ }",
+    "options": ["Expo", "Next.js", "Django", "Vue"],
+    "answer": 0,
+    "explanation": "package.json에 expo가 있으면 Expo 프레임워크로 만들어진 프로젝트라는 뜻이에요. 지금 여러분이 배우고 있는 이 앱도 마찬가지입니다."
+  },
+  {
+    "id": "12-5-q5",
+    "lessonId": "12-5",
+    "type": "choice",
+    "prompt": "AI에게 새 화면을 만들어달라고 했는데, 이 프레임워크에서 안 쓰는 방식의 코드를 줬습니다. 좋은 대응은?",
+    "options": [
+      "무조건 그대로 쓴다",
+      "\"이 프로젝트는 Expo Router를 쓰는데, 그 방식에 맞게 다시 짜줘\"라고 구체적으로 요청한다",
+      "프로젝트를 처음부터 새로 만든다",
+      "그냥 포기한다"
+    ],
+    "answer": 1,
+    "explanation": "AI가 가끔 다른 프레임워크(예: 일반 React) 방식으로 착각하고 코드를 줄 때가 있어요. 지금 프로젝트가 쓰는 프레임워크를 명시하면 정확도가 올라가요."
+  },
+  {
+    "id": "12-5-q6",
+    "lessonId": "12-5",
+    "type": "choice",
+    "prompt": "새로운 프로젝트를 받았을 때 package.json을 가장 먼저 열어보면 좋은 이유는?",
+    "options": [
+      "이 프로젝트가 무엇으로 만들어졌고 어떤 라이브러리를 쓰는지 한눈에 파악할 수 있어서",
+      "재미있는 내용이 적혀있어서",
+      "무조건 봐야 하는 규칙이라서(이유는 없음)",
+      "프로젝트를 삭제하는 방법이 적혀있어서"
+    ],
+    "answer": 0,
+    "explanation": "package.json은 프로젝트의 \"신분증\" 같은 파일이에요. 처음 받은 프로젝트를 파악할 때 가장 먼저 볼만한 곳입니다."
+  },
+  {
+    "id": "12-5-q7",
+    "lessonId": "12-5",
+    "type": "order",
+    "prompt": "처음 받은 프로젝트를 파악하는 순서를 맞춰보세요.",
+    "options": [
+      "폴더 구조를 훑어본다",
+      "package.json을 열어 어떤 프레임워크/라이브러리인지 확인한다",
+      "npm install 후 npm run dev로 실행해본다"
+    ],
+    "answer": [1, 0, 2],
+    "explanation": "뭘로 만들어졌는지 먼저 파악하고, 구조를 훑어본 다음, 실제로 실행해보는 순서가 자연스러워요."
+  }
+]

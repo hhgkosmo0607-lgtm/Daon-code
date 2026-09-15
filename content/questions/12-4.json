@@ -1,0 +1,91 @@
+[
+  {
+    "id": "12-4-q1",
+    "lessonId": "12-4",
+    "type": "choice",
+    "prompt": "useFetch 함수가 하는 역할은?",
+    "code": "// 여러 화면에서 이 코드가 계속 반복됨\nfunction useFetch(url) {\n  const [isLoading, setIsLoading] = useState(true)\n  const [data, setData] = useState(null)\n  useEffect(() => {\n    fetch(url).then(res => res.json()).then(setData)\n  }, [url])\n  return { isLoading, data }\n}",
+    "options": [
+      "여러 화면에서 반복되던 로딩/데이터 처리 코드를 하나로 묶어서 재사용할 수 있게 만든 것",
+      "새로운 화면을 만드는 것",
+      "에러를 발생시키는 것",
+      "아무 역할 없음"
+    ],
+    "answer": 0,
+    "explanation": "이렇게 반복되는 state+useEffect 로직을 묶어서 재사용하는 함수를 \"커스텀 훅\"이라고 불러요. use로 시작하는 이름 관례를 씁니다."
+  },
+  {
+    "id": "12-4-q2",
+    "lessonId": "12-4",
+    "type": "choice",
+    "prompt": "ProductList 화면이 useFetch를 실제로 사용하는 줄은?",
+    "code": "1  function useFetch(url) {\n2    const [isLoading, setIsLoading] = useState(true)\n3    const [data, setData] = useState(null)\n4    useEffect(() => {\n5      fetch(url).then(res => res.json()).then(setData)\n6    }, [url])\n7    return { isLoading, data }\n8  }\n9\n10 function ProductList() {\n11   const { data } = useFetch('/api/products')\n12   return <View>{/* ... */}</View>\n13 }",
+    "options": ["7번", "11번", "5번", "2번"],
+    "answer": 1,
+    "explanation": "const { data } = useFetch('/api/products')가 ProductList 화면에서 커스텀 훅을 실제로 불러 쓰는 부분이에요."
+  },
+  {
+    "id": "12-4-q3",
+    "lessonId": "12-4",
+    "type": "choice",
+    "prompt": "컴포넌트(2-1)와 커스텀 훅의 차이는?",
+    "options": [
+      "컴포넌트는 화면(UI)을 그리고, 커스텀 훅은 화면 없이 로직(동작)만 재사용한다",
+      "완전히 같은 것이다",
+      "커스텀 훅은 항상 에러를 낸다",
+      "컴포넌트는 이름이 use로 시작해야 한다"
+    ],
+    "answer": 0,
+    "explanation": "컴포넌트는 눈에 보이는 화면 조각, 커스텀 훅은 눈에 안 보이는 \"동작 조각\"이라고 생각하면 돼요."
+  },
+  {
+    "id": "12-4-q4",
+    "lessonId": "12-4",
+    "type": "blank",
+    "prompt": "커스텀 훅의 이름을 지을 때 지켜야 하는 관례는?",
+    "code": "function ___Fetch(url) { /* ... */ }",
+    "options": ["use", "get", "fetch", "do"],
+    "answer": 0,
+    "explanation": "use로 시작해야 React가 이걸 훅으로 인식해요. useState, useEffect도 같은 관례를 따릅니다."
+  },
+  {
+    "id": "12-4-q5",
+    "lessonId": "12-4",
+    "type": "choice",
+    "prompt": "세 화면에서 로딩·데이터 처리 코드가 똑같이 반복되고 있습니다. AI에게 어떻게 요청하면 좋을까요?",
+    "options": [
+      "그냥 둔다, 반복돼도 상관없다",
+      "이 반복되는 로직을 커스텀 훅으로 뽑아서 재사용하게 해달라고 요청한다",
+      "세 화면을 하나로 합쳐달라고 한다",
+      "코드를 전부 지워달라고 한다"
+    ],
+    "answer": 1,
+    "explanation": "같은 로직이 반복되면 커스텀 훅으로 뽑아내는 게 정리하는 방법이에요. 6-4에서 배운 리팩토링의 한 종류입니다."
+  },
+  {
+    "id": "12-4-q6",
+    "lessonId": "12-4",
+    "type": "choice",
+    "prompt": "파일 이름이 useAuth.ts, useCart.ts처럼 use로 시작하는 걸 보면 짐작할 수 있는 것은?",
+    "options": [
+      "화면이 아니라 재사용 가능한 로직(커스텀 훅)을 모아둔 파일일 가능성이 높다",
+      "항상 에러가 있는 파일",
+      "삭제해야 하는 파일",
+      "아무 의미 없음"
+    ],
+    "answer": 0,
+    "explanation": "use 접두사는 커스텀 훅의 신호예요. 로그인 상태(useAuth), 장바구니(useCart)처럼 여러 화면에서 공유하는 로직에 자주 씁니다."
+  },
+  {
+    "id": "12-4-q7",
+    "lessonId": "12-4",
+    "type": "compare",
+    "prompt": "반복되는 코드를 정리할 때 더 나은 요청은?",
+    "options": [
+      "코드 정리해줘",
+      "세 화면에 반복되는 로딩+데이터 처리 로직을 useFetch라는 커스텀 훅으로 뽑아줘"
+    ],
+    "answer": 1,
+    "explanation": "무엇을, 어떤 이름의 훅으로 뽑을지 구체적으로 요청하면 AI가 정확히 그 방향으로 정리해줘요."
+  }
+]

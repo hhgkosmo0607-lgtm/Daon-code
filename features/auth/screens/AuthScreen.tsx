@@ -1,4 +1,4 @@
-import { useRouter } from 'expo-router';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useState } from 'react';
 import { ActivityIndicator, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -14,10 +14,18 @@ import { signInAsGuest, signInWithEmail, signUpWithEmail, upgradeGuestToEmail } 
  * 그래야 user_id가 유지되어 그동안 쌓은 진도와 XP가 따라온다. (authActions 참고)
  *
  * 구글/카카오는 각 개발자 콘솔 키 발급이 필요해서 이후 단계에서 추가한다.
+ *
+ * 이 화면은 두 경로에서 재사용된다 (기획서 6번 온보딩):
+ *  - 배치고사를 본 사람: ?allowGuest=false&context=placement — "나중에 하기" 없음
+ *  - 1단계를 게스트로 다 푼 사람: isGuest=true라서 아래에서 자동으로 "나중에 하기"가 숨겨짐
+ *  - 배치고사를 안 본 사람이 온보딩 마지막에 처음 보는 로그인: 기본값(둘 다 허용)
  */
 export function AuthScreen() {
   const router = useRouter();
   const { isGuest } = useAuth();
+  const { allowGuest, context } = useLocalSearchParams<{ allowGuest?: string; context?: string }>();
+  const isPlacementGate = context === 'placement' && !isGuest;
+  const showGuestOption = !isGuest && allowGuest !== 'false';
 
   const [mode, setMode] = useState<'signin' | 'signup'>('signin');
   const [email, setEmail] = useState('');
@@ -76,11 +84,22 @@ export function AuthScreen() {
     <SafeAreaView style={styles.container}>
       <View style={styles.body}>
         <Text style={styles.title}>
-          {isGuest ? '게스트로 놓친 XP를 돌려받아요' : mode === 'signup' ? '회원가입' : '로그인'}
+          {isGuest
+            ? '게스트로 놓친 XP를 돌려받아요'
+            : isPlacementGate
+              ? '결과를 보려면 로그인이 필요해요'
+              : mode === 'signup'
+                ? '회원가입'
+                : '로그인'}
         </Text>
         {isGuest && (
           <Text style={styles.subtitle}>
             지금까지의 학습 기록은 그대로 유지돼요
+          </Text>
+        )}
+        {isPlacementGate && (
+          <Text style={styles.subtitle}>
+            가입하면 배치고사 결과에 맞는 레슨부터 바로 시작할 수 있어요
           </Text>
         )}
 
@@ -114,17 +133,17 @@ export function AuthScreen() {
         </Pressable>
 
         {!isGuest && (
-          <>
-            <Pressable onPress={() => setMode(mode === 'signup' ? 'signin' : 'signup')}>
-              <Text style={styles.link}>
-                {mode === 'signup' ? '이미 계정이 있어요' : '계정이 없어요 · 가입하기'}
-              </Text>
-            </Pressable>
+          <Pressable onPress={() => setMode(mode === 'signup' ? 'signin' : 'signup')}>
+            <Text style={styles.link}>
+              {mode === 'signup' ? '이미 계정이 있어요' : '계정이 없어요 · 가입하기'}
+            </Text>
+          </Pressable>
+        )}
 
-            <Pressable style={styles.ghost} onPress={() => run(signInAsGuest)} disabled={busy}>
-              <Text style={styles.ghostText}>나중에 하기</Text>
-            </Pressable>
-          </>
+        {showGuestOption && (
+          <Pressable style={styles.ghost} onPress={() => run(signInAsGuest)} disabled={busy}>
+            <Text style={styles.ghostText}>나중에 하기</Text>
+          </Pressable>
         )}
       </View>
     </SafeAreaView>

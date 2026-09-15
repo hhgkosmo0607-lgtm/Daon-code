@@ -1,0 +1,93 @@
+[
+  {
+    "id": "9-2-q1",
+    "lessonId": "9-2",
+    "type": "choice",
+    "prompt": "이 상품 카드를 누르면 무슨 일이 일어날까요?",
+    "code": "function ProductCard({ product }) {\n  const router = useRouter()\n  return (\n    <Pressable onPress={() => router.push(`/products/${product.id}`)}>\n      <Text>{product.name}</Text>\n    </Pressable>\n  )\n}",
+    "options": [
+      "onPress 콜백은 즉시 실행되지 않고 다음 리렌더링 때까지 대기한다",
+      "그 상품의 id가 포함된 주소로 화면이 이동한다",
+      "product.id가 아니라 product.name을 기준으로 이동 주소가 만들어진다",
+      "router.push는 Pressable 밖에서 호출해야 동작하므로 이 코드는 에러가 난다"
+    ],
+    "answer": 1,
+    "explanation": "router.push()는 코드로 직접 화면을 이동시키는 함수예요. 템플릿 문자열 안의 product.id 값이 그대로 주소에 들어가고, onPress 안에서 호출해도 정상 동작해요."
+  },
+  {
+    "id": "9-2-q2",
+    "lessonId": "9-2",
+    "type": "choice",
+    "prompt": "장바구니 화면으로 이동시키는 줄은 몇 번일까요?",
+    "code": "1  function Header() {\n2    const router = useRouter()\n3    return (\n4      <View>\n5        <Text>내 쇼핑몰</Text>\n6        <Pressable onPress={() => router.push('/cart')}>\n7          <Text>장바구니</Text>\n8        </Pressable>\n9      </View>\n10   )\n11 }",
+    "options": ["2번", "6번", "5번", "9번"],
+    "answer": 1,
+    "explanation": "router.push('/cart')가 실제로 이동을 일으키는 부분이에요."
+  },
+  {
+    "id": "9-2-q3",
+    "lessonId": "9-2",
+    "type": "choice",
+    "prompt": "<Link href=\"/cart\">와 router.push('/cart')의 공통점은?",
+    "options": [
+      "둘 다 화면을 /cart로 이동시킨다, 쓰는 위치(화면에 바로 vs 함수 안)만 다르다",
+      "Link는 화면 렌더링 없이 주소만 바꾸고, router.push는 화면까지 새로 그린다",
+      "Link는 GET 방식으로만, router.push는 POST 방식으로만 이동할 수 있다",
+      "router.push만 파라미터를 함께 전달할 수 있고 Link는 경로만 지정할 수 있다"
+    ],
+    "answer": 0,
+    "explanation": "둘 다 같은 라우팅 기능을 하는 다른 방법이에요. Link는 화면에 바로 놓는 용도, router.push는 \"로그인 성공하면\"처럼 조건에 따라 이동시킬 때 씁니다. HTTP 요청 방식(GET/POST)과는 관계없고, Link도 href를 객체로 써서 파라미터를 전달할 수 있어요."
+  },
+  {
+    "id": "9-2-q4",
+    "lessonId": "9-2",
+    "type": "blank",
+    "prompt": "로그인에 성공하면 홈으로 이동시키려 합니다. 빈칸은?",
+    "code": "router.___('/')",
+    "options": ["push", "navigate", "go", "fetch"],
+    "answer": 0,
+    "explanation": "router.push(주소)가 \"이 주소로 이동해라\"라는 명령이에요. navigate나 go는 다른 라이브러리(브라우저 히스토리 등)에서 쓰는 이름이라 expo-router의 router 객체에는 없어요."
+  },
+  {
+    "id": "9-2-q5",
+    "lessonId": "9-2",
+    "type": "choice",
+    "prompt": "상품 상세 화면에서 이 에러가 났습니다. 가장 가능성 높은 원인은?",
+    "code": "Cannot read property 'id' of undefined\n  at ProductDetail.jsx:5",
+    "options": [
+      "이동할 때 상품 id를 제대로 안 넘겨서, 화면이 받을 값이 없는 상태",
+      "useLocalSearchParams 대신 useState로 파라미터를 받으려고 해서",
+      "product 배열에서 id 값을 인덱스 번호로 직접 접근하려고 해서",
+      "ProductDetail 컴포넌트를 default export가 아닌 named export로 내보내서"
+    ],
+    "answer": 0,
+    "explanation": "라우팅으로 화면을 옮길 때 필요한 값(id 등)을 빠뜨리면, 받는 쪽 화면에서 이런 undefined 에러가 흔히 나요. 다른 보기들도 실제로 있을 법한 실수지만, 이 에러 메시지와 직접 맞아떨어지진 않아요."
+  },
+  {
+    "id": "9-2-q6",
+    "lessonId": "9-2",
+    "type": "choice",
+    "prompt": "이 버튼을 누르면?",
+    "code": "<Pressable onPress={() => router.back()}>\n  <Text>←</Text>\n</Pressable>",
+    "options": [
+      "router.replace('/')와 동일하게 홈 화면으로 강제 이동한다",
+      "바로 전 화면으로 돌아간다",
+      "이동 기록을 모두 지우고 첫 화면부터 다시 그린다",
+      "현재 화면의 state만 초기화하고 화면은 그대로 유지된다"
+    ],
+    "answer": 1,
+    "explanation": "router.back()은 \"뒤로 가기\"예요. 브라우저의 뒤로 가기 버튼과 같은 개념으로, 이동 기록에서 바로 이전 화면으로 돌아갈 뿐 홈으로 강제 이동하거나 기록을 지우지 않아요."
+  },
+  {
+    "id": "9-2-q7",
+    "lessonId": "9-2",
+    "type": "compare",
+    "prompt": "이동 문제를 AI에게 설명할 때 더 나은 요청은?",
+    "options": [
+      "이동이 이상해요",
+      "상품 카드를 누르면 상세 화면으로 가는데 id가 undefined로 나와요, router.push할 때 id를 제대로 넘기고 있는지 확인해줘"
+    ],
+    "answer": 1,
+    "explanation": "어떤 값이 어디로 전달돼야 하는지 구체적으로 짚으면 AI가 원인을 훨씬 빠르게 찾아요."
+  }
+]

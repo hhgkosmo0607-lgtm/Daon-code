@@ -1,0 +1,88 @@
+[
+  {
+    "id": "10-3-q1",
+    "lessonId": "10-3",
+    "type": "choice",
+    "prompt": "catch(err => setError(err.message))는 언제 실행될까요?",
+    "code": "function ProductList() {\n  const [error, setError] = useState(null)\n\n  useEffect(() => {\n    fetch('/api/products')\n      .then(res => res.json())\n      .then(setProducts)\n      .catch(err => setError(err.message))\n  }, [])\n\n  if (error) return <Text>문제가 생겼어요: {error}</Text>\n  // ...\n}",
+    "options": ["요청이 실패했을 때", "요청이 성공했을 때", "항상 실행된다", "절대 실행 안 된다"],
+    "answer": 0,
+    "explanation": ".catch()는 앞의 요청이나 처리 중 문제가 생겼을 때만 실행되는 부분이에요. 4단계에서 배운 \"에러\"가 여기서 잡히는 거예요."
+  },
+  {
+    "id": "10-3-q2",
+    "lessonId": "10-3",
+    "type": "choice",
+    "prompt": "에러 메시지를 화면에 보여주는 줄은?",
+    "code": "1  function ProductList() {\n2    const [error, setError] = useState(null)\n3\n4    useEffect(() => {\n5      fetch('/api/products')\n6        .then(res => res.json())\n7        .then(setProducts)\n8        .catch(err => setError(err.message))\n9    }, [])\n10\n11   if (error) return <Text>문제가 생겼어요: {error}</Text>\n12 }",
+    "options": ["8번", "11번", "2번", "5번"],
+    "answer": 1,
+    "explanation": "if (error) return <Text>...</Text>가 error 상태에 값이 있을 때 그 메시지를 화면에 보여주는 부분이에요."
+  },
+  {
+    "id": "10-3-q3",
+    "lessonId": "10-3",
+    "type": "choice",
+    "prompt": "isLoading과 error는 둘 다 상태(state)지만 나타내는 의미가 다릅니다. 차이는?",
+    "options": [
+      "isLoading은 \"아직 기다리는 중\"을, error는 \"요청이 실패로 끝났음\"을 나타낸다",
+      "완전히 같은 의미다",
+      "error가 true면 항상 로딩 중이다",
+      "isLoading은 데이터 개수를 센다"
+    ],
+    "answer": 0,
+    "explanation": "기다리는 중(isLoading)과 실패로 끝남(error)은 서로 다른 순간이에요. 보통 둘 다 따로 관리합니다."
+  },
+  {
+    "id": "10-3-q4",
+    "lessonId": "10-3",
+    "type": "blank",
+    "prompt": "요청이 실패하면 에러 메시지를 저장하려 합니다. 빈칸은?",
+    "code": ".catch(err => ___(err.message))",
+    "options": ["setError", "setLoading", "setProducts", "fetch"],
+    "answer": 0,
+    "explanation": "setError로 실패 이유를 state에 저장해두면, 화면에서 그걸 꺼내 보여줄 수 있어요."
+  },
+  {
+    "id": "10-3-q5",
+    "lessonId": "10-3",
+    "type": "choice",
+    "prompt": "서버 요청이 실패했는데 화면이 하얗게 멈춰버립니다. 원인으로 가장 가능성 높은 것은?",
+    "code": "useEffect(() => {\n  fetch('/api/products')\n    .then(res => res.json())\n    .then(setProducts)\n}, [])",
+    "options": [
+      ".catch()가 없어서, 실패했을 때 처리할 코드가 아예 없다",
+      ".then()을 두 번 연달아 써서 생긴 문제",
+      "상품이 없어서",
+      "정상 동작이다"
+    ],
+    "answer": 0,
+    "explanation": "실패를 처리하는 .catch()가 없으면 에러가 나는 순간 화면이 멈춘 것처럼 보일 수 있어요. 4-3에서 배운 \"화면이 하얗게 뜰 때\"와 이어지는 상황이에요."
+  },
+  {
+    "id": "10-3-q6",
+    "lessonId": "10-3",
+    "type": "choice",
+    "prompt": ".then()은 있고 .catch()는 없는 코드를 보면 짐작할 수 있는 것은?",
+    "options": [
+      "성공했을 때만 대비했고, 실패했을 때는 아직 대비가 안 된 코드",
+      "완벽하게 안전한 코드",
+      "실패하면 자동으로 재시도하도록 짜여진 코드",
+      "로딩 상태를 안 쓰는 코드라는 뜻"
+    ],
+    "answer": 0,
+    "explanation": "성공 케이스만 짜여있고 실패 케이스가 빠진 패턴이에요. AI에게 \"실패했을 때 처리도 추가해줘\"라고 요청하면 좋아요."
+  },
+  {
+    "id": "10-3-q7",
+    "lessonId": "10-3",
+    "type": "order",
+    "prompt": "데이터를 안전하게 요청하는 순서를 맞춰보세요.",
+    "options": [
+      "실패하면 에러 메시지를 보여준다",
+      "성공하면 데이터를 화면에 반영한다",
+      "서버에 요청을 보낸다"
+    ],
+    "answer": [2, 1, 0],
+    "explanation": "요청 → 성공 시 처리 → 실패 시 처리, 이 세 가지를 다 갖춰야 어떤 상황에서도 화면이 멈추지 않아요."
+  }
+]

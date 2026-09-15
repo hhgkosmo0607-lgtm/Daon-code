@@ -1,0 +1,95 @@
+[
+  {
+    "id": "5-3-q1",
+    "lessonId": "5-3",
+    "type": "choice",
+    "prompt": "AI가 준 코드를 실행했더니 이런 에러가 났습니다. 가장 정확한 해석은?",
+    "code": "import { useMagicState } from 'react'\n\nSyntaxError: The requested module 'react' does not provide\nan export named 'useMagicState'",
+    "options": [
+      "이 함수는 예전 react 버전에서는 지원됐지만 최신 버전에서 제거됐다",
+      "AI가 실제로 react에 없는 함수를 마치 있는 것처럼 만들어냈다",
+      "react 버전이 너무 낮아서 생긴 문제다",
+      "import 순서가 잘못됐다"
+    ],
+    "answer": 1,
+    "explanation": "AI가 그럴듯하지만 존재하지 않는 것을 제시하는 현상을 \"환각(hallucination)\"이라고 불러요."
+  },
+  {
+    "id": "5-3-q2",
+    "lessonId": "5-3",
+    "type": "choice",
+    "prompt": "\"AI 답변을 의심해봐야 할 신호\"는?",
+    "options": [
+      "처음 들어보는 라이브러리 이름이 나왔다",
+      "코드에 주석이 달려있다",
+      "코드가 짧다",
+      "한글로 설명해줬다"
+    ],
+    "answer": 0,
+    "explanation": "낯선 이름이 나오면 \"이게 진짜 있는 건가?\" 한 번 의심하고 확인해보는 게 좋아요."
+  },
+  {
+    "id": "5-3-q3",
+    "lessonId": "5-3",
+    "type": "choice",
+    "prompt": "AI가 준 코드에서 \"그런 모듈이 없다\"는 에러가 났습니다. 무슨 상황일 가능성이 높을까요?",
+    "options": [
+      "AI가 실제로 존재하지 않는 것을 추천했을 가능성",
+      "npm install을 안 해서, 실제로 있는 라이브러리인데 아직 안 받아진 것뿐일 가능성",
+      "파일 이름의 대소문자가 하나 달라서",
+      "이 라이브러리는 브라우저에서만 쓸 수 있어서"
+    ],
+    "answer": 0,
+    "explanation": "\"Module not found\" 계열 에러는 여러 원인으로 날 수 있어요. 다만 이 레슨처럼 AI가 방금 알려준 낯선 이름이라면, 먼저 실제로 존재하는지부터 의심해보는 게 순서예요."
+  },
+  {
+    "id": "5-3-q4",
+    "lessonId": "5-3",
+    "type": "blank",
+    "prompt": "낯선 이름을 발견했을 때 좋은 행동은?",
+    "code": "처음 보는 라이브러리 이름을 AI가 제시했다 → ___",
+    "options": [
+      "\"이거 실제로 존재하는 라이브러리 맞아?\"라고 되물어본다",
+      "바로 그대로 믿고 설치부터 진행한다",
+      "일단 넘어가고 나중에 에러가 나면 그때 확인한다",
+      "비슷한 이름의 다른 라이브러리를 검색해서 대신 설치한다"
+    ],
+    "answer": 0,
+    "explanation": "의심되면 AI에게 직접 확인을 요청하는 것도 방법이에요."
+  },
+  {
+    "id": "5-3-q5",
+    "lessonId": "5-3",
+    "type": "choice",
+    "prompt": "AI가 예전 방식(구식 문법)으로 코드를 줬을 때 생기는 문제는?",
+    "options": [
+      "최신 라이브러리에서는 그 방식이 더 이상 지원되지 않을 수 있다",
+      "구식 문법은 최신 문법보다 실행 속도가 더 빠르다",
+      "패키지 매니저가 구식 문법을 자동으로 최신 문법으로 바꿔준다",
+      "구식 문법인지 여부는 에러 발생과 관계가 없다"
+    ],
+    "answer": 0,
+    "explanation": "AI가 학습한 시점의 정보가 최신이 아닐 수 있어요."
+  },
+  {
+    "id": "5-3-q6",
+    "lessonId": "5-3",
+    "type": "compare",
+    "prompt": "아래 둘 다 \"정상적인 React 코드처럼\" 보입니다. 실제로 문제가 될 가능성이 높은 쪽은?",
+    "options": ["import { useState } from 'react'", "import { useState } from 'react-hooks'"],
+    "answer": 1,
+    "explanation": "react-hooks라는 패키지는 표준 리액트에 없어요. 그럴듯하지만 존재하지 않는 패키지명을 자신있게 제시하는 게 AI 환각의 전형이에요."
+  },
+  {
+    "id": "5-3-q7",
+    "lessonId": "5-3",
+    "type": "compare",
+    "prompt": "더 나은 태도는?",
+    "options": [
+      "AI가 주는 코드는 항상 100% 맞다고 믿는다",
+      "AI가 주는 코드도 가끔 틀릴 수 있다고 생각하며 결과를 확인한다"
+    ],
+    "answer": 1,
+    "explanation": "AI는 매우 유용하지만 완벽하지 않다는 걸 전제로 두는 게 안전해요."
+  }
+]

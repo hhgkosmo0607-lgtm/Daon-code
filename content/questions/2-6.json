@@ -1,0 +1,89 @@
+[
+  {
+    "id": "2-6-q1",
+    "lessonId": "2-6",
+    "type": "choice",
+    "prompt": "아래 코드에서 name=\"김철수\"는 무엇을 하는 걸까요?",
+    "code": "<UserCard name=\"김철수\" />",
+    "options": [
+      "UserCard에게 \"이름은 김철수야\"라고 값을 건네준다",
+      "UserCard라는 컴포넌트 함수의 이름 자체를 \"김철수\"로 바꾼다",
+      "name이라는 전역 변수를 새로 선언해서 다른 곳에서도 쓸 수 있게 한다",
+      "UserCard 내부의 state를 \"김철수\"로 초기화한다"
+    ],
+    "answer": 0,
+    "explanation": "이렇게 건네주는 값을 props라고 불러요. \"부모가 자식에게 재료를 건네준다\"고 생각하면 됩니다."
+  },
+  {
+    "id": "2-6-q2",
+    "lessonId": "2-6",
+    "type": "choice",
+    "prompt": "UserCard가 받는 값은 몇 개일까요?",
+    "code": "<UserCard name=\"김철수\" age={25} />",
+    "options": ["0개", "1개", "2개", "3개"],
+    "answer": 2,
+    "explanation": "name과 age 두 개를 건네주고 있어요."
+  },
+  {
+    "id": "2-6-q3",
+    "lessonId": "2-6",
+    "type": "choice",
+    "prompt": "아래에서 전달받은 이름을 쓰는 부분은?",
+    "code": "function UserCard(props) {\n  return <p>이름: {props.name}</p>\n}",
+    "options": [
+      "function UserCard(props)",
+      "<p>이름: {props.name}</p>",
+      "return",
+      "없음"
+    ],
+    "answer": 1,
+    "explanation": "props.name으로 부모가 건네준 값을 꺼내 쓰고 있어요."
+  },
+  {
+    "id": "2-6-q4",
+    "lessonId": "2-6",
+    "type": "blank",
+    "prompt": "상품카드에 가격을 전달하려면?",
+    "code": "<ProductCard ___={15000} />",
+    "options": ["price", "Price", "amount", "product"],
+    "answer": 0,
+    "explanation": "이름={값} 형태로 쓰고, 그 값이 뭔지 알아볼 수 있는 이름을 붙여요."
+  },
+  {
+    "id": "2-6-q5",
+    "lessonId": "2-6",
+    "type": "choice",
+    "prompt": "화면에 상품 이름이 안 뜨고 비어 있습니다. 원인은?",
+    "code": "// 부르는 쪽\n<ProductCard title=\"티셔츠\" />\n\n// 받는 쪽\nfunction ProductCard(props) {\n  return <p>{props.name}</p>\n}",
+    "options": [
+      "넘길 땐 title로 보냈는데, 받을 땐 props.name으로 다른 이름을 찾고 있어서",
+      "title 값은 컴포넌트가 화면에 그려진 뒤에야 자식에게 전달되기 때문에",
+      "props로 전달한 값은 첫 렌더링에만 적용되고 이후에는 초기화되기 때문에",
+      "ProductCard라는 이름이 다른 파일에서도 쓰이고 있어서 이름이 충돌하기 때문에"
+    ],
+    "answer": 0,
+    "explanation": "넘기는 이름과 받는 이름이 정확히 일치해야 해요."
+  },
+  {
+    "id": "2-6-q6",
+    "lessonId": "2-6",
+    "type": "choice",
+    "prompt": "아래에서 \"부모\"와 \"자식\" 관계는?",
+    "code": "function App() {\n  return <Header title=\"내 쇼핑몰\" />\n}",
+    "options": ["App이 부모, Header가 자식", "Header가 부모, App이 자식", "둘 다 부모", "관계 없음"],
+    "answer": 0,
+    "explanation": "값을 건네주는 쪽이 부모, 받는 쪽이 자식이에요."
+  },
+  {
+    "id": "2-6-q7",
+    "lessonId": "2-6",
+    "type": "compare",
+    "prompt": "같은 카드로 여러 상품을 보여주려 합니다. 더 적절한 코드는?",
+    "options": [
+      "<ProductCard />\n<ProductCard />",
+      "<ProductCard name=\"티셔츠\" price={20000} />\n<ProductCard name=\"청바지\" price={45000} />"
+    ],
+    "answer": 1,
+    "explanation": "A는 어떤 상품인지 알려주는 값이 없어서 똑같은 빈 카드만 나와요."
+  }
+]

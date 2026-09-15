@@ -1,0 +1,92 @@
+[
+  {
+    "id": "10-4-q1",
+    "lessonId": "10-4",
+    "type": "choice",
+    "prompt": "이 코드에서 사용자가 타이핑한 내용은 어디에 저장될까요?",
+    "code": "function LoginForm() {\n  const [email, setEmail] = useState('')\n  return (\n    <TextInput\n      value={email}\n      onChangeText={setEmail}\n      placeholder=\"이메일\"\n    />\n  )\n}",
+    "options": [
+      "email이라는 state에",
+      "화면에는 저장 안 되고 사라진다",
+      "TextInput 컴포넌트 자체에 영구 저장",
+      "서버에 바로 저장된다"
+    ],
+    "answer": 0,
+    "explanation": "onChangeText가 호출될 때마다 setEmail로 입력값을 state에 반영해요. 이렇게 state와 연결된 입력창을 \"제어된 입력\"이라고 불러요."
+  },
+  {
+    "id": "10-4-q2",
+    "lessonId": "10-4",
+    "type": "choice",
+    "prompt": "타이핑할 때마다(글자 하나 칠 때마다) 실행되는 부분은?",
+    "code": "1  function LoginForm() {\n2    const [email, setEmail] = useState('')\n3    return (\n4      <TextInput\n5        value={email}\n6        onChangeText={setEmail}\n7        placeholder=\"이메일\"\n8      />\n9    )\n10 }",
+    "options": ["2번", "6번", "7번", "9번"],
+    "answer": 1,
+    "explanation": "onChangeText={setEmail}이 글자를 입력할 때마다 실행돼서 email state를 계속 갱신해요."
+  },
+  {
+    "id": "10-4-q3",
+    "lessonId": "10-4",
+    "type": "choice",
+    "prompt": "TextInput에 value={email}만 있고 onChangeText가 없으면?",
+    "options": [
+      "타이핑이 전혀 안 먹히는 것처럼 보인다 (state가 안 바뀌니 화면도 안 바뀜)",
+      "정상적으로 타이핑된다",
+      "에러가 난다",
+      "자동으로 완성된다"
+    ],
+    "answer": 0,
+    "explanation": "value는 \"지금 이 값을 보여줘\"라는 뜻이라, 타이핑해도 state가 안 바뀌면 화면도 그대로예요. onChangeText가 그 연결고리입니다."
+  },
+  {
+    "id": "10-4-q4",
+    "lessonId": "10-4",
+    "type": "blank",
+    "prompt": "비밀번호 입력창의 값을 state와 연결하려면?",
+    "code": "<TextInput value={password} ___={setPassword} />",
+    "options": ["onChangeText", "onPress", "onClick", "onLoad"],
+    "answer": 0,
+    "explanation": "onChangeText가 입력값이 바뀔 때마다 그 값을 state로 넘겨주는 연결고리예요."
+  },
+  {
+    "id": "10-4-q5",
+    "lessonId": "10-4",
+    "type": "choice",
+    "prompt": "이메일 입력창에 아무리 타이핑해도 글자가 안 나타납니다. 원인으로 가장 가능성 높은 것은?",
+    "code": "<TextInput value={email} placeholder=\"이메일\" />",
+    "options": [
+      "onChangeText가 없어서 state가 업데이트되지 않는다",
+      "email이라는 state 이름이 예약어라서",
+      "placeholder 때문에",
+      "TextInput은 원래 value 없이 써야 해서"
+    ],
+    "answer": 0,
+    "explanation": "value만 있고 그 값을 바꿔줄 onChangeText가 없으면, 입력이 화면에 반영되지 않아요."
+  },
+  {
+    "id": "10-4-q6",
+    "lessonId": "10-4",
+    "type": "choice",
+    "prompt": "회원가입 폼 코드에 useState가 여러 개(email, password, nickname...) 있는 걸 보면 짐작할 수 있는 것은?",
+    "options": [
+      "입력창 하나마다 각자의 값을 따로 기억하고 있다는 것",
+      "코드가 잘못됐다는 뜻",
+      "전부 같은 값을 공유한다는 뜻",
+      "아무 의미 없음"
+    ],
+    "answer": 0,
+    "explanation": "입력창마다 자기만의 state를 갖는 게 일반적이에요. 여러 개 있다고 이상한 게 아닙니다."
+  },
+  {
+    "id": "10-4-q7",
+    "lessonId": "10-4",
+    "type": "compare",
+    "prompt": "입력이 안 먹히는 문제를 AI에게 설명할 때 더 나은 요청은?",
+    "options": [
+      "입력이 안 돼요",
+      "이메일 입력창에 타이핑해도 글자가 안 보여요, TextInput에 value는 있는데 onChangeText가 빠진 것 같아요"
+    ],
+    "answer": 1,
+    "explanation": "어떤 부분이 빠진 것 같은지 짚어주면, AI가 정확히 그 지점부터 확인해요."
+  }
+]

@@ -1,0 +1,95 @@
+[
+  {
+    "id": "3-4-q1",
+    "lessonId": "3-4",
+    "type": "choice",
+    "prompt": "setCount로 state를 바꾸면 React는 실제로 무엇을 할까요?",
+    "options": [
+      "바뀐 숫자 하나만 몰래 고쳐놓는다",
+      "해당 컴포넌트를 다시 실행해서, 새 값으로 화면을 다시 그린다",
+      "페이지 전체를 새로고침한다",
+      "아무것도 안 한다"
+    ],
+    "answer": 1,
+    "explanation": "\"리렌더링\"이라고 불러요. state가 바뀌면 컴포넌트 함수가 처음부터 다시 실행됩니다."
+  },
+  {
+    "id": "3-4-q2",
+    "lessonId": "3-4",
+    "type": "choice",
+    "prompt": "버튼을 누를 때마다 다시 계산되는 부분은?",
+    "code": "function Counter() {\n  const [count, setCount] = useState(0)\n  const doubled = count * 2\n\n  return (\n    <div>\n      <p>{count} / 두 배: {doubled}</p>\n      <button onClick={() => setCount(count + 1)}>+1</button>\n    </div>\n  )\n}",
+    "options": [
+      "useState(0)이 실행된 첫 순간만",
+      "count가 바뀔 때마다 함수 전체(doubled 계산 포함)가 다시 실행된다",
+      "button 부분만",
+      "아무것도 다시 계산되지 않는다"
+    ],
+    "answer": 1,
+    "explanation": "함수가 위에서부터 다시 실행되므로 doubled도 매번 새 값으로 계산돼요."
+  },
+  {
+    "id": "3-4-q3",
+    "lessonId": "3-4",
+    "type": "choice",
+    "prompt": "\"리렌더링\"을 가장 잘 설명한 것은?",
+    "options": [
+      "컴포넌트가 값이 바뀔 때마다 처음부터 다시 실행되는 것",
+      "페이지를 새로고침 버튼으로 다시 불러오는 것",
+      "state가 바뀔 때마다 useState를 처음부터 다시 선언하는 것",
+      "코드를 저장하는 것"
+    ],
+    "answer": 0,
+    "explanation": "브라우저 전체가 아니라, 값이 바뀐 컴포넌트만 다시 실행돼서 화면 일부가 업데이트되는 거예요."
+  },
+  {
+    "id": "3-4-q4",
+    "lessonId": "3-4",
+    "type": "blank",
+    "prompt": "state가 바뀌면 컴포넌트가 어떻게 실행될까요?",
+    "code": "state가 바뀌면 컴포넌트가 ___ 다시 실행된다",
+    "options": ["처음부터", "무작위로", "마지막 줄만", "절대"],
+    "answer": 0,
+    "explanation": "첫 줄부터 끝까지 다시 실행돼서, 함수 안의 모든 계산이 새 값으로 이뤄져요."
+  },
+  {
+    "id": "3-4-q5",
+    "lessonId": "3-4",
+    "type": "choice",
+    "prompt": "버튼을 빠르게 여러 번 눌렀는데 숫자가 한 번만 늘어난 것처럼 보입니다. 가능한 설명은?",
+    "options": [
+      "state 업데이트와 화면 반영 사이에 약간의 처리 시간차가 있을 수 있다",
+      "버튼이 고장났다",
+      "count가 삭제됐다",
+      "useState를 잘못 썼다 (항상 문제)"
+    ],
+    "answer": 0,
+    "explanation": "정말 이상하다 싶으면 \"state 업데이트가 이상한 것 같은데 확인해줘\"라고 AI에게 물어보면 됩니다. 지금은 \"이런 것도 있구나\" 정도면 충분해요."
+  },
+  {
+    "id": "3-4-q6",
+    "lessonId": "3-4",
+    "type": "choice",
+    "prompt": "console.log가 버튼 누를 때마다 계속 찍힙니다. 이게 의미하는 바는?",
+    "options": [
+      "컴포넌트가 실제로 계속 다시 실행되고 있다는 증거",
+      "코드가 무한 반복하며 고장난 것",
+      "console.log는 원래 여러 번 찍히도록 설계된 함수라 의미 없다",
+      "setCount가 비동기라서 생기는 일시적 오류"
+    ],
+    "answer": 0,
+    "explanation": "리렌더링이 일어날 때마다 함수 안 코드가 다시 실행되니 로그도 그때마다 찍혀요."
+  },
+  {
+    "id": "3-4-q7",
+    "lessonId": "3-4",
+    "type": "compare",
+    "prompt": "화면에 값이 안 바뀌는 문제를 AI에게 알릴 때 더 나은 설명은?",
+    "options": [
+      "값이 안 바뀌어요 고쳐주세요",
+      "버튼을 눌러도 useState로 관리되는 count가 화면에 그대로예요"
+    ],
+    "answer": 1,
+    "explanation": "\"어떤 값이, 어떤 방식으로 관리되는데\"를 설명하면 AI가 원인을 빠르게 좁힐 수 있어요."
+  }
+]

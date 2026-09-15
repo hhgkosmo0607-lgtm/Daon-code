@@ -6,38 +6,39 @@
 
 ```
 ✅ Phase 0  프로젝트 뼈대, TypeScript strict, 폴더 구조
-✅ Phase 1  Expo Router 배선, 홈 → 레슨 화면 흐름
+🔶 Phase 1  Expo Router 배선 + 온보딩(위저드·배치고사·로그인 게이트) — 코드 작성 완료, 실기기 검증 필요
 ✅ Phase 2  로컬 콘텐츠 + 문제 4유형 렌더링
 🔶 Phase 3  Supabase 연동 — 이메일/익명 로그인 완료, 구글·카카오 남음
-🔶 Phase 4  submitAnswer Edge Function — 코드 작성 완료, 배포·실기기 검증 필요
+🔶 Phase 4  submitAnswer / complete-placement — 배포·백엔드 검증 완료, 앱 화면 확인만 남음
 ⬜ Phase 5  복습 시스템 (라이트너 박스)
 ⬜ Phase 6  푸시 알림, EAS Update
-⬜ Phase 7  콘텐츠 40레슨 채우기
+✅ Phase 7  콘텐츠 58레슨 채우기 — 406문제 전체 변환 + 오답 품질 개선 완료
 ⬜ Phase 8  출시 준비
 ```
 
-### Phase 4 배포하기
+상세는 `daon-content/Daon-code_할일.md` 참고.
 
-```bash
-# 최초 1회
-npx supabase login
-npx supabase link --project-ref <프로젝트 참조 ID>
+### Phase 4 — 배포·백엔드 검증 완료
 
-# submit-answer 함수 배포
-npx supabase functions deploy submit-answer
-```
+Supabase 프로젝트 `daon-code`(ap-northeast-2)에 연결·배포 완료, curl로 실제 익명
+세션을 만들어 두 Edge Function을 직접 호출해서 검증까지 끝냈습니다:
+
+- [x] 레슨 1-2 만점 제출 → 게스트 XP 80%(`8+4=12`), 다음 레슨(`1-3`) 잠금 해제 확인
+- [x] 같은 레슨 재도전 → `alreadyCompleted:true`, XP 0 확인
+- [x] `progress`/`profiles.total_xp` 클라이언트 직접 UPDATE 시도 → RLS·트리거로 거부 확인
+- [x] 배치고사 만점 제출 → `startLessonId:"4-1"`, 1-1~4-1까지 17개 레슨 잠김 없이 열림 확인
 
 `submit-answer`는 `features/lesson/domain/`의 채점·XP·스트릭 로직과
 `content/` 콘텐츠 JSON을 상대 경로로 그대로 import한다(중복 관리 방지).
 새 레슨의 JSON을 추가하면 `features/lesson/data/contentRepository.ts`와
 `supabase/functions/_shared/content.ts` 양쪽에 import를 추가해야 한다.
 
-**검증 체크리스트** (기획서 Phase 4 완료 기준)
-- [ ] 레슨 하나(1-2)를 실제로 풀고 홈 화면에 진도·다음 레슨 잠금 해제가 반영되는지
-- [ ] 같은 레슨을 두 번 풀어도 XP가 중복 지급되지 않는지 (`alreadyCompleted`)
-- [ ] 게스트(익명) 계정은 정상 XP의 80%만 받는지
-- [ ] 하루 목표 보너스가 그날 1회만 지급되는지
-- [ ] 클라이언트에서 `progress`/`daily_xp`/`profiles` xp 컬럼에 직접 `update()`를 시도하면 RLS로 거부되는지
+**남은 검증 (UI, 실기기 필요)**:
+- [ ] 온보딩 화면이 실제로 뜨고 순서대로 넘어가는지
+- [ ] 배치고사 경로 로그인 화면에 "나중에 하기"가 없는지 / 초보자 경로엔 있는지
+- [ ] 게스트로 1단계 다 풀면 자동으로 로그인 화면으로 넘어가는지
+- [ ] 레슨 1-3 게스트 안내 배너가 뜨고 닫히는지
+- [ ] 하루 목표 보너스가 그날 1회만 지급되는지 (연속 두 레슨으로 실제 확인)
 
 ## 실행
 

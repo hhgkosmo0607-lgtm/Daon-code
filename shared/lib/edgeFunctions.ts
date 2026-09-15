@@ -43,3 +43,23 @@ export async function submitAnswer(
 
   return data as SubmitAnswerResult;
 }
+
+export interface CompletePlacementResult {
+  correctCount: number;
+  totalCount: number;
+  startLessonId: string;
+}
+
+/** 배치고사 결과 확정 + 건너뛴 레슨 열어주기. 로그인 성공 직후에만 호출한다. */
+export async function completePlacement(
+  answers: Record<string, number | number[]>
+): Promise<CompletePlacementResult> {
+  const { data, error } = await supabase.functions.invoke('complete-placement', {
+    body: { answers },
+  });
+
+  if (error) throw error;
+  if (data?.error) throw new Error(data.error);
+
+  return data as CompletePlacementResult;
+}

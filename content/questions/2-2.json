@@ -1,0 +1,76 @@
+[
+  {
+    "id": "2-2-q1",
+    "lessonId": "2-2",
+    "type": "choice",
+    "prompt": "아래 코드는 무엇을 하고 있을까요?",
+    "code": "const name = \"홍길동\"",
+    "options": [
+      "name이라는 이름으로 \"홍길동\"을 저장한다",
+      "\"홍길동\"이라는 이름의 함수를 만든다",
+      "화면에 \"홍길동\"을 출력한다",
+      "\"홍길동\"이 맞는지 확인한다"
+    ],
+    "answer": 0,
+    "explanation": "const 이름 = 값은 값에 이름표를 붙여두는 것입니다. =는 \"같다\"가 아니라 \"넣는다\"는 뜻이에요."
+  },
+  {
+    "id": "2-2-q2",
+    "lessonId": "2-2",
+    "type": "choice",
+    "prompt": "AI가 만들어준 코드입니다. 값을 저장하는 줄은 몇 번일까요?",
+    "code": "1  function Welcome() {\n2    const message = \"환영합니다\"\n3    return <h1>{message}</h1>\n4  }",
+    "options": ["1번", "2번", "3번", "4번"],
+    "answer": 1,
+    "explanation": "2번에서 저장하고, 3번에서 그 값을 화면에 꺼내 쓰고 있어요."
+  },
+  {
+    "id": "2-2-q3",
+    "lessonId": "2-2",
+    "type": "choice",
+    "prompt": "아래 중 나중에 값을 바꿀 수 있는 것은?",
+    "code": "const price = 1000\nlet count = 1",
+    "options": ["price", "count", "둘 다 가능", "둘 다 불가능"],
+    "answer": 1,
+    "explanation": "const는 한 번 정하면 못 바꾸고, let은 바꿀 수 있어요. AI는 대부분 const를 씁니다."
+  },
+  {
+    "id": "2-2-q4",
+    "lessonId": "2-2",
+    "type": "blank",
+    "prompt": "장바구니 개수는 계속 바뀝니다. 빈칸에 알맞은 것은?",
+    "code": "___ cartCount = 0",
+    "options": ["let", "const", "function", "return"],
+    "answer": 0,
+    "explanation": "값이 바뀌어야 하니까 let입니다. const를 쓰면 나중에 개수를 늘릴 때 에러가 나요."
+  },
+  {
+    "id": "2-2-q5",
+    "lessonId": "2-2",
+    "type": "choice",
+    "prompt": "이 코드를 실행하면 어떻게 될까요?",
+    "code": "const total = 5000\ntotal = 6000",
+    "options": ["6000으로 바뀐다", "에러가 난다", "5000 그대로다", "11000이 된다"],
+    "answer": 1,
+    "explanation": "Assignment to constant variable 에러가 나요. 이 에러를 보면 const를 let으로 바꿔달라고 요청하면 됩니다."
+  },
+  {
+    "id": "2-2-q6",
+    "lessonId": "2-2",
+    "type": "choice",
+    "prompt": "아래 코드에서 isLoading에 들어있는 값은?",
+    "code": "const isLoading = true",
+    "options": ["문자 \"true\"", "참/거짓 값 true", "숫자 1", "비어있음"],
+    "answer": 1,
+    "explanation": "따옴표가 없으면 진짜 참/거짓 값이에요. is~로 시작하는 이름은 대부분 참/거짓을 담는다는 신호입니다."
+  },
+  {
+    "id": "2-2-q7",
+    "lessonId": "2-2",
+    "type": "compare",
+    "prompt": "사용자 이름을 저장하려고 합니다. 더 적절한 코드는?",
+    "options": ["const a = \"김철수\"", "const userName = \"김철수\""],
+    "answer": 1,
+    "explanation": "나중에 코드를 다시 볼 때 뭘 담은 건지 바로 알 수 있으니까요."
+  }
+]
