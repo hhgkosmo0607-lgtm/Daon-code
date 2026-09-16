@@ -1,5 +1,8 @@
+import { useMemo } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors, radius, spacing } from '../../../shared/theme/theme';
+import { useTheme } from '../../../shared/theme/ThemeContext';
+import { radius, spacing } from '../../../shared/theme/theme';
+import type { ThemeColors } from '../../../shared/theme/themes';
 
 /*
  * choice 유형: 세로 버튼 목록에서 하나 선택.
@@ -15,6 +18,8 @@ interface Props {
 }
 
 export function QuestionChoice({ options, selected, onSelect, revealAnswer, disabled }: Props) {
+  const { colors } = useTheme();
+  const styles = useMemo(() => createStyles(colors), [colors]);
   const revealed = revealAnswer !== null && revealAnswer !== undefined;
 
   return (
@@ -45,18 +50,19 @@ export function QuestionChoice({ options, selected, onSelect, revealAnswer, disa
   );
 }
 
-const styles = StyleSheet.create({
-  option: {
-    borderWidth: 2,
-    borderColor: colors.border,
-    borderRadius: radius.md,
-    padding: spacing.md,
-    marginBottom: spacing.sm,
-    backgroundColor: colors.card,
-  },
-  selected: { borderColor: colors.primary, backgroundColor: '#EEF2F7' },
-  correct: { borderColor: colors.success, backgroundColor: '#EAF9F0' },
-  wrong: { borderColor: colors.error, backgroundColor: '#FDECEA' },
-  text: { fontSize: 15, lineHeight: 21, color: colors.text },
-  textStrong: { fontWeight: '600' },
-});
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
+    option: {
+      borderWidth: 2,
+      borderColor: colors.border,
+      borderRadius: radius.md,
+      padding: spacing.md,
+      marginBottom: spacing.sm,
+      backgroundColor: colors.surface,
+    },
+    selected: { borderColor: colors.accent, backgroundColor: `${colors.accent}1A` },
+    correct: { borderColor: colors.success, backgroundColor: `${colors.success}22` },
+    wrong: { borderColor: colors.error, backgroundColor: `${colors.error}22` },
+    text: { fontSize: 15, lineHeight: 21, color: colors.text },
+    textStrong: { fontWeight: '600' },
+  });

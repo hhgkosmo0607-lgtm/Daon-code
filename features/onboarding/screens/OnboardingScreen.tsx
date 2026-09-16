@@ -4,7 +4,9 @@ import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { getPlacementQuestions } from '../../lesson/data/contentRepository';
-import { colors, radius, spacing } from '../../../shared/theme/theme';
+import { useTheme } from '../../../shared/theme/ThemeContext';
+import { radius, spacing } from '../../../shared/theme/theme';
+import type { ThemeColors } from '../../../shared/theme/themes';
 import { QuestionView } from '../../lesson/components/QuestionView';
 import { savePendingOnboarding, markOnboarded } from '../data/pendingSync';
 import {
@@ -52,6 +54,8 @@ const NOTIFY_TIME_OPTIONS = ['09:00', '13:00', '19:00', '21:00'];
 
 export function OnboardingScreen() {
   const router = useRouter();
+  const { colors } = useTheme();
+  const styles = useMemo(() => createStyles(colors), [colors]);
 
   const [step, setStep] = useState<Step>('welcome');
   const [purposes, setPurposes] = useState<Purpose[]>([]);
@@ -204,6 +208,8 @@ export function OnboardingScreen() {
 }
 
 function Centered({ children }: { children: ReactNode }) {
+  const { colors } = useTheme();
+  const styles = useMemo(() => createStyles(colors), [colors]);
   return <View style={styles.centered}>{children}</View>;
 }
 
@@ -216,6 +222,8 @@ function StepBody({
   subtitle?: string;
   children: ReactNode;
 }) {
+  const { colors } = useTheme();
+  const styles = useMemo(() => createStyles(colors), [colors]);
   return (
     <ScrollView contentContainerStyle={styles.body}>
       <Text style={styles.title}>{title}</Text>
@@ -234,6 +242,8 @@ function OptionCard({
   selected: boolean;
   onPress: () => void;
 }) {
+  const { colors } = useTheme();
+  const styles = useMemo(() => createStyles(colors), [colors]);
   return (
     <Pressable style={[styles.option, selected && styles.optionSelected]} onPress={onPress}>
       <Text style={[styles.optionText, selected && styles.optionTextSelected]}>{label}</Text>
@@ -250,6 +260,8 @@ function PrimaryButton({
   onPress: () => void;
   disabled?: boolean;
 }) {
+  const { colors } = useTheme();
+  const styles = useMemo(() => createStyles(colors), [colors]);
   return (
     <Pressable style={[styles.primaryButton, disabled && styles.primaryButtonDisabled]} onPress={onPress} disabled={disabled}>
       <Text style={styles.primaryButtonText}>{label}</Text>
@@ -257,47 +269,48 @@ function PrimaryButton({
   );
 }
 
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: colors.background },
-  centered: { flex: 1, alignItems: 'center', justifyContent: 'center', padding: spacing.lg, gap: spacing.sm },
-  body: { padding: spacing.lg, paddingBottom: spacing.xl, flexGrow: 1 },
-  header: { padding: spacing.md, alignItems: 'center' },
-  counter: { fontSize: 13, color: colors.textMuted, fontWeight: '600' },
-  footer: { padding: spacing.md },
-  emoji: { fontSize: 48, marginBottom: spacing.sm },
-  title: { fontSize: 22, fontWeight: '800', color: colors.text, textAlign: 'left', lineHeight: 30 },
-  subtitle: { fontSize: 14, color: colors.textMuted, marginTop: spacing.xs, marginBottom: spacing.lg },
-  optionList: { gap: spacing.sm },
-  option: {
-    borderWidth: 2,
-    borderColor: colors.border,
-    borderRadius: radius.md,
-    padding: spacing.md,
-    backgroundColor: colors.card,
-  },
-  optionSelected: { borderColor: colors.primary, backgroundColor: '#EEF2F7' },
-  optionText: { fontSize: 15, color: colors.text },
-  optionTextSelected: { fontWeight: '700', color: colors.primary },
-  row: { flexDirection: 'row', gap: spacing.sm, marginBottom: spacing.lg },
-  goalCard: {
-    flex: 1,
-    borderWidth: 2,
-    borderColor: colors.border,
-    borderRadius: radius.md,
-    paddingVertical: spacing.lg,
-    alignItems: 'center',
-    backgroundColor: colors.card,
-  },
-  goalCardSelected: { borderColor: colors.primary, backgroundColor: '#EEF2F7' },
-  goalLabel: { fontSize: 15, fontWeight: '700', color: colors.text },
-  goalSub: { fontSize: 12, color: colors.textMuted, marginTop: 2 },
-  primaryButton: {
-    backgroundColor: colors.primary,
-    borderRadius: radius.md,
-    paddingVertical: spacing.md,
-    alignItems: 'center',
-    marginTop: spacing.lg,
-  },
-  primaryButtonDisabled: { backgroundColor: colors.border },
-  primaryButtonText: { color: '#fff', fontSize: 16, fontWeight: '700' },
-});
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
+    container: { flex: 1, backgroundColor: colors.background },
+    centered: { flex: 1, alignItems: 'center', justifyContent: 'center', padding: spacing.lg, gap: spacing.sm },
+    body: { padding: spacing.lg, paddingBottom: spacing.xl, flexGrow: 1 },
+    header: { padding: spacing.md, alignItems: 'center' },
+    counter: { fontSize: 13, color: colors.textMuted, fontWeight: '600' },
+    footer: { padding: spacing.md },
+    emoji: { fontSize: 48, marginBottom: spacing.sm },
+    title: { fontSize: 22, fontWeight: '800', color: colors.text, textAlign: 'left', lineHeight: 30 },
+    subtitle: { fontSize: 14, color: colors.textMuted, marginTop: spacing.xs, marginBottom: spacing.lg },
+    optionList: { gap: spacing.sm },
+    option: {
+      borderWidth: 2,
+      borderColor: colors.border,
+      borderRadius: radius.md,
+      padding: spacing.md,
+      backgroundColor: colors.surface,
+    },
+    optionSelected: { borderColor: colors.accent, backgroundColor: `${colors.accent}1A` },
+    optionText: { fontSize: 15, color: colors.text },
+    optionTextSelected: { fontWeight: '700', color: colors.accent },
+    row: { flexDirection: 'row', gap: spacing.sm, marginBottom: spacing.lg },
+    goalCard: {
+      flex: 1,
+      borderWidth: 2,
+      borderColor: colors.border,
+      borderRadius: radius.md,
+      paddingVertical: spacing.lg,
+      alignItems: 'center',
+      backgroundColor: colors.surface,
+    },
+    goalCardSelected: { borderColor: colors.accent, backgroundColor: `${colors.accent}1A` },
+    goalLabel: { fontSize: 15, fontWeight: '700', color: colors.text },
+    goalSub: { fontSize: 12, color: colors.textMuted, marginTop: 2 },
+    primaryButton: {
+      backgroundColor: colors.accent,
+      borderRadius: radius.md,
+      paddingVertical: spacing.md,
+      alignItems: 'center',
+      marginTop: spacing.lg,
+    },
+    primaryButtonDisabled: { backgroundColor: colors.border },
+    primaryButtonText: { color: '#fff', fontSize: 16, fontWeight: '700' },
+  });

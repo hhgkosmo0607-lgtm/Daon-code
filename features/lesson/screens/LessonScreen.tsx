@@ -1,11 +1,13 @@
 import { useRouter } from 'expo-router';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { ProgressBar } from '../../../shared/components/ProgressBar';
-import { colors, radius, spacing } from '../../../shared/theme/theme';
+import { useTheme } from '../../../shared/theme/ThemeContext';
+import { radius, spacing } from '../../../shared/theme/theme';
+import type { ThemeColors } from '../../../shared/theme/themes';
 import { useAuth } from '../../auth/AuthContext';
 import { FeedbackBanner } from '../components/FeedbackBanner';
 import { QuestionView } from '../components/QuestionView';
@@ -24,6 +26,8 @@ const GUEST_NOTICE_LESSON_ID = '1-3';
  */
 export function LessonScreen({ lessonId }: { lessonId: string }) {
   const router = useRouter();
+  const { colors } = useTheme();
+  const styles = useMemo(() => createStyles(colors), [colors]);
   const lessonState = useLesson(lessonId);
   const submitState = useSubmitLesson();
   const hasSubmittedRef = useRef(false);
@@ -86,7 +90,7 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
     if (submitState.status !== 'done') {
       return (
         <SafeAreaView style={styles.center}>
-          <ActivityIndicator color={colors.primary} />
+          <ActivityIndicator color={colors.accent} />
         </SafeAreaView>
       );
     }
@@ -146,50 +150,51 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
   );
 }
 
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: colors.background },
-  center: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: spacing.md },
-  muted: { color: colors.textMuted, fontSize: 15 },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: spacing.md,
-    paddingHorizontal: spacing.md,
-    paddingVertical: spacing.sm,
-  },
-  close: { fontSize: 20, color: colors.textMuted },
-  counter: { fontSize: 13, color: colors.textMuted, minWidth: 36, textAlign: 'right' },
-  guestNotice: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    gap: spacing.sm,
-    marginHorizontal: spacing.md,
-    marginBottom: spacing.sm,
-    padding: spacing.sm,
-    backgroundColor: '#FFF4EC',
-    borderRadius: radius.sm,
-    borderWidth: 1,
-    borderColor: colors.accent,
-  },
-  guestNoticeText: { flex: 1, fontSize: 12, color: colors.accent, fontWeight: '600' },
-  guestNoticeClose: { fontSize: 14, color: colors.accent, fontWeight: '700' },
-  body: { padding: spacing.md, paddingBottom: spacing.xl },
-  footer: { padding: spacing.md },
-  checkButton: {
-    backgroundColor: colors.primary,
-    borderRadius: radius.md,
-    paddingVertical: spacing.md,
-    alignItems: 'center',
-  },
-  checkButtonDisabled: { backgroundColor: colors.border },
-  checkButtonText: { color: '#fff', fontSize: 16, fontWeight: '700' },
-  ghostButton: {
-    borderWidth: 2,
-    borderColor: colors.primary,
-    borderRadius: radius.md,
-    paddingVertical: spacing.sm,
-    paddingHorizontal: spacing.lg,
-  },
-  ghostButtonText: { color: colors.primary, fontWeight: '600' },
-});
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
+    container: { flex: 1, backgroundColor: colors.background },
+    center: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: spacing.md },
+    muted: { color: colors.textMuted, fontSize: 15 },
+    header: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      gap: spacing.md,
+      paddingHorizontal: spacing.md,
+      paddingVertical: spacing.sm,
+    },
+    close: { fontSize: 20, color: colors.textMuted },
+    counter: { fontSize: 13, color: colors.textMuted, minWidth: 36, textAlign: 'right' },
+    guestNotice: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      gap: spacing.sm,
+      marginHorizontal: spacing.md,
+      marginBottom: spacing.sm,
+      padding: spacing.sm,
+      backgroundColor: colors.surface,
+      borderRadius: radius.sm,
+      borderWidth: 1,
+      borderColor: colors.accent,
+    },
+    guestNoticeText: { flex: 1, fontSize: 12, color: colors.accent, fontWeight: '600' },
+    guestNoticeClose: { fontSize: 14, color: colors.accent, fontWeight: '700' },
+    body: { padding: spacing.md, paddingBottom: spacing.xl },
+    footer: { padding: spacing.md },
+    checkButton: {
+      backgroundColor: colors.accent,
+      borderRadius: radius.md,
+      paddingVertical: spacing.md,
+      alignItems: 'center',
+    },
+    checkButtonDisabled: { backgroundColor: colors.border },
+    checkButtonText: { color: '#fff', fontSize: 16, fontWeight: '700' },
+    ghostButton: {
+      borderWidth: 2,
+      borderColor: colors.accent,
+      borderRadius: radius.md,
+      paddingVertical: spacing.sm,
+      paddingHorizontal: spacing.lg,
+    },
+    ghostButtonText: { color: colors.accent, fontWeight: '600' },
+  });

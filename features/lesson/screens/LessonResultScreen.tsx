@@ -1,9 +1,12 @@
 import { useRouter } from 'expo-router';
+import { useMemo } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import type { SubmitAnswerResult } from '../../../shared/lib/edgeFunctions';
-import { colors, radius, spacing } from '../../../shared/theme/theme';
+import { useTheme } from '../../../shared/theme/ThemeContext';
+import { radius, spacing } from '../../../shared/theme/theme';
+import type { ThemeColors } from '../../../shared/theme/themes';
 import type { Lesson } from '../domain/types';
 
 /*
@@ -19,6 +22,8 @@ interface Props {
 
 export function LessonResultScreen({ lesson, result }: Props) {
   const router = useRouter();
+  const { colors } = useTheme();
+  const styles = useMemo(() => createStyles(colors), [colors]);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -46,6 +51,8 @@ export function LessonResultScreen({ lesson, result }: Props) {
 }
 
 function Stat({ label, value }: { label: string; value: string }) {
+  const { colors } = useTheme();
+  const styles = useMemo(() => createStyles(colors), [colors]);
   return (
     <View style={styles.stat}>
       <Text style={styles.statValue}>{value}</Text>
@@ -54,31 +61,32 @@ function Stat({ label, value }: { label: string; value: string }) {
   );
 }
 
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: colors.background, padding: spacing.lg },
-  body: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: spacing.sm },
-  emoji: { fontSize: 56 },
-  title: { fontSize: 24, fontWeight: '800', color: colors.text },
-  subtitle: { fontSize: 15, color: colors.textMuted, marginBottom: spacing.lg },
-  stats: { flexDirection: 'row', gap: spacing.md },
-  stat: {
-    backgroundColor: colors.card,
-    borderRadius: radius.md,
-    paddingVertical: spacing.md,
-    paddingHorizontal: spacing.lg,
-    alignItems: 'center',
-    minWidth: 90,
-    borderWidth: 1,
-    borderColor: colors.border,
-  },
-  statValue: { fontSize: 22, fontWeight: '800', color: colors.primary },
-  statLabel: { fontSize: 13, color: colors.textMuted, marginTop: 2 },
-  note: { fontSize: 13, color: colors.textMuted, marginTop: spacing.lg },
-  button: {
-    backgroundColor: colors.primary,
-    borderRadius: radius.md,
-    paddingVertical: spacing.md,
-    alignItems: 'center',
-  },
-  buttonText: { color: '#fff', fontSize: 16, fontWeight: '700' },
-});
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
+    container: { flex: 1, backgroundColor: colors.background, padding: spacing.lg },
+    body: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: spacing.sm },
+    emoji: { fontSize: 56 },
+    title: { fontSize: 24, fontWeight: '800', color: colors.text },
+    subtitle: { fontSize: 15, color: colors.textMuted, marginBottom: spacing.lg },
+    stats: { flexDirection: 'row', gap: spacing.md },
+    stat: {
+      backgroundColor: colors.surface,
+      borderRadius: radius.md,
+      paddingVertical: spacing.md,
+      paddingHorizontal: spacing.lg,
+      alignItems: 'center',
+      minWidth: 90,
+      borderWidth: 1,
+      borderColor: colors.border,
+    },
+    statValue: { fontSize: 22, fontWeight: '800', color: colors.accent },
+    statLabel: { fontSize: 13, color: colors.textMuted, marginTop: 2 },
+    note: { fontSize: 13, color: colors.textMuted, marginTop: spacing.lg },
+    button: {
+      backgroundColor: colors.accent,
+      borderRadius: radius.md,
+      paddingVertical: spacing.md,
+      alignItems: 'center',
+    },
+    buttonText: { color: '#fff', fontSize: 16, fontWeight: '700' },
+  });

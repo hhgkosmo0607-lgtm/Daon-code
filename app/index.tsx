@@ -4,7 +4,7 @@ import { ActivityIndicator, View } from 'react-native';
 
 import { HomeScreen } from '../features/lesson/screens/HomeScreen';
 import { hasOnboarded } from '../features/onboarding/data/pendingSync';
-import { colors } from '../shared/theme/theme';
+import { useTheme } from '../shared/theme/ThemeContext';
 
 /*
  * 앱의 첫 화면. 온보딩을 아직 안 봤으면 홈 대신 온보딩으로 보낸다.
@@ -12,6 +12,7 @@ import { colors } from '../shared/theme/theme';
  */
 export default function Index() {
   const router = useRouter();
+  const { colors } = useTheme();
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
@@ -32,7 +33,7 @@ export default function Index() {
   if (!ready) {
     return (
       <View style={{ flex: 1, backgroundColor: colors.background, alignItems: 'center', justifyContent: 'center' }}>
-        <ActivityIndicator color={colors.primary} />
+        <ActivityIndicator color={colors.accent} />
       </View>
     );
   }

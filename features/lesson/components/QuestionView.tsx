@@ -1,6 +1,9 @@
+import { useMemo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { CodeBlock } from '../../../shared/components/CodeBlock';
-import { colors, spacing } from '../../../shared/theme/theme';
+import { useTheme } from '../../../shared/theme/ThemeContext';
+import { spacing } from '../../../shared/theme/theme';
+import type { ThemeColors } from '../../../shared/theme/themes';
 import type { Question } from '../domain/types';
 import { QuestionBlank } from './QuestionBlank';
 import { QuestionChoice } from './QuestionChoice';
@@ -20,6 +23,8 @@ interface Props {
 }
 
 export function QuestionView({ question, answer, onAnswer, checked }: Props) {
+  const { colors } = useTheme();
+  const styles = useMemo(() => createStyles(colors), [colors]);
   const reveal = checked ? question.answer : null;
 
   return (
@@ -72,12 +77,13 @@ export function QuestionView({ question, answer, onAnswer, checked }: Props) {
   );
 }
 
-const styles = StyleSheet.create({
-  prompt: {
-    fontSize: 17,
-    lineHeight: 25,
-    fontWeight: '600',
-    color: colors.text,
-    marginBottom: spacing.md,
-  },
-});
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
+    prompt: {
+      fontSize: 17,
+      lineHeight: 25,
+      fontWeight: '600',
+      color: colors.text,
+      marginBottom: spacing.md,
+    },
+  });

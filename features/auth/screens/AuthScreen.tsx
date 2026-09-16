@@ -1,9 +1,11 @@
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { ActivityIndicator, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { colors, radius, spacing } from '../../../shared/theme/theme';
+import { useTheme } from '../../../shared/theme/ThemeContext';
+import { radius, spacing } from '../../../shared/theme/theme';
+import type { ThemeColors } from '../../../shared/theme/themes';
 import { useAuth } from '../AuthContext';
 import { signInAsGuest, signInWithEmail, signUpWithEmail, upgradeGuestToEmail } from '../authActions';
 
@@ -22,6 +24,8 @@ import { signInAsGuest, signInWithEmail, signUpWithEmail, upgradeGuestToEmail } 
  */
 export function AuthScreen() {
   const router = useRouter();
+  const { colors } = useTheme();
+  const styles = useMemo(() => createStyles(colors), [colors]);
   const { isGuest } = useAuth();
   const { allowGuest, context } = useLocalSearchParams<{ allowGuest?: string; context?: string }>();
   const isPlacementGate = context === 'placement' && !isGuest;
@@ -109,6 +113,7 @@ export function AuthScreen() {
         <TextInput
           style={styles.input}
           placeholder="이메일"
+          placeholderTextColor={colors.textMuted}
           autoCapitalize="none"
           keyboardType="email-address"
           value={email}
@@ -117,6 +122,7 @@ export function AuthScreen() {
         <TextInput
           style={styles.input}
           placeholder="비밀번호 (6자 이상)"
+          placeholderTextColor={colors.textMuted}
           secureTextEntry
           value={password}
           onChangeText={setPassword}
@@ -150,30 +156,32 @@ export function AuthScreen() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: colors.background },
-  body: { flex: 1, justifyContent: 'center', padding: spacing.lg, gap: spacing.sm },
-  title: { fontSize: 22, fontWeight: '800', color: colors.text },
-  subtitle: { fontSize: 14, color: colors.textMuted, marginBottom: spacing.sm },
-  error: { color: colors.error, fontSize: 14 },
-  notice: { color: colors.success, fontSize: 14, lineHeight: 20 },
-  input: {
-    backgroundColor: colors.card,
-    borderWidth: 1,
-    borderColor: colors.border,
-    borderRadius: radius.md,
-    padding: spacing.md,
-    fontSize: 15,
-  },
-  primary: {
-    backgroundColor: colors.primary,
-    borderRadius: radius.md,
-    paddingVertical: spacing.md,
-    alignItems: 'center',
-    marginTop: spacing.sm,
-  },
-  primaryText: { color: '#fff', fontSize: 16, fontWeight: '700' },
-  link: { color: colors.primary, textAlign: 'center', paddingVertical: spacing.sm },
-  ghost: { alignItems: 'center', paddingVertical: spacing.sm },
-  ghostText: { color: colors.textMuted, fontSize: 15 },
-});
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
+    container: { flex: 1, backgroundColor: colors.background },
+    body: { flex: 1, justifyContent: 'center', padding: spacing.lg, gap: spacing.sm },
+    title: { fontSize: 22, fontWeight: '800', color: colors.text },
+    subtitle: { fontSize: 14, color: colors.textMuted, marginBottom: spacing.sm },
+    error: { color: colors.error, fontSize: 14 },
+    notice: { color: colors.success, fontSize: 14, lineHeight: 20 },
+    input: {
+      backgroundColor: colors.surface,
+      borderWidth: 1,
+      borderColor: colors.border,
+      borderRadius: radius.md,
+      padding: spacing.md,
+      fontSize: 15,
+      color: colors.text,
+    },
+    primary: {
+      backgroundColor: colors.accent,
+      borderRadius: radius.md,
+      paddingVertical: spacing.md,
+      alignItems: 'center',
+      marginTop: spacing.sm,
+    },
+    primaryText: { color: '#fff', fontSize: 16, fontWeight: '700' },
+    link: { color: colors.accent, textAlign: 'center', paddingVertical: spacing.sm },
+    ghost: { alignItems: 'center', paddingVertical: spacing.sm },
+    ghostText: { color: colors.textMuted, fontSize: 15 },
+  });

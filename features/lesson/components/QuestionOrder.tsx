@@ -1,6 +1,9 @@
 import * as Haptics from 'expo-haptics';
+import { useMemo } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors, radius, spacing } from '../../../shared/theme/theme';
+import { useTheme } from '../../../shared/theme/ThemeContext';
+import { radius, spacing } from '../../../shared/theme/theme';
+import type { ThemeColors } from '../../../shared/theme/themes';
 
 /*
  * order 유형: 드래그가 아니라 "탭해서 위로 올리는" 방식.
@@ -22,6 +25,8 @@ interface Props {
 }
 
 export function QuestionOrder({ options, picked, onChange, revealAnswer, disabled }: Props) {
+  const { colors } = useTheme();
+  const styles = useMemo(() => createStyles(colors), [colors]);
   const revealed = revealAnswer !== null && revealAnswer !== undefined;
   const remaining = options.map((_, i) => i).filter((i) => !picked.includes(i));
 
@@ -70,39 +75,40 @@ export function QuestionOrder({ options, picked, onChange, revealAnswer, disable
   );
 }
 
-const styles = StyleSheet.create({
-  answerZone: {
-    minHeight: 120,
-    borderWidth: 2,
-    borderStyle: 'dashed',
-    borderColor: colors.border,
-    borderRadius: radius.md,
-    padding: spacing.sm,
-    marginBottom: spacing.md,
-    gap: spacing.sm,
-  },
-  placeholder: { color: colors.textMuted, fontSize: 14, padding: spacing.sm },
-  card: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: spacing.sm,
-    backgroundColor: colors.card,
-    borderWidth: 2,
-    borderColor: colors.primary,
-    borderRadius: radius.sm,
-    padding: spacing.md,
-  },
-  correct: { borderColor: colors.success, backgroundColor: '#EAF9F0' },
-  wrong: { borderColor: colors.error, backgroundColor: '#FDECEA' },
-  index: { fontWeight: '700', color: colors.primary, minWidth: 16 },
-  bank: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.sm },
-  bankItem: {
-    backgroundColor: colors.card,
-    borderWidth: 2,
-    borderColor: colors.border,
-    borderRadius: radius.sm,
-    paddingVertical: spacing.sm + 2,
-    paddingHorizontal: spacing.md,
-  },
-  text: { fontSize: 15, color: colors.text, flexShrink: 1 },
-});
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
+    answerZone: {
+      minHeight: 120,
+      borderWidth: 2,
+      borderStyle: 'dashed',
+      borderColor: colors.border,
+      borderRadius: radius.md,
+      padding: spacing.sm,
+      marginBottom: spacing.md,
+      gap: spacing.sm,
+    },
+    placeholder: { color: colors.textMuted, fontSize: 14, padding: spacing.sm },
+    card: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      gap: spacing.sm,
+      backgroundColor: colors.surface,
+      borderWidth: 2,
+      borderColor: colors.accent,
+      borderRadius: radius.sm,
+      padding: spacing.md,
+    },
+    correct: { borderColor: colors.success, backgroundColor: `${colors.success}22` },
+    wrong: { borderColor: colors.error, backgroundColor: `${colors.error}22` },
+    index: { fontWeight: '700', color: colors.accent, minWidth: 16 },
+    bank: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.sm },
+    bankItem: {
+      backgroundColor: colors.surface,
+      borderWidth: 2,
+      borderColor: colors.border,
+      borderRadius: radius.sm,
+      paddingVertical: spacing.sm + 2,
+      paddingHorizontal: spacing.md,
+    },
+    text: { fontSize: 15, color: colors.text, flexShrink: 1 },
+  });

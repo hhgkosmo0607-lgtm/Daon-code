@@ -1,9 +1,11 @@
 import { useRouter } from 'expo-router';
-import { Fragment, useEffect } from 'react';
+import { Fragment, useEffect, useMemo } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { colors, radius, spacing } from '../../../shared/theme/theme';
+import { useTheme } from '../../../shared/theme/ThemeContext';
+import { radius, spacing } from '../../../shared/theme/theme';
+import type { ThemeColors } from '../../../shared/theme/themes';
 import { useAuth } from '../../auth/AuthContext';
 import { getLessons, getStages, hasContent } from '../data/contentRepository';
 import { useUserProgress } from '../hooks/useUserProgress';
@@ -31,6 +33,9 @@ export function HomeScreen() {
   const router = useRouter();
   const stages = getStages();
   const lessons = getLessons();
+
+  const { colors } = useTheme();
+  const styles = useMemo(() => createStyles(colors), [colors]);
 
   const { user, isGuest } = useAuth();
   const { profile, statusMap, loading } = useUserProgress();
@@ -65,10 +70,15 @@ export function HomeScreen() {
         <Text style={styles.stat}>🔥 {profile?.streak ?? 0}</Text>
         <Text style={styles.stat}>⭐ {profile?.total_xp ?? 0}</Text>
         <Text style={styles.stat}>Lv.{profile?.level ?? 1}</Text>
-        <Pressable style={styles.badgeWrap} onPress={() => router.push('/auth')}>
-          {!user && <Text style={styles.badge}>로그인</Text>}
-          {isGuest && <Text style={styles.badge}>게스트 · XP 80%</Text>}
-        </Pressable>
+        <View style={styles.rightGroup}>
+          <Pressable onPress={() => router.push('/settings/theme')} hitSlop={8}>
+            <Text style={styles.themeButton}>🎨</Text>
+          </Pressable>
+          <Pressable style={styles.badgeWrap} onPress={() => router.push('/auth')}>
+            {!user && <Text style={styles.badge}>로그인</Text>}
+            {isGuest && <Text style={styles.badge}>게스트 · XP 80%</Text>}
+          </Pressable>
+        </View>
       </View>
 
       <ScrollView contentContainerStyle={styles.body}>
@@ -123,42 +133,45 @@ export function HomeScreen() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: colors.background },
-  topBar: {
-    flexDirection: 'row',
-    gap: spacing.lg,
-    paddingHorizontal: spacing.md,
-    paddingVertical: spacing.sm,
-    backgroundColor: colors.card,
-    borderBottomWidth: 1,
-    borderBottomColor: colors.border,
-  },
-  stat: { fontSize: 15, fontWeight: '600', color: colors.text },
-  badgeWrap: { marginLeft: 'auto' },
-  badge: { fontSize: 12, color: colors.accent, fontWeight: '600' },
-  body: { padding: spacing.md, paddingBottom: spacing.xl },
-  stageHeader: { marginTop: spacing.lg, marginBottom: spacing.sm },
-  stageTitle: { fontSize: 17, fontWeight: '800', color: colors.text },
-  stageDesc: { fontSize: 13, color: colors.textMuted, marginTop: 2 },
-  lessonCard: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: spacing.md,
-    backgroundColor: colors.card,
-    borderRadius: radius.md,
-    borderWidth: 2,
-    borderColor: colors.border,
-    padding: spacing.md,
-    marginBottom: spacing.sm,
-  },
-  completed: { borderColor: colors.success },
-  open: { borderColor: colors.accent },
-  locked: { opacity: 0.5 },
-  dot: { fontSize: 18, color: colors.primary },
-  lessonText: { flex: 1 },
-  lessonTitle: { fontSize: 15, fontWeight: '600', color: colors.text },
-  lessonSubtitle: { fontSize: 13, color: colors.textMuted, marginTop: 2 },
-  mutedText: { color: colors.textMuted },
-  soon: { fontSize: 12, color: colors.textMuted },
-});
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
+    container: { flex: 1, backgroundColor: colors.background },
+    topBar: {
+      flexDirection: 'row',
+      gap: spacing.lg,
+      paddingHorizontal: spacing.md,
+      paddingVertical: spacing.sm,
+      backgroundColor: colors.surface,
+      borderBottomWidth: 1,
+      borderBottomColor: colors.border,
+    },
+    stat: { fontSize: 15, fontWeight: '600', color: colors.text },
+    rightGroup: { marginLeft: 'auto', flexDirection: 'row', alignItems: 'center', gap: spacing.md },
+    themeButton: { fontSize: 18 },
+    badgeWrap: {},
+    badge: { fontSize: 12, color: colors.accent, fontWeight: '600' },
+    body: { padding: spacing.md, paddingBottom: spacing.xl },
+    stageHeader: { marginTop: spacing.lg, marginBottom: spacing.sm },
+    stageTitle: { fontSize: 17, fontWeight: '800', color: colors.text },
+    stageDesc: { fontSize: 13, color: colors.textMuted, marginTop: 2 },
+    lessonCard: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      gap: spacing.md,
+      backgroundColor: colors.surface,
+      borderRadius: radius.md,
+      borderWidth: 2,
+      borderColor: colors.border,
+      padding: spacing.md,
+      marginBottom: spacing.sm,
+    },
+    completed: { borderColor: colors.success },
+    open: { borderColor: colors.accent },
+    locked: { opacity: 0.5 },
+    dot: { fontSize: 18, color: colors.accent },
+    lessonText: { flex: 1 },
+    lessonTitle: { fontSize: 15, fontWeight: '600', color: colors.text },
+    lessonSubtitle: { fontSize: 13, color: colors.textMuted, marginTop: 2 },
+    mutedText: { color: colors.textMuted },
+    soon: { fontSize: 12, color: colors.textMuted },
+  });

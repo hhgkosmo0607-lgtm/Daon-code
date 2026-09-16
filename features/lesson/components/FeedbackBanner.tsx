@@ -1,5 +1,8 @@
+import { useMemo } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { colors, radius, spacing } from '../../../shared/theme/theme';
+import { useTheme } from '../../../shared/theme/ThemeContext';
+import { radius, spacing } from '../../../shared/theme/theme';
+import type { ThemeColors } from '../../../shared/theme/themes';
 
 /*
  * 정답/오답 피드백 배너.
@@ -15,6 +18,8 @@ interface Props {
 }
 
 export function FeedbackBanner({ correct, explanation, onNext, isLast }: Props) {
+  const { colors } = useTheme();
+  const styles = useMemo(() => createStyles(colors), [colors]);
   return (
     <View style={[styles.wrap, correct ? styles.okWrap : styles.noWrap]}>
       <Text style={[styles.title, correct ? styles.okText : styles.noText]}>
@@ -34,25 +39,26 @@ export function FeedbackBanner({ correct, explanation, onNext, isLast }: Props) 
   );
 }
 
-const styles = StyleSheet.create({
-  wrap: {
-    padding: spacing.md,
-    borderTopWidth: 2,
-    gap: spacing.sm,
-  },
-  okWrap: { backgroundColor: '#EAF9F0', borderTopColor: colors.success },
-  noWrap: { backgroundColor: '#FDECEA', borderTopColor: colors.error },
-  title: { fontSize: 17, fontWeight: '700' },
-  okText: { color: '#1E8449' },
-  noText: { color: '#B03A2E' },
-  explainBox: { maxHeight: 140 },
-  explain: { fontSize: 14, lineHeight: 21, color: colors.text },
-  button: {
-    borderRadius: radius.md,
-    paddingVertical: spacing.md,
-    alignItems: 'center',
-  },
-  okButton: { backgroundColor: colors.success },
-  noButton: { backgroundColor: colors.error },
-  buttonText: { color: '#fff', fontSize: 16, fontWeight: '700' },
-});
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
+    wrap: {
+      padding: spacing.md,
+      borderTopWidth: 2,
+      gap: spacing.sm,
+    },
+    okWrap: { backgroundColor: `${colors.success}22`, borderTopColor: colors.success },
+    noWrap: { backgroundColor: `${colors.error}22`, borderTopColor: colors.error },
+    title: { fontSize: 17, fontWeight: '700' },
+    okText: { color: colors.success },
+    noText: { color: colors.error },
+    explainBox: { maxHeight: 140 },
+    explain: { fontSize: 14, lineHeight: 21, color: colors.text },
+    button: {
+      borderRadius: radius.md,
+      paddingVertical: spacing.md,
+      alignItems: 'center',
+    },
+    okButton: { backgroundColor: colors.success },
+    noButton: { backgroundColor: colors.error },
+    buttonText: { color: '#fff', fontSize: 16, fontWeight: '700' },
+  });

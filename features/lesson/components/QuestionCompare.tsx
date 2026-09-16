@@ -1,5 +1,8 @@
+import { useMemo } from 'react';
 import { Platform, Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors, radius, spacing } from '../../../shared/theme/theme';
+import { useTheme } from '../../../shared/theme/ThemeContext';
+import { radius, spacing } from '../../../shared/theme/theme';
+import type { ThemeColors } from '../../../shared/theme/themes';
 
 /*
  * compare 유형: A/B 두 코드를 세로로 쌓아 한눈에 비교하게 한다.
@@ -23,6 +26,8 @@ interface Props {
 }
 
 export function QuestionCompare({ options, selected, onSelect, revealAnswer, disabled }: Props) {
+  const { colors } = useTheme();
+  const styles = useMemo(() => createStyles(colors), [colors]);
   const revealed = revealAnswer !== null && revealAnswer !== undefined;
 
   if (__DEV__) {
@@ -66,22 +71,24 @@ export function QuestionCompare({ options, selected, onSelect, revealAnswer, dis
   );
 }
 
-const styles = StyleSheet.create({
-  block: {
-    borderWidth: 2,
-    borderColor: colors.border,
-    borderRadius: radius.md,
-    padding: spacing.md,
-    backgroundColor: '#1E2430',
-  },
-  selected: { borderColor: colors.primary },
-  correct: { borderColor: colors.success },
-  wrong: { borderColor: colors.error },
-  label: { color: colors.accent, fontWeight: '700', marginBottom: spacing.xs },
-  code: {
-    color: '#E6E6E6',
-    fontSize: 13,
-    lineHeight: 20,
-    fontFamily: Platform.select({ ios: 'Menlo', android: 'monospace', default: 'monospace' }),
-  },
-});
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
+    block: {
+      borderWidth: 2,
+      borderColor: colors.border,
+      borderRadius: radius.md,
+      padding: spacing.md,
+      // 코드 블록은 실제 터미널처럼 항상 어둡게 유지한다 (CodeBlock과 동일한 의도적 고정색)
+      backgroundColor: '#1E2430',
+    },
+    selected: { borderColor: colors.accent },
+    correct: { borderColor: colors.success },
+    wrong: { borderColor: colors.error },
+    label: { color: colors.accent, fontWeight: '700', marginBottom: spacing.xs },
+    code: {
+      color: '#E6E6E6',
+      fontSize: 13,
+      lineHeight: 20,
+      fontFamily: Platform.select({ ios: 'Menlo', android: 'monospace', default: 'monospace' }),
+    },
+  });
