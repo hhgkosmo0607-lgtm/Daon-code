@@ -17,8 +17,8 @@
     "code": "const [count, setCount] = useState(0)\n\n<button onClick={() => setCount(count + 1)}>\n  {count}\n</button>",
     "options": [
       "count 값이 1 늘어나고, 화면의 숫자도 함께 바뀐다",
-      "아무 일도 일어나지 않는다",
-      "버튼이 사라진다",
+      "count 값은 1 늘어나지만 화면의 숫자는 다음 클릭 때에야 반영된다",
+      "onClick 안 함수가 매번 새로 만들어질 뿐, 화면의 숫자는 그대로다",
       "페이지가 새로고침된다"
     ],
     "answer": 0,
@@ -31,9 +31,9 @@
     "prompt": "일반 변수와 useState 값의 결정적 차이는?",
     "options": [
       "일반 변수를 바꿔도 화면이 자동으로 안 바뀌지만, useState 값은 화면이 자동으로 바뀐다",
-      "둘은 완전히 똑같다",
+      "둘 다 값이 바뀌면 화면이 자동으로 다시 그려지고, useState는 초기값을 정하는 문법만 다르다",
       "useState는 숫자만 담을 수 있다",
-      "일반 변수가 더 빠르다"
+      "일반 변수는 컴포넌트 함수 밖에서도 값을 유지할 수 있지만 useState는 그렇지 않다"
     ],
     "answer": 0,
     "explanation": "React에게 \"이 값이 바뀌면 화면을 다시 그려줘\"라고 알려주는 특별한 방법이 useState예요."
@@ -56,9 +56,9 @@
     "code": "const [count, setCount] = useState(0)\n\n<button onClick={() => count = count + 1}>\n  {count}\n</button>",
     "options": [
       "setCount를 안 쓰고 count를 직접 바꾸려고 해서",
-      "버튼이 고장나서",
+      "onClick에 화살표 함수가 아니라 값을 그대로 전달해서",
       "useState를 두 번 써서",
-      "원래 안 되는 기능이다"
+      "리렌더링될 때마다 count가 다시 0으로 초기화돼서"
     ],
     "answer": 0,
     "explanation": "반드시 setCount라는 전용 도구를 통해야 React가 \"값이 바뀌었으니 화면을 다시 그려야겠다\"고 알아채요."
@@ -69,7 +69,7 @@
     "type": "choice",
     "prompt": "isOpen은 어떤 값을 기억할까요?",
     "code": "const [isOpen, setIsOpen] = useState(false)",
-    "options": ["메뉴나 창이 열려있는지 아닌지 (참/거짓)", "열린 횟수 (숫자)", "열린 사람 이름", "열린 시각"],
+    "options": ["메뉴나 창이 열려있는지 아닌지 (참/거짓)", "열린 횟수 (숫자)", "메뉴가 열릴 때 표시할 애니메이션의 종류", "메뉴가 화면에서 차지하는 위치 좌표"],
     "answer": 0,
     "explanation": "is~로 시작하고 초기값이 false면 대부분 \"열림/닫힘\" 같은 참거짓 상태예요."
   },

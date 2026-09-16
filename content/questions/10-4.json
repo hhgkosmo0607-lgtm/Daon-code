@@ -7,9 +7,9 @@
     "code": "function LoginForm() {\n  const [email, setEmail] = useState('')\n  return (\n    <TextInput\n      value={email}\n      onChangeText={setEmail}\n      placeholder=\"이메일\"\n    />\n  )\n}",
     "options": [
       "email이라는 state에",
-      "화면에는 저장 안 되고 사라진다",
+      "매 입력마다 email state가 아니라 새로운 컴포넌트 인스턴스가 생성된다",
       "TextInput 컴포넌트 자체에 영구 저장",
-      "서버에 바로 저장된다"
+      "onChangeText가 아니라 placeholder 속성이 입력값을 저장한다"
     ],
     "answer": 0,
     "explanation": "onChangeText가 호출될 때마다 setEmail로 입력값을 state에 반영해요. 이렇게 state와 연결된 입력창을 \"제어된 입력\"이라고 불러요."
@@ -33,7 +33,7 @@
       "타이핑이 전혀 안 먹히는 것처럼 보인다 (state가 안 바뀌니 화면도 안 바뀜)",
       "정상적으로 타이핑된다",
       "에러가 난다",
-      "자동으로 완성된다"
+      "React Native가 자동으로 양방향 바인딩을 처리해줘서 value 없이도 입력이 반영된다"
     ],
     "answer": 0,
     "explanation": "value는 \"지금 이 값을 보여줘\"라는 뜻이라, 타이핑해도 state가 안 바뀌면 화면도 그대로예요. onChangeText가 그 연결고리입니다."
@@ -56,12 +56,12 @@
     "code": "<TextInput value={email} placeholder=\"이메일\" />",
     "options": [
       "onChangeText가 없어서 state가 업데이트되지 않는다",
-      "email이라는 state 이름이 예약어라서",
-      "placeholder 때문에",
+      "value 속성에 문자열이 아니라 state 변수를 직접 넣어서",
+      "TextInput이 useState를 선언한 컴포넌트 트리 바깥에 있어서",
       "TextInput은 원래 value 없이 써야 해서"
     ],
     "answer": 0,
-    "explanation": "value만 있고 그 값을 바꿔줄 onChangeText가 없으면, 입력이 화면에 반영되지 않아요."
+    "explanation": "value만 있고 그 값을 바꿔줄 onChangeText가 없으면, 입력이 화면에 반영되지 않아요. value에 state 변수를 직접 넣는 것은 오히려 정상적인 패턴이라 문제가 되지 않아요."
   },
   {
     "id": "10-4-q6",
@@ -70,9 +70,9 @@
     "prompt": "회원가입 폼 코드에 useState가 여러 개(email, password, nickname...) 있는 걸 보면 짐작할 수 있는 것은?",
     "options": [
       "입력창 하나마다 각자의 값을 따로 기억하고 있다는 것",
-      "코드가 잘못됐다는 뜻",
+      "email과 password가 같은 리렌더링 시점을 공유하게 된다는 뜻",
       "전부 같은 값을 공유한다는 뜻",
-      "아무 의미 없음"
+      "폼을 제출할 때 여러 state를 자동으로 하나의 객체로 병합해준다는 뜻"
     ],
     "answer": 0,
     "explanation": "입력창마다 자기만의 state를 갖는 게 일반적이에요. 여러 개 있다고 이상한 게 아닙니다."

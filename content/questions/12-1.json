@@ -7,9 +7,9 @@
     "code": "async function loadUser() {\n  const response = await fetch('/api/user')\n  const user = await response.json()\n  console.log(user)\n}",
     "options": [
       "그 작업이 끝날 때까지 다음 줄로 안 넘어가고 기다린다",
+      "그 작업을 백그라운드로 돌리고, 즉시 다음 줄부터 병렬로 실행한다",
       "무시하고 바로 다음 줄로 넘어간다",
-      "에러를 발생시킨다",
-      "아무 의미 없는 장식이다"
+      "코드를 더 빠르게 실행시켜주는 성능 최적화 문법이다"
     ],
     "answer": 0,
     "explanation": "await는 \"이 작업이 끝날 때까지 기다렸다가 다음으로 가\"라는 뜻이에요. 서버 응답처럼 시간이 걸리는 작업에 씁니다."
@@ -31,9 +31,9 @@
     "prompt": "async가 붙은 함수와 안 붙은 일반 함수의 차이는?",
     "options": [
       "async가 붙어야 그 함수 안에서 await를 쓸 수 있다",
-      "차이 없다",
+      "async가 붙은 함수는 항상 Promise가 아닌 값을 즉시 반환한다",
       "async가 붙으면 더 빨라진다",
-      "async는 에러를 만드는 키워드다"
+      "async 함수는 반드시 fetch와 함께 사용해야 한다"
     ],
     "answer": 0,
     "explanation": "await는 async 함수 안에서만 쓸 수 있는 문법이에요. 짝처럼 같이 다닙니다."
@@ -58,7 +58,7 @@
       "함수 앞에 async가 빠져서, await를 쓸 수 없는 상태",
       "fetch 주소가 틀려서",
       "await는 함수 이름 앞에서만 쓸 수 있어서",
-      "user라는 이름이 틀려서"
+      "const로 선언한 변수라서 await를 쓸 수 없어서"
     ],
     "answer": 0,
     "explanation": "await를 쓰려면 그 함수가 반드시 async 함수여야 해요. async function loadUser()로 고치면 해결돼요."
@@ -71,8 +71,8 @@
     "options": [
       "서버 응답처럼 시간이 걸리는 작업을 순서대로 여러 번 기다리고 있다는 것",
       "코드에 에러가 여러 개 있다는 뜻",
-      "아무 의미 없음",
-      "함수가 삭제될 예정이라는 뜻"
+      "각 await마다 서로 병렬로 동시에 실행된다는 뜻",
+      "async 함수를 여러 번 호출해야 한다는 뜻"
     ],
     "answer": 0,
     "explanation": "await가 많다는 건 \"기다려야 하는 일\"이 여러 단계라는 뜻이에요. 로그인 확인 후 데이터 요청처럼 순서가 중요한 작업에 흔해요."

@@ -40,9 +40,9 @@
     "type": "blank",
     "prompt": "장바구니 개수는 계속 바뀝니다. 빈칸에 알맞은 것은?",
     "code": "___ cartCount = 0",
-    "options": ["let", "const", "function", "return"],
+    "options": ["let", "const", "var", "return"],
     "answer": 0,
-    "explanation": "값이 바뀌어야 하니까 let입니다. const를 쓰면 나중에 개수를 늘릴 때 에러가 나요."
+    "explanation": "값이 바뀌어야 하니까 let입니다. const를 쓰면 나중에 개수를 늘릴 때 에러가 나요. var도 문법적으로는 값을 바꿀 수 있지만, 스코프 관련 문제 때문에 요즘 코드에서는 거의 쓰지 않고 let을 사용해요."
   },
   {
     "id": "2-2-q5",

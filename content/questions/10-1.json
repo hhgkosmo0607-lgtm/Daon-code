@@ -7,12 +7,12 @@
     "code": "useEffect(() => {\n  fetch('https://api.example.com/products')\n    .then(res => res.json())\n    .then(data => setProducts(data))\n}, [])",
     "options": [
       "서버 주소로 데이터를 요청해서, 받은 결과를 state에 저장한다",
-      "화면을 지운다",
-      "서버에 데이터를 삭제 요청한다",
-      "아무 일도 안 한다"
+      "서버 응답을 받을 때까지 화면 렌더링 전체를 멈춰 세운다",
+      "method를 따로 지정하지 않았으므로 기본값으로 DELETE 요청을 보낸다",
+      "요청 결과와 상관없이 products state를 항상 빈 배열로 초기화한다"
     ],
     "answer": 0,
-    "explanation": "fetch()는 서버에 \"이 데이터 좀 줘\"라고 요청하는 함수예요. .then()으로 응답이 왔을 때 할 일을 이어서 씁니다."
+    "explanation": "fetch()는 서버에 \"이 데이터 좀 줘\"라고 요청하는 함수예요. .then()으로 응답이 왔을 때 할 일을 이어서 씁니다. fetch는 비동기라 화면 렌더링을 멈추지 않고, method를 안 쓰면 기본값은 DELETE가 아니라 GET이에요."
   },
   {
     "id": "10-1-q2",
@@ -31,12 +31,12 @@
     "prompt": "fetch와 useState는 각각 무슨 역할일까요?",
     "options": [
       "fetch는 서버에서 데이터를 가져오는 역할, useState는 가져온 데이터를 기억해서 화면에 반영하는 역할",
-      "둘 다 같은 역할이다",
-      "useState가 서버 요청을 한다",
-      "fetch가 화면을 그린다"
+      "fetch와 useState 둘 다 서버에서 데이터를 가져오며, 저장 방식만 다르다",
+      "useState가 서버에 요청을 보내고, fetch는 그 결과를 state로 저장한다",
+      "fetch만으로 충분하며, useState 없이도 받아온 데이터가 자동으로 화면에 반영된다"
     ],
     "answer": 0,
-    "explanation": "가져오는 것(fetch)과 기억하는 것(useState)은 서로 다른 역할이에요. 대부분 이 둘을 같이 씁니다."
+    "explanation": "가져오는 것(fetch)과 기억하는 것(useState)은 서로 다른 역할이에요. useState는 서버에 요청을 보내지 않고, fetch만으로는 setState 호출 없이 화면이 자동으로 다시 그려지지 않아요."
   },
   {
     "id": "10-1-q4",
@@ -56,12 +56,12 @@
     "code": "TypeError: Failed to fetch",
     "options": [
       "요청한 주소가 틀렸거나 서버가 꺼져있거나 인터넷이 끊겼을 가능성",
-      "코드 디자인이 별로라서",
-      "useState를 안 써서",
+      "응답으로 받은 JSON 데이터의 형식이 올바르지 않아서",
+      "useState를 선언하기 전에 fetch를 호출해서",
       ".then()을 안 붙여서 나는 문법 경고일 뿐이다"
     ],
     "answer": 0,
-    "explanation": "\"Failed to fetch\"는 요청 자체가 서버까지 도달하지 못했다는 뜻이에요. 주소, 서버 상태, 인터넷 연결을 순서대로 확인해보세요."
+    "explanation": "\"Failed to fetch\"는 요청 자체가 서버까지 도달하지 못했다는 뜻이에요. 주소, 서버 상태, 인터넷 연결을 순서대로 확인해보세요. JSON 형식 문제는 응답을 받은 뒤 res.json()에서 나는 다른 종류의 에러라 이 메시지와는 달라요."
   },
   {
     "id": "10-1-q6",
@@ -71,11 +71,11 @@
     "options": [
       "앞의 결과가 끝나야 다음 작업이 시작되는, 순서대로 진행되는 흐름이다",
       "여러 서버에 동시에 요청을 보낸다는 뜻",
-      "에러 처리 코드다",
-      "함수를 여러 번 복사해뒀다는 뜻"
+      ".catch()가 없어도 되게 만들어주는 대체 문법이다",
+      "앞의 .then()이 실패해도 뒤의 .then()이 독립적으로 실행된다는 뜻"
     ],
     "answer": 0,
-    "explanation": "요청 → 응답 변환 → state 저장, 이렇게 순서가 있는 작업을 .then()으로 이어 붙인 거예요."
+    "explanation": "요청 → 응답 변환 → state 저장, 이렇게 순서가 있는 작업을 .then()으로 이어 붙인 거예요. 앞 단계가 실패하면 뒤에 이어진 .then()은 건너뛰고 바로 .catch()로 넘어가요."
   },
   {
     "id": "10-1-q7",

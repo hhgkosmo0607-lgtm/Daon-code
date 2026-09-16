@@ -6,13 +6,13 @@
     "prompt": "이 상품 카드를 누르면 무슨 일이 일어날까요?",
     "code": "function ProductCard({ product }) {\n  const router = useRouter()\n  return (\n    <Pressable onPress={() => router.push(`/products/${product.id}`)}>\n      <Text>{product.name}</Text>\n    </Pressable>\n  )\n}",
     "options": [
-      "onPress 콜백은 즉시 실행되지 않고 다음 리렌더링 때까지 대기한다",
+      "onPress에 화살표 함수를 써서 컴포넌트가 리렌더링될 때마다 router.push가 매번 다시 호출된다",
       "그 상품의 id가 포함된 주소로 화면이 이동한다",
       "product.id가 아니라 product.name을 기준으로 이동 주소가 만들어진다",
       "router.push는 Pressable 밖에서 호출해야 동작하므로 이 코드는 에러가 난다"
     ],
     "answer": 1,
-    "explanation": "router.push()는 코드로 직접 화면을 이동시키는 함수예요. 템플릿 문자열 안의 product.id 값이 그대로 주소에 들어가고, onPress 안에서 호출해도 정상 동작해요."
+    "explanation": "router.push()는 코드로 직접 화면을 이동시키는 함수예요. 템플릿 문자열 안의 product.id 값이 그대로 주소에 들어가고, onPress 안에 있는 화살표 함수는 실제로 눌렀을 때만 실행되지 리렌더링마다 호출되지 않아요."
   },
   {
     "id": "9-2-q2",
