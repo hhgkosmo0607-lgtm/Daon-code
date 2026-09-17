@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { getReadableTextColor } from '../../../shared/theme/contrast';
 import { useTheme } from '../../../shared/theme/ThemeContext';
 import { radius, spacing } from '../../../shared/theme/theme';
 import type { ThemeColors } from '../../../shared/theme/themes';
@@ -33,7 +34,9 @@ export function FeedbackBanner({ correct, explanation, onNext, isLast }: Props) 
       )}
 
       <Pressable style={[styles.button, correct ? styles.okButton : styles.noButton]} onPress={onNext}>
-        <Text style={styles.buttonText}>{isLast ? '결과 보기' : '계속'}</Text>
+        <Text style={[styles.buttonText, correct ? styles.okButtonText : styles.noButtonText]}>
+          {isLast ? '결과 보기' : '계속'}
+        </Text>
       </Pressable>
     </View>
   );
@@ -60,5 +63,7 @@ const createStyles = (colors: ThemeColors) =>
     },
     okButton: { backgroundColor: colors.success },
     noButton: { backgroundColor: colors.error },
-    buttonText: { color: '#fff', fontSize: 16, fontWeight: '700' },
+    buttonText: { fontSize: 16, fontWeight: '700' },
+    okButtonText: { color: getReadableTextColor(colors.success) },
+    noButtonText: { color: getReadableTextColor(colors.error) },
   });

@@ -4,6 +4,7 @@ import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { getPlacementQuestions } from '../../lesson/data/contentRepository';
+import { getReadableTextColor } from '../../../shared/theme/contrast';
 import { useTheme } from '../../../shared/theme/ThemeContext';
 import { radius, spacing } from '../../../shared/theme/theme';
 import type { ThemeColors } from '../../../shared/theme/themes';
@@ -312,5 +313,5 @@ const createStyles = (colors: ThemeColors) =>
       marginTop: spacing.lg,
     },
     primaryButtonDisabled: { backgroundColor: colors.border },
-    primaryButtonText: { color: '#fff', fontSize: 16, fontWeight: '700' },
+    primaryButtonText: { color: getReadableTextColor(colors.accent), fontSize: 16, fontWeight: '700' },
   });

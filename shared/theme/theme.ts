@@ -12,9 +12,13 @@ export const spacing = {
   xl: 32,
 } as const;
 
+/*
+ * 커맨드 창 느낌을 내려고 전부 직각(0)으로 통일했다.
+ * sm/md/lg/full 구분은 유지해서, 나중에 다시 둥글게 하고 싶으면 여기 숫자만 바꾸면 된다.
+ */
 export const radius = {
-  sm: 6,
-  md: 12,
-  lg: 20,
-  full: 999,
+  sm: 0,
+  md: 0,
+  lg: 0,
+  full: 0,
 } as const;

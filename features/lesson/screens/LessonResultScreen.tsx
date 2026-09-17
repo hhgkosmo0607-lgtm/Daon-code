@@ -4,6 +4,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import type { SubmitAnswerResult } from '../../../shared/lib/edgeFunctions';
+import { getReadableTextColor } from '../../../shared/theme/contrast';
 import { useTheme } from '../../../shared/theme/ThemeContext';
 import { radius, spacing } from '../../../shared/theme/theme';
 import type { ThemeColors } from '../../../shared/theme/themes';
@@ -88,5 +89,5 @@ const createStyles = (colors: ThemeColors) =>
       paddingVertical: spacing.md,
       alignItems: 'center',
     },
-    buttonText: { color: '#fff', fontSize: 16, fontWeight: '700' },
+    buttonText: { color: getReadableTextColor(colors.accent), fontSize: 16, fontWeight: '700' },
   });

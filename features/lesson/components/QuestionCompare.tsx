@@ -1,5 +1,7 @@
 import { useMemo } from 'react';
 import { Platform, Pressable, StyleSheet, Text, View } from 'react-native';
+import { CODE_PANEL_BACKGROUND, HighlightedCode } from '../../../shared/components/HighlightedCode';
+import { ensureContrast } from '../../../shared/theme/contrast';
 import { useTheme } from '../../../shared/theme/ThemeContext';
 import { radius, spacing } from '../../../shared/theme/theme';
 import type { ThemeColors } from '../../../shared/theme/themes';
@@ -63,7 +65,7 @@ export function QuestionCompare({ options, selected, onSelect, revealAnswer, dis
             ]}
           >
             <Text style={styles.label}>{labels[index]}</Text>
-            <Text style={styles.code}>{option}</Text>
+            <HighlightedCode code={option} style={styles.code} />
           </Pressable>
         );
       })}
@@ -78,15 +80,18 @@ const createStyles = (colors: ThemeColors) =>
       borderColor: colors.border,
       borderRadius: radius.md,
       padding: spacing.md,
-      // 코드 블록은 실제 터미널처럼 항상 어둡게 유지한다 (CodeBlock과 동일한 의도적 고정색)
-      backgroundColor: '#1E2430',
+      // CodeBlock과 같은 배경(border 톤) — 테마가 바뀌면 코드 패널도 함께 바뀐다
+      backgroundColor: CODE_PANEL_BACKGROUND(colors),
     },
     selected: { borderColor: colors.accent },
     correct: { borderColor: colors.success },
     wrong: { borderColor: colors.error },
-    label: { color: colors.accent, fontWeight: '700', marginBottom: spacing.xs },
+    label: {
+      color: ensureContrast(colors.accent, CODE_PANEL_BACKGROUND(colors)),
+      fontWeight: '700',
+      marginBottom: spacing.xs,
+    },
     code: {
-      color: '#E6E6E6',
       fontSize: 13,
       lineHeight: 20,
       fontFamily: Platform.select({ ios: 'Menlo', android: 'monospace', default: 'monospace' }),

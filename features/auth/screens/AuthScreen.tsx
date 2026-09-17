@@ -3,6 +3,7 @@ import { useMemo, useState } from 'react';
 import { ActivityIndicator, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { getReadableTextColor } from '../../../shared/theme/contrast';
 import { useTheme } from '../../../shared/theme/ThemeContext';
 import { radius, spacing } from '../../../shared/theme/theme';
 import type { ThemeColors } from '../../../shared/theme/themes';
@@ -180,7 +181,7 @@ const createStyles = (colors: ThemeColors) =>
       alignItems: 'center',
       marginTop: spacing.sm,
     },
-    primaryText: { color: '#fff', fontSize: 16, fontWeight: '700' },
+    primaryText: { color: getReadableTextColor(colors.accent), fontSize: 16, fontWeight: '700' },
     link: { color: colors.accent, textAlign: 'center', paddingVertical: spacing.sm },
     ghost: { alignItems: 'center', paddingVertical: spacing.sm },
     ghostText: { color: colors.textMuted, fontSize: 15 },

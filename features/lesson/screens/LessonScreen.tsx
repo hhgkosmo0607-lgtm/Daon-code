@@ -5,6 +5,7 @@ import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, View } from
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { ProgressBar } from '../../../shared/components/ProgressBar';
+import { getReadableTextColor } from '../../../shared/theme/contrast';
 import { useTheme } from '../../../shared/theme/ThemeContext';
 import { radius, spacing } from '../../../shared/theme/theme';
 import type { ThemeColors } from '../../../shared/theme/themes';
@@ -188,7 +189,7 @@ const createStyles = (colors: ThemeColors) =>
       alignItems: 'center',
     },
     checkButtonDisabled: { backgroundColor: colors.border },
-    checkButtonText: { color: '#fff', fontSize: 16, fontWeight: '700' },
+    checkButtonText: { color: getReadableTextColor(colors.accent), fontSize: 16, fontWeight: '700' },
     ghostButton: {
       borderWidth: 2,
       borderColor: colors.accent,
