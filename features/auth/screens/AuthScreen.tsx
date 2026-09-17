@@ -1,14 +1,23 @@
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { ActivityIndicator, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { fetchGuestEarnedXp } from '../../lesson/data/userRepository';
+import { calculatePendingBonus } from '../../lesson/domain/scoring';
 import { getReadableTextColor } from '../../../shared/theme/contrast';
 import { useTheme } from '../../../shared/theme/ThemeContext';
 import { radius, spacing } from '../../../shared/theme/theme';
 import type { ThemeColors } from '../../../shared/theme/themes';
 import { useAuth } from '../AuthContext';
-import { signInAsGuest, signInWithEmail, signUpWithEmail, upgradeGuestToEmail } from '../authActions';
+import {
+  signInAsGuest,
+  signInWithEmail,
+  signInWithGoogle,
+  signInWithKakao,
+  signUpWithEmail,
+  upgradeGuestToEmail,
+} from '../authActions';
 
 /*
  * 로그인 / 가입 화면.
@@ -16,7 +25,8 @@ import { signInAsGuest, signInWithEmail, signUpWithEmail, upgradeGuestToEmail } 
  * 게스트 상태에서 들어오면 "새 계정 만들기"가 아니라 "계정 연결"로 동작한다.
  * 그래야 user_id가 유지되어 그동안 쌓은 진도와 XP가 따라온다. (authActions 참고)
  *
- * 구글/카카오는 각 개발자 콘솔 키 발급이 필요해서 이후 단계에서 추가한다.
+ * 구글/카카오 버튼은 코드상으로는 동작하지만, Supabase 대시보드에 각 프로바이더의
+ * 클라이언트 키가 등록돼야 실제로 로그인까지 이어진다(authActions.ts 참고).
  *
  * 이 화면은 두 경로에서 재사용된다 (기획서 6번 온보딩):
  *  - 배치고사를 본 사람: ?allowGuest=false&context=placement — "나중에 하기" 없음
@@ -27,7 +37,7 @@ export function AuthScreen() {
   const router = useRouter();
   const { colors } = useTheme();
   const styles = useMemo(() => createStyles(colors), [colors]);
-  const { isGuest } = useAuth();
+  const { user, isGuest } = useAuth();
   const { allowGuest, context } = useLocalSearchParams<{ allowGuest?: string; context?: string }>();
   const isPlacementGate = context === 'placement' && !isGuest;
   const showGuestOption = !isGuest && allowGuest !== 'false';
@@ -38,6 +48,24 @@ export function AuthScreen() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
+  const [pendingBonus, setPendingBonus] = useState<number | null>(null);
+
+  // 게스트가 이 화면에 들어오면, 지금 계정을 연결했을 때 얼마를 더 받는지 미리 계산해둔다.
+  // (로그인 전환 성공 시 이 화면을 바로 벗어나므로, isGuest가 꺼질 때 되돌릴 필요는 없다)
+  useEffect(() => {
+    if (!isGuest || !user) return;
+    let cancelled = false;
+    fetchGuestEarnedXp(user.id)
+      .then((earnedXp) => {
+        if (!cancelled) setPendingBonus(calculatePendingBonus(earnedXp));
+      })
+      .catch(() => {
+        if (!cancelled) setPendingBonus(null);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [isGuest, user]);
 
   /**
    * 인증 동작 공통 처리.
@@ -65,6 +93,9 @@ export function AuthScreen() {
       setBusy(false);
     }
   };
+
+  const handleGoogle = () => run(signInWithGoogle, '로그인이 취소됐어요');
+  const handleKakao = () => run(signInWithKakao, '로그인이 취소됐어요');
 
   const handleSubmit = () => {
     if (!email || !password) {
@@ -102,6 +133,9 @@ export function AuthScreen() {
             지금까지의 학습 기록은 그대로 유지돼요
           </Text>
         )}
+        {isGuest && pendingBonus !== null && pendingBonus > 0 && (
+          <Text style={styles.bonus}>지금 가입하면 XP {pendingBonus}를 추가로 받아요</Text>
+        )}
         {isPlacementGate && (
           <Text style={styles.subtitle}>
             가입하면 배치고사 결과에 맞는 레슨부터 바로 시작할 수 있어요
@@ -110,6 +144,25 @@ export function AuthScreen() {
 
         {error && <Text style={styles.error}>{error}</Text>}
         {notice && <Text style={styles.notice}>{notice}</Text>}
+
+        {/*
+          게스트(isGuest)는 여기서 숨긴다: signInWithOAuth는 "새 로그인"이라
+          지금 이 익명 세션과는 별개의 새 계정을 만들어버려서, 그동안 쌓은
+          진도가 끊긴다. 게스트를 이어서 데려가려면 linkIdentity로 별도
+          구현해야 하는데 RN에서는 동작이 더 까다로워서 아직 안 붙였다 —
+          게스트는 지금처럼 이메일 연결(upgradeGuestToEmail)만 가능하다.
+        */}
+        {!isGuest && (
+          <>
+            <Pressable style={styles.social} onPress={handleGoogle} disabled={busy}>
+              <Text style={styles.socialText}>구글로 계속하기</Text>
+            </Pressable>
+            <Pressable style={styles.social} onPress={handleKakao} disabled={busy}>
+              <Text style={styles.socialText}>카카오로 계속하기</Text>
+            </Pressable>
+            <Text style={styles.divider}>또는 이메일로</Text>
+          </>
+        )}
 
         <TextInput
           style={styles.input}
@@ -131,7 +184,7 @@ export function AuthScreen() {
 
         <Pressable style={styles.primary} onPress={handleSubmit} disabled={busy}>
           {busy ? (
-            <ActivityIndicator color="#fff" />
+            <ActivityIndicator color={getReadableTextColor(colors.accent)} />
           ) : (
             <Text style={styles.primaryText}>
               {isGuest ? '계정 연결하기' : mode === 'signup' ? '가입하기' : '로그인'}
@@ -163,8 +216,24 @@ const createStyles = (colors: ThemeColors) =>
     body: { flex: 1, justifyContent: 'center', padding: spacing.lg, gap: spacing.sm },
     title: { fontSize: 22, fontWeight: '800', color: colors.text },
     subtitle: { fontSize: 14, color: colors.textMuted, marginBottom: spacing.sm },
+    bonus: { fontSize: 14, color: colors.accent, fontWeight: '700', marginBottom: spacing.sm },
     error: { color: colors.error, fontSize: 14 },
     notice: { color: colors.success, fontSize: 14, lineHeight: 20 },
+    social: {
+      borderWidth: 1,
+      borderColor: colors.border,
+      backgroundColor: colors.surface,
+      borderRadius: radius.md,
+      paddingVertical: spacing.md,
+      alignItems: 'center',
+    },
+    socialText: { color: colors.text, fontSize: 15, fontWeight: '600' },
+    divider: {
+      textAlign: 'center',
+      color: colors.textMuted,
+      fontSize: 12,
+      marginVertical: spacing.sm,
+    },
     input: {
       backgroundColor: colors.surface,
       borderWidth: 1,
