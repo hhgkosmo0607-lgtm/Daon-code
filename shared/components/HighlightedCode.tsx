@@ -27,10 +27,18 @@ function buildTokenColors(colors: ThemeColors): Record<CodeTokenType, string> {
 }
 
 /** 코드 문자열을 토큰별로 색을 입혀서 보여준다 (CodeBlock, compare 유형이 함께 씀). */
-export function HighlightedCode({ code, style }: { code: string; style?: TextStyle }) {
+export function HighlightedCode({
+  code,
+  style,
+  skipTags,
+}: {
+  code: string;
+  style?: TextStyle;
+  skipTags?: boolean;
+}) {
   const { colors } = useTheme();
   const tokenColors = useMemo(() => buildTokenColors(colors), [colors]);
-  const tokens = useMemo(() => tokenizeCode(code), [code]);
+  const tokens = useMemo(() => tokenizeCode(code, { skipTags }), [code, skipTags]);
 
   return (
     <Text style={[{ color: tokenColors.plain }, style]}>

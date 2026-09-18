@@ -1,0 +1,53 @@
+[
+  {
+    "id": "sqld-2-2-q1",
+    "lessonId": "sqld-2-2",
+    "type": "choice",
+    "prompt": "두 엔터티 사이의 관계를 정의할 때 반드시 표현해야 하는 요소가 아닌 것은?",
+    "options": [
+      "관계명(relationship name)",
+      "관계차수(cardinality, 1:1 / 1:N / N:M)",
+      "선택사양(optionality, 필수/선택)",
+      "그 관계로 만들어질 인덱스명"
+    ],
+    "answer": 3,
+    "explanation": "관계를 정의할 때는 이름, 차수, 선택사양(필수/선택)을 표현해요. 인덱스는 물리적 구현 단계에서 결정하는 것으로 관계 자체의 표현요소가 아니에요."
+  },
+  {
+    "id": "sqld-2-2-q2",
+    "lessonId": "sqld-2-2",
+    "type": "choice",
+    "prompt": "부서(1) - 사원(N) 관계에서, 외래키(FK)는 어느 테이블에 들어가야 하나?",
+    "options": [
+      "사원 테이블에 부서번호를 FK로 둔다",
+      "부서 테이블에 사원번호를 FK로 둔다",
+      "두 테이블 모두에 서로의 키를 넣는다",
+      "별도의 중간 테이블에만 넣는다"
+    ],
+    "answer": 0,
+    "explanation": "1:N 관계에서는 N쪽(사원)이 1쪽(부서)의 기본키를 외래키로 가져요. 그래야 사원 한 명이 정확히 하나의 부서를 가리킬 수 있어요."
+  },
+  {
+    "id": "sqld-2-2-q3",
+    "lessonId": "sqld-2-2",
+    "type": "blank",
+    "prompt": "학생과 수강과목처럼 N:M 관계는 그대로 테이블로 옮길 수 없어서, 두 관계를 각각 1:N으로 풀어주는 ___테이블을 추가로 둬야 한다.",
+    "options": ["교차", "부모", "슈퍼", "서브"],
+    "answer": 0,
+    "explanation": "N:M 관계는 교차 엔터티(관계 엔터티)를 하나 더 만들어서 두 개의 1:N 관계로 풀어줘요(예: 수강신청 테이블)."
+  },
+  {
+    "id": "sqld-2-2-q4",
+    "lessonId": "sqld-2-2",
+    "type": "choice",
+    "prompt": "INNER JOIN과 (LEFT) OUTER JOIN의 차이를 가장 정확히 설명하면?",
+    "options": [
+      "INNER JOIN은 양쪽에 값이 모두 있는 행만, OUTER JOIN은 한쪽에 값이 없어도 남긴다",
+      "INNER JOIN은 조건 없이 모든 조합을 만든다",
+      "OUTER JOIN은 항상 INNER JOIN보다 결과 행 수가 적다",
+      "둘은 결과가 항상 같고 문법만 다르다"
+    ],
+    "answer": 0,
+    "explanation": "INNER JOIN은 양쪽 조건이 매칭되는 행만 남기고, LEFT/RIGHT/FULL OUTER JOIN은 매칭 안 되는 쪽도 NULL을 채워서 결과에 남겨요. 그래서 OUTER JOIN 결과가 보통 INNER JOIN보다 같거나 많아요."
+  }
+]

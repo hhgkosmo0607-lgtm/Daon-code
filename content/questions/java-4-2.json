@@ -1,0 +1,27 @@
+[
+  {
+    "id": "java-4-2-q1",
+    "lessonId": "java-4-2",
+    "type": "choice",
+    "prompt": "case 안에 break를 안 쓰면 어떻게 될까?",
+    "code": "int day = 1;\nswitch (day) {\n    case 1:\n        System.out.println(\"월\");\n    case 2:\n        System.out.println(\"화\");\n        break;\n    default:\n        System.out.println(\"기타\");\n}",
+    "language": "Java",
+    "options": [
+      "\"월\"과 \"화\"가 둘 다 출력된다 — break가 없으면 다음 case로 그대로 흘러 내려간다(fall-through)",
+      "\"월\"만 출력된다",
+      "컴파일 에러가 난다",
+      "아무것도 출력되지 않는다"
+    ],
+    "answer": 0,
+    "explanation": "break를 안 쓰면 그 case의 코드를 실행한 뒤에도 멈추지 않고 바로 아래 case로 계속 흘러가요(fall-through). 그래서 day가 1일 때 \"월\"을 출력하고, break가 없어서 이어서 \"화\"까지 출력한 뒤 case 2의 break에서 멈춰요."
+  },
+  {
+    "id": "java-4-2-q2",
+    "lessonId": "java-4-2",
+    "type": "choice",
+    "prompt": "switch문에서 어떤 case에도 해당하지 않을 때 실행되는 부분은?",
+    "options": ["default", "else", "final", "otherwise"],
+    "answer": 0,
+    "explanation": "default는 if-else의 마지막 else와 비슷한 역할이에요. 생략할 수도 있지만, 예상 못한 값을 대비해 습관적으로 넣는 게 안전해요."
+  }
+]

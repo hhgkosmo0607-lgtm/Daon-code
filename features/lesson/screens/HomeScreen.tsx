@@ -7,47 +7,33 @@ import { useTheme } from '../../../shared/theme/ThemeContext';
 import { radius, spacing } from '../../../shared/theme/theme';
 import type { ThemeColors } from '../../../shared/theme/themes';
 import { useAuth } from '../../auth/AuthContext';
+import { useTrack } from '../../track/TrackContext';
 import { getLessons, getStages, hasContent } from '../data/contentRepository';
 import { useUserProgress } from '../hooks/useUserProgress';
+import { useWrongAnswerCount } from '../hooks/useWrongAnswerCount';
 
 /*
  * 홈 — 학습 경로 화면.
  *
- * 레슨 잠금 상태 판정 (기획서 10번 progress 테이블 규칙):
- *   progress 행 없음      → locked
- *   completed = false     → open  (진행중 또는 배치고사로 건너뜀)
- *   completed = true      → completed
- *
- * 상태는 Supabase progress 테이블에서 읽어온다 (useUserProgress).
- * 로그인 전에는 빈 맵이라 1단계 첫 레슨만 열어둔다.
+ * 레슨은 순서와 상관없이 전부 자유롭게 눌러볼 수 있다 (잠금 없음).
+ * 완료 표시(●)만 실제 진도(progress 테이블, useUserProgress)를 그대로 보여준다.
  */
-
-/**
- * 디자인/UI 작업 중 모든 레슨을 자유롭게 눌러볼 수 있게 잠금을 해제한다.
- * 완료 표시(●)는 실제 진도를 그대로 보여주고, "잠김"만 없앤다.
- * 출시 전에는 반드시 false로 되돌려야 한다.
- */
-const UNLOCK_ALL_LESSONS_FOR_DEV = true;
 
 export function HomeScreen() {
   const router = useRouter();
-  const stages = getStages();
-  const lessons = getLessons();
+  const { track } = useTrack();
+  const stages = getStages(track.id);
+  const lessons = getLessons(track.id);
 
   const { colors } = useTheme();
   const styles = useMemo(() => createStyles(colors), [colors]);
 
   const { user, isGuest } = useAuth();
   const { profile, statusMap, loading } = useUserProgress();
-
-  const firstLessonId = lessons[0]?.id;
+  const { count: wrongAnswerCount } = useWrongAnswerCount();
 
   const statusOf = (lessonId: string) => {
-    const fromServer = statusMap[lessonId];
-    if (fromServer) return fromServer;
-    if (UNLOCK_ALL_LESSONS_FOR_DEV) return 'open';
-    // 진도 기록이 없어도 맨 첫 레슨은 항상 열어둔다 (진입점 확보)
-    return lessonId === firstLessonId ? 'open' : 'locked';
+    return statusMap[lessonId] ?? 'open';
   };
 
   // 배치고사를 안 본 게스트가 1단계(5레슨)를 다 풀면 그 시점에 로그인을 강제한다.
@@ -71,6 +57,11 @@ export function HomeScreen() {
         <Text style={styles.stat}>⭐ {profile?.total_xp ?? 0}</Text>
         <Text style={styles.stat}>Lv.{profile?.level ?? 1}</Text>
         <View style={styles.rightGroup}>
+          {wrongAnswerCount > 0 && (
+            <Pressable style={styles.reviewButton} onPress={() => router.push('/review')}>
+              <Text style={styles.reviewButtonText}>오답노트 {wrongAnswerCount}</Text>
+            </Pressable>
+          )}
           <Pressable onPress={() => router.push('/settings/theme')} hitSlop={8}>
             <Text style={styles.themeButton}>🎨</Text>
           </Pressable>
@@ -80,6 +71,11 @@ export function HomeScreen() {
           </Pressable>
         </View>
       </View>
+
+      <Pressable style={styles.trackBar} onPress={() => router.push('/settings/track')}>
+        <Text style={styles.trackBarText}>{track.label}</Text>
+        <Text style={styles.trackBarSwitch}>바꾸기 ›</Text>
+      </Pressable>
 
       <ScrollView contentContainerStyle={styles.body}>
         {stages.map((stage) => (
@@ -109,12 +105,12 @@ export function HomeScreen() {
                       status === 'locked' && styles.locked,
                     ]}
                   >
-                    <Text style={styles.dot}>
+                    <Text style={[styles.dot, status !== 'completed' && styles.mutedText]}>
                       {status === 'completed' ? '●' : status === 'open' ? '◉' : '○'}
                     </Text>
 
                     <View style={styles.lessonText}>
-                      <Text style={[styles.lessonTitle, status === 'locked' && styles.mutedText]}>
+                      <Text style={[styles.lessonTitle, status !== 'completed' && styles.mutedText]}>
                         {lesson.id} {lesson.title}
                       </Text>
                       {lesson.subtitle && (
@@ -148,8 +144,27 @@ const createStyles = (colors: ThemeColors) =>
     stat: { fontSize: 15, fontWeight: '600', color: colors.text },
     rightGroup: { marginLeft: 'auto', flexDirection: 'row', alignItems: 'center', gap: spacing.md },
     themeButton: { fontSize: 18 },
+    reviewButton: {
+      borderWidth: 1,
+      borderColor: colors.accent,
+      borderRadius: radius.sm,
+      paddingHorizontal: spacing.sm,
+      paddingVertical: 4,
+    },
+    reviewButtonText: { fontSize: 12, color: colors.accent, fontWeight: '700' },
     badgeWrap: {},
     badge: { fontSize: 12, color: colors.accent, fontWeight: '600' },
+    trackBar: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      paddingHorizontal: spacing.md,
+      paddingVertical: spacing.sm,
+      borderBottomWidth: 1,
+      borderBottomColor: colors.border,
+    },
+    trackBarText: { fontSize: 13, fontWeight: '700', color: colors.text },
+    trackBarSwitch: { fontSize: 12, color: colors.accent, fontWeight: '600' },
     body: { padding: spacing.md, paddingBottom: spacing.xl },
     stageHeader: { marginTop: spacing.lg, marginBottom: spacing.sm },
     stageTitle: { fontSize: 17, fontWeight: '800', color: colors.text },
@@ -166,8 +181,8 @@ const createStyles = (colors: ThemeColors) =>
       marginBottom: spacing.sm,
     },
     completed: { borderColor: colors.success },
-    open: { borderColor: colors.accent },
-    locked: { opacity: 0.5 },
+    open: { borderColor: colors.textMuted },
+    locked: { borderStyle: 'dashed', borderColor: colors.textMuted },
     dot: { fontSize: 18, color: colors.accent },
     lessonText: { flex: 1 },
     lessonTitle: { fontSize: 15, fontWeight: '600', color: colors.text },

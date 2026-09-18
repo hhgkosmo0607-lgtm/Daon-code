@@ -1,0 +1,32 @@
+[
+  {
+    "id": "java-7-3-q1",
+    "lessonId": "java-7-3",
+    "type": "choice",
+    "prompt": "반복문 안에서 문자열을 계속 + 로 이어붙일 때, String 대신 StringBuilder를 쓰는 게 권장되는 이유는?",
+    "code": "String result = \"\";\nfor (int i = 0; i < 10000; i++) {\n    result += i; // 매번 새 String 객체 생성\n}",
+    "language": "Java",
+    "options": [
+      "String은 불변이라 +를 할 때마다 새 객체가 계속 생겨서 비효율적이고, StringBuilder는 내부 버퍼를 그대로 수정해서 훨씬 빠르다",
+      "String은 애초에 반복문 안에서 사용할 수 없다",
+      "StringBuilder가 항상 메모리를 더 적게 쓴다",
+      "StringBuilder는 자동으로 정렬 기능을 제공한다"
+    ],
+    "answer": 0,
+    "explanation": "String은 불변이라 += 할 때마다 이전 내용을 복사한 새 객체를 만들어요. 반복 횟수가 많으면 이게 큰 성능 낭비가 돼요. StringBuilder는 가변(mutable) 객체라서 같은 버퍼에 이어붙이기만 해서 훨씬 효율적이에요."
+  },
+  {
+    "id": "java-7-3-q2",
+    "lessonId": "java-7-3",
+    "type": "choice",
+    "prompt": "StringBuilder와 StringBuffer의 가장 큰 차이는?",
+    "options": [
+      "StringBuffer는 동기화(thread-safe) 처리가 되어 있어 멀티스레드에 안전하고, StringBuilder는 그렇지 않은 대신 더 빠르다",
+      "StringBuilder는 문자열을 담을 수 없다",
+      "StringBuffer는 자바 최신 버전에서 사라졌다",
+      "기능상 차이는 전혀 없다"
+    ],
+    "answer": 0,
+    "explanation": "둘 다 가변 문자열을 다루는 기능은 거의 같아요. 차이는 동기화 여부예요 — StringBuffer는 여러 스레드가 동시에 접근해도 안전하도록 동기화 처리가 돼있어 그만큼 느리고, StringBuilder는 동기화가 없어 단일 스레드 환경에서 더 빠르게 동작해요."
+  }
+]

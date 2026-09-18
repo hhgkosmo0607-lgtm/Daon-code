@@ -1,0 +1,44 @@
+[
+  {
+    "id": "java-1-2-q1",
+    "lessonId": "java-1-2",
+    "type": "choice",
+    "prompt": "System.out.println과 System.out.print의 차이는?",
+    "options": [
+      "println은 출력 후 줄바꿈을 하고, print는 줄바꿈을 하지 않는다",
+      "println은 숫자만, print는 문자열만 출력할 수 있다",
+      "print가 println보다 항상 더 빠르다",
+      "둘은 완전히 같은 기능이라 차이가 없다"
+    ],
+    "answer": 0,
+    "explanation": "println은 \"print line\"의 줄임말로, 출력 끝에 자동으로 줄바꿈을 넣어줘요. print는 줄바꿈 없이 이어서 출력해요."
+  },
+  {
+    "id": "java-1-2-q2",
+    "lessonId": "java-1-2",
+    "type": "choice",
+    "prompt": "System.out.printf(\"이름: %s, 나이: %d\\n\", name, age); 에서 %s와 %d는 각각 무엇을 의미하나?",
+    "options": [
+      "%s는 문자열, %d는 정수를 넣을 자리라는 뜻",
+      "%s는 정수, %d는 소수를 넣을 자리라는 뜻",
+      "%s와 %d 둘 다 같은 의미로 아무 타입이나 가능",
+      "%s는 특수문자 이스케이프 기호다"
+    ],
+    "answer": 0,
+    "explanation": "printf는 서식 문자열 안에 %s(문자열), %d(정수), %f(실수) 같은 서식지정자를 두고, 뒤에 오는 인자들을 순서대로 그 자리에 채워 넣어요."
+  },
+  {
+    "id": "java-1-2-q3",
+    "lessonId": "java-1-2",
+    "type": "choice",
+    "prompt": "System.out에서 out이 가리키는 것은?",
+    "options": [
+      "표준 출력(콘솔 화면)을 담당하는 객체",
+      "현재 실행 중인 클래스의 이름",
+      "프로그램이 종료될 때 호출되는 메서드",
+      "외부 파일을 여는 함수"
+    ],
+    "answer": 0,
+    "explanation": "System 클래스의 out은 표준 출력 스트림을 가리키는 필드예요. 여기에 println 같은 메서드를 호출해서 콘솔에 글자를 찍는 거예요."
+  }
+]

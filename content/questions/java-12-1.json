@@ -1,0 +1,34 @@
+[
+  {
+    "id": "java-12-1-q1",
+    "lessonId": "java-12-1",
+    "type": "choice",
+    "prompt": "class BaseSpeaker extends Speaker { } 처럼 extends를 쓰면 BaseSpeaker는 Speaker의 무엇을 물려받나?",
+    "code": "class Speaker {\n    private int volume;\n    public void setVolume(int v) { volume = v; }\n}\nclass BaseSpeaker extends Speaker {\n}",
+    "language": "Java",
+    "options": [
+      "private을 제외한 Speaker의 필드와 메서드",
+      "Speaker의 모든 필드와 메서드를 예외 없이 그대로",
+      "아무것도 물려받지 않고 이름만 비슷해진다",
+      "Speaker의 생성자만 물려받는다"
+    ],
+    "answer": 0,
+    "explanation": "상속받으면 부모의 public/protected 멤버는 그대로 쓸 수 있지만, private 멤버는 자식 클래스에서 직접 접근할 수 없어요(대신 부모가 제공하는 public 메서드를 통해 간접적으로 사용해요)."
+  },
+  {
+    "id": "java-12-1-q2",
+    "lessonId": "java-12-1",
+    "type": "choice",
+    "prompt": "자식 클래스의 생성자에서 super(...)를 쓰는 이유는?",
+    "code": "class Animal {\n    String name;\n    Animal(String name) {\n        this.name = name;\n    }\n}\nclass Dog extends Animal {\n    Dog(String name) {\n        super(name);\n    }\n}",
+    "language": "Java",
+    "options": [
+      "부모 클래스의 생성자를 호출해서 부모 쪽 필드를 초기화하기 위해",
+      "부모 클래스를 삭제하기 위해",
+      "자식 클래스의 필드를 초기화하지 않기 위해",
+      "다중 상속을 가능하게 하기 위해"
+    ],
+    "answer": 0,
+    "explanation": "자식 객체가 만들어질 때 부모 쪽 데이터(name)도 함께 초기화돼야 해요. super(name)은 부모의 생성자를 호출해서 그 초기화를 맡기는 거예요. 자식 생성자에서 super()를 안 쓰면 자바가 자동으로 부모의 매개변수 없는 생성자를 호출해요."
+  }
+]

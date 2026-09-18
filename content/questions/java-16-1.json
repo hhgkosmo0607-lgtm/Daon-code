@@ -1,0 +1,40 @@
+[
+  {
+    "id": "java-16-1-q1",
+    "lessonId": "java-16-1",
+    "type": "choice",
+    "prompt": "int[] arr = new int[3]; arr[5] = 1; 를 실행하면 어떤 예외가 발생할까?",
+    "code": "int[] arr = new int[3];\narr[5] = 1;",
+    "language": "Java",
+    "options": [
+      "ArrayIndexOutOfBoundsException",
+      "NullPointerException",
+      "ClassCastException",
+      "NumberFormatException"
+    ],
+    "answer": 0,
+    "explanation": "배열의 유효 인덱스(0~2)를 벗어난 위치에 접근하면 ArrayIndexOutOfBoundsException이 발생해요. 배열/컬렉션 인덱스 관련 실수에서 가장 흔하게 마주치는 예외예요."
+  },
+  {
+    "id": "java-16-1-q2",
+    "lessonId": "java-16-1",
+    "type": "choice",
+    "prompt": "String s = null; s.length(); 를 실행하면 어떤 예외가 발생할까?",
+    "code": "String s = null;\nint len = s.length();",
+    "language": "Java",
+    "options": ["NullPointerException", "ArrayIndexOutOfBoundsException", "ClassCastException", "IOException"],
+    "answer": 0,
+    "explanation": "null인 참조변수의 메서드를 호출하려고 하면 NullPointerException이 발생해요. \"가리키는 대상이 없는데 그 대상의 기능을 쓰려 했다\"는 뜻이에요."
+  },
+  {
+    "id": "java-16-1-q3",
+    "lessonId": "java-16-1",
+    "type": "choice",
+    "prompt": "int num = Integer.parseInt(\"abc\"); 를 실행하면 어떤 예외가 발생할까?",
+    "code": "int num = Integer.parseInt(\"abc\");",
+    "language": "Java",
+    "options": ["NumberFormatException", "NullPointerException", "ArrayIndexOutOfBoundsException", "ClassCastException"],
+    "answer": 0,
+    "explanation": "parseInt는 숫자로 해석 가능한 문자열만 변환할 수 있어요. \"abc\"처럼 숫자가 아닌 문자열을 넣으면 NumberFormatException이 발생해요."
+  }
+]

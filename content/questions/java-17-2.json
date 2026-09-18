@@ -1,0 +1,29 @@
+[
+  {
+    "id": "java-17-2-q1",
+    "lessonId": "java-17-2",
+    "type": "choice",
+    "prompt": "배열(Array) 대신 ArrayList를 쓰면 얻는 대표적인 장점은?",
+    "code": "List<String> list = new ArrayList<>();\nlist.add(\"a\");\nlist.add(\"b\");\nlist.remove(\"a\"); // 크기가 자동으로 줄어듦",
+    "language": "Java",
+    "options": [
+      "크기가 고정되지 않고, 요소를 추가/삭제할 때 자동으로 크기가 조절된다",
+      "ArrayList는 항상 배열보다 속도가 빠르다",
+      "ArrayList는 기본형(int 등)을 그대로 담을 수 있다",
+      "ArrayList는 중복된 값을 저장할 수 없다"
+    ],
+    "answer": 0,
+    "explanation": "배열은 처음 만들 때 크기가 고정돼서 늘리거나 줄일 수 없어요. ArrayList는 내부적으로 배열을 쓰지만, 요소가 추가/삭제될 때 자동으로 크기를 조절해줘서 훨씬 유연해요. 참고로 ArrayList는 기본형이 아니라 객체(래퍼클래스)만 담을 수 있어요."
+  },
+  {
+    "id": "java-17-2-q2",
+    "lessonId": "java-17-2",
+    "type": "choice",
+    "prompt": "List<Integer> list = new ArrayList<>(Arrays.asList(1,2,3)); 에서 list.get(1)의 결과는?",
+    "code": "List<Integer> list = new ArrayList<>(Arrays.asList(1, 2, 3));\nSystem.out.println(list.get(1));",
+    "language": "Java",
+    "options": ["2", "1", "3", "IndexOutOfBoundsException"],
+    "answer": 0,
+    "explanation": "리스트도 배열처럼 인덱스가 0부터 시작해요. get(1)은 두 번째 요소를 가져오는 거라서 2가 나와요."
+  }
+]

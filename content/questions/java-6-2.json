@@ -1,0 +1,34 @@
+[
+  {
+    "id": "java-6-2-q1",
+    "lessonId": "java-6-2",
+    "type": "choice",
+    "prompt": "메서드에 배열을 전달해서 그 안의 요소 값을 바꾸면, 메서드 밖의 원본 배열도 바뀔까?",
+    "code": "static void changeFirst(int[] arr) {\n    arr[0] = 100;\n}\n\npublic static void main(String[] args) {\n    int[] numbers = {1, 2, 3};\n    changeFirst(numbers);\n    System.out.println(numbers[0]);\n}",
+    "language": "Java",
+    "options": [
+      "바뀐다(100 출력) — 배열은 참조타입이라 메서드에도 같은 배열의 주소가 전달된다",
+      "안 바뀐다(1 출력) — 배열도 값이 복사되어 전달된다",
+      "컴파일 에러가 난다",
+      "실행할 때마다 결과가 랜덤하다"
+    ],
+    "answer": 0,
+    "explanation": "기본형(int 등)은 값 자체가 복사돼서 전달되지만, 배열 같은 객체는 참조(주소)가 복사돼서 전달돼요. 메서드 안의 arr와 main의 numbers가 같은 배열을 가리키기 때문에, arr[0]을 바꾸면 numbers[0]도 함께 바뀌어요."
+  },
+  {
+    "id": "java-6-2-q2",
+    "lessonId": "java-6-2",
+    "type": "choice",
+    "prompt": "메서드 안에서 매개변수 배열 자체를 새 배열로 통째로 교체하면(arr = new int[]{9,9,9};), 메서드 밖의 원본 배열도 바뀔까?",
+    "code": "static void replace(int[] arr) {\n    arr = new int[]{9, 9, 9};\n}\n\npublic static void main(String[] args) {\n    int[] numbers = {1, 2, 3};\n    replace(numbers);\n    System.out.println(numbers[0]);\n}",
+    "language": "Java",
+    "options": [
+      "안 바뀐다(1 출력) — arr는 매개변수(지역변수)일 뿐이라, 재대입해도 원본 참조에는 영향이 없다",
+      "바뀐다(9 출력)",
+      "컴파일 에러가 난다",
+      "numbers 배열의 길이가 3에서 사라진다"
+    ],
+    "answer": 0,
+    "explanation": "arr는 numbers의 주소값을 \"복사해서 받은\" 별개의 지역변수예요. arr가 다른 배열을 가리키게 재대입해도 그건 arr라는 변수 자체가 바뀐 것일 뿐, main의 numbers가 가리키는 원본 배열에는 영향이 없어요."
+  }
+]

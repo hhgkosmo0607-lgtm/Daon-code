@@ -1,0 +1,24 @@
+[
+  {
+    "id": "java-3-5-q1",
+    "lessonId": "java-3-5",
+    "type": "choice",
+    "prompt": "int a = 5; int b = a++; 를 실행한 뒤 a와 b의 값은?",
+    "code": "int a = 5;\nint b = a++;\nSystem.out.println(\"a=\" + a + \", b=\" + b);",
+    "language": "Java",
+    "options": ["a=6, b=5", "a=6, b=6", "a=5, b=5", "a=5, b=6"],
+    "answer": 0,
+    "explanation": "후위 증가(a++)는 \"현재 값을 먼저 사용하고, 그 다음에 1을 증가\"시켜요. 그래서 b에는 증가 전 값인 5가 대입되고, a는 그 뒤 6이 돼요."
+  },
+  {
+    "id": "java-3-5-q2",
+    "lessonId": "java-3-5",
+    "type": "choice",
+    "prompt": "int a = 5; int b = ++a; 를 실행한 뒤 a와 b의 값은?",
+    "code": "int a = 5;\nint b = ++a;\nSystem.out.println(\"a=\" + a + \", b=\" + b);",
+    "language": "Java",
+    "options": ["a=6, b=6", "a=6, b=5", "a=5, b=5", "a=5, b=6"],
+    "answer": 0,
+    "explanation": "전위 증가(++a)는 \"먼저 1을 증가시킨 다음, 그 값을 사용\"해요. a가 먼저 6이 되고, 그 6이 b에도 대입돼요."
+  }
+]

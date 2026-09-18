@@ -1,0 +1,39 @@
+[
+  {
+    "id": "sqld-3-4-q1",
+    "lessonId": "sqld-3-4",
+    "type": "choice",
+    "prompt": "그룹별 평균 급여가 300만원 이상인 부서만 보고 싶을 때, 이 조건은 WHERE와 HAVING 중 어디에 써야 하나?",
+    "options": [
+      "HAVING — 집계함수(AVG)로 만든 그룹 결과에 대한 조건이라서",
+      "WHERE — 조건은 항상 WHERE에만 쓸 수 있어서",
+      "둘 다 아무 데나 써도 결과가 같다",
+      "SELECT절에 직접 조건을 적어야 한다"
+    ],
+    "answer": 0,
+    "explanation": "WHERE절은 집계함수를 쓸 수 없어요(그룹으로 묶기 전 단계라서). 집계된 결과(AVG, SUM 등)에 조건을 걸려면 GROUP BY 뒤의 HAVING을 써야 해요."
+  },
+  {
+    "id": "sqld-3-4-q2",
+    "lessonId": "sqld-3-4",
+    "type": "order",
+    "prompt": "SELECT ... FROM ... WHERE ... GROUP BY ... HAVING ... ORDER BY ... 문장의 실제 실행 순서대로 나열하면?",
+    "options": ["HAVING", "FROM", "SELECT", "WHERE", "GROUP BY", "ORDER BY"],
+    "answer": [1, 3, 4, 0, 2, 5],
+    "explanation": "SQL은 쓰는 순서와 실행 순서가 달라요. 테이블을 읽고(FROM) 행을 거른 다음(WHERE) 그룹으로 묶고(GROUP BY) 그룹 조건을 걸고(HAVING) 마지막에 보여줄 컬럼을 뽑아서(SELECT) 정렬(ORDER BY)해요."
+  },
+  {
+    "id": "sqld-3-4-q3",
+    "lessonId": "sqld-3-4",
+    "type": "choice",
+    "prompt": "GROUP BY 부서 로 묶은 SELECT절에, 그룹 함수도 안 씌우고 GROUP BY에도 없는 '사원명' 컬럼을 그대로 넣으면?",
+    "options": [
+      "에러가 난다 — SELECT절에는 GROUP BY에 있는 컬럼이나 그룹함수 결과만 올 수 있다",
+      "그룹의 첫 번째 사원명이 자동으로 나온다",
+      "사원명이 전부 NULL로 나온다",
+      "문제없이 모든 사원명이 나열된다"
+    ],
+    "answer": 0,
+    "explanation": "그룹으로 묶은 뒤에는 그룹 대표값(그룹 함수) 아니면 그룹 기준 컬럼만 뽑을 수 있어요. 부서별로 묶었는데 사원명처럼 그룹 안에서 여러 값이 될 수 있는 컬럼을 그냥 넣으면 어떤 값을 보여줄지 알 수 없어서 에러가 나요."
+  }
+]

@@ -19,9 +19,12 @@ import type { Lesson } from '../domain/types';
 interface Props {
   lesson: Lesson;
   result: SubmitAnswerResult;
+  /** 이번 레슨에서 틀린 문제 수. 0이면 "바로 다시 풀기" 버튼을 안 보여준다 */
+  wrongCount: number;
+  onRetryWrong: () => void;
 }
 
-export function LessonResultScreen({ lesson, result }: Props) {
+export function LessonResultScreen({ lesson, result, wrongCount, onRetryWrong }: Props) {
   const router = useRouter();
   const { colors } = useTheme();
   const styles = useMemo(() => createStyles(colors), [colors]);
@@ -44,9 +47,20 @@ export function LessonResultScreen({ lesson, result }: Props) {
         )}
       </View>
 
-      <Pressable style={styles.button} onPress={() => router.replace('/')}>
-        <Text style={styles.buttonText}>계속하기</Text>
-      </Pressable>
+      {wrongCount > 0 ? (
+        <>
+          <Pressable style={styles.button} onPress={onRetryWrong}>
+            <Text style={styles.buttonText}>틀린 문제 {wrongCount}개 바로 풀기</Text>
+          </Pressable>
+          <Pressable style={styles.skipButton} onPress={() => router.replace('/')}>
+            <Text style={styles.skipButtonText}>건너뛰고 계속하기</Text>
+          </Pressable>
+        </>
+      ) : (
+        <Pressable style={styles.button} onPress={() => router.replace('/')}>
+          <Text style={styles.buttonText}>계속하기</Text>
+        </Pressable>
+      )}
     </SafeAreaView>
   );
 }
@@ -90,4 +104,10 @@ const createStyles = (colors: ThemeColors) =>
       alignItems: 'center',
     },
     buttonText: { color: getReadableTextColor(colors.accent), fontSize: 16, fontWeight: '700' },
+    skipButton: {
+      paddingVertical: spacing.sm,
+      alignItems: 'center',
+      marginTop: spacing.sm,
+    },
+    skipButtonText: { color: colors.textMuted, fontSize: 14, fontWeight: '600' },
   });

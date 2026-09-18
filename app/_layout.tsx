@@ -3,6 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { AuthProvider } from '../features/auth/AuthContext';
 import { useApplyPendingOnboarding } from '../features/onboarding/hooks/useApplyPendingOnboarding';
+import { TrackProvider } from '../features/track/TrackContext';
 import { ThemeProvider, useTheme } from '../shared/theme/ThemeContext';
 
 /*
@@ -18,8 +19,10 @@ export default function RootLayout() {
     <SafeAreaProvider>
       <ThemeProvider>
         <AuthProvider>
-          <AppBootstrap />
-          <AppShell />
+          <TrackProvider>
+            <AppBootstrap />
+            <AppShell />
+          </TrackProvider>
         </AuthProvider>
       </ThemeProvider>
     </SafeAreaProvider>
@@ -50,6 +53,7 @@ function AppShell() {
         <Stack.Screen name="auth/index" options={{ presentation: 'modal' }} />
         <Stack.Screen name="lesson/[id]" options={{ presentation: 'modal' }} />
         <Stack.Screen name="settings/theme" options={{ presentation: 'modal' }} />
+        <Stack.Screen name="settings/track" options={{ presentation: 'modal' }} />
       </Stack>
     </>
   );

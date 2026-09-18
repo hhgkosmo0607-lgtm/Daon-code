@@ -32,7 +32,9 @@ export function QuestionView({ question, answer, onAnswer, checked }: Props) {
       <Text style={styles.prompt}>{question.prompt}</Text>
 
       {/* compare 유형은 보기 자체가 코드라서 별도 코드 블록을 안 그린다 */}
-      {question.code && question.type !== 'compare' && <CodeBlock code={question.code} />}
+      {question.code && question.type !== 'compare' && (
+        <CodeBlock code={question.code} language={question.language} />
+      )}
 
       {question.type === 'choice' && (
         <QuestionChoice

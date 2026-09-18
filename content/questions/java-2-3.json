@@ -1,0 +1,36 @@
+[
+  {
+    "id": "java-2-3-q1",
+    "lessonId": "java-2-3",
+    "type": "choice",
+    "prompt": "자바에서 문자 하나를 저장하는 char 타입의 값을 올바르게 선언한 것은?",
+    "options": ["char c = 'A';", "char c = \"A\";", "char c = A;", "char c = 65.0;"],
+    "answer": 0,
+    "explanation": "char는 문자 하나를 작은따옴표('')로 감싸서 표현해요. 큰따옴표(\"\")는 String(문자열)에 쓰는 표기예요."
+  },
+  {
+    "id": "java-2-3-q2",
+    "lessonId": "java-2-3",
+    "type": "choice",
+    "prompt": "char c = 'A'; int code = c; 처럼 char 값을 int에 대입하면?",
+    "code": "char c = 'A';\nint code = c;\nSystem.out.println(code);",
+    "language": "Java",
+    "options": [
+      "'A'에 대응하는 유니코드(아스키) 값인 65가 저장된다",
+      "컴파일 에러가 난다",
+      "글자 'A' 그대로 저장된다",
+      "0이 저장된다"
+    ],
+    "answer": 0,
+    "explanation": "char는 내부적으로 정수(유니코드 코드값)로 저장돼요. 'A'는 아스키/유니코드 값으로 65라서, int에 대입하면 65가 들어가요."
+  },
+  {
+    "id": "java-2-3-q3",
+    "lessonId": "java-2-3",
+    "type": "choice",
+    "prompt": "boolean 타입이 가질 수 있는 값은?",
+    "options": ["true 또는 false 둘 중 하나", "0 또는 1", "\"true\" 또는 \"false\" 문자열", "-1, 0, 1 중 하나"],
+    "answer": 0,
+    "explanation": "boolean은 참/거짓 두 값만 가지는 타입이에요. 자바는 C언어와 달리 0/1을 boolean으로 취급하지 않고, 반드시 true/false 리터럴만 허용해요."
+  }
+]

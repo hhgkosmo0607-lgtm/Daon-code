@@ -15,6 +15,7 @@ import { QuestionView } from '../components/QuestionView';
 import { useLesson } from '../hooks/useLesson';
 import { useSubmitLesson } from '../hooks/useSubmitLesson';
 import { LessonResultScreen } from './LessonResultScreen';
+import { WrongAnswersScreen } from './WrongAnswersScreen';
 
 /** 1단계 도중 게스트 XP 차등을 미리 인지시키는 배너. (기획서 6번) */
 const GUEST_NOTICE_LESSON_ID = '1-3';
@@ -35,6 +36,8 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
   const { isGuest } = useAuth();
   const [noticeDismissed, setNoticeDismissed] = useState(false);
   const showGuestNotice = isGuest && lessonId === GUEST_NOTICE_LESSON_ID && !noticeDismissed;
+  /** 결과 화면에서 "틀린 문제 바로 풀기"를 눌렀는지 — 듀오링고식 즉시 복습 흐름 */
+  const [retryingWrong, setRetryingWrong] = useState(false);
 
   const {
     lesson,
@@ -51,7 +54,15 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
     isLast,
     finished,
     answers,
+    questions,
+    wrongIds,
   } = lessonState;
+
+  // DB 재조회 없이, 방금 세션에서 이미 알고 있는 문제 목록만 필터링해 재사용한다.
+  const wrongQuestions = useMemo(
+    () => questions.filter((q) => wrongIds.includes(q.id)),
+    [questions, wrongIds]
+  );
 
   // 레슨이 끝나는 순간 딱 한 번, 서버에 채점·XP·진도 반영을 요청한다.
   useEffect(() => {
@@ -96,7 +107,18 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
       );
     }
 
-    return <LessonResultScreen lesson={lesson} result={submitState.result} />;
+    if (retryingWrong) {
+      return <WrongAnswersScreen seedQuestions={wrongQuestions} />;
+    }
+
+    return (
+      <LessonResultScreen
+        lesson={lesson}
+        result={submitState.result}
+        wrongCount={wrongQuestions.length}
+        onRetryWrong={() => setRetryingWrong(true)}
+      />
+    );
   }
 
   return (

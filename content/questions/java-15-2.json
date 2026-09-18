@@ -1,0 +1,22 @@
+[
+  {
+    "id": "java-15-2-q1",
+    "lessonId": "java-15-2",
+    "type": "choice",
+    "prompt": "Math.pow(2, 3)의 결과는?",
+    "code": "double result = Math.pow(2, 3);\nSystem.out.println(result);",
+    "language": "Java",
+    "options": ["8.0", "6.0", "9.0", "5.0"],
+    "answer": 0,
+    "explanation": "Math.pow(밑, 지수)는 거듭제곱을 계산해요. 2의 3제곱은 8이라서 8.0이 반환돼요(반환타입이 double이에요)."
+  },
+  {
+    "id": "java-15-2-q2",
+    "lessonId": "java-15-2",
+    "type": "choice",
+    "prompt": "0 이상 1 미만의 임의의 실수를 얻고 싶을 때 쓰는 것은?",
+    "options": ["Math.random()", "Math.pow()", "Math.abs()", "Math.max()"],
+    "answer": 0,
+    "explanation": "Math.random()은 0.0 이상 1.0 미만의 난수를 double로 반환해요. 특정 범위의 정수 난수가 필요하면 (int)(Math.random() * 범위) 형태로 응용해요."
+  }
+]

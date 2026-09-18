@@ -1,0 +1,53 @@
+[
+  {
+    "id": "sqld-5-1-q1",
+    "lessonId": "sqld-5-1",
+    "type": "choice",
+    "prompt": "DELETE와 TRUNCATE로 테이블의 모든 행을 지웠을 때, 가장 중요한 차이는?",
+    "options": [
+      "DELETE는 ROLLBACK으로 되돌릴 수 있지만, TRUNCATE는 되돌릴 수 없다",
+      "TRUNCATE는 조건(WHERE)을 걸 수 있지만 DELETE는 못 건다",
+      "DELETE는 테이블 구조까지 삭제하지만 TRUNCATE는 데이터만 지운다",
+      "둘은 완전히 같은 명령이라 차이가 없다"
+    ],
+    "answer": 0,
+    "explanation": "DELETE는 DML이라 트랜잭션 로그가 남아서 COMMIT 전이면 ROLLBACK이 가능해요. TRUNCATE는 DDL이라 실행 즉시 확정되고 되돌릴 수 없어요. 참고로 TRUNCATE는 조건(WHERE)을 걸 수 없고 항상 전체를 지워요."
+  },
+  {
+    "id": "sqld-5-1-q2",
+    "lessonId": "sqld-5-1",
+    "type": "choice",
+    "prompt": "이미 있는 테이블에 새 컬럼을 추가하고 싶을 때 쓰는 명령은?",
+    "options": [
+      "ALTER TABLE 테이블명 ADD 컬럼명 타입;",
+      "UPDATE TABLE 테이블명 ADD 컬럼명;",
+      "CREATE COLUMN 컬럼명 ON 테이블명;",
+      "INSERT COLUMN 컬럼명 INTO 테이블명;"
+    ],
+    "answer": 0,
+    "explanation": "테이블 구조 변경은 ALTER TABLE로 해요. ADD로 컬럼 추가, MODIFY로 컬럼 수정, DROP COLUMN으로 컬럼 삭제를 할 수 있어요."
+  },
+  {
+    "id": "sqld-5-1-q3",
+    "lessonId": "sqld-5-1",
+    "type": "choice",
+    "prompt": "다른 테이블이 외래키로 참조하고 있는 테이블을 DROP TABLE로 삭제하려고 하면?",
+    "options": [
+      "참조 무결성 제약 위반으로 에러가 난다",
+      "참조하던 테이블의 외래키 컬럼이 자동으로 NULL이 된다",
+      "참조하던 테이블도 함께 삭제된다",
+      "아무 문제 없이 삭제된다"
+    ],
+    "answer": 0,
+    "explanation": "다른 테이블이 참조 중인 테이블은 그냥 삭제할 수 없어요. 먼저 참조하는 쪽을 지우거나 외래키 제약을 해제해야 해요."
+  },
+  {
+    "id": "sqld-5-1-q4",
+    "lessonId": "sqld-5-1",
+    "type": "choice",
+    "prompt": "다음 중 DDL(데이터 정의어) 명령이 아닌 것은?",
+    "options": ["UPDATE", "CREATE", "ALTER", "DROP"],
+    "answer": 0,
+    "explanation": "CREATE/ALTER/DROP/TRUNCATE/RENAME은 테이블 등 객체의 '구조'를 다루는 DDL이에요. UPDATE는 데이터 '내용'을 바꾸는 DML이에요."
+  }
+]

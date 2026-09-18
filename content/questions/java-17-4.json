@@ -1,0 +1,34 @@
+[
+  {
+    "id": "java-17-4-q1",
+    "lessonId": "java-17-4",
+    "type": "choice",
+    "prompt": "Map<String, Integer> ages = new HashMap<>(); 처럼 만든 Map은 데이터를 어떤 형태로 저장하나?",
+    "code": "Map<String, Integer> ages = new HashMap<>();\nages.put(\"철수\", 20);\nages.put(\"영희\", 22);\nSystem.out.println(ages.get(\"철수\"));",
+    "language": "Java",
+    "options": [
+      "키(key)와 값(value)의 짝(쌍)으로 저장하고, 키로 값을 빠르게 찾는다",
+      "값만 순서대로 저장한다(List와 동일)",
+      "중복 없는 값들만 저장한다(Set과 동일)",
+      "고정된 크기의 배열로만 저장한다"
+    ],
+    "answer": 0,
+    "explanation": "Map은 \"철수\" → 20 처럼 키-값 쌍으로 데이터를 저장해요. get(\"철수\")처럼 키를 주면 그에 대응하는 값을 바로 찾을 수 있어요."
+  },
+  {
+    "id": "java-17-4-q2",
+    "lessonId": "java-17-4",
+    "type": "choice",
+    "prompt": "HashMap에서 이미 존재하는 키로 다시 put()을 하면?",
+    "code": "Map<String, Integer> ages = new HashMap<>();\nages.put(\"철수\", 20);\nages.put(\"철수\", 25);\nSystem.out.println(ages.get(\"철수\"));",
+    "language": "Java",
+    "options": [
+      "기존 값이 새 값으로 덮어써진다(25 출력)",
+      "에러가 나서 프로그램이 종료된다",
+      "두 값이 합쳐진다(45 출력)",
+      "기존 값이 그대로 유지된다(20 출력)"
+    ],
+    "answer": 0,
+    "explanation": "Map의 키는 유일해야 해서, 같은 키로 다시 put하면 새 값이 기존 값을 덮어써요. 결과적으로 \"철수\"의 값은 25가 돼요."
+  }
+]

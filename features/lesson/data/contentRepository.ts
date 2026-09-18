@@ -1,4 +1,5 @@
 import lessonsData from '../../../content/lessons.json';
+import tracksData from '../../../content/tracks.json';
 import questions1_1 from '../../../content/questions/1-1.json';
 import questions1_2 from '../../../content/questions/1-2.json';
 import questions1_3 from '../../../content/questions/1-3.json';
@@ -57,8 +58,30 @@ import questions12_2 from '../../../content/questions/12-2.json';
 import questions12_3 from '../../../content/questions/12-3.json';
 import questions12_4 from '../../../content/questions/12-4.json';
 import questions12_5 from '../../../content/questions/12-5.json';
+import questionsSqld1_1 from '../../../content/questions/sqld-1-1.json';
+import questionsSqld1_2 from '../../../content/questions/sqld-1-2.json';
+import questionsSqld1_3 from '../../../content/questions/sqld-1-3.json';
+import questionsSqld1_4 from '../../../content/questions/sqld-1-4.json';
+import questionsSqld2_1 from '../../../content/questions/sqld-2-1.json';
+import questionsSqld2_2 from '../../../content/questions/sqld-2-2.json';
+import questionsSqld2_3 from '../../../content/questions/sqld-2-3.json';
+import questionsSqld2_4 from '../../../content/questions/sqld-2-4.json';
+import questionsSqld3_1 from '../../../content/questions/sqld-3-1.json';
+import questionsSqld3_2 from '../../../content/questions/sqld-3-2.json';
+import questionsSqld3_3 from '../../../content/questions/sqld-3-3.json';
+import questionsSqld3_4 from '../../../content/questions/sqld-3-4.json';
+import questionsSqld3_5 from '../../../content/questions/sqld-3-5.json';
+import questionsSqld3_6 from '../../../content/questions/sqld-3-6.json';
+import questionsSqld4_1 from '../../../content/questions/sqld-4-1.json';
+import questionsSqld4_2 from '../../../content/questions/sqld-4-2.json';
+import questionsSqld4_3 from '../../../content/questions/sqld-4-3.json';
+import questionsSqld4_4 from '../../../content/questions/sqld-4-4.json';
+import questionsSqld4_5 from '../../../content/questions/sqld-4-5.json';
+import questionsSqld5_1 from '../../../content/questions/sqld-5-1.json';
+import questionsSqld5_2 from '../../../content/questions/sqld-5-2.json';
+import questionsSqld5_3 from '../../../content/questions/sqld-5-3.json';
 
-import type { Lesson, Question, Stage } from '../domain/types';
+import type { Lesson, Question, Stage, Track } from '../domain/types';
 
 /*
  * 레슨·문제 콘텐츠를 읽어오는 곳.
@@ -131,21 +154,53 @@ const QUESTION_BANK: Record<string, unknown> = {
   '12-3': questions12_3,
   '12-4': questions12_4,
   '12-5': questions12_5,
+  'sqld-1-1': questionsSqld1_1,
+  'sqld-1-2': questionsSqld1_2,
+  'sqld-1-3': questionsSqld1_3,
+  'sqld-1-4': questionsSqld1_4,
+  'sqld-2-1': questionsSqld2_1,
+  'sqld-2-2': questionsSqld2_2,
+  'sqld-2-3': questionsSqld2_3,
+  'sqld-2-4': questionsSqld2_4,
+  'sqld-3-1': questionsSqld3_1,
+  'sqld-3-2': questionsSqld3_2,
+  'sqld-3-3': questionsSqld3_3,
+  'sqld-3-4': questionsSqld3_4,
+  'sqld-3-5': questionsSqld3_5,
+  'sqld-3-6': questionsSqld3_6,
+  'sqld-4-1': questionsSqld4_1,
+  'sqld-4-2': questionsSqld4_2,
+  'sqld-4-3': questionsSqld4_3,
+  'sqld-4-4': questionsSqld4_4,
+  'sqld-4-5': questionsSqld4_5,
+  'sqld-5-1': questionsSqld5_1,
+  'sqld-5-2': questionsSqld5_2,
+  'sqld-5-3': questionsSqld5_3,
 };
 
-export function getStages(): Stage[] {
-  return lessonsData.stages as Stage[];
+/** 기본 트랙 — 온보딩/배치고사 등 트랙을 아직 명시하지 않은 기존 화면이 쓰는 값 */
+export const DEFAULT_TRACK_ID = 'ai-coding';
+
+export function getTracks(): Track[] {
+  return tracksData as Track[];
 }
 
-export function getLessons(): Lesson[] {
-  return (lessonsData.lessons as Lesson[]).slice().sort((a, b) => {
-    if (a.stage !== b.stage) return a.stage - b.stage;
-    return a.orderNo - b.orderNo;
-  });
+export function getStages(trackId: string = DEFAULT_TRACK_ID): Stage[] {
+  return (lessonsData.stages as Stage[]).filter((s) => s.trackId === trackId);
 }
 
+export function getLessons(trackId: string = DEFAULT_TRACK_ID): Lesson[] {
+  return (lessonsData.lessons as Lesson[])
+    .filter((l) => l.trackId === trackId)
+    .sort((a, b) => {
+      if (a.stage !== b.stage) return a.stage - b.stage;
+      return a.orderNo - b.orderNo;
+    });
+}
+
+/** 어느 트랙인지 몰라도 id만으로 찾는다 (lessonId는 트랙과 무관하게 전역에서 유일하다) */
 export function getLesson(lessonId: string): Lesson | undefined {
-  return getLessons().find((l) => l.id === lessonId);
+  return (lessonsData.lessons as Lesson[]).find((l) => l.id === lessonId);
 }
 
 export function getQuestions(lessonId: string): Question[] {
@@ -157,6 +212,15 @@ export function getQuestions(lessonId: string): Question[] {
 /** 콘텐츠가 준비된(문제가 실제로 있는) 레슨인지 */
 export function hasContent(lessonId: string): boolean {
   return getQuestions(lessonId).length > 0;
+}
+
+/**
+ * 문제 id 하나로 문제를 찾는다 (오답노트용 — 어느 레슨 문제인지 모르는 상태에서 조회).
+ * id 형식이 "{lessonId}-q{n}" 이라는 점을 이용한다 (getPlacementQuestions와 동일한 방식).
+ */
+export function getQuestionById(questionId: string): Question | undefined {
+  const lessonId = questionId.split('-q')[0];
+  return getQuestions(lessonId).find((q) => q.id === questionId);
 }
 
 /**

@@ -1,0 +1,27 @@
+[
+  {
+    "id": "java-6-3-q1",
+    "lessonId": "java-6-3",
+    "type": "choice",
+    "prompt": "int[][] grid = new int[2][3]; 로 만든 2차원 배열의 구조를 가장 정확히 설명하면?",
+    "code": "int[][] grid = new int[2][3];",
+    "language": "Java",
+    "options": [
+      "3개의 요소를 가진 배열이 2개 모인 형태 (행 2개, 열 3개)",
+      "2개의 요소를 가진 배열이 3개 모인 형태",
+      "총 5개의 요소를 가진 1차원 배열",
+      "6행 6열의 정사각형 배열"
+    ],
+    "answer": 0,
+    "explanation": "new int[2][3]은 \"길이 3짜리 int 배열\"을 2개 담은 배열이에요. grid[0], grid[1]이 각각 길이 3인 배열이라 grid[0][2]처럼 접근해요."
+  },
+  {
+    "id": "java-6-3-q2",
+    "lessonId": "java-6-3",
+    "type": "blank",
+    "prompt": "int[][] grid = {{1,2},{3,4},{5,6}}; 에서 5를 가져오려면 grid___ 로 접근해야 한다.",
+    "options": ["[2][0]", "[0][2]", "[2]", "[5]"],
+    "answer": 0,
+    "explanation": "grid[2]는 세 번째 안쪽 배열 {5, 6}이고, 그중 인덱스 0인 값이 5예요. 그래서 grid[2][0]이에요."
+  }
+]

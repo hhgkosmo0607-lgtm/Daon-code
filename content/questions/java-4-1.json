@@ -1,0 +1,22 @@
+[
+  {
+    "id": "java-4-1-q1",
+    "lessonId": "java-4-1",
+    "type": "choice",
+    "prompt": "if (score >= 90) { grade = \"A\"; } else if (score >= 80) { grade = \"B\"; } else { grade = \"C\"; } 에서 score가 85일 때 grade는?",
+    "code": "int score = 85;\nString grade;\nif (score >= 90) {\n    grade = \"A\";\n} else if (score >= 80) {\n    grade = \"B\";\n} else {\n    grade = \"C\";\n}",
+    "language": "Java",
+    "options": ["\"B\"", "\"A\"", "\"C\"", "컴파일 에러"],
+    "answer": 0,
+    "explanation": "if-else if 체인은 위에서부터 순서대로 조건을 확인해요. 85는 90 이상이 아니라 첫 조건은 거짓이고, 80 이상이라는 두 번째 조건이 참이라서 \"B\"가 돼요."
+  },
+  {
+    "id": "java-4-1-q2",
+    "lessonId": "java-4-1",
+    "type": "choice",
+    "prompt": "if문에서 조건식 자리에 올 수 있는 값의 타입은?",
+    "options": ["boolean(참/거짓) 값만 가능하다", "int든 boolean이든 아무거나 가능하다", "String만 가능하다", "숫자만 가능하다"],
+    "answer": 0,
+    "explanation": "자바의 if 조건식은 반드시 boolean 값이어야 해요. C언어처럼 0과 1을 참/거짓으로 자동 변환해주지 않아서, if (1)처럼 쓰면 컴파일 에러가 나요."
+  }
+]

@@ -1,0 +1,27 @@
+[
+  {
+    "id": "java-8-3-q1",
+    "lessonId": "java-8-3",
+    "type": "choice",
+    "prompt": "생성자에서 this.name = name; 처럼 this를 쓰는 이유는?",
+    "code": "class Person {\n    String name;\n    Person(String name) {\n        this.name = name;\n    }\n}",
+    "language": "Java",
+    "options": [
+      "매개변수 name과 멤버변수 name의 이름이 같을 때, this.name으로 멤버변수 쪽을 명확히 가리키기 위해",
+      "매개변수의 값을 무조건 0으로 초기화하기 위해",
+      "this는 부모 클래스를 가리키는 키워드라서",
+      "생성자에서는 반드시 this를 써야 컴파일되기 때문에"
+    ],
+    "answer": 0,
+    "explanation": "매개변수 이름과 멤버변수 이름이 같으면, 그냥 name이라고만 쓰면 가까운 쪽인 매개변수를 가리켜요. this.name처럼 써야 \"이 객체의 멤버변수\"임을 명확히 구분할 수 있어요."
+  },
+  {
+    "id": "java-8-3-q2",
+    "lessonId": "java-8-3",
+    "type": "choice",
+    "prompt": "this()를 이용해서 같은 클래스의 다른 생성자를 호출할 때 지켜야 하는 규칙은?",
+    "options": ["생성자 코드의 맨 첫 줄에서만 호출할 수 있다", "생성자의 아무 위치에서나 호출할 수 있다", "메서드 안에서만 호출할 수 있다", "static 메서드에서만 호출할 수 있다"],
+    "answer": 0,
+    "explanation": "this()로 다른 생성자를 호출하는 건 반드시 그 생성자의 첫 줄에서만 가능해요. 초기화 순서를 명확하게 하기 위한 규칙이에요."
+  }
+]

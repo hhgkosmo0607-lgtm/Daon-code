@@ -1,0 +1,43 @@
+[
+  {
+    "id": "sqld-3-2-q1",
+    "lessonId": "sqld-3-2",
+    "type": "choice",
+    "prompt": "커미션이 없는(NULL) 사원은 0으로 표시하고 싶을 때 Oracle에서 쓰는 함수는?",
+    "options": ["NVL(커미션, 0)", "ISNULL(커미션, 0)", "COALESCE0(커미션)", "IFNULL(커미션, 0)"],
+    "answer": 0,
+    "explanation": "NVL은 Oracle 전용 함수예요. SQLD는 Oracle과 MS SQL Server를 섞어서 출제하는데, SQL Server에서는 같은 역할을 ISNULL이 해요(MySQL의 IFNULL과도 또 달라요). 'NULL 대체 함수 이름'은 어떤 DBMS 기준이냐에 따라 달라지니 둘 다 알아두는 게 안전해요."
+  },
+  {
+    "id": "sqld-3-2-q2",
+    "lessonId": "sqld-3-2",
+    "type": "choice",
+    "prompt": "날짜 컬럼에서 '연도'만 뽑아내고 싶을 때 쓰는 표준적인 함수는?",
+    "options": [
+      "EXTRACT(YEAR FROM 날짜컬럼)",
+      "SUBSTR(날짜컬럼, 1, 4)",
+      "TO_CHAR(날짜컬럼)",
+      "YEAR(날짜컬럼)"
+    ],
+    "answer": 0,
+    "explanation": "EXTRACT는 날짜/시간 값에서 연/월/일 등 특정 요소를 뽑아내는 표준 함수예요. SUBSTR로 억지로 할 수도 있지만 DATE 타입엔 바로 못 쓰고 문자열로 변환해야 해서 정석은 EXTRACT예요."
+  },
+  {
+    "id": "sqld-3-2-q3",
+    "lessonId": "sqld-3-2",
+    "type": "choice",
+    "prompt": "Oracle에서 두 문자열을 이어붙이는(연결하는) 연산자는?",
+    "options": ["||", "+", "&", "CONCAT2"],
+    "answer": 0,
+    "explanation": "Oracle은 ||로 문자열을 이어 붙여요(CONCAT 함수도 있지만 두 값만 연결 가능해요). SQL Server처럼 +를 쓰는 DBMS도 있어서 헷갈리기 쉬워요."
+  },
+  {
+    "id": "sqld-3-2-q4",
+    "lessonId": "sqld-3-2",
+    "type": "choice",
+    "prompt": "ROUND(1234.567, -2) 의 결과는?",
+    "options": ["1200", "1234.57", "1230", "1300"],
+    "answer": 0,
+    "explanation": "두 번째 인자가 음수면 소수점이 아니라 정수 자릿수(10의 자리, 100의 자리...)를 반올림해요. -2는 100의 자리에서 반올림하라는 뜻이라 1234.567 → 1200이 돼요."
+  }
+]

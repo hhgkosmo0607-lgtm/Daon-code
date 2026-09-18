@@ -46,7 +46,7 @@
     "code": "router.___('/')",
     "options": ["push", "navigate", "go", "fetch"],
     "answer": 0,
-    "explanation": "router.push(주소)가 \"이 주소로 이동해라\"라는 명령이에요. navigate나 go는 다른 라이브러리(브라우저 히스토리 등)에서 쓰는 이름이라 expo-router의 router 객체에는 없어요."
+    "explanation": "router.push(주소)가 \"이 주소로 이동해라\"라는 명령이에요. navigate도 실제로 있긴 하지만 이동 방식이 살짝 달라서 이 레슨 범위 밖이고, go/fetch는 애초에 expo-router의 router 객체에 없는 이름이에요."
   },
   {
     "id": "9-2-q5",

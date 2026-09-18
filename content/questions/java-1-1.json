@@ -1,0 +1,41 @@
+[
+  {
+    "id": "java-1-1-q1",
+    "lessonId": "java-1-1",
+    "type": "choice",
+    "prompt": "자바 프로그램이 실행되려면 반드시 있어야 하는 메서드는?",
+    "code": "public class Hello {\n    public static void main(String[] args) {\n        System.out.println(\"Hello\");\n    }\n}",
+    "language": "Java",
+    "options": [
+      "public static void main(String[] args)",
+      "public void run()",
+      "public static void start()",
+      "public class Hello()"
+    ],
+    "answer": 0,
+    "explanation": "JVM은 정확히 이 형태의 main 메서드를 프로그램의 시작점(entry point)으로 찾아서 실행해요. 이름, 접근제어자, static, 매개변수 타입까지 정확히 일치해야 해요."
+  },
+  {
+    "id": "java-1-1-q2",
+    "lessonId": "java-1-1",
+    "type": "choice",
+    "prompt": "JDK와 JRE의 관계를 가장 정확히 설명하면?",
+    "options": [
+      "JDK는 개발에 필요한 도구(컴파일러 등)와 JRE를 포함하고, JRE는 실행에 필요한 JVM과 라이브러리만 포함한다",
+      "JRE가 JDK를 포함하는 상위 개념이다",
+      "JDK와 JRE는 완전히 같은 것을 부르는 다른 이름이다",
+      "JDK는 실행 전용, JRE는 개발 전용이다"
+    ],
+    "answer": 0,
+    "explanation": "JDK(Java Development Kit)는 코드를 작성·컴파일하는 도구까지 포함한 개발용 패키지이고, 그 안에 프로그램을 실행만 하는 JRE(Java Runtime Environment)가 포함돼 있어요. JRE 안에는 실제 실행기인 JVM이 들어있어요."
+  },
+  {
+    "id": "java-1-1-q3",
+    "lessonId": "java-1-1",
+    "type": "order",
+    "prompt": "자바 소스코드가 실행되기까지의 과정을 순서대로 나열하면?",
+    "options": ["JVM이 바이트코드를 해석해서 실행한다", ".java 소스코드를 작성한다", "컴파일러(javac)가 .class 바이트코드로 변환한다"],
+    "answer": [1, 2, 0],
+    "explanation": "소스코드(.java)를 작성 → javac로 컴파일해서 바이트코드(.class) 생성 → JVM이 그 바이트코드를 읽어서 실행하는 순서예요. 이 바이트코드 덕분에 자바는 OS와 무관하게 \"한 번 작성하면 어디서든 실행\"이 가능해요."
+  }
+]

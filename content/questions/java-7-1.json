@@ -1,0 +1,32 @@
+[
+  {
+    "id": "java-7-1-q1",
+    "lessonId": "java-7-1",
+    "type": "choice",
+    "prompt": "String s = \"hello\"; s.concat(\" world\"); System.out.println(s); 를 실행하면 s는 어떻게 될까?",
+    "code": "String s = \"hello\";\ns.concat(\" world\");\nSystem.out.println(s);",
+    "language": "Java",
+    "options": [
+      "\"hello\" — concat은 새 문자열을 만들어 반환할 뿐, 원본 s는 그대로다(String은 불변)",
+      "\"hello world\" — s 자체가 바뀐다",
+      "컴파일 에러가 난다",
+      "빈 문자열이 된다"
+    ],
+    "answer": 0,
+    "explanation": "String은 불변(immutable) 객체예요. concat, replace 같은 메서드는 기존 문자열을 바꾸는 게 아니라 새 문자열을 만들어서 반환해요. 결과를 쓰려면 s = s.concat(\" world\"); 처럼 다시 대입해야 해요."
+  },
+  {
+    "id": "java-7-1-q2",
+    "lessonId": "java-7-1",
+    "type": "choice",
+    "prompt": "String이 불변(immutable)이라는 것의 의미는?",
+    "options": [
+      "한 번 만들어진 String 객체의 내용은 바꿀 수 없다",
+      "String 변수에는 값을 딱 한 번만 대입할 수 있다",
+      "String은 다른 타입으로 형변환할 수 없다",
+      "String은 null이 될 수 없다"
+    ],
+    "answer": 0,
+    "explanation": "String 변수 자체는 다른 문자열 객체를 새로 가리키도록 재대입할 수 있지만, 이미 만들어진 문자열 객체의 내용 자체는 절대 바뀌지 않아요. 그래서 문자열을 이어붙이는 연산을 반복하면 매번 새 객체가 생겨요."
+  }
+]

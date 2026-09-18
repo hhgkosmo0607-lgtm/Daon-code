@@ -1,0 +1,22 @@
+[
+  {
+    "id": "ai-coding",
+    "label": "코딩 입문 + AI 활용",
+    "description": "AI와 함께 코드를 읽고 고치는 법을 배우는 기본 커리큘럼"
+  },
+  {
+    "id": "ipe",
+    "label": "정보처리기사",
+    "description": "국가기술자격 정보처리기사 시험 대비 (준비중)"
+  },
+  {
+    "id": "sqld",
+    "label": "SQLD",
+    "description": "SQL 개발자(SQLD) 자격증 시험 대비"
+  },
+  {
+    "id": "java",
+    "label": "자바 기초",
+    "description": "자바 문법 기초부터 신입 개발자 소양(자료구조, 설계원칙, 실무 컨벤션)까지"
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "id": "java-17-3-q1",
+    "lessonId": "java-17-3",
+    "type": "choice",
+    "prompt": "Set<String> set = new HashSet<>(); set.add(\"a\"); set.add(\"a\"); set.size()는?",
+    "code": "Set<String> set = new HashSet<>();\nset.add(\"a\");\nset.add(\"a\");\nSystem.out.println(set.size());",
+    "language": "Java",
+    "options": [
+      "1 — Set은 중복된 값을 허용하지 않는다",
+      "2 — 순서대로 그대로 저장된다",
+      "0 — 두 번째 add는 무시하며 첫 번째도 취소한다",
+      "컴파일 에러"
+    ],
+    "answer": 0,
+    "explanation": "Set 계열(HashSet 등)은 List와 달리 중복을 허용하지 않아요. 같은 값을 두 번 add해도 실제로는 하나만 저장돼서 size()는 1이에요."
+  },
+  {
+    "id": "java-17-3-q2",
+    "lessonId": "java-17-3",
+    "type": "choice",
+    "prompt": "HashSet과 TreeSet의 가장 중요한 차이는?",
+    "options": [
+      "HashSet은 저장 순서를 보장하지 않지만, TreeSet은 요소를 자동으로 정렬된 순서로 유지한다",
+      "HashSet만 중복을 허용하지 않고 TreeSet은 중복을 허용한다",
+      "TreeSet은 문자열만 저장할 수 있다",
+      "HashSet이 항상 더 많은 요소를 저장할 수 있다"
+    ],
+    "answer": 0,
+    "explanation": "HashSet은 해시값 기준으로 저장해서 꺼낼 때 순서가 일정하지 않아요. TreeSet은 내부적으로 정렬된 트리 구조를 유지해서, 순회하면 항상 오름차순(또는 지정한 기준) 정렬된 순서로 나와요."
+  }
+]

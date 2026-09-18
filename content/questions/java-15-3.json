@@ -1,0 +1,34 @@
+[
+  {
+    "id": "java-15-3-q1",
+    "lessonId": "java-15-3",
+    "type": "choice",
+    "prompt": "클래스에서 toString() 메서드를 직접 재정의(오버라이딩)하지 않으면 System.out.println(객체)의 결과는?",
+    "code": "class Person {\n    String name = \"철수\";\n}\nPerson p = new Person();\nSystem.out.println(p);\n// Person@1b6d3586 같은 형태",
+    "language": "Java",
+    "options": [
+      "클래스이름@해시코드 형태의 의미 없는 문자열이 출력된다",
+      "필드값이 자동으로 보기 좋게 출력된다",
+      "컴파일 에러가 난다",
+      "null이 출력된다"
+    ],
+    "answer": 0,
+    "explanation": "Object 클래스가 기본으로 제공하는 toString()은 \"클래스이름@해시코드\" 형태예요. 객체 내용을 사람이 읽기 좋게 출력하려면 toString()을 직접 오버라이딩해서 원하는 문자열을 반환하게 만들어야 해요."
+  },
+  {
+    "id": "java-15-3-q2",
+    "lessonId": "java-15-3",
+    "type": "choice",
+    "prompt": "equals()를 오버라이딩하지 않은 두 객체를 ==나 equals()로 비교하면 기본적으로 무엇을 비교하나?",
+    "code": "class Point { int x, y; }\nPoint p1 = new Point();\nPoint p2 = new Point();\nSystem.out.println(p1.equals(p2)); // 기본 equals",
+    "language": "Java",
+    "options": [
+      "두 참조가 같은 객체(같은 주소)를 가리키는지 — Object의 기본 equals는 ==와 동일하게 동작한다",
+      "두 객체의 필드값이 모두 같은지",
+      "두 객체의 클래스 이름이 같은지",
+      "항상 true를 반환한다"
+    ],
+    "answer": 0,
+    "explanation": "Object가 기본 제공하는 equals()는 == 처럼 주소 비교예요. p1과 p2는 필드값이 같아도 서로 다른 객체라 false가 나와요. \"내용이 같으면 같다고 보고 싶다\"면 equals()를 직접 오버라이딩해서 필드를 비교하도록 만들어야 해요."
+  }
+]
