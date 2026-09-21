@@ -23,10 +23,10 @@
     "code": "class Account:\n    def __init__(self, balance):\n        self.__balance = balance\n    def get_balance(self):\n        return self.__balance\n    def deposit(self, amount):\n        if amount > 0:\n            self.__balance += amount",
     "language": "Python",
     "options": [
-      "get_balance() 같은 조회용 메서드와 deposit() 같은 변경용 메서드를 따로 만들어 그걸 통해서만 접근하게 한다",
-      "__balance 앞의 밑줄을 지우면 외부에서 자유롭게 접근할 수 있게 된다",
-      "숨긴 변수는 그 클래스 안에서도 다시는 값을 바꿀 수 없다",
-      "print(a.__balance)로 직접 접근하는 것이 유일한 방법이다"
+      "조회용 get_balance()와 변경용 deposit() 같은 메서드를 통해서만 접근하게 한다",
+      "__balance 앞의 밑줄을 지우면 외부에서도 직접 자유롭게 읽고 쓸 수 있게 된다",
+      "숨긴 변수는 클래스 안의 메서드에서도 값을 바꿀 수 없고 읽기만 가능하다",
+      "print(a.__balance)처럼 밖에서 직접 접근하는 것이 유일하게 안전한 방법이다"
     ],
     "answer": 0,
     "explanation": "정보은닉의 목적은 값을 아예 못 바꾸게 막는 게 아니라, 정해진 메서드(get_balance, deposit 등)를 통해서만 접근·수정하게 해서 유효성 검사 같은 규칙을 강제하는 거예요."

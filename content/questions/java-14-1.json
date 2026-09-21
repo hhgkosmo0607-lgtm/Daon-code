@@ -7,10 +7,10 @@
     "code": "class Car {\n    class Engine {\n        void start() {\n            System.out.println(\"엔진 시동\");\n        }\n    }\n}",
     "language": "Java",
     "options": [
-      "클래스 개수를 줄여서 컴파일 속도를 높이기 위해",
-      "static 메서드를 못 쓰게 막기 위해",
-      "특정 클래스 안에서만 의미 있는 보조 클래스를 논리적으로 묶어서 캡슐화하기 위해",
-      "상속을 완전히 차단하기 위해"
+      "클래스 파일 개수를 줄여서 컴파일 속도를 높이기 위해",
+      "바깥 클래스의 static 메서드를 호출하지 못하게 막기 위해",
+      "특정 클래스 안에서만 쓰이는 보조 클래스를 묶어 캡슐화하기 위해",
+      "바깥 클래스가 다른 클래스에게 상속되는 것을 완전히 차단하기 위해"
     ],
     "answer": 2,
     "explanation": "Engine처럼 Car 없이는 존재 의미가 없는 클래스를 Car 내부에 두면, 관계가 명확해지고 외부에 불필요하게 노출하지 않을 수 있어요."
@@ -23,9 +23,9 @@
     "code": "Runnable r = new Runnable() {\n    @Override\n    public void run() {\n        System.out.println(\"실행됨\");\n    }\n};",
     "language": "Java",
     "options": [
-      "정적 클래스",
-      "제네릭 클래스",
-      "인터페이스 상속",
+      "정적 중첩 클래스(Static Nested Class)",
+      "제네릭 클래스(Generic Class)",
+      "열거형 클래스(Enum Class)",
       "익명 클래스(Anonymous Class)"
     ],
     "answer": 3,

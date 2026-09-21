@@ -7,10 +7,10 @@
     "code": "s = \"Hello World\"\nprint(s.replace(\"World\", \"Python\"))\nprint(s)",
     "language": "Python",
     "options": [
-      "s 자체가 \"Hello Python\"으로 바뀐다",
-      "\"World\"가 삭제되어 \"Hello \"만 남는다",
-      "에러가 발생한다",
-      "\"Hello Python\"이 반환되고, 원본 s는 그대로 \"Hello World\"로 남는다"
+      "s 자체가 \"Hello Python\"으로 바뀌어 원본이 사라진다",
+      "\"World\"가 삭제되고 \"Python\"은 추가되지 않아 \"Hello \"만 남는다",
+      "에러가 발생한다 — 문자열은 불변이라 replace()를 쓸 수 없다",
+      "\"Hello Python\"이 반환되고 원본 s는 그대로 남는다"
     ],
     "answer": 3,
     "explanation": "파이썬 문자열도 자바의 String처럼 불변(immutable)이에요. replace()는 원본을 바꾸는 게 아니라, 치환된 새 문자열을 반환할 뿐이라 원본 s는 그대로예요."
@@ -24,9 +24,9 @@
     "language": "Python",
     "options": [
       "\"hello\" — 양쪽 끝의 공백만 제거된다",
-      "\"  hello  \" — 아무 변화가 없다",
-      "\"hello  \" — 앞쪽 공백만 제거된다",
-      "에러가 발생한다"
+      "\"  hello  \" — 원본이 그대로 남고 공백이 제거되지 않는다",
+      "\"hello  \" — 앞쪽 공백만 제거되고 뒤쪽은 남는다",
+      "에러가 발생한다 — strip()은 인자가 반드시 필요하다"
     ],
     "answer": 0,
     "explanation": "strip()은 문자열 양쪽 끝에 있는 공백(또는 지정한 문자)만 제거해요. 문자열 중간에 있는 공백은 그대로 남아요."
@@ -39,10 +39,10 @@
     "code": "print(\"a,b,c\".split(\",\"))",
     "language": "Python",
     "options": [
-      "\"a,b,c\" — 원본 그대로 반환",
+      "\"a,b,c\" — 나뉘지 않고 원본 문자열이 그대로 반환된다",
       "['a', 'b', 'c'] — 쉼표를 기준으로 나눈 리스트",
-      "('a', 'b', 'c') — 튜플로 반환",
-      "에러가 발생한다"
+      "('a', 'b', 'c') — 쉼표로 나눈 결과가 튜플로 반환된다",
+      "에러가 발생한다 — split()은 공백으로만 나눌 수 있다"
     ],
     "answer": 1,
     "explanation": "split(구분자)는 문자열을 그 구분자 기준으로 잘라서 리스트로 반환해요. \",\"를 기준으로 나누면 ['a', 'b', 'c']가 돼요."

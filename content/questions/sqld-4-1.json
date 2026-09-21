@@ -5,10 +5,10 @@
     "type": "choice",
     "prompt": "UNION과 UNION ALL의 차이는?",
     "options": [
-      "UNION ALL이 더 적은 결과를 반환한다",
-      "UNION은 두 개 이상의 테이블을 합칠 수 없다",
-      "UNION은 중복된 행을 제거하고, UNION ALL은 중복을 그대로 둔다",
-      "둘의 결과는 항상 같다"
+      "UNION ALL이 중복을 제거하므로 UNION보다 결과 행이 더 적다",
+      "UNION은 최대 두 개의 SELECT 결과까지만 합칠 수 있다",
+      "UNION은 중복 행을 제거하고, UNION ALL은 중복을 그대로 둔다",
+      "둘은 항상 같은 결과를 반환하고 성능 차이만 있다"
     ],
     "answer": 2,
     "explanation": "UNION은 결과를 합친 뒤 중복 제거 작업을 추가로 하기 때문에 UNION ALL보다 느려요. 중복이 없다는 걸 확신할 수 있으면 UNION ALL이 더 효율적이에요."
@@ -19,9 +19,9 @@
     "type": "choice",
     "prompt": "두 SELECT 결과의 '교집합'(양쪽에 모두 있는 행)만 뽑고 싶을 때 쓰는 집합 연산자는?",
     "options": [
-      "UNION",
-      "MINUS",
-      "CROSS",
+      "UNION ALL",
+      "MINUS (EXCEPT)",
+      "CROSS JOIN",
       "INTERSECT"
     ],
     "answer": 3,
@@ -47,10 +47,10 @@
     "type": "choice",
     "prompt": "집합 연산자(UNION 등)로 두 SELECT문을 합치려면 반드시 지켜야 하는 조건은?",
     "options": [
-      "두 SELECT문이 같은 테이블만 조회해야 한다",
-      "두 SELECT문의 컬럼 개수와 각 컬럼의 데이터 타입이 서로 호환돼야 한다",
-      "두 SELECT문에 WHERE절이 있으면 안 된다",
-      "두 SELECT문의 컬럼명이 완전히 같아야 한다"
+      "두 SELECT문이 반드시 같은 테이블에서만 조회해야 한다",
+      "컬럼 개수가 같고, 대응하는 컬럼끼리 타입이 호환돼야 한다",
+      "두 SELECT문 중 하나라도 WHERE절이 있으면 합칠 수 없다",
+      "두 SELECT문의 컬럼명이 알파벳까지 완전히 같아야 한다"
     ],
     "answer": 1,
     "explanation": "컬럼 개수와 타입 호환성만 맞으면 되고, 컬럼명은 달라도 상관없어요(결과 컬럼명은 첫 번째 SELECT문 기준으로 나와요)."

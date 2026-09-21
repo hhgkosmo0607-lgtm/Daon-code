@@ -5,10 +5,10 @@
     "type": "choice",
     "prompt": "pandas의 Series와 DataFrame의 차이는?",
     "options": [
-      "Series는 2차원, DataFrame은 1차원이다",
-      "Series는 1차원(한 열) 데이터, DataFrame은 여러 열을 가진 2차원 표 형태 데이터다",
-      "둘은 완전히 같은 자료구조다",
-      "Series는 숫자만, DataFrame은 문자열만 담는다"
+      "Series는 여러 열을 가진 2차원 표, DataFrame은 인덱스 붙은 1차원 데이터다",
+      "Series는 1차원(한 열) 데이터, DataFrame은 여러 열을 가진 2차원 표다",
+      "둘은 같은 구조이고, 이름만 불러오는 함수에 따라 달라진다",
+      "Series는 숫자만 담을 수 있고, DataFrame은 문자열만 담을 수 있다"
     ],
     "answer": 1,
     "explanation": "Series는 인덱스가 붙은 1차원 배열, DataFrame은 Series 여러 개가 열로 모인 엑셀 표 같은 2차원 구조예요. df['열이름']으로 한 열을 꺼내면 Series가 돼요."

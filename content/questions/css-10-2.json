@@ -7,9 +7,9 @@
     "code": ".container {\n  display: flex;\n  justify-content: center;\n}",
     "language": "CSS",
     "options": [
-      "아이템들의 세로 정렬(교차축)이 가운데로 맞춰진다",
-      "아이템들의 글자 색이 가운데 기준으로 바뀐다",
-      "아이템 개수가 자동으로 절반으로 줄어든다",
+      "아이템들의 세로 정렬(교차축)이 가운데로 맞춰지고 가로는 그대로다",
+      "아이템 안의 글자들이 가운데 기준으로 정렬된다",
+      "아이템들이 컨테이너 안에서 세로 방향으로 균등하게 늘어난다",
       "아이템들이 주축(main axis) 방향으로 가운데 정렬된다"
     ],
     "answer": 3,
@@ -23,9 +23,9 @@
     "code": ".container {\n  display: flex;\n  justify-content: center; /* 주축(가로) 정렬 */\n  align-items: center;     /* 교차축(세로) 정렬 */\n}",
     "language": "CSS",
     "options": [
-      "justify-content는 주축 방향 정렬을, align-items는 교차축(주축과 수직) 방향 정렬을 담당한다",
-      "justify-content는 색상을, align-items는 크기를 담당한다",
-      "둘은 완전히 같은 역할이라 아무거나 하나만 쓰면 된다",
+      "justify-content는 주축 방향, align-items는 교차축 방향 정렬을 담당한다",
+      "justify-content는 글자 정렬을, align-items는 박스 크기를 담당한다",
+      "둘은 같은 역할이라 하나만 써도 되고 나머지는 무시된다",
       "align-items는 flex-direction이 row일 때는 아예 동작하지 않는다"
     ],
     "answer": 0,

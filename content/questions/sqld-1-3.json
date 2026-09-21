@@ -8,7 +8,7 @@
       "1:N",
       "1:1",
       "N:M",
-      "N:1"
+      "N:1 — 하나의 주문에 여러 고객이 속하는 관계"
     ],
     "answer": 0,
     "explanation": "고객(1) 쪽 하나에 여러 개의 주문(N)이 대응되는 구조라 1:N 관계예요."
@@ -33,10 +33,10 @@
     "type": "choice",
     "prompt": "ERD에서 관계선 위에 '소속된다', '주문한다'처럼 동사로 표현해서 붙이는 것을 무엇이라 하나?",
     "options": [
-      "속성명",
-      "식별자명",
-      "관계명(Relationship Name)",
-      "엔터티명"
+      "속성명(Attribute Name)",
+      "식별자명(Identifier Name)",
+      "관계명(Relationship)",
+      "엔터티명(Entity Name)"
     ],
     "answer": 2,
     "explanation": "관계명은 두 엔터티 사이의 관계가 어떤 의미인지 동사로 표현한 이름이에요(예: 사원이 부서에 \"소속된다\")."

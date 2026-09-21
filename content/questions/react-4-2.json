@@ -35,7 +35,7 @@
     "type": "choice",
     "prompt": "user의 age를 21로 바꾸는 올바른 코드는?",
     "options": [
-      "user.age = 21",
+      "Object.assign(user, { age: 21 })",
       "setUser({ ...user, age: 21 })",
       "user.age = 21; setUser(user)",
       "setUser(user.age = 21)"
@@ -49,7 +49,7 @@
     "type": "choice",
     "prompt": "배열 state list에 item을 추가하는 올바른 코드는?",
     "options": [
-      "list.push(item)",
+      "list.push(item); setList(list)",
       "setList(list.push(item))",
       "setList([...list, item])",
       "list[list.length] = item"

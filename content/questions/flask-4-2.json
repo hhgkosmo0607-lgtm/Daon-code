@@ -7,10 +7,10 @@
     "code": "@app.route('/hello/<name>')\ndef hello(name):\n    return '내 이름은 {}'.format(name)",
     "language": "Python",
     "options": [
-      "name이라는 이름의 폴더를 만든다",
-      "URL 경로의 그 자리에 온 값이 함수의 name 매개변수로 전달된다",
-      "'name'이라는 글자가 그대로 주소에 들어가야 한다",
-      "쿼리스트링(?name=)으로만 전달할 수 있다"
+      "'name'이라는 이름의 폴더를 서버에 새로 만들어 준다",
+      "URL 경로의 그 자리에 온 값이 name 매개변수로 전달된다",
+      "주소에 'name'이라는 글자가 그대로 들어가야 접속된다",
+      "?name=철수 같은 쿼리스트링으로만 값을 전달할 수 있다"
     ],
     "answer": 1,
     "explanation": "<name>은 경로 변수예요. /hello/철수로 접속하면 '철수'가 name 인자로 들어와요. ?name=철수 형태의 쿼리스트링과 달리, 경로 자체에 값을 담는 방식이에요."
@@ -21,10 +21,10 @@
     "type": "choice",
     "prompt": "@app.route('/input/<int:num>') 에서 /input/abc 로 접속하면?",
     "options": [
-      "num에 문자열 'abc'가 그대로 들어온다",
-      "num이 자동으로 0이 된다",
-      "int 변환 규칙에 맞지 않아 404 Not Found가 나온다",
-      "500 서버 오류가 나며 서버가 종료된다"
+      "num에 문자열 'abc'가 그대로 들어와 함수가 실행된다",
+      "num이 자동으로 0으로 바뀌어 함수가 실행된다",
+      "int 변환에 맞지 않아 404 Not Found가 나온다",
+      "500 오류가 나면서 Flask 서버가 통째로 종료된다"
     ],
     "answer": 2,
     "explanation": "<int:num>은 정수로 된 경로만 받아들이는 변환기예요. 정수가 아닌 값이 오면 이 라우트에 매칭되지 않아서 404가 나와요. 타입을 생략하면(<num>) 문자열로 받아요."

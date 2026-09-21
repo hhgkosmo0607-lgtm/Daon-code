@@ -21,8 +21,8 @@
     "options": [
       "인조식별자(Artificial Key)",
       "본질식별자(Natural Key)",
-      "외부식별자",
-      "슈퍼식별자"
+      "외부식별자(Foreign Identifier)",
+      "슈퍼식별자(Super Key)"
     ],
     "answer": 0,
     "explanation": "인조식별자는 업무 자체와 상관없이 시스템이 만든 대체 키예요(예: SEQ 번호). 원래 업무에 존재하던 속성으로 만든 식별자는 본질식별자라고 해요."
@@ -33,10 +33,10 @@
     "type": "choice",
     "prompt": "다른 엔터티와의 관계를 통해 넘겨받아서 식별자의 전부 또는 일부로 사용하는 식별자를 무엇이라 하나?",
     "options": [
-      "내부식별자",
+      "내부식별자(Internal Identifier)",
       "외부식별자(Foreign Identifier)",
-      "본질식별자",
-      "단일식별자"
+      "본질식별자(Natural Key)",
+      "단일식별자(Single Identifier)"
     ],
     "answer": 1,
     "explanation": "외부식별자는 관계를 맺은 다른 엔터티의 식별자를 그대로(또는 일부로) 가져와서 쓰는 식별자예요. 관계형 데이터베이스의 외래키(FK)와 연결되는 개념이에요."
@@ -47,10 +47,10 @@
     "type": "choice",
     "prompt": "기본키가 두 개 이상의 속성을 조합해서 만들어진 경우를 무엇이라 하나?",
     "options": [
-      "단일식별자",
-      "인조식별자",
+      "단일식별자(Single Identifier)",
+      "인조식별자(Artificial Key)",
       "복합식별자(Composite Key)",
-      "슈퍼식별자"
+      "슈퍼식별자(Super Key)"
     ],
     "answer": 2,
     "explanation": "하나의 속성만으로 식별자를 구성하면 단일식별자, 두 개 이상을 묶어야 유일하게 식별되면 복합식별자예요(예: 수강신청 테이블의 학번+과목코드)."

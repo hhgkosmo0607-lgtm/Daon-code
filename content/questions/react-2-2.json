@@ -6,10 +6,10 @@
     "prompt": "자식 컴포넌트에서 props 값을 직접 바꾸려고 하면?",
     "code": "function Hi(props) {\n  props.name = '다른 이름'; // 하면 안 됨\n}",
     "options": [
-      "부모의 값도 즉시 같이 바뀐다",
-      "화면만 바뀌고 부모의 값은 그대로다",
-      "리액트가 허용하는 일반적인 방법이다",
-      "props는 읽기 전용이라 바꾸면 안 되고, 바꾸려면 부모의 state를 바꿔야 한다"
+      "부모가 가진 원본 값도 즉시 같이 바뀐다",
+      "자식 화면만 바뀌고 부모가 가진 원래 값은 그대로 남는다",
+      "리액트가 자식이 부모 값을 바꾸도록 허용하는 일반적인 방법이다",
+      "props는 읽기 전용이라 바꾸면 안 되고 부모의 state를 바꿔야 한다"
     ],
     "answer": 3,
     "explanation": "리액트는 데이터가 위에서 아래로 흐르는 단방향 구조예요. 자식이 값을 바꾸고 싶으면 부모가 내려준 함수를 호출해 부모의 state를 바꾸게 해요."
@@ -23,7 +23,7 @@
       "<Hi age={20} />",
       "<Hi age=\"20\" />",
       "<Hi age=20 />",
-      "<Hi age:20 />"
+      "<Hi :age=\"20\" />"
     ],
     "answer": 0,
     "explanation": "따옴표로 쓴 값은 문자열이에요(\"20\"). 숫자, 불리언, 객체, 변수는 중괄호 { }로 넘겨요."
@@ -35,10 +35,10 @@
     "prompt": "<Card>안녕</Card> 에서 \"안녕\"은 Card 컴포넌트에 어떻게 전달될까?",
     "code": "function Card({ children }) {\n  return <div className=\"card\">{children}</div>;\n}",
     "options": [
-      "props.text로 전달된다",
+      "props.text 속성으로 전달된다",
       "props.children으로 전달된다",
-      "props.content로 전달된다",
-      "전달되지 않고 무시된다"
+      "props.content 이름으로 전달된다",
+      "props로는 전달되지 않고 그냥 무시된다"
     ],
     "answer": 1,
     "explanation": "태그 사이에 넣은 내용은 자동으로 children props가 돼요. 카드, 레이아웃처럼 내용을 감싸는 컴포넌트를 만들 때 써요."

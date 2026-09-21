@@ -6,10 +6,10 @@
     "prompt": "Context가 해결하려는 문제는?",
     "code": "const ThemeContext = createContext(\"light\");\nconst theme = useContext(ThemeContext);",
     "options": [
-      "서버와의 통신 속도",
-      "컴포넌트 이름 충돌",
-      "리스트 key 중복",
-      "props를 여러 단계의 중간 컴포넌트를 거쳐 내려보내야 하는 props drilling"
+      "서버와 통신할 때 네트워크 요청이 느려지는 성능 문제",
+      "서로 다른 파일의 컴포넌트 이름이 서로 충돌하는 문제",
+      "리스트 렌더링에서 key가 중복되어 생기는 경고 문제",
+      "props를 여러 단계의 중간 컴포넌트로 거쳐 내려보내는 props drilling"
     ],
     "answer": 3,
     "explanation": "Provider가 값을 제공하면 깊은 곳의 자손이 useContext로 바로 읽을 수 있어요. 테마, 로그인 사용자처럼 앱 전반에서 쓰는 값에 알맞아요."
@@ -21,9 +21,9 @@
     "prompt": "Provider 밖에서 useContext를 호출하면?",
     "options": [
       "createContext에 넘긴 기본값이 반환된다",
-      "항상 오류가 발생한다",
-      "null이 반환된다",
-      "부모 컴포넌트의 state가 반환된다"
+      "Provider가 없다는 오류가 발생해 렌더링이 중단된다",
+      "기본값과 상관없이 null이 반환된다",
+      "가장 가까운 부모 컴포넌트의 state가 대신 반환된다"
     ],
     "answer": 0,
     "explanation": "Provider가 없으면 createContext(기본값)의 기본값이 쓰여요. 기본값을 안 넣었다면 undefined라서, 커스텀 훅에서 Provider 밖 사용을 검사하는 경우가 많아요."
@@ -35,9 +35,9 @@
     "prompt": "Context의 value가 바뀌면?",
     "options": [
       "Provider의 자식 전체가 아니라 변경된 값을 쓰는 한 컴포넌트만 렌더링된다",
-      "그 Context를 useContext로 구독하는 모든 컴포넌트가 다시 렌더링된다",
-      "앱 전체가 새로고침된다",
-      "아무 컴포넌트도 다시 렌더링되지 않는다"
+      "useContext로 구독하는 모든 컴포넌트가 다시 렌더링된다",
+      "브라우저 페이지 전체가 새로고침되어 앱이 다시 시작된다",
+      "값이 바뀌어도 이미 렌더링된 컴포넌트는 그대로 유지된다"
     ],
     "answer": 1,
     "explanation": "값이 자주 바뀌는 데이터를 하나의 Context에 몰아 넣으면 불필요한 리렌더링이 많아져요. 자주 바뀌는 값과 자주 안 바뀌는 값은 나누는 게 좋아요."

@@ -21,10 +21,10 @@
     "code": "@GetMapping(\"/user/{id}\")\npublic String user(@PathVariable(\"id\") int id) { ... }",
     "language": "Java",
     "options": [
-      "@RequestParam(\"id\") int id",
+      "@RequestParam(name = \"id\") int id",
       "@PathVariable(\"id\") int id",
       "@GetParam(\"id\") int id",
-      "request.id"
+      "request.getId()로 바로 읽는다"
     ],
     "answer": 1,
     "explanation": "경로 변수는 @PathVariable이에요. REST 스타일 주소(/board/5)에 자주 써요."
@@ -35,9 +35,9 @@
     "type": "choice",
     "prompt": "폼의 여러 입력값을 PersonDTO 객체 하나로 받으려면 폼 name과 DTO는 어때야 할까?",
     "options": [
-      "name이 아니라 id 속성이 필드명과 같아야 한다",
-      "DTO 클래스는 반드시 abstract여야 한다",
-      "입력 요소의 name이 DTO의 필드(setter) 이름과 일치해야 한다",
+      "id 속성이 DTO 필드명과 같아야 하고 name은 상관없다",
+      "DTO 클래스는 반드시 abstract여야 하고 필드는 public이어야 한다",
+      "입력 요소의 name이 DTO 필드(setter) 이름과 일치해야 한다",
       "입력 요소마다 @RequestParam을 각각 붙여야만 한다"
     ],
     "answer": 2,

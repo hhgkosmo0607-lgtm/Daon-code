@@ -8,7 +8,7 @@
     "options": [
       "className",
       "class",
-      "cssClass",
+      "classStyle",
       "classList"
     ],
     "answer": 0,
@@ -36,10 +36,10 @@
     "prompt": "JSX 중괄호 { } 안에 쓸 수 있는 것은?",
     "code": "<p>{count > 0 ? \"있음\" : \"없음\"}</p>",
     "options": [
-      "if, for 같은 문(statement)",
-      "CSS 규칙",
-      "값을 만들어 내는 표현식(변수, 삼항 연산, 함수 호출)",
-      "import 구문"
+      "if, for처럼 흐름을 제어하는 문(statement)",
+      "스타일을 지정하는 CSS 규칙 블록",
+      "값이 되는 표현식(변수, 삼항 연산, 함수 호출)",
+      "다른 파일을 불러오는 import 구문"
     ],
     "answer": 2,
     "explanation": "{ } 안에는 값이 되는 표현식만 들어가요. 조건은 삼항(a ? b : c)이나 &&로, 반복은 map으로 표현해요."
@@ -50,9 +50,9 @@
     "type": "choice",
     "prompt": "JSX에서 <input>, <img> 를 HTML처럼 닫지 않고 쓰면?",
     "options": [
-      "HTML처럼 그대로 정상 동작한다",
-      "경고만 나오고 정상 동작한다",
-      "리액트가 자동으로 닫아 준다",
+      "HTML처럼 닫지 않아도 정상 동작한다",
+      "콘솔에 경고만 나오고 화면은 문제없이 정상 동작한다",
+      "리액트가 렌더링하는 과정에서 알아서 태그를 닫아 준다",
       "문법 오류가 난다. <input /> 처럼 닫아야 한다"
     ],
     "answer": 3,

@@ -21,9 +21,9 @@
     "code": "const inputRef = useRef(null);\nconst focus = () => inputRef.current.focus();",
     "options": [
       "컴포넌트 함수가 처음 호출되는 순간 렌더링 도중에",
-      "항상 null이다",
-      "렌더링이 끝나 DOM에 붙은 뒤이므로 이벤트 핸들러나 effect에서 사용한다",
-      "렌더링 전에 초깃값으로 채워진다"
+      "useEffect에서 읽어도 항상 null이라 쓸 수 없다",
+      "렌더링이 끝나 DOM에 붙은 뒤이므로 핸들러나 effect에서 쓴다",
+      "렌더링 전에 useRef가 DOM 요소를 미리 만들어서 채워 둔다"
     ],
     "answer": 2,
     "explanation": "첫 렌더링 중에는 아직 DOM이 없어서 ref.current가 null이에요. 버튼 클릭이나 useEffect 안에서 읽어야 안전해요."
@@ -34,10 +34,10 @@
     "type": "choice",
     "prompt": "useId의 용도는?",
     "options": [
-      "리스트 항목의 key로 쓸 DB용 id를 만든다",
-      "난수를 만드는 함수다",
-      "서버가 발급하는 사용자 고유 번호를 얻는다",
-      "렌더링 사이에 안정적인 고유 id를 만들어 label과 input을 연결하는 등에 쓴다"
+      "리스트 항목의 key로 쓸 데이터베이스용 고유 id를 만든다",
+      "렌더링마다 새로운 난수를 만들어서 돌려주는 함수다",
+      "로그인한 사용자의 고유 번호를 서버에서 받아 온다",
+      "렌더링 사이에 안정적인 고유 id를 만들어 label과 input을 연결한다"
     ],
     "answer": 3,
     "explanation": "useId는 htmlFor/id 같은 접근성 연결에 쓰는 고유 문자열을 만들어 줘요. 리스트 key로 쓰는 용도는 아니에요."

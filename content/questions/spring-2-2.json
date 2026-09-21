@@ -21,10 +21,10 @@
     "type": "choice",
     "prompt": "th:text와 th:utext의 차이는?",
     "options": [
-      "th:text는 숫자 전용, th:utext는 문자열 전용이다",
-      "th:utext가 더 안전해서 권장된다",
-      "th:text는 HTML을 이스케이프해서 글자 그대로 보여 주고, th:utext는 이스케이프하지 않는다",
-      "둘은 완전히 같다"
+      "th:text는 숫자 출력 전용이고 th:utext는 문자열 출력 전용이다",
+      "th:utext가 태그를 자동으로 제거해 주므로 더 안전해 권장된다",
+      "th:text는 HTML을 이스케이프하고, th:utext는 이스케이프하지 않는다",
+      "th:text는 서버에서, th:utext는 브라우저에서 값을 채운다"
     ],
     "answer": 2,
     "explanation": "사용자 입력을 th:utext로 출력하면 스크립트가 실행되는 XSS 위험이 있어요. 기본은 th:text를 써요."

@@ -7,10 +7,10 @@
     "code": "Integer a = 1000;\nInteger b = 1000;\nSystem.out.println(a == b);",
     "language": "Java",
     "options": [
-      "true — 값이 같으면 항상 true",
-      "false — 서로 다른 객체를 가리키기 때문 (int 기본형과 달리 참조 비교라서)",
-      "컴파일 에러",
-      "항상 null이 반환된다"
+      "true — 값이 같으면 Integer도 항상 ==로 true가 나온다",
+      "false — 값이 아닌 서로 다른 객체의 참조를 비교하기 때문",
+      "컴파일 에러 — Integer 객체에는 ==를 쓸 수 없기 때문",
+      "NullPointerException — 언박싱 도중 null이 발생하기 때문"
     ],
     "answer": 1,
     "explanation": "Integer는 객체(참조타입)라서 ==는 \"같은 객체를 가리키는지\"를 비교해요. 1000처럼 큰 값은 서로 다른 객체로 만들어지기 때문에 false가 나와요(참고로 -128~127 범위는 캐싱돼서 true가 나올 수 있어요). 값 비교는 equals()를 써야 안전해요."
@@ -21,10 +21,10 @@
     "type": "choice",
     "prompt": "기본형(primitive) int끼리 ==로 비교할 때는 무엇을 비교하나?",
     "options": [
-      "두 변수의 메모리 주소",
-      "두 변수의 이름",
+      "두 변수가 위치한 메모리 주소값",
+      "두 변수의 이름과 선언된 타입",
       "두 변수에 저장된 값 자체",
-      "항상 false"
+      "항상 false를 반환한다"
     ],
     "answer": 2,
     "explanation": "int, double 같은 기본형은 변수에 값 자체가 저장되기 때문에, ==는 그 값을 그대로 비교해요. 객체(참조형)의 ==와는 의미가 달라요."

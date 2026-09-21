@@ -8,9 +8,9 @@
     "language": "Java",
     "options": [
       "래퍼 클래스(Wrapper Class)",
-      "제네릭 클래스",
-      "익명 클래스",
-      "정적 클래스"
+      "제네릭 클래스(Generic Class)",
+      "익명 클래스(Anonymous Class)",
+      "정적 클래스(Static Class)"
     ],
     "answer": 0,
     "explanation": "래퍼 클래스는 기본형 값을 객체로 감싸줘서, 컬렉션(ArrayList 등)처럼 객체만 담을 수 있는 곳에 기본형 값을 쓸 수 있게 해줘요. int↔Integer처럼 자동 변환되는 걸 오토박싱/언박싱이라고 해요."
@@ -23,10 +23,10 @@
     "code": "String s = \"123\";\nint num = Integer.parseInt(s);",
     "language": "Java",
     "options": [
-      "(int) s",
+      "(int) s 처럼 캐스팅",
       "Integer.parseInt(s)",
-      "s.toInt()",
-      "int.valueOf(s)"
+      "s.toInteger() 호출",
+      "Integer.stringToInt(s)"
     ],
     "answer": 1,
     "explanation": "Integer.parseInt()는 숫자로 이루어진 문자열을 int로 변환해줘요. 형변환 캐스팅((int))은 문자열과 숫자 사이에는 쓸 수 없어요."

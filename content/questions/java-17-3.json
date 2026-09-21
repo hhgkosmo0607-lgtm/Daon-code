@@ -21,10 +21,10 @@
     "type": "choice",
     "prompt": "HashSet과 TreeSet의 가장 중요한 차이는?",
     "options": [
-      "HashSet은 저장 순서를 보장하지 않지만, TreeSet은 요소를 자동으로 정렬된 순서로 유지한다",
-      "HashSet만 중복을 허용하지 않고 TreeSet은 중복을 허용한다",
-      "TreeSet은 문자열만 저장할 수 있다",
-      "HashSet이 항상 더 많은 요소를 저장할 수 있다"
+      "HashSet은 순서를 보장하지 않고, TreeSet은 자동으로 정렬된 순서를 유지한다",
+      "HashSet은 중복을 허용하지 않지만, TreeSet은 중복을 허용해서 여러 번 저장된다",
+      "TreeSet은 문자열(String)만 저장할 수 있고 숫자는 저장하지 못한다",
+      "HashSet이 저장할 수 있는 요소 개수가 TreeSet보다 항상 더 많다"
     ],
     "answer": 0,
     "explanation": "HashSet은 해시값 기준으로 저장해서 꺼낼 때 순서가 일정하지 않아요. TreeSet은 내부적으로 정렬된 트리 구조를 유지해서, 순회하면 항상 오름차순(또는 지정한 기준) 정렬된 순서로 나와요."

@@ -5,10 +5,10 @@
     "type": "choice",
     "prompt": "같은 순위가 2명 나온 다음(공동 1등), RANK()와 DENSE_RANK()가 그다음 등수를 매기는 방식의 차이는?",
     "options": [
-      "두 함수는 항상 같은 결과를 준다",
-      "RANK는 2등, DENSE_RANK는 3등으로 매긴다",
-      "둘 다 공동 1등을 허용하지 않는다",
-      "RANK는 다음 등수를 3등으로 건너뛰고, DENSE_RANK는 2등으로 이어서 매긴다"
+      "RANK와 DENSE_RANK는 동점자가 있어도 항상 같은 결과를 준다",
+      "RANK는 다음 등수를 2등으로, DENSE_RANK는 3등으로 매긴다",
+      "둘 다 공동 순위를 허용하지 않고 항상 고유한 순번만 매긴다",
+      "RANK는 3등으로 건너뛰고, DENSE_RANK는 2등으로 이어서 매긴다"
     ],
     "answer": 3,
     "explanation": "RANK는 동점자 수만큼 다음 순위를 건너뛰어요(1, 1, 3, 4...). DENSE_RANK는 건너뛰지 않고 그대로 이어져요(1, 1, 2, 3...)."
@@ -22,7 +22,7 @@
       "ROW_NUMBER()",
       "RANK()",
       "DENSE_RANK()",
-      "NTILE()"
+      "PERCENT_RANK()"
     ],
     "answer": 0,
     "explanation": "ROW_NUMBER는 값이 같아도 무조건 겹치지 않는 순번을 매겨요. 동점 처리를 하고 싶으면 RANK나 DENSE_RANK를 써야 해요."

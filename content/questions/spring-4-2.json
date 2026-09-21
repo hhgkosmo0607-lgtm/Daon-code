@@ -23,10 +23,10 @@
     "code": "@Service\npublic class MemberService {\n    private final MemberRepository repo;\n    public MemberService(MemberRepository repo) {\n        this.repo = repo;\n    }\n}",
     "language": "Java",
     "options": [
-      "생성자 주입이 항상 실행 속도가 더 빨라서",
-      "필수 의존성을 final로 두어 불변으로 만들 수 있고, 스프링 없이 테스트에서 객체를 만들기 쉬워서",
-      "필드 주입은 자바 문법상 컴파일이 안 돼서",
-      "생성자 주입만 싱글톤이 보장돼서"
+      "필드 주입은 리플렉션을 써서 생성자 주입보다 항상 실행 속도가 느려서",
+      "final로 불변성을 지키고 스프링 없이 테스트에서 객체를 만들기 쉬워서",
+      "필드 주입은 최신 자바에서는 문법상 컴파일이 되지 않아서",
+      "생성자 주입을 써야만 빈이 싱글톤 스코프로 등록되므로"
     ],
     "answer": 1,
     "explanation": "생성자에 의존성이 드러나서 누락을 컴파일 시점에 알 수 있고, 테스트에서 가짜 객체를 직접 넣기 쉬워요. 순환 참조도 일찍 발견돼요."
@@ -37,10 +37,10 @@
     "type": "choice",
     "prompt": "@Value(\"30\") private int age; 의 역할은?",
     "options": [
-      "필드를 상수로 만든다",
-      "필드 값의 범위를 검사한다",
+      "필드를 final 상수로 만들어 값을 바꾸지 못하게 한다",
+      "필드 값이 지정한 범위 안에 있는지 검사한다",
       "지정한 값(또는 설정 값)을 필드에 주입한다",
-      "필드를 DB 컬럼과 연결한다"
+      "필드를 DB 컬럼과 연결해 값을 저장한다"
     ],
     "answer": 2,
     "explanation": "@Value는 리터럴이나 application.properties의 값(${app.name})을 필드에 넣을 때 써요."

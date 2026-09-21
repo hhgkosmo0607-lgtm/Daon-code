@@ -7,7 +7,7 @@
     "code": "<div id=\"header\">...</div>\n<p class=\"highlight\">중요 문구</p>\n<p class=\"highlight\">또 다른 중요 문구</p>",
     "language": "HTML",
     "options": [
-      "id는 한 문서 안에서 유일해야 하고, class는 여러 요소에 똑같이 반복해서 붙일 수 있다",
+      "id는 문서에서 유일해야 하고, class는 여러 요소에 반복해 붙일 수 있다",
       "id는 여러 번 써도 되고, class는 문서에 하나만 존재해야 한다",
       "id는 CSS에서, class는 자바스크립트에서만 쓸 수 있다",
       "id와 class는 완전히 같은 역할이라 아무거나 써도 무방하다"

@@ -7,10 +7,10 @@
     "code": "// build.gradle 예시 일부\ndependencies {\n    implementation 'org.springframework:spring-core:6.0.0'\n}",
     "language": "Java",
     "options": [
-      "코드의 문법 오류를 자동으로 고쳐준다",
-      "자바 소스코드를 다른 언어로 변환해준다",
-      "메서드 이름을 자동으로 지어준다",
-      "외부 라이브러리(의존성)를 자동으로 내려받아 관리하고, 컴파일·테스트·빌드 과정을 자동화한다"
+      "코드의 문법 오류를 분석해서 컴파일 전에 자동으로 수정해 준다",
+      "자바 소스코드를 JavaScript나 Python 같은 다른 언어로 변환해 준다",
+      "메서드와 변수 이름을 코드 내용에 맞게 자동으로 지어 준다",
+      "외부 라이브러리(의존성)를 자동으로 내려받아 관리하고 빌드를 자동화한다"
     ],
     "answer": 3,
     "explanation": "옛날에는 필요한 라이브러리 파일(.jar)을 직접 찾아 내려받아 클래스패스에 등록해야 했어요. Maven/Gradle은 build.gradle이나 pom.xml에 라이브러리 이름과 버전만 적으면 자동으로 내려받고, 컴파일·테스트·패키징까지 정해진 절차로 자동화해줘요."
@@ -23,10 +23,10 @@
     "code": "// Lombok 없이\nclass User {\n    private String name;\n    public String getName() { return name; }\n    public void setName(String name) { this.name = name; }\n}\n\n// Lombok 사용 (@Getter, @Setter 어노테이션 하나로 위와 동일한 효과)",
     "language": "Java",
     "options": [
-      "getter/setter, 생성자처럼 반복적으로 작성해야 하는 코드를 어노테이션 하나로 자동 생성해서 코드량을 줄여준다",
-      "자바 문법 자체를 완전히 바꿔버린다",
-      "실행 속도를 항상 2배로 높여준다",
-      "다른 라이브러리를 전혀 쓸 필요가 없게 만들어준다"
+      "getter/setter 같은 반복 코드를 어노테이션 하나로 자동 생성해 준다",
+      "자바 문법 자체를 바꿔서 클래스와 메서드 없이도 코딩하게 해 준다",
+      "컴파일된 코드를 최적화해서 실행 속도를 항상 2배로 높여 준다",
+      "다른 라이브러리를 전혀 쓸 필요가 없도록 모든 기능을 내장한다"
     ],
     "answer": 0,
     "explanation": "필드가 몇 개만 늘어나도 getter/setter를 일일이 손으로 쓰는 건 반복적이고 실수하기 쉬운 작업이에요. Lombok은 @Getter, @Setter, @NoArgsConstructor 같은 어노테이션만 붙이면 컴파일 시점에 그 코드를 자동으로 만들어줘서, 실제 작성하는 코드량과 실수를 줄여줘요."

@@ -8,9 +8,9 @@
     "language": "Java",
     "options": [
       "public static void main(String[] args)",
-      "public void run()",
-      "public static void start()",
-      "public class Hello()"
+      "public static void start(String[] args)",
+      "public static int main(String[] args)",
+      "public Hello(String[] args)"
     ],
     "answer": 0,
     "explanation": "JVM은 정확히 이 형태의 main 메서드를 프로그램의 시작점(entry point)으로 찾아서 실행해요. 이름, 접근제어자, static, 매개변수 타입까지 정확히 일치해야 해요."
@@ -21,10 +21,10 @@
     "type": "choice",
     "prompt": "JDK와 JRE의 관계를 가장 정확히 설명하면?",
     "options": [
-      "JRE가 JDK를 포함하는 상위 개념이다",
-      "JDK는 개발에 필요한 도구(컴파일러 등)와 JRE를 포함하고, JRE는 실행에 필요한 JVM과 라이브러리만 포함한다",
-      "JDK와 JRE는 완전히 같은 것을 부르는 다른 이름이다",
-      "JDK는 실행 전용, JRE는 개발 전용이다"
+      "JRE가 컴파일러 등 개발 도구를 포함하고, JDK는 실행 환경만 담은 하위 개념이다",
+      "JDK는 컴파일러 같은 개발 도구와 JRE를 함께 포함하고, JRE는 실행용 JVM과 라이브러리로 구성된다",
+      "JDK와 JRE는 이름만 다를 뿐 포함하는 구성 요소가 완전히 같다",
+      "JDK는 프로그램 실행 전용이고, JRE는 코드 작성과 컴파일 전용이다"
     ],
     "answer": 1,
     "explanation": "JDK(Java Development Kit)는 코드를 작성·컴파일하는 도구까지 포함한 개발용 패키지이고, 그 안에 프로그램을 실행만 하는 JRE(Java Runtime Environment)가 포함돼 있어요. JRE 안에는 실제 실행기인 JVM이 들어있어요."

@@ -21,8 +21,8 @@
     "options": [
       "SUBSTR(날짜컬럼, 1, 4)",
       "EXTRACT(YEAR FROM 날짜컬럼)",
-      "TO_CHAR(날짜컬럼)",
-      "YEAR(날짜컬럼)"
+      "ADD_MONTHS(날짜컬럼, 12)",
+      "TO_CHAR(날짜컬럼, 'MM')"
     ],
     "answer": 1,
     "explanation": "EXTRACT는 날짜/시간 값에서 연/월/일 등 특정 요소를 뽑아내는 표준 함수예요. SUBSTR로 억지로 할 수도 있지만 DATE 타입엔 바로 못 쓰고 문자열로 변환해야 해서 정석은 EXTRACT예요."

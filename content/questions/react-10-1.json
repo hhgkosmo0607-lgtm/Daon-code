@@ -7,9 +7,9 @@
     "code": "async function save(formData) {\n  const name = formData.get('name');\n}\n\n<form action={save}>...</form>",
     "options": [
       "URL 문자열만 넘길 수 있고 함수는 오류가 난다",
-      "제출될 때 그 함수가 FormData를 받아 실행된다",
-      "렌더링될 때 함수가 즉시 실행된다",
-      "함수는 무시되고 페이지가 새로고침된다"
+      "제출 시 그 함수가 FormData를 받아 실행된다",
+      "컴포넌트가 렌더링될 때 함수가 한 번 즉시 실행된다",
+      "함수는 무시되고 브라우저가 페이지를 새로고침한다"
     ],
     "answer": 1,
     "explanation": "폼 액션에 함수를 연결하면 제출 시 FormData가 인자로 전달되고, 기본 새로고침 대신 리액트가 처리해요. 이 액션과 어울리는 훅이 useActionState, useFormStatus 예요."
@@ -21,10 +21,10 @@
     "prompt": "useActionState(action, initialState)가 반환하는 값들은?",
     "code": "const [state, formAction, isPending] = useActionState(save, null);",
     "options": [
-      "[state, setState]",
-      "[value, onChange]",
-      "[현재 state, form에 연결할 action, 진행 중 여부(isPending)]",
-      "{ data, error }"
+      "[state, setState, isLoading]",
+      "[value, onChange, isDirty]",
+      "[현재 state, form용 action, isPending]",
+      "{ data, error, isPending } 형태의 객체를 반환한다"
     ],
     "answer": 2,
     "explanation": "액션의 결과를 state로 관리하고, form에 넘길 action과 pending 상태까지 한 번에 받아요."
@@ -35,10 +35,10 @@
     "type": "choice",
     "prompt": "useFormStatus()로 폼의 pending 상태를 읽을 때의 규칙은?",
     "options": [
-      "form을 만드는 같은 컴포넌트 안에서 호출하면 된다",
-      "form 밖의 아무 컴포넌트에서나 호출한다",
-      "서버에서만 호출할 수 있다",
-      "<form> 안에 렌더링되는 자식 컴포넌트에서 호출해야 한다"
+      "form을 만드는 바로 그 같은 컴포넌트 안에서 호출하면 된다",
+      "form 밖의 아무 컴포넌트에서나 호출해도 된다",
+      "서버 컴포넌트에서만 호출할 수 있다",
+      "<form> 안에 들어 있는 자식 컴포넌트에서 호출한다"
     ],
     "answer": 3,
     "explanation": "useFormStatus는 \"자신을 감싼 부모 form\"의 상태를 읽어요. 그래서 제출 버튼을 별도 컴포넌트로 분리하고 그 안에서 호출해요."

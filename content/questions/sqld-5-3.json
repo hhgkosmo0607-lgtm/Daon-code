@@ -5,10 +5,10 @@
     "type": "choice",
     "prompt": "COMMIT을 실행하면 일어나는 일로 옳은 것은?",
     "options": [
-      "지금까지의 변경사항이 전부 취소된다",
-      "그 시점까지의 변경사항이 영구적으로 확정되고, 더 이상 ROLLBACK으로 되돌릴 수 없다",
-      "테이블 구조가 삭제된다",
-      "다른 사용자의 권한이 회수된다"
+      "지금까지의 변경사항이 전부 취소되고 이전 상태로 돌아간다",
+      "변경사항이 영구적으로 확정되고, 더 이상 ROLLBACK으로 되돌릴 수 없다",
+      "테이블 구조가 삭제되고 데이터도 함께 사라진다",
+      "다른 사용자에게 부여했던 접근 권한이 전부 회수된다"
     ],
     "answer": 1,
     "explanation": "COMMIT은 트랜잭션을 확정 짓는 명령이에요. 이후로는 그 변경을 ROLLBACK으로 되돌릴 수 없어요."
@@ -47,10 +47,10 @@
     "type": "choice",
     "prompt": "COMMIT, ROLLBACK, SAVEPOINT를 묶어서 부르는 분류 이름은?",
     "options": [
-      "TCL (Transaction Control Language)",
-      "DDL",
-      "DML",
-      "DCL"
+      "TCL (트랜잭션 제어어, 확정·취소)",
+      "DDL (데이터 정의어, 객체 생성·변경)",
+      "DML (데이터 조작어, 행 입력·수정)",
+      "DCL (데이터 제어어, 권한 부여)"
     ],
     "answer": 0,
     "explanation": "트랜잭션을 제어하는 명령어들(COMMIT/ROLLBACK/SAVEPOINT)을 TCL이라고 불러요. DML(데이터 조작)과는 구분돼요."

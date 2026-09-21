@@ -7,10 +7,10 @@
     "code": "public class JoinRequest {\n    @NotBlank(message = \"아이디는 필수입니다\")\n    private String id;\n}\n\npublic String join(@Valid @RequestBody JoinRequest req) { ... }",
     "language": "Java",
     "options": [
-      "요청 데이터가 서비스 로직에 들어오기 전에 형식(비어 있는지 등)을 검증하기 위해",
-      "SQL을 자동으로 만들기 위해",
-      "응답 속도를 높이기 위해",
-      "트랜잭션을 시작하기 위해"
+      "요청 데이터가 서비스 로직에 들어오기 전에 형식을 검증하려고",
+      "요청마다 필요한 SQL을 검증 결과에 맞춰 자동으로 만들려고",
+      "검증 결과를 캐시해 반복 요청의 응답 속도를 높이려고",
+      "검증에 통과한 요청에서 트랜잭션을 자동으로 시작하려고"
     ],
     "answer": 0,
     "explanation": "검증에 실패하면 예외가 발생해서 잘못된 입력을 초기에 걸러낼 수 있어요. 클라이언트 검증은 우회 가능하므로 서버 검증이 반드시 필요해요."
@@ -23,10 +23,10 @@
     "code": "@RestControllerAdvice\npublic class GlobalExceptionHandler {\n    @ExceptionHandler(NoSuchElementException.class)\n    public ResponseEntity<String> notFound(Exception e) {\n        return ResponseEntity.status(404).body(\"데이터가 없습니다\");\n    }\n}",
     "language": "Java",
     "options": [
-      "예외가 절대 발생하지 않게 만들기 위해",
-      "컨트롤러마다 try-catch를 반복하지 않고 예외를 한곳에서 일관된 응답으로 처리하기 위해",
-      "예외 메시지를 콘솔에만 출력하기 위해",
-      "모든 예외를 무시하기 위해"
+      "예외가 발생하지 않도록 사전에 모든 입력을 차단하려고",
+      "try-catch 반복 없이 예외를 한곳에서 일관된 응답으로 처리하려고",
+      "예외 메시지를 콘솔이 아닌 파일에만 기록되도록 바꾸려고",
+      "발생한 모든 예외를 삼켜서 항상 200 OK로 응답하려고"
     ],
     "answer": 1,
     "explanation": "예외 종류별로 알맞은 상태 코드와 오류 본문을 정해 두면 API 응답이 일관되고 코드가 깔끔해져요."

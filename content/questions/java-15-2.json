@@ -21,9 +21,9 @@
     "type": "choice",
     "prompt": "0 이상 1 미만의 임의의 실수를 얻고 싶을 때 쓰는 것은?",
     "options": [
-      "Math.pow()",
-      "Math.abs()",
-      "Math.max()",
+      "Math.round(0.5)",
+      "Math.abs(-0.5)",
+      "Math.max(0, 1)",
       "Math.random()"
     ],
     "answer": 3,

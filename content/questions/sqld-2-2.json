@@ -21,8 +21,8 @@
     "options": [
       "부서 테이블에 사원번호를 FK로 둔다",
       "사원 테이블에 부서번호를 FK로 둔다",
-      "두 테이블 모두에 서로의 키를 넣는다",
-      "별도의 중간 테이블에만 넣는다"
+      "부서와 사원 두 테이블 모두에 서로의 키를 FK로 둔다",
+      "별도의 중간(연결) 테이블에만 FK를 둔다"
     ],
     "answer": 1,
     "explanation": "1:N 관계에서는 N쪽(사원)이 1쪽(부서)의 기본키를 외래키로 가져요. 그래야 사원 한 명이 정확히 하나의 부서를 가리킬 수 있어요."
@@ -47,10 +47,10 @@
     "type": "choice",
     "prompt": "INNER JOIN과 (LEFT) OUTER JOIN의 차이를 가장 정확히 설명하면?",
     "options": [
-      "INNER JOIN은 조건 없이 모든 조합을 만든다",
-      "OUTER JOIN은 항상 INNER JOIN보다 결과 행 수가 적다",
-      "둘은 결과가 항상 같고 문법만 다르다",
-      "INNER JOIN은 양쪽에 값이 모두 있는 행만, OUTER JOIN은 한쪽에 값이 없어도 남긴다"
+      "INNER JOIN은 조인 조건 없이 두 테이블의 모든 조합을 만든다",
+      "OUTER JOIN은 매칭되는 행만 남기므로 INNER JOIN보다 결과 행 수가 적다",
+      "INNER JOIN과 OUTER JOIN은 결과가 같고 표기 문법만 서로 다르다",
+      "INNER JOIN은 양쪽에 다 있는 행만, OUTER JOIN은 한쪽만 있어도 남긴다"
     ],
     "answer": 3,
     "explanation": "INNER JOIN은 양쪽 조건이 매칭되는 행만 남기고, LEFT/RIGHT/FULL OUTER JOIN은 매칭 안 되는 쪽도 NULL을 채워서 결과에 남겨요. 그래서 OUTER JOIN 결과가 보통 INNER JOIN보다 같거나 많아요."

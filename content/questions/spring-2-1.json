@@ -7,10 +7,10 @@
     "code": "@Controller\npublic class MainController {\n    @GetMapping(\"/\")\n    public String main() {\n        return \"main\";\n    }\n}",
     "language": "Java",
     "options": [
-      "\"main\"이라는 글자가 그대로 응답 본문으로 나간다",
-      "main 이라는 이름의 메서드가 호출된다",
+      "\"main\"이라는 글자가 그대로 응답 본문으로 출력된다",
+      "main 이라는 이름의 다른 메서드가 호출된다",
       "뷰 이름으로 해석되어 templates/main.html 같은 템플릿이 렌더링된다",
-      "HTTP 404가 항상 반환된다"
+      "브라우저를 /main 주소로 이동시키는 302 리다이렉트 응답이 나간다"
     ],
     "answer": 2,
     "explanation": "@Controller의 반환 문자열은 뷰 이름이에요. 문자열 자체를 본문으로 보내려면 @ResponseBody나 @RestController를 써야 해요."
@@ -37,10 +37,10 @@
     "code": "model.addAttribute(\"name\", \"이순신\");",
     "language": "Java",
     "options": [
-      "model.addAttribute(\"name\", 값)으로 담고 템플릿에서 ${name}으로 꺼낸다",
-      "static 변수에 넣고 템플릿에서 import한다",
-      "model.print(\"name\")으로 화면에 바로 찍는다",
-      "쿠키에 담아서 넘긴다"
+      "model.addAttribute(\"name\", 값)으로 담고 ${name}으로 꺼낸다",
+      "static 변수에 값을 넣어 두고 템플릿에서 import해서 꺼내 쓴다",
+      "템플릿에서 model.print(\"name\")을 호출해 값을 화면에 바로 찍는다",
+      "쿠키에 담아 응답 헤더로 보내면 템플릿이 자동으로 꺼내 쓴다"
     ],
     "answer": 0,
     "explanation": "컨트롤러가 Model에 담은 값은 뷰가 렌더링될 때 접근할 수 있어요."

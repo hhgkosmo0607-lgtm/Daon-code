@@ -7,10 +7,10 @@
     "code": "LocalDateTime now = LocalDateTime.now();\nSystem.out.println(now);",
     "language": "Java",
     "options": [
-      "String으로 직접 날짜를 관리",
-      "int 배열로 연/월/일을 저장",
-      "java.time 패키지의 LocalDate, LocalDateTime 등",
-      "옛날 Date 클래스가 여전히 유일한 방법이다"
+      "java.util.Calendar 클래스 — Date보다 최신이라 권장된다",
+      "int 배열로 연/월/일을 직접 저장하고 계산하는 방식",
+      "java.time 패키지의 LocalDate·LocalDateTime",
+      "java.util.Date를 계속 쓰는 것이 여전히 유일한 공식 방법이다"
     ],
     "answer": 2,
     "explanation": "기존 java.util.Date는 가변(mutable)이고 월(month)이 0부터 시작하는 등 헷갈리는 설계였어요. 자바 8부터 등장한 java.time 패키지(LocalDate, LocalDateTime, LocalTime 등)는 불변이고 API가 훨씬 직관적이라 지금은 이쪽이 표준으로 권장돼요."

@@ -23,7 +23,7 @@
     "options": [
       "useParams",
       "useNavigate",
-      "useRef",
+      "useOutletContext",
       "useSearchParams"
     ],
     "answer": 3,

@@ -7,10 +7,10 @@
     "code": "int n = jdbcTemplate.update(\n    \"INSERT INTO member(id, name) VALUES (?, ?)\", id, name);",
     "language": "Java",
     "options": [
-      "query()이며 결과 행의 리스트를 반환한다",
-      "execute()이며 항상 true를 반환한다",
-      "insert()이며 새 기본키를 반환한다",
-      "update()이며 영향을 받은 행의 수(int)를 반환한다"
+      "query()이며 바뀐 행들의 리스트(List)를 반환한다",
+      "execute()이며 성공 여부를 항상 true로 반환한다",
+      "insert() 메서드이며 새로 생성된 기본키를 반환한다",
+      "update()이며 영향받은 행의 수(int)를 반환한다"
     ],
     "answer": 3,
     "explanation": "JdbcTemplate은 조회는 query/queryForObject, 변경은 update를 써요. 반환값으로 몇 행이 바뀌었는지 확인할 수 있어요."
@@ -35,10 +35,10 @@
     "type": "choice",
     "prompt": "queryForObject로 조회했는데 결과가 0건이면?",
     "options": [
-      "null이 반환된다",
+      "null이 반환되므로 호출한 쪽에서 null 검사를 해야 한다",
       "EmptyResultDataAccessException이 발생한다",
-      "빈 리스트가 반환된다",
-      "0이 반환된다"
+      "빈 리스트(List)가 반환되어 size()가 0이 된다",
+      "숫자형이면 0, 객체면 빈 객체가 반환된다"
     ],
     "answer": 1,
     "explanation": "정확히 1건을 기대하는 메서드라서 0건이면 예외를 던져요. 0건이 정상인 경우는 query()로 리스트를 받아 비었는지 확인하거나 예외를 처리해요."

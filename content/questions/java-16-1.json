@@ -9,8 +9,8 @@
     "options": [
       "ArrayIndexOutOfBoundsException",
       "NullPointerException",
-      "ClassCastException",
-      "NumberFormatException"
+      "NegativeArraySizeException",
+      "StringIndexOutOfBoundsException"
     ],
     "answer": 0,
     "explanation": "배열의 유효 인덱스(0~2)를 벗어난 위치에 접근하면 ArrayIndexOutOfBoundsException이 발생해요. 배열/컬렉션 인덱스 관련 실수에서 가장 흔하게 마주치는 예외예요."

@@ -7,10 +7,10 @@
     "code": "interface Playable {\n    void play();\n}\nclass Game implements Playable {\n    public void play() {\n        System.out.println(\"게임 시작\");\n    }\n}",
     "language": "Java",
     "options": [
-      "클래스는 오직 하나만 상속(extends)할 수 있지만, 인터페이스는 여러 개를 동시에 구현(implements)할 수 있다",
-      "인터페이스는 메서드를 하나도 가질 수 없다",
+      "클래스는 하나만 상속(extends)할 수 있지만, 인터페이스는 여러 개를 구현(implements)할 수 있다",
+      "인터페이스는 메서드 선언을 가질 수 없고 상수 필드만 가질 수 있다",
       "추상클래스는 여러 개를 상속받을 수 있지만 인터페이스는 하나만 구현할 수 있다",
-      "인터페이스는 상속 관계에 전혀 쓰이지 않는다"
+      "인터페이스는 클래스와 달리 상속 관계에서는 전혀 사용할 수 없다"
     ],
     "answer": 0,
     "explanation": "자바 클래스는 단일 상속만 가능해서 extends는 하나만 쓸 수 있어요. 하지만 implements로는 여러 인터페이스를 동시에 구현할 수 있어서, 다중 상속과 비슷한 효과를 인터페이스로 얻을 수 있어요."
@@ -23,10 +23,10 @@
     "code": "interface Config {\n    int MAX_SIZE = 100; // 자동으로 public static final\n}",
     "language": "Java",
     "options": [
-      "일반 클래스의 필드와 완전히 동일하게 동작한다",
-      "자동으로 public static final(상수)이 된다",
-      "인터페이스는 필드를 아예 가질 수 없다",
-      "자동으로 private이 된다"
+      "일반 클래스의 필드처럼 구현체마다 값을 다르게 바꿔 쓸 수 있다",
+      "자동으로 public static final이 되어 상수처럼 쓰인다",
+      "인터페이스는 메서드만 선언할 수 있고 필드는 가질 수 없다",
+      "아무 제어자가 없어 같은 패키지 안에서만 접근할 수 있는 필드가 된다"
     ],
     "answer": 1,
     "explanation": "인터페이스의 필드는 선언만 해도 자동으로 public static final이 붙어요. 그래서 값이 고정된 상수로만 쓸 수 있고, 구현체마다 다른 값을 가질 수 없어요."

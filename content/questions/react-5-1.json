@@ -6,10 +6,10 @@
     "prompt": "아래 input은 어떻게 동작할까?",
     "code": "const [text, setText] = useState('');\n<input value={text} />",
     "options": [
-      "입력하면 text가 자동으로 갱신된다",
-      "입력은 되지만 text 값만 안 바뀐다",
-      "오류로 앱이 중단된다",
-      "입력창에 글자를 입력해도 값이 바뀌지 않는다 (읽기 전용처럼 보인다)"
+      "입력하는 대로 text state가 자동으로 갱신된다",
+      "화면에는 입력한 글자가 보이지만 text state만 안 바뀐다",
+      "onChange가 없다는 오류가 발생해서 앱이 중단된다",
+      "입력창에 글자를 쳐도 값이 바뀌지 않는다"
     ],
     "answer": 3,
     "explanation": "value를 state로 고정했는데 onChange로 갱신하지 않으면 화면의 값이 항상 text로 되돌아가요. 리액트도 onChange 없이 value만 쓰면 경고를 띄워요."
@@ -20,10 +20,10 @@
     "type": "choice",
     "prompt": "입력값을 state에 담는 올바른 코드는?",
     "options": [
-      "onChange={(e) => setText(e.target.value)}",
+      "onChange={e => setText(e.target.value)}",
       "onChange={setText}",
       "onChange={setText(e.target.value)}",
-      "onInput={text = e.target.value}"
+      "onChange={(e) => (text = e.target.value)}"
     ],
     "answer": 0,
     "explanation": "onChange는 이벤트 객체를 넘겨줘서 그 안의 e.target.value가 입력값이에요. setText를 그대로 넘기면 값이 아니라 이벤트 객체가 state에 들어가요."
@@ -49,8 +49,8 @@
     "type": "choice",
     "prompt": "체크박스의 체크 여부를 state에 담는 올바른 방법은?",
     "options": [
-      "e.target.value를 읽는다",
-      "e.target.selected를 읽는다",
+      "onChange에서 e.target.value를 읽는다",
+      "onChange에서 e.target.selected를 읽는다",
       "onChange에서 e.target.checked를 읽는다",
       "onClick에서 e.target.active를 읽는다"
     ],

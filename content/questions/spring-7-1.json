@@ -5,10 +5,10 @@
     "type": "choice",
     "prompt": "트랜잭션(Transaction)이 보장하려는 것은?",
     "options": [
-      "모든 SQL이 항상 병렬로 실행되는 것",
-      "쿼리 결과를 자동으로 캐시하는 것",
-      "여러 작업을 전부 성공하거나 전부 취소되게(All or Nothing) 하나의 단위로 처리하는 것",
-      "조회 속도를 높이는 것"
+      "모든 SQL이 항상 병렬로 동시에 실행되도록 보장하는 것",
+      "쿼리 결과를 자동으로 캐시해 반복 조회를 빠르게 하는 것",
+      "여러 작업을 전부 성공 또는 전부 취소(All or Nothing)로 처리하는 것",
+      "SQL이 항상 작성한 순서와 반대 순서로 실행되도록 하는 것"
     ],
     "answer": 2,
     "explanation": "계좌 이체처럼 \"출금 성공 + 입금 실패\"가 남으면 안 되는 작업을 하나로 묶어 실패 시 모두 되돌려요(rollback)."
@@ -21,10 +21,10 @@
     "code": "@Transactional\npublic void transfer(...) {\n    withdraw(...);\n    deposit(...); // 여기서 RuntimeException 발생 시 withdraw도 취소\n}",
     "language": "Java",
     "options": [
-      "모든 예외에서 롤백한다",
-      "예외가 나도 무조건 커밋한다",
-      "체크 예외에서만 롤백한다",
-      "RuntimeException(언체크 예외)과 Error에서 롤백하고, 체크 예외는 기본적으로 커밋한다"
+      "체크 예외와 언체크 예외를 구분하지 않고 모든 예외에서 자동으로 롤백한다",
+      "어떤 예외가 나더라도 이미 실행된 SQL을 모두 커밋한다",
+      "체크 예외에서만 롤백하고 언체크 예외는 커밋한다",
+      "RuntimeException(언체크 예외)과 Error는 롤백, 체크 예외는 기본 커밋"
     ],
     "answer": 3,
     "explanation": "체크 예외도 롤백하려면 @Transactional(rollbackFor = Exception.class)처럼 지정해야 해요. 예외를 try-catch로 삼켜 버리면 롤백되지 않는 점도 조심해요."
@@ -36,9 +36,9 @@
     "prompt": "@Transactional(readOnly = true)를 쓰는 대표적인 경우는?",
     "options": [
       "데이터를 변경하지 않는 조회 메서드",
-      "삭제 전용 메서드",
-      "파일 업로드 메서드",
-      "컨트롤러의 모든 메서드"
+      "여러 건을 한꺼번에 삭제하는 메서드",
+      "파일 업로드를 처리하는 메서드",
+      "컨트롤러의 모든 요청 처리 메서드에 일괄 적용"
     ],
     "answer": 0,
     "explanation": "읽기 전용임을 알려 주면 불필요한 변경 감지 등을 줄일 수 있고 의도도 드러나요."

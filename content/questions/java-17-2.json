@@ -7,10 +7,10 @@
     "code": "List<String> list = new ArrayList<>();\nlist.add(\"a\");\nlist.add(\"b\");\nlist.remove(\"a\"); // 크기가 자동으로 줄어듦",
     "language": "Java",
     "options": [
-      "ArrayList는 항상 배열보다 속도가 빠르다",
-      "크기가 고정되지 않고, 요소를 추가/삭제할 때 자동으로 크기가 조절된다",
-      "ArrayList는 기본형(int 등)을 그대로 담을 수 있다",
-      "ArrayList는 중복된 값을 저장할 수 없다"
+      "ArrayList는 배열보다 모든 상황에서 조회·삽입 속도가 더 빠르다",
+      "크기가 고정되지 않고, 추가·삭제할 때 자동으로 크기가 조절된다",
+      "ArrayList는 int 같은 기본형도 래퍼 없이 그대로 담을 수 있다",
+      "ArrayList는 같은 값을 중복해서 저장할 수 없도록 자동으로 막는다"
     ],
     "answer": 1,
     "explanation": "배열은 처음 만들 때 크기가 고정돼서 늘리거나 줄일 수 없어요. ArrayList는 내부적으로 배열을 쓰지만, 요소가 추가/삭제될 때 자동으로 크기를 조절해줘서 훨씬 유연해요. 참고로 ArrayList는 기본형이 아니라 객체(래퍼클래스)만 담을 수 있어요."

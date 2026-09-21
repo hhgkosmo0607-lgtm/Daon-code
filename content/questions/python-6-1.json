@@ -23,10 +23,10 @@
     "code": "person = {\"name\": \"철수\"}\nprint(person[\"height\"])  # ?",
     "language": "Python",
     "options": [
-      "None이 반환된다",
+      "None이 반환되고 계속 실행된다",
       "KeyError가 발생한다",
-      "자동으로 0이 반환된다",
-      "빈 문자열이 반환된다"
+      "자동으로 0이 반환되고 키가 만들어진다",
+      "빈 문자열이 반환되고 키가 추가된다"
     ],
     "answer": 1,
     "explanation": "대괄호로 없는 키에 접근하면 KeyError가 나요. 에러 없이 안전하게 조회하려면 person.get(\"height\")를 쓰면 되는데, 이건 키가 없으면 에러 대신 None(또는 지정한 기본값)을 돌려줘요."
@@ -39,9 +39,9 @@
     "code": "person = {\"name\": \"철수\"}\nperson[\"age\"] = 20\nprint(person)",
     "language": "Python",
     "options": [
-      "딕셔너리는 한 번 만들면 키를 추가할 수 없다",
+      "딕셔너리는 한 번 만들면 키를 추가하거나 바꿀 수 없다",
       "person.append(\"age\", 20) 을 호출해야 한다",
-      "person[\"age\"] = 20 처럼 새 키에 값을 대입하면 자동으로 추가된다",
+      "person[\"age\"] = 20 처럼 새 키에 값을 대입하면 추가된다",
       "딕셔너리를 다시 새로 만들어야만 키를 추가할 수 있다"
     ],
     "answer": 2,

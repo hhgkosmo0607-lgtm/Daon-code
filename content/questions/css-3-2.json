@@ -7,10 +7,10 @@
     "code": "div {\n  background-image: url(\"bg.png\");\n}",
     "language": "CSS",
     "options": [
-      "이미지가 한 번만 나오고 나머지 영역은 비워진다",
-      "이미지가 가로세로 방향으로 타일처럼 반복돼서 요소 전체를 채운다",
+      "이미지가 한 번만 왼쪽 위에 나오고 나머지 영역은 비워진다",
+      "이미지가 가로세로로 타일처럼 반복돼서 요소를 채운다",
       "이미지가 요소 크기에 맞춰 자동으로 확대/축소된다",
-      "이미지가 아예 표시되지 않는다"
+      "repeat 값을 지정하지 않았으므로 이미지가 표시되지 않는다"
     ],
     "answer": 1,
     "explanation": "background-repeat의 기본값은 repeat예요. 지정하지 않으면 이미지가 가로세로로 반복돼서 요소 영역을 채워요. 한 번만 보여주려면 background-repeat: no-repeat;를 명시해야 해요."
@@ -23,10 +23,10 @@
     "code": "p {\n  color: white;\n  background-color: black;\n}",
     "language": "CSS",
     "options": [
-      "둘 다 배경색을 지정하는 완전히 같은 속성이다",
+      "둘 다 배경색을 지정하는 속성이고 이름만 조금 다르다",
       "color는 테두리 색을, background-color는 글자색을 지정한다",
-      "color는 텍스트(글자)의 색을, background-color는 요소의 배경색을 지정한다",
-      "background-color가 color보다 항상 우선 적용된다"
+      "color는 글자색을, background-color는 요소의 배경색을 지정한다",
+      "background-color가 color보다 항상 우선 적용되어 글자색을 덮어쓴다"
     ],
     "answer": 2,
     "explanation": "color는 글자색, background-color는 그 요소의 배경 색을 지정해요. 흰 글씨에 검은 배경처럼 대비를 줄 때 이 둘을 같이 써요."

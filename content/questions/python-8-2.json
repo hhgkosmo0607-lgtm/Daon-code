@@ -7,10 +7,10 @@
     "code": "num = 5\nif num > 0:\n    if num % 2 == 0:\n    print(\"양수\")  # 들여쓰기가 잘못됨\n        print(\"짝수\")",
     "language": "Python",
     "options": [
-      "바깥 if문 블록으로 자동 포함되어 정상 실행된다",
-      "안쪽 if문이 무시되고 바깥 if문만 실행된다",
-      "경고만 뜨고 정상적으로 실행된다",
-      "IndentationError가 발생한다 — 파이썬은 들여쓰기 규칙을 엄격하게 검사한다"
+      "가장 가까운 바깥 if문 블록으로 자동 포함되어 정상 실행된다",
+      "안쪽 if문이 무시되고 바깥 if문의 내용만 실행된다",
+      "경고 메시지만 출력되고 정상적으로 끝까지 실행된다",
+      "IndentationError가 발생한다 — 들여쓰기 규칙을 엄격히 검사한다"
     ],
     "answer": 3,
     "explanation": "들여쓰기가 블록 구조 자체를 결정하기 때문에, 들여쓰기가 일관되지 않으면 파이썬 인터프리터가 어느 블록에 속하는지 판단할 수 없어서 IndentationError를 내며 실행을 멈춰요."
@@ -22,9 +22,9 @@
     "prompt": "if 조건1: if 조건2: 처럼 if문 안에 if문을 넣는 것을 무엇이라 하나?",
     "options": [
       "중첩 if문(nested if)",
-      "복합 if문",
-      "다중 if문",
-      "반복 if문"
+      "복합 if문(compound if)",
+      "다중 조건 if문(multiple if)",
+      "반복 if문(repeat if)"
     ],
     "answer": 0,
     "explanation": "조건 안에 또 다른 조건을 확인해야 할 때 if문 안에 if문을 넣는 걸 중첩(nested) if문이라고 해요. 조건이 너무 깊게 중첩되면 가독성이 떨어져서, and로 조건을 합치는 게 나을 때도 많아요."

@@ -7,10 +7,10 @@
     "code": "String s1 = \"hello\";\nString s2 = new String(\"hello\");\nSystem.out.println(s1 == s2);",
     "language": "Java",
     "options": [
-      "s1과 s2는 항상 같은 객체를 가리켜서 결과는 true",
-      "String은 원시타입이라 ==로 비교하면 항상 값이 같으면 true",
-      "s1은 문자열 리터럴 풀(pool)의 객체를 참조하고, s2는 new로 새로 만든 별개의 객체라서 == 비교시 false",
-      "s2는 컴파일 에러가 난다"
+      "s1과 s2는 같은 내용이라 항상 같은 객체를 가리키므로 == 결과는 true",
+      "String은 기본형처럼 동작해서 ==로 비교하면 내용이 같을 때 true",
+      "s1은 문자열 풀의 객체를 참조하고, s2는 new로 만든 별개 객체라서 == 비교는 false",
+      "new String()은 String 클래스에서 금지된 문법이라 컴파일 에러가 난다"
     ],
     "answer": 2,
     "explanation": "문자열 리터럴은 JVM이 관리하는 문자열 풀에 저장돼서 같은 내용이면 같은 객체를 재사용해요. 반면 new String()은 매번 새 객체를 힙에 만들어요. 그래서 내용이 같아도 ==(주소 비교)는 false가 나와요 — 내용 비교는 항상 equals()를 써야 해요."
@@ -22,8 +22,8 @@
     "prompt": "두 문자열의 '내용'이 같은지 비교할 때 올바른 방법은?",
     "options": [
       "s1 == s2",
-      "s1 = s2",
-      "s1.same(s2)",
+      "s1.equalTo(s2)",
+      "s1.isEqual(s2)",
       "s1.equals(s2)"
     ],
     "answer": 3,

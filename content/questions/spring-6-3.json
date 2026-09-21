@@ -7,10 +7,10 @@
     "code": "<where>\n  <if test=\"searchKeyword != null and searchKeyword != ''\">\n    title LIKE #{searchKeyword}\n  </if>\n</where>",
     "language": "XML",
     "options": [
-      "모든 SQL에 WHERE 1=1을 자동으로 붙인다",
-      "조건이 없으면 예외를 던진다",
-      "조건들을 항상 OR로만 연결한다",
-      "내부 조건이 하나라도 있을 때만 WHERE를 붙이고 맨 앞의 불필요한 AND/OR를 제거한다"
+      "모든 SQL 끝에 WHERE 1=1을 자동으로 붙이고 그 뒤에 조건들을 이어 붙인다",
+      "조건이 하나도 없으면 예외를 던져 쿼리 실행을 막는다",
+      "내부 조건들을 항상 OR로만 연결하고 AND는 허용하지 않는다",
+      "내부 조건이 있을 때만 WHERE를 붙이고 맨 앞의 불필요한 AND/OR를 제거한다"
     ],
     "answer": 3,
     "explanation": "검색 조건이 있을 수도 없을 수도 있을 때 유용해요. 첫 조건 앞의 AND를 자동으로 정리해 줘서 문법 오류를 막아 줘요."
@@ -22,9 +22,9 @@
     "prompt": "<foreach>의 open, close, separator 속성이 정하는 것은?",
     "options": [
       "반복되는 조각의 시작 문자, 끝 문자, 항목 사이 구분자",
-      "반복 횟수의 최소, 최대, 증가값",
-      "반복 대상의 테이블, 컬럼, 정렬",
-      "반복할 SQL의 종류"
+      "반복 횟수의 최솟값, 최댓값, 한 번에 증가하는 값",
+      "반복 대상이 되는 테이블, 컬럼, 정렬 방식",
+      "반복 실행할 SQL의 종류(select, insert 등)"
     ],
     "answer": 0,
     "explanation": "예를 들어 open=\"(\" close=\")\" separator=\"or\" 이면 (title LIKE .. or content LIKE ..) 형태의 조건이 만들어져요."
@@ -35,10 +35,10 @@
     "type": "choice",
     "prompt": "<if test=\"searchKeyword != null and searchKeyword.trim() != ''\"> 에서 test 속성에 쓰는 것은?",
     "options": [
-      "조회할 테이블 이름",
+      "조회 대상이 되는 테이블 이름",
       "조건식 (OGNL 표현식)",
-      "실행할 메서드 이름",
-      "결과를 담을 DTO 클래스"
+      "조건이 참일 때 실행할 메서드 이름",
+      "결과 행을 담아 돌려줄 DTO 클래스"
     ],
     "answer": 1,
     "explanation": "test에 적은 조건이 참일 때만 그 안의 SQL 조각이 최종 쿼리에 포함돼요."

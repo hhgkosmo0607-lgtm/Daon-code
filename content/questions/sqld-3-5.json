@@ -5,10 +5,10 @@
     "type": "choice",
     "prompt": "Oracle 전통적인(ANSI 표준 이전) 방식으로 두 테이블을 조인할 때, 조인 조건은 어디에 쓰나?",
     "options": [
-      "FROM절에 ON 키워드로 적는다",
-      "SELECT절에 적는다",
+      "FROM절에 ON 키워드를 붙여서 조인 조건을 적는다",
+      "SELECT절에 조인할 두 컬럼의 비교식을 같이 적는다",
       "WHERE절에 두 테이블의 공통 컬럼 조건을 적는다",
-      "GROUP BY절에 적는다"
+      "GROUP BY절에 두 테이블의 공통 컬럼을 나열해서 적는다"
     ],
     "answer": 2,
     "explanation": "ANSI 표준(FROM A JOIN B ON 조건) 이전의 Oracle 전통 방식은 FROM절에 테이블을 나열하고 WHERE절에 \"A.공통컬럼 = B.공통컬럼\"처럼 조인 조건을 적었어요. 이걸 EQUI JOIN이라고 해요."

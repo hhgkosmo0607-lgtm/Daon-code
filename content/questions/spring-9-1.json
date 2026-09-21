@@ -7,10 +7,10 @@
     "code": "String saved = UUID.randomUUID() + ext;\nfile.transferTo(new File(dir, saved));",
     "language": "Java",
     "options": [
-      "원본 파일명은 항상 비어 있어서",
-      "한글 파일명은 자바에서 아예 저장할 수 없어서",
-      "이름 충돌로 덮어쓰기가 일어나고, 조작된 경로(../)로 의도치 않은 위치에 저장될 위험이 있어서",
-      "파일 용량이 커져서"
+      "원본 파일명은 브라우저가 보내지 않아 항상 비어 있어서",
+      "자바에서는 한글이 들어간 파일명으로는 아예 저장할 수 없어서",
+      "이름이 겹쳐 덮어쓰이고 ../ 같은 조작된 경로가 들어올 수 있어서",
+      "원본 파일명을 쓰면 저장된 파일의 용량이 더 커져서"
     ],
     "answer": 2,
     "explanation": "저장할 때는 UUID 등으로 서버가 새 이름을 만들고 원본명은 DB에 따로 기록해요. 확장자와 허용 형식도 검사해야 해요."
@@ -23,9 +23,9 @@
     "code": "spring.servlet.multipart.max-file-size=10MB\nspring.servlet.multipart.max-request-size=50MB",
     "language": "Java",
     "options": [
-      "제한이 없다",
-      "파일당 100MB",
-      "파일당 10GB",
+      "제한이 없어 서버 메모리가 허용하는 만큼 올릴 수 있다",
+      "파일당 10MB (그 이상은 설정으로 늘려야 한다)",
+      "파일당 100MB (그 이상은 설정으로 늘려야 한다)",
       "파일당 1MB (그 이상은 설정으로 늘려야 한다)"
     ],
     "answer": 3,
@@ -40,7 +40,7 @@
     "language": "Java",
     "options": [
       "method=\"post\"와 enctype=\"multipart/form-data\"",
-      "method=\"get\"과 enctype=\"text/plain\"",
+      "method=\"post\"와 enctype=\"application/x-www-form-urlencoded\"",
       "method=\"put\"과 enctype=\"application/json\"",
       "아무 설정 없이 input type=\"file\"만 두면 된다"
     ],

@@ -7,10 +7,10 @@
     "code": "@SpringBootApplication\npublic class DemoApplication {\n    public static void main(String[] args) {\n        SpringApplication.run(DemoApplication.class, args);\n    }\n}",
     "language": "Java",
     "options": [
-      "@Controller, @Service, @Repository",
-      "@Transactional, @Autowired, @Bean",
+      "@Controller, @Service, @Repository, @Component",
+      "@Configuration, @EnableWebMvc, @EnableTransactionManagement",
       "@Configuration, @EnableAutoConfiguration, @ComponentScan",
-      "@RestController, @RequestMapping, @ResponseBody"
+      "@RestController, @RequestMapping, @ResponseBody, @Bean"
     ],
     "answer": 2,
     "explanation": "이 어노테이션 하나로 설정 클래스 지정, 자동 설정 활성화, 하위 패키지의 컴포넌트 스캔이 모두 적용돼요."
@@ -21,10 +21,10 @@
     "type": "choice",
     "prompt": "메인 클래스(@SpringBootApplication)를 다른 패키지 구조 바깥에 두면 생기는 문제는?",
     "options": [
-      "서버가 8080이 아닌 포트에서 시작된다",
-      "컴파일이 되지 않는다",
-      "모든 빈이 두 번씩 생성된다",
-      "컴포넌트 스캔이 메인 클래스의 패키지와 하위만 대상이라 다른 곳의 @Controller, @Service가 빈으로 등록되지 않는다"
+      "내장 톰캣이 기동하지 못해 8080이 아닌 임의의 포트에서 시작된다",
+      "@Autowired가 필드 주입만 동작하고 생성자 주입은 무시된다",
+      "컴포넌트 스캔이 모든 패키지를 두 번씩 훑어 빈이 중복 생성된다",
+      "스캔이 메인 클래스의 패키지 하위만 대상이라 그 밖의 @Controller 등이 빈으로 등록되지 않는다"
     ],
     "answer": 3,
     "explanation": "스캔 범위는 메인 클래스가 속한 패키지부터 아래쪽이에요. 그래서 메인 클래스는 최상위 패키지(com.edu.springboot)에 두는 게 관례예요."
@@ -38,7 +38,7 @@
     "language": "Java",
     "options": [
       "8080이며 server.port 설정으로 바꾼다",
-      "80이며 server.host 설정으로 바꾼다",
+      "80이며 server.address 설정에서만 바꿀 수 있다",
       "3000이며 package.json에서 바꾼다",
       "8000이며 서버 재설치가 필요하다"
     ],
@@ -51,10 +51,10 @@
     "type": "choice",
     "prompt": "build.gradle의 spring-boot-starter-* 의존성의 의미는?",
     "options": [
-      "해당 기능을 실행하는 서버 프로그램",
-      "특정 기능에 필요한 라이브러리들을 버전 호환까지 맞춰 한 번에 가져오는 묶음",
-      "프로젝트를 자동 배포하는 스크립트",
-      "테스트 코드를 자동 생성하는 도구"
+      "해당 기능을 대신 실행해 주는 별도의 서버 프로그램을 설치하는 도구",
+      "필요한 라이브러리들을 버전 호환까지 맞춰 한 번에 가져오는 묶음",
+      "프로젝트를 빌드한 뒤 자동으로 서버에 배포하는 스크립트",
+      "테스트 코드를 자동으로 생성해 주는 개발 도구"
     ],
     "answer": 1,
     "explanation": "starter-web(mvc), starter-thymeleaf, starter-data-jpa처럼 기능 단위로 묶여 있어서 필요한 것만 추가하면 돼요."

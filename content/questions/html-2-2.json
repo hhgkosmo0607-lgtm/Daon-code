@@ -24,7 +24,7 @@
     "language": "HTML",
     "options": [
       "<aside>",
-      "<nav>",
+      "<blockquote>",
       "<header>",
       "<article>"
     ],

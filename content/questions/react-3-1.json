@@ -6,10 +6,10 @@
     "prompt": "아래처럼 괄호를 붙여 핸들러를 넘기면?",
     "code": "<button onClick={handleClick()}>확인</button>",
     "options": [
-      "클릭할 때마다 정상적으로 실행된다",
-      "SyntaxError가 발생한다",
-      "렌더링될 때 바로 실행되고, 클릭해도 반응이 없다",
-      "클릭할 때 두 번 실행된다"
+      "클릭할 때마다 handleClick이 정상적으로 실행된다",
+      "괄호 때문에 SyntaxError가 발생해서 빌드가 실패한다",
+      "렌더링될 때 바로 실행되고 클릭에는 반응이 없다",
+      "클릭할 때 이벤트가 겹쳐서 두 번 실행된다"
     ],
     "answer": 2,
     "explanation": "handleClick()은 호출 결과를 넘기는 거예요. 함수 자체를 넘기려면 onClick={handleClick}, 인자가 필요하면 onClick={() => handleClick(1)}로 써요."
@@ -36,8 +36,8 @@
     "options": [
       "onClick={() => remove(item.id)}",
       "onClick={remove(item.id)}",
-      "onClick={remove, item.id}",
-      "onClick=\"remove(item.id)\""
+      "onClick={function remove(item.id)}",
+      "onClick={\"remove(item.id)\"}"
     ],
     "answer": 0,
     "explanation": "인자가 필요할 땐 화살표 함수로 한 번 감싸서 \"클릭됐을 때 실행할 함수\"를 넘겨야 해요. 감싸지 않으면 렌더링 때 바로 실행돼요."
