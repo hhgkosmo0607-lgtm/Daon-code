@@ -6,8 +6,13 @@
     "prompt": "같은 이름의 메서드를 매개변수 개수나 타입만 다르게 여러 개 정의하는 것을 무엇이라 하나?",
     "code": "void print(int a) { }\nvoid print(String a) { }\nvoid print(int a, int b) { }",
     "language": "Java",
-    "options": ["오버로딩(Overloading)", "오버라이딩(Overriding)", "캡슐화", "인터페이스"],
-    "answer": 0,
+    "options": [
+      "오버라이딩(Overriding)",
+      "캡슐화",
+      "인터페이스",
+      "오버로딩(Overloading)"
+    ],
+    "answer": 3,
     "explanation": "오버로딩은 같은 이름을 쓰지만 매개변수 목록(개수·타입·순서)이 다른 메서드를 여러 개 만드는 거예요. 호출할 때 넘기는 인자에 맞춰 자바가 알맞은 버전을 자동으로 골라 실행해요."
   },
   {

@@ -23,12 +23,12 @@
     "code": "float f = 3.14; // 컴파일 에러",
     "language": "Java",
     "options": [
-      "실수 리터럴은 기본적으로 double로 취급돼서, float 변수에 바로 담으면 에러가 난다",
       "자동으로 float으로 변환돼서 문제없이 실행된다",
+      "실수 리터럴은 기본적으로 double로 취급돼서, float 변수에 바로 담으면 에러가 난다",
       "정수부만 저장되고 소수부는 버려진다",
       "float 타입 자체가 존재하지 않아서 에러가 난다"
     ],
-    "answer": 0,
+    "answer": 1,
     "explanation": "정수 리터럴이 기본 int인 것처럼, 실수 리터럴은 기본적으로 double이에요. float에 담으려면 숫자 뒤에 F(또는 f)를 붙여서 float 리터럴임을 명시해야 해요(예: 3.14F)."
   },
   {
@@ -36,8 +36,13 @@
     "lessonId": "java-2-2",
     "type": "choice",
     "prompt": "float과 double 중, 더 정밀한(오차가 적은) 실수 표현이 가능한 타입은?",
-    "options": ["double", "float", "둘의 정밀도는 완전히 같다", "표현 정밀도는 변수 이름에 따라 달라진다"],
-    "answer": 0,
+    "options": [
+      "float",
+      "둘의 정밀도는 완전히 같다",
+      "double",
+      "표현 정밀도는 변수 이름에 따라 달라진다"
+    ],
+    "answer": 2,
     "explanation": "double은 64비트, float은 32비트를 사용해서 실수를 표현해요. 비트 수가 많을수록 더 세밀하게 표현할 수 있어서 double이 더 정밀해요. 자바는 특별한 이유가 없으면 double을 기본으로 써요."
   }
 ]

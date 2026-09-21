@@ -5,12 +5,12 @@
     "type": "choice",
     "prompt": "INSERT문으로 다른 테이블의 조회 결과를 한 번에 여러 행 넣고 싶을 때 쓰는 방식은?",
     "options": [
-      "INSERT INTO 테이블 (컬럼...) SELECT ... FROM 다른테이블;",
       "INSERT INTO 테이블 VALUES (SELECT * FROM 다른테이블);",
       "VALUES절에 서브쿼리를 여러 개 나열한다",
+      "INSERT INTO 테이블 (컬럼...) SELECT ... FROM 다른테이블;",
       "INSERT는 항상 한 번에 한 행만 넣을 수 있다"
     ],
-    "answer": 0,
+    "answer": 2,
     "explanation": "VALUES절은 한 행만 넣을 수 있어요. 여러 행을 한 번에 넣으려면 VALUES 대신 SELECT문을 붙이는 방식을 써요."
   },
   {
@@ -19,12 +19,12 @@
     "type": "choice",
     "prompt": "UPDATE 사원 SET 급여 = 급여 * 1.1; 처럼 WHERE절 없이 실행하면?",
     "options": [
-      "테이블의 모든 행의 급여가 10% 인상된다",
       "아무 일도 일어나지 않는다(에러)",
       "첫 번째 행만 수정된다",
-      "급여가 NULL인 행만 수정된다"
+      "급여가 NULL인 행만 수정된다",
+      "테이블의 모든 행의 급여가 10% 인상된다"
     ],
-    "answer": 0,
+    "answer": 3,
     "explanation": "WHERE절이 없으면 조건 없이 테이블의 모든 행이 수정 대상이 돼요. 그래서 UPDATE/DELETE를 쓸 때는 WHERE절을 빼먹지 않았는지 항상 확인해야 해요."
   },
   {

@@ -7,12 +7,12 @@
     "code": "boolean result = false && check();",
     "language": "Java",
     "options": [
-      "실행되지 않는다 — &&는 왼쪽이 false면 오른쪽을 아예 확인하지 않는다(단축평가)",
       "항상 실행된다",
       "컴파일 에러가 난다",
-      "check()가 먼저 실행된 후 false가 대입된다"
+      "check()가 먼저 실행된 후 false가 대입된다",
+      "실행되지 않는다 — &&는 왼쪽이 false면 오른쪽을 아예 확인하지 않는다(단축평가)"
     ],
-    "answer": 0,
+    "answer": 3,
     "explanation": "&&(AND)는 왼쪽이 false인 순간 전체 결과가 false로 확정되기 때문에, 오른쪽은 아예 평가하지 않아요. 이걸 단축평가(short-circuit evaluation)라고 해요. ||(OR)는 반대로 왼쪽이 true면 오른쪽을 평가하지 않아요."
   },
   {
@@ -20,7 +20,12 @@
     "lessonId": "java-3-4",
     "type": "choice",
     "prompt": "논리연산자 &&, ||, ! 중, 조건의 참/거짓을 뒤집는 연산자는?",
-    "options": ["!", "&&", "||", "=="],
+    "options": [
+      "!",
+      "&&",
+      "||",
+      "=="
+    ],
     "answer": 0,
     "explanation": "!(NOT)은 true를 false로, false를 true로 뒤집어요. &&는 둘 다 참이어야 참(AND), ||는 하나만 참이어도 참(OR)이에요."
   }

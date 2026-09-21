@@ -7,12 +7,12 @@
     "code": "String s1 = \"hello\";\nString s2 = new String(\"hello\");\nSystem.out.println(s1 == s2);",
     "language": "Java",
     "options": [
-      "s1은 문자열 리터럴 풀(pool)의 객체를 참조하고, s2는 new로 새로 만든 별개의 객체라서 == 비교시 false",
       "s1과 s2는 항상 같은 객체를 가리켜서 결과는 true",
       "String은 원시타입이라 ==로 비교하면 항상 값이 같으면 true",
+      "s1은 문자열 리터럴 풀(pool)의 객체를 참조하고, s2는 new로 새로 만든 별개의 객체라서 == 비교시 false",
       "s2는 컴파일 에러가 난다"
     ],
-    "answer": 0,
+    "answer": 2,
     "explanation": "문자열 리터럴은 JVM이 관리하는 문자열 풀에 저장돼서 같은 내용이면 같은 객체를 재사용해요. 반면 new String()은 매번 새 객체를 힙에 만들어요. 그래서 내용이 같아도 ==(주소 비교)는 false가 나와요 — 내용 비교는 항상 equals()를 써야 해요."
   },
   {
@@ -20,8 +20,13 @@
     "lessonId": "java-2-4",
     "type": "choice",
     "prompt": "두 문자열의 '내용'이 같은지 비교할 때 올바른 방법은?",
-    "options": ["s1.equals(s2)", "s1 == s2", "s1 = s2", "s1.same(s2)"],
-    "answer": 0,
+    "options": [
+      "s1 == s2",
+      "s1 = s2",
+      "s1.same(s2)",
+      "s1.equals(s2)"
+    ],
+    "answer": 3,
     "explanation": "==는 두 참조변수가 같은 객체를 가리키는지(주소 비교)를 보고, equals()는 객체 안의 실제 내용을 비교해요. 문자열 내용 비교는 항상 equals()를 써야 해요."
   }
 ]

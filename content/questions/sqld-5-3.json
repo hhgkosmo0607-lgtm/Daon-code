@@ -5,12 +5,12 @@
     "type": "choice",
     "prompt": "COMMIT을 실행하면 일어나는 일로 옳은 것은?",
     "options": [
-      "그 시점까지의 변경사항이 영구적으로 확정되고, 더 이상 ROLLBACK으로 되돌릴 수 없다",
       "지금까지의 변경사항이 전부 취소된다",
+      "그 시점까지의 변경사항이 영구적으로 확정되고, 더 이상 ROLLBACK으로 되돌릴 수 없다",
       "테이블 구조가 삭제된다",
       "다른 사용자의 권한이 회수된다"
     ],
-    "answer": 0,
+    "answer": 1,
     "explanation": "COMMIT은 트랜잭션을 확정 짓는 명령이에요. 이후로는 그 변경을 ROLLBACK으로 되돌릴 수 없어요."
   },
   {
@@ -18,8 +18,13 @@
     "lessonId": "sqld-5-3",
     "type": "choice",
     "prompt": "트랜잭션 전체가 아니라, 중간의 특정 지점까지만 되돌리고 싶을 때 미리 설정해두는 것은?",
-    "options": ["SAVEPOINT", "CHECKPOINT", "ROLLPOINT", "COMMIT POINT"],
-    "answer": 0,
+    "options": [
+      "CHECKPOINT",
+      "ROLLPOINT",
+      "SAVEPOINT",
+      "COMMIT POINT"
+    ],
+    "answer": 2,
     "explanation": "SAVEPOINT로 이름 붙인 지점을 만들어두면, ROLLBACK TO 저장점이름으로 트랜잭션 전체가 아니라 그 지점까지만 되돌릴 수 있어요."
   },
   {
@@ -28,12 +33,12 @@
     "type": "choice",
     "prompt": "특정 사용자에게 테이블 조회 권한을 주거나 회수할 때 쓰는 명령 짝은?",
     "options": [
-      "GRANT (부여) / REVOKE (회수)",
       "COMMIT (부여) / ROLLBACK (회수)",
       "ALLOW (부여) / DENY (회수)",
-      "INSERT (부여) / DELETE (회수)"
+      "INSERT (부여) / DELETE (회수)",
+      "GRANT (부여) / REVOKE (회수)"
     ],
-    "answer": 0,
+    "answer": 3,
     "explanation": "권한 부여는 GRANT, 회수는 REVOKE예요. 이 둘을 DCL(데이터 제어어)이라고 해요."
   },
   {
@@ -41,7 +46,12 @@
     "lessonId": "sqld-5-3",
     "type": "choice",
     "prompt": "COMMIT, ROLLBACK, SAVEPOINT를 묶어서 부르는 분류 이름은?",
-    "options": ["TCL (Transaction Control Language)", "DDL", "DML", "DCL"],
+    "options": [
+      "TCL (Transaction Control Language)",
+      "DDL",
+      "DML",
+      "DCL"
+    ],
     "answer": 0,
     "explanation": "트랜잭션을 제어하는 명령어들(COMMIT/ROLLBACK/SAVEPOINT)을 TCL이라고 불러요. DML(데이터 조작)과는 구분돼요."
   }

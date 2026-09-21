@@ -4,8 +4,13 @@
     "lessonId": "java-5-2",
     "type": "choice",
     "prompt": "int result = add(3, 4); 처럼 메서드를 호출할 때 3과 4를 무엇이라 부르나?",
-    "options": ["인자(argument, 실제로 전달하는 값)", "매개변수(parameter)", "반환값", "지역변수"],
-    "answer": 0,
+    "options": [
+      "매개변수(parameter)",
+      "반환값",
+      "지역변수",
+      "인자(argument, 실제로 전달하는 값)"
+    ],
+    "answer": 3,
     "explanation": "메서드를 정의할 때 괄호 안의 a, b는 매개변수(parameter), 실제로 호출할 때 넘기는 3, 4 같은 값은 인자(argument)라고 구분해서 불러요."
   },
   {

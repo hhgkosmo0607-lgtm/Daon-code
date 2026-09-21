@@ -7,12 +7,12 @@
     "code": "/**\n * 두 정수의 합을 계산한다.\n * @param a 첫 번째 수\n * @param b 두 번째 수\n * @return a와 b의 합\n */\npublic int add(int a, int b) {\n    return a + b;\n}",
     "language": "Java",
     "options": [
-      "@param, @return 같은 태그를 인식해서, 문서화 도구가 API 문서를 자동으로 생성해준다",
       "실행 속도에 영향을 준다",
       "컴파일러가 이 주석 안의 코드를 실제로 실행한다",
-      "일반 주석과 완전히 동일하고 이름만 다르다"
+      "일반 주석과 완전히 동일하고 이름만 다르다",
+      "@param, @return 같은 태그를 인식해서, 문서화 도구가 API 문서를 자동으로 생성해준다"
     ],
-    "answer": 0,
+    "answer": 3,
     "explanation": "Javadoc 주석은 정해진 형식(@param, @return, @throws 등)을 쓰면, javadoc 도구가 이 내용을 읽어서 HTML API 문서를 자동으로 만들어줘요. 클래스나 메서드가 뭘 하는지, 어떤 매개변수를 받는지 다른 개발자에게 알려주는 표준적인 방법이에요."
   },
   {

@@ -5,12 +5,12 @@
     "type": "choice",
     "prompt": "while문과 do-while문의 가장 중요한 차이는?",
     "options": [
-      "do-while은 조건과 무관하게 본문을 최소 1번은 실행하고, while은 조건이 처음부터 거짓이면 한 번도 실행하지 않는다",
       "while만 반복문이고 do-while은 반복문이 아니다",
       "do-while은 조건을 두 번 검사한다",
-      "while은 무한루프를 만들 수 없다"
+      "while은 무한루프를 만들 수 없다",
+      "do-while은 조건과 무관하게 본문을 최소 1번은 실행하고, while은 조건이 처음부터 거짓이면 한 번도 실행하지 않는다"
     ],
-    "answer": 0,
+    "answer": 3,
     "explanation": "while은 조건을 먼저 확인한 뒤 본문을 실행하고, do-while은 본문을 먼저 한 번 실행한 뒤에 조건을 확인해요. 그래서 do-while은 조건이 처음부터 false여도 최소 1회는 실행돼요."
   },
   {
@@ -20,7 +20,12 @@
     "prompt": "아래 while문은 몇 번 반복될까?",
     "code": "int i = 0;\nwhile (i < 3) {\n    System.out.println(i);\n    i++;\n}",
     "language": "Java",
-    "options": ["3번 (0, 1, 2 출력)", "4번", "무한 반복", "0번"],
+    "options": [
+      "3번 (0, 1, 2 출력)",
+      "4번",
+      "무한 반복",
+      "0번"
+    ],
     "answer": 0,
     "explanation": "i가 0, 1, 2일 때 조건(i < 3)이 참이라 실행되고, i가 3이 되면 조건이 거짓이 돼서 멈춰요. 총 3번(0, 1, 2) 실행돼요."
   }

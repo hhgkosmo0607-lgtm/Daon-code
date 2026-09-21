@@ -23,12 +23,12 @@
     "code": "interface Config {\n    int MAX_SIZE = 100; // 자동으로 public static final\n}",
     "language": "Java",
     "options": [
-      "자동으로 public static final(상수)이 된다",
       "일반 클래스의 필드와 완전히 동일하게 동작한다",
+      "자동으로 public static final(상수)이 된다",
       "인터페이스는 필드를 아예 가질 수 없다",
       "자동으로 private이 된다"
     ],
-    "answer": 0,
+    "answer": 1,
     "explanation": "인터페이스의 필드는 선언만 해도 자동으로 public static final이 붙어요. 그래서 값이 고정된 상수로만 쓸 수 있고, 구현체마다 다른 값을 가질 수 없어요."
   }
 ]

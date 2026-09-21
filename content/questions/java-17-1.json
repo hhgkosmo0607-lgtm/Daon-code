@@ -7,12 +7,12 @@
     "code": "List<String> names = new ArrayList<>();\nnames.add(\"철수\");\n// names.add(123); // 컴파일 에러",
     "language": "Java",
     "options": [
-      "제네릭(Generic) — 이 컬렉션에 담을 요소의 타입을 컴파일 시점에 제한한다",
       "상속(Inheritance)",
       "오버로딩(Overloading)",
-      "캡슐화(Encapsulation)"
+      "캡슐화(Encapsulation)",
+      "제네릭(Generic) — 이 컬렉션에 담을 요소의 타입을 컴파일 시점에 제한한다"
     ],
-    "answer": 0,
+    "answer": 3,
     "explanation": "제네릭은 \"이 List에는 String만 담겠다\"처럼 타입을 미리 지정해서, 엉뚱한 타입을 넣으려는 실수를 컴파일 시점에 잡아줘요. 제네릭이 없던 시절에는 실행 중에야 타입 오류(ClassCastException)를 발견했어요."
   },
   {

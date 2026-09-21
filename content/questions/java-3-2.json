@@ -4,8 +4,13 @@
     "lessonId": "java-3-2",
     "type": "blank",
     "prompt": "int num = 10; num ___ 5; 를 실행한 후 num이 15가 되게 하려면 빈칸에 들어갈 복합대입연산자는?",
-    "options": ["+=", "==", "=+", "-="],
-    "answer": 0,
+    "options": [
+      "==",
+      "=+",
+      "-=",
+      "+="
+    ],
+    "answer": 3,
     "explanation": "num += 5는 num = num + 5와 같아요. \"=+\"라는 연산자는 존재하지 않으니 순서에 주의해야 해요."
   },
   {
@@ -15,7 +20,12 @@
     "prompt": "int num = 10; num *= 2 + 3; 을 실행하면 num은?",
     "code": "int num = 10;\nnum *= 2 + 3;\nSystem.out.println(num);",
     "language": "Java",
-    "options": ["50", "23", "25", "13"],
+    "options": [
+      "50",
+      "23",
+      "25",
+      "13"
+    ],
     "answer": 0,
     "explanation": "num *= 2 + 3은 num = num * (2 + 3)과 같아요. 오른쪽 전체가 먼저 계산된 뒤 곱해지기 때문에, 10 * 5 = 50이에요."
   }

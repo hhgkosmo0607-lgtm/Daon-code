@@ -7,13 +7,13 @@
     "code": "interface Discount {\n    int apply(int price);\n}\nclass NoDiscount implements Discount {\n    public int apply(int price) { return price; }\n}\nclass HalfDiscount implements Discount {\n    public int apply(int price) { return price / 2; }\n}\n// 새 할인 정책 추가 시 기존 코드는 안 건드리고 클래스만 추가하면 됨",
     "language": "Java",
     "options": [
+      "클래스는 변경되어야 할 이유(책임)를 하나만 가져야 한다",
       "기능을 확장하는 데는 열려 있고, 기존 코드를 수정하는 데는 닫혀 있어야 한다",
-      "클래스는 한 번 작성하면 절대 확장할 수 없어야 한다",
-      "모든 클래스는 반드시 final이어야 한다",
-      "새 기능을 추가할 때마다 기존 클래스를 전부 다시 작성해야 한다"
+      "클라이언트가 사용하지 않는 메서드에 억지로 의존하지 않도록, 인터페이스를 작고 구체적인 단위로 나눠야 한다",
+      "상위 모듈은 구체적인 클래스가 아니라 추상화된 인터페이스에 의존해야 한다"
     ],
-    "answer": 0,
-    "explanation": "OCP는 새로운 기능이 필요할 때 기존 코드를 고치지 않고, 새 클래스를 추가하는 것만으로 확장할 수 있게 설계하라는 원칙이에요. 위 예시처럼 인터페이스(Discount)를 두고 새 할인 정책은 새 클래스로 추가하면, 기존 NoDiscount/HalfDiscount 코드는 전혀 안 건드려도 돼요."
+    "answer": 1,
+    "explanation": "OCP는 새로운 기능이 필요할 때 기존 코드를 고치지 않고, 새 클래스를 추가하는 것만으로 확장할 수 있게 설계하라는 원칙이에요. 위 예시처럼 인터페이스(Discount)를 두고 새 할인 정책은 새 클래스로 추가하면, 기존 NoDiscount/HalfDiscount 코드는 전혀 안 건드려도 돼요. 나머지 셋은 각각 SRP, ISP, DIP를 설명하는 문장이에요."
   },
   {
     "id": "java-19-2-q2",
@@ -23,12 +23,12 @@
     "code": "int applyDiscount(String type, int price) {\n    if (type.equals(\"NONE\")) return price;\n    else if (type.equals(\"HALF\")) return price / 2;\n    // 새 할인 정책이 생길 때마다 여기 else if를 계속 추가...\n    return price;\n}",
     "language": "Java",
     "options": [
-      "OCP(개방-폐쇄 원칙) — 기능 추가할 때마다 기존 코드를 계속 수정해야 하기 때문",
       "SRP(단일 책임 원칙)만 해당되고 OCP와는 무관하다",
+      "OCP(개방-폐쇄 원칙) — 기능 추가할 때마다 기존 코드를 계속 수정해야 하기 때문",
       "이런 설계는 원칙과 무관하게 항상 바람직하다",
       "DIP(의존관계 역전 원칙)만 해당된다"
     ],
-    "answer": 0,
+    "answer": 1,
     "explanation": "새 할인 정책이 추가될 때마다 이 메서드 자체를 계속 수정해야 하죠. 이건 '확장에는 열려있고 수정에는 닫혀있어야 한다'는 OCP에 정면으로 위배돼요. 인터페이스와 다형성을 활용하면 기존 코드 수정 없이 확장할 수 있어요."
   }
 ]

@@ -6,7 +6,12 @@
     "prompt": "자식 클래스에서 부모 클래스의 메서드를 완전히 같은 형태(이름, 매개변수, 반환타입)로 다시 정의하는 것을 무엇이라 하나?",
     "code": "class Speaker {\n    public void showState() {\n        System.out.println(\"기본 스피커\");\n    }\n}\nclass BaseSpeaker extends Speaker {\n    @Override\n    public void showState() {\n        System.out.println(\"베이스 스피커\");\n    }\n}",
     "language": "Java",
-    "options": ["오버라이딩(Overriding)", "오버로딩(Overloading)", "캡슐화", "다중상속"],
+    "options": [
+      "오버라이딩(Overriding)",
+      "오버로딩(Overloading)",
+      "캡슐화",
+      "다중상속"
+    ],
     "answer": 0,
     "explanation": "오버라이딩은 상속 관계에서 부모의 메서드를 자식이 똑같은 시그니처(이름·매개변수·반환타입)로 재정의하는 거예요. 매개변수를 다르게 여러 개 만드는 오버로딩과 헷갈리기 쉬운데, 오버라이딩은 \"완전히 같은 모양\"이라는 게 핵심이에요."
   },
@@ -18,12 +23,12 @@
     "code": "BaseSpeaker speaker = new BaseSpeaker();\nspeaker.showState(); // ?",
     "language": "Java",
     "options": [
-      "자식(BaseSpeaker)이 오버라이딩한 showState() — 자식의 메서드가 부모의 메서드를 가린다",
       "부모(Speaker)의 showState() — 상속받은 원본이 항상 우선한다",
+      "자식(BaseSpeaker)이 오버라이딩한 showState() — 자식의 메서드가 부모의 메서드를 가린다",
       "둘 다 동시에 실행된다",
       "컴파일 에러가 난다"
     ],
-    "answer": 0,
+    "answer": 1,
     "explanation": "오버라이딩된 메서드는 자식 쪽 버전이 부모 쪽을 가려요. 그래서 자식 인스턴스로 호출하면 항상 자식이 재정의한 메서드가 실행돼요. 부모 버전이 필요하면 자식 메서드 안에서 super.showState()로 명시적으로 불러야 해요."
   },
   {
@@ -32,12 +37,12 @@
     "type": "choice",
     "prompt": "메서드 위에 붙이는 @Override 어노테이션의 역할은?",
     "options": [
-      "이 메서드가 오버라이딩을 의도한 것임을 컴파일러에 알려서, 시그니처가 안 맞으면 에러로 잡아준다",
       "이 메서드를 반드시 오버로딩해야 한다는 뜻이다",
       "이 메서드를 실행 전에 자동으로 두 번 호출한다",
+      "이 메서드가 오버라이딩을 의도한 것임을 컴파일러에 알려서, 시그니처가 안 맞으면 에러로 잡아준다",
       "@Override가 없으면 오버라이딩 자체가 동작하지 않는다"
     ],
-    "answer": 0,
+    "answer": 2,
     "explanation": "@Override는 필수는 아니지만, 붙여두면 실수로 시그니처를 다르게 써서 오버라이딩이 아니라 새 메서드가 되어버리는 실수를 컴파일 시점에 잡아줘요. 안전장치 역할이에요."
   }
 ]

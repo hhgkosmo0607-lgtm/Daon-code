@@ -7,12 +7,12 @@
     "code": "class Speaker { }\nclass BaseSpeaker extends Speaker { }\n\nSpeaker speaker = new BaseSpeaker();",
     "language": "Java",
     "options": [
-      "상속 관계이기 때문 — BaseSpeaker는 Speaker의 한 종류이므로(다형성)",
       "자바의 모든 타입은 서로 자유롭게 대입 가능해서",
       "BaseSpeaker가 Speaker보다 먼저 정의되어야 해서 가능",
-      "실제로는 문법 오류지만 경고만 뜬다"
+      "실제로는 문법 오류지만 경고만 뜬다",
+      "상속 관계이기 때문 — BaseSpeaker는 Speaker의 한 종류이므로(다형성)"
     ],
-    "answer": 0,
+    "answer": 3,
     "explanation": "이게 다형성(Polymorphism)의 핵심이에요. BaseSpeaker는 \"Speaker의 한 종류\"이기 때문에 부모 타입 변수가 자식 인스턴스를 가리킬 수 있어요. 반대로 부모 인스턴스를 자식 타입 변수에 담는 건 안 돼요."
   },
   {
@@ -39,12 +39,12 @@
     "code": "if (speaker instanceof BaseSpeaker) {\n    BaseSpeaker bs = (BaseSpeaker) speaker;\n    bs.setBase(10);\n}",
     "language": "Java",
     "options": [
-      "참조변수가 가리키는 실제 객체가 특정 타입(또는 그 자식)인지 확인한다",
       "두 객체의 내용이 완전히 같은지 비교한다",
+      "참조변수가 가리키는 실제 객체가 특정 타입(또는 그 자식)인지 확인한다",
       "객체를 새로 생성한다",
       "메서드가 오버라이딩되었는지 확인한다"
     ],
-    "answer": 0,
+    "answer": 1,
     "explanation": "instanceof는 \"이 참조변수가 실제로 가리키는 객체가 이 타입이 맞는지\"를 boolean으로 알려줘요. 부모 타입으로 다루다가 자식 전용 기능이 필요할 때, 먼저 instanceof로 확인한 뒤 캐스팅하는 패턴으로 자주 써요."
   }
 ]

@@ -4,8 +4,13 @@
     "lessonId": "sqld-4-5",
     "type": "choice",
     "prompt": "WHERE절에서 특정 문자열이 정규표현식 패턴과 일치하는지 TRUE/FALSE로 판단할 때 쓰는 함수는?",
-    "options": ["REGEXP_LIKE", "REGEXP_SUBSTR", "REGEXP_REPLACE", "REGEXP_COUNT"],
-    "answer": 0,
+    "options": [
+      "REGEXP_SUBSTR",
+      "REGEXP_REPLACE",
+      "REGEXP_COUNT",
+      "REGEXP_LIKE"
+    ],
+    "answer": 3,
     "explanation": "REGEXP_LIKE는 조건절에서 패턴 일치 여부를 판단해서 TRUE/FALSE를 돌려줘요. REGEXP_SUBSTR은 일치하는 부분을 추출, REGEXP_REPLACE는 치환, REGEXP_COUNT는 몇 번 나오는지 개수를 세요."
   },
   {
@@ -27,8 +32,13 @@
     "lessonId": "sqld-4-5",
     "type": "choice",
     "prompt": "정규표현식에서 '1회 이상 반복'을 의미하는 기호는?",
-    "options": ["+", "?", "*", "."],
-    "answer": 0,
+    "options": [
+      "?",
+      "+",
+      "*",
+      "."
+    ],
+    "answer": 1,
     "explanation": "?는 0회 또는 1회, *는 0회 이상, +는 1회 이상을 의미해요."
   }
 ]

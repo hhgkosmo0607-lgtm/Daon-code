@@ -7,12 +7,12 @@
     "code": "int num = 10;\ndouble d = num;",
     "language": "Java",
     "options": [
-      "자동 형변환(묵시적 형변환) — 데이터 손실 위험이 없어서 캐스팅 없이 가능하다",
       "강제 형변환 — 반드시 (double)을 써야 한다",
       "컴파일 에러 — int를 double에 담을 수 없다",
+      "자동 형변환(묵시적 형변환) — 데이터 손실 위험이 없어서 캐스팅 없이 가능하다",
       "런타임 에러가 발생한다"
     ],
-    "answer": 0,
+    "answer": 2,
     "explanation": "작은 범위 타입(int)을 더 큰 범위 타입(double)에 넣는 건 데이터 손실 위험이 없어서 자바가 자동으로 변환해줘요. 반대로 큰 타입을 작은 타입에 넣을 땐 값 손실 가능성이 있어서 명시적 캐스팅이 필요해요."
   },
   {
@@ -22,8 +22,13 @@
     "prompt": "double d = 3.99; int result = (int) d; 를 실행하면 result는?",
     "code": "double d = 3.99;\nint result = (int) d;\nSystem.out.println(result);",
     "language": "Java",
-    "options": ["3", "4", "3.99", "컴파일 에러"],
-    "answer": 0,
+    "options": [
+      "4",
+      "3.99",
+      "컴파일 에러",
+      "3"
+    ],
+    "answer": 3,
     "explanation": "double을 int로 강제 형변환(캐스팅)하면 반올림이 아니라 소수점 이하를 그냥 버려요(버림). 그래서 3.99는 4가 아니라 3이 돼요."
   },
   {

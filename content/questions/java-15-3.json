@@ -23,12 +23,12 @@
     "code": "class Point { int x, y; }\nPoint p1 = new Point();\nPoint p2 = new Point();\nSystem.out.println(p1.equals(p2)); // 기본 equals",
     "language": "Java",
     "options": [
-      "두 참조가 같은 객체(같은 주소)를 가리키는지 — Object의 기본 equals는 ==와 동일하게 동작한다",
       "두 객체의 필드값이 모두 같은지",
+      "두 참조가 같은 객체(같은 주소)를 가리키는지 — Object의 기본 equals는 ==와 동일하게 동작한다",
       "두 객체의 클래스 이름이 같은지",
       "항상 true를 반환한다"
     ],
-    "answer": 0,
+    "answer": 1,
     "explanation": "Object가 기본 제공하는 equals()는 == 처럼 주소 비교예요. p1과 p2는 필드값이 같아도 서로 다른 객체라 false가 나와요. \"내용이 같으면 같다고 보고 싶다\"면 equals()를 직접 오버라이딩해서 필드를 비교하도록 만들어야 해요."
   }
 ]

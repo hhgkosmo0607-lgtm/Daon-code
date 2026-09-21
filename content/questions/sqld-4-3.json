@@ -5,12 +5,12 @@
     "type": "choice",
     "prompt": "PIVOT 연산이 하는 일을 가장 정확히 설명하면?",
     "options": [
-      "세로로 나열된 값(행)을 가로(열)로 펼쳐서 재구성한다",
       "가로로 나열된 열을 세로(행)로 되돌린다",
+      "세로로 나열된 값(행)을 가로(열)로 펼쳐서 재구성한다",
       "두 테이블을 조인한다",
       "중복된 행을 제거한다"
     ],
-    "answer": 0,
+    "answer": 1,
     "explanation": "PIVOT은 LONG 형태(세로로 쌓인 데이터)를 WIDE 형태(항목별로 열이 나뉜 데이터)로 바꿔요. 반대로 UNPIVOT은 가로로 펼쳐진 열을 다시 세로(행)로 되돌려요."
   },
   {
@@ -18,8 +18,13 @@
     "lessonId": "sqld-4-3",
     "type": "choice",
     "prompt": "이미 보고서용으로 가로로 넓게(WIDE) 펼쳐진 데이터를, 다시 분석하기 좋은 세로(LONG) 형태로 되돌리고 싶을 때 쓰는 연산은?",
-    "options": ["UNPIVOT", "PIVOT", "ROLLUP", "CUBE"],
-    "answer": 0,
+    "options": [
+      "PIVOT",
+      "ROLLUP",
+      "UNPIVOT",
+      "CUBE"
+    ],
+    "answer": 2,
     "explanation": "UNPIVOT은 PIVOT의 반대 작업이에요. 항목별로 나뉜 여러 열을 다시 하나의 컬럼(항목)+값 형태의 행으로 풀어줘요."
   }
 ]

@@ -21,12 +21,12 @@
     "type": "choice",
     "prompt": "종료 조건이 없거나 잘못된 재귀 함수를 계속 호출하면 어떤 문제가 생길까?",
     "options": [
-      "StackOverflowError — 호출이 쌓이는 스택 공간을 다 써버린다",
       "NullPointerException",
+      "StackOverflowError — 호출이 쌓이는 스택 공간을 다 써버린다",
       "ArrayIndexOutOfBoundsException",
       "아무 문제 없이 자동으로 멈춘다"
     ],
-    "answer": 0,
+    "answer": 1,
     "explanation": "함수를 호출할 때마다 스택 공간에 정보가 쌓이는데, 재귀가 끝나지 않으면 이 스택이 계속 쌓이다가 한계를 넘어서 StackOverflowError가 발생해요."
   }
 ]

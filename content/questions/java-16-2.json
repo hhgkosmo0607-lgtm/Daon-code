@@ -7,12 +7,12 @@
     "code": "try {\n    System.out.println(\"정상 실행\");\n} catch (Exception e) {\n    System.out.println(\"예외 처리\");\n} finally {\n    System.out.println(\"항상 실행\");\n}",
     "language": "Java",
     "options": [
-      "예외 발생 여부와 상관없이 항상 실행된다",
       "예외가 발생했을 때만 실행된다",
       "catch 블록이 없으면 실행되지 않는다",
-      "return문이 있으면 절대 실행되지 않는다"
+      "return문이 있으면 절대 실행되지 않는다",
+      "예외 발생 여부와 상관없이 항상 실행된다"
     ],
-    "answer": 0,
+    "answer": 3,
     "explanation": "finally는 예외가 나든 안 나든, 심지어 try/catch 안에 return이 있어도 그 직전에 반드시 실행돼요. 파일 닫기, 연결 해제처럼 \"무조건 정리해야 하는 작업\"을 여기 둬요."
   },
   {

@@ -7,12 +7,12 @@
     "code": "LocalDateTime now = LocalDateTime.now();\nSystem.out.println(now);",
     "language": "Java",
     "options": [
-      "java.time 패키지의 LocalDate, LocalDateTime 등",
       "String으로 직접 날짜를 관리",
       "int 배열로 연/월/일을 저장",
+      "java.time 패키지의 LocalDate, LocalDateTime 등",
       "옛날 Date 클래스가 여전히 유일한 방법이다"
     ],
-    "answer": 0,
+    "answer": 2,
     "explanation": "기존 java.util.Date는 가변(mutable)이고 월(month)이 0부터 시작하는 등 헷갈리는 설계였어요. 자바 8부터 등장한 java.time 패키지(LocalDate, LocalDateTime, LocalTime 등)는 불변이고 API가 훨씬 직관적이라 지금은 이쪽이 표준으로 권장돼요."
   },
   {
@@ -20,8 +20,13 @@
     "lessonId": "java-15-4",
     "type": "choice",
     "prompt": "현재 날짜(년/월/일)만 필요하고 시간은 필요 없을 때 적합한 클래스는?",
-    "options": ["LocalDate", "LocalTime", "LocalDateTime", "Duration"],
-    "answer": 0,
+    "options": [
+      "LocalTime",
+      "LocalDateTime",
+      "Duration",
+      "LocalDate"
+    ],
+    "answer": 3,
     "explanation": "LocalDate는 날짜(연/월/일)만, LocalTime은 시간만, LocalDateTime은 날짜+시간을 함께 다뤄요. 필요한 정보만 딱 담는 타입을 고르면 코드 의도가 더 명확해져요."
   }
 ]

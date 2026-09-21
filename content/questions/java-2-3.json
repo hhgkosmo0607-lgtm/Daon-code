@@ -4,8 +4,13 @@
     "lessonId": "java-2-3",
     "type": "choice",
     "prompt": "자바에서 문자 하나를 저장하는 char 타입의 값을 올바르게 선언한 것은?",
-    "options": ["char c = 'A';", "char c = \"A\";", "char c = A;", "char c = 65.0;"],
-    "answer": 0,
+    "options": [
+      "char c = \"A\";",
+      "char c = A;",
+      "char c = 65.0;",
+      "char c = 'A';"
+    ],
+    "answer": 3,
     "explanation": "char는 문자 하나를 작은따옴표('')로 감싸서 표현해요. 큰따옴표(\"\")는 String(문자열)에 쓰는 표기예요."
   },
   {
@@ -29,8 +34,13 @@
     "lessonId": "java-2-3",
     "type": "choice",
     "prompt": "boolean 타입이 가질 수 있는 값은?",
-    "options": ["true 또는 false 둘 중 하나", "0 또는 1", "\"true\" 또는 \"false\" 문자열", "-1, 0, 1 중 하나"],
-    "answer": 0,
+    "options": [
+      "0 또는 1",
+      "true 또는 false 둘 중 하나",
+      "\"true\" 또는 \"false\" 문자열",
+      "-1, 0, 1 중 하나"
+    ],
+    "answer": 1,
     "explanation": "boolean은 참/거짓 두 값만 가지는 타입이에요. 자바는 C언어와 달리 0/1을 boolean으로 취급하지 않고, 반드시 true/false 리터럴만 허용해요."
   }
 ]

@@ -7,12 +7,12 @@
     "code": "class InsufficientBalanceException extends Exception {\n    public InsufficientBalanceException(String message) {\n        super(message);\n    }\n}",
     "language": "Java",
     "options": [
-      "자바의 예외 처리 체계(try-catch, throw)에 자연스럽게 편입되어, 기존 예외들과 똑같은 방식으로 던지고 잡을 수 있게 하기 위해",
       "성능을 높이기 위해",
+      "자바의 예외 처리 체계(try-catch, throw)에 자연스럽게 편입되어, 기존 예외들과 똑같은 방식으로 던지고 잡을 수 있게 하기 위해",
       "private 필드를 강제로 만들기 위해",
       "static 메서드만 갖게 하기 위해"
     ],
-    "answer": 0,
+    "answer": 1,
     "explanation": "Exception을 상속하면 이 클래스도 하나의 정식 '예외'가 돼서, throw로 던지고 catch로 잡는 자바의 표준 예외 처리 흐름을 그대로 활용할 수 있어요. 잔액 부족처럼 이 프로그램만의 특별한 상황에 이름을 붙여 명확하게 표현할 수 있어요."
   },
   {
@@ -23,12 +23,12 @@
     "code": "void withdraw(int amount) throws InsufficientBalanceException {\n    // ...\n}\n\n// 호출하는 쪽\nwithdraw(1000); // 반드시 try-catch로 감싸거나 throws로 다시 던져야 함",
     "language": "Java",
     "options": [
-      "try-catch로 처리하거나, 자신도 throws로 그 예외를 선언해서 상위로 넘겨야 한다",
       "아무 처리 없이 그냥 호출해도 무방하다",
       "반드시 finally 블록을 추가해야 한다",
+      "try-catch로 처리하거나, 자신도 throws로 그 예외를 선언해서 상위로 넘겨야 한다",
       "예외를 발생시킨 메서드를 다시 작성해야 한다"
     ],
-    "answer": 0,
+    "answer": 2,
     "explanation": "Exception을 직접 상속한 예외는 checked exception이라, 컴파일러가 처리를 강제해요. 그 예외가 발생할 수 있는 메서드를 호출하는 코드는 try-catch로 잡거나, 자기 메서드 선언에도 throws를 붙여서 \"나도 이 예외를 던질 수 있다\"고 명시해야 컴파일이 돼요."
   }
 ]

@@ -7,12 +7,12 @@
     "code": "package com.company.model;\n\npublic class User {\n}",
     "language": "Java",
     "options": [
-      "클래스 이름이 겹치는 걸 방지하고, 관련된 클래스들을 폴더처럼 묶어서 관리하기 위해",
       "프로그램 실행 속도를 높이기 위해",
+      "클래스 이름이 겹치는 걸 방지하고, 관련된 클래스들을 폴더처럼 묶어서 관리하기 위해",
       "변수의 타입을 자동으로 바꾸기 위해",
       "메서드 오버로딩을 가능하게 하기 위해"
     ],
-    "answer": 0,
+    "answer": 1,
     "explanation": "패키지는 실제 폴더 구조와 대응되면서, 같은 이름의 클래스가 서로 다른 패키지에 있으면 충돌 없이 공존할 수 있게 해줘요. 논리적으로 관련된 클래스를 묶어 정리하는 용도이기도 해요."
   },
   {
@@ -23,12 +23,12 @@
     "code": "import com.company.model.User;\n\npublic class Main {\n    public static void main(String[] args) {\n        User u = new User();\n    }\n}",
     "language": "Java",
     "options": [
-      "import문으로 그 클래스를 가져오거나, 사용할 때마다 전체 경로(패키지명.클래스명)를 써야 한다",
       "아무 설정 없이 클래스 이름만 쓰면 자동으로 찾아진다",
       "같은 프로젝트 안이면 패키지가 달라도 항상 자유롭게 쓸 수 있다",
+      "import문으로 그 클래스를 가져오거나, 사용할 때마다 전체 경로(패키지명.클래스명)를 써야 한다",
       "패키지가 다른 클래스는 절대 가져올 수 없다"
     ],
-    "answer": 0,
+    "answer": 2,
     "explanation": "다른 패키지의 클래스를 쓰려면 파일 상단에 import문으로 명시하거나, 매번 com.company.model.User처럼 전체 경로를 써야 해요. 단, java.lang 패키지(String, System 등)는 예외적으로 import 없이 바로 쓸 수 있어요."
   }
 ]

@@ -7,12 +7,12 @@
     "code": "Set<String> set = new HashSet<>();\nset.add(\"a\");\nset.add(\"a\");\nSystem.out.println(set.size());",
     "language": "Java",
     "options": [
-      "1 — Set은 중복된 값을 허용하지 않는다",
       "2 — 순서대로 그대로 저장된다",
       "0 — 두 번째 add는 무시하며 첫 번째도 취소한다",
-      "컴파일 에러"
+      "컴파일 에러",
+      "1 — Set은 중복된 값을 허용하지 않는다"
     ],
-    "answer": 0,
+    "answer": 3,
     "explanation": "Set 계열(HashSet 등)은 List와 달리 중복을 허용하지 않아요. 같은 값을 두 번 add해도 실제로는 하나만 저장돼서 size()는 1이에요."
   },
   {
