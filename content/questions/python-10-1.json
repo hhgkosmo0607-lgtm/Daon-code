@@ -1,0 +1,34 @@
+[
+  {
+    "id": "python-10-1-q1",
+    "lessonId": "python-10-1",
+    "type": "choice",
+    "prompt": "for i in range(5): 는 i에 어떤 값들을 순서대로 대입하며 반복하나?",
+    "code": "for i in range(5):\n    print(i)",
+    "language": "Python",
+    "options": [
+      "1, 2, 3, 4, 5",
+      "0, 1, 2, 3, 4, 5",
+      "5부터 0까지 거꾸로",
+      "0, 1, 2, 3, 4 (5는 포함되지 않음)"
+    ],
+    "answer": 3,
+    "explanation": "range(5)는 0부터 시작해서 5 직전까지, 즉 0, 1, 2, 3, 4를 만들어내요. 끝 숫자(5)는 포함되지 않는다는 걸 꼭 기억해야 해요."
+  },
+  {
+    "id": "python-10-1-q2",
+    "lessonId": "python-10-1",
+    "type": "choice",
+    "prompt": "for fruit in [\"사과\", \"바나나\", \"포도\"]: 처럼 리스트를 순회하는 for문의 특징은?",
+    "code": "for fruit in [\"사과\", \"바나나\", \"포도\"]:\n    print(fruit)",
+    "language": "Python",
+    "options": [
+      "인덱스 계산 없이, 리스트의 각 요소를 순서대로 변수에 담아 순회한다",
+      "인덱스만 순서대로 순회하고 실제 값은 가져오지 못한다",
+      "리스트의 마지막 요소부터 거꾸로 순회한다",
+      "리스트 안의 요소를 무작위 순서로 순회한다"
+    ],
+    "answer": 0,
+    "explanation": "파이썬의 for는 자바의 향상된 for문(foreach)과 비슷해요. range() 없이 리스트를 바로 순회하면, 인덱스 없이 각 요소 값을 순서대로 fruit에 담아줘요."
+  }
+]

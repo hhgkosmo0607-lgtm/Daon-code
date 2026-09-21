@@ -1,0 +1,34 @@
+[
+  {
+    "id": "python-17-2-q1",
+    "lessonId": "python-17-2",
+    "type": "choice",
+    "prompt": "파이썬에서 멤버변수를 외부에서 직접 접근하지 못하게 감추고 싶을 때 쓰는 관례는?",
+    "code": "class Account:\n    def __init__(self, balance):\n        self.__balance = balance  # 이름 앞에 __(밑줄 두 개)\n\na = Account(1000)\nprint(a.__balance)  # AttributeError",
+    "language": "Python",
+    "options": [
+      "변수 이름을 전부 대문자로 쓴다",
+      "private이라는 키워드를 변수 앞에 붙인다",
+      "변수를 클래스 밖에 따로 선언한다",
+      "변수 이름 앞에 밑줄 두 개(__)를 붙인다"
+    ],
+    "answer": 3,
+    "explanation": "자바처럼 private 키워드가 따로 있는 게 아니라, 파이썬은 이름 앞에 __(밑줄 두 개)를 붙이는 관례(네임 맹글링)로 \"이건 클래스 내부에서만 쓰는 거야\"라고 표시해요. 외부에서 직접 접근하려 하면 에러가 나요."
+  },
+  {
+    "id": "python-17-2-q2",
+    "lessonId": "python-17-2",
+    "type": "choice",
+    "prompt": "숨겨둔 __balance 값을 외부에서 안전하게 읽거나 바꾸려면 어떻게 해야 하나?",
+    "code": "class Account:\n    def __init__(self, balance):\n        self.__balance = balance\n    def get_balance(self):\n        return self.__balance\n    def deposit(self, amount):\n        if amount > 0:\n            self.__balance += amount",
+    "language": "Python",
+    "options": [
+      "get_balance() 같은 조회용 메서드와 deposit() 같은 변경용 메서드를 따로 만들어 그걸 통해서만 접근하게 한다",
+      "__balance 앞의 밑줄을 지우면 외부에서 자유롭게 접근할 수 있게 된다",
+      "숨긴 변수는 그 클래스 안에서도 다시는 값을 바꿀 수 없다",
+      "print(a.__balance)로 직접 접근하는 것이 유일한 방법이다"
+    ],
+    "answer": 0,
+    "explanation": "정보은닉의 목적은 값을 아예 못 바꾸게 막는 게 아니라, 정해진 메서드(get_balance, deposit 등)를 통해서만 접근·수정하게 해서 유효성 검사 같은 규칙을 강제하는 거예요."
+  }
+]

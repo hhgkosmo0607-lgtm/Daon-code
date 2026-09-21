@@ -150,6 +150,44 @@ import questionsJava20_1 from '../../../content/questions/java-20-1.json';
 import questionsJava20_2 from '../../../content/questions/java-20-2.json';
 import questionsJava20_3 from '../../../content/questions/java-20-3.json';
 import questionsJava20_4 from '../../../content/questions/java-20-4.json';
+import questionsPython1_1 from '../../../content/questions/python-1-1.json';
+import questionsPython2_1 from '../../../content/questions/python-2-1.json';
+import questionsPython2_2 from '../../../content/questions/python-2-2.json';
+import questionsPython2_3 from '../../../content/questions/python-2-3.json';
+import questionsPython2_4 from '../../../content/questions/python-2-4.json';
+import questionsPython3_1 from '../../../content/questions/python-3-1.json';
+import questionsPython4_1 from '../../../content/questions/python-4-1.json';
+import questionsPython5_1 from '../../../content/questions/python-5-1.json';
+import questionsPython6_1 from '../../../content/questions/python-6-1.json';
+import questionsPython7_1 from '../../../content/questions/python-7-1.json';
+import questionsPython8_1 from '../../../content/questions/python-8-1.json';
+import questionsPython8_2 from '../../../content/questions/python-8-2.json';
+import questionsPython9_1 from '../../../content/questions/python-9-1.json';
+import questionsPython10_1 from '../../../content/questions/python-10-1.json';
+import questionsPython10_2 from '../../../content/questions/python-10-2.json';
+import questionsPython11_1 from '../../../content/questions/python-11-1.json';
+import questionsPython12_1 from '../../../content/questions/python-12-1.json';
+import questionsPython12_2 from '../../../content/questions/python-12-2.json';
+import questionsPython12_3 from '../../../content/questions/python-12-3.json';
+import questionsPython12_4 from '../../../content/questions/python-12-4.json';
+import questionsPython13_1 from '../../../content/questions/python-13-1.json';
+import questionsPython14_1 from '../../../content/questions/python-14-1.json';
+import questionsPython14_2 from '../../../content/questions/python-14-2.json';
+import questionsPython14_3 from '../../../content/questions/python-14-3.json';
+import questionsPython15_1 from '../../../content/questions/python-15-1.json';
+import questionsPython15_2 from '../../../content/questions/python-15-2.json';
+import questionsPython16_1 from '../../../content/questions/python-16-1.json';
+import questionsPython17_1 from '../../../content/questions/python-17-1.json';
+import questionsPython17_2 from '../../../content/questions/python-17-2.json';
+import questionsPython17_3 from '../../../content/questions/python-17-3.json';
+import questionsPython18_1 from '../../../content/questions/python-18-1.json';
+import questionsPython18_2 from '../../../content/questions/python-18-2.json';
+import questionsPython19_1 from '../../../content/questions/python-19-1.json';
+import questionsPython19_2 from '../../../content/questions/python-19-2.json';
+import questionsPython20_1 from '../../../content/questions/python-20-1.json';
+import questionsPython20_2 from '../../../content/questions/python-20-2.json';
+import questionsPython20_3 from '../../../content/questions/python-20-3.json';
+import questionsPython20_4 from '../../../content/questions/python-20-4.json';
 
 import type { Lesson, Question, Stage, Track } from '../domain/types';
 
@@ -316,6 +354,44 @@ const QUESTION_BANK: Record<string, unknown> = {
   'java-20-2': questionsJava20_2,
   'java-20-3': questionsJava20_3,
   'java-20-4': questionsJava20_4,
+  'python-1-1': questionsPython1_1,
+  'python-2-1': questionsPython2_1,
+  'python-2-2': questionsPython2_2,
+  'python-2-3': questionsPython2_3,
+  'python-2-4': questionsPython2_4,
+  'python-3-1': questionsPython3_1,
+  'python-4-1': questionsPython4_1,
+  'python-5-1': questionsPython5_1,
+  'python-6-1': questionsPython6_1,
+  'python-7-1': questionsPython7_1,
+  'python-8-1': questionsPython8_1,
+  'python-8-2': questionsPython8_2,
+  'python-9-1': questionsPython9_1,
+  'python-10-1': questionsPython10_1,
+  'python-10-2': questionsPython10_2,
+  'python-11-1': questionsPython11_1,
+  'python-12-1': questionsPython12_1,
+  'python-12-2': questionsPython12_2,
+  'python-12-3': questionsPython12_3,
+  'python-12-4': questionsPython12_4,
+  'python-13-1': questionsPython13_1,
+  'python-14-1': questionsPython14_1,
+  'python-14-2': questionsPython14_2,
+  'python-14-3': questionsPython14_3,
+  'python-15-1': questionsPython15_1,
+  'python-15-2': questionsPython15_2,
+  'python-16-1': questionsPython16_1,
+  'python-17-1': questionsPython17_1,
+  'python-17-2': questionsPython17_2,
+  'python-17-3': questionsPython17_3,
+  'python-18-1': questionsPython18_1,
+  'python-18-2': questionsPython18_2,
+  'python-19-1': questionsPython19_1,
+  'python-19-2': questionsPython19_2,
+  'python-20-1': questionsPython20_1,
+  'python-20-2': questionsPython20_2,
+  'python-20-3': questionsPython20_3,
+  'python-20-4': questionsPython20_4,
 };
 
 /** 기본 트랙 — 온보딩/배치고사 등 트랙을 아직 명시하지 않은 기존 화면이 쓰는 값 */

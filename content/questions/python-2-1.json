@@ -1,0 +1,50 @@
+[
+  {
+    "id": "python-2-1-q1",
+    "lessonId": "python-2-1",
+    "type": "choice",
+    "prompt": "x = 2, y = 4일 때, x / y와 x // y의 결과 타입 차이는?",
+    "code": "x, y = 2, 4\nprint(x / y)   # ?\nprint(x // y)  # ?",
+    "language": "Python",
+    "options": [
+      "/ 와 // 는 완전히 같은 연산이라 결과도 항상 같다",
+      "/ 는 정수만, // 는 실수만 다룰 수 있다",
+      "// 가 나머지를 구하는 연산자다",
+      "/ 는 항상 float(실수)를, // 는 몫만 구해서 int(정수)를 반환한다"
+    ],
+    "answer": 3,
+    "explanation": "파이썬의 /는 자바와 달리 두 정수를 나눠도 항상 실수(float) 결과를 줘요(2/4 = 0.5). //는 소수점 이하를 버린 몫만 구하는 정수 나눗셈이에요(2//4 = 0). 나머지를 구하는 건 % 연산자예요."
+  },
+  {
+    "id": "python-2-1-q2",
+    "lessonId": "python-2-1",
+    "type": "choice",
+    "prompt": "2 ** 10 의 결과는?",
+    "code": "print(2 ** 10)",
+    "language": "Python",
+    "options": [
+      "1024",
+      "20",
+      "100",
+      "2"
+    ],
+    "answer": 0,
+    "explanation": "**는 거듭제곱 연산자예요. 2의 10제곱은 1024예요. pow(2, 10)으로도 같은 결과를 얻을 수 있어요."
+  },
+  {
+    "id": "python-2-1-q3",
+    "lessonId": "python-2-1",
+    "type": "choice",
+    "prompt": "divmod(10, 3) 을 실행하면 어떤 형태로 결과가 반환되나?",
+    "code": "result = divmod(10, 3)\nprint(result)",
+    "language": "Python",
+    "options": [
+      "몫만 반환, 즉 3",
+      "(몫, 나머지) 형태의 튜플, 즉 (3, 1)",
+      "나머지만 반환, 즉 1",
+      "리스트 형태로 [3, 1]"
+    ],
+    "answer": 1,
+    "explanation": "divmod(a, b)는 a//b(몫)와 a%b(나머지)를 한 번에 튜플로 묶어서 반환해요. 10을 3으로 나누면 몫 3, 나머지 1이라 (3, 1)이 나와요."
+  }
+]

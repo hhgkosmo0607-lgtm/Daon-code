@@ -1,0 +1,34 @@
+[
+  {
+    "id": "python-16-1-q1",
+    "lessonId": "python-16-1",
+    "type": "choice",
+    "prompt": "import math 를 한 뒤 math.sqrt(16)를 호출하는 이유는?",
+    "code": "import math\nprint(math.sqrt(16))",
+    "language": "Python",
+    "options": [
+      "import math를 안 해도 sqrt는 항상 바로 쓸 수 있다",
+      "math.sqrt(16)은 16의 세제곱을 구하는 함수다",
+      "sqrt 같은 수학 함수는 기본 내장이 아니라 math 모듈 안에 있어서, 가져와야 쓸 수 있다",
+      "import는 함수를 더 빠르게 실행되게 만들어주는 최적화 명령이다"
+    ],
+    "answer": 2,
+    "explanation": "sqrt(제곱근), factorial(팩토리얼) 같은 수학 관련 함수는 파이썬 기본 내장함수가 아니라 math라는 표준 모듈에 들어있어서, import math로 먼저 가져와야 math.sqrt()처럼 쓸 수 있어요."
+  },
+  {
+    "id": "python-16-1-q2",
+    "lessonId": "python-16-1",
+    "type": "choice",
+    "prompt": "직접 만든 mod1.py 파일 안의 함수를 다른 파일에서 쓰려면?",
+    "code": "# mod1.py\ndef greet():\n    print(\"안녕\")\n\n# main.py\nimport mod1\nmod1.greet()",
+    "language": "Python",
+    "options": [
+      "직접 만든 파일은 모듈로 가져올 수 없고 코드를 복사해야만 한다",
+      "import mod1.py 처럼 확장자까지 포함해서 써야 한다",
+      "함수 이름만 알면 import 없이 바로 호출할 수 있다",
+      "import mod1 처럼 파일 이름(확장자 제외)으로 불러온 뒤 mod1.함수이름() 형태로 쓴다"
+    ],
+    "answer": 3,
+    "explanation": "직접 작성한 .py 파일도 다른 모듈과 똑같이 import할 수 있어요. 파일 이름(확장자 .py 제외)을 그대로 모듈 이름처럼 써서 import하고, 그 안의 함수는 모듈이름.함수이름() 형태로 호출해요."
+  }
+]

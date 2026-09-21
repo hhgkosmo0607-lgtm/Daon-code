@@ -1,0 +1,34 @@
+[
+  {
+    "id": "python-5-1-q1",
+    "lessonId": "python-5-1",
+    "type": "choice",
+    "prompt": "point = (10, 20) 인 튜플에서 point[0] = 99 처럼 값을 바꾸려고 하면?",
+    "code": "point = (10, 20)\npoint[0] = 99  # ?",
+    "language": "Python",
+    "options": [
+      "정상적으로 99로 바뀐다",
+      "point가 리스트로 자동 변환되면서 바뀐다",
+      "TypeError가 발생한다 — 튜플은 불변(immutable)이라 요소를 바꿀 수 없다",
+      "아무 일도 일어나지 않고 조용히 무시된다"
+    ],
+    "answer": 2,
+    "explanation": "튜플은 한 번 만들어지면 내용을 바꿀 수 없어요. 값을 바꾸려고 시도하면 TypeError가 발생해요. 바꾸고 싶으면 새 튜플을 만들어서 재대입해야 해요."
+  },
+  {
+    "id": "python-5-1-q2",
+    "lessonId": "python-5-1",
+    "type": "choice",
+    "prompt": "x, y = (10, 20) 처럼 튜플을 변수 여러 개에 한 번에 나눠 담는 것을 무엇이라 하나?",
+    "code": "x, y = (10, 20)\nprint(x, y)",
+    "language": "Python",
+    "options": [
+      "튜플 캐스팅",
+      "튜플 슬라이싱",
+      "튜플 매핑",
+      "튜플 언패킹(unpacking)"
+    ],
+    "answer": 3,
+    "explanation": "언패킹은 튜플(또는 리스트)의 각 요소를 순서대로 변수에 나눠 담는 문법이에요. x, y = 10, 20 처럼 괄호 없이도 쓸 수 있고, 두 변수 값을 맞바꿀 때(a, b = b, a)도 자주 활용해요."
+  }
+]

@@ -227,6 +227,126 @@
       "stage": 20,
       "title": "자바 실무 컨벤션과 도구",
       "description": "신입 소양 — 네이밍, Javadoc, JVM/JDK/JRE, 빌드도구"
+    },
+    {
+      "trackId": "python",
+      "stage": 1,
+      "title": "변수와 자료형",
+      "description": "변수 선언, 숫자/문자열/불리언, type()"
+    },
+    {
+      "trackId": "python",
+      "stage": 2,
+      "title": "연산자",
+      "description": "산술/대입/비교/문자열 연산자"
+    },
+    {
+      "trackId": "python",
+      "stage": 3,
+      "title": "입출력",
+      "description": "input(), print() 서식"
+    },
+    {
+      "trackId": "python",
+      "stage": 4,
+      "title": "리스트",
+      "description": "순서 있는 가변 컬렉션"
+    },
+    {
+      "trackId": "python",
+      "stage": 5,
+      "title": "튜플",
+      "description": "순서 있는 불변 컬렉션"
+    },
+    {
+      "trackId": "python",
+      "stage": 6,
+      "title": "딕셔너리",
+      "description": "키-값 컬렉션"
+    },
+    {
+      "trackId": "python",
+      "stage": 7,
+      "title": "집합",
+      "description": "중복 없는 컬렉션"
+    },
+    {
+      "trackId": "python",
+      "stage": 8,
+      "title": "조건문",
+      "description": "if/elif/else, 중첩 if"
+    },
+    {
+      "trackId": "python",
+      "stage": 9,
+      "title": "while 반복문",
+      "description": "조건 기반 반복"
+    },
+    {
+      "trackId": "python",
+      "stage": 10,
+      "title": "for 반복문",
+      "description": "range, 컬렉션 순회, 중첩 for"
+    },
+    {
+      "trackId": "python",
+      "stage": 11,
+      "title": "break와 continue",
+      "description": "반복 제어"
+    },
+    {
+      "trackId": "python",
+      "stage": 12,
+      "title": "문자열",
+      "description": "f-string, 서식문자, format(), 문자열 메서드"
+    },
+    {
+      "trackId": "python",
+      "stage": 13,
+      "title": "날짜와 시간",
+      "description": "datetime 모듈"
+    },
+    {
+      "trackId": "python",
+      "stage": 14,
+      "title": "함수",
+      "description": "정의, 다중 반환값, 내장함수"
+    },
+    {
+      "trackId": "python",
+      "stage": 15,
+      "title": "람다",
+      "description": "람다식, map/filter/reduce"
+    },
+    {
+      "trackId": "python",
+      "stage": 16,
+      "title": "모듈",
+      "description": "import, 모듈 작성"
+    },
+    {
+      "trackId": "python",
+      "stage": 17,
+      "title": "클래스",
+      "description": "클래스 기본, 정보은닉, 클래스변수/정적메서드"
+    },
+    {
+      "trackId": "python",
+      "stage": 18,
+      "title": "파일 입출력",
+      "description": "open(), pickle"
+    },
+    {
+      "trackId": "python",
+      "stage": 19,
+      "title": "예외처리",
+      "description": "try-except, raise"
+    },
+    {
+      "trackId": "python",
+      "stage": 20,
+      "title": "파이썬다운 코드 스타일",
+      "description": "신입 소양 — PEP8, 컴프리헨션, 가상환경, 관용구"
     }
   ],
   "lessons": [
@@ -380,6 +500,44 @@
     { "trackId": "java", "id": "java-20-1", "stage": 20, "title": "네이밍 컨벤션", "orderNo": 1, "xpReward": 10 },
     { "trackId": "java", "id": "java-20-2", "stage": 20, "title": "Javadoc과 주석", "orderNo": 2, "xpReward": 10 },
     { "trackId": "java", "id": "java-20-3", "stage": 20, "title": "JVM, JDK, JRE", "orderNo": 3, "xpReward": 10 },
-    { "trackId": "java", "id": "java-20-4", "stage": 20, "title": "빌드 도구와 라이브러리 감각", "subtitle": "Maven/Gradle, 외부 라이브러리", "orderNo": 4, "xpReward": 10 }
+    { "trackId": "java", "id": "java-20-4", "stage": 20, "title": "빌드 도구와 라이브러리 감각", "subtitle": "Maven/Gradle, 외부 라이브러리", "orderNo": 4, "xpReward": 10 },
+    { "trackId": "python", "id": "python-1-1", "stage": 1, "title": "변수와 기본 자료형", "subtitle": "int/float/str/bool, type()", "orderNo": 1, "xpReward": 10 },
+    { "trackId": "python", "id": "python-2-1", "stage": 2, "title": "산술연산자", "orderNo": 1, "xpReward": 10 },
+    { "trackId": "python", "id": "python-2-2", "stage": 2, "title": "대입연산자", "orderNo": 2, "xpReward": 10 },
+    { "trackId": "python", "id": "python-2-3", "stage": 2, "title": "비교연산자와 형변환", "orderNo": 3, "xpReward": 10 },
+    { "trackId": "python", "id": "python-2-4", "stage": 2, "title": "문자열 연산자", "subtitle": "+ 와 * 사용", "orderNo": 4, "xpReward": 10 },
+    { "trackId": "python", "id": "python-3-1", "stage": 3, "title": "input()과 print()", "orderNo": 1, "xpReward": 10 },
+    { "trackId": "python", "id": "python-4-1", "stage": 4, "title": "리스트 기본", "subtitle": "생성, 인덱싱, 슬라이싱", "orderNo": 1, "xpReward": 10 },
+    { "trackId": "python", "id": "python-5-1", "stage": 5, "title": "튜플 기본", "subtitle": "리스트와의 차이", "orderNo": 1, "xpReward": 10 },
+    { "trackId": "python", "id": "python-6-1", "stage": 6, "title": "딕셔너리 기본", "subtitle": "key-value", "orderNo": 1, "xpReward": 10 },
+    { "trackId": "python", "id": "python-7-1", "stage": 7, "title": "집합 기본", "subtitle": "중복 제거, 집합 연산", "orderNo": 1, "xpReward": 10 },
+    { "trackId": "python", "id": "python-8-1", "stage": 8, "title": "if / elif / else", "orderNo": 1, "xpReward": 10 },
+    { "trackId": "python", "id": "python-8-2", "stage": 8, "title": "중첩 if문", "orderNo": 2, "xpReward": 10 },
+    { "trackId": "python", "id": "python-9-1", "stage": 9, "title": "while문 기본", "orderNo": 1, "xpReward": 10 },
+    { "trackId": "python", "id": "python-10-1", "stage": 10, "title": "for문 기본", "subtitle": "range()", "orderNo": 1, "xpReward": 10 },
+    { "trackId": "python", "id": "python-10-2", "stage": 10, "title": "for문 활용", "subtitle": "중첩, 실전 계산", "orderNo": 2, "xpReward": 10 },
+    { "trackId": "python", "id": "python-11-1", "stage": 11, "title": "반복 제어", "orderNo": 1, "xpReward": 10 },
+    { "trackId": "python", "id": "python-12-1", "stage": 12, "title": "f-string", "orderNo": 1, "xpReward": 10 },
+    { "trackId": "python", "id": "python-12-2", "stage": 12, "title": "서식문자", "subtitle": "%d %s %f", "orderNo": 2, "xpReward": 10 },
+    { "trackId": "python", "id": "python-12-3", "stage": 12, "title": "format() 함수", "orderNo": 3, "xpReward": 10 },
+    { "trackId": "python", "id": "python-12-4", "stage": 12, "title": "문자열 메서드", "subtitle": "replace 등", "orderNo": 4, "xpReward": 10 },
+    { "trackId": "python", "id": "python-13-1", "stage": 13, "title": "datetime 모듈", "orderNo": 1, "xpReward": 10 },
+    { "trackId": "python", "id": "python-14-1", "stage": 14, "title": "함수 기본", "subtitle": "def, 매개변수, 반환값", "orderNo": 1, "xpReward": 10 },
+    { "trackId": "python", "id": "python-14-2", "stage": 14, "title": "다중 반환값", "subtitle": "튜플 언패킹", "orderNo": 2, "xpReward": 10 },
+    { "trackId": "python", "id": "python-14-3", "stage": 14, "title": "내장함수", "subtitle": "import 없이 바로 쓰는 함수", "orderNo": 3, "xpReward": 10 },
+    { "trackId": "python", "id": "python-15-1", "stage": 15, "title": "람다식 기본", "orderNo": 1, "xpReward": 10 },
+    { "trackId": "python", "id": "python-15-2", "stage": 15, "title": "map, filter, reduce", "orderNo": 2, "xpReward": 10 },
+    { "trackId": "python", "id": "python-16-1", "stage": 16, "title": "import와 모듈 작성", "orderNo": 1, "xpReward": 10 },
+    { "trackId": "python", "id": "python-17-1", "stage": 17, "title": "클래스 기본", "subtitle": "__init__, self", "orderNo": 1, "xpReward": 10 },
+    { "trackId": "python", "id": "python-17-2", "stage": 17, "title": "정보은닉", "subtitle": "캡슐화", "orderNo": 2, "xpReward": 10 },
+    { "trackId": "python", "id": "python-17-3", "stage": 17, "title": "클래스변수와 정적메서드", "orderNo": 3, "xpReward": 10 },
+    { "trackId": "python", "id": "python-18-1", "stage": 18, "title": "open()으로 파일 다루기", "orderNo": 1, "xpReward": 10 },
+    { "trackId": "python", "id": "python-18-2", "stage": 18, "title": "pickle", "subtitle": "객체 직렬화", "orderNo": 2, "xpReward": 10 },
+    { "trackId": "python", "id": "python-19-1", "stage": 19, "title": "try-except 기본", "orderNo": 1, "xpReward": 10 },
+    { "trackId": "python", "id": "python-19-2", "stage": 19, "title": "직접 예외 발생시키기", "subtitle": "raise", "orderNo": 2, "xpReward": 10 },
+    { "trackId": "python", "id": "python-20-1", "stage": 20, "title": "PEP8과 네이밍 컨벤션", "orderNo": 1, "xpReward": 10 },
+    { "trackId": "python", "id": "python-20-2", "stage": 20, "title": "리스트 컴프리헨션", "orderNo": 2, "xpReward": 10 },
+    { "trackId": "python", "id": "python-20-3", "stage": 20, "title": "가상환경과 패키지 관리", "subtitle": "venv, pip", "orderNo": 3, "xpReward": 10 },
+    { "trackId": "python", "id": "python-20-4", "stage": 20, "title": "자주 쓰는 관용구", "subtitle": "enumerate, zip, 언패킹", "orderNo": 4, "xpReward": 10 }
   ]
 }

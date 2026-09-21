@@ -1,0 +1,34 @@
+[
+  {
+    "id": "python-11-1-q1",
+    "lessonId": "python-11-1",
+    "type": "choice",
+    "prompt": "1부터 20까지 숫자 중 홀수만 출력하려고 continue를 쓸 때, 올바른 조건은?",
+    "code": "for i in range(1, 21):\n    if i % 2 == 0:\n        continue\n    print(i)",
+    "language": "Python",
+    "options": [
+      "홀수일 때 continue로 건너뛴다",
+      "continue 대신 반드시 break를 써야 한다",
+      "continue는 숫자 필터링에는 쓸 수 없다",
+      "짝수(i % 2 == 0)일 때 continue로 건너뛰고, 나머지(홀수)만 출력한다"
+    ],
+    "answer": 3,
+    "explanation": "continue는 그 회차의 나머지 코드를 건너뛰고 다음 반복으로 넘어가요. 짝수일 때 continue로 print를 건너뛰면, 결과적으로 홀수만 출력에 도달하게 돼요."
+  },
+  {
+    "id": "python-11-1-q2",
+    "lessonId": "python-11-1",
+    "type": "choice",
+    "prompt": "반복문 안에서 break를 만나면 어떻게 될까?",
+    "code": "for i in range(10):\n    if i == 5:\n        break\n    print(i)",
+    "language": "Python",
+    "options": [
+      "그 반복문을 즉시 완전히 빠져나간다 (0~4만 출력)",
+      "그 회차만 건너뛰고 다음 반복을 계속한다",
+      "프로그램 전체가 종료된다",
+      "break는 파이썬에서 지원하지 않는 키워드다"
+    ],
+    "answer": 0,
+    "explanation": "break는 반복문 자체를 즉시 끝내고 빠져나가요. i가 5가 되는 순간 break가 실행돼서 0부터 4까지만 출력되고 반복문을 벗어나요."
+  }
+]

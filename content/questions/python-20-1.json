@@ -1,0 +1,32 @@
+[
+  {
+    "id": "python-20-1-q1",
+    "lessonId": "python-20-1",
+    "type": "choice",
+    "prompt": "PEP8(파이썬 공식 스타일 가이드)에서 권장하는 변수·함수 이름 표기법은?",
+    "code": "user_name = \"철수\"  # snake_case\ndef get_user_info():  # snake_case\n    pass",
+    "language": "Python",
+    "options": [
+      "camelCase (예: userName)",
+      "snake_case (단어 사이를 언더스코어로, 예: user_name)",
+      "PascalCase (예: UserName)",
+      "kebab-case (예: user-name)"
+    ],
+    "answer": 1,
+    "explanation": "자바/자바스크립트는 camelCase를 쓰지만, 파이썬은 PEP8에서 변수와 함수 이름에 snake_case를 권장해요. 클래스 이름만 예외적으로 PascalCase(예: UserAccount)를 써요."
+  },
+  {
+    "id": "python-20-1-q2",
+    "lessonId": "python-20-1",
+    "type": "choice",
+    "prompt": "PEP8이 규정하는 것으로 가장 적절한 것은?",
+    "options": [
+      "파이썬 문법 자체를 바꾸는 새로운 키워드 목록",
+      "파이썬 실행 속도를 강제로 높이는 컴파일 옵션",
+      "들여쓰기 칸 수, 한 줄 최대 길이, 네이밍 규칙 같은 코드 스타일 컨벤션",
+      "설치 가능한 외부 라이브러리 전체 목록"
+    ],
+    "answer": 2,
+    "explanation": "PEP8은 파이썬 코드를 어떻게 스타일링할지에 대한 공식 가이드예요(들여쓰기는 스페이스 4칸, 한 줄은 79자 이내 권장, snake_case 사용 등). 지키지 않아도 실행은 되지만, 팀 협업과 가독성을 위해 널리 따르는 관례예요."
+  }
+]

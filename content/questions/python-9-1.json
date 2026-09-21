@@ -1,0 +1,34 @@
+[
+  {
+    "id": "python-9-1-q1",
+    "lessonId": "python-9-1",
+    "type": "choice",
+    "prompt": "다음 while문은 몇 번 반복될까?",
+    "code": "i = 0\nwhile i < 3:\n    print(i)\n    i += 1",
+    "language": "Python",
+    "options": [
+      "4번",
+      "3번 (0, 1, 2 출력)",
+      "무한 반복",
+      "0번"
+    ],
+    "answer": 1,
+    "explanation": "i가 0, 1, 2일 때 조건(i < 3)이 참이라 실행되고, i가 3이 되면 조건이 거짓이 되어 멈춰요. 총 3번 실행돼요."
+  },
+  {
+    "id": "python-9-1-q2",
+    "lessonId": "python-9-1",
+    "type": "choice",
+    "prompt": "while문에서 반복을 멈추는 조건을 관리하는 변수(i += 1 같은 증감)를 깜빡하면 어떤 문제가 생기나?",
+    "code": "i = 0\nwhile i < 3:\n    print(i)\n    # i += 1 을 깜빡함",
+    "language": "Python",
+    "options": [
+      "자동으로 한 번만 실행되고 멈춘다",
+      "파이썬이 자동으로 증감을 추가해서 정상 실행된다",
+      "조건이 영원히 참으로 남아서 무한 루프에 빠진다",
+      "SyntaxError가 발생해서 실행 자체가 안 된다"
+    ],
+    "answer": 2,
+    "explanation": "while은 for와 달리 반복 횟수를 스스로 관리하지 않아서, 조건을 바꿔줄 코드(i += 1 등)를 직접 안에 넣어야 해요. 안 넣으면 조건이 계속 참으로 남아 무한 루프에 빠져요."
+  }
+]

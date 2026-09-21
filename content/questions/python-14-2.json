@@ -1,0 +1,34 @@
+[
+  {
+    "id": "python-14-2-q1",
+    "lessonId": "python-14-2",
+    "type": "choice",
+    "prompt": "def min_max(nums): return min(nums), max(nums) 처럼 콤마로 여러 값을 return하면?",
+    "code": "def min_max(nums):\n    return min(nums), max(nums)\n\nresult = min_max([3, 1, 4, 1, 5])\nprint(result)",
+    "language": "Python",
+    "options": [
+      "첫 번째 값만 반환되고 두 번째 값은 버려진다",
+      "SyntaxError가 발생한다 — return은 값을 하나만 반환할 수 있다",
+      "두 값이 튜플로 묶여서 하나로 반환된다",
+      "두 개의 별도 반환문으로 나눠서 함수가 두 번 실행된다"
+    ],
+    "answer": 2,
+    "explanation": "파이썬은 return 뒤에 콤마로 여러 값을 나열하면 자동으로 튜플로 묶어서 반환해요. 자바처럼 값을 하나만 반환할 수 있는 게 아니라, 이렇게 여러 값을 한 번에 돌려줄 수 있어요."
+  },
+  {
+    "id": "python-14-2-q2",
+    "lessonId": "python-14-2",
+    "type": "choice",
+    "prompt": "small, big = min_max([3, 1, 4]) 처럼 여러 반환값을 변수 여러 개로 한 번에 받는 방식은?",
+    "code": "def min_max(nums):\n    return min(nums), max(nums)\n\nsmall, big = min_max([3, 1, 4])\nprint(small, big)",
+    "language": "Python",
+    "options": [
+      "반환값 복제 — 두 변수 모두 같은 값을 받는다",
+      "에러가 발생한다 — 변수는 하나씩만 대입받을 수 있다",
+      "첫 번째 변수(small)에만 값이 들어가고 big은 None이 된다",
+      "튜플 언패킹 — 반환된 튜플의 각 요소를 순서대로 변수에 나눠 담는다"
+    ],
+    "answer": 3,
+    "explanation": "함수가 튜플을 반환하면, 받는 쪽에서 변수 여러 개로 그대로 언패킹해서 각각 나눠 담을 수 있어요. 변수 개수와 튜플 요소 개수가 맞아야 해요."
+  }
+]

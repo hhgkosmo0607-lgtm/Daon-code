@@ -1,0 +1,50 @@
+[
+  {
+    "id": "python-6-1-q1",
+    "lessonId": "python-6-1",
+    "type": "choice",
+    "prompt": "person = {\"name\": \"철수\", \"age\": 20}; person[\"age\"]의 결과는?",
+    "code": "person = {\"name\": \"철수\", \"age\": 20}\nprint(person[\"age\"])",
+    "language": "Python",
+    "options": [
+      "20",
+      "\"age\"",
+      "\"철수\"",
+      "에러가 발생한다"
+    ],
+    "answer": 0,
+    "explanation": "딕셔너리는 키(key)로 값을 찾아요. person[\"age\"]는 \"age\"라는 키에 대응하는 값 20을 돌려줘요."
+  },
+  {
+    "id": "python-6-1-q2",
+    "lessonId": "python-6-1",
+    "type": "choice",
+    "prompt": "존재하지 않는 키로 딕셔너리에 접근하면(person[\"height\"]) 어떻게 될까?",
+    "code": "person = {\"name\": \"철수\"}\nprint(person[\"height\"])  # ?",
+    "language": "Python",
+    "options": [
+      "None이 반환된다",
+      "KeyError가 발생한다",
+      "자동으로 0이 반환된다",
+      "빈 문자열이 반환된다"
+    ],
+    "answer": 1,
+    "explanation": "대괄호로 없는 키에 접근하면 KeyError가 나요. 에러 없이 안전하게 조회하려면 person.get(\"height\")를 쓰면 되는데, 이건 키가 없으면 에러 대신 None(또는 지정한 기본값)을 돌려줘요."
+  },
+  {
+    "id": "python-6-1-q3",
+    "lessonId": "python-6-1",
+    "type": "choice",
+    "prompt": "딕셔너리에 새로운 키-값을 추가하고 싶을 때는?",
+    "code": "person = {\"name\": \"철수\"}\nperson[\"age\"] = 20\nprint(person)",
+    "language": "Python",
+    "options": [
+      "딕셔너리는 한 번 만들면 키를 추가할 수 없다",
+      "person.append(\"age\", 20) 을 호출해야 한다",
+      "person[\"age\"] = 20 처럼 새 키에 값을 대입하면 자동으로 추가된다",
+      "딕셔너리를 다시 새로 만들어야만 키를 추가할 수 있다"
+    ],
+    "answer": 2,
+    "explanation": "리스트의 append()와 달리, 딕셔너리는 그냥 새 키에 값을 대입하기만 하면 그 키-값 쌍이 자동으로 추가돼요. 이미 있는 키면 값이 덮어써져요."
+  }
+]
