@@ -347,6 +347,60 @@
       "stage": 20,
       "title": "파이썬다운 코드 스타일",
       "description": "신입 소양 — PEP8, 컴프리헨션, 가상환경, 관용구"
+    },
+    {
+      "trackId": "html",
+      "stage": 1,
+      "title": "HTML 문서의 기본 구조",
+      "description": "doctype, html/head/body, meta 태그"
+    },
+    {
+      "trackId": "html",
+      "stage": 2,
+      "title": "시맨틱 태그",
+      "description": "header/nav/section/article/aside/footer"
+    },
+    {
+      "trackId": "html",
+      "stage": 3,
+      "title": "테이블",
+      "description": "table/tr/td/th, rowspan/colspan"
+    },
+    {
+      "trackId": "html",
+      "stage": 4,
+      "title": "폼 기초",
+      "description": "form 태그와 method(GET/POST)"
+    },
+    {
+      "trackId": "html",
+      "stage": 5,
+      "title": "폼 입력 요소",
+      "description": "input type, button, label"
+    },
+    {
+      "trackId": "html",
+      "stage": 6,
+      "title": "멀티미디어",
+      "description": "video, audio 태그"
+    },
+    {
+      "trackId": "html",
+      "stage": 7,
+      "title": "iframe",
+      "description": "문서 안에 다른 문서 삽입하기"
+    },
+    {
+      "trackId": "html",
+      "stage": 8,
+      "title": "전역 속성",
+      "description": "id, class, data-*, tabindex"
+    },
+    {
+      "trackId": "html",
+      "stage": 9,
+      "title": "웹 표준과 접근성",
+      "description": "신입 소양 — alt, aria, 시맨틱을 쓰는 이유"
     }
   ],
   "lessons": [
@@ -538,6 +592,20 @@
     { "trackId": "python", "id": "python-20-1", "stage": 20, "title": "PEP8과 네이밍 컨벤션", "orderNo": 1, "xpReward": 10 },
     { "trackId": "python", "id": "python-20-2", "stage": 20, "title": "리스트 컴프리헨션", "orderNo": 2, "xpReward": 10 },
     { "trackId": "python", "id": "python-20-3", "stage": 20, "title": "가상환경과 패키지 관리", "subtitle": "venv, pip", "orderNo": 3, "xpReward": 10 },
-    { "trackId": "python", "id": "python-20-4", "stage": 20, "title": "자주 쓰는 관용구", "subtitle": "enumerate, zip, 언패킹", "orderNo": 4, "xpReward": 10 }
+    { "trackId": "python", "id": "python-20-4", "stage": 20, "title": "자주 쓰는 관용구", "subtitle": "enumerate, zip, 언패킹", "orderNo": 4, "xpReward": 10 },
+    { "trackId": "html", "id": "html-1-1", "stage": 1, "title": "HTML 문서의 기본 골격", "subtitle": "doctype, html/head/body", "orderNo": 1, "xpReward": 10 },
+    { "trackId": "html", "id": "html-1-2", "stage": 1, "title": "head 안의 메타 태그", "subtitle": "meta charset, viewport", "orderNo": 2, "xpReward": 10 },
+    { "trackId": "html", "id": "html-2-1", "stage": 2, "title": "시맨틱 태그란", "subtitle": "div만 쓰는 것과의 차이", "orderNo": 1, "xpReward": 10 },
+    { "trackId": "html", "id": "html-2-2", "stage": 2, "title": "시맨틱 태그 종류", "subtitle": "header/nav/section/article/aside/footer", "orderNo": 2, "xpReward": 10 },
+    { "trackId": "html", "id": "html-3-1", "stage": 3, "title": "테이블 기본과 셀 병합", "subtitle": "table/tr/td/th, rowspan/colspan", "orderNo": 1, "xpReward": 10 },
+    { "trackId": "html", "id": "html-4-1", "stage": 4, "title": "form 태그와 전송 방식", "subtitle": "action, method(GET/POST)", "orderNo": 1, "xpReward": 10 },
+    { "trackId": "html", "id": "html-5-1", "stage": 5, "title": "텍스트·파일류 입력", "subtitle": "text, password, hidden, file", "orderNo": 1, "xpReward": 10 },
+    { "trackId": "html", "id": "html-5-2", "stage": 5, "title": "선택형 입력과 버튼", "subtitle": "checkbox, radio, submit, button, label", "orderNo": 2, "xpReward": 10 },
+    { "trackId": "html", "id": "html-6-1", "stage": 6, "title": "video와 audio 태그", "subtitle": "controls, autoplay", "orderNo": 1, "xpReward": 10 },
+    { "trackId": "html", "id": "html-7-1", "stage": 7, "title": "iframe으로 다른 문서 삽입하기", "orderNo": 1, "xpReward": 10 },
+    { "trackId": "html", "id": "html-8-1", "stage": 8, "title": "id와 class", "subtitle": "스타일링과 스크립트 접근용", "orderNo": 1, "xpReward": 10 },
+    { "trackId": "html", "id": "html-8-2", "stage": 8, "title": "data 속성과 tabindex", "subtitle": "data-*, 키보드 접근성", "orderNo": 2, "xpReward": 10 },
+    { "trackId": "html", "id": "html-9-1", "stage": 9, "title": "대체 텍스트와 접근성", "subtitle": "alt 속성, 스크린리더", "orderNo": 1, "xpReward": 10 },
+    { "trackId": "html", "id": "html-9-2", "stage": 9, "title": "시맨틱과 SEO", "subtitle": "시맨틱 태그가 검색엔진에 미치는 영향", "orderNo": 2, "xpReward": 10 }
   ]
 }

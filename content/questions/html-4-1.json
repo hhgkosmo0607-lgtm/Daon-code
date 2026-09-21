@@ -1,0 +1,32 @@
+[
+  {
+    "id": "html-4-1-q1",
+    "lessonId": "html-4-1",
+    "type": "choice",
+    "prompt": "<form method=\"get\">과 <form method=\"post\">의 가장 중요한 차이는?",
+    "code": "<form action=\"/search\" method=\"get\">\n  <input type=\"text\" name=\"keyword\">\n</form>",
+    "language": "HTML",
+    "options": [
+      "GET은 입력값이 주소창 URL에 그대로 노출되고, POST는 요청 본문(body)에 담겨서 URL에 안 보인다",
+      "GET과 POST는 이름만 다를 뿐 동작 방식은 완전히 같다",
+      "POST는 텍스트만, GET은 파일만 전송할 수 있다",
+      "GET은 서버로 전송이 안 되고 화면에만 표시된다"
+    ],
+    "answer": 0,
+    "explanation": "GET으로 전송하면 입력값이 ?keyword=검색어 처럼 URL에 그대로 붙어서 주소창에 노출돼요. 검색처럼 노출돼도 되는 값에 적합해요. POST는 값이 요청 본문에 담겨서 URL에 노출되지 않아, 비밀번호나 개인정보 전송에는 POST를 써요."
+  },
+  {
+    "id": "html-4-1-q2",
+    "lessonId": "html-4-1",
+    "type": "choice",
+    "prompt": "<form action=\"/submit\" method=\"post\"> 에서 action 속성의 역할은?",
+    "options": [
+      "폼 전체의 배경색을 지정한다",
+      "입력된 값을 전송할 서버 경로를 지정한다",
+      "폼 제출 성공 시 보여줄 완료 메시지를 지정한다",
+      "폼 안의 입력창 개수를 제한한다"
+    ],
+    "answer": 1,
+    "explanation": "action은 폼을 제출(submit)했을 때 입력값을 어디로(어떤 서버 경로로) 보낼지 지정해요. 비워두면 현재 페이지 자신에게 제출돼요."
+  }
+]

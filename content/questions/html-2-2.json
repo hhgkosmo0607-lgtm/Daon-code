@@ -1,0 +1,50 @@
+[
+  {
+    "id": "html-2-2-q1",
+    "lessonId": "html-2-2",
+    "type": "choice",
+    "prompt": "페이지 전체에서 반복되는 메뉴 링크 묶음을 감쌀 때 가장 적절한 시맨틱 태그는?",
+    "code": "<nav>\n  <a href=\"/\">홈</a>\n  <a href=\"/about\">소개</a>\n</nav>",
+    "language": "HTML",
+    "options": [
+      "<aside>",
+      "<article>",
+      "<nav>",
+      "<footer>"
+    ],
+    "answer": 2,
+    "explanation": "<nav>는 내비게이션(이동 메뉴) 링크 묶음을 감싸는 시맨틱 태그예요. 사이트 전체 메뉴, 페이지 내 목차 등에 써요."
+  },
+  {
+    "id": "html-2-2-q2",
+    "lessonId": "html-2-2",
+    "type": "choice",
+    "prompt": "블로그 글 하나처럼, 그 자체로 독립적으로 의미가 통하는 콘텐츠 덩어리를 감쌀 때 쓰는 태그는?",
+    "code": "<article>\n  <h2>오늘의 회고</h2>\n  <p>본문 내용...</p>\n</article>",
+    "language": "HTML",
+    "options": [
+      "<aside>",
+      "<nav>",
+      "<header>",
+      "<article>"
+    ],
+    "answer": 3,
+    "explanation": "<article>은 블로그 포스트, 뉴스 기사처럼 다른 곳에 떼어놓아도 그 자체로 독립적인 의미를 갖는 콘텐츠에 써요. 사이드바처럼 본문과 부차적으로 관련된 내용은 <aside>를 써요."
+  },
+  {
+    "id": "html-2-2-q3",
+    "lessonId": "html-2-2",
+    "type": "choice",
+    "prompt": "본문과 직접 관련은 없지만 곁다리로 보여줄 정보(광고, 관련 링크 등)를 감쌀 때 쓰는 태그는?",
+    "code": "<aside>\n  <p>광고 영역</p>\n</aside>",
+    "language": "HTML",
+    "options": [
+      "<aside>",
+      "<main>",
+      "<article>",
+      "<section>"
+    ],
+    "answer": 0,
+    "explanation": "<aside>는 본문 흐름에서 살짝 벗어난 부차적인 내용(사이드바, 광고, 관련 글 목록 등)을 감쌀 때 써요."
+  }
+]

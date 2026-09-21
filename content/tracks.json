@@ -23,5 +23,10 @@
     "id": "python",
     "label": "파이썬 기초",
     "description": "파이썬 문법 기초부터 파이썬다운 코드 스타일까지"
+  },
+  {
+    "id": "html",
+    "label": "HTML 기초",
+    "description": "문서 구조부터 폼, 시맨틱 태그, 웹 접근성까지"
   }
 ]

@@ -188,6 +188,20 @@ import questionsPython20_1 from '../../../content/questions/python-20-1.json';
 import questionsPython20_2 from '../../../content/questions/python-20-2.json';
 import questionsPython20_3 from '../../../content/questions/python-20-3.json';
 import questionsPython20_4 from '../../../content/questions/python-20-4.json';
+import questionsHtml1_1 from '../../../content/questions/html-1-1.json';
+import questionsHtml1_2 from '../../../content/questions/html-1-2.json';
+import questionsHtml2_1 from '../../../content/questions/html-2-1.json';
+import questionsHtml2_2 from '../../../content/questions/html-2-2.json';
+import questionsHtml3_1 from '../../../content/questions/html-3-1.json';
+import questionsHtml4_1 from '../../../content/questions/html-4-1.json';
+import questionsHtml5_1 from '../../../content/questions/html-5-1.json';
+import questionsHtml5_2 from '../../../content/questions/html-5-2.json';
+import questionsHtml6_1 from '../../../content/questions/html-6-1.json';
+import questionsHtml7_1 from '../../../content/questions/html-7-1.json';
+import questionsHtml8_1 from '../../../content/questions/html-8-1.json';
+import questionsHtml8_2 from '../../../content/questions/html-8-2.json';
+import questionsHtml9_1 from '../../../content/questions/html-9-1.json';
+import questionsHtml9_2 from '../../../content/questions/html-9-2.json';
 
 import type { Lesson, Question, Stage, Track } from '../domain/types';
 
@@ -392,6 +406,20 @@ const QUESTION_BANK: Record<string, unknown> = {
   'python-20-2': questionsPython20_2,
   'python-20-3': questionsPython20_3,
   'python-20-4': questionsPython20_4,
+  'html-1-1': questionsHtml1_1,
+  'html-1-2': questionsHtml1_2,
+  'html-2-1': questionsHtml2_1,
+  'html-2-2': questionsHtml2_2,
+  'html-3-1': questionsHtml3_1,
+  'html-4-1': questionsHtml4_1,
+  'html-5-1': questionsHtml5_1,
+  'html-5-2': questionsHtml5_2,
+  'html-6-1': questionsHtml6_1,
+  'html-7-1': questionsHtml7_1,
+  'html-8-1': questionsHtml8_1,
+  'html-8-2': questionsHtml8_2,
+  'html-9-1': questionsHtml9_1,
+  'html-9-2': questionsHtml9_2,
 };
 
 /** 기본 트랙 — 온보딩/배치고사 등 트랙을 아직 명시하지 않은 기존 화면이 쓰는 값 */

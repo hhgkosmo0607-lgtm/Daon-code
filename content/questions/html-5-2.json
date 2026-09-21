@@ -1,0 +1,50 @@
+[
+  {
+    "id": "html-5-2-q1",
+    "lessonId": "html-5-2",
+    "type": "choice",
+    "prompt": "체크박스(checkbox)와 라디오버튼(radio)의 가장 중요한 차이는?",
+    "code": "<!-- 체크박스: 여러 개 동시 선택 가능 -->\n<input type=\"checkbox\" name=\"hobby\" value=\"game\"> 게임\n<input type=\"checkbox\" name=\"hobby\" value=\"read\"> 독서\n\n<!-- 라디오: name이 같으면 하나만 선택 가능 -->\n<input type=\"radio\" name=\"gender\" value=\"m\"> 남\n<input type=\"radio\" name=\"gender\" value=\"f\"> 여",
+    "language": "HTML",
+    "options": [
+      "라디오버튼은 여러 개 선택 가능하고 체크박스는 하나만 선택된다",
+      "체크박스는 여러 개를 동시에 선택할 수 있고, 같은 name의 라디오버튼은 하나만 선택된다",
+      "체크박스와 라디오버튼은 겉모양만 다를 뿐 동작은 완전히 같다",
+      "라디오버튼은 텍스트만, 체크박스는 숫자만 값으로 가질 수 있다"
+    ],
+    "answer": 1,
+    "explanation": "체크박스는 취미처럼 여러 개를 동시에 고를 수 있는 항목에, 라디오버튼은 성별처럼 하나만 골라야 하는 항목에 써요. 라디오버튼은 같은 name 값을 가진 것들끼리 그룹으로 묶여서, 그 그룹 안에서 하나만 선택되게 동작해요."
+  },
+  {
+    "id": "html-5-2-q2",
+    "lessonId": "html-5-2",
+    "type": "choice",
+    "prompt": "<label for=\"email\">이메일</label> <input id=\"email\" type=\"text\"> 처럼 label의 for와 input의 id를 연결하면 얻는 효과는?",
+    "code": "<label for=\"email\">이메일</label>\n<input id=\"email\" type=\"text\">",
+    "language": "HTML",
+    "options": [
+      "label과 input을 연결하면 자동으로 값이 채워진다",
+      "for 속성이 없으면 input이 화면에 표시되지 않는다",
+      "라벨 텍스트를 클릭해도 연결된 입력창에 포커스가 가게 만들 수 있다",
+      "라벨과 입력창의 글자 색이 자동으로 같아진다"
+    ],
+    "answer": 2,
+    "explanation": "label의 for 속성과 input의 id를 같은 값으로 연결하면, 라벨 텍스트를 클릭했을 때도 입력창(또는 체크박스)이 선택돼요. 클릭 가능한 영역이 넓어져서 사용성과 접근성이 좋아져요."
+  },
+  {
+    "id": "html-5-2-q3",
+    "lessonId": "html-5-2",
+    "type": "choice",
+    "prompt": "<input type=\"submit\">과 <input type=\"button\">의 차이는?",
+    "code": "<input type=\"submit\" value=\"전송\">\n<input type=\"button\" value=\"클릭\">",
+    "language": "HTML",
+    "options": [
+      "button은 항상 폼을 제출하고, submit은 아무 동작이 없다",
+      "둘 다 완전히 같은 기본 동작을 한다",
+      "submit은 파일 첨부용, button은 텍스트 입력용 버튼이다",
+      "submit은 눌렀을 때 폼을 서버로 제출하고, button은 아무 기본 동작이 없어서 자바스크립트로 직접 동작을 지정해야 한다"
+    ],
+    "answer": 3,
+    "explanation": "submit 버튼은 클릭하면 자기가 속한 <form>을 자동으로 제출해요. button은 특별한 기본 동작이 없어서, 뭔가 하게 하려면 자바스크립트 이벤트를 따로 연결해야 해요."
+  }
+]
