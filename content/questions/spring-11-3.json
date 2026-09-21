@@ -1,0 +1,46 @@
+[
+  {
+    "id": "spring-11-3-q1",
+    "lessonId": "spring-11-3",
+    "type": "choice",
+    "prompt": "PageRequest.of(0, 10)이 의미하는 것은?",
+    "code": "Pageable pageable = PageRequest.of(0, 10);\nPage<Member> page = repo.findAll(pageable);",
+    "language": "Java",
+    "options": [
+      "10번째 페이지를 0건씩",
+      "0번째 행부터 10번째 행 삭제",
+      "첫 번째 페이지(0부터 시작)를 한 페이지에 10건씩",
+      "페이지 크기 0, 개수 10"
+    ],
+    "answer": 2,
+    "explanation": "JPA의 페이지 번호는 0부터 시작해요. 사용자에게 보여 주는 1페이지는 코드에서 0이에요."
+  },
+  {
+    "id": "spring-11-3-q2",
+    "lessonId": "spring-11-3",
+    "type": "choice",
+    "prompt": "Page<T> 결과에서 전체 페이지 수를 얻는 메서드는?",
+    "options": [
+      "getPages()",
+      "size()",
+      "getLength()",
+      "getTotalPages()"
+    ],
+    "answer": 3,
+    "explanation": "getContent()는 현재 페이지의 데이터, getTotalElements()는 전체 건수, getTotalPages()는 전체 페이지 수를 돌려줘요."
+  },
+  {
+    "id": "spring-11-3-q3",
+    "lessonId": "spring-11-3",
+    "type": "choice",
+    "prompt": "목록을 페이지 단위로 나눠 가져오는 이유는?",
+    "options": [
+      "한 번에 모든 데이터를 읽어 오지 않아 응답 속도와 메모리 사용을 줄이기 위해",
+      "SQL 문법상 반드시 필요해서",
+      "데이터를 암호화하기 위해",
+      "중복 데이터를 제거하기 위해"
+    ],
+    "answer": 0,
+    "explanation": "수만 건을 한 번에 조회하면 느리고 화면도 감당하지 못해요. 필요한 만큼만 가져오는 게 기본이에요."
+  }
+]

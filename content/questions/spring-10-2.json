@@ -1,0 +1,46 @@
+[
+  {
+    "id": "spring-10-2-q1",
+    "lessonId": "spring-10-2",
+    "type": "choice",
+    "prompt": "REST에서 HTTP 메서드의 일반적인 의미로 맞는 것은?",
+    "options": [
+      "GET 조회, POST 생성, PUT 전체 수정, DELETE 삭제",
+      "GET 삭제, POST 조회, PUT 생성, DELETE 수정",
+      "GET 생성, POST 삭제, PUT 조회, DELETE 수정",
+      "모든 요청은 POST로 통일하는 것이 표준이다"
+    ],
+    "answer": 0,
+    "explanation": "메서드로 동작의 의미를 표현하고 URL은 자원(/boards/5)을 나타내요. GET은 서버 상태를 바꾸지 않아야 해요."
+  },
+  {
+    "id": "spring-10-2-q2",
+    "lessonId": "spring-10-2",
+    "type": "choice",
+    "prompt": "새 자원을 성공적으로 만들었을 때 REST API가 돌려주는 적절한 상태 코드는?",
+    "code": "return ResponseEntity.status(HttpStatus.CREATED).body(saved);",
+    "language": "Java",
+    "options": [
+      "200 OK만 써야 한다",
+      "201 Created",
+      "404 Not Found",
+      "500 Internal Server Error"
+    ],
+    "answer": 1,
+    "explanation": "생성은 201, 조회 성공은 200, 잘못된 요청은 400, 없는 자원은 404, 서버 오류는 500이에요. ResponseEntity로 상태 코드를 지정해요."
+  },
+  {
+    "id": "spring-10-2-q3",
+    "lessonId": "spring-10-2",
+    "type": "choice",
+    "prompt": "존재하지 않는 게시글 id로 조회 요청이 왔을 때 API의 바람직한 응답은?",
+    "options": [
+      "200 OK와 빈 화면",
+      "항상 500 오류",
+      "404 상태 코드와 이유를 알려 주는 오류 응답 본문",
+      "아무 응답 없이 연결을 끊는다"
+    ],
+    "answer": 2,
+    "explanation": "상태 코드로 결과를 구분해야 클라이언트가 성공/실패를 정확히 판단할 수 있어요. 성공(200)이라고 응답하고 본문에만 실패를 적으면 혼란스러워요."
+  }
+]

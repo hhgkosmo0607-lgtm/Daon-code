@@ -1,0 +1,48 @@
+[
+  {
+    "id": "spring-10-1-q1",
+    "lessonId": "spring-10-1",
+    "type": "choice",
+    "prompt": "@RequestBody의 역할은?",
+    "code": "@PostMapping(\"/api/boards\")\npublic BoardDTO write(@RequestBody BoardDTO dto) { ... }",
+    "language": "Java",
+    "options": [
+      "응답 객체를 JSON으로 변환한다",
+      "요청 본문의 JSON을 자바 객체로 변환해서 매개변수에 담는다",
+      "요청 URL의 경로 변수를 읽는다",
+      "요청 헤더를 삭제한다"
+    ],
+    "answer": 1,
+    "explanation": "@RequestBody는 요청(JSON → 객체), @ResponseBody(또는 @RestController)는 응답(객체 → JSON) 방향이에요."
+  },
+  {
+    "id": "spring-10-1-q2",
+    "lessonId": "spring-10-1",
+    "type": "choice",
+    "prompt": "@RestController 메서드가 객체를 반환하면?",
+    "options": [
+      "같은 이름의 뷰 템플릿을 찾는다",
+      "항상 500 오류가 난다",
+      "메시지 컨버터(Jackson)가 JSON으로 변환해 응답 본문으로 보낸다",
+      "객체의 toString() 결과만 HTML로 나간다"
+    ],
+    "answer": 2,
+    "explanation": "뷰 이름 해석이 아니라 데이터 자체를 응답해요. 화면을 서버가 그리지 않고 프런트엔드(React 등)가 이 JSON을 받아 그려요."
+  },
+  {
+    "id": "spring-10-1-q3",
+    "lessonId": "spring-10-1",
+    "type": "choice",
+    "prompt": "프런트엔드(React 등)가 다른 주소(포트)의 스프링 API를 호출할 때 브라우저가 막는 것을 허용해 주는 설정은?",
+    "code": "registry.addMapping(\"/api/**\")\n        .allowedOrigins(\"http://localhost:5173\")\n        .allowedMethods(\"GET\", \"POST\", \"PUT\", \"DELETE\");",
+    "language": "Java",
+    "options": [
+      "CSRF 토큰 발급",
+      "JPA 캐시 설정",
+      "Thymeleaf 레이아웃 설정",
+      "CORS 설정 (허용할 출처 지정)"
+    ],
+    "answer": 3,
+    "explanation": "서버가 응답 헤더로 \"이 출처는 허용한다\"고 알려 줘야 브라우저가 응답을 프런트 코드에 넘겨줘요. WebMvcConfigurer의 addCorsMappings로 설정해요."
+  }
+]

@@ -719,6 +719,84 @@
       "stage": 12,
       "title": "신입 소양",
       "description": "신입 소양 — 흔한 실수, 컴포넌트 설계, 보안과 배포"
+    },
+    {
+      "trackId": "spring",
+      "stage": 1,
+      "title": "스프링 부트 시작하기",
+      "description": "MVC 흐름, IoC 컨테이너, 프로젝트 구조"
+    },
+    {
+      "trackId": "spring",
+      "stage": 2,
+      "title": "컨트롤러와 뷰",
+      "description": "@Controller, Model, Thymeleaf"
+    },
+    {
+      "trackId": "spring",
+      "stage": 3,
+      "title": "요청 파라미터와 폼",
+      "description": "@RequestParam, @PathVariable, DTO 바인딩, redirect"
+    },
+    {
+      "trackId": "spring",
+      "stage": 4,
+      "title": "DI와 빈",
+      "description": "@Component, @Bean, @Autowired, 생성자 주입"
+    },
+    {
+      "trackId": "spring",
+      "stage": 5,
+      "title": "JdbcTemplate",
+      "description": "쿼리 실행과 파라미터 바인딩"
+    },
+    {
+      "trackId": "spring",
+      "stage": 6,
+      "title": "MyBatis",
+      "description": "매퍼 XML, #{} vs ${}, 동적 SQL"
+    },
+    {
+      "trackId": "spring",
+      "stage": 7,
+      "title": "트랜잭션",
+      "description": "@Transactional, 롤백 규칙, 전파"
+    },
+    {
+      "trackId": "spring",
+      "stage": 8,
+      "title": "스프링 시큐리티",
+      "description": "인증/인가, 비밀번호 해시, CSRF"
+    },
+    {
+      "trackId": "spring",
+      "stage": 9,
+      "title": "파일 업로드",
+      "description": "MultipartFile, 안전한 저장"
+    },
+    {
+      "trackId": "spring",
+      "stage": 10,
+      "title": "REST API",
+      "description": "@RestController, JSON, 상태 코드, CORS"
+    },
+    {
+      "trackId": "spring",
+      "stage": 11,
+      "title": "Spring Data JPA",
+      "description": "엔티티, 리포지토리, 쿼리 메서드, 페이징"
+    },
+    {
+      "trackId": "spring",
+      "stage": 12,
+      "title": "메일과 설정",
+      "description": "JavaMailSender, 비밀 값 관리, 프로파일"
+    },
+    {
+      "trackId": "spring",
+      "stage": 13,
+      "title": "신입 소양",
+      "description": "신입 소양 — 계층·DTO, 검증/예외 처리, 운영과 보안 원칙"
     }
   ],
   "lessons": [
@@ -3422,6 +3500,245 @@
       "stage": 12,
       "title": "보안과 배포",
       "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "spring",
+      "id": "spring-1-1",
+      "stage": 1,
+      "title": "스프링과 MVC 흐름",
+      "subtitle": "DispatcherServlet, IoC",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "spring",
+      "id": "spring-1-2",
+      "stage": 1,
+      "title": "프로젝트 구조와 설정",
+      "subtitle": "@SpringBootApplication, starter",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "spring",
+      "id": "spring-2-1",
+      "stage": 2,
+      "title": "컨트롤러와 Model",
+      "subtitle": "@Controller vs @RestController",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "spring",
+      "id": "spring-2-2",
+      "stage": 2,
+      "title": "Thymeleaf 기본",
+      "subtitle": "th:each, th:text",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "spring",
+      "id": "spring-3-1",
+      "stage": 3,
+      "title": "요청 값 받기",
+      "subtitle": "@RequestParam, @PathVariable, DTO",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "spring",
+      "id": "spring-3-2",
+      "stage": 3,
+      "title": "redirect와 forward",
+      "subtitle": "PRG 패턴",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "spring",
+      "id": "spring-4-1",
+      "stage": 4,
+      "title": "빈 등록",
+      "subtitle": "@Bean, @Component, 스코프",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "spring",
+      "id": "spring-4-2",
+      "stage": 4,
+      "title": "의존성 주입",
+      "subtitle": "@Autowired, @Qualifier, 생성자 주입",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "spring",
+      "id": "spring-5-1",
+      "stage": 5,
+      "title": "JdbcTemplate",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "spring",
+      "id": "spring-6-1",
+      "stage": 6,
+      "title": "매퍼 XML 기본",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "spring",
+      "id": "spring-6-2",
+      "stage": 6,
+      "title": "#{}와 ${}",
+      "subtitle": "SQL 인젝션",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "spring",
+      "id": "spring-6-3",
+      "stage": 6,
+      "title": "동적 SQL",
+      "subtitle": "if, where, foreach",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "spring",
+      "id": "spring-7-1",
+      "stage": 7,
+      "title": "트랜잭션 기본",
+      "subtitle": "롤백 규칙",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "spring",
+      "id": "spring-7-2",
+      "stage": 7,
+      "title": "트랜잭션 전파",
+      "subtitle": "REQUIRED, REQUIRES_NEW",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "spring",
+      "id": "spring-7-3",
+      "stage": 7,
+      "title": "트랜잭션 주의점",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "spring",
+      "id": "spring-8-1",
+      "stage": 8,
+      "title": "인증과 인가",
+      "subtitle": "SecurityFilterChain",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "spring",
+      "id": "spring-8-2",
+      "stage": 8,
+      "title": "비밀번호와 CSRF",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "spring",
+      "id": "spring-9-1",
+      "stage": 9,
+      "title": "파일 업로드 처리",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "spring",
+      "id": "spring-10-1",
+      "stage": 10,
+      "title": "JSON과 REST 컨트롤러",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "spring",
+      "id": "spring-10-2",
+      "stage": 10,
+      "title": "HTTP 메서드와 상태 코드",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "spring",
+      "id": "spring-11-1",
+      "stage": 11,
+      "title": "엔티티와 리포지토리",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "spring",
+      "id": "spring-11-2",
+      "stage": 11,
+      "title": "쿼리 메서드와 JPQL",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "spring",
+      "id": "spring-11-3",
+      "stage": 11,
+      "title": "페이징",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "spring",
+      "id": "spring-12-1",
+      "stage": 12,
+      "title": "메일 발송과 설정 관리",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "spring",
+      "id": "spring-13-1",
+      "stage": 13,
+      "title": "계층 구조와 DTO",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "spring",
+      "id": "spring-13-2",
+      "stage": 13,
+      "title": "검증과 예외 처리",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "spring",
+      "id": "spring-13-3",
+      "stage": 13,
+      "title": "운영 소양",
+      "subtitle": "N+1, 로그, 오류 노출",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "spring",
+      "id": "spring-13-4",
+      "stage": 13,
+      "title": "보안 소양",
+      "subtitle": "SQL 인젝션, XSS, 권한 검사",
+      "orderNo": 4,
       "xpReward": 10
     }
   ]

@@ -53,5 +53,10 @@
     "id": "react",
     "label": "리액트 기초",
     "description": "컴포넌트·state부터 라우터, useEffect, 전역 상태, React 19 훅, 실무 소양까지"
+  },
+  {
+    "id": "spring",
+    "label": "스프링 부트 기초",
+    "description": "MVC·DI부터 MyBatis/JPA, 트랜잭션, 시큐리티, REST API, 실무 소양까지"
   }
 ]

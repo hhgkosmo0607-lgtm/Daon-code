@@ -1,0 +1,46 @@
+[
+  {
+    "id": "spring-2-2-q1",
+    "lessonId": "spring-2-2",
+    "type": "choice",
+    "prompt": "Thymeleaf에서 컬렉션을 반복 출력하는 속성은?",
+    "code": "<li th:each=\"m : ${members}\" th:text=\"${m.name}\"></li>",
+    "language": "HTML",
+    "options": [
+      "th:for",
+      "th:each",
+      "th:loop",
+      "th:repeat"
+    ],
+    "answer": 1,
+    "explanation": "th:each=\"item : ${list}\" 형태로 써요. th:if는 조건 렌더링이에요."
+  },
+  {
+    "id": "spring-2-2-q2",
+    "lessonId": "spring-2-2",
+    "type": "choice",
+    "prompt": "th:text와 th:utext의 차이는?",
+    "options": [
+      "th:text는 숫자 전용, th:utext는 문자열 전용이다",
+      "th:utext가 더 안전해서 권장된다",
+      "th:text는 HTML을 이스케이프해서 글자 그대로 보여 주고, th:utext는 이스케이프하지 않는다",
+      "둘은 완전히 같다"
+    ],
+    "answer": 2,
+    "explanation": "사용자 입력을 th:utext로 출력하면 스크립트가 실행되는 XSS 위험이 있어요. 기본은 th:text를 써요."
+  },
+  {
+    "id": "spring-2-2-q3",
+    "lessonId": "spring-2-2",
+    "type": "choice",
+    "prompt": "Thymeleaf 템플릿의 기본 저장 위치는?",
+    "options": [
+      "src/main/webapp/WEB-INF/views",
+      "src/main/resources/static",
+      "src/test/resources/templates",
+      "src/main/resources/templates"
+    ],
+    "answer": 3,
+    "explanation": "templates는 서버가 렌더링하는 템플릿, static은 그대로 내려주는 정적 리소스(css, js, 이미지)를 두는 곳이에요."
+  }
+]

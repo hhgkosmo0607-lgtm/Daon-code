@@ -1,0 +1,46 @@
+[
+  {
+    "id": "spring-6-1-q1",
+    "lessonId": "spring-6-1",
+    "type": "choice",
+    "prompt": "MyBatis 매퍼 XML에서 namespace와 select의 id는 무엇과 연결될까?",
+    "code": "<mapper namespace=\"com.edu.springboot.jdbc.IBoardService\">\n  <select id=\"getTotalCount\" resultType=\"int\">\n    SELECT COUNT(*) FROM myboard\n  </select>\n</mapper>",
+    "language": "XML",
+    "options": [
+      "namespace는 DB 이름, id는 테이블 이름",
+      "namespace는 컨트롤러 경로, id는 HTTP 메서드",
+      "namespace는 매퍼 인터페이스(전체 이름), id는 그 인터페이스의 메서드 이름",
+      "namespace는 파일 이름, id는 컬럼 이름"
+    ],
+    "answer": 2,
+    "explanation": "인터페이스의 메서드를 호출하면 같은 이름의 id를 가진 SQL이 실행돼요. 그래서 구현 클래스를 만들지 않아도 돼요."
+  },
+  {
+    "id": "spring-6-1-q2",
+    "lessonId": "spring-6-1",
+    "type": "choice",
+    "prompt": "select 태그의 resultType이 하는 일은?",
+    "options": [
+      "SQL을 실행할 DB를 지정한다",
+      "결과 행의 개수를 제한한다",
+      "결과를 정렬하는 기준이다",
+      "SQL 결과 한 행을 어떤 자바 타입으로 담을지 지정한다"
+    ],
+    "answer": 3,
+    "explanation": "단일 값이면 int, 행 단위면 DTO 클래스를 적어요. 컬럼명과 필드명이 같으면 자동으로 매핑돼요."
+  },
+  {
+    "id": "spring-6-1-q3",
+    "lessonId": "spring-6-1",
+    "type": "choice",
+    "prompt": "MyBatis를 쓰면 SQL은 어디에 두는 것이 일반적일까?",
+    "options": [
+      "자바 코드와 분리된 매퍼 XML(또는 어노테이션)에 둔다",
+      "컨트롤러 메서드 안에 문자열로 직접 이어붙인다",
+      "HTML 템플릿 안에 둔다",
+      "브라우저에서 만들어 서버로 보낸다"
+    ],
+    "answer": 0,
+    "explanation": "SQL을 코드에서 분리해 관리하는 것이 MyBatis의 핵심이에요. JPA는 반대로 SQL을 거의 직접 쓰지 않고 객체 중심으로 다뤄요."
+  }
+]

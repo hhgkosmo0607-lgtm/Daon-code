@@ -1,0 +1,60 @@
+[
+  {
+    "id": "spring-8-1-q1",
+    "lessonId": "spring-8-1",
+    "type": "choice",
+    "prompt": "인증(Authentication)과 인가(Authorization)의 차이는?",
+    "options": [
+      "인증은 권한 검사, 인가는 로그인이다",
+      "둘은 같은 말이다",
+      "인증은 암호화, 인가는 복호화다",
+      "인증은 \"누구인지 확인\"(로그인), 인가는 \"무엇을 할 수 있는지 확인\"(권한 검사)"
+    ],
+    "answer": 3,
+    "explanation": "로그인에 성공해 신원이 확인되는 것이 인증이고, 그 사용자가 /admin에 접근해도 되는지 판단하는 것이 인가예요."
+  },
+  {
+    "id": "spring-8-1-q2",
+    "lessonId": "spring-8-1",
+    "type": "choice",
+    "prompt": "스프링 시큐리티에서 URL별 접근 규칙을 설정하는 Bean은?",
+    "code": "http.authorizeHttpRequests(req -> req\n    .requestMatchers(\"/\").permitAll()\n    .requestMatchers(\"/admin/**\").hasRole(\"ADMIN\")\n    .anyRequest().authenticated()\n);",
+    "language": "Java",
+    "options": [
+      "SecurityFilterChain",
+      "DispatcherServlet",
+      "JdbcTemplate",
+      "MultipartResolver"
+    ],
+    "answer": 0,
+    "explanation": "요청은 시큐리티 필터 체인을 먼저 통과해요. authorizeHttpRequests로 경로별 permitAll, hasRole, authenticated 규칙을 지정해요."
+  },
+  {
+    "id": "spring-8-1-q3",
+    "lessonId": "spring-8-1",
+    "type": "choice",
+    "prompt": "hasRole(\"ADMIN\")이 실제로 검사하는 권한 문자열은?",
+    "options": [
+      "\"ADMIN\"만",
+      "\"ROLE_ADMIN\"",
+      "\"admin\"(소문자)",
+      "\"ADMIN_ROLE\""
+    ],
+    "answer": 1,
+    "explanation": "스프링 시큐리티는 역할 이름 앞에 ROLE_ 접두어를 붙여서 비교해요. 사용자에게 부여하는 권한도 ROLE_ADMIN 형태로 저장돼 있어야 해요. 접두어 없이 비교하려면 hasAuthority를 써요."
+  },
+  {
+    "id": "spring-8-1-q4",
+    "lessonId": "spring-8-1",
+    "type": "choice",
+    "prompt": "아래 설정에서 anyRequest().authenticated()의 의미는?",
+    "options": [
+      "모든 요청을 로그인 없이 허용한다",
+      "모든 요청을 차단한다",
+      "앞에서 따로 규칙을 정하지 않은 나머지 모든 요청은 로그인한 사용자만 접근할 수 있다",
+      "관리자만 접근할 수 있다"
+    ],
+    "answer": 2,
+    "explanation": "규칙은 위에서부터 순서대로 검사되고, 마지막의 anyRequest()는 \"그 외 전부\"를 뜻해요. 구체적인 규칙을 위에, 일반 규칙을 아래에 둬야 해요."
+  }
+]

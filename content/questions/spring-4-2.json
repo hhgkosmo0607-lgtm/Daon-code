@@ -1,0 +1,48 @@
+[
+  {
+    "id": "spring-4-2-q1",
+    "lessonId": "spring-4-2",
+    "type": "choice",
+    "prompt": "같은 타입의 빈이 여러 개일 때 @Autowired로 그중 하나를 지정해서 주입받는 방법은?",
+    "code": "@Autowired\n@Qualifier(\"macBook\")\nprivate Computer notebook;",
+    "language": "Java",
+    "options": [
+      "@Qualifier(\"빈이름\")을 함께 쓴다",
+      "@Value(\"빈이름\")을 쓴다",
+      "@Scope(\"빈이름\")을 쓴다",
+      "아무것도 안 해도 스프링이 알아서 첫 번째를 고른다"
+    ],
+    "answer": 0,
+    "explanation": "같은 타입 빈이 둘 이상이고 구분 정보가 없으면 NoUniqueBeanDefinitionException이 나요. @Qualifier로 이름을 지정하거나 대표 빈에 @Primary를 붙여요."
+  },
+  {
+    "id": "spring-4-2-q2",
+    "lessonId": "spring-4-2",
+    "type": "choice",
+    "prompt": "필드 주입(@Autowired 필드) 대신 생성자 주입을 권장하는 이유는?",
+    "code": "@Service\npublic class MemberService {\n    private final MemberRepository repo;\n    public MemberService(MemberRepository repo) {\n        this.repo = repo;\n    }\n}",
+    "language": "Java",
+    "options": [
+      "생성자 주입이 항상 실행 속도가 더 빨라서",
+      "필수 의존성을 final로 두어 불변으로 만들 수 있고, 스프링 없이 테스트에서 객체를 만들기 쉬워서",
+      "필드 주입은 자바 문법상 컴파일이 안 돼서",
+      "생성자 주입만 싱글톤이 보장돼서"
+    ],
+    "answer": 1,
+    "explanation": "생성자에 의존성이 드러나서 누락을 컴파일 시점에 알 수 있고, 테스트에서 가짜 객체를 직접 넣기 쉬워요. 순환 참조도 일찍 발견돼요."
+  },
+  {
+    "id": "spring-4-2-q3",
+    "lessonId": "spring-4-2",
+    "type": "choice",
+    "prompt": "@Value(\"30\") private int age; 의 역할은?",
+    "options": [
+      "필드를 상수로 만든다",
+      "필드 값의 범위를 검사한다",
+      "지정한 값(또는 설정 값)을 필드에 주입한다",
+      "필드를 DB 컬럼과 연결한다"
+    ],
+    "answer": 2,
+    "explanation": "@Value는 리터럴이나 application.properties의 값(${app.name})을 필드에 넣을 때 써요."
+  }
+]

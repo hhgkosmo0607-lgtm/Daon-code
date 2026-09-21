@@ -1,0 +1,64 @@
+[
+  {
+    "id": "spring-11-1-q1",
+    "lessonId": "spring-11-1",
+    "type": "choice",
+    "prompt": "JPA에서 @Entity 클래스는 무엇을 나타낼까?",
+    "code": "@Entity\npublic class Member {\n    @Id\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\n    private Long id;\n    private String name;\n}",
+    "language": "Java",
+    "options": [
+      "화면(HTML)의 한 조각",
+      "HTTP 요청 하나",
+      "스프링 설정 파일",
+      "DB 테이블에 매핑되는 자바 객체"
+    ],
+    "answer": 3,
+    "explanation": "엔티티의 필드는 컬럼, 객체 하나는 테이블의 한 행에 대응돼요. SQL을 직접 쓰는 대신 객체를 다루면 JPA가 SQL을 만들어 줘요."
+  },
+  {
+    "id": "spring-11-1-q2",
+    "lessonId": "spring-11-1",
+    "type": "choice",
+    "prompt": "JpaRepository<Member, Long>에서 두 타입 인자의 의미는?",
+    "options": [
+      "엔티티 타입과 그 엔티티의 기본키 타입",
+      "DTO 타입과 컨트롤러 타입",
+      "테이블 이름과 스키마 이름",
+      "반환 타입과 예외 타입"
+    ],
+    "answer": 0,
+    "explanation": "기본키가 long이면 기본 자료형은 제네릭에 쓸 수 없어서 래퍼 클래스 Long을 써요. 인터페이스만 선언해도 save, findById, findAll, deleteById 같은 메서드가 자동으로 생겨요."
+  },
+  {
+    "id": "spring-11-1-q3",
+    "lessonId": "spring-11-1",
+    "type": "choice",
+    "prompt": "repository.findById(id)의 반환 타입이 Optional<Member>인 이유는?",
+    "code": "Member m = repo.findById(id).orElseThrow();",
+    "language": "Java",
+    "options": [
+      "항상 여러 개의 결과가 나와서",
+      "해당 id의 행이 없을 수 있으므로 null 대신 \"값이 없음\"을 안전하게 표현하기 위해",
+      "엔티티를 변경하지 못하게 하려고",
+      "비동기로 실행되기 때문에"
+    ],
+    "answer": 1,
+    "explanation": "orElseThrow(), orElse(), isPresent()로 없는 경우를 명시적으로 처리하게 해서 NullPointerException을 줄여요."
+  },
+  {
+    "id": "spring-11-1-q4",
+    "lessonId": "spring-11-1",
+    "type": "choice",
+    "prompt": "application.properties의 spring.jpa.hibernate.ddl-auto=create를 운영 DB에 쓰면 안 되는 이유는?",
+    "code": "spring.jpa.hibernate.ddl-auto=create",
+    "language": "Java",
+    "options": [
+      "서버가 시작되지 않아서",
+      "조회 속도가 아주 느려져서",
+      "애플리케이션이 시작할 때마다 테이블을 다시 만들어 기존 데이터가 사라질 수 있어서",
+      "테이블 이름이 자동으로 바뀌어서"
+    ],
+    "answer": 2,
+    "explanation": "개발 초기엔 편하지만 운영에서는 none/validate를 쓰고, 스키마 변경은 별도 마이그레이션 도구로 관리해요."
+  }
+]

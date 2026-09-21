@@ -1,0 +1,46 @@
+[
+  {
+    "id": "spring-5-1-q1",
+    "lessonId": "spring-5-1",
+    "type": "choice",
+    "prompt": "JdbcTemplate에서 INSERT, UPDATE, DELETE를 실행하는 메서드와 반환값은?",
+    "code": "int n = jdbcTemplate.update(\n    \"INSERT INTO member(id, name) VALUES (?, ?)\", id, name);",
+    "language": "Java",
+    "options": [
+      "query()이며 결과 행의 리스트를 반환한다",
+      "execute()이며 항상 true를 반환한다",
+      "insert()이며 새 기본키를 반환한다",
+      "update()이며 영향을 받은 행의 수(int)를 반환한다"
+    ],
+    "answer": 3,
+    "explanation": "JdbcTemplate은 조회는 query/queryForObject, 변경은 update를 써요. 반환값으로 몇 행이 바뀌었는지 확인할 수 있어요."
+  },
+  {
+    "id": "spring-5-1-q2",
+    "lessonId": "spring-5-1",
+    "type": "choice",
+    "prompt": "SQL 문에 사용자 입력을 넣을 때 아래 두 방식 중 안전한 것은?",
+    "options": [
+      "\"... WHERE id = ?\"처럼 ?를 두고 값을 파라미터로 전달한다",
+      "\"... WHERE id = '\" + id + \"'\"처럼 문자열을 이어붙인다",
+      "입력값에 작은따옴표가 있으면 프로그램을 종료한다",
+      "둘 다 똑같이 안전하다"
+    ],
+    "answer": 0,
+    "explanation": "문자열을 이어붙이면 입력에 SQL 조각을 끼워 넣는 SQL 인젝션이 가능해요. ?와 파라미터 바인딩은 값을 데이터로만 취급해서 막아 줘요."
+  },
+  {
+    "id": "spring-5-1-q3",
+    "lessonId": "spring-5-1",
+    "type": "choice",
+    "prompt": "queryForObject로 조회했는데 결과가 0건이면?",
+    "options": [
+      "null이 반환된다",
+      "EmptyResultDataAccessException이 발생한다",
+      "빈 리스트가 반환된다",
+      "0이 반환된다"
+    ],
+    "answer": 1,
+    "explanation": "정확히 1건을 기대하는 메서드라서 0건이면 예외를 던져요. 0건이 정상인 경우는 query()로 리스트를 받아 비었는지 확인하거나 예외를 처리해요."
+  }
+]

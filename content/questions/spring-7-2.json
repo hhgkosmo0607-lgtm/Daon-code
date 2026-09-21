@@ -1,0 +1,46 @@
+[
+  {
+    "id": "spring-7-2-q1",
+    "lessonId": "spring-7-2",
+    "type": "choice",
+    "prompt": "Propagation.REQUIRED(기본값)의 동작은?",
+    "options": [
+      "항상 새 트랜잭션을 시작한다",
+      "이미 진행 중인 트랜잭션이 있으면 그것에 참여하고, 없으면 새로 시작한다",
+      "트랜잭션이 있으면 예외를 던진다",
+      "트랜잭션 없이 실행한다"
+    ],
+    "answer": 1,
+    "explanation": "서비스 메서드끼리 호출될 때 하나의 트랜잭션으로 묶이는 이유가 이 기본 전파 방식이에요. 안쪽에서 실패하면 바깥까지 함께 롤백돼요."
+  },
+  {
+    "id": "spring-7-2-q2",
+    "lessonId": "spring-7-2",
+    "type": "choice",
+    "prompt": "Propagation.REQUIRES_NEW의 특징은?",
+    "code": "@Transactional(propagation = Propagation.REQUIRES_NEW)\npublic void saveHistory(...) { ... }",
+    "language": "Java",
+    "options": [
+      "기존 트랜잭션에 참여해 함께 커밋한다",
+      "기존 트랜잭션이 있으면 예외를 던진다",
+      "기존 트랜잭션을 잠시 보류하고 항상 새 트랜잭션을 만들어 독립적으로 커밋/롤백한다",
+      "트랜잭션을 아예 만들지 않는다"
+    ],
+    "answer": 2,
+    "explanation": "바깥이 롤백돼도 안쪽 REQUIRES_NEW의 결과는 이미 커밋돼서 남아요. 실패해도 남겨야 하는 이력·로그 저장에 써요."
+  },
+  {
+    "id": "spring-7-2-q3",
+    "lessonId": "spring-7-2",
+    "type": "choice",
+    "prompt": "회원 가입 중 오류가 나서 가입은 취소되어도 \"가입 시도 로그\"는 남기고 싶다면?",
+    "options": [
+      "로그 저장도 REQUIRED로 같은 트랜잭션에 둔다",
+      "로그를 저장하지 않는다",
+      "@Transactional을 모두 제거한다",
+      "로그 저장 메서드를 REQUIRES_NEW로 별도 트랜잭션에서 실행한다"
+    ],
+    "answer": 3,
+    "explanation": "같은 트랜잭션이면 바깥 롤백 때 로그도 함께 사라져요. 독립 트랜잭션으로 분리해야 로그가 남아요."
+  }
+]

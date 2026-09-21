@@ -316,6 +316,34 @@ import q_react_11_2 from '../../../content/questions/react-11-2.json';
 import q_react_12_1 from '../../../content/questions/react-12-1.json';
 import q_react_12_2 from '../../../content/questions/react-12-2.json';
 import q_react_12_3 from '../../../content/questions/react-12-3.json';
+import q_spring_1_1 from '../../../content/questions/spring-1-1.json';
+import q_spring_1_2 from '../../../content/questions/spring-1-2.json';
+import q_spring_2_1 from '../../../content/questions/spring-2-1.json';
+import q_spring_2_2 from '../../../content/questions/spring-2-2.json';
+import q_spring_3_1 from '../../../content/questions/spring-3-1.json';
+import q_spring_3_2 from '../../../content/questions/spring-3-2.json';
+import q_spring_4_1 from '../../../content/questions/spring-4-1.json';
+import q_spring_4_2 from '../../../content/questions/spring-4-2.json';
+import q_spring_5_1 from '../../../content/questions/spring-5-1.json';
+import q_spring_6_1 from '../../../content/questions/spring-6-1.json';
+import q_spring_6_2 from '../../../content/questions/spring-6-2.json';
+import q_spring_6_3 from '../../../content/questions/spring-6-3.json';
+import q_spring_7_1 from '../../../content/questions/spring-7-1.json';
+import q_spring_7_2 from '../../../content/questions/spring-7-2.json';
+import q_spring_7_3 from '../../../content/questions/spring-7-3.json';
+import q_spring_8_1 from '../../../content/questions/spring-8-1.json';
+import q_spring_8_2 from '../../../content/questions/spring-8-2.json';
+import q_spring_9_1 from '../../../content/questions/spring-9-1.json';
+import q_spring_10_1 from '../../../content/questions/spring-10-1.json';
+import q_spring_10_2 from '../../../content/questions/spring-10-2.json';
+import q_spring_11_1 from '../../../content/questions/spring-11-1.json';
+import q_spring_11_2 from '../../../content/questions/spring-11-2.json';
+import q_spring_11_3 from '../../../content/questions/spring-11-3.json';
+import q_spring_12_1 from '../../../content/questions/spring-12-1.json';
+import q_spring_13_1 from '../../../content/questions/spring-13-1.json';
+import q_spring_13_2 from '../../../content/questions/spring-13-2.json';
+import q_spring_13_3 from '../../../content/questions/spring-13-3.json';
+import q_spring_13_4 from '../../../content/questions/spring-13-4.json';
 
 import type { Lesson, Question, Stage, Track } from '../domain/types';
 
@@ -648,6 +676,34 @@ const QUESTION_BANK: Record<string, unknown> = {
   'react-12-1': q_react_12_1,
   'react-12-2': q_react_12_2,
   'react-12-3': q_react_12_3,
+  'spring-1-1': q_spring_1_1,
+  'spring-1-2': q_spring_1_2,
+  'spring-2-1': q_spring_2_1,
+  'spring-2-2': q_spring_2_2,
+  'spring-3-1': q_spring_3_1,
+  'spring-3-2': q_spring_3_2,
+  'spring-4-1': q_spring_4_1,
+  'spring-4-2': q_spring_4_2,
+  'spring-5-1': q_spring_5_1,
+  'spring-6-1': q_spring_6_1,
+  'spring-6-2': q_spring_6_2,
+  'spring-6-3': q_spring_6_3,
+  'spring-7-1': q_spring_7_1,
+  'spring-7-2': q_spring_7_2,
+  'spring-7-3': q_spring_7_3,
+  'spring-8-1': q_spring_8_1,
+  'spring-8-2': q_spring_8_2,
+  'spring-9-1': q_spring_9_1,
+  'spring-10-1': q_spring_10_1,
+  'spring-10-2': q_spring_10_2,
+  'spring-11-1': q_spring_11_1,
+  'spring-11-2': q_spring_11_2,
+  'spring-11-3': q_spring_11_3,
+  'spring-12-1': q_spring_12_1,
+  'spring-13-1': q_spring_13_1,
+  'spring-13-2': q_spring_13_2,
+  'spring-13-3': q_spring_13_3,
+  'spring-13-4': q_spring_13_4,
 };
 
 /** 기본 트랙 — 온보딩/배치고사 등 트랙을 아직 명시하지 않은 기존 화면이 쓰는 값 */

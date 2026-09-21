@@ -1,0 +1,30 @@
+[
+  {
+    "id": "spring-3-2-q1",
+    "lessonId": "spring-3-2",
+    "type": "choice",
+    "prompt": "글 작성(POST) 후 \"redirect:/list\"로 이동시키는 이유는?",
+    "options": [
+      "redirect가 forward보다 항상 서버 부하가 적어서",
+      "POST 요청은 뷰를 렌더링할 수 없어서",
+      "URL에 세션 값을 감추기 위해",
+      "새로고침해도 POST가 다시 전송되어 중복 저장되는 일을 막기 위해"
+    ],
+    "answer": 3,
+    "explanation": "이를 PRG(Post-Redirect-Get) 패턴이라고 해요. POST 결과 화면을 그대로 보여 주면 새로고침 때 같은 POST가 재전송돼요."
+  },
+  {
+    "id": "spring-3-2-q2",
+    "lessonId": "spring-3-2",
+    "type": "choice",
+    "prompt": "redirect와 forward의 차이로 맞는 것은?",
+    "options": [
+      "redirect는 브라우저가 새 요청을 다시 보내 주소가 바뀌고, forward는 서버 내부에서 이동해 주소가 그대로다",
+      "redirect는 서버 내부 이동이고 forward는 새 주소로 다시 요청한다",
+      "둘 다 주소창이 바뀐다",
+      "둘 다 request 객체를 그대로 공유한다"
+    ],
+    "answer": 0,
+    "explanation": "redirect는 응답으로 \"다른 주소로 가라\"고 알려 새 요청이 생기므로 이전 요청의 데이터는 사라져요. forward는 같은 요청 안에서 다른 자원으로 넘겨요."
+  }
+]

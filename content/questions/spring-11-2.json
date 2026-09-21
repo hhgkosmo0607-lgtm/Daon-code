@@ -1,0 +1,46 @@
+[
+  {
+    "id": "spring-11-2-q1",
+    "lessonId": "spring-11-2",
+    "type": "choice",
+    "prompt": "JpaRepository에 findByName(String name) 메서드만 선언하면?",
+    "options": [
+      "구현 클래스를 직접 만들지 않으면 컴파일 오류가 난다",
+      "항상 전체 목록을 반환한다",
+      "실행할 때 SQL 문자열을 반드시 직접 적어야 한다",
+      "메서드 이름을 해석해 name으로 조회하는 쿼리가 자동으로 만들어진다"
+    ],
+    "answer": 3,
+    "explanation": "쿼리 메서드 기능이에요. findByAgeGreaterThan, findByNameContaining처럼 이름 규칙을 지키면 SQL 없이 쿼리가 만들어져요."
+  },
+  {
+    "id": "spring-11-2-q2",
+    "lessonId": "spring-11-2",
+    "type": "choice",
+    "prompt": "JPQL(@Query)이 일반 SQL과 다른 점은?",
+    "code": "@Query(\"SELECT m FROM Member m WHERE m.name = :name\")\nList<Member> search(@Param(\"name\") String name);",
+    "language": "Java",
+    "options": [
+      "테이블/컬럼이 아니라 엔티티 이름과 필드를 대상으로 쿼리를 작성한다",
+      "DB 종류마다 문법이 완전히 달라서 이식이 불가능하다",
+      "조회만 되고 수정은 안 된다",
+      "자바 코드에서는 쓸 수 없다"
+    ],
+    "answer": 0,
+    "explanation": "JPQL은 객체 기준 쿼리 언어라서 FROM Member m WHERE m.name = :name처럼 써요. 실행 시 DB에 맞는 SQL로 변환돼요."
+  },
+  {
+    "id": "spring-11-2-q3",
+    "lessonId": "spring-11-2",
+    "type": "choice",
+    "prompt": "repository.save(entity)에서 기본키(id)가 이미 있는 엔티티를 저장하면?",
+    "options": [
+      "항상 예외가 발생한다",
+      "기존 행을 갱신(update)하는 동작이 된다",
+      "무조건 새 행이 추가된다",
+      "아무 일도 일어나지 않는다"
+    ],
+    "answer": 1,
+    "explanation": "save는 새 엔티티면 INSERT, 이미 존재하는 식별자면 UPDATE(merge)로 동작해요. 그래서 등록과 수정에 같은 메서드를 써요."
+  }
+]

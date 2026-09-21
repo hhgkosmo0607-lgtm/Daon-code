@@ -1,0 +1,50 @@
+[
+  {
+    "id": "spring-9-1-q1",
+    "lessonId": "spring-9-1",
+    "type": "choice",
+    "prompt": "MultipartFile로 받은 파일을 저장할 때 원본 파일명(getOriginalFilename)을 그대로 쓰면 안 되는 이유는?",
+    "code": "String saved = UUID.randomUUID() + ext;\nfile.transferTo(new File(dir, saved));",
+    "language": "Java",
+    "options": [
+      "원본 파일명은 항상 비어 있어서",
+      "한글 파일명은 자바에서 아예 저장할 수 없어서",
+      "이름 충돌로 덮어쓰기가 일어나고, 조작된 경로(../)로 의도치 않은 위치에 저장될 위험이 있어서",
+      "파일 용량이 커져서"
+    ],
+    "answer": 2,
+    "explanation": "저장할 때는 UUID 등으로 서버가 새 이름을 만들고 원본명은 DB에 따로 기록해요. 확장자와 허용 형식도 검사해야 해요."
+  },
+  {
+    "id": "spring-9-1-q2",
+    "lessonId": "spring-9-1",
+    "type": "choice",
+    "prompt": "스프링 부트에서 업로드 파일의 기본 최대 크기는?",
+    "code": "spring.servlet.multipart.max-file-size=10MB\nspring.servlet.multipart.max-request-size=50MB",
+    "language": "Java",
+    "options": [
+      "제한이 없다",
+      "파일당 100MB",
+      "파일당 10GB",
+      "파일당 1MB (그 이상은 설정으로 늘려야 한다)"
+    ],
+    "answer": 3,
+    "explanation": "spring.servlet.multipart.max-file-size와 max-request-size로 제한을 바꿔요. 기본값이 작아서 큰 파일을 올리면 오류가 나요."
+  },
+  {
+    "id": "spring-9-1-q3",
+    "lessonId": "spring-9-1",
+    "type": "choice",
+    "prompt": "파일 업로드 폼에서 필요한 form 설정은?",
+    "code": "<form method=\"post\" enctype=\"multipart/form-data\">\n  <input type=\"file\" name=\"file\">\n</form>",
+    "language": "Java",
+    "options": [
+      "method=\"post\"와 enctype=\"multipart/form-data\"",
+      "method=\"get\"과 enctype=\"text/plain\"",
+      "method=\"put\"과 enctype=\"application/json\"",
+      "아무 설정 없이 input type=\"file\"만 두면 된다"
+    ],
+    "answer": 0,
+    "explanation": "파일은 일반 폼 인코딩으로는 전송되지 않아요. multipart/form-data로 보내야 서버가 MultipartFile로 받을 수 있어요."
+  }
+]

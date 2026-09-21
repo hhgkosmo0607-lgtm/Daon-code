@@ -1,0 +1,46 @@
+[
+  {
+    "id": "spring-3-1-q1",
+    "lessonId": "spring-3-1",
+    "type": "choice",
+    "prompt": "/user?id=5 요청에서 id 값을 받는 메서드 매개변수는?",
+    "options": [
+      "@RequestParam(\"id\") int id",
+      "@PathVariable(\"id\") int id",
+      "@RequestBody int id",
+      "@ModelAttribute(\"id\") String id"
+    ],
+    "answer": 0,
+    "explanation": "쿼리스트링과 폼 값은 @RequestParam, 경로의 일부(/user/5)는 @PathVariable로 받아요. 필수 파라미터가 없으면 기본적으로 400 오류가 나요."
+  },
+  {
+    "id": "spring-3-1-q2",
+    "lessonId": "spring-3-1",
+    "type": "choice",
+    "prompt": "/user/{id} 경로에서 id를 받는 방법은?",
+    "code": "@GetMapping(\"/user/{id}\")\npublic String user(@PathVariable(\"id\") int id) { ... }",
+    "language": "Java",
+    "options": [
+      "@RequestParam(\"id\") int id",
+      "@PathVariable(\"id\") int id",
+      "@GetParam(\"id\") int id",
+      "request.id"
+    ],
+    "answer": 1,
+    "explanation": "경로 변수는 @PathVariable이에요. REST 스타일 주소(/board/5)에 자주 써요."
+  },
+  {
+    "id": "spring-3-1-q3",
+    "lessonId": "spring-3-1",
+    "type": "choice",
+    "prompt": "폼의 여러 입력값을 PersonDTO 객체 하나로 받으려면 폼 name과 DTO는 어때야 할까?",
+    "options": [
+      "name이 아니라 id 속성이 필드명과 같아야 한다",
+      "DTO 클래스는 반드시 abstract여야 한다",
+      "입력 요소의 name이 DTO의 필드(setter) 이름과 일치해야 한다",
+      "입력 요소마다 @RequestParam을 각각 붙여야만 한다"
+    ],
+    "answer": 2,
+    "explanation": "스프링은 요청 파라미터 이름과 같은 이름의 DTO 필드에 값을 바인딩해 줘요(@ModelAttribute 생략 가능). 이름이 다르면 값이 null로 남아요."
+  }
+]

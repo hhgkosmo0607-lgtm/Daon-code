@@ -1,0 +1,48 @@
+[
+  {
+    "id": "spring-2-1-q1",
+    "lessonId": "spring-2-1",
+    "type": "choice",
+    "prompt": "@Controller 메서드가 문자열 \"main\"을 반환하면?",
+    "code": "@Controller\npublic class MainController {\n    @GetMapping(\"/\")\n    public String main() {\n        return \"main\";\n    }\n}",
+    "language": "Java",
+    "options": [
+      "\"main\"이라는 글자가 그대로 응답 본문으로 나간다",
+      "main 이라는 이름의 메서드가 호출된다",
+      "뷰 이름으로 해석되어 templates/main.html 같은 템플릿이 렌더링된다",
+      "HTTP 404가 항상 반환된다"
+    ],
+    "answer": 2,
+    "explanation": "@Controller의 반환 문자열은 뷰 이름이에요. 문자열 자체를 본문으로 보내려면 @ResponseBody나 @RestController를 써야 해요."
+  },
+  {
+    "id": "spring-2-1-q2",
+    "lessonId": "spring-2-1",
+    "type": "choice",
+    "prompt": "@RestController는 무엇과 같은가?",
+    "options": [
+      "@Controller + @Service",
+      "@Component + @RequestMapping",
+      "@Controller + @Transactional",
+      "@Controller + @ResponseBody"
+    ],
+    "answer": 3,
+    "explanation": "@RestController의 모든 메서드 반환값은 뷰 이름이 아니라 HTTP 응답 본문(주로 JSON)으로 직렬화돼요."
+  },
+  {
+    "id": "spring-2-1-q3",
+    "lessonId": "spring-2-1",
+    "type": "choice",
+    "prompt": "Model 객체에 담은 데이터를 화면(템플릿)에서 쓰려면?",
+    "code": "model.addAttribute(\"name\", \"이순신\");",
+    "language": "Java",
+    "options": [
+      "model.addAttribute(\"name\", 값)으로 담고 템플릿에서 ${name}으로 꺼낸다",
+      "static 변수에 넣고 템플릿에서 import한다",
+      "model.print(\"name\")으로 화면에 바로 찍는다",
+      "쿠키에 담아서 넘긴다"
+    ],
+    "answer": 0,
+    "explanation": "컨트롤러가 Model에 담은 값은 뷰가 렌더링될 때 접근할 수 있어요."
+  }
+]

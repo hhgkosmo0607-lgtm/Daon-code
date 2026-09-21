@@ -1,0 +1,62 @@
+[
+  {
+    "id": "spring-12-1-q1",
+    "lessonId": "spring-12-1",
+    "type": "choice",
+    "prompt": "아래 application.properties를 그대로 Git 저장소에 올리면 무엇이 문제일까?",
+    "code": "spring.mail.host=smtp.gmail.com\nspring.mail.username=me@gmail.com\nspring.mail.password=mypassword1234",
+    "language": "Properties",
+    "options": [
+      "메일이 전송되지 않는다",
+      "메일 계정 비밀번호가 공개 저장소에 노출된다",
+      "서버 포트가 바뀐다",
+      "한글이 깨진다"
+    ],
+    "answer": 1,
+    "explanation": "비밀번호, API 키 같은 비밀은 코드나 저장소에 넣지 않고 환경변수나 별도 설정(예: ${MAIL_PASSWORD})으로 주입해요. 이미 올렸다면 값을 폐기하고 새로 발급받아야 해요."
+  },
+  {
+    "id": "spring-12-1-q2",
+    "lessonId": "spring-12-1",
+    "type": "choice",
+    "prompt": "스프링에서 메일을 보낼 때 사용하는 주요 인터페이스는?",
+    "code": "SimpleMailMessage msg = new SimpleMailMessage();\nmsg.setTo(to);\nmsg.setSubject(\"인증 코드\");\nmsg.setText(code);\nmailSender.send(msg);",
+    "language": "Java",
+    "options": [
+      "JdbcTemplate",
+      "MultipartFile",
+      "JavaMailSender",
+      "SecurityFilterChain"
+    ],
+    "answer": 2,
+    "explanation": "SimpleMailMessage로 간단한 텍스트 메일을, MimeMessage로 HTML이나 첨부파일이 있는 메일을 만들어 send()로 보내요."
+  },
+  {
+    "id": "spring-12-1-q3",
+    "lessonId": "spring-12-1",
+    "type": "choice",
+    "prompt": "Gmail SMTP로 발송할 때 계정 비밀번호 대신 쓰도록 권장되는 것은?",
+    "options": [
+      "구글 계정의 로그인 비밀번호를 그대로",
+      "이메일 주소 앞부분만",
+      "별도 인증 없이 빈 문자열",
+      "앱 비밀번호(App Password)"
+    ],
+    "answer": 3,
+    "explanation": "2단계 인증을 켠 계정에서 프로그램용으로 따로 발급하는 비밀번호예요. 유출돼도 이것만 폐기하면 되어 계정 자체를 지킬 수 있어요."
+  },
+  {
+    "id": "spring-12-1-q4",
+    "lessonId": "spring-12-1",
+    "type": "choice",
+    "prompt": "application-dev.properties와 application-prod.properties처럼 환경별로 설정을 나누는 스프링의 기능은?",
+    "options": [
+      "프로파일(Profile)",
+      "빈 스코프",
+      "컴포넌트 스캔",
+      "트랜잭션 전파"
+    ],
+    "answer": 0,
+    "explanation": "spring.profiles.active=prod 처럼 활성 프로파일을 지정하면 환경에 맞는 설정 파일이 함께 적용돼요."
+  }
+]
