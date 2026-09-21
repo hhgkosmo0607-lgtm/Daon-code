@@ -80,6 +80,76 @@ import questionsSqld4_5 from '../../../content/questions/sqld-4-5.json';
 import questionsSqld5_1 from '../../../content/questions/sqld-5-1.json';
 import questionsSqld5_2 from '../../../content/questions/sqld-5-2.json';
 import questionsSqld5_3 from '../../../content/questions/sqld-5-3.json';
+import questionsJava1_1 from '../../../content/questions/java-1-1.json';
+import questionsJava1_2 from '../../../content/questions/java-1-2.json';
+import questionsJava2_1 from '../../../content/questions/java-2-1.json';
+import questionsJava2_2 from '../../../content/questions/java-2-2.json';
+import questionsJava2_3 from '../../../content/questions/java-2-3.json';
+import questionsJava2_4 from '../../../content/questions/java-2-4.json';
+import questionsJava2_5 from '../../../content/questions/java-2-5.json';
+import questionsJava2_6 from '../../../content/questions/java-2-6.json';
+import questionsJava3_1 from '../../../content/questions/java-3-1.json';
+import questionsJava3_2 from '../../../content/questions/java-3-2.json';
+import questionsJava3_3 from '../../../content/questions/java-3-3.json';
+import questionsJava3_4 from '../../../content/questions/java-3-4.json';
+import questionsJava3_5 from '../../../content/questions/java-3-5.json';
+import questionsJava4_1 from '../../../content/questions/java-4-1.json';
+import questionsJava4_2 from '../../../content/questions/java-4-2.json';
+import questionsJava4_3 from '../../../content/questions/java-4-3.json';
+import questionsJava4_4 from '../../../content/questions/java-4-4.json';
+import questionsJava4_5 from '../../../content/questions/java-4-5.json';
+import questionsJava5_1 from '../../../content/questions/java-5-1.json';
+import questionsJava5_2 from '../../../content/questions/java-5-2.json';
+import questionsJava5_3 from '../../../content/questions/java-5-3.json';
+import questionsJava5_4 from '../../../content/questions/java-5-4.json';
+import questionsJava5_5 from '../../../content/questions/java-5-5.json';
+import questionsJava6_1 from '../../../content/questions/java-6-1.json';
+import questionsJava6_2 from '../../../content/questions/java-6-2.json';
+import questionsJava6_3 from '../../../content/questions/java-6-3.json';
+import questionsJava6_4 from '../../../content/questions/java-6-4.json';
+import questionsJava7_1 from '../../../content/questions/java-7-1.json';
+import questionsJava7_2 from '../../../content/questions/java-7-2.json';
+import questionsJava7_3 from '../../../content/questions/java-7-3.json';
+import questionsJava8_1 from '../../../content/questions/java-8-1.json';
+import questionsJava8_2 from '../../../content/questions/java-8-2.json';
+import questionsJava8_3 from '../../../content/questions/java-8-3.json';
+import questionsJava9_1 from '../../../content/questions/java-9-1.json';
+import questionsJava10_1 from '../../../content/questions/java-10-1.json';
+import questionsJava10_2 from '../../../content/questions/java-10-2.json';
+import questionsJava11_1 from '../../../content/questions/java-11-1.json';
+import questionsJava11_2 from '../../../content/questions/java-11-2.json';
+import questionsJava11_3 from '../../../content/questions/java-11-3.json';
+import questionsJava12_1 from '../../../content/questions/java-12-1.json';
+import questionsJava12_2 from '../../../content/questions/java-12-2.json';
+import questionsJava12_3 from '../../../content/questions/java-12-3.json';
+import questionsJava13_1 from '../../../content/questions/java-13-1.json';
+import questionsJava13_2 from '../../../content/questions/java-13-2.json';
+import questionsJava14_1 from '../../../content/questions/java-14-1.json';
+import questionsJava15_1 from '../../../content/questions/java-15-1.json';
+import questionsJava15_2 from '../../../content/questions/java-15-2.json';
+import questionsJava15_3 from '../../../content/questions/java-15-3.json';
+import questionsJava15_4 from '../../../content/questions/java-15-4.json';
+import questionsJava16_1 from '../../../content/questions/java-16-1.json';
+import questionsJava16_2 from '../../../content/questions/java-16-2.json';
+import questionsJava16_3 from '../../../content/questions/java-16-3.json';
+import questionsJava17_1 from '../../../content/questions/java-17-1.json';
+import questionsJava17_2 from '../../../content/questions/java-17-2.json';
+import questionsJava17_3 from '../../../content/questions/java-17-3.json';
+import questionsJava17_4 from '../../../content/questions/java-17-4.json';
+import questionsJava18_1 from '../../../content/questions/java-18-1.json';
+import questionsJava18_2 from '../../../content/questions/java-18-2.json';
+import questionsJava18_3 from '../../../content/questions/java-18-3.json';
+import questionsJava18_4 from '../../../content/questions/java-18-4.json';
+import questionsJava18_5 from '../../../content/questions/java-18-5.json';
+import questionsJava19_1 from '../../../content/questions/java-19-1.json';
+import questionsJava19_2 from '../../../content/questions/java-19-2.json';
+import questionsJava19_3 from '../../../content/questions/java-19-3.json';
+import questionsJava19_4 from '../../../content/questions/java-19-4.json';
+import questionsJava19_5 from '../../../content/questions/java-19-5.json';
+import questionsJava20_1 from '../../../content/questions/java-20-1.json';
+import questionsJava20_2 from '../../../content/questions/java-20-2.json';
+import questionsJava20_3 from '../../../content/questions/java-20-3.json';
+import questionsJava20_4 from '../../../content/questions/java-20-4.json';
 
 import type { Lesson, Question, Stage, Track } from '../domain/types';
 
@@ -176,6 +246,76 @@ const QUESTION_BANK: Record<string, unknown> = {
   'sqld-5-1': questionsSqld5_1,
   'sqld-5-2': questionsSqld5_2,
   'sqld-5-3': questionsSqld5_3,
+  'java-1-1': questionsJava1_1,
+  'java-1-2': questionsJava1_2,
+  'java-2-1': questionsJava2_1,
+  'java-2-2': questionsJava2_2,
+  'java-2-3': questionsJava2_3,
+  'java-2-4': questionsJava2_4,
+  'java-2-5': questionsJava2_5,
+  'java-2-6': questionsJava2_6,
+  'java-3-1': questionsJava3_1,
+  'java-3-2': questionsJava3_2,
+  'java-3-3': questionsJava3_3,
+  'java-3-4': questionsJava3_4,
+  'java-3-5': questionsJava3_5,
+  'java-4-1': questionsJava4_1,
+  'java-4-2': questionsJava4_2,
+  'java-4-3': questionsJava4_3,
+  'java-4-4': questionsJava4_4,
+  'java-4-5': questionsJava4_5,
+  'java-5-1': questionsJava5_1,
+  'java-5-2': questionsJava5_2,
+  'java-5-3': questionsJava5_3,
+  'java-5-4': questionsJava5_4,
+  'java-5-5': questionsJava5_5,
+  'java-6-1': questionsJava6_1,
+  'java-6-2': questionsJava6_2,
+  'java-6-3': questionsJava6_3,
+  'java-6-4': questionsJava6_4,
+  'java-7-1': questionsJava7_1,
+  'java-7-2': questionsJava7_2,
+  'java-7-3': questionsJava7_3,
+  'java-8-1': questionsJava8_1,
+  'java-8-2': questionsJava8_2,
+  'java-8-3': questionsJava8_3,
+  'java-9-1': questionsJava9_1,
+  'java-10-1': questionsJava10_1,
+  'java-10-2': questionsJava10_2,
+  'java-11-1': questionsJava11_1,
+  'java-11-2': questionsJava11_2,
+  'java-11-3': questionsJava11_3,
+  'java-12-1': questionsJava12_1,
+  'java-12-2': questionsJava12_2,
+  'java-12-3': questionsJava12_3,
+  'java-13-1': questionsJava13_1,
+  'java-13-2': questionsJava13_2,
+  'java-14-1': questionsJava14_1,
+  'java-15-1': questionsJava15_1,
+  'java-15-2': questionsJava15_2,
+  'java-15-3': questionsJava15_3,
+  'java-15-4': questionsJava15_4,
+  'java-16-1': questionsJava16_1,
+  'java-16-2': questionsJava16_2,
+  'java-16-3': questionsJava16_3,
+  'java-17-1': questionsJava17_1,
+  'java-17-2': questionsJava17_2,
+  'java-17-3': questionsJava17_3,
+  'java-17-4': questionsJava17_4,
+  'java-18-1': questionsJava18_1,
+  'java-18-2': questionsJava18_2,
+  'java-18-3': questionsJava18_3,
+  'java-18-4': questionsJava18_4,
+  'java-18-5': questionsJava18_5,
+  'java-19-1': questionsJava19_1,
+  'java-19-2': questionsJava19_2,
+  'java-19-3': questionsJava19_3,
+  'java-19-4': questionsJava19_4,
+  'java-19-5': questionsJava19_5,
+  'java-20-1': questionsJava20_1,
+  'java-20-2': questionsJava20_2,
+  'java-20-3': questionsJava20_3,
+  'java-20-4': questionsJava20_4,
 };
 
 /** 기본 트랙 — 온보딩/배치고사 등 트랙을 아직 명시하지 않은 기존 화면이 쓰는 값 */

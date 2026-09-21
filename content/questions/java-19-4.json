@@ -1,0 +1,32 @@
+[
+  {
+    "id": "java-19-4-q1",
+    "lessonId": "java-19-4",
+    "type": "choice",
+    "prompt": "ISP(인터페이스 분리 원칙)가 말하는 것은?",
+    "code": "// ISP 위반: 하나의 거대한 인터페이스\ninterface Worker {\n    void work();\n    void eat();\n}\nclass RobotWorker implements Worker {\n    public void work() { /* ... */ }\n    public void eat() {\n        // 로봇은 밥을 안 먹는데 억지로 구현해야 함\n        throw new UnsupportedOperationException();\n    }\n}",
+    "language": "Java",
+    "options": [
+      "클라이언트(구현체)가 사용하지도 않을 메서드에 억지로 의존하지 않도록, 인터페이스를 작고 구체적으로 나눠야 한다",
+      "인터페이스는 반드시 메서드를 하나만 가져야 한다",
+      "인터페이스는 절대 여러 개 구현하면 안 된다",
+      "인터페이스보다 항상 추상클래스를 써야 한다"
+    ],
+    "answer": 0,
+    "explanation": "RobotWorker는 일(work)만 하면 되는데, 거대한 Worker 인터페이스 때문에 필요 없는 eat()까지 억지로 구현해야 해요. ISP는 이런 낭비를 막기 위해 Workable, Eatable처럼 인터페이스를 작은 단위로 쪼개서, 필요한 것만 구현하게 하라는 원칙이에요."
+  },
+  {
+    "id": "java-19-4-q2",
+    "lessonId": "java-19-4",
+    "type": "choice",
+    "prompt": "거대한 인터페이스 하나를 여러 구현체가 함께 쓸 때 생기는 문제는?",
+    "options": [
+      "일부 구현체는 쓰지도 않을 메서드까지 억지로 구현해야 해서, 불필요한 코드와 의존성이 생긴다",
+      "인터페이스는 원래 크기 제한이 없어서 아무 문제가 없다",
+      "구현체 개수가 자동으로 줄어든다",
+      "메서드 이름이 자동으로 겹치게 된다"
+    ],
+    "answer": 0,
+    "explanation": "하나의 크고 뭉뚱그려진 인터페이스는 특정 구현체에는 불필요한 기능까지 강요해요. 인터페이스를 역할별로 잘게 나누면, 각 구현체는 자신에게 필요한 인터페이스만 구현하면 돼서 훨씬 깔끔해져요."
+  }
+]

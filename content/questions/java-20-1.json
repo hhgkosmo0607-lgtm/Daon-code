@@ -1,0 +1,32 @@
+[
+  {
+    "id": "java-20-1-q1",
+    "lessonId": "java-20-1",
+    "type": "choice",
+    "prompt": "자바에서 클래스 이름을 지을 때 관례로 따르는 표기법은?",
+    "code": "class UserAccount { } // 클래스: PascalCase\nint totalPrice; // 변수/메서드: camelCase\nfinal int MAX_SIZE = 100; // 상수: 대문자 + 언더스코어",
+    "language": "Java",
+    "options": [
+      "PascalCase (단어 첫 글자마다 대문자, 예: UserAccount)",
+      "snake_case (단어 사이를 언더스코어로, 예: user_account)",
+      "kebab-case (단어 사이를 하이픈으로, 예: user-account)",
+      "전부 소문자로만 (예: useraccount)"
+    ],
+    "answer": 0,
+    "explanation": "자바 관례상 클래스/인터페이스 이름은 PascalCase(첫 글자도 대문자)를, 변수와 메서드 이름은 camelCase(첫 글자는 소문자)를 써요. 상수(final static)는 전부 대문자와 언더스코어(MAX_SIZE)로 써요. 이런 관례를 지키면 코드만 보고도 그게 클래스인지 변수인지 상수인지 바로 구분돼요."
+  },
+  {
+    "id": "java-20-1-q2",
+    "lessonId": "java-20-1",
+    "type": "choice",
+    "prompt": "여러 사람이 같이 작업하는 프로젝트에서 네이밍 컨벤션을 지키는 게 중요한 이유는?",
+    "options": [
+      "코드를 처음 보는 사람도 이름의 형태만 보고 그게 클래스인지, 변수인지, 상수인지 예측할 수 있다",
+      "네이밍 규칙을 지키면 프로그램 실행 속도가 빨라진다",
+      "네이밍 규칙은 컴파일러가 강제하므로 지키지 않으면 컴파일 에러가 난다",
+      "네이밍 규칙은 파일 크기를 줄여준다"
+    ],
+    "answer": 0,
+    "explanation": "네이밍 컨벤션은 자바 문법이 강제하는 규칙은 아니지만(안 지켜도 컴파일은 돼요), 팀 전체가 같은 규칙을 따르면 코드를 읽을 때 이름만 보고도 그 정체(클래스/변수/상수)를 바로 짐작할 수 있어서 협업 효율이 크게 올라가요."
+  }
+]
