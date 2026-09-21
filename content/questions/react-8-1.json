@@ -1,0 +1,45 @@
+[
+  {
+    "id": "react-8-1-q1",
+    "lessonId": "react-8-1",
+    "type": "choice",
+    "prompt": "useRef의 ref.current 값을 바꾸면?",
+    "options": [
+      "컴포넌트가 다시 렌더링된다",
+      "리렌더링이 일어나지 않는다",
+      "렌더링마다 초깃값으로 되돌아간다",
+      "읽기 전용이라 바꿀 수 없다"
+    ],
+    "answer": 1,
+    "explanation": "ref는 렌더링 사이에 값을 유지하지만 바뀌어도 화면을 다시 그리지 않아요. 타이머 id, 이전 값 저장, DOM 참조처럼 화면에 직접 보이지 않는 값에 써요."
+  },
+  {
+    "id": "react-8-1-q2",
+    "lessonId": "react-8-1",
+    "type": "choice",
+    "prompt": "<input ref={inputRef} />에서 inputRef.current에 DOM 요소가 담기는 시점은?",
+    "code": "const inputRef = useRef(null);\nconst focus = () => inputRef.current.focus();",
+    "options": [
+      "컴포넌트 함수가 처음 호출되는 순간 렌더링 도중에",
+      "항상 null이다",
+      "렌더링이 끝나 DOM에 붙은 뒤이므로 이벤트 핸들러나 effect에서 사용한다",
+      "렌더링 전에 초깃값으로 채워진다"
+    ],
+    "answer": 2,
+    "explanation": "첫 렌더링 중에는 아직 DOM이 없어서 ref.current가 null이에요. 버튼 클릭이나 useEffect 안에서 읽어야 안전해요."
+  },
+  {
+    "id": "react-8-1-q3",
+    "lessonId": "react-8-1",
+    "type": "choice",
+    "prompt": "useId의 용도는?",
+    "options": [
+      "리스트 항목의 key로 쓸 DB용 id를 만든다",
+      "난수를 만드는 함수다",
+      "서버가 발급하는 사용자 고유 번호를 얻는다",
+      "렌더링 사이에 안정적인 고유 id를 만들어 label과 input을 연결하는 등에 쓴다"
+    ],
+    "answer": 3,
+    "explanation": "useId는 htmlFor/id 같은 접근성 연결에 쓰는 고유 문자열을 만들어 줘요. 리스트 key로 쓰는 용도는 아니에요."
+  }
+]

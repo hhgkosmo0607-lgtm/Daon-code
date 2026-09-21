@@ -1,0 +1,46 @@
+[
+  {
+    "id": "react-3-2-q1",
+    "lessonId": "react-3-2",
+    "type": "choice",
+    "prompt": "map으로 목록을 렌더링할 때 key를 지정하는 이유는?",
+    "code": "{todos.map(todo => (\n  <li key={todo.id}>{todo.text}</li>\n))}",
+    "options": [
+      "화면에 번호를 표시하기 위해",
+      "각 항목을 식별해서 추가/삭제/순서 변경 때 정확하고 효율적으로 갱신하기 위해",
+      "CSS 선택자로 쓰기 위해",
+      "정렬 순서를 자동으로 정하기 위해"
+    ],
+    "answer": 1,
+    "explanation": "key는 리액트가 이전 렌더링과 이번 렌더링의 항목을 짝지을 때 쓰는 식별자예요. props로 자식에게 전달되지는 않아요."
+  },
+  {
+    "id": "react-3-2-q2",
+    "lessonId": "react-3-2",
+    "type": "choice",
+    "prompt": "목록이 자주 삭제·재정렬되는데 key로 배열 index를 쓰면 생길 수 있는 문제는?",
+    "options": [
+      "key가 중복되어 앱이 즉시 종료된다",
+      "리스트가 화면에 전혀 나타나지 않는다",
+      "항목의 입력값이나 state가 엉뚱한 항목에 붙는 등 화면이 잘못 갱신될 수 있다",
+      "성능이 항상 두 배로 빨라진다"
+    ],
+    "answer": 2,
+    "explanation": "위치가 바뀌면 index가 다른 항목을 가리켜서 리액트가 항목을 잘못 재사용해요. 변하지 않는 고유한 id를 key로 쓰는 게 안전해요."
+  },
+  {
+    "id": "react-3-2-q3",
+    "lessonId": "react-3-2",
+    "type": "choice",
+    "prompt": "items가 빈 배열일 때 아래 코드는 화면에 무엇을 보여 줄까?",
+    "code": "{items.length && <List items={items} />}",
+    "options": [
+      "아무것도 출력되지 않는다",
+      "false가 출력된다",
+      "오류가 발생한다",
+      "숫자 0이 그대로 출력된다"
+    ],
+    "answer": 3,
+    "explanation": "&&는 왼쪽 값이 falsy이면 그 값을 그대로 돌려주는데, 리액트는 0을 숫자로 렌더링해요. items.length > 0 && ... 처럼 불리언으로 만들어야 해요."
+  }
+]

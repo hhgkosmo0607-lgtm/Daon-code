@@ -647,6 +647,78 @@
       "stage": 15,
       "title": "신입 소양",
       "description": "신입 소양 — 모던 문법, 값 복사, 보안, 흔한 함정"
+    },
+    {
+      "trackId": "react",
+      "stage": 1,
+      "title": "리액트 시작하기",
+      "description": "리액트, 가상 DOM, SPA, Vite, JSX"
+    },
+    {
+      "trackId": "react",
+      "stage": 2,
+      "title": "컴포넌트와 props",
+      "description": "컴포넌트, props, children"
+    },
+    {
+      "trackId": "react",
+      "stage": 3,
+      "title": "이벤트와 리스트",
+      "description": "이벤트 처리, key, 조건부 렌더링"
+    },
+    {
+      "trackId": "react",
+      "stage": 4,
+      "title": "state",
+      "description": "useState와 불변 업데이트"
+    },
+    {
+      "trackId": "react",
+      "stage": 5,
+      "title": "폼",
+      "description": "제어 컴포넌트, 제출 처리"
+    },
+    {
+      "trackId": "react",
+      "stage": 6,
+      "title": "라우터",
+      "description": "react-router, 경로 변수, 쿼리스트링"
+    },
+    {
+      "trackId": "react",
+      "stage": 7,
+      "title": "useEffect",
+      "description": "수명주기, 의존성 배열, 데이터 가져오기"
+    },
+    {
+      "trackId": "react",
+      "stage": 8,
+      "title": "ref와 렌더링 최적화",
+      "description": "useRef, useId, useMemo, useCallback"
+    },
+    {
+      "trackId": "react",
+      "stage": 9,
+      "title": "전역 상태",
+      "description": "useReducer, Context, zustand"
+    },
+    {
+      "trackId": "react",
+      "stage": 10,
+      "title": "React 19 훅",
+      "description": "useActionState, useFormStatus, useOptimistic"
+    },
+    {
+      "trackId": "react",
+      "stage": 11,
+      "title": "외부 서비스 연동",
+      "description": "Firebase 실시간 DB와 스토리지, 환경변수"
+    },
+    {
+      "trackId": "react",
+      "stage": 12,
+      "title": "신입 소양",
+      "description": "신입 소양 — 흔한 실수, 컴포넌트 설계, 보안과 배포"
     }
   ],
   "lessons": [
@@ -3143,6 +3215,213 @@
       "stage": 15,
       "title": "자주 만나는 함정",
       "orderNo": 4,
+      "xpReward": 10
+    },
+    {
+      "trackId": "react",
+      "id": "react-1-1",
+      "stage": 1,
+      "title": "리액트와 SPA",
+      "subtitle": "가상 DOM, Vite",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "react",
+      "id": "react-1-2",
+      "stage": 1,
+      "title": "JSX 규칙",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "react",
+      "id": "react-2-1",
+      "stage": 2,
+      "title": "컴포넌트",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "react",
+      "id": "react-2-2",
+      "stage": 2,
+      "title": "props",
+      "subtitle": "읽기 전용, children",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "react",
+      "id": "react-3-1",
+      "stage": 3,
+      "title": "이벤트 처리",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "react",
+      "id": "react-3-2",
+      "stage": 3,
+      "title": "리스트와 조건부 렌더링",
+      "subtitle": "key, &&의 함정",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "react",
+      "id": "react-4-1",
+      "stage": 4,
+      "title": "useState 기본",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "react",
+      "id": "react-4-2",
+      "stage": 4,
+      "title": "state 업데이트 규칙",
+      "subtitle": "함수형 업데이트, 불변성",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "react",
+      "id": "react-5-1",
+      "stage": 5,
+      "title": "제어 컴포넌트",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "react",
+      "id": "react-6-1",
+      "stage": 6,
+      "title": "Routes, Route, Link",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "react",
+      "id": "react-6-2",
+      "stage": 6,
+      "title": "useParams와 Outlet",
+      "subtitle": "useSearchParams, useNavigate",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "react",
+      "id": "react-7-1",
+      "stage": 7,
+      "title": "useEffect와 의존성 배열",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "react",
+      "id": "react-7-2",
+      "stage": 7,
+      "title": "cleanup과 데이터 가져오기",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "react",
+      "id": "react-8-1",
+      "stage": 8,
+      "title": "useRef와 useId",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "react",
+      "id": "react-8-2",
+      "stage": 8,
+      "title": "useMemo와 useCallback",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "react",
+      "id": "react-9-1",
+      "stage": 9,
+      "title": "useReducer",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "react",
+      "id": "react-9-2",
+      "stage": 9,
+      "title": "Context",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "react",
+      "id": "react-9-3",
+      "stage": 9,
+      "title": "zustand",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "react",
+      "id": "react-10-1",
+      "stage": 10,
+      "title": "폼 액션 훅",
+      "subtitle": "useActionState, useFormStatus",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "react",
+      "id": "react-10-2",
+      "stage": 10,
+      "title": "useOptimistic",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "react",
+      "id": "react-11-1",
+      "stage": 11,
+      "title": "Firebase 실시간 DB",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "react",
+      "id": "react-11-2",
+      "stage": 11,
+      "title": "환경변수와 스토리지",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "react",
+      "id": "react-12-1",
+      "stage": 12,
+      "title": "흔한 실수와 훅 규칙",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "react",
+      "id": "react-12-2",
+      "stage": 12,
+      "title": "컴포넌트 설계",
+      "subtitle": "상태 끌어올리기, 파생 값",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "react",
+      "id": "react-12-3",
+      "stage": 12,
+      "title": "보안과 배포",
+      "orderNo": 3,
       "xpReward": 10
     }
   ]

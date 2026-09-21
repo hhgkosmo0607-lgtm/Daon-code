@@ -1,0 +1,60 @@
+[
+  {
+    "id": "react-5-1-q1",
+    "lessonId": "react-5-1",
+    "type": "choice",
+    "prompt": "아래 input은 어떻게 동작할까?",
+    "code": "const [text, setText] = useState('');\n<input value={text} />",
+    "options": [
+      "입력하면 text가 자동으로 갱신된다",
+      "입력은 되지만 text 값만 안 바뀐다",
+      "오류로 앱이 중단된다",
+      "입력창에 글자를 입력해도 값이 바뀌지 않는다 (읽기 전용처럼 보인다)"
+    ],
+    "answer": 3,
+    "explanation": "value를 state로 고정했는데 onChange로 갱신하지 않으면 화면의 값이 항상 text로 되돌아가요. 리액트도 onChange 없이 value만 쓰면 경고를 띄워요."
+  },
+  {
+    "id": "react-5-1-q2",
+    "lessonId": "react-5-1",
+    "type": "choice",
+    "prompt": "입력값을 state에 담는 올바른 코드는?",
+    "options": [
+      "onChange={(e) => setText(e.target.value)}",
+      "onChange={setText}",
+      "onChange={setText(e.target.value)}",
+      "onInput={text = e.target.value}"
+    ],
+    "answer": 0,
+    "explanation": "onChange는 이벤트 객체를 넘겨줘서 그 안의 e.target.value가 입력값이에요. setText를 그대로 넘기면 값이 아니라 이벤트 객체가 state에 들어가요."
+  },
+  {
+    "id": "react-5-1-q3",
+    "lessonId": "react-5-1",
+    "type": "choice",
+    "prompt": "폼을 제출할 때 페이지가 새로고침되지 않게 하려면?",
+    "code": "const handleSubmit = (e) => {\n  e.preventDefault();\n  save(text);\n};",
+    "options": [
+      "onChange 핸들러에서 e.stopPropagation()을 호출한다",
+      "onSubmit 핸들러에서 e.preventDefault()를 호출한다",
+      "form 태그의 method를 get으로 바꾼다",
+      "button의 type을 button으로 두고 onClick을 쓰면 항상 필요 없다"
+    ],
+    "answer": 1,
+    "explanation": "제출의 기본 동작이 서버 전송과 이동이라서 preventDefault로 막고 직접 처리해요."
+  },
+  {
+    "id": "react-5-1-q4",
+    "lessonId": "react-5-1",
+    "type": "choice",
+    "prompt": "체크박스의 체크 여부를 state에 담는 올바른 방법은?",
+    "options": [
+      "e.target.value를 읽는다",
+      "e.target.selected를 읽는다",
+      "onChange에서 e.target.checked를 읽는다",
+      "onClick에서 e.target.active를 읽는다"
+    ],
+    "answer": 2,
+    "explanation": "체크박스는 checked 속성으로 상태를 표현해요. value는 체크 여부와 상관없이 정해진 문자열이에요."
+  }
+]

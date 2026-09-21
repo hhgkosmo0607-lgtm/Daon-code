@@ -291,6 +291,31 @@ import q_js_15_1 from '../../../content/questions/js-15-1.json';
 import q_js_15_2 from '../../../content/questions/js-15-2.json';
 import q_js_15_3 from '../../../content/questions/js-15-3.json';
 import q_js_15_4 from '../../../content/questions/js-15-4.json';
+import q_react_1_1 from '../../../content/questions/react-1-1.json';
+import q_react_1_2 from '../../../content/questions/react-1-2.json';
+import q_react_2_1 from '../../../content/questions/react-2-1.json';
+import q_react_2_2 from '../../../content/questions/react-2-2.json';
+import q_react_3_1 from '../../../content/questions/react-3-1.json';
+import q_react_3_2 from '../../../content/questions/react-3-2.json';
+import q_react_4_1 from '../../../content/questions/react-4-1.json';
+import q_react_4_2 from '../../../content/questions/react-4-2.json';
+import q_react_5_1 from '../../../content/questions/react-5-1.json';
+import q_react_6_1 from '../../../content/questions/react-6-1.json';
+import q_react_6_2 from '../../../content/questions/react-6-2.json';
+import q_react_7_1 from '../../../content/questions/react-7-1.json';
+import q_react_7_2 from '../../../content/questions/react-7-2.json';
+import q_react_8_1 from '../../../content/questions/react-8-1.json';
+import q_react_8_2 from '../../../content/questions/react-8-2.json';
+import q_react_9_1 from '../../../content/questions/react-9-1.json';
+import q_react_9_2 from '../../../content/questions/react-9-2.json';
+import q_react_9_3 from '../../../content/questions/react-9-3.json';
+import q_react_10_1 from '../../../content/questions/react-10-1.json';
+import q_react_10_2 from '../../../content/questions/react-10-2.json';
+import q_react_11_1 from '../../../content/questions/react-11-1.json';
+import q_react_11_2 from '../../../content/questions/react-11-2.json';
+import q_react_12_1 from '../../../content/questions/react-12-1.json';
+import q_react_12_2 from '../../../content/questions/react-12-2.json';
+import q_react_12_3 from '../../../content/questions/react-12-3.json';
 
 import type { Lesson, Question, Stage, Track } from '../domain/types';
 
@@ -598,6 +623,31 @@ const QUESTION_BANK: Record<string, unknown> = {
   'js-15-2': q_js_15_2,
   'js-15-3': q_js_15_3,
   'js-15-4': q_js_15_4,
+  'react-1-1': q_react_1_1,
+  'react-1-2': q_react_1_2,
+  'react-2-1': q_react_2_1,
+  'react-2-2': q_react_2_2,
+  'react-3-1': q_react_3_1,
+  'react-3-2': q_react_3_2,
+  'react-4-1': q_react_4_1,
+  'react-4-2': q_react_4_2,
+  'react-5-1': q_react_5_1,
+  'react-6-1': q_react_6_1,
+  'react-6-2': q_react_6_2,
+  'react-7-1': q_react_7_1,
+  'react-7-2': q_react_7_2,
+  'react-8-1': q_react_8_1,
+  'react-8-2': q_react_8_2,
+  'react-9-1': q_react_9_1,
+  'react-9-2': q_react_9_2,
+  'react-9-3': q_react_9_3,
+  'react-10-1': q_react_10_1,
+  'react-10-2': q_react_10_2,
+  'react-11-1': q_react_11_1,
+  'react-11-2': q_react_11_2,
+  'react-12-1': q_react_12_1,
+  'react-12-2': q_react_12_2,
+  'react-12-3': q_react_12_3,
 };
 
 /** 기본 트랙 — 온보딩/배치고사 등 트랙을 아직 명시하지 않은 기존 화면이 쓰는 값 */

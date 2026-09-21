@@ -1,0 +1,60 @@
+[
+  {
+    "id": "react-6-2-q1",
+    "lessonId": "react-6-2",
+    "type": "choice",
+    "prompt": "경로가 /board/:id 이고 /board/5 로 접속했을 때, useParams()로 얻은 id의 값은?",
+    "code": "const { id } = useParams();\nconsole.log(typeof id);",
+    "options": [
+      "숫자 5",
+      "배열 [5]",
+      "문자열 '5'",
+      "객체 { id: 5 }"
+    ],
+    "answer": 2,
+    "explanation": "주소에서 읽어 온 값은 항상 문자열이에요. 숫자로 계산하거나 === 로 비교하려면 Number(id)로 바꿔야 해요."
+  },
+  {
+    "id": "react-6-2-q2",
+    "lessonId": "react-6-2",
+    "type": "choice",
+    "prompt": "/list?page=2 처럼 쿼리스트링 값을 읽는 훅은?",
+    "code": "const [searchParams] = useSearchParams();\nconst page = searchParams.get('page');",
+    "options": [
+      "useParams",
+      "useNavigate",
+      "useRef",
+      "useSearchParams"
+    ],
+    "answer": 3,
+    "explanation": "useParams는 경로 변수(:id)용이고, 쿼리스트링(?page=2)은 useSearchParams로 읽어요. useNavigate는 코드로 화면을 이동시킬 때 써요."
+  },
+  {
+    "id": "react-6-2-q3",
+    "lessonId": "react-6-2",
+    "type": "choice",
+    "prompt": "공통 레이아웃(상단 메뉴 등) 안에서 자식 라우트의 화면이 그려질 자리를 표시하는 컴포넌트는?",
+    "options": [
+      "<Outlet />",
+      "<Children />",
+      "<Slot />",
+      "<RouteView />"
+    ],
+    "answer": 0,
+    "explanation": "부모 라우트의 element에 <Outlet />을 두면 매칭된 자식 라우트의 화면이 그 자리에 들어가요."
+  },
+  {
+    "id": "react-6-2-q4",
+    "lessonId": "react-6-2",
+    "type": "choice",
+    "prompt": "로그인 성공 후 코드에서 /home으로 이동시키는 방법은?",
+    "options": [
+      "<Link to='/home' />를 함수 안에서 호출한다",
+      "useNavigate로 얻은 navigate('/home')을 호출한다",
+      "window.location.href = '/home'이 리액트 라우터에서 권장하는 방법이다",
+      "history.push만 가능하고 다른 방법은 없다"
+    ],
+    "answer": 1,
+    "explanation": "useNavigate는 이벤트 처리나 비동기 작업 후에 화면을 옮길 때 써요. window.location으로 이동하면 페이지가 통째로 새로고침돼서 SPA의 장점이 사라져요."
+  }
+]

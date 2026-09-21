@@ -1,0 +1,61 @@
+[
+  {
+    "id": "react-1-2-q1",
+    "lessonId": "react-1-2",
+    "type": "choice",
+    "prompt": "JSX에서 CSS 클래스를 지정하는 속성 이름은?",
+    "code": "<div className=\"box\">안녕</div>",
+    "options": [
+      "className",
+      "class",
+      "cssClass",
+      "classList"
+    ],
+    "answer": 0,
+    "explanation": "class는 자바스크립트의 예약어라서 JSX에서는 className을 써요. 같은 이유로 label의 for도 htmlFor로 써요."
+  },
+  {
+    "id": "react-1-2-q2",
+    "lessonId": "react-1-2",
+    "type": "choice",
+    "prompt": "불필요한 div 없이 여러 형제 요소를 한 번에 반환하는 방법은?",
+    "code": "return (\n  <>\n    <h1>제목</h1>\n    <p>내용</p>\n  </>\n);",
+    "options": [
+      "요소들을 쉼표로 구분해서 나열한다",
+      "프래그먼트 <> ... </> 로 감싼다",
+      "<br />로 요소 사이를 연결한다",
+      "return을 요소 개수만큼 여러 번 쓴다"
+    ],
+    "answer": 1,
+    "explanation": "컴포넌트는 하나의 루트만 반환할 수 있어요. <>...</> (Fragment)는 실제 DOM에 요소를 만들지 않고 묶어 줘요."
+  },
+  {
+    "id": "react-1-2-q3",
+    "lessonId": "react-1-2",
+    "type": "choice",
+    "prompt": "JSX 중괄호 { } 안에 쓸 수 있는 것은?",
+    "code": "<p>{count > 0 ? \"있음\" : \"없음\"}</p>",
+    "options": [
+      "if, for 같은 문(statement)",
+      "CSS 규칙",
+      "값을 만들어 내는 표현식(변수, 삼항 연산, 함수 호출)",
+      "import 구문"
+    ],
+    "answer": 2,
+    "explanation": "{ } 안에는 값이 되는 표현식만 들어가요. 조건은 삼항(a ? b : c)이나 &&로, 반복은 map으로 표현해요."
+  },
+  {
+    "id": "react-1-2-q4",
+    "lessonId": "react-1-2",
+    "type": "choice",
+    "prompt": "JSX에서 <input>, <img> 를 HTML처럼 닫지 않고 쓰면?",
+    "options": [
+      "HTML처럼 그대로 정상 동작한다",
+      "경고만 나오고 정상 동작한다",
+      "리액트가 자동으로 닫아 준다",
+      "문법 오류가 난다. <input /> 처럼 닫아야 한다"
+    ],
+    "answer": 3,
+    "explanation": "JSX는 XML 규칙을 따라서 모든 태그를 반드시 닫아야 해요. 내용이 없는 요소는 <input /> 처럼 자체 닫기 형태로 써요."
+  }
+]

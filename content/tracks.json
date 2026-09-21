@@ -48,5 +48,10 @@
     "id": "js",
     "label": "자바스크립트 기초",
     "description": "변수·함수·배열부터 DOM, 이벤트, 비동기(fetch)까지, 신입이 알아야 할 함정 포함"
+  },
+  {
+    "id": "react",
+    "label": "리액트 기초",
+    "description": "컴포넌트·state부터 라우터, useEffect, 전역 상태, React 19 훅, 실무 소양까지"
   }
 ]

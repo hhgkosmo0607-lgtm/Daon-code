@@ -1,0 +1,45 @@
+[
+  {
+    "id": "react-12-1-q1",
+    "lessonId": "react-12-1",
+    "type": "choice",
+    "prompt": "아래 컴포넌트를 렌더링하면 어떻게 될까?",
+    "code": "function C() {\n  const [n, setN] = useState(0);\n  setN(1);\n  return <p>{n}</p>;\n}",
+    "options": [
+      "렌더링 중 setState가 다시 렌더링을 일으켜 무한 반복되며 \"Too many re-renders\" 오류가 난다",
+      "정상 렌더링되고 n은 1이 된다",
+      "한 번만 실행되고 멈춘다",
+      "화면이 비어 있지만 오류는 없다"
+    ],
+    "answer": 0,
+    "explanation": "렌더링 도중에 state를 바꾸면 또 렌더링되고 또 바꾸는 루프가 돼요. state 변경은 이벤트 핸들러나 effect 안에서 해야 해요."
+  },
+  {
+    "id": "react-12-1-q2",
+    "lessonId": "react-12-1",
+    "type": "choice",
+    "prompt": "훅(Hook)을 호출할 때 지켜야 하는 규칙은?",
+    "options": [
+      "조건문 안에서도 자유롭게 호출할 수 있다",
+      "컴포넌트나 커스텀 훅의 최상위에서만 호출하고 조건문·반복문 안에서는 호출하지 않는다",
+      "이벤트 핸들러 안에서만 호출해야 한다",
+      "클래스 컴포넌트에서만 호출할 수 있다"
+    ],
+    "answer": 1,
+    "explanation": "리액트는 훅이 호출되는 \"순서\"로 state를 구분해요. 조건에 따라 호출 여부가 바뀌면 순서가 어긋나서 버그가 나요."
+  },
+  {
+    "id": "react-12-1-q3",
+    "lessonId": "react-12-1",
+    "type": "choice",
+    "prompt": "useEffect 안에서 쓰는 값을 의존성 배열에 빠뜨리면 생길 수 있는 문제는?",
+    "options": [
+      "컴파일이 되지 않는다",
+      "렌더링이 항상 두 배로 빨라진다",
+      "오래된 값(stale value)을 참조해 예상과 다르게 동작할 수 있다",
+      "리액트가 자동으로 값을 갱신해 준다"
+    ],
+    "answer": 2,
+    "explanation": "effect는 그 렌더링 시점의 값을 기억해서 실행돼요. 그래서 react-hooks/exhaustive-deps 린트 경고를 무시하지 않는 게 좋아요."
+  }
+]

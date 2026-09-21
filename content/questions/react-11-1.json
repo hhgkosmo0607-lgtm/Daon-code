@@ -1,0 +1,44 @@
+[
+  {
+    "id": "react-11-1-q1",
+    "lessonId": "react-11-1",
+    "type": "choice",
+    "prompt": "Firebase Realtime Database의 데이터 구조는?",
+    "options": [
+      "행과 열로 이루어진 관계형 테이블",
+      "파일 시스템처럼 바이너리 파일만 저장",
+      "하나의 큰 JSON 트리",
+      "XML 문서 모음"
+    ],
+    "answer": 2,
+    "explanation": "경로(예: chat/room1/messages)로 JSON 노드에 접근해요. 테이블/조인 개념이 없어서 데이터를 읽는 화면에 맞게 구조를 설계해야 해요."
+  },
+  {
+    "id": "react-11-1-q2",
+    "lessonId": "react-11-1",
+    "type": "choice",
+    "prompt": "onValue(ref, callback)의 역할은?",
+    "options": [
+      "데이터를 한 번만 읽고 종료한다",
+      "데이터를 삭제한다",
+      "새 데이터를 추가한다",
+      "해당 경로의 데이터가 바뀔 때마다 콜백을 실행하는 실시간 구독"
+    ],
+    "answer": 3,
+    "explanation": "채팅처럼 실시간 화면에서 써요. 구독은 useEffect의 cleanup에서 해제해 줘야 컴포넌트가 사라진 뒤에도 콜백이 실행되지 않아요."
+  },
+  {
+    "id": "react-11-1-q3",
+    "lessonId": "react-11-1",
+    "type": "choice",
+    "prompt": "push(ref, data)로 데이터를 추가하면 어떤 일이 일어날까?",
+    "options": [
+      "고유한 키가 자동으로 생성되어 그 아래에 저장된다",
+      "기존 데이터를 통째로 덮어쓴다",
+      "지정한 키가 없으면 오류가 발생한다",
+      "데이터는 브라우저에만 저장된다"
+    ],
+    "answer": 0,
+    "explanation": "push는 시간순으로 정렬되는 고유 키를 만들어 자식 노드로 추가해요. 특정 경로에 덮어쓸 때는 set을 써요."
+  }
+]
