@@ -1,0 +1,34 @@
+[
+  {
+    "id": "css-10-1-q1",
+    "lessonId": "css-10-1",
+    "type": "choice",
+    "prompt": "부모 요소에 display: flex; 를 주면 자식 요소들은 어떻게 배치되나?",
+    "code": ".container {\n  display: flex;\n}",
+    "language": "CSS",
+    "options": [
+      "자식 요소들이 각각 새로운 줄에 하나씩 세로로 배치된다",
+      "자식 요소들이 기본적으로 가로 한 줄로 나란히 배치되는 flexbox 레이아웃을 따르게 된다",
+      "자식 요소들의 크기가 모두 화면 전체 크기로 강제된다",
+      "display: flex는 부모가 아니라 자식 요소에 줘야 하는 속성이다"
+    ],
+    "answer": 1,
+    "explanation": "display: flex를 부모(컨테이너)에 주면, 그 자식들(아이템)은 기본적으로 가로 방향(주축)으로 한 줄에 나란히 배치돼요. 이게 flexbox 레이아웃의 기본 동작이에요."
+  },
+  {
+    "id": "css-10-1-q2",
+    "lessonId": "css-10-1",
+    "type": "choice",
+    "prompt": "flex-direction: row와 flex-direction: column의 차이는?",
+    "code": ".container {\n  display: flex;\n  flex-direction: column; /* 세로로 배치 */\n}",
+    "language": "CSS",
+    "options": [
+      "row는 세로로, column은 가로로 배치한다(반대)",
+      "flex-direction은 아이템의 정렬이 아니라 크기를 조절하는 속성이다",
+      "row는 아이템을 가로로, column은 세로로 배치한다",
+      "row와 column은 완전히 같은 결과를 낸다"
+    ],
+    "answer": 2,
+    "explanation": "flex-direction은 주축(main axis)의 방향을 정해요. row(기본값)는 가로 방향으로, column은 세로 방향으로 아이템을 쌓아요. reverse가 붙으면 순서가 역방향이 돼요."
+  }
+]

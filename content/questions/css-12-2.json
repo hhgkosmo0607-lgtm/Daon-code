@@ -1,0 +1,34 @@
+[
+  {
+    "id": "css-12-2-q1",
+    "lessonId": "css-12-2",
+    "type": "choice",
+    "prompt": "class=\"card__title--highlighted\" 처럼 __와 --를 써서 이름 짓는 BEM 네이밍 규칙에서, __(더블 언더스코어)의 의미는?",
+    "code": "<!-- BEM: Block__Element--Modifier -->\n<div class=\"card\">\n  <h3 class=\"card__title\">제목</h3>\n</div>",
+    "language": "CSS",
+    "options": [
+      "그 요소의 상태 변형(Modifier)을 나타낸다",
+      "두 개의 서로 다른 클래스를 동시에 적용한다는 표시다",
+      "CSS 우선순위를 강제로 높이는 특수 문법이다",
+      "그 블록(Block)에 속한 하위 요소(Element)를 나타낸다"
+    ],
+    "answer": 3,
+    "explanation": "BEM(Block Element Modifier)은 card__title처럼 __로 \"이 요소가 card 블록에 속한 title이다\"를 나타내고, --는 card__title--highlighted처럼 상태나 변형을 나타내요. 이름만 보고도 구조 관계를 알 수 있게 해줘요."
+  },
+  {
+    "id": "css-12-2-q2",
+    "lessonId": "css-12-2",
+    "type": "choice",
+    "prompt": "#header .nav ul li a { color: blue; } 처럼 선택자를 깊게 중첩해서 쓰면 생기는 실무상 문제는?",
+    "code": "#header .nav ul li a { color: blue; }\n/* 나중에 이 색을 다른 곳에서 덮어쓰려면 더 강한 선택자가 필요해짐 */",
+    "language": "CSS",
+    "options": [
+      "명시도가 지나치게 높아져서, 나중에 다른 곳에서 같은 요소의 스타일을 덮어쓰기가 점점 어려워진다",
+      "선택자를 중첩하면 브라우저가 아예 해석하지 못해 에러가 난다",
+      "중첩된 선택자는 항상 다른 모든 선택자보다 우선순위가 낮아진다",
+      "선택자 깊이는 CSS 파일 용량에만 영향을 주고 실무상 문제는 없다"
+    ],
+    "answer": 0,
+    "explanation": "선택자를 깊게 중첩할수록 명시도가 높아져서, 나중에 그보다 더 구체적인(또는 !important 같은) 선택자로만 덮어쓸 수 있게 돼요. 이런 걸 '명시도 전쟁'이라고 부르기도 해요. BEM처럼 클래스 하나로 스타일을 지정하는 방식이 이런 문제를 줄여줘요."
+  }
+]

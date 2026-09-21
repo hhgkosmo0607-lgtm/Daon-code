@@ -1,0 +1,34 @@
+[
+  {
+    "id": "css-9-2-q1",
+    "lessonId": "css-9-2",
+    "type": "choice",
+    "prompt": "div.box01:hover { background-color: black; } 에 transition: background-color 2s; 를 함께 주면?",
+    "code": "div.box01 {\n  transition: background-color 2s;\n}\ndiv.box01:hover {\n  background-color: black;\n}",
+    "language": "CSS",
+    "options": [
+      "마우스를 올렸을 때 배경색이 순식간이 아니라 2초에 걸쳐 서서히 바뀐다",
+      "2초가 지난 뒤에만 마우스 호버 효과가 시작된다",
+      "배경색이 2초마다 계속 반복해서 바뀐다",
+      "transition은 background-color에는 적용할 수 없는 속성이다"
+    ],
+    "answer": 0,
+    "explanation": "transition은 지정한 속성이 변할 때, 그 변화를 지정한 시간에 걸쳐 부드럽게 이어지게 해줘요. transition 없이 :hover만 쓰면 색이 순식간에 뚝 바뀌지만, transition을 추가하면 2초 동안 서서히 변해요."
+  },
+  {
+    "id": "css-9-2-q2",
+    "lessonId": "css-9-2",
+    "type": "choice",
+    "prompt": "@keyframes로 정의한 애니메이션과 transition의 가장 큰 차이는?",
+    "code": "@keyframes move {\n  0% { left: 0; }\n  50% { left: 100px; }\n  100% { left: 0; }\n}\ndiv { animation: move 2s infinite; }",
+    "language": "CSS",
+    "options": [
+      "transition은 여러 단계를 지정할 수 있고 keyframes는 시작과 끝만 가능하다(반대)",
+      "keyframes는 여러 단계(0%, 50%, 100% 등)의 상태를 세밀하게 지정할 수 있고 반복 재생도 가능하지만, transition은 시작과 끝 두 상태 사이의 변화만 표현한다",
+      "keyframes는 색상에만, transition은 위치에만 쓸 수 있다",
+      "둘은 완전히 동일한 문법으로 서로 대체 가능하다"
+    ],
+    "answer": 1,
+    "explanation": "transition은 \"A상태 → B상태\"처럼 두 상태 사이의 변화만 부드럽게 이어줘요. @keyframes는 0%, 50%, 100%처럼 여러 중간 단계를 자유롭게 지정할 수 있고, infinite로 무한 반복하는 복잡한 애니메이션도 만들 수 있어요."
+  }
+]

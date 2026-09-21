@@ -1,0 +1,32 @@
+[
+  {
+    "id": "css-5-1-q1",
+    "lessonId": "css-5-1",
+    "type": "choice",
+    "prompt": "ul { list-style: none; } 을 적용하면 어떻게 될까?",
+    "code": "ul {\n  list-style: none;\n}",
+    "language": "CSS",
+    "options": [
+      "목록 항목 자체가 화면에서 모두 사라진다",
+      "목록 항목이 자동으로 가로로 나열된다",
+      "ul 태그가 자동으로 ol 태그로 바뀐다",
+      "각 목록 항목 앞의 마커(불릿, 숫자 등)가 사라진다"
+    ],
+    "answer": 3,
+    "explanation": "list-style: none은 li 앞에 붙는 점(•)이나 번호 같은 마커만 없애요. 내비게이션 메뉴를 ul/li로 만들고 마커를 없앨 때 자주 써요. 목록 항목의 내용 자체는 그대로 보여요."
+  },
+  {
+    "id": "css-5-1-q2",
+    "lessonId": "css-5-1",
+    "type": "choice",
+    "prompt": "list-style-type: decimal; 대신 list-style-type: square; 를 쓰면 마커는?",
+    "options": [
+      "속이 찬 정사각형 모양의 불릿으로 바뀐다",
+      "숫자가 로마자로 바뀐다",
+      "마커가 원형에서 반투명하게 바뀐다",
+      "마커가 알파벳 순서로 바뀐다"
+    ],
+    "answer": 0,
+    "explanation": "list-style-type은 마커의 모양을 지정해요. square는 정사각형, disc(기본값)는 원, decimal은 숫자, circle은 속이 빈 원이에요."
+  }
+]

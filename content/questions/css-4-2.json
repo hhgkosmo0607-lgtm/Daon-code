@@ -1,0 +1,32 @@
+[
+  {
+    "id": "css-4-2-q1",
+    "lessonId": "css-4-2",
+    "type": "choice",
+    "prompt": "크기가 고정된 div 안에 내용이 넘칠 때, overflow: hidden;을 지정하면?",
+    "code": "div {\n  width: 200px;\n  height: 100px;\n  overflow: hidden;\n}",
+    "language": "CSS",
+    "options": [
+      "영역이 내용 크기에 맞춰 자동으로 늘어난다",
+      "영역을 벗어나는 내용은 화면에서 잘려서 보이지 않는다",
+      "스크롤바가 자동으로 생겨서 넘친 내용을 볼 수 있다",
+      "내용이 아예 렌더링되지 않아 화면이 비어 보인다"
+    ],
+    "answer": 1,
+    "explanation": "overflow: hidden은 지정한 영역을 벗어나는 내용을 그냥 잘라내서 안 보이게 해요. 스크롤로 보고 싶으면 overflow: scroll이나 auto를 써야 해요."
+  },
+  {
+    "id": "css-4-2-q2",
+    "lessonId": "css-4-2",
+    "type": "choice",
+    "prompt": "overflow: auto와 overflow: scroll의 차이는?",
+    "options": [
+      "auto는 스크롤 자체가 불가능하고, scroll만 스크롤이 가능하다",
+      "둘은 완전히 같은 동작을 하는 동의어다",
+      "auto는 내용이 넘칠 때만 스크롤바를 보여주고, scroll은 넘치지 않아도 항상 스크롤바를 보여준다",
+      "scroll은 세로 스크롤만, auto는 가로 스크롤만 지원한다"
+    ],
+    "answer": 2,
+    "explanation": "scroll은 내용이 넘치지 않아도 스크롤바 자리를 항상 확보해두고, auto는 실제로 내용이 넘칠 때만 필요한 방향에 스크롤바를 보여줘요."
+  }
+]

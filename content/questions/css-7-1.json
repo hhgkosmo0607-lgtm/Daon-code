@@ -1,0 +1,32 @@
+[
+  {
+    "id": "css-7-1-q1",
+    "lessonId": "css-7-1",
+    "type": "choice",
+    "prompt": "float: left를 준 요소들이 있고, 그 아래 일반 요소가 float의 영향을 받지 않게 하려면?",
+    "code": "div.box { float: left; }\ndiv.next { clear: both; } /* float 영향을 받지 않게 함 */",
+    "language": "CSS",
+    "options": [
+      "float 대신 color 속성을 지정해야 한다",
+      "float은 자동으로 3개까지만 영향을 미쳐서 별도 처리가 필요 없다",
+      "float이 걸린 요소를 전부 지워야만 해결된다",
+      "clear 속성으로 그 방향의 float 흐름을 끊어준다"
+    ],
+    "answer": 3,
+    "explanation": "float으로 띄운 요소들은 일반 문서 흐름에서 벗어나서, 그 아래 요소가 float 요소 옆으로 파고들 수 있어요. clear: both(또는 left/right)를 주면 그 요소는 float의 영향을 피해서 아래로 내려가요."
+  },
+  {
+    "id": "css-7-1-q2",
+    "lessonId": "css-7-1",
+    "type": "choice",
+    "prompt": "float 속성이 원래 만들어진 목적은?",
+    "options": [
+      "이미지 주위로 글이 자연스럽게 흘러가게(텍스트 감싸기) 하기 위해",
+      "요소를 화면 정중앙에 배치하기 위해",
+      "애니메이션 효과를 만들기 위해",
+      "글자 크기를 자동으로 조절하기 위해"
+    ],
+    "answer": 0,
+    "explanation": "float은 원래 신문 레이아웃처럼 이미지 옆으로 텍스트가 자연스럽게 흘러가게(wrap) 하려고 만들어진 속성이에요. 예전에는 전체 레이아웃을 짜는 데도 응용해서 썼지만, 요즘은 레이아웃에는 flexbox나 grid를 쓰는 게 표준이에요."
+  }
+]

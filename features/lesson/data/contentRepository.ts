@@ -202,6 +202,27 @@ import questionsHtml8_1 from '../../../content/questions/html-8-1.json';
 import questionsHtml8_2 from '../../../content/questions/html-8-2.json';
 import questionsHtml9_1 from '../../../content/questions/html-9-1.json';
 import questionsHtml9_2 from '../../../content/questions/html-9-2.json';
+import questionsCss1_1 from '../../../content/questions/css-1-1.json';
+import questionsCss1_2 from '../../../content/questions/css-1-2.json';
+import questionsCss2_1 from '../../../content/questions/css-2-1.json';
+import questionsCss2_2 from '../../../content/questions/css-2-2.json';
+import questionsCss3_1 from '../../../content/questions/css-3-1.json';
+import questionsCss3_2 from '../../../content/questions/css-3-2.json';
+import questionsCss4_1 from '../../../content/questions/css-4-1.json';
+import questionsCss4_2 from '../../../content/questions/css-4-2.json';
+import questionsCss5_1 from '../../../content/questions/css-5-1.json';
+import questionsCss6_1 from '../../../content/questions/css-6-1.json';
+import questionsCss7_1 from '../../../content/questions/css-7-1.json';
+import questionsCss7_2 from '../../../content/questions/css-7-2.json';
+import questionsCss8_1 from '../../../content/questions/css-8-1.json';
+import questionsCss9_1 from '../../../content/questions/css-9-1.json';
+import questionsCss9_2 from '../../../content/questions/css-9-2.json';
+import questionsCss10_1 from '../../../content/questions/css-10-1.json';
+import questionsCss10_2 from '../../../content/questions/css-10-2.json';
+import questionsCss11_1 from '../../../content/questions/css-11-1.json';
+import questionsCss11_2 from '../../../content/questions/css-11-2.json';
+import questionsCss12_1 from '../../../content/questions/css-12-1.json';
+import questionsCss12_2 from '../../../content/questions/css-12-2.json';
 
 import type { Lesson, Question, Stage, Track } from '../domain/types';
 
@@ -420,6 +441,27 @@ const QUESTION_BANK: Record<string, unknown> = {
   'html-8-2': questionsHtml8_2,
   'html-9-1': questionsHtml9_1,
   'html-9-2': questionsHtml9_2,
+  'css-1-1': questionsCss1_1,
+  'css-1-2': questionsCss1_2,
+  'css-2-1': questionsCss2_1,
+  'css-2-2': questionsCss2_2,
+  'css-3-1': questionsCss3_1,
+  'css-3-2': questionsCss3_2,
+  'css-4-1': questionsCss4_1,
+  'css-4-2': questionsCss4_2,
+  'css-5-1': questionsCss5_1,
+  'css-6-1': questionsCss6_1,
+  'css-7-1': questionsCss7_1,
+  'css-7-2': questionsCss7_2,
+  'css-8-1': questionsCss8_1,
+  'css-9-1': questionsCss9_1,
+  'css-9-2': questionsCss9_2,
+  'css-10-1': questionsCss10_1,
+  'css-10-2': questionsCss10_2,
+  'css-11-1': questionsCss11_1,
+  'css-11-2': questionsCss11_2,
+  'css-12-1': questionsCss12_1,
+  'css-12-2': questionsCss12_2,
 };
 
 /** 기본 트랙 — 온보딩/배치고사 등 트랙을 아직 명시하지 않은 기존 화면이 쓰는 값 */

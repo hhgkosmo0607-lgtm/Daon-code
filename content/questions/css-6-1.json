@@ -1,0 +1,34 @@
+[
+  {
+    "id": "css-6-1-q1",
+    "lessonId": "css-6-1",
+    "type": "choice",
+    "prompt": "display: none과 visibility: hidden의 가장 중요한 차이는?",
+    "code": "div.a { display: none; }      /* 자리 자체가 사라짐 */\ndiv.b { visibility: hidden; } /* 자리는 남고 안 보이기만 함 */",
+    "language": "CSS",
+    "options": [
+      "둘은 완전히 같은 효과를 낸다",
+      "display: none은 요소가 차지하던 공간까지 완전히 사라지고, visibility: hidden은 안 보이기만 할 뿐 공간은 그대로 남는다",
+      "display: none은 요소를 안 보이게만 하고, visibility: hidden은 공간까지 없앤다(반대)",
+      "visibility: hidden은 클릭 이벤트도 그대로 받을 수 있어서 실제로는 보이는 것과 같다"
+    ],
+    "answer": 1,
+    "explanation": "display: none은 요소를 레이아웃에서 완전히 빼버려서 그 자리가 없어져요(다른 요소가 채워요). visibility: hidden은 안 보이기만 하고 원래 자리는 빈 공간으로 그대로 남아요."
+  },
+  {
+    "id": "css-6-1-q2",
+    "lessonId": "css-6-1",
+    "type": "choice",
+    "prompt": "display: inline 요소에 width와 height를 지정하면?",
+    "code": "span {\n  display: inline;\n  width: 100px;  /* 무시됨 */\n  height: 50px;  /* 무시됨 */\n}",
+    "language": "CSS",
+    "options": [
+      "지정한 크기대로 정확히 적용된다",
+      "너비만 적용되고 높이는 무시된다",
+      "inline 요소는 기본적으로 width/height 지정이 무시된다",
+      "값을 지정하면 자동으로 display: block으로 바뀐다"
+    ],
+    "answer": 2,
+    "explanation": "inline 요소(span, a 등)는 내용의 크기만큼만 차지하도록 설계돼 있어서, width/height를 직접 지정해도 기본적으로는 무시돼요. 크기를 지정하려면 display를 block이나 inline-block으로 바꿔야 해요."
+  }
+]

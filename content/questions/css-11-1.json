@@ -1,0 +1,32 @@
+[
+  {
+    "id": "css-11-1-q1",
+    "lessonId": "css-11-1",
+    "type": "choice",
+    "prompt": "grid-template-columns: 1fr 1fr; 를 지정하면 열은 어떻게 나뉘나?",
+    "code": ".container {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n}",
+    "language": "CSS",
+    "options": [
+      "너비가 정확히 1px인 열이 1개 만들어진다",
+      "사용 가능한 가로 공간을 똑같은 비율(1:1)로 나눈 2개의 열이 만들어진다",
+      "열의 개수와 무관하게 항상 화면 전체 너비를 하나의 열로 쓴다",
+      "grid-template-columns는 행(row) 개수를 지정하는 속성이다"
+    ],
+    "answer": 1,
+    "explanation": "fr(fraction)은 grid에서 사용 가능한 공간을 비율로 나누는 단위예요. 1fr 1fr은 남은 공간을 똑같이 반씩 나눈 2개의 열을 만들어요. 1fr 2fr이면 1:2 비율로 나뉘어요."
+  },
+  {
+    "id": "css-11-1-q2",
+    "lessonId": "css-11-1",
+    "type": "choice",
+    "prompt": "display: flex와 display: grid의 근본적인 차이는?",
+    "options": [
+      "flex는 텍스트에만, grid는 이미지에만 쓸 수 있다",
+      "grid는 flex의 완전한 상위 호환이라 flex는 이제 아예 쓰이지 않는다",
+      "flex는 한 방향(가로 또는 세로)의 1차원 레이아웃에, grid는 가로세로를 동시에 다루는 2차원 레이아웃에 적합하다",
+      "flex와 grid는 같은 문법을 공유하는 동일한 속성이다"
+    ],
+    "answer": 2,
+    "explanation": "flexbox는 한 줄(행 또는 열) 안에서 아이템을 배치하는 1차원 레이아웃에 강하고, grid는 행과 열을 동시에 지정해서 전체 페이지 레이아웃 같은 2차원 구조를 짤 때 강해요. 실무에서는 상황에 맞춰 둘 다 함께 써요."
+  }
+]

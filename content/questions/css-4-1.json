@@ -1,0 +1,34 @@
+[
+  {
+    "id": "css-4-1-q1",
+    "lessonId": "css-4-1",
+    "type": "choice",
+    "prompt": "margin과 padding의 근본적인 차이는?",
+    "code": "div {\n  border: 1px solid black;\n  padding: 20px;  /* 테두리 안쪽 여백 */\n  margin: 20px;   /* 테두리 바깥쪽 여백 */\n}",
+    "language": "CSS",
+    "options": [
+      "margin은 테두리 안쪽, padding은 테두리 바깥쪽 여백이다(반대로 알려진 경우가 많음)",
+      "padding과 margin은 완전히 같은 역할을 하는 속성이다",
+      "margin은 텍스트에만, padding은 이미지에만 적용된다",
+      "padding은 테두리 안쪽(요소 내부) 여백이고, margin은 테두리 바깥쪽(다른 요소와의 간격) 여백이다"
+    ],
+    "answer": 3,
+    "explanation": "박스 모델은 안쪽부터 content → padding → border → margin 순서예요. padding은 테두리 안쪽 내용물과 테두리 사이의 여백, margin은 테두리 바깥쪽 다른 요소와의 간격이에요."
+  },
+  {
+    "id": "css-4-1-q2",
+    "lessonId": "css-4-1",
+    "type": "choice",
+    "prompt": "margin: 10px 20px; 처럼 값을 두 개만 쓰면 어떻게 적용되나?",
+    "code": "div {\n  margin: 10px 20px; /* 위아래 10px, 좌우 20px */\n}",
+    "language": "CSS",
+    "options": [
+      "첫 번째 값은 위·아래에, 두 번째 값은 왼쪽·오른쪽에 각각 적용된다",
+      "첫 번째 값이 전체 방향에, 두 번째 값은 무시된다",
+      "값을 두 개 쓰면 문법 오류가 발생한다",
+      "왼쪽엔 첫 번째, 오른쪽엔 두 번째, 위아래는 자동으로 0이 된다"
+    ],
+    "answer": 0,
+    "explanation": "margin/padding에 값을 2개 쓰면 [위아래] [좌우] 순서로 적용돼요. 4개를 다 쓰면 [위] [오른쪽] [아래] [왼쪽] 시계방향 순서로 적용돼요."
+  }
+]

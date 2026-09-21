@@ -1,0 +1,32 @@
+[
+  {
+    "id": "css-9-1-q1",
+    "lessonId": "css-9-1",
+    "type": "choice",
+    "prompt": "transform: rotate(45deg); 를 요소에 적용하면?",
+    "code": "div {\n  transform: rotate(45deg);\n}",
+    "language": "CSS",
+    "options": [
+      "요소의 크기가 45% 줄어든다",
+      "요소가 45px만큼 오른쪽으로 이동한다",
+      "요소가 45도만큼 회전되어 표시된다",
+      "요소의 투명도가 45%로 바뀐다"
+    ],
+    "answer": 2,
+    "explanation": "transform의 rotate()는 요소를 지정한 각도만큼 회전시켜요. 이동은 translate(), 크기 조절은 scale()을 써요."
+  },
+  {
+    "id": "css-9-1-q2",
+    "lessonId": "css-9-1",
+    "type": "choice",
+    "prompt": "transform: translate(50px, 20px); 처럼 위치를 옮길 때, left/top 대신 translate를 쓰면 얻는 이점은?",
+    "options": [
+      "translate는 항상 left/top보다 정확한 픽셀 값을 준다",
+      "translate는 이미지에만 적용할 수 있는 속성이다",
+      "translate는 색상 값도 함께 지정할 수 있다",
+      "translate는 요소가 차지하던 레이아웃 공간(문서 흐름)에 영향을 주지 않고 시각적으로만 이동시킨다"
+    ],
+    "answer": 3,
+    "explanation": "left/top으로 위치를 옮기려면 position 속성이 필요하고, 문서 흐름 자체를 건드릴 수 있어요. transform의 translate는 레이아웃 계산이 끝난 뒤 시각적으로만 이동시켜서 다른 요소 배치에 영향을 안 주고, 일반적으로 애니메이션 성능도 더 좋아요."
+  }
+]

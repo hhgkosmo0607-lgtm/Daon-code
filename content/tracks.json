@@ -28,5 +28,10 @@
     "id": "html",
     "label": "HTML 기초",
     "description": "문서 구조부터 폼, 시맨틱 태그, 웹 접근성까지"
+  },
+  {
+    "id": "css",
+    "label": "CSS 기초",
+    "description": "선택자부터 박스모델, flexbox/grid, 실무 컨벤션까지"
   }
 ]
