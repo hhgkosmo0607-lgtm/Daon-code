@@ -797,6 +797,60 @@
       "stage": 13,
       "title": "신입 소양",
       "description": "신입 소양 — 계층·DTO, 검증/예외 처리, 운영과 보안 원칙"
+    },
+    {
+      "trackId": "docker",
+      "stage": 1,
+      "title": "도커 시작하기",
+      "description": "컨테이너, 이미지, Docker Hub"
+    },
+    {
+      "trackId": "docker",
+      "stage": 2,
+      "title": "컨테이너 실행",
+      "description": "docker run 옵션, 포트 매핑, 수명주기"
+    },
+    {
+      "trackId": "docker",
+      "stage": 3,
+      "title": "컨테이너 안으로",
+      "description": "exec, cp"
+    },
+    {
+      "trackId": "docker",
+      "stage": 4,
+      "title": "볼륨",
+      "description": "데이터 유지, 볼륨과 바인드 마운트"
+    },
+    {
+      "trackId": "docker",
+      "stage": 5,
+      "title": "이미지 만들기",
+      "description": "Dockerfile, build, 레이어"
+    },
+    {
+      "trackId": "docker",
+      "stage": 6,
+      "title": "Docker Compose",
+      "description": "서비스 정의, 네트워크, depends_on"
+    },
+    {
+      "trackId": "docker",
+      "stage": 7,
+      "title": "실전 구성",
+      "description": "DB 컨테이너, Tomcat·Flask 앱"
+    },
+    {
+      "trackId": "docker",
+      "stage": 8,
+      "title": "서버에 배포하기",
+      "description": "SSH 키, 보안 그룹, 이미지 배포 흐름"
+    },
+    {
+      "trackId": "docker",
+      "stage": 9,
+      "title": "신입 소양",
+      "description": "신입 소양 — 이미지 관리, 비밀과 권한, 운영 함정"
     }
   ],
   "lessons": [
@@ -3739,6 +3793,167 @@
       "title": "보안 소양",
       "subtitle": "SQL 인젝션, XSS, 권한 검사",
       "orderNo": 4,
+      "xpReward": 10
+    },
+    {
+      "trackId": "docker",
+      "id": "docker-1-1",
+      "stage": 1,
+      "title": "컨테이너와 이미지",
+      "subtitle": "VM과의 차이",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "docker",
+      "id": "docker-1-2",
+      "stage": 1,
+      "title": "이미지 받기",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "docker",
+      "id": "docker-2-1",
+      "stage": 2,
+      "title": "docker run 옵션",
+      "subtitle": "--name, -d, -p",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "docker",
+      "id": "docker-2-2",
+      "stage": 2,
+      "title": "컨테이너 수명주기",
+      "subtitle": "ps, stop, start, rm, logs",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "docker",
+      "id": "docker-3-1",
+      "stage": 3,
+      "title": "컨테이너 안으로 들어가기",
+      "subtitle": "docker exec",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "docker",
+      "id": "docker-3-2",
+      "stage": 3,
+      "title": "파일 복사",
+      "subtitle": "docker cp",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "docker",
+      "id": "docker-4-1",
+      "stage": 4,
+      "title": "데이터 유지와 볼륨",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "docker",
+      "id": "docker-4-2",
+      "stage": 4,
+      "title": "볼륨과 바인드 마운트",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "docker",
+      "id": "docker-5-1",
+      "stage": 5,
+      "title": "Dockerfile 기본",
+      "subtitle": "FROM, COPY, RUN, CMD",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "docker",
+      "id": "docker-5-2",
+      "stage": 5,
+      "title": "build와 레이어",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "docker",
+      "id": "docker-6-1",
+      "stage": 6,
+      "title": "compose 파일 구조",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "docker",
+      "id": "docker-6-2",
+      "stage": 6,
+      "title": "서비스 간 연결",
+      "subtitle": "네트워크, depends_on, environment",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "docker",
+      "id": "docker-6-3",
+      "stage": 6,
+      "title": "compose 명령",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "docker",
+      "id": "docker-7-1",
+      "stage": 7,
+      "title": "DB 컨테이너",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "docker",
+      "id": "docker-7-2",
+      "stage": 7,
+      "title": "웹 앱 컨테이너",
+      "subtitle": "Tomcat war, Flask",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "docker",
+      "id": "docker-8-1",
+      "stage": 8,
+      "title": "클라우드 서버 배포 맛보기",
+      "subtitle": "SSH 키, 보안 그룹",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "docker",
+      "id": "docker-9-1",
+      "stage": 9,
+      "title": "이미지 관리",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "docker",
+      "id": "docker-9-2",
+      "stage": 9,
+      "title": "비밀과 권한",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "docker",
+      "id": "docker-9-3",
+      "stage": 9,
+      "title": "운영 함정",
+      "orderNo": 3,
       "xpReward": 10
     }
   ]

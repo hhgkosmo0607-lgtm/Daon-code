@@ -1,0 +1,44 @@
+[
+  {
+    "id": "docker-6-3-q1",
+    "lessonId": "docker-6-3",
+    "type": "choice",
+    "prompt": "docker compose up -d 는 무엇을 할까?",
+    "options": [
+      "compose 파일의 문법과 설정 오류만 검사하고 컨테이너는 만들지 않고 종료한다",
+      "compose에 정의된 실행 중인 컨테이너를 모두 중지하고 삭제한다",
+      "compose 파일을 이미지로 압축해서 Docker Hub에 올린다",
+      "compose에 정의된 컨테이너·네트워크·볼륨을 만들고 백그라운드로 실행한다"
+    ],
+    "answer": 3,
+    "explanation": "up은 정의된 서비스를 생성하고 시작해요. -d로 터미널을 점유하지 않고 실행해요."
+  },
+  {
+    "id": "docker-6-3-q2",
+    "lessonId": "docker-6-3",
+    "type": "choice",
+    "prompt": "docker compose down 을 실행하면 기본적으로 삭제되는 것은?",
+    "options": [
+      "컨테이너와 기본 네트워크 (이름 있는 볼륨은 그대로 남는다)",
+      "컨테이너·네트워크·볼륨·이미지가 옵션 없이도 전부 삭제된다",
+      "컨테이너만 중지되고 삭제되지 않아서 start로 바로 다시 켤 수 있다",
+      "이름 있는 볼륨과 그 안의 데이터만 삭제되고 컨테이너는 남는다"
+    ],
+    "answer": 0,
+    "explanation": "볼륨까지 지우려면 docker compose down -v 옵션을 붙여야 해요. DB 데이터가 들어 있는 볼륨은 지우기 전에 꼭 확인해요."
+  },
+  {
+    "id": "docker-6-3-q3",
+    "lessonId": "docker-6-3",
+    "type": "choice",
+    "prompt": "compose로 실행한 컨테이너를 삭제하지 않고 잠시 멈추는 명령은?",
+    "options": [
+      "docker compose down",
+      "docker compose stop",
+      "docker compose rm -a",
+      "docker compose pause --delete"
+    ],
+    "answer": 1,
+    "explanation": "stop은 멈추기만 하고 컨테이너를 남겨 두어 start로 다시 켤 수 있어요. down은 컨테이너와 네트워크를 지워요."
+  }
+]

@@ -58,5 +58,10 @@
     "id": "spring",
     "label": "스프링 부트 기초",
     "description": "MVC·DI부터 MyBatis/JPA, 트랜잭션, 시큐리티, REST API, 실무 소양까지"
+  },
+  {
+    "id": "docker",
+    "label": "도커 기초",
+    "description": "컨테이너·이미지·볼륨부터 Dockerfile, Compose, 배포 맛보기와 운영 소양까지"
   }
 ]

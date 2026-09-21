@@ -344,6 +344,25 @@ import q_spring_13_1 from '../../../content/questions/spring-13-1.json';
 import q_spring_13_2 from '../../../content/questions/spring-13-2.json';
 import q_spring_13_3 from '../../../content/questions/spring-13-3.json';
 import q_spring_13_4 from '../../../content/questions/spring-13-4.json';
+import q_docker_1_1 from '../../../content/questions/docker-1-1.json';
+import q_docker_1_2 from '../../../content/questions/docker-1-2.json';
+import q_docker_2_1 from '../../../content/questions/docker-2-1.json';
+import q_docker_2_2 from '../../../content/questions/docker-2-2.json';
+import q_docker_3_1 from '../../../content/questions/docker-3-1.json';
+import q_docker_3_2 from '../../../content/questions/docker-3-2.json';
+import q_docker_4_1 from '../../../content/questions/docker-4-1.json';
+import q_docker_4_2 from '../../../content/questions/docker-4-2.json';
+import q_docker_5_1 from '../../../content/questions/docker-5-1.json';
+import q_docker_5_2 from '../../../content/questions/docker-5-2.json';
+import q_docker_6_1 from '../../../content/questions/docker-6-1.json';
+import q_docker_6_2 from '../../../content/questions/docker-6-2.json';
+import q_docker_6_3 from '../../../content/questions/docker-6-3.json';
+import q_docker_7_1 from '../../../content/questions/docker-7-1.json';
+import q_docker_7_2 from '../../../content/questions/docker-7-2.json';
+import q_docker_8_1 from '../../../content/questions/docker-8-1.json';
+import q_docker_9_1 from '../../../content/questions/docker-9-1.json';
+import q_docker_9_2 from '../../../content/questions/docker-9-2.json';
+import q_docker_9_3 from '../../../content/questions/docker-9-3.json';
 
 import type { Lesson, Question, Stage, Track } from '../domain/types';
 
@@ -704,6 +723,25 @@ const QUESTION_BANK: Record<string, unknown> = {
   'spring-13-2': q_spring_13_2,
   'spring-13-3': q_spring_13_3,
   'spring-13-4': q_spring_13_4,
+  'docker-1-1': q_docker_1_1,
+  'docker-1-2': q_docker_1_2,
+  'docker-2-1': q_docker_2_1,
+  'docker-2-2': q_docker_2_2,
+  'docker-3-1': q_docker_3_1,
+  'docker-3-2': q_docker_3_2,
+  'docker-4-1': q_docker_4_1,
+  'docker-4-2': q_docker_4_2,
+  'docker-5-1': q_docker_5_1,
+  'docker-5-2': q_docker_5_2,
+  'docker-6-1': q_docker_6_1,
+  'docker-6-2': q_docker_6_2,
+  'docker-6-3': q_docker_6_3,
+  'docker-7-1': q_docker_7_1,
+  'docker-7-2': q_docker_7_2,
+  'docker-8-1': q_docker_8_1,
+  'docker-9-1': q_docker_9_1,
+  'docker-9-2': q_docker_9_2,
+  'docker-9-3': q_docker_9_3,
 };
 
 /** 기본 트랙 — 온보딩/배치고사 등 트랙을 아직 명시하지 않은 기존 화면이 쓰는 값 */

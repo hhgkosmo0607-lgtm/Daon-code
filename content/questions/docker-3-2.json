@@ -1,0 +1,44 @@
+[
+  {
+    "id": "docker-3-2-q1",
+    "lessonId": "docker-3-2",
+    "type": "choice",
+    "prompt": "내 PC의 index.html을 실행 중인 컨테이너의 웹 문서 폴더로 복사하는 명령은?",
+    "options": [
+      "docker cp edu10apache:index.html /usr/local/apache2/htdocs/",
+      "docker cp index.html edu10apache:/usr/local/apache2/htdocs/",
+      "docker copy edu10apache index.html /usr/local/apache2/htdocs/",
+      "docker mv index.html edu10apache/usr/local/apache2/htdocs/"
+    ],
+    "answer": 1,
+    "explanation": "docker cp 원본 대상 형식이고, 컨테이너 쪽 경로는 \"컨테이너이름:경로\"로 써요. 반대로 컨테이너 파일을 꺼낼 때도 순서만 바꿔서 쓰면 돼요."
+  },
+  {
+    "id": "docker-3-2-q2",
+    "lessonId": "docker-3-2",
+    "type": "choice",
+    "prompt": "docker cp로 컨테이너에 복사한 파일은 컨테이너를 삭제(docker rm)하면 어떻게 될까?",
+    "options": [
+      "그 컨테이너의 원본 이미지에 자동으로 반영되어 다음 실행에도 남는다",
+      "도커가 관리하는 기본 볼륨에 자동으로 백업되어 나중에 복원할 수 있다",
+      "컨테이너와 함께 사라진다 (컨테이너의 쓰기 레이어에 저장되기 때문)",
+      "같은 이름으로 docker run을 다시 하면 자동으로 복원된다"
+    ],
+    "answer": 2,
+    "explanation": "cp로 넣은 파일은 그 컨테이너의 임시 쓰기 레이어에 있어서 컨테이너를 지우면 같이 지워져요. 유지하려면 볼륨이나 이미지로 굳혀야 해요."
+  },
+  {
+    "id": "docker-3-2-q3",
+    "lessonId": "docker-3-2",
+    "type": "choice",
+    "prompt": "컨테이너 안에서 수정한 설정 파일(httpd.conf)을 내 PC로 꺼내 오는 명령의 형태는?",
+    "options": [
+      "docker export 컨테이너:/usr/local/apache2/conf/httpd.conf .",
+      "docker pull 컨테이너:/usr/local/apache2/conf/httpd.conf",
+      "docker cp . 컨테이너:/usr/local/apache2/conf/httpd.conf",
+      "docker cp 컨테이너:/usr/local/apache2/conf/httpd.conf ."
+    ],
+    "answer": 3,
+    "explanation": "docker cp는 양방향이에요. 원본이 컨테이너 쪽이면 \"컨테이너:경로\", 대상이 내 PC 쪽이면 로컬 경로를 써요."
+  }
+]

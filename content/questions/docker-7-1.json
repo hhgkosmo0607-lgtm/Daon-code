@@ -1,0 +1,46 @@
+[
+  {
+    "id": "docker-7-1-q1",
+    "lessonId": "docker-7-1",
+    "type": "choice",
+    "prompt": "Oracle XE 컨테이너(gvenzl/oracle-xe)에서 ORACLE_PASSWORD 환경변수의 역할은?",
+    "code": "myOracle03:\n  image: gvenzl/oracle-xe\n  ports:\n    - \"1533:1521\"\n  environment:\n    ORACLE_PASSWORD: ${ORACLE_PW}",
+    "language": "Bash",
+    "options": [
+      "오라클 XE 사용을 위한 라이선스 키를 입력해서 제품을 활성화한다",
+      "오라클 리스너가 접속을 받을 포트 번호를 컨테이너에 지정한다",
+      "SYS·SYSTEM 같은 관리자 계정의 비밀번호를 설정한다",
+      "오라클 데이터 파일이 저장될 컨테이너 안의 경로를 지정한다"
+    ],
+    "answer": 2,
+    "explanation": "컨테이너를 처음 만들 때 이 값으로 관리자 비밀번호가 정해져요. 비밀번호를 compose 파일에 직접 쓰기보다 환경변수 파일(.env)로 분리하는 게 안전해요."
+  },
+  {
+    "id": "docker-7-1-q2",
+    "lessonId": "docker-7-1",
+    "type": "choice",
+    "prompt": "호스트에서 DB 클라이언트로 접속하고 싶은데 3306을 이미 로컬 MySQL이 쓰고 있을 때의 해결책은?",
+    "options": [
+      "컨테이너 안의 MySQL 포트를 3307로 바꿔서 이미지를 다시 빌드해야만 한다",
+      "로컬 MySQL을 삭제해야만 Docker에서 DB를 쓸 수 있다",
+      "같은 포트를 쓰면 도커가 자동으로 나눠 쓴다",
+      "\"3307:3306\"처럼 호스트 포트만 다르게 매핑한다"
+    ],
+    "answer": 3,
+    "explanation": "호스트 포트는 PC에서 하나뿐이지만 컨테이너 포트는 독립이에요. 왼쪽(호스트) 숫자만 바꾸면 충돌을 피할 수 있어요."
+  },
+  {
+    "id": "docker-7-1-q3",
+    "lessonId": "docker-7-1",
+    "type": "choice",
+    "prompt": "MariaDB와 Oracle 같은 DB 컨테이너의 데이터 경로(/var/lib/mysql 등)를 이름 있는 볼륨에 연결하는 이유는?",
+    "options": [
+      "컨테이너를 지우거나 이미지를 새 버전으로 업그레이드해도 데이터가 남게 하려고",
+      "컨테이너를 삭제할 때 데이터 파일을 자동으로 암호화해서 보관하려고",
+      "DB 이미지를 pull할 때 데이터 파일까지 받는 시간을 줄이려고",
+      "같은 네트워크의 다른 컨테이너가 DB 데이터 파일에 접근하지 못하게 막으려고"
+    ],
+    "answer": 0,
+    "explanation": "볼륨이 없으면 컨테이너를 삭제할 때 데이터도 함께 사라져요. compose에서는 volumes 항목에 이름을 정의하고 서비스에 연결해요."
+  }
+]

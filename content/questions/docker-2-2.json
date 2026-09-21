@@ -1,0 +1,58 @@
+[
+  {
+    "id": "docker-2-2-q1",
+    "lessonId": "docker-2-2",
+    "type": "choice",
+    "prompt": "실행 중인 컨테이너만 보는 명령과 중지된 것까지 모두 보는 명령은?",
+    "options": [
+      "docker ls / docker ls -all",
+      "docker images / docker images -a",
+      "docker ps / docker ps -a",
+      "docker status / docker status -a"
+    ],
+    "answer": 2,
+    "explanation": "ps는 기본적으로 실행 중인 컨테이너만 보여 줘요. -a를 붙이면 Exited 상태의 컨테이너까지 보여요."
+  },
+  {
+    "id": "docker-2-2-q2",
+    "lessonId": "docker-2-2",
+    "type": "choice",
+    "prompt": "실행 중인 컨테이너를 docker rm으로 바로 삭제하려고 하면?",
+    "options": [
+      "실행 중이던 프로세스가 강제로 중단되고 컨테이너가 즉시 삭제된다",
+      "삭제가 예약되어 컨테이너가 스스로 종료되는 시점에 자동으로 지워진다",
+      "컨테이너는 그대로 두고 그 컨테이너를 만든 이미지만 삭제된다",
+      "삭제할 수 없다는 오류가 나며, 먼저 stop하거나 -f 옵션을 써야 한다"
+    ],
+    "answer": 3,
+    "explanation": "일반적으로 docker stop 후 docker rm 순서로 지워요. docker rm -f는 실행 중이어도 강제로 지워요."
+  },
+  {
+    "id": "docker-2-2-q3",
+    "lessonId": "docker-2-2",
+    "type": "choice",
+    "prompt": "컨테이너에서 출력한 표준 출력 로그를 확인하는 명령은?",
+    "options": [
+      "docker logs 컨테이너이름",
+      "docker log-view 컨테이너이름",
+      "docker history 컨테이너이름",
+      "docker inspect --log 컨테이너이름"
+    ],
+    "answer": 0,
+    "explanation": "docker logs -f를 쓰면 로그가 새로 쌓이는 것을 실시간으로 따라가며 볼 수 있어요. history는 이미지의 레이어 이력을 보여 줘요."
+  },
+  {
+    "id": "docker-2-2-q4",
+    "lessonId": "docker-2-2",
+    "type": "choice",
+    "prompt": "중지(stop)한 컨테이너를 다시 실행하는 명령은?",
+    "options": [
+      "docker run 컨테이너이름",
+      "docker start 컨테이너이름",
+      "docker restart --new 컨테이너이름",
+      "docker resume 컨테이너이름"
+    ],
+    "answer": 1,
+    "explanation": "start는 기존 컨테이너를 다시 켜요. run은 이미지로 새 컨테이너를 만들어서 실행해요."
+  }
+]

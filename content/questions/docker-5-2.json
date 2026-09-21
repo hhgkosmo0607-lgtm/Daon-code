@@ -1,0 +1,60 @@
+[
+  {
+    "id": "docker-5-2-q1",
+    "lessonId": "docker-5-2",
+    "type": "choice",
+    "prompt": "현재 폴더의 Dockerfile로 이미지를 만드는 명령에서 마지막의 . 은 무엇일까?",
+    "code": "docker build -t personal_tpl_httpd .",
+    "language": "Bash",
+    "options": [
+      "빌드가 끝난 이미지 파일을 저장할 출력 폴더의 이름",
+      "태그(:latest)를 생략했다는 것을 도커에 알려 주는 표시",
+      "빌드 컨텍스트(COPY로 가져올 파일의 기준 폴더)의 위치",
+      "빌드할 때 이미지에 포함하지 않고 제외할 폴더를 가리키는 표시"
+    ],
+    "answer": 2,
+    "explanation": "COPY 경로는 이 컨텍스트 폴더를 기준으로 해석돼요. 컨텍스트 밖의 파일(../ 등)은 COPY할 수 없어요."
+  },
+  {
+    "id": "docker-5-2-q2",
+    "lessonId": "docker-5-2",
+    "type": "choice",
+    "prompt": "Dockerfile의 COPY에 컨텍스트 밖 경로나 존재하지 않는 경로를 쓰면?",
+    "options": [
+      "경고만 출력되고 빌드는 계속되어 빈 폴더가 복사된다",
+      "도커가 컨텍스트 밖의 내 PC 전체 경로에서도 파일을 찾아 복사해 준다",
+      "빌드는 오류 없이 끝나지만 컨테이너를 시작할 때 파일이 없어 실패한다",
+      "빌드가 \"찾을 수 없다(not found)\"는 오류로 실패한다"
+    ],
+    "answer": 3,
+    "explanation": "빌드 컨텍스트에 있는 파일만 이미지에 넣을 수 있어요. 윈도우 경로 구분자(\\)나 오타 때문에 이런 오류가 자주 나요."
+  },
+  {
+    "id": "docker-5-2-q3",
+    "lessonId": "docker-5-2",
+    "type": "choice",
+    "prompt": "컨테이너를 고쳐서 docker commit으로 이미지를 만드는 방식 대신 Dockerfile을 권장하는 이유는?",
+    "options": [
+      "이미지 제작 절차가 코드로 남아 누구나 같은 이미지를 재현하고 버전 관리할 수 있어서",
+      "docker commit은 실행 중인 컨테이너로부터 이미지를 만들 수 없는 명령이라서",
+      "Dockerfile로 만든 이미지는 commit 이미지와 달리 레이어가 하나도 생기지 않아 가벼워서",
+      "commit한 이미지는 Docker Hub에 push하거나 다른 PC에서 실행할 수 없어서"
+    ],
+    "answer": 0,
+    "explanation": "commit은 손으로 수정한 결과가 그대로 굳어져서 \"무엇을 어떻게 했는지\"가 기록되지 않아요. Dockerfile은 절차가 텍스트로 남아 재현성이 좋아요."
+  },
+  {
+    "id": "docker-5-2-q4",
+    "lessonId": "docker-5-2",
+    "type": "choice",
+    "prompt": "Dockerfile의 각 명령(FROM, COPY, RUN 등)은 이미지의 무엇이 될까?",
+    "options": [
+      "모두 합쳐져 하나의 파일 시스템 덩어리가 되어 빌드 캐시를 쓸 수 없다",
+      "각각 하나의 레이어가 되고, 바뀌지 않은 레이어는 캐시를 재사용한다",
+      "컨테이너가 시작될 때마다 위에서부터 순서대로 다시 실행되는 스크립트가 된다",
+      "이미지에는 남지 않고 빌드를 실행한 호스트 PC에 설정 정보로만 저장된다"
+    ],
+    "answer": 1,
+    "explanation": "자주 바뀌는 명령을 아래쪽에 두면 위쪽 레이어의 캐시를 재사용해서 빌드가 빨라져요."
+  }
+]
