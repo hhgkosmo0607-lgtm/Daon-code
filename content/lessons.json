@@ -557,266 +557,2593 @@
       "stage": 7,
       "title": "AI 활용 소양",
       "description": "신입 소양 — 데이터 편향, AI의 한계와 책임"
+    },
+    {
+      "trackId": "js",
+      "stage": 1,
+      "title": "자바스크립트 시작하기",
+      "description": "script 태그, console.log, 자료형"
+    },
+    {
+      "trackId": "js",
+      "stage": 2,
+      "title": "변수",
+      "description": "var/let/const, 스코프, 호이스팅"
+    },
+    {
+      "trackId": "js",
+      "stage": 3,
+      "title": "연산자",
+      "description": "비교(==/===), 논리, 단축평가"
+    },
+    {
+      "trackId": "js",
+      "stage": 4,
+      "title": "조건문과 반복문",
+      "description": "if/switch, for/while, for...of"
+    },
+    {
+      "trackId": "js",
+      "stage": 5,
+      "title": "함수",
+      "description": "선언식/화살표, 매개변수, 콜백, 클로저"
+    },
+    {
+      "trackId": "js",
+      "stage": 6,
+      "title": "배열",
+      "description": "배열 메서드, 구조 분해, 스프레드"
+    },
+    {
+      "trackId": "js",
+      "stage": 7,
+      "title": "고차 함수",
+      "description": "forEach, map, filter, reduce"
+    },
+    {
+      "trackId": "js",
+      "stage": 8,
+      "title": "문자열, Date, Math",
+      "description": "템플릿 리터럴, 날짜, 난수"
+    },
+    {
+      "trackId": "js",
+      "stage": 9,
+      "title": "객체",
+      "description": "객체, 클래스, JSON"
+    },
+    {
+      "trackId": "js",
+      "stage": 10,
+      "title": "DOM",
+      "description": "요소 선택과 조작"
+    },
+    {
+      "trackId": "js",
+      "stage": 11,
+      "title": "이벤트",
+      "description": "이벤트 등록, 버블링, 기본 동작"
+    },
+    {
+      "trackId": "js",
+      "stage": 12,
+      "title": "폼",
+      "description": "폼 값 읽기와 검증"
+    },
+    {
+      "trackId": "js",
+      "stage": 13,
+      "title": "브라우저 저장소",
+      "description": "쿠키, localStorage, sessionStorage"
+    },
+    {
+      "trackId": "js",
+      "stage": 14,
+      "title": "비동기",
+      "description": "Promise, async/await, fetch"
+    },
+    {
+      "trackId": "js",
+      "stage": 15,
+      "title": "신입 소양",
+      "description": "신입 소양 — 모던 문법, 값 복사, 보안, 흔한 함정"
     }
   ],
   "lessons": [
-    { "trackId": "ai-coding", "id": "1-1", "stage": 1, "title": "뭘 만들지 정하기", "subtitle": "아이디어를 한 문장으로", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "1-2", "stage": 1, "title": "화면부터 그려보기", "subtitle": "말보다 그림이 빠른 이유", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "1-3", "stage": 1, "title": "AI에게 처음 요청하기", "subtitle": "첫 프롬프트 구조", "orderNo": 3, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "1-4", "stage": 1, "title": "받은 화면들이 뭔가", "subtitle": "에디터 / 터미널 / 브라우저", "orderNo": 4, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "1-5", "stage": 1, "title": "npm run dev, 이 세 단어", "subtitle": "켜고 끄는 최소한", "orderNo": 5, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "2-1", "stage": 2, "title": "파일이 왜 여러 개인가", "subtitle": "컴포넌트 개념", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "2-2", "stage": 2, "title": "값을 담는 상자", "subtitle": "const, let", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "2-3", "stage": 2, "title": "값의 종류", "subtitle": "문자열 / 숫자 / 참거짓", "orderNo": 3, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "2-4", "stage": 2, "title": "목록과 뭉치", "subtitle": "배열, 객체", "orderNo": 4, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "2-5", "stage": 2, "title": "이 코드는 왜 반복되나", "subtitle": "map()", "orderNo": 5, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "2-6", "stage": 2, "title": "이 값은 어디서 왔나", "subtitle": "props 읽기", "orderNo": 6, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "3-1", "stage": 3, "title": "버튼 색깔 하나 바꿔보기", "subtitle": "코드 값을 직접 바꾸는 첫 경험", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "3-2", "stage": 3, "title": "문구 하나 바꿔보기", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "3-3", "stage": 3, "title": "값이 기억되는 원리", "subtitle": "useState, 왜 눈에 안 보이게 바뀌나", "orderNo": 3, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "3-4", "stage": 3, "title": "화면이 다시 그려지는 순간", "subtitle": "리렌더링 감각", "orderNo": 4, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "3-5", "stage": 3, "title": "바꾼 다음 확인하는 습관", "subtitle": "다른 곳도 확인해보기", "orderNo": 5, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "4-1", "stage": 4, "title": "에러는 적이 아니다", "subtitle": "에러 메시지 3요소 읽는 법", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "4-2", "stage": 4, "title": "값이 없다고 나올 때", "subtitle": "undefined", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "4-3", "stage": 4, "title": "화면이 하얗게 뜰 때", "subtitle": "점검 순서", "orderNo": 3, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "4-4", "stage": 4, "title": "콘솔 열어보는 법", "subtitle": "F12", "orderNo": 4, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "4-5", "stage": 4, "title": "같은 요청인데 매번 다르게 막힐 때", "subtitle": "CORS 등 자주 겪는 패턴", "orderNo": 5, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "4-6", "stage": 4, "title": "이 에러, AI에게 뭐라고 보여줄까", "orderNo": 6, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "5-1", "stage": 5, "title": "구체적으로 요청하기", "subtitle": "\"예쁘게\" 말고", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "5-2", "stage": 5, "title": "작게 나눠서 요청하기", "subtitle": "한 번에 다 시키지 않기", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "5-3", "stage": 5, "title": "AI가 이상한 답을 줄 때 알아채기", "orderNo": 3, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "5-4", "stage": 5, "title": "\"왜 이렇게 짰어?\" 물어보는 습관", "orderNo": 4, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "5-5", "stage": 5, "title": "대화가 꼬였을 때", "subtitle": "새로 시작해야 할 신호", "orderNo": 5, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "6-1", "stage": 6, "title": "기능끼리 서로 얽혀있다", "subtitle": "하나 고치면 다른 게 왜 망가지나", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "6-2", "stage": 6, "title": "데이터는 어디 저장되나", "subtitle": "화면과 저장소가 나뉜 이유", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "6-3", "stage": 6, "title": "로그인이 되는 원리", "subtitle": "아주 얕게", "orderNo": 3, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "6-4", "stage": 6, "title": "코드가 지저분해질 때", "subtitle": "정리해달라고 요청하는 감각", "orderNo": 4, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "6-5", "stage": 6, "title": "이전 상태로 되돌리기", "subtitle": "백업의 중요성", "orderNo": 5, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "7-1", "stage": 7, "title": "내 컴퓨터 안에서만 vs 모두가 보는 것", "subtitle": "배포 개념", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "7-2", "stage": 7, "title": "배포하면 뭐가 달라지나", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "7-3", "stage": 7, "title": "API 키, 함부로 공개하면 안 되는 것", "orderNo": 3, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "7-4", "stage": 7, "title": "배포 후 에러가 나면", "orderNo": 4, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "8-1", "stage": 8, "title": "써보고 나서 고치는 게 정상이다", "subtitle": "유지보수 마인드셋", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "8-2", "stage": 8, "title": "사용자가 늘어나면 생기는 일", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "8-3", "stage": 8, "title": "새 기능 추가할 때 순서", "orderNo": 3, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "8-4", "stage": 8, "title": "전체를 다시 봐야 할 때", "subtitle": "리팩토링 감각", "orderNo": 4, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "9-1", "stage": 9, "title": "페이지가 왜 여러 개인가", "subtitle": "라우팅 개념", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "9-2", "stage": 9, "title": "이 버튼을 누르면 어디로 가나", "subtitle": "링크/이동 코드 읽기", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "9-3", "stage": 9, "title": "주소에 숨어있는 값", "subtitle": "URL 파라미터", "orderNo": 3, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "9-4", "stage": 9, "title": "뒤로 가기가 이상할 때", "subtitle": "라우팅 흔한 문제", "orderNo": 4, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "10-1", "stage": 10, "title": "서버에 데이터를 요청한다는 것", "subtitle": "fetch 코드 읽기", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "10-2", "stage": 10, "title": "기다리는 동안 화면은", "subtitle": "로딩 상태", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "10-3", "stage": 10, "title": "실패했을 때 화면은", "subtitle": "에러 상태", "orderNo": 3, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "10-4", "stage": 10, "title": "입력값을 붙잡아두는 법", "subtitle": "폼과 상태 연결", "orderNo": 4, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "10-5", "stage": 10, "title": "새로 추가한 게 화면에 바로 안 보일 때", "subtitle": "데이터 갱신 흐름", "orderNo": 5, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "11-1", "stage": 11, "title": "브랜치라는 것", "subtitle": "왜 나눠서 작업하나", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "11-2", "stage": 11, "title": "Pull Request가 뭔가", "subtitle": "합치기 전에 거치는 것", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "11-3", "stage": 11, "title": "코드리뷰 받아보기", "subtitle": "리뷰 코멘트 읽는 법", "orderNo": 3, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "11-4", "stage": 11, "title": "충돌(conflict)이 났을 때", "subtitle": "당황하지 않는 법", "orderNo": 4, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "12-1", "stage": 12, "title": "기다려야 하는 코드", "subtitle": "비동기(async/await)", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "12-2", "stage": 12, "title": "이 값의 \"타입\"이 뭔가", "subtitle": "타입스크립트 살짝 맛보기", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "12-3", "stage": 12, "title": "라이브러리라는 상자", "subtitle": "node_modules / package.json", "orderNo": 3, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "12-4", "stage": 12, "title": "같은 코드가 자꾸 반복될 때", "subtitle": "커스텀 훅이라는 개념", "orderNo": 4, "xpReward": 10 },
-    { "trackId": "ai-coding", "id": "12-5", "stage": 12, "title": "이 프로젝트는 무엇으로 돌아가나", "subtitle": "프레임워크 감각", "orderNo": 5, "xpReward": 10 },
-    { "trackId": "ipe", "id": "ipe-1-1", "stage": 1, "title": "요구사항 확인", "subtitle": "준비중", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "sqld", "id": "sqld-1-1", "stage": 1, "title": "엔터티", "subtitle": "업무의 관리 대상", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "sqld", "id": "sqld-1-2", "stage": 1, "title": "속성", "subtitle": "엔터티가 가지는 정보", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "sqld", "id": "sqld-1-3", "stage": 1, "title": "관계", "subtitle": "엔터티 사이의 연관성", "orderNo": 3, "xpReward": 10 },
-    { "trackId": "sqld", "id": "sqld-1-4", "stage": 1, "title": "식별자", "subtitle": "주식별자와 보조식별자", "orderNo": 4, "xpReward": 10 },
-    { "trackId": "sqld", "id": "sqld-2-1", "stage": 2, "title": "정규화", "subtitle": "이상현상을 없애는 과정", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "sqld", "id": "sqld-2-2", "stage": 2, "title": "관계와 조인의 이해", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "sqld", "id": "sqld-2-3", "stage": 2, "title": "NULL 속성의 이해", "orderNo": 3, "xpReward": 10 },
-    { "trackId": "sqld", "id": "sqld-2-4", "stage": 2, "title": "트랜잭션과 이상현상", "orderNo": 4, "xpReward": 10 },
-    { "trackId": "sqld", "id": "sqld-3-1", "stage": 3, "title": "SELECT문 기초", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "sqld", "id": "sqld-3-2", "stage": 3, "title": "함수", "subtitle": "단일행 / 다중행 함수", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "sqld", "id": "sqld-3-3", "stage": 3, "title": "WHERE절", "orderNo": 3, "xpReward": 10 },
-    { "trackId": "sqld", "id": "sqld-3-4", "stage": 3, "title": "GROUP BY와 HAVING", "orderNo": 4, "xpReward": 10 },
-    { "trackId": "sqld", "id": "sqld-3-5", "stage": 3, "title": "JOIN", "orderNo": 5, "xpReward": 10 },
-    { "trackId": "sqld", "id": "sqld-3-6", "stage": 3, "title": "서브쿼리", "orderNo": 6, "xpReward": 10 },
-    { "trackId": "sqld", "id": "sqld-4-1", "stage": 4, "title": "집합 연산자", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "sqld", "id": "sqld-4-2", "stage": 4, "title": "계층형 질의", "subtitle": "START WITH / CONNECT BY", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "sqld", "id": "sqld-4-3", "stage": 4, "title": "PIVOT / UNPIVOT", "orderNo": 3, "xpReward": 10 },
-    { "trackId": "sqld", "id": "sqld-4-4", "stage": 4, "title": "윈도우 함수", "orderNo": 4, "xpReward": 10 },
-    { "trackId": "sqld", "id": "sqld-4-5", "stage": 4, "title": "정규표현식", "orderNo": 5, "xpReward": 10 },
-    { "trackId": "sqld", "id": "sqld-5-1", "stage": 5, "title": "DDL", "subtitle": "테이블을 만들고 바꾸는 문법", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "sqld", "id": "sqld-5-2", "stage": 5, "title": "DML", "subtitle": "데이터를 넣고 바꾸는 문법", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "sqld", "id": "sqld-5-3", "stage": 5, "title": "TCL과 DCL", "subtitle": "트랜잭션 제어, 권한 제어", "orderNo": 3, "xpReward": 10 },
-    { "trackId": "java", "id": "java-1-1", "stage": 1, "title": "JVM과 실행 구조", "subtitle": "JDK/JRE/JVM, main 메서드", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "java", "id": "java-1-2", "stage": 1, "title": "출력하기", "subtitle": "println / print / printf", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "java", "id": "java-2-1", "stage": 2, "title": "정수형", "subtitle": "byte/short/int/long", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "java", "id": "java-2-2", "stage": 2, "title": "실수형", "subtitle": "float/double, 오차", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "java", "id": "java-2-3", "stage": 2, "title": "문자형과 불리언", "subtitle": "char, boolean", "orderNo": 3, "xpReward": 10 },
-    { "trackId": "java", "id": "java-2-4", "stage": 2, "title": "문자열 타입", "subtitle": "String 리터럴 vs new String", "orderNo": 4, "xpReward": 10 },
-    { "trackId": "java", "id": "java-2-5", "stage": 2, "title": "상수와 이스케이프 시퀀스", "subtitle": "final, 이스케이프 문자", "orderNo": 5, "xpReward": 10 },
-    { "trackId": "java", "id": "java-2-6", "stage": 2, "title": "형변환", "subtitle": "자동 형변환과 캐스팅", "orderNo": 6, "xpReward": 10 },
-    { "trackId": "java", "id": "java-3-1", "stage": 3, "title": "산술연산자", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "java", "id": "java-3-2", "stage": 3, "title": "복합대입연산자", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "java", "id": "java-3-3", "stage": 3, "title": "비교연산자", "orderNo": 3, "xpReward": 10 },
-    { "trackId": "java", "id": "java-3-4", "stage": 3, "title": "논리연산자와 단축평가", "orderNo": 4, "xpReward": 10 },
-    { "trackId": "java", "id": "java-3-5", "stage": 3, "title": "증감연산자", "subtitle": "전위 vs 후위", "orderNo": 5, "xpReward": 10 },
-    { "trackId": "java", "id": "java-4-1", "stage": 4, "title": "if문", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "java", "id": "java-4-2", "stage": 4, "title": "switch문", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "java", "id": "java-4-3", "stage": 4, "title": "while과 do-while", "orderNo": 3, "xpReward": 10 },
-    { "trackId": "java", "id": "java-4-4", "stage": 4, "title": "for문", "orderNo": 4, "xpReward": 10 },
-    { "trackId": "java", "id": "java-4-5", "stage": 4, "title": "break와 continue", "orderNo": 5, "xpReward": 10 },
-    { "trackId": "java", "id": "java-5-1", "stage": 5, "title": "메서드 기본 구조", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "java", "id": "java-5-2", "stage": 5, "title": "매개변수와 반환값", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "java", "id": "java-5-3", "stage": 5, "title": "지역변수와 스코프", "orderNo": 3, "xpReward": 10 },
-    { "trackId": "java", "id": "java-5-4", "stage": 5, "title": "오버로딩", "orderNo": 4, "xpReward": 10 },
-    { "trackId": "java", "id": "java-5-5", "stage": 5, "title": "가변인자", "orderNo": 5, "xpReward": 10 },
-    { "trackId": "java", "id": "java-6-1", "stage": 6, "title": "1차원 배열", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "java", "id": "java-6-2", "stage": 6, "title": "배열과 메서드", "subtitle": "call by value/reference", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "java", "id": "java-6-3", "stage": 6, "title": "2차원 배열", "orderNo": 3, "xpReward": 10 },
-    { "trackId": "java", "id": "java-6-4", "stage": 6, "title": "향상된 for문", "subtitle": "foreach", "orderNo": 4, "xpReward": 10 },
-    { "trackId": "java", "id": "java-7-1", "stage": 7, "title": "String 기본과 불변성", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "java", "id": "java-7-2", "stage": 7, "title": "String 메서드", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "java", "id": "java-7-3", "stage": 7, "title": "StringBuilder와 StringBuffer", "orderNo": 3, "xpReward": 10 },
-    { "trackId": "java", "id": "java-8-1", "stage": 8, "title": "클래스와 인스턴스", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "java", "id": "java-8-2", "stage": 8, "title": "생성자", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "java", "id": "java-8-3", "stage": 8, "title": "this 키워드", "orderNo": 3, "xpReward": 10 },
-    { "trackId": "java", "id": "java-9-1", "stage": 9, "title": "패키지와 import", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "java", "id": "java-10-1", "stage": 10, "title": "접근제어자 종류", "subtitle": "public/protected/default/private", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "java", "id": "java-10-2", "stage": 10, "title": "캡슐화", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "java", "id": "java-11-1", "stage": 11, "title": "static 변수와 메서드", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "java", "id": "java-11-2", "stage": 11, "title": "정적 초기화 블록", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "java", "id": "java-11-3", "stage": 11, "title": "싱글톤 패턴", "orderNo": 3, "xpReward": 10 },
-    { "trackId": "java", "id": "java-12-1", "stage": 12, "title": "상속 기본", "subtitle": "extends, super", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "java", "id": "java-12-2", "stage": 12, "title": "오버라이딩", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "java", "id": "java-12-3", "stage": 12, "title": "다형성과 instanceof", "orderNo": 3, "xpReward": 10 },
-    { "trackId": "java", "id": "java-13-1", "stage": 13, "title": "추상클래스", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "java", "id": "java-13-2", "stage": 13, "title": "인터페이스", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "java", "id": "java-14-1", "stage": 14, "title": "내부 클래스와 익명 클래스", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "java", "id": "java-15-1", "stage": 15, "title": "래퍼 클래스", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "java", "id": "java-15-2", "stage": 15, "title": "Math 클래스", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "java", "id": "java-15-3", "stage": 15, "title": "Object의 toString과 equals", "orderNo": 3, "xpReward": 10 },
-    { "trackId": "java", "id": "java-15-4", "stage": 15, "title": "날짜와 시간", "subtitle": "Date, LocalDateTime", "orderNo": 4, "xpReward": 10 },
-    { "trackId": "java", "id": "java-16-1", "stage": 16, "title": "예외의 종류", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "java", "id": "java-16-2", "stage": 16, "title": "try-catch-finally", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "java", "id": "java-16-3", "stage": 16, "title": "사용자 정의 예외", "orderNo": 3, "xpReward": 10 },
-    { "trackId": "java", "id": "java-17-1", "stage": 17, "title": "제네릭 기초", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "java", "id": "java-17-2", "stage": 17, "title": "ArrayList", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "java", "id": "java-17-3", "stage": 17, "title": "HashSet과 TreeSet", "orderNo": 3, "xpReward": 10 },
-    { "trackId": "java", "id": "java-17-4", "stage": 17, "title": "HashMap", "orderNo": 4, "xpReward": 10 },
-    { "trackId": "java", "id": "java-18-1", "stage": 18, "title": "시간복잡도 감각", "subtitle": "Big-O", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "java", "id": "java-18-2", "stage": 18, "title": "스택과 큐", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "java", "id": "java-18-3", "stage": 18, "title": "재귀", "orderNo": 3, "xpReward": 10 },
-    { "trackId": "java", "id": "java-18-4", "stage": 18, "title": "정렬 기초", "orderNo": 4, "xpReward": 10 },
-    { "trackId": "java", "id": "java-18-5", "stage": 18, "title": "탐색 기초", "subtitle": "선형탐색 vs 이진탐색", "orderNo": 5, "xpReward": 10 },
-    { "trackId": "java", "id": "java-19-1", "stage": 19, "title": "SRP: 단일 책임 원칙", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "java", "id": "java-19-2", "stage": 19, "title": "OCP: 개방-폐쇄 원칙", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "java", "id": "java-19-3", "stage": 19, "title": "LSP: 리스코프 치환 원칙", "orderNo": 3, "xpReward": 10 },
-    { "trackId": "java", "id": "java-19-4", "stage": 19, "title": "ISP: 인터페이스 분리 원칙", "orderNo": 4, "xpReward": 10 },
-    { "trackId": "java", "id": "java-19-5", "stage": 19, "title": "DIP: 의존관계 역전 원칙", "orderNo": 5, "xpReward": 10 },
-    { "trackId": "java", "id": "java-20-1", "stage": 20, "title": "네이밍 컨벤션", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "java", "id": "java-20-2", "stage": 20, "title": "Javadoc과 주석", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "java", "id": "java-20-3", "stage": 20, "title": "JVM, JDK, JRE", "orderNo": 3, "xpReward": 10 },
-    { "trackId": "java", "id": "java-20-4", "stage": 20, "title": "빌드 도구와 라이브러리 감각", "subtitle": "Maven/Gradle, 외부 라이브러리", "orderNo": 4, "xpReward": 10 },
-    { "trackId": "python", "id": "python-1-1", "stage": 1, "title": "변수와 기본 자료형", "subtitle": "int/float/str/bool, type()", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "python", "id": "python-2-1", "stage": 2, "title": "산술연산자", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "python", "id": "python-2-2", "stage": 2, "title": "대입연산자", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "python", "id": "python-2-3", "stage": 2, "title": "비교연산자와 형변환", "orderNo": 3, "xpReward": 10 },
-    { "trackId": "python", "id": "python-2-4", "stage": 2, "title": "문자열 연산자", "subtitle": "+ 와 * 사용", "orderNo": 4, "xpReward": 10 },
-    { "trackId": "python", "id": "python-3-1", "stage": 3, "title": "input()과 print()", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "python", "id": "python-4-1", "stage": 4, "title": "리스트 기본", "subtitle": "생성, 인덱싱, 슬라이싱", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "python", "id": "python-5-1", "stage": 5, "title": "튜플 기본", "subtitle": "리스트와의 차이", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "python", "id": "python-6-1", "stage": 6, "title": "딕셔너리 기본", "subtitle": "key-value", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "python", "id": "python-7-1", "stage": 7, "title": "집합 기본", "subtitle": "중복 제거, 집합 연산", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "python", "id": "python-8-1", "stage": 8, "title": "if / elif / else", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "python", "id": "python-8-2", "stage": 8, "title": "중첩 if문", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "python", "id": "python-9-1", "stage": 9, "title": "while문 기본", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "python", "id": "python-10-1", "stage": 10, "title": "for문 기본", "subtitle": "range()", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "python", "id": "python-10-2", "stage": 10, "title": "for문 활용", "subtitle": "중첩, 실전 계산", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "python", "id": "python-11-1", "stage": 11, "title": "반복 제어", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "python", "id": "python-12-1", "stage": 12, "title": "f-string", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "python", "id": "python-12-2", "stage": 12, "title": "서식문자", "subtitle": "%d %s %f", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "python", "id": "python-12-3", "stage": 12, "title": "format() 함수", "orderNo": 3, "xpReward": 10 },
-    { "trackId": "python", "id": "python-12-4", "stage": 12, "title": "문자열 메서드", "subtitle": "replace 등", "orderNo": 4, "xpReward": 10 },
-    { "trackId": "python", "id": "python-13-1", "stage": 13, "title": "datetime 모듈", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "python", "id": "python-14-1", "stage": 14, "title": "함수 기본", "subtitle": "def, 매개변수, 반환값", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "python", "id": "python-14-2", "stage": 14, "title": "다중 반환값", "subtitle": "튜플 언패킹", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "python", "id": "python-14-3", "stage": 14, "title": "내장함수", "subtitle": "import 없이 바로 쓰는 함수", "orderNo": 3, "xpReward": 10 },
-    { "trackId": "python", "id": "python-15-1", "stage": 15, "title": "람다식 기본", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "python", "id": "python-15-2", "stage": 15, "title": "map, filter, reduce", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "python", "id": "python-16-1", "stage": 16, "title": "import와 모듈 작성", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "python", "id": "python-17-1", "stage": 17, "title": "클래스 기본", "subtitle": "__init__, self", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "python", "id": "python-17-2", "stage": 17, "title": "정보은닉", "subtitle": "캡슐화", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "python", "id": "python-17-3", "stage": 17, "title": "클래스변수와 정적메서드", "orderNo": 3, "xpReward": 10 },
-    { "trackId": "python", "id": "python-18-1", "stage": 18, "title": "open()으로 파일 다루기", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "python", "id": "python-18-2", "stage": 18, "title": "pickle", "subtitle": "객체 직렬화", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "python", "id": "python-19-1", "stage": 19, "title": "try-except 기본", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "python", "id": "python-19-2", "stage": 19, "title": "직접 예외 발생시키기", "subtitle": "raise", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "python", "id": "python-20-1", "stage": 20, "title": "PEP8과 네이밍 컨벤션", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "python", "id": "python-20-2", "stage": 20, "title": "리스트 컴프리헨션", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "python", "id": "python-20-3", "stage": 20, "title": "가상환경과 패키지 관리", "subtitle": "venv, pip", "orderNo": 3, "xpReward": 10 },
-    { "trackId": "python", "id": "python-20-4", "stage": 20, "title": "자주 쓰는 관용구", "subtitle": "enumerate, zip, 언패킹", "orderNo": 4, "xpReward": 10 },
-    { "trackId": "html", "id": "html-1-1", "stage": 1, "title": "HTML 문서의 기본 골격", "subtitle": "doctype, html/head/body", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "html", "id": "html-1-2", "stage": 1, "title": "head 안의 메타 태그", "subtitle": "meta charset, viewport", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "html", "id": "html-2-1", "stage": 2, "title": "시맨틱 태그란", "subtitle": "div만 쓰는 것과의 차이", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "html", "id": "html-2-2", "stage": 2, "title": "시맨틱 태그 종류", "subtitle": "header/nav/section/article/aside/footer", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "html", "id": "html-3-1", "stage": 3, "title": "테이블 기본과 셀 병합", "subtitle": "table/tr/td/th, rowspan/colspan", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "html", "id": "html-4-1", "stage": 4, "title": "form 태그와 전송 방식", "subtitle": "action, method(GET/POST)", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "html", "id": "html-5-1", "stage": 5, "title": "텍스트·파일류 입력", "subtitle": "text, password, hidden, file", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "html", "id": "html-5-2", "stage": 5, "title": "선택형 입력과 버튼", "subtitle": "checkbox, radio, submit, button, label", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "html", "id": "html-6-1", "stage": 6, "title": "video와 audio 태그", "subtitle": "controls, autoplay", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "html", "id": "html-7-1", "stage": 7, "title": "iframe으로 다른 문서 삽입하기", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "html", "id": "html-8-1", "stage": 8, "title": "id와 class", "subtitle": "스타일링과 스크립트 접근용", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "html", "id": "html-8-2", "stage": 8, "title": "data 속성과 tabindex", "subtitle": "data-*, 키보드 접근성", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "html", "id": "html-9-1", "stage": 9, "title": "대체 텍스트와 접근성", "subtitle": "alt 속성, 스크린리더", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "html", "id": "html-9-2", "stage": 9, "title": "시맨틱과 SEO", "subtitle": "시맨틱 태그가 검색엔진에 미치는 영향", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "css", "id": "css-1-1", "stage": 1, "title": "기본 선택자", "subtitle": "전체/태그/클래스/id 선택자", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "css", "id": "css-1-2", "stage": 1, "title": "우선순위와 명시도", "subtitle": "!important, 같은 선택자 중복 선언", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "css", "id": "css-2-1", "stage": 2, "title": "폰트 속성", "subtitle": "font-family, font-size, font-weight", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "css", "id": "css-2-2", "stage": 2, "title": "문단과 텍스트 정렬", "subtitle": "text-align, line-height", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "css", "id": "css-3-1", "stage": 3, "title": "테두리(border)", "subtitle": "border-style, border-radius", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "css", "id": "css-3-2", "stage": 3, "title": "배경(background)", "subtitle": "background-color, background-image", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "css", "id": "css-4-1", "stage": 4, "title": "margin과 padding", "subtitle": "박스 모델 개념", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "css", "id": "css-4-2", "stage": 4, "title": "overflow", "subtitle": "영역을 넘친 콘텐츠 처리", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "css", "id": "css-5-1", "stage": 5, "title": "list-style", "subtitle": "목록 마커 스타일링", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "css", "id": "css-6-1", "stage": 6, "title": "display 속성", "subtitle": "block/inline/none", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "css", "id": "css-7-1", "stage": 7, "title": "float와 clear", "subtitle": "전통적인 레이아웃 방식", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "css", "id": "css-7-2", "stage": 7, "title": "position 속성값", "subtitle": "static/relative/absolute/fixed", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "css", "id": "css-8-1", "stage": 8, "title": "미디어 쿼리", "subtitle": "@media, 화면 크기별 스타일", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "css", "id": "css-9-1", "stage": 9, "title": "transform", "subtitle": "2D/3D 변형", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "css", "id": "css-9-2", "stage": 9, "title": "transition과 keyframes", "subtitle": "상태 변화 애니메이션", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "css", "id": "css-10-1", "stage": 10, "title": "flex 컨테이너", "subtitle": "display: flex, flex-direction", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "css", "id": "css-10-2", "stage": 10, "title": "flex 아이템", "subtitle": "justify-content, align-items", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "css", "id": "css-11-1", "stage": 11, "title": "grid 기본", "subtitle": "grid-template-columns/rows", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "css", "id": "css-11-2", "stage": 11, "title": "grid 세부 속성", "subtitle": "gap, grid-column/row", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "css", "id": "css-12-1", "stage": 12, "title": "CSS 변수(커스텀 속성)", "subtitle": "--변수명, var()", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "css", "id": "css-12-2", "stage": 12, "title": "BEM 네이밍과 명시도 관리", "subtitle": "유지보수하기 좋은 클래스 설계", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "flask", "id": "flask-1-1", "stage": 1, "title": "클라이언트와 서버", "subtitle": "브라우저가 서버에 요청하는 흐름", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "flask", "id": "flask-1-2", "stage": 1, "title": "HTTP 요청과 응답", "subtitle": "메서드와 상태코드", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "flask", "id": "flask-2-1", "stage": 2, "title": "라우팅과 엔드포인트", "subtitle": "@app.route", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "flask", "id": "flask-2-2", "stage": 2, "title": "앱 실행 방식", "subtitle": "flask run, app.run, debug", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "flask", "id": "flask-3-1", "stage": 3, "title": "render_template과 Jinja2", "subtitle": "서버 데이터를 HTML에 넣기", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "flask", "id": "flask-3-2", "stage": 3, "title": "templates와 static 폴더", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "flask", "id": "flask-4-1", "stage": 4, "title": "GET과 POST", "subtitle": "request.args vs request.form", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "flask", "id": "flask-4-2", "stage": 4, "title": "URL 경로 변수", "subtitle": "<int:num>", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "flask", "id": "flask-5-1", "stage": 5, "title": "session과 secret_key", "subtitle": "로그인 상태 유지", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "flask", "id": "flask-5-2", "stage": 5, "title": "redirect와 url_for", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "flask", "id": "flask-6-1", "stage": 6, "title": "파일 업로드 처리", "subtitle": "request.files, multipart", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "flask", "id": "flask-6-2", "stage": 6, "title": "안전한 파일 저장", "subtitle": "uuid, 원본 파일명의 위험", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "flask", "id": "flask-7-1", "stage": 7, "title": "XSS와 escape", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "flask", "id": "flask-7-2", "stage": 7, "title": "비밀번호 저장과 입력 검증", "subtitle": "평문 저장 금지, 해시", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "ai", "id": "ai-1-1", "stage": 1, "title": "AI, 머신러닝, 딥러닝의 관계", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "ai", "id": "ai-1-2", "stage": 1, "title": "지도학습과 비지도학습", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "ai", "id": "ai-1-3", "stage": 1, "title": "분류와 회귀", "orderNo": 3, "xpReward": 10 },
-    { "trackId": "ai", "id": "ai-2-1", "stage": 2, "title": "데이터와 레이블", "subtitle": "특징(feature)과 정답", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "ai", "id": "ai-2-2", "stage": 2, "title": "훈련 데이터와 테스트 데이터", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "ai", "id": "ai-2-3", "stage": 2, "title": "정규화", "subtitle": "값의 범위 맞추기", "orderNo": 3, "xpReward": 10 },
-    { "trackId": "ai", "id": "ai-3-1", "stage": 3, "title": "fit()과 predict()", "subtitle": "학습시키고 예측하기", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "ai", "id": "ai-3-2", "stage": 3, "title": "정확도로 평가하기", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "ai", "id": "ai-3-3", "stage": 3, "title": "과적합", "orderNo": 3, "xpReward": 10 },
-    { "trackId": "ai", "id": "ai-4-1", "stage": 4, "title": "ndarray와 shape", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "ai", "id": "ai-4-2", "stage": 4, "title": "배열 생성과 reshape", "subtitle": "arange, zeros, ones, -1", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "ai", "id": "ai-4-3", "stage": 4, "title": "브로드캐스팅", "orderNo": 3, "xpReward": 10 },
-    { "trackId": "ai", "id": "ai-5-1", "stage": 5, "title": "pandas Series와 DataFrame", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "ai", "id": "ai-5-2", "stage": 5, "title": "CSV 읽고 쓰기", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "ai", "id": "ai-5-3", "stage": 5, "title": "matplotlib 그래프 고르기", "subtitle": "선/막대/산점도/히스토그램", "orderNo": 3, "xpReward": 10 },
-    { "trackId": "ai", "id": "ai-6-1", "stage": 6, "title": "학습 파이프라인 순서", "subtitle": "로드 → 전처리 → 학습 → 평가", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "ai", "id": "ai-6-2", "stage": 6, "title": "모델 저장과 불러오기", "subtitle": "joblib", "orderNo": 2, "xpReward": 10 },
-    { "trackId": "ai", "id": "ai-6-3", "stage": 6, "title": "학습한 모델을 웹으로 서비스하기", "subtitle": "Flask + 모델", "orderNo": 3, "xpReward": 10 },
-    { "trackId": "ai", "id": "ai-7-1", "stage": 7, "title": "데이터 편향과 품질", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "ai", "id": "ai-7-2", "stage": 7, "title": "AI의 한계와 책임 있는 활용", "subtitle": "할루시네이션, 개인정보, 저작권", "orderNo": 2, "xpReward": 10 }
+    {
+      "trackId": "ai-coding",
+      "id": "1-1",
+      "stage": 1,
+      "title": "뭘 만들지 정하기",
+      "subtitle": "아이디어를 한 문장으로",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "1-2",
+      "stage": 1,
+      "title": "화면부터 그려보기",
+      "subtitle": "말보다 그림이 빠른 이유",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "1-3",
+      "stage": 1,
+      "title": "AI에게 처음 요청하기",
+      "subtitle": "첫 프롬프트 구조",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "1-4",
+      "stage": 1,
+      "title": "받은 화면들이 뭔가",
+      "subtitle": "에디터 / 터미널 / 브라우저",
+      "orderNo": 4,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "1-5",
+      "stage": 1,
+      "title": "npm run dev, 이 세 단어",
+      "subtitle": "켜고 끄는 최소한",
+      "orderNo": 5,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "2-1",
+      "stage": 2,
+      "title": "파일이 왜 여러 개인가",
+      "subtitle": "컴포넌트 개념",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "2-2",
+      "stage": 2,
+      "title": "값을 담는 상자",
+      "subtitle": "const, let",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "2-3",
+      "stage": 2,
+      "title": "값의 종류",
+      "subtitle": "문자열 / 숫자 / 참거짓",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "2-4",
+      "stage": 2,
+      "title": "목록과 뭉치",
+      "subtitle": "배열, 객체",
+      "orderNo": 4,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "2-5",
+      "stage": 2,
+      "title": "이 코드는 왜 반복되나",
+      "subtitle": "map()",
+      "orderNo": 5,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "2-6",
+      "stage": 2,
+      "title": "이 값은 어디서 왔나",
+      "subtitle": "props 읽기",
+      "orderNo": 6,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "3-1",
+      "stage": 3,
+      "title": "버튼 색깔 하나 바꿔보기",
+      "subtitle": "코드 값을 직접 바꾸는 첫 경험",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "3-2",
+      "stage": 3,
+      "title": "문구 하나 바꿔보기",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "3-3",
+      "stage": 3,
+      "title": "값이 기억되는 원리",
+      "subtitle": "useState, 왜 눈에 안 보이게 바뀌나",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "3-4",
+      "stage": 3,
+      "title": "화면이 다시 그려지는 순간",
+      "subtitle": "리렌더링 감각",
+      "orderNo": 4,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "3-5",
+      "stage": 3,
+      "title": "바꾼 다음 확인하는 습관",
+      "subtitle": "다른 곳도 확인해보기",
+      "orderNo": 5,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "4-1",
+      "stage": 4,
+      "title": "에러는 적이 아니다",
+      "subtitle": "에러 메시지 3요소 읽는 법",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "4-2",
+      "stage": 4,
+      "title": "값이 없다고 나올 때",
+      "subtitle": "undefined",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "4-3",
+      "stage": 4,
+      "title": "화면이 하얗게 뜰 때",
+      "subtitle": "점검 순서",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "4-4",
+      "stage": 4,
+      "title": "콘솔 열어보는 법",
+      "subtitle": "F12",
+      "orderNo": 4,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "4-5",
+      "stage": 4,
+      "title": "같은 요청인데 매번 다르게 막힐 때",
+      "subtitle": "CORS 등 자주 겪는 패턴",
+      "orderNo": 5,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "4-6",
+      "stage": 4,
+      "title": "이 에러, AI에게 뭐라고 보여줄까",
+      "orderNo": 6,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "5-1",
+      "stage": 5,
+      "title": "구체적으로 요청하기",
+      "subtitle": "\"예쁘게\" 말고",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "5-2",
+      "stage": 5,
+      "title": "작게 나눠서 요청하기",
+      "subtitle": "한 번에 다 시키지 않기",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "5-3",
+      "stage": 5,
+      "title": "AI가 이상한 답을 줄 때 알아채기",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "5-4",
+      "stage": 5,
+      "title": "\"왜 이렇게 짰어?\" 물어보는 습관",
+      "orderNo": 4,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "5-5",
+      "stage": 5,
+      "title": "대화가 꼬였을 때",
+      "subtitle": "새로 시작해야 할 신호",
+      "orderNo": 5,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "6-1",
+      "stage": 6,
+      "title": "기능끼리 서로 얽혀있다",
+      "subtitle": "하나 고치면 다른 게 왜 망가지나",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "6-2",
+      "stage": 6,
+      "title": "데이터는 어디 저장되나",
+      "subtitle": "화면과 저장소가 나뉜 이유",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "6-3",
+      "stage": 6,
+      "title": "로그인이 되는 원리",
+      "subtitle": "아주 얕게",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "6-4",
+      "stage": 6,
+      "title": "코드가 지저분해질 때",
+      "subtitle": "정리해달라고 요청하는 감각",
+      "orderNo": 4,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "6-5",
+      "stage": 6,
+      "title": "이전 상태로 되돌리기",
+      "subtitle": "백업의 중요성",
+      "orderNo": 5,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "7-1",
+      "stage": 7,
+      "title": "내 컴퓨터 안에서만 vs 모두가 보는 것",
+      "subtitle": "배포 개념",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "7-2",
+      "stage": 7,
+      "title": "배포하면 뭐가 달라지나",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "7-3",
+      "stage": 7,
+      "title": "API 키, 함부로 공개하면 안 되는 것",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "7-4",
+      "stage": 7,
+      "title": "배포 후 에러가 나면",
+      "orderNo": 4,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "8-1",
+      "stage": 8,
+      "title": "써보고 나서 고치는 게 정상이다",
+      "subtitle": "유지보수 마인드셋",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "8-2",
+      "stage": 8,
+      "title": "사용자가 늘어나면 생기는 일",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "8-3",
+      "stage": 8,
+      "title": "새 기능 추가할 때 순서",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "8-4",
+      "stage": 8,
+      "title": "전체를 다시 봐야 할 때",
+      "subtitle": "리팩토링 감각",
+      "orderNo": 4,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "9-1",
+      "stage": 9,
+      "title": "페이지가 왜 여러 개인가",
+      "subtitle": "라우팅 개념",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "9-2",
+      "stage": 9,
+      "title": "이 버튼을 누르면 어디로 가나",
+      "subtitle": "링크/이동 코드 읽기",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "9-3",
+      "stage": 9,
+      "title": "주소에 숨어있는 값",
+      "subtitle": "URL 파라미터",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "9-4",
+      "stage": 9,
+      "title": "뒤로 가기가 이상할 때",
+      "subtitle": "라우팅 흔한 문제",
+      "orderNo": 4,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "10-1",
+      "stage": 10,
+      "title": "서버에 데이터를 요청한다는 것",
+      "subtitle": "fetch 코드 읽기",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "10-2",
+      "stage": 10,
+      "title": "기다리는 동안 화면은",
+      "subtitle": "로딩 상태",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "10-3",
+      "stage": 10,
+      "title": "실패했을 때 화면은",
+      "subtitle": "에러 상태",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "10-4",
+      "stage": 10,
+      "title": "입력값을 붙잡아두는 법",
+      "subtitle": "폼과 상태 연결",
+      "orderNo": 4,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "10-5",
+      "stage": 10,
+      "title": "새로 추가한 게 화면에 바로 안 보일 때",
+      "subtitle": "데이터 갱신 흐름",
+      "orderNo": 5,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "11-1",
+      "stage": 11,
+      "title": "브랜치라는 것",
+      "subtitle": "왜 나눠서 작업하나",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "11-2",
+      "stage": 11,
+      "title": "Pull Request가 뭔가",
+      "subtitle": "합치기 전에 거치는 것",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "11-3",
+      "stage": 11,
+      "title": "코드리뷰 받아보기",
+      "subtitle": "리뷰 코멘트 읽는 법",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "11-4",
+      "stage": 11,
+      "title": "충돌(conflict)이 났을 때",
+      "subtitle": "당황하지 않는 법",
+      "orderNo": 4,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "12-1",
+      "stage": 12,
+      "title": "기다려야 하는 코드",
+      "subtitle": "비동기(async/await)",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "12-2",
+      "stage": 12,
+      "title": "이 값의 \"타입\"이 뭔가",
+      "subtitle": "타입스크립트 살짝 맛보기",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "12-3",
+      "stage": 12,
+      "title": "라이브러리라는 상자",
+      "subtitle": "node_modules / package.json",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "12-4",
+      "stage": 12,
+      "title": "같은 코드가 자꾸 반복될 때",
+      "subtitle": "커스텀 훅이라는 개념",
+      "orderNo": 4,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai-coding",
+      "id": "12-5",
+      "stage": 12,
+      "title": "이 프로젝트는 무엇으로 돌아가나",
+      "subtitle": "프레임워크 감각",
+      "orderNo": 5,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ipe",
+      "id": "ipe-1-1",
+      "stage": 1,
+      "title": "요구사항 확인",
+      "subtitle": "준비중",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "sqld",
+      "id": "sqld-1-1",
+      "stage": 1,
+      "title": "엔터티",
+      "subtitle": "업무의 관리 대상",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "sqld",
+      "id": "sqld-1-2",
+      "stage": 1,
+      "title": "속성",
+      "subtitle": "엔터티가 가지는 정보",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "sqld",
+      "id": "sqld-1-3",
+      "stage": 1,
+      "title": "관계",
+      "subtitle": "엔터티 사이의 연관성",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "sqld",
+      "id": "sqld-1-4",
+      "stage": 1,
+      "title": "식별자",
+      "subtitle": "주식별자와 보조식별자",
+      "orderNo": 4,
+      "xpReward": 10
+    },
+    {
+      "trackId": "sqld",
+      "id": "sqld-2-1",
+      "stage": 2,
+      "title": "정규화",
+      "subtitle": "이상현상을 없애는 과정",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "sqld",
+      "id": "sqld-2-2",
+      "stage": 2,
+      "title": "관계와 조인의 이해",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "sqld",
+      "id": "sqld-2-3",
+      "stage": 2,
+      "title": "NULL 속성의 이해",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "sqld",
+      "id": "sqld-2-4",
+      "stage": 2,
+      "title": "트랜잭션과 이상현상",
+      "orderNo": 4,
+      "xpReward": 10
+    },
+    {
+      "trackId": "sqld",
+      "id": "sqld-3-1",
+      "stage": 3,
+      "title": "SELECT문 기초",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "sqld",
+      "id": "sqld-3-2",
+      "stage": 3,
+      "title": "함수",
+      "subtitle": "단일행 / 다중행 함수",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "sqld",
+      "id": "sqld-3-3",
+      "stage": 3,
+      "title": "WHERE절",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "sqld",
+      "id": "sqld-3-4",
+      "stage": 3,
+      "title": "GROUP BY와 HAVING",
+      "orderNo": 4,
+      "xpReward": 10
+    },
+    {
+      "trackId": "sqld",
+      "id": "sqld-3-5",
+      "stage": 3,
+      "title": "JOIN",
+      "orderNo": 5,
+      "xpReward": 10
+    },
+    {
+      "trackId": "sqld",
+      "id": "sqld-3-6",
+      "stage": 3,
+      "title": "서브쿼리",
+      "orderNo": 6,
+      "xpReward": 10
+    },
+    {
+      "trackId": "sqld",
+      "id": "sqld-4-1",
+      "stage": 4,
+      "title": "집합 연산자",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "sqld",
+      "id": "sqld-4-2",
+      "stage": 4,
+      "title": "계층형 질의",
+      "subtitle": "START WITH / CONNECT BY",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "sqld",
+      "id": "sqld-4-3",
+      "stage": 4,
+      "title": "PIVOT / UNPIVOT",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "sqld",
+      "id": "sqld-4-4",
+      "stage": 4,
+      "title": "윈도우 함수",
+      "orderNo": 4,
+      "xpReward": 10
+    },
+    {
+      "trackId": "sqld",
+      "id": "sqld-4-5",
+      "stage": 4,
+      "title": "정규표현식",
+      "orderNo": 5,
+      "xpReward": 10
+    },
+    {
+      "trackId": "sqld",
+      "id": "sqld-5-1",
+      "stage": 5,
+      "title": "DDL",
+      "subtitle": "테이블을 만들고 바꾸는 문법",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "sqld",
+      "id": "sqld-5-2",
+      "stage": 5,
+      "title": "DML",
+      "subtitle": "데이터를 넣고 바꾸는 문법",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "sqld",
+      "id": "sqld-5-3",
+      "stage": 5,
+      "title": "TCL과 DCL",
+      "subtitle": "트랜잭션 제어, 권한 제어",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-1-1",
+      "stage": 1,
+      "title": "JVM과 실행 구조",
+      "subtitle": "JDK/JRE/JVM, main 메서드",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-1-2",
+      "stage": 1,
+      "title": "출력하기",
+      "subtitle": "println / print / printf",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-2-1",
+      "stage": 2,
+      "title": "정수형",
+      "subtitle": "byte/short/int/long",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-2-2",
+      "stage": 2,
+      "title": "실수형",
+      "subtitle": "float/double, 오차",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-2-3",
+      "stage": 2,
+      "title": "문자형과 불리언",
+      "subtitle": "char, boolean",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-2-4",
+      "stage": 2,
+      "title": "문자열 타입",
+      "subtitle": "String 리터럴 vs new String",
+      "orderNo": 4,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-2-5",
+      "stage": 2,
+      "title": "상수와 이스케이프 시퀀스",
+      "subtitle": "final, 이스케이프 문자",
+      "orderNo": 5,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-2-6",
+      "stage": 2,
+      "title": "형변환",
+      "subtitle": "자동 형변환과 캐스팅",
+      "orderNo": 6,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-3-1",
+      "stage": 3,
+      "title": "산술연산자",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-3-2",
+      "stage": 3,
+      "title": "복합대입연산자",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-3-3",
+      "stage": 3,
+      "title": "비교연산자",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-3-4",
+      "stage": 3,
+      "title": "논리연산자와 단축평가",
+      "orderNo": 4,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-3-5",
+      "stage": 3,
+      "title": "증감연산자",
+      "subtitle": "전위 vs 후위",
+      "orderNo": 5,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-4-1",
+      "stage": 4,
+      "title": "if문",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-4-2",
+      "stage": 4,
+      "title": "switch문",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-4-3",
+      "stage": 4,
+      "title": "while과 do-while",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-4-4",
+      "stage": 4,
+      "title": "for문",
+      "orderNo": 4,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-4-5",
+      "stage": 4,
+      "title": "break와 continue",
+      "orderNo": 5,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-5-1",
+      "stage": 5,
+      "title": "메서드 기본 구조",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-5-2",
+      "stage": 5,
+      "title": "매개변수와 반환값",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-5-3",
+      "stage": 5,
+      "title": "지역변수와 스코프",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-5-4",
+      "stage": 5,
+      "title": "오버로딩",
+      "orderNo": 4,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-5-5",
+      "stage": 5,
+      "title": "가변인자",
+      "orderNo": 5,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-6-1",
+      "stage": 6,
+      "title": "1차원 배열",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-6-2",
+      "stage": 6,
+      "title": "배열과 메서드",
+      "subtitle": "call by value/reference",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-6-3",
+      "stage": 6,
+      "title": "2차원 배열",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-6-4",
+      "stage": 6,
+      "title": "향상된 for문",
+      "subtitle": "foreach",
+      "orderNo": 4,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-7-1",
+      "stage": 7,
+      "title": "String 기본과 불변성",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-7-2",
+      "stage": 7,
+      "title": "String 메서드",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-7-3",
+      "stage": 7,
+      "title": "StringBuilder와 StringBuffer",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-8-1",
+      "stage": 8,
+      "title": "클래스와 인스턴스",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-8-2",
+      "stage": 8,
+      "title": "생성자",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-8-3",
+      "stage": 8,
+      "title": "this 키워드",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-9-1",
+      "stage": 9,
+      "title": "패키지와 import",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-10-1",
+      "stage": 10,
+      "title": "접근제어자 종류",
+      "subtitle": "public/protected/default/private",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-10-2",
+      "stage": 10,
+      "title": "캡슐화",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-11-1",
+      "stage": 11,
+      "title": "static 변수와 메서드",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-11-2",
+      "stage": 11,
+      "title": "정적 초기화 블록",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-11-3",
+      "stage": 11,
+      "title": "싱글톤 패턴",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-12-1",
+      "stage": 12,
+      "title": "상속 기본",
+      "subtitle": "extends, super",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-12-2",
+      "stage": 12,
+      "title": "오버라이딩",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-12-3",
+      "stage": 12,
+      "title": "다형성과 instanceof",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-13-1",
+      "stage": 13,
+      "title": "추상클래스",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-13-2",
+      "stage": 13,
+      "title": "인터페이스",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-14-1",
+      "stage": 14,
+      "title": "내부 클래스와 익명 클래스",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-15-1",
+      "stage": 15,
+      "title": "래퍼 클래스",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-15-2",
+      "stage": 15,
+      "title": "Math 클래스",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-15-3",
+      "stage": 15,
+      "title": "Object의 toString과 equals",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-15-4",
+      "stage": 15,
+      "title": "날짜와 시간",
+      "subtitle": "Date, LocalDateTime",
+      "orderNo": 4,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-16-1",
+      "stage": 16,
+      "title": "예외의 종류",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-16-2",
+      "stage": 16,
+      "title": "try-catch-finally",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-16-3",
+      "stage": 16,
+      "title": "사용자 정의 예외",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-17-1",
+      "stage": 17,
+      "title": "제네릭 기초",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-17-2",
+      "stage": 17,
+      "title": "ArrayList",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-17-3",
+      "stage": 17,
+      "title": "HashSet과 TreeSet",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-17-4",
+      "stage": 17,
+      "title": "HashMap",
+      "orderNo": 4,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-18-1",
+      "stage": 18,
+      "title": "시간복잡도 감각",
+      "subtitle": "Big-O",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-18-2",
+      "stage": 18,
+      "title": "스택과 큐",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-18-3",
+      "stage": 18,
+      "title": "재귀",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-18-4",
+      "stage": 18,
+      "title": "정렬 기초",
+      "orderNo": 4,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-18-5",
+      "stage": 18,
+      "title": "탐색 기초",
+      "subtitle": "선형탐색 vs 이진탐색",
+      "orderNo": 5,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-19-1",
+      "stage": 19,
+      "title": "SRP: 단일 책임 원칙",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-19-2",
+      "stage": 19,
+      "title": "OCP: 개방-폐쇄 원칙",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-19-3",
+      "stage": 19,
+      "title": "LSP: 리스코프 치환 원칙",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-19-4",
+      "stage": 19,
+      "title": "ISP: 인터페이스 분리 원칙",
+      "orderNo": 4,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-19-5",
+      "stage": 19,
+      "title": "DIP: 의존관계 역전 원칙",
+      "orderNo": 5,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-20-1",
+      "stage": 20,
+      "title": "네이밍 컨벤션",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-20-2",
+      "stage": 20,
+      "title": "Javadoc과 주석",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-20-3",
+      "stage": 20,
+      "title": "JVM, JDK, JRE",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "java",
+      "id": "java-20-4",
+      "stage": 20,
+      "title": "빌드 도구와 라이브러리 감각",
+      "subtitle": "Maven/Gradle, 외부 라이브러리",
+      "orderNo": 4,
+      "xpReward": 10
+    },
+    {
+      "trackId": "python",
+      "id": "python-1-1",
+      "stage": 1,
+      "title": "변수와 기본 자료형",
+      "subtitle": "int/float/str/bool, type()",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "python",
+      "id": "python-2-1",
+      "stage": 2,
+      "title": "산술연산자",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "python",
+      "id": "python-2-2",
+      "stage": 2,
+      "title": "대입연산자",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "python",
+      "id": "python-2-3",
+      "stage": 2,
+      "title": "비교연산자와 형변환",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "python",
+      "id": "python-2-4",
+      "stage": 2,
+      "title": "문자열 연산자",
+      "subtitle": "+ 와 * 사용",
+      "orderNo": 4,
+      "xpReward": 10
+    },
+    {
+      "trackId": "python",
+      "id": "python-3-1",
+      "stage": 3,
+      "title": "input()과 print()",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "python",
+      "id": "python-4-1",
+      "stage": 4,
+      "title": "리스트 기본",
+      "subtitle": "생성, 인덱싱, 슬라이싱",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "python",
+      "id": "python-5-1",
+      "stage": 5,
+      "title": "튜플 기본",
+      "subtitle": "리스트와의 차이",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "python",
+      "id": "python-6-1",
+      "stage": 6,
+      "title": "딕셔너리 기본",
+      "subtitle": "key-value",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "python",
+      "id": "python-7-1",
+      "stage": 7,
+      "title": "집합 기본",
+      "subtitle": "중복 제거, 집합 연산",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "python",
+      "id": "python-8-1",
+      "stage": 8,
+      "title": "if / elif / else",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "python",
+      "id": "python-8-2",
+      "stage": 8,
+      "title": "중첩 if문",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "python",
+      "id": "python-9-1",
+      "stage": 9,
+      "title": "while문 기본",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "python",
+      "id": "python-10-1",
+      "stage": 10,
+      "title": "for문 기본",
+      "subtitle": "range()",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "python",
+      "id": "python-10-2",
+      "stage": 10,
+      "title": "for문 활용",
+      "subtitle": "중첩, 실전 계산",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "python",
+      "id": "python-11-1",
+      "stage": 11,
+      "title": "반복 제어",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "python",
+      "id": "python-12-1",
+      "stage": 12,
+      "title": "f-string",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "python",
+      "id": "python-12-2",
+      "stage": 12,
+      "title": "서식문자",
+      "subtitle": "%d %s %f",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "python",
+      "id": "python-12-3",
+      "stage": 12,
+      "title": "format() 함수",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "python",
+      "id": "python-12-4",
+      "stage": 12,
+      "title": "문자열 메서드",
+      "subtitle": "replace 등",
+      "orderNo": 4,
+      "xpReward": 10
+    },
+    {
+      "trackId": "python",
+      "id": "python-13-1",
+      "stage": 13,
+      "title": "datetime 모듈",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "python",
+      "id": "python-14-1",
+      "stage": 14,
+      "title": "함수 기본",
+      "subtitle": "def, 매개변수, 반환값",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "python",
+      "id": "python-14-2",
+      "stage": 14,
+      "title": "다중 반환값",
+      "subtitle": "튜플 언패킹",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "python",
+      "id": "python-14-3",
+      "stage": 14,
+      "title": "내장함수",
+      "subtitle": "import 없이 바로 쓰는 함수",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "python",
+      "id": "python-15-1",
+      "stage": 15,
+      "title": "람다식 기본",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "python",
+      "id": "python-15-2",
+      "stage": 15,
+      "title": "map, filter, reduce",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "python",
+      "id": "python-16-1",
+      "stage": 16,
+      "title": "import와 모듈 작성",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "python",
+      "id": "python-17-1",
+      "stage": 17,
+      "title": "클래스 기본",
+      "subtitle": "__init__, self",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "python",
+      "id": "python-17-2",
+      "stage": 17,
+      "title": "정보은닉",
+      "subtitle": "캡슐화",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "python",
+      "id": "python-17-3",
+      "stage": 17,
+      "title": "클래스변수와 정적메서드",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "python",
+      "id": "python-18-1",
+      "stage": 18,
+      "title": "open()으로 파일 다루기",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "python",
+      "id": "python-18-2",
+      "stage": 18,
+      "title": "pickle",
+      "subtitle": "객체 직렬화",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "python",
+      "id": "python-19-1",
+      "stage": 19,
+      "title": "try-except 기본",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "python",
+      "id": "python-19-2",
+      "stage": 19,
+      "title": "직접 예외 발생시키기",
+      "subtitle": "raise",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "python",
+      "id": "python-20-1",
+      "stage": 20,
+      "title": "PEP8과 네이밍 컨벤션",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "python",
+      "id": "python-20-2",
+      "stage": 20,
+      "title": "리스트 컴프리헨션",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "python",
+      "id": "python-20-3",
+      "stage": 20,
+      "title": "가상환경과 패키지 관리",
+      "subtitle": "venv, pip",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "python",
+      "id": "python-20-4",
+      "stage": 20,
+      "title": "자주 쓰는 관용구",
+      "subtitle": "enumerate, zip, 언패킹",
+      "orderNo": 4,
+      "xpReward": 10
+    },
+    {
+      "trackId": "html",
+      "id": "html-1-1",
+      "stage": 1,
+      "title": "HTML 문서의 기본 골격",
+      "subtitle": "doctype, html/head/body",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "html",
+      "id": "html-1-2",
+      "stage": 1,
+      "title": "head 안의 메타 태그",
+      "subtitle": "meta charset, viewport",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "html",
+      "id": "html-2-1",
+      "stage": 2,
+      "title": "시맨틱 태그란",
+      "subtitle": "div만 쓰는 것과의 차이",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "html",
+      "id": "html-2-2",
+      "stage": 2,
+      "title": "시맨틱 태그 종류",
+      "subtitle": "header/nav/section/article/aside/footer",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "html",
+      "id": "html-3-1",
+      "stage": 3,
+      "title": "테이블 기본과 셀 병합",
+      "subtitle": "table/tr/td/th, rowspan/colspan",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "html",
+      "id": "html-4-1",
+      "stage": 4,
+      "title": "form 태그와 전송 방식",
+      "subtitle": "action, method(GET/POST)",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "html",
+      "id": "html-5-1",
+      "stage": 5,
+      "title": "텍스트·파일류 입력",
+      "subtitle": "text, password, hidden, file",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "html",
+      "id": "html-5-2",
+      "stage": 5,
+      "title": "선택형 입력과 버튼",
+      "subtitle": "checkbox, radio, submit, button, label",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "html",
+      "id": "html-6-1",
+      "stage": 6,
+      "title": "video와 audio 태그",
+      "subtitle": "controls, autoplay",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "html",
+      "id": "html-7-1",
+      "stage": 7,
+      "title": "iframe으로 다른 문서 삽입하기",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "html",
+      "id": "html-8-1",
+      "stage": 8,
+      "title": "id와 class",
+      "subtitle": "스타일링과 스크립트 접근용",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "html",
+      "id": "html-8-2",
+      "stage": 8,
+      "title": "data 속성과 tabindex",
+      "subtitle": "data-*, 키보드 접근성",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "html",
+      "id": "html-9-1",
+      "stage": 9,
+      "title": "대체 텍스트와 접근성",
+      "subtitle": "alt 속성, 스크린리더",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "html",
+      "id": "html-9-2",
+      "stage": 9,
+      "title": "시맨틱과 SEO",
+      "subtitle": "시맨틱 태그가 검색엔진에 미치는 영향",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "css",
+      "id": "css-1-1",
+      "stage": 1,
+      "title": "기본 선택자",
+      "subtitle": "전체/태그/클래스/id 선택자",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "css",
+      "id": "css-1-2",
+      "stage": 1,
+      "title": "우선순위와 명시도",
+      "subtitle": "!important, 같은 선택자 중복 선언",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "css",
+      "id": "css-2-1",
+      "stage": 2,
+      "title": "폰트 속성",
+      "subtitle": "font-family, font-size, font-weight",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "css",
+      "id": "css-2-2",
+      "stage": 2,
+      "title": "문단과 텍스트 정렬",
+      "subtitle": "text-align, line-height",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "css",
+      "id": "css-3-1",
+      "stage": 3,
+      "title": "테두리(border)",
+      "subtitle": "border-style, border-radius",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "css",
+      "id": "css-3-2",
+      "stage": 3,
+      "title": "배경(background)",
+      "subtitle": "background-color, background-image",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "css",
+      "id": "css-4-1",
+      "stage": 4,
+      "title": "margin과 padding",
+      "subtitle": "박스 모델 개념",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "css",
+      "id": "css-4-2",
+      "stage": 4,
+      "title": "overflow",
+      "subtitle": "영역을 넘친 콘텐츠 처리",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "css",
+      "id": "css-5-1",
+      "stage": 5,
+      "title": "list-style",
+      "subtitle": "목록 마커 스타일링",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "css",
+      "id": "css-6-1",
+      "stage": 6,
+      "title": "display 속성",
+      "subtitle": "block/inline/none",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "css",
+      "id": "css-7-1",
+      "stage": 7,
+      "title": "float와 clear",
+      "subtitle": "전통적인 레이아웃 방식",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "css",
+      "id": "css-7-2",
+      "stage": 7,
+      "title": "position 속성값",
+      "subtitle": "static/relative/absolute/fixed",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "css",
+      "id": "css-8-1",
+      "stage": 8,
+      "title": "미디어 쿼리",
+      "subtitle": "@media, 화면 크기별 스타일",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "css",
+      "id": "css-9-1",
+      "stage": 9,
+      "title": "transform",
+      "subtitle": "2D/3D 변형",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "css",
+      "id": "css-9-2",
+      "stage": 9,
+      "title": "transition과 keyframes",
+      "subtitle": "상태 변화 애니메이션",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "css",
+      "id": "css-10-1",
+      "stage": 10,
+      "title": "flex 컨테이너",
+      "subtitle": "display: flex, flex-direction",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "css",
+      "id": "css-10-2",
+      "stage": 10,
+      "title": "flex 아이템",
+      "subtitle": "justify-content, align-items",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "css",
+      "id": "css-11-1",
+      "stage": 11,
+      "title": "grid 기본",
+      "subtitle": "grid-template-columns/rows",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "css",
+      "id": "css-11-2",
+      "stage": 11,
+      "title": "grid 세부 속성",
+      "subtitle": "gap, grid-column/row",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "css",
+      "id": "css-12-1",
+      "stage": 12,
+      "title": "CSS 변수(커스텀 속성)",
+      "subtitle": "--변수명, var()",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "css",
+      "id": "css-12-2",
+      "stage": 12,
+      "title": "BEM 네이밍과 명시도 관리",
+      "subtitle": "유지보수하기 좋은 클래스 설계",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "flask",
+      "id": "flask-1-1",
+      "stage": 1,
+      "title": "클라이언트와 서버",
+      "subtitle": "브라우저가 서버에 요청하는 흐름",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "flask",
+      "id": "flask-1-2",
+      "stage": 1,
+      "title": "HTTP 요청과 응답",
+      "subtitle": "메서드와 상태코드",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "flask",
+      "id": "flask-2-1",
+      "stage": 2,
+      "title": "라우팅과 엔드포인트",
+      "subtitle": "@app.route",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "flask",
+      "id": "flask-2-2",
+      "stage": 2,
+      "title": "앱 실행 방식",
+      "subtitle": "flask run, app.run, debug",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "flask",
+      "id": "flask-3-1",
+      "stage": 3,
+      "title": "render_template과 Jinja2",
+      "subtitle": "서버 데이터를 HTML에 넣기",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "flask",
+      "id": "flask-3-2",
+      "stage": 3,
+      "title": "templates와 static 폴더",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "flask",
+      "id": "flask-4-1",
+      "stage": 4,
+      "title": "GET과 POST",
+      "subtitle": "request.args vs request.form",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "flask",
+      "id": "flask-4-2",
+      "stage": 4,
+      "title": "URL 경로 변수",
+      "subtitle": "<int:num>",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "flask",
+      "id": "flask-5-1",
+      "stage": 5,
+      "title": "session과 secret_key",
+      "subtitle": "로그인 상태 유지",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "flask",
+      "id": "flask-5-2",
+      "stage": 5,
+      "title": "redirect와 url_for",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "flask",
+      "id": "flask-6-1",
+      "stage": 6,
+      "title": "파일 업로드 처리",
+      "subtitle": "request.files, multipart",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "flask",
+      "id": "flask-6-2",
+      "stage": 6,
+      "title": "안전한 파일 저장",
+      "subtitle": "uuid, 원본 파일명의 위험",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "flask",
+      "id": "flask-7-1",
+      "stage": 7,
+      "title": "XSS와 escape",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "flask",
+      "id": "flask-7-2",
+      "stage": 7,
+      "title": "비밀번호 저장과 입력 검증",
+      "subtitle": "평문 저장 금지, 해시",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai",
+      "id": "ai-1-1",
+      "stage": 1,
+      "title": "AI, 머신러닝, 딥러닝의 관계",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai",
+      "id": "ai-1-2",
+      "stage": 1,
+      "title": "지도학습과 비지도학습",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai",
+      "id": "ai-1-3",
+      "stage": 1,
+      "title": "분류와 회귀",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai",
+      "id": "ai-2-1",
+      "stage": 2,
+      "title": "데이터와 레이블",
+      "subtitle": "특징(feature)과 정답",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai",
+      "id": "ai-2-2",
+      "stage": 2,
+      "title": "훈련 데이터와 테스트 데이터",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai",
+      "id": "ai-2-3",
+      "stage": 2,
+      "title": "정규화",
+      "subtitle": "값의 범위 맞추기",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai",
+      "id": "ai-3-1",
+      "stage": 3,
+      "title": "fit()과 predict()",
+      "subtitle": "학습시키고 예측하기",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai",
+      "id": "ai-3-2",
+      "stage": 3,
+      "title": "정확도로 평가하기",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai",
+      "id": "ai-3-3",
+      "stage": 3,
+      "title": "과적합",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai",
+      "id": "ai-4-1",
+      "stage": 4,
+      "title": "ndarray와 shape",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai",
+      "id": "ai-4-2",
+      "stage": 4,
+      "title": "배열 생성과 reshape",
+      "subtitle": "arange, zeros, ones, -1",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai",
+      "id": "ai-4-3",
+      "stage": 4,
+      "title": "브로드캐스팅",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai",
+      "id": "ai-5-1",
+      "stage": 5,
+      "title": "pandas Series와 DataFrame",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai",
+      "id": "ai-5-2",
+      "stage": 5,
+      "title": "CSV 읽고 쓰기",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai",
+      "id": "ai-5-3",
+      "stage": 5,
+      "title": "matplotlib 그래프 고르기",
+      "subtitle": "선/막대/산점도/히스토그램",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai",
+      "id": "ai-6-1",
+      "stage": 6,
+      "title": "학습 파이프라인 순서",
+      "subtitle": "로드 → 전처리 → 학습 → 평가",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai",
+      "id": "ai-6-2",
+      "stage": 6,
+      "title": "모델 저장과 불러오기",
+      "subtitle": "joblib",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai",
+      "id": "ai-6-3",
+      "stage": 6,
+      "title": "학습한 모델을 웹으로 서비스하기",
+      "subtitle": "Flask + 모델",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai",
+      "id": "ai-7-1",
+      "stage": 7,
+      "title": "데이터 편향과 품질",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ai",
+      "id": "ai-7-2",
+      "stage": 7,
+      "title": "AI의 한계와 책임 있는 활용",
+      "subtitle": "할루시네이션, 개인정보, 저작권",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "js",
+      "id": "js-1-1",
+      "stage": 1,
+      "title": "실행 환경과 console.log",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "js",
+      "id": "js-1-2",
+      "stage": 1,
+      "title": "자료형과 typeof",
+      "subtitle": "null과 undefined",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "js",
+      "id": "js-2-1",
+      "stage": 2,
+      "title": "var, let, const",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "js",
+      "id": "js-2-2",
+      "stage": 2,
+      "title": "스코프와 호이스팅",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "js",
+      "id": "js-3-1",
+      "stage": 3,
+      "title": "산술·비교 연산자",
+      "subtitle": "== vs ===",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "js",
+      "id": "js-3-2",
+      "stage": 3,
+      "title": "논리 연산과 단축평가",
+      "subtitle": "truthy / falsy",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "js",
+      "id": "js-4-1",
+      "stage": 4,
+      "title": "if와 switch",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "js",
+      "id": "js-4-2",
+      "stage": 4,
+      "title": "while, for, break, continue",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "js",
+      "id": "js-4-3",
+      "stage": 4,
+      "title": "for...of와 for...in",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "js",
+      "id": "js-5-1",
+      "stage": 5,
+      "title": "함수 정의 방식",
+      "subtitle": "선언식, 표현식, 화살표 함수",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "js",
+      "id": "js-5-2",
+      "stage": 5,
+      "title": "매개변수",
+      "subtitle": "기본값, 나머지 매개변수",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "js",
+      "id": "js-5-3",
+      "stage": 5,
+      "title": "콜백과 클로저",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "js",
+      "id": "js-6-1",
+      "stage": 6,
+      "title": "배열 기본 메서드",
+      "subtitle": "push, slice, splice, indexOf",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "js",
+      "id": "js-6-2",
+      "stage": 6,
+      "title": "구조 분해와 스프레드",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "js",
+      "id": "js-7-1",
+      "stage": 7,
+      "title": "forEach와 map",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "js",
+      "id": "js-7-2",
+      "stage": 7,
+      "title": "filter와 reduce",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "js",
+      "id": "js-8-1",
+      "stage": 8,
+      "title": "문자열과 템플릿 리터럴",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "js",
+      "id": "js-8-2",
+      "stage": 8,
+      "title": "Date와 Math",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "js",
+      "id": "js-9-1",
+      "stage": 9,
+      "title": "객체와 클래스",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "js",
+      "id": "js-9-2",
+      "stage": 9,
+      "title": "JSON",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "js",
+      "id": "js-10-1",
+      "stage": 10,
+      "title": "요소 선택",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "js",
+      "id": "js-10-2",
+      "stage": 10,
+      "title": "요소 조작",
+      "subtitle": "textContent, classList, style",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "js",
+      "id": "js-11-1",
+      "stage": 11,
+      "title": "이벤트 등록과 이벤트 객체",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "js",
+      "id": "js-11-2",
+      "stage": 11,
+      "title": "버블링과 기본 동작",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "js",
+      "id": "js-12-1",
+      "stage": 12,
+      "title": "폼 다루기",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "js",
+      "id": "js-13-1",
+      "stage": 13,
+      "title": "쿠키",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "js",
+      "id": "js-13-2",
+      "stage": 13,
+      "title": "웹 스토리지",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "js",
+      "id": "js-14-1",
+      "stage": 14,
+      "title": "콜백과 Promise",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "js",
+      "id": "js-14-2",
+      "stage": 14,
+      "title": "async/await",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "js",
+      "id": "js-14-3",
+      "stage": 14,
+      "title": "fetch와 CORS",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "js",
+      "id": "js-15-1",
+      "stage": 15,
+      "title": "모던 문법과 네이밍",
+      "subtitle": "?. ?? 와 컨벤션",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "js",
+      "id": "js-15-2",
+      "stage": 15,
+      "title": "값 복사와 불변성",
+      "subtitle": "참조, 얕은 복사",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "js",
+      "id": "js-15-3",
+      "stage": 15,
+      "title": "보안과 이벤트 위임",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "js",
+      "id": "js-15-4",
+      "stage": 15,
+      "title": "자주 만나는 함정",
+      "orderNo": 4,
+      "xpReward": 10
+    }
   ]
 }

@@ -1,0 +1,46 @@
+[
+  {
+    "id": "js-8-2-q1",
+    "lessonId": "js-8-2",
+    "type": "choice",
+    "prompt": "1월에 대해 getMonth()가 반환하는 값은?",
+    "code": "const d = new Date(2024, 0, 15);\nconsole.log(d.getMonth());",
+    "language": "JavaScript",
+    "options": [
+      "1",
+      "12",
+      "0",
+      "'January'"
+    ],
+    "answer": 2,
+    "explanation": "Date의 월은 0부터 시작해서 0이 1월, 11이 12월이에요. 반면 getDate()(일)는 1부터 시작해서 헷갈리기 쉬워요."
+  },
+  {
+    "id": "js-8-2-q2",
+    "lessonId": "js-8-2",
+    "type": "choice",
+    "prompt": "Math.floor(-2.5)의 결과는?",
+    "options": [
+      "-2",
+      "-2.5",
+      "2",
+      "-3"
+    ],
+    "answer": 3,
+    "explanation": "floor는 \"내림\", 즉 더 작은 정수 쪽으로 가요. 음수에서는 -2.5보다 작은 -3이 돼요. 소수점만 버리고 싶으면 Math.trunc를 써요."
+  },
+  {
+    "id": "js-8-2-q3",
+    "lessonId": "js-8-2",
+    "type": "choice",
+    "prompt": "1~45 사이의 무작위 정수를 만드는 올바른 식은?",
+    "options": [
+      "Math.floor(Math.random() * 45) + 1",
+      "Math.floor(Math.random() * 45)",
+      "Math.round(Math.random() * 45)",
+      "Math.ceil(Math.random() * 45) + 1"
+    ],
+    "answer": 0,
+    "explanation": "Math.random()은 0 이상 1 미만이라 * 45 하고 floor를 하면 0~44, 여기에 +1을 해야 1~45예요. round는 양 끝 값의 확률이 절반이라 고르지 않아요."
+  }
+]

@@ -1,0 +1,46 @@
+[
+  {
+    "id": "js-12-1-q1",
+    "lessonId": "js-12-1",
+    "type": "choice",
+    "prompt": "input.value + 1의 결과는?",
+    "code": "// <input type=\"number\" id=\"n\" value=\"5\">\nconst input = document.getElementById('n');\nconsole.log(input.value + 1);",
+    "language": "JavaScript",
+    "options": [
+      "6",
+      "NaN",
+      "오류가 발생한다",
+      "\"51\""
+    ],
+    "answer": 3,
+    "explanation": "input의 value는 type이 number여도 항상 문자열이에요. 숫자로 계산하려면 Number(input.value)로 바꿔야 해요."
+  },
+  {
+    "id": "js-12-1-q2",
+    "lessonId": "js-12-1",
+    "type": "choice",
+    "prompt": "체크박스가 체크되어 있는지 확인하는 속성은?",
+    "options": [
+      "checkbox.checked",
+      "checkbox.value",
+      "checkbox.selected",
+      "checkbox.active"
+    ],
+    "answer": 0,
+    "explanation": "checked는 true/false 불리언이에요. value는 체크 여부와 상관없이 정해진 값 문자열이고, selected는 select의 option에서 써요."
+  },
+  {
+    "id": "js-12-1-q3",
+    "lessonId": "js-12-1",
+    "type": "choice",
+    "prompt": "자바스크립트로 폼 입력값을 검증했다면 서버 검증은 생략해도 될까?",
+    "options": [
+      "그렇다. 서버에서 다시 검증하는 건 중복이다",
+      "아니다. 클라이언트 검증은 우회할 수 있어서 서버에서도 반드시 검증해야 한다",
+      "HTTPS를 쓰면 클라이언트 검증만으로 충분하다",
+      "정규식으로 검증하면 서버에 보내도 안전하다"
+    ],
+    "answer": 1,
+    "explanation": "브라우저 검증은 사용자 편의를 위한 것이고, 개발자 도구나 직접 요청으로 쉽게 우회돼요. 진짜 방어선은 항상 서버 검증이에요."
+  }
+]

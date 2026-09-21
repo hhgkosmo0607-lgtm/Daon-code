@@ -1,0 +1,63 @@
+[
+  {
+    "id": "js-10-2-q1",
+    "lessonId": "js-10-2",
+    "type": "choice",
+    "prompt": "el.textContent = '<b>hi</b>' 의 결과 화면은?",
+    "options": [
+      "굵은 글씨 hi가 보인다",
+      "아무것도 표시되지 않는다",
+      "태그가 해석되지 않고 <b>hi</b> 글자 그대로 보인다",
+      "오류가 발생한다"
+    ],
+    "answer": 2,
+    "explanation": "textContent는 문자열을 글자 그대로 넣고, innerHTML은 HTML로 해석해서 넣어요. 사용자 입력을 넣을 때는 textContent가 안전해요."
+  },
+  {
+    "id": "js-10-2-q2",
+    "lessonId": "js-10-2",
+    "type": "choice",
+    "prompt": "el.classList.toggle('on')을 호출하면?",
+    "options": [
+      "항상 on 클래스를 추가한다",
+      "모든 클래스를 지우고 on만 남긴다",
+      "on 클래스가 있는지 true/false만 알려준다",
+      "on 클래스가 없으면 추가하고, 있으면 제거한다"
+    ],
+    "answer": 3,
+    "explanation": "toggle은 스위치처럼 동작해요. 있는지만 확인하려면 contains, 추가/제거는 add/remove를 써요."
+  },
+  {
+    "id": "js-10-2-q3",
+    "lessonId": "js-10-2",
+    "type": "choice",
+    "prompt": "배경색을 빨간색으로 바꾸는 올바른 코드는?",
+    "options": [
+      "el.style.backgroundColor = 'red'",
+      "el.style.background-color = 'red'",
+      "el.style('background-color', 'red')",
+      "el.css.backgroundColor = 'red'"
+    ],
+    "answer": 0,
+    "explanation": "style 속성 이름은 CSS의 하이픈 표기 대신 camelCase를 써요(background-color → backgroundColor). 하이픈이 있으면 빼기 연산으로 해석돼요."
+  },
+  {
+    "id": "js-10-2-q4",
+    "lessonId": "js-10-2",
+    "type": "order",
+    "prompt": "ul 목록에 새 항목을 추가하는 순서대로 나열하면?",
+    "options": [
+      "li.textContent = '새 항목';",
+      "const ul = document.querySelector('ul');",
+      "ul.appendChild(li);",
+      "const li = document.createElement('li');"
+    ],
+    "answer": [
+      1,
+      3,
+      0,
+      2
+    ],
+    "explanation": "추가할 위치(ul)를 찾고, 새 요소를 만들고, 내용을 채운 뒤 마지막에 문서에 붙여요. 붙이기 전에 채워 두면 화면이 덜 깜빡여요."
+  }
+]

@@ -1,0 +1,50 @@
+[
+  {
+    "id": "js-3-1-q1",
+    "lessonId": "js-3-1",
+    "type": "choice",
+    "prompt": "console.log 결과로 맞는 것은?",
+    "code": "console.log('5' == 5, '5' === 5);",
+    "language": "JavaScript",
+    "options": [
+      "true false",
+      "true true",
+      "false false",
+      "false true"
+    ],
+    "answer": 0,
+    "explanation": "==는 타입을 맞춰 변환한 뒤 비교해서 \"5\"와 5가 같다고 보고, ===는 타입까지 같아야 참이에요. 그래서 실무에서는 ===를 기본으로 써요."
+  },
+  {
+    "id": "js-3-1-q2",
+    "lessonId": "js-3-1",
+    "type": "choice",
+    "prompt": "console.log 결과로 맞는 것은?",
+    "code": "console.log('3' + 4, '3' * 4);",
+    "language": "JavaScript",
+    "options": [
+      "7 12",
+      "34 12",
+      "34 34",
+      "7 7"
+    ],
+    "answer": 1,
+    "explanation": "+는 한쪽이 문자열이면 문자열 이어붙이기가 되고, *는 숫자 연산만 있어서 문자열을 숫자로 바꿔 계산해요. 그래서 \"34\"와 12예요."
+  },
+  {
+    "id": "js-3-1-q3",
+    "lessonId": "js-3-1",
+    "type": "choice",
+    "prompt": "console.log 결과로 맞는 것은?",
+    "code": "console.log(10 / 4, 10 % 4);",
+    "language": "JavaScript",
+    "options": [
+      "2 2",
+      "2.5 0.5",
+      "2.5 2",
+      "2 2.5"
+    ],
+    "answer": 2,
+    "explanation": "자바스크립트의 숫자는 정수/실수 구분이 없어서 /는 나눗셈 그대로 2.5가 돼요. 정수 나눗셈이 아니에요. %는 나머지라 2예요."
+  }
+]

@@ -1,0 +1,48 @@
+[
+  {
+    "id": "js-5-3-q1",
+    "lessonId": "js-5-3",
+    "type": "choice",
+    "prompt": "\"콜백 함수\"를 가장 잘 설명한 것은?",
+    "code": "[1, 2, 3].forEach(function (x) {\n  console.log(x);\n});",
+    "language": "JavaScript",
+    "options": [
+      "오류가 났을 때만 자동 실행되는 함수",
+      "다른 함수에 인자로 넘겨 두었다가 나중에 호출되게 하는 함수",
+      "자기 자신을 다시 호출하는 함수",
+      "반환값이 없는 함수"
+    ],
+    "answer": 1,
+    "explanation": "forEach, setTimeout, 이벤트 핸들러처럼 \"나중에 알아서 불러 줘\"라고 맡기는 함수가 콜백이에요."
+  },
+  {
+    "id": "js-5-3-q2",
+    "lessonId": "js-5-3",
+    "type": "choice",
+    "prompt": "마지막 console.log의 결과는?",
+    "code": "function makeCounter() {\n  let c = 0;\n  return function () { c++; return c; };\n}\nconst a = makeCounter();\na(); a();\nconsole.log(a());",
+    "language": "JavaScript",
+    "options": [
+      "1",
+      "0",
+      "3",
+      "undefined"
+    ],
+    "answer": 2,
+    "explanation": "반환된 함수가 바깥 함수의 변수 c를 기억하고 있어요(클로저). 같은 counter를 부를 때마다 c가 유지돼서 1, 2, 3으로 증가해요."
+  },
+  {
+    "id": "js-5-3-q3",
+    "lessonId": "js-5-3",
+    "type": "choice",
+    "prompt": "위 makeCounter로 새로 만든 b = makeCounter()의 첫 b() 결과는?",
+    "options": [
+      "3",
+      "0",
+      "a와 같은 카운터라서 4",
+      "1"
+    ],
+    "answer": 3,
+    "explanation": "makeCounter()를 호출할 때마다 c가 새로 만들어지고, 각각의 함수가 자기 c만 기억해요. 그래서 b의 카운트는 a와 별개로 1부터 시작해요."
+  }
+]

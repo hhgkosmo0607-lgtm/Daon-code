@@ -1,0 +1,46 @@
+[
+  {
+    "id": "js-13-1-q1",
+    "lessonId": "js-13-1",
+    "type": "choice",
+    "prompt": "쿠키와 localStorage의 차이로 맞는 것은?",
+    "options": [
+      "localStorage가 매 요청마다 서버로 자동 전송된다",
+      "쿠키는 수 MB까지 저장할 수 있다",
+      "쿠키는 매 HTTP 요청에 자동으로 서버로 전송되지만 localStorage는 전송되지 않는다",
+      "둘 다 자바스크립트로 읽을 수 없다"
+    ],
+    "answer": 2,
+    "explanation": "쿠키는 용량이 작고(약 4KB) 요청마다 서버로 실려 가서 세션 유지에 쓰이고, localStorage는 브라우저 안에만 저장돼요."
+  },
+  {
+    "id": "js-13-1-q2",
+    "lessonId": "js-13-1",
+    "type": "choice",
+    "prompt": "아래 코드 실행 후 document.cookie의 값은?",
+    "code": "document.cookie = 'a=1';\ndocument.cookie = 'b=2';\nconsole.log(document.cookie);",
+    "language": "JavaScript",
+    "options": [
+      "\"b=2\"",
+      "\"a=1\"",
+      "\"a=1&b=2\"",
+      "\"a=1; b=2\""
+    ],
+    "answer": 3,
+    "explanation": "쿠키는 이름별로 저장돼서 다른 이름을 대입하면 덮어쓰지 않고 추가돼요. 읽으면 \"이름=값\"이 \"; \"로 이어진 문자열로 나와요."
+  },
+  {
+    "id": "js-13-1-q3",
+    "lessonId": "js-13-1",
+    "type": "choice",
+    "prompt": "쿠키를 삭제하는 방법은?",
+    "options": [
+      "같은 이름으로 만료일을 과거로 설정한다",
+      "document.cookie = null;",
+      "document.cookie.delete(이름)",
+      "document.cookie = \"\"; 로 전체를 지운다"
+    ],
+    "answer": 0,
+    "explanation": "쿠키에는 삭제 함수가 없어서 expires(또는 max-age=0)를 과거로 지정하면 브라우저가 지워요."
+  }
+]

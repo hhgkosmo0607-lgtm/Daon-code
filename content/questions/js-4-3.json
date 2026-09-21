@@ -1,0 +1,48 @@
+[
+  {
+    "id": "js-4-3-q1",
+    "lessonId": "js-4-3",
+    "type": "choice",
+    "prompt": "아래 코드의 출력은?",
+    "code": "const arr = ['a', 'b'];\nfor (const i in arr) console.log(i);",
+    "language": "JavaScript",
+    "options": [
+      "0, 1 (인덱스)",
+      "a, b (요소 값)",
+      "0, 1, length",
+      "아무것도 출력되지 않는다"
+    ],
+    "answer": 0,
+    "explanation": "for...in은 키(배열에서는 인덱스, 문자열 형태)를 돌고, for...of는 값을 돌아요. 이름이 비슷해서 자주 헷갈려요."
+  },
+  {
+    "id": "js-4-3-q2",
+    "lessonId": "js-4-3",
+    "type": "choice",
+    "prompt": "일반 객체를 for...of로 순회하면 어떻게 될까?",
+    "code": "for (const v of { a: 1 }) {\n  console.log(v);\n}",
+    "language": "JavaScript",
+    "options": [
+      "값 1이 출력된다",
+      "TypeError: 객체는 iterable이 아니다",
+      "키 a가 출력된다",
+      "아무것도 출력되지 않고 지나간다"
+    ],
+    "answer": 1,
+    "explanation": "for...of는 배열, 문자열, Map, Set처럼 순회 가능한(iterable) 객체에만 쓸 수 있어요. 일반 객체는 for...in이나 Object.keys/values/entries로 돌아요."
+  },
+  {
+    "id": "js-4-3-q3",
+    "lessonId": "js-4-3",
+    "type": "choice",
+    "prompt": "배열의 요소를 순서대로 돌 때 for...in 대신 for...of를 권장하는 이유는?",
+    "options": [
+      "for...of가 항상 더 빠르기 때문에",
+      "for...in은 배열에서 문법 오류가 나서",
+      "for...in은 인덱스를 문자열 키로 돌고 상속된 열거 가능 속성까지 나올 수 있어서",
+      "for...of만 break를 쓸 수 있어서"
+    ],
+    "answer": 2,
+    "explanation": "배열 순회에는 값을 바로 주는 for...of(또는 forEach)가 의도에 맞아요. for...in은 원래 객체의 키를 열거하는 용도예요."
+  }
+]

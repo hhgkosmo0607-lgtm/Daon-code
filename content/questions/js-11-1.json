@@ -1,0 +1,46 @@
+[
+  {
+    "id": "js-11-1-q1",
+    "lessonId": "js-11-1",
+    "type": "choice",
+    "prompt": "btn.addEventListener('click', hello())처럼 괄호를 붙여 등록하면?",
+    "options": [
+      "클릭할 때마다 hello가 실행된다",
+      "등록하는 순간 hello가 바로 실행되고, 클릭해도 반응이 없다",
+      "SyntaxError가 발생한다",
+      "hello가 두 번씩 실행된다"
+    ],
+    "answer": 1,
+    "explanation": "hello()는 \"지금 실행해서 그 결과를 써\"라는 뜻이에요. 함수 자체를 넘기려면 hello 처럼 괄호 없이 써야 해요."
+  },
+  {
+    "id": "js-11-1-q2",
+    "lessonId": "js-11-1",
+    "type": "choice",
+    "prompt": "이벤트 핸들러의 e.target이 가리키는 것은?",
+    "options": [
+      "핸들러를 등록한 요소",
+      "이벤트가 발생한 문서(document)",
+      "실제로 이벤트가 발생한 요소",
+      "이벤트 종류를 나타내는 문자열"
+    ],
+    "answer": 2,
+    "explanation": "target은 실제 클릭된 요소이고, 핸들러를 등록한 요소는 e.currentTarget이에요. 자식 요소를 클릭했을 때 둘이 달라져요."
+  },
+  {
+    "id": "js-11-1-q3",
+    "lessonId": "js-11-1",
+    "type": "choice",
+    "prompt": "입력창에서 엔터 키를 눌렀는지 판별하는 조건은?",
+    "code": "input.addEventListener('keydown', (e) => {\n  if (e.key === 'Enter') send();\n});",
+    "language": "JavaScript",
+    "options": [
+      "e.value === 'Enter'",
+      "e.target === 'Enter'",
+      "e.type === 'Enter'",
+      "e.key === 'Enter'"
+    ],
+    "answer": 3,
+    "explanation": "keydown/keyup 이벤트 객체의 key에 눌린 키 이름이 들어 있어요. e.type은 이벤트 이름(keydown 등)이에요."
+  }
+]

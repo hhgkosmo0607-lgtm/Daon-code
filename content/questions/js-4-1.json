@@ -1,0 +1,50 @@
+[
+  {
+    "id": "js-4-1-q1",
+    "lessonId": "js-4-1",
+    "type": "choice",
+    "prompt": "아래 코드의 출력은?",
+    "code": "let n = 2;\nswitch (n) {\n  case 1: console.log('A');\n  case 2: console.log('B');\n  case 3: console.log('C'); break;\n  default: console.log('D');\n}",
+    "language": "JavaScript",
+    "options": [
+      "B만 출력된다",
+      "B, C, D가 모두 출력된다",
+      "B와 C가 차례로 출력된다",
+      "A, B, C가 모두 출력된다"
+    ],
+    "answer": 2,
+    "explanation": "switch는 일치한 case부터 시작해서 break를 만날 때까지 아래 case 코드까지 계속 실행돼요(fall-through). case 2에는 break가 없어서 case 3까지 실행돼요."
+  },
+  {
+    "id": "js-4-1-q2",
+    "lessonId": "js-4-1",
+    "type": "choice",
+    "prompt": "아래 코드의 출력은?",
+    "code": "const x = '1';\nswitch (x) {\n  case 1: console.log('one'); break;\n  default: console.log('other');\n}",
+    "language": "JavaScript",
+    "options": [
+      "one",
+      "오류가 발생한다",
+      "one과 other가 모두 출력된다",
+      "other"
+    ],
+    "answer": 3,
+    "explanation": "switch는 값을 === (엄격한 비교)로 비교해요. 문자열 \"1\"과 숫자 1은 타입이 달라서 case 1과 일치하지 않고 default로 가요."
+  },
+  {
+    "id": "js-4-1-q3",
+    "lessonId": "js-4-1",
+    "type": "choice",
+    "prompt": "아래 코드에서 출력되는 것은?",
+    "code": "const score = 85;\nif (score >= 60) console.log('D');\nelse if (score >= 80) console.log('B');",
+    "language": "JavaScript",
+    "options": [
+      "D",
+      "B",
+      "D와 B",
+      "아무것도 출력되지 않는다"
+    ],
+    "answer": 0,
+    "explanation": "if / else if 는 위에서부터 조건을 검사하다가 처음 참인 분기 하나만 실행해요. 85점은 첫 조건 score >= 60이 참이라 D가 출력돼요. 조건은 범위가 좁은 것부터 써야 해요."
+  }
+]

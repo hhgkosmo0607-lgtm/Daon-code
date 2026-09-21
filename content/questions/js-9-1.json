@@ -1,0 +1,48 @@
+[
+  {
+    "id": "js-9-1-q1",
+    "lessonId": "js-9-1",
+    "type": "choice",
+    "prompt": "console.log(p.k, p[k])의 결과는?",
+    "code": "const k = 'age';\nconst p = { age: 20 };\nconsole.log(p.k, p[k]);",
+    "language": "JavaScript",
+    "options": [
+      "20 20",
+      "undefined 20",
+      "undefined undefined",
+      "age 20"
+    ],
+    "answer": 1,
+    "explanation": "p.k는 이름이 글자 그대로 \"k\"인 속성을 찾아서 undefined예요. 변수에 담긴 이름으로 접근하려면 대괄호 p[k]를 써요."
+  },
+  {
+    "id": "js-9-1-q2",
+    "lessonId": "js-9-1",
+    "type": "choice",
+    "prompt": "아래 코드를 실행하면?",
+    "code": "class Dog {\n  constructor(n) { this.n = n; }\n}\nconst d = Dog('a');",
+    "language": "JavaScript",
+    "options": [
+      "d가 undefined가 된다",
+      "d는 빈 객체가 된다",
+      "TypeError: 클래스는 new 없이 호출할 수 없다",
+      "d.n이 'a'인 객체가 만들어진다"
+    ],
+    "answer": 2,
+    "explanation": "class로 만든 생성자는 new 없이 호출하면 오류가 나요. 옛 방식 생성자 함수는 new를 빼먹어도 조용히 틀린 동작을 해서 클래스가 더 안전해요."
+  },
+  {
+    "id": "js-9-1-q3",
+    "lessonId": "js-9-1",
+    "type": "choice",
+    "prompt": "Object.entries({ a: 1, b: 2 })의 결과는?",
+    "options": [
+      "['a', 'b']",
+      "[1, 2]",
+      "{ a: 1, b: 2 }",
+      "[['a', 1], ['b', 2]]"
+    ],
+    "answer": 3,
+    "explanation": "keys는 키 배열, values는 값 배열, entries는 [키, 값] 쌍의 배열이에요. for (const [k, v] of Object.entries(obj))로 객체를 순회하는 패턴을 자주 써요."
+  }
+]

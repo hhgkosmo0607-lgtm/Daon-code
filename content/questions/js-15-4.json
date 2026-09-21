@@ -1,0 +1,58 @@
+[
+  {
+    "id": "js-15-4-q1",
+    "lessonId": "js-15-4",
+    "type": "choice",
+    "prompt": "console.log(0.1 + 0.2 === 0.3)의 결과는?",
+    "options": [
+      "true",
+      "오류가 발생한다",
+      "undefined",
+      "false"
+    ],
+    "answer": 3,
+    "explanation": "숫자는 이진 부동소수점이라 0.1 + 0.2는 0.30000000000000004예요. 소수 비교는 오차 범위로 하거나 정수(원 → 전 단위)로 바꿔 계산해요."
+  },
+  {
+    "id": "js-15-4-q2",
+    "lessonId": "js-15-4",
+    "type": "choice",
+    "prompt": "console.log([10, 9, 1].sort())의 결과는?",
+    "options": [
+      "[1, 10, 9]",
+      "[1, 9, 10]",
+      "[10, 9, 1]",
+      "[9, 10, 1]"
+    ],
+    "answer": 0,
+    "explanation": "sort는 기본적으로 요소를 문자열로 바꿔 사전순으로 정렬해요. 숫자 정렬은 sort((a, b) => a - b)처럼 비교 함수를 줘야 해요."
+  },
+  {
+    "id": "js-15-4-q3",
+    "lessonId": "js-15-4",
+    "type": "choice",
+    "prompt": "console.log(parseInt(\"12px\"), Number(\"12px\"))의 결과는?",
+    "options": [
+      "NaN NaN",
+      "12 NaN",
+      "12 12",
+      "NaN 12"
+    ],
+    "answer": 1,
+    "explanation": "parseInt는 앞에서부터 숫자로 읽을 수 있는 만큼만 읽고, Number는 문자열 전체가 숫자여야 해서 아니면 NaN이에요."
+  },
+  {
+    "id": "js-15-4-q4",
+    "lessonId": "js-15-4",
+    "type": "choice",
+    "prompt": "값이 NaN인지 확인하는 올바른 방법은?",
+    "options": [
+      "x === NaN",
+      "x == NaN",
+      "Number.isNaN(x)",
+      "typeof x === 'nan'"
+    ],
+    "answer": 2,
+    "explanation": "NaN은 자기 자신과도 같지 않아서(NaN === NaN이 false) 비교 연산자로 확인할 수 없어요. typeof NaN은 \"number\"예요."
+  }
+]

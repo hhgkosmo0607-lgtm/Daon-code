@@ -1,0 +1,48 @@
+[
+  {
+    "id": "js-2-1-q1",
+    "lessonId": "js-2-1",
+    "type": "choice",
+    "prompt": "const로 선언한 변수에 값을 다시 대입하면?",
+    "code": "const PI = 3.14;\nPI = 3.1415;",
+    "language": "JavaScript",
+    "options": [
+      "값이 3.1415로 바뀐다",
+      "아무 일 없이 무시되고 3.14가 유지된다",
+      "TypeError: Assignment to constant variable 오류가 난다",
+      "문법 오류라서 스크립트 전체가 시작되지 않는다"
+    ],
+    "answer": 2,
+    "explanation": "const는 재할당을 막아요. 실행 중 해당 줄에서 TypeError가 발생해요(그 앞 코드는 이미 실행됨)."
+  },
+  {
+    "id": "js-2-1-q2",
+    "lessonId": "js-2-1",
+    "type": "choice",
+    "prompt": "같은 스코프에서 let으로 같은 이름을 두 번 선언하면?",
+    "code": "let a = 1;\nlet a = 2;",
+    "language": "JavaScript",
+    "options": [
+      "두 번째 값으로 덮어써진다(var처럼)",
+      "첫 번째 값이 유지되고 두 번째는 무시된다",
+      "두 번째 변수는 undefined가 된다",
+      "SyntaxError가 발생한다"
+    ],
+    "answer": 3,
+    "explanation": "let/const는 같은 스코프 재선언을 막아 실수를 줄여 줘요. var는 재선언이 허용돼서 실수로 값이 덮이는 문제가 있었어요."
+  },
+  {
+    "id": "js-2-1-q3",
+    "lessonId": "js-2-1",
+    "type": "choice",
+    "prompt": "요즘 자바스크립트에서 변수 선언 방식으로 권장되는 것은?",
+    "options": [
+      "기본은 const, 값이 바뀌어야 할 때만 let, var는 피한다",
+      "모든 변수를 var로 선언한다",
+      "항상 let만 쓴다",
+      "숫자는 var, 문자열은 const로 나눠 쓴다"
+    ],
+    "answer": 0,
+    "explanation": "재할당하지 않는 값이 대부분이라 const를 기본으로 쓰면 \"이 값은 안 바뀐다\"는 의도가 드러나요. var는 함수 스코프와 호이스팅 때문에 실수를 부르기 쉬워요."
+  }
+]

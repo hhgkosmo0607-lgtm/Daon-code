@@ -1,0 +1,60 @@
+[
+  {
+    "id": "js-14-3-q1",
+    "lessonId": "js-14-3",
+    "type": "choice",
+    "prompt": "res.json()의 역할은?",
+    "code": "const res = await fetch(url);\nconst data = await res.json();",
+    "language": "JavaScript",
+    "options": [
+      "자바스크립트 객체를 JSON 문자열로 바꾼다",
+      "요청을 JSON 형식으로 전송한다",
+      "응답 본문(JSON)을 파싱해 자바스크립트 값으로 바꿔 주는 프로미스를 반환한다",
+      "응답의 상태 코드를 확인한다"
+    ],
+    "answer": 2,
+    "explanation": "res.json()도 비동기라서 await가 필요해요. 반대로 객체를 문자열로 바꾸는 건 JSON.stringify예요."
+  },
+  {
+    "id": "js-14-3-q2",
+    "lessonId": "js-14-3",
+    "type": "choice",
+    "prompt": "fetch로 요청했는데 서버가 404를 응답하면?",
+    "options": [
+      "프로미스가 거절되어 catch로 간다",
+      "자동으로 재요청한다",
+      "res가 null이 된다",
+      "프로미스는 이행되고 res.ok가 false다. 상태 코드를 직접 확인해야 한다"
+    ],
+    "answer": 3,
+    "explanation": "fetch는 네트워크 자체가 실패할 때만 거절돼요. 404, 500은 정상 응답으로 오기 때문에 if (!res.ok) 검사가 필요해요."
+  },
+  {
+    "id": "js-14-3-q3",
+    "lessonId": "js-14-3",
+    "type": "choice",
+    "prompt": "JSON 데이터를 POST로 보내는 올바른 코드는?",
+    "options": [
+      "fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })",
+      "fetch(url, { method: 'POST', body: data })",
+      "fetch(url, data)",
+      "fetch.post(url, data)"
+    ],
+    "answer": 0,
+    "explanation": "body는 문자열이어야 해서 JSON.stringify가 필요하고, 서버가 JSON임을 알도록 Content-Type 헤더도 지정해요. 객체를 그대로 넣으면 \"[object Object]\"가 전송돼요."
+  },
+  {
+    "id": "js-14-3-q4",
+    "lessonId": "js-14-3",
+    "type": "choice",
+    "prompt": "다른 도메인의 API를 fetch할 때 나는 CORS 오류의 원인은?",
+    "options": [
+      "자바스크립트가 다른 도메인을 호출하는 것 자체가 금지돼서",
+      "다른 출처의 응답을 허용하는지 서버가 보내는 헤더를 브라우저가 확인하는 보안 정책 때문",
+      "fetch 문법이 잘못돼서",
+      "인터넷 연결이 끊겨서"
+    ],
+    "answer": 1,
+    "explanation": "요청은 서버에 갔지만 응답에 허용 헤더(Access-Control-Allow-Origin)가 없으면 브라우저가 결과를 막아요. 서버 쪽 설정으로 해결해요."
+  }
+]

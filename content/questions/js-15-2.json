@@ -1,0 +1,48 @@
+[
+  {
+    "id": "js-15-2-q1",
+    "lessonId": "js-15-2",
+    "type": "choice",
+    "prompt": "a.x의 값은?",
+    "code": "const a = { x: 1 };\nconst b = a;\nb.x = 2;\nconsole.log(a.x);",
+    "language": "JavaScript",
+    "options": [
+      "1",
+      "2",
+      "undefined",
+      "오류가 발생한다"
+    ],
+    "answer": 1,
+    "explanation": "객체는 대입해도 복사되지 않고 같은 객체를 가리키는 참조가 복사돼요. b를 바꾸면 a도 바뀌는 것처럼 보여요."
+  },
+  {
+    "id": "js-15-2-q2",
+    "lessonId": "js-15-2",
+    "type": "choice",
+    "prompt": "const arr = [1]에 대해 맞는 설명은?",
+    "options": [
+      "push도 재할당이라서 TypeError다",
+      "arr = [3]도 가능하다",
+      "arr.push(2)는 가능하지만 arr = [3] 재할당은 TypeError다",
+      "배열이 통째로 동결되어 어떤 수정도 불가능하다"
+    ],
+    "answer": 2,
+    "explanation": "const는 변수가 가리키는 대상을 못 바꾸게 할 뿐, 그 대상(배열/객체) 내용의 변경까지 막지는 않아요. 내용을 못 바꾸게 하려면 Object.freeze 등을 써요."
+  },
+  {
+    "id": "js-15-2-q3",
+    "lessonId": "js-15-2",
+    "type": "choice",
+    "prompt": "console.log(a.p.n)의 결과는?",
+    "code": "const a = { p: { n: 1 } };\nconst b = { ...a };\nb.p.n = 9;\nconsole.log(a.p.n);",
+    "language": "JavaScript",
+    "options": [
+      "1",
+      "undefined",
+      "오류가 발생한다",
+      "9"
+    ],
+    "answer": 3,
+    "explanation": "스프레드는 1단계만 복사하는 얕은 복사라서 안쪽 객체 p는 a와 b가 공유해요. 완전히 분리하려면 structuredClone 같은 깊은 복사를 써요."
+  }
+]

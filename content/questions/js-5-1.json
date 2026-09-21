@@ -1,0 +1,48 @@
+[
+  {
+    "id": "js-5-1-q1",
+    "lessonId": "js-5-1",
+    "type": "choice",
+    "prompt": "아래 코드를 실행하면?",
+    "code": "sayA();\nsayB();\nfunction sayA() { console.log('A'); }\nconst sayB = function () { console.log('B'); };",
+    "language": "JavaScript",
+    "options": [
+      "A와 B가 차례로 출력된다",
+      "B만 출력된다",
+      "sayA() 호출에서 오류가 난다",
+      "A가 출력된 뒤 sayB() 호출에서 오류가 난다"
+    ],
+    "answer": 3,
+    "explanation": "함수 선언식은 통째로 호이스팅돼서 선언 위에서도 호출할 수 있어요. 함수 표현식(const sayB = function)은 변수라서 선언 전 접근하면 ReferenceError예요."
+  },
+  {
+    "id": "js-5-1-q2",
+    "lessonId": "js-5-1",
+    "type": "choice",
+    "prompt": "sq(3)의 결과는?",
+    "code": "const sq = x => { x * x };\nconsole.log(sq(3));",
+    "language": "JavaScript",
+    "options": [
+      "undefined",
+      "9",
+      "NaN",
+      "오류가 발생한다"
+    ],
+    "answer": 0,
+    "explanation": "화살표 함수도 중괄호 { } 본문을 쓰면 return을 직접 써야 해요. 중괄호 없이 x => x * x 로 쓰면 결과가 자동 반환돼요."
+  },
+  {
+    "id": "js-5-1-q3",
+    "lessonId": "js-5-1",
+    "type": "choice",
+    "prompt": "화살표 함수의 특징으로 맞는 것은?",
+    "options": [
+      "호출한 객체에 따라 this가 매번 바뀐다",
+      "자신만의 this를 갖지 않고 바깥 스코프의 this를 그대로 사용한다",
+      "new 키워드로 생성자처럼 사용할 수 있다",
+      "함수 안에서 arguments 객체를 항상 쓸 수 있다"
+    ],
+    "answer": 1,
+    "explanation": "화살표 함수는 this가 정의된 위치에서 정해져서 콜백 안에서 this가 바뀌는 문제를 줄여 줘요. 대신 생성자로 못 쓰고 arguments도 없어요(나머지 매개변수 사용)."
+  }
+]

@@ -1,0 +1,48 @@
+[
+  {
+    "id": "js-14-2-q1",
+    "lessonId": "js-14-2",
+    "type": "choice",
+    "prompt": "await 키워드를 쓸 수 있는 곳은?",
+    "options": [
+      "모든 일반 함수 안",
+      "반복문 안에서만",
+      "setTimeout 콜백 안에서만",
+      "async 함수 안(또는 모듈의 최상위)"
+    ],
+    "answer": 3,
+    "explanation": "await는 async 함수 안에서만 쓸 수 있어요. 일반 함수 안에 쓰면 문법 오류가 나요."
+  },
+  {
+    "id": "js-14-2-q2",
+    "lessonId": "js-14-2",
+    "type": "choice",
+    "prompt": "아래 코드의 출력은?",
+    "code": "async function f() { return 1; }\nconsole.log(f());",
+    "language": "JavaScript",
+    "options": [
+      "Promise 객체",
+      "1",
+      "undefined",
+      "오류가 발생한다"
+    ],
+    "answer": 0,
+    "explanation": "async 함수는 항상 프로미스를 반환해요. 안에서 return 1을 하면 1로 이행된 프로미스가 되고, 값을 꺼내려면 await 또는 then을 써야 해요."
+  },
+  {
+    "id": "js-14-2-q3",
+    "lessonId": "js-14-2",
+    "type": "choice",
+    "prompt": "await 대상 프로미스가 거절되었을 때 오류를 처리하는 일반적인 방법은?",
+    "code": "try {\n  const data = await load();\n} catch (err) {\n  console.log(err);\n}",
+    "language": "JavaScript",
+    "options": [
+      "if (result === null)로 검사한다",
+      "try...catch로 감싼다",
+      "setTimeout으로 다시 호출한다",
+      "await 앞에 catch 키워드를 쓴다"
+    ],
+    "answer": 1,
+    "explanation": "await로 기다리는 프로미스가 거절되면 예외가 던져지는 것처럼 동작해서 try...catch로 잡을 수 있어요."
+  }
+]

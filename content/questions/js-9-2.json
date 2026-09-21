@@ -1,0 +1,46 @@
+[
+  {
+    "id": "js-9-2-q1",
+    "lessonId": "js-9-2",
+    "type": "choice",
+    "prompt": "서버에서 받은 JSON 문자열을 자바스크립트 객체로 바꾸는 함수는?",
+    "options": [
+      "JSON.parse",
+      "JSON.stringify",
+      "Object.assign",
+      "Object.entries"
+    ],
+    "answer": 0,
+    "explanation": "parse는 문자열 → 객체, stringify는 객체 → 문자열이에요. 저장하거나 서버로 보낼 때 stringify, 받아서 쓸 때 parse를 써요."
+  },
+  {
+    "id": "js-9-2-q2",
+    "lessonId": "js-9-2",
+    "type": "choice",
+    "prompt": "JSON.parse(\"{'a': 1}\")의 결과는?",
+    "options": [
+      "{ a: 1 }",
+      "SyntaxError",
+      "null",
+      "{ 'a': 1 }"
+    ],
+    "answer": 1,
+    "explanation": "JSON은 자바스크립트 객체 리터럴과 달리 키와 문자열에 반드시 큰따옴표만 써야 해요. 작은따옴표를 쓰면 파싱 오류가 나요."
+  },
+  {
+    "id": "js-9-2-q3",
+    "lessonId": "js-9-2",
+    "type": "choice",
+    "prompt": "아래 코드의 출력은?",
+    "code": "console.log(JSON.stringify({ a: 1, b: undefined, c: () => 1 }));",
+    "language": "JavaScript",
+    "options": [
+      "{\"a\":1,\"b\":null,\"c\":null}",
+      "{\"a\":1,\"b\":undefined}",
+      "{\"a\":1}",
+      "오류가 발생한다"
+    ],
+    "answer": 2,
+    "explanation": "JSON.stringify는 undefined 값과 함수 속성을 결과에서 빼 버려요. 배열 안에서는 null로 바뀌는 점도 알아 두면 좋아요."
+  }
+]

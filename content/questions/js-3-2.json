@@ -1,0 +1,46 @@
+[
+  {
+    "id": "js-3-2-q1",
+    "lessonId": "js-3-2",
+    "type": "choice",
+    "prompt": "if 조건에서 true로 취급되는(truthy) 값은?",
+    "options": [
+      "0",
+      "null",
+      "\"\" (빈 문자열)",
+      "\"0\" (문자열 0)"
+    ],
+    "answer": 3,
+    "explanation": "falsy 값은 false, 0, \"\", null, undefined, NaN 이에요. 내용이 있는 문자열은 \"0\"이라도 truthy이고, 빈 배열 []과 빈 객체 {}도 truthy예요."
+  },
+  {
+    "id": "js-3-2-q2",
+    "lessonId": "js-3-2",
+    "type": "choice",
+    "prompt": "console.log 결과는?",
+    "code": "let userName = '';\nconsole.log(userName || '손님');",
+    "language": "JavaScript",
+    "options": [
+      "손님",
+      "(빈 줄)",
+      "undefined",
+      "false"
+    ],
+    "answer": 0,
+    "explanation": "||는 왼쪽이 falsy이면 오른쪽 값을 돌려줘요. 빈 문자열은 falsy라서 \"손님\"이 나와요. 기본값 지정에 자주 쓰는 패턴이에요."
+  },
+  {
+    "id": "js-3-2-q3",
+    "lessonId": "js-3-2",
+    "type": "choice",
+    "prompt": "5 && 'ok' 의 결과는?",
+    "options": [
+      "true",
+      "'ok'",
+      "5",
+      "false"
+    ],
+    "answer": 1,
+    "explanation": "&&는 왼쪽이 truthy이면 오른쪽 값을 그대로 돌려줘요(불리언으로 바꾸지 않음). 왼쪽이 falsy이면 그 값에서 멈춰요. || 도 같은 방식으로 값 자체를 돌려줘요."
+  }
+]

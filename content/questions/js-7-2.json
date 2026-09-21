@@ -1,0 +1,64 @@
+[
+  {
+    "id": "js-7-2-q1",
+    "lessonId": "js-7-2",
+    "type": "choice",
+    "prompt": "console.log 결과는?",
+    "code": "console.log([0, 1, '', 2, null].filter(Boolean));",
+    "language": "JavaScript",
+    "options": [
+      "[0, 1, 2]",
+      "[1, '', 2]",
+      "[1, 2, null]",
+      "[1, 2]"
+    ],
+    "answer": 3,
+    "explanation": "filter(Boolean)은 falsy 값(0, \"\", null, undefined, NaN)을 걸러내요. 0도 falsy라 빠지는 점을 주의해야 해요."
+  },
+  {
+    "id": "js-7-2-q2",
+    "lessonId": "js-7-2",
+    "type": "choice",
+    "prompt": "reduce의 결과는?",
+    "code": "const r = [1, 2, 3].reduce((acc, x) => acc + x, 10);\nconsole.log(r);",
+    "language": "JavaScript",
+    "options": [
+      "16",
+      "6",
+      "10",
+      "60"
+    ],
+    "answer": 0,
+    "explanation": "reduce의 두 번째 인자 10이 acc의 시작값이에요. 10 + 1 + 2 + 3 = 16이에요."
+  },
+  {
+    "id": "js-7-2-q3",
+    "lessonId": "js-7-2",
+    "type": "choice",
+    "prompt": "빈 배열에 시작값 없이 reduce를 쓰면?",
+    "code": "[].reduce((a, b) => a + b);",
+    "language": "JavaScript",
+    "options": [
+      "0을 반환한다",
+      "TypeError가 발생한다",
+      "undefined를 반환한다",
+      "NaN을 반환한다"
+    ],
+    "answer": 1,
+    "explanation": "시작값을 주지 않으면 첫 요소를 시작값으로 쓰는데, 빈 배열엔 첫 요소가 없어서 오류가 나요. 그래서 reduce에는 시작값을 항상 넣는 습관이 좋아요."
+  },
+  {
+    "id": "js-7-2-q4",
+    "lessonId": "js-7-2",
+    "type": "choice",
+    "prompt": "가격이 1000원 이상인 상품의 이름만 배열로 뽑는 올바른 코드는?",
+    "options": [
+      "items.map(i => i.name).filter(i => i.price >= 1000)",
+      "items.forEach(i => i.price >= 1000).map(i => i.name)",
+      "items.filter(i => i.price >= 1000).map(i => i.name)",
+      "items.reduce(i => i.price >= 1000, i.name)"
+    ],
+    "answer": 2,
+    "explanation": "먼저 filter로 조건에 맞는 객체를 고르고 그다음 map으로 이름만 뽑아요. map을 먼저 하면 문자열만 남아서 price를 읽을 수 없고, forEach는 반환값이 없어 체이닝할 수 없어요."
+  }
+]

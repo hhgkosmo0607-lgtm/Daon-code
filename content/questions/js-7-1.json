@@ -1,0 +1,50 @@
+[
+  {
+    "id": "js-7-1-q1",
+    "lessonId": "js-7-1",
+    "type": "choice",
+    "prompt": "console.log(r)의 결과는?",
+    "code": "const r = [1, 2, 3].forEach(x => x * 2);\nconsole.log(r);",
+    "language": "JavaScript",
+    "options": [
+      "undefined",
+      "[2, 4, 6]",
+      "[1, 2, 3]",
+      "3"
+    ],
+    "answer": 0,
+    "explanation": "forEach는 각 요소로 콜백을 실행만 하고 아무것도 반환하지 않아요. 변환한 새 배열이 필요하면 map을 써야 해요."
+  },
+  {
+    "id": "js-7-1-q2",
+    "lessonId": "js-7-1",
+    "type": "choice",
+    "prompt": "names의 값은?",
+    "code": "const users = [{ n: 'a' }, { n: 'b' }];\nconst names = users.map(u => u.n);",
+    "language": "JavaScript",
+    "options": [
+      "[{ n: 'a' }, { n: 'b' }]",
+      "['a', 'b']",
+      "[undefined, undefined]",
+      "'ab'"
+    ],
+    "answer": 1,
+    "explanation": "map은 각 요소를 콜백의 반환값으로 바꾼 새 배열을 만들어요. 객체 배열에서 특정 속성만 뽑을 때 자주 써요."
+  },
+  {
+    "id": "js-7-1-q3",
+    "lessonId": "js-7-1",
+    "type": "choice",
+    "prompt": "결과 배열은?",
+    "code": "const r = [1, 2, 3].map(x => { x * 2 });\nconsole.log(r);",
+    "language": "JavaScript",
+    "options": [
+      "[2, 4, 6]",
+      "[]",
+      "[undefined, undefined, undefined]",
+      "오류가 발생한다"
+    ],
+    "answer": 2,
+    "explanation": "화살표 함수에서 중괄호 본문을 쓰면 return이 필요해요. 콜백이 아무것도 반환하지 않아서 요소가 모두 undefined가 돼요."
+  }
+]

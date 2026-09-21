@@ -1,0 +1,50 @@
+[
+  {
+    "id": "js-1-2-q1",
+    "lessonId": "js-1-2",
+    "type": "choice",
+    "prompt": "typeof null의 결과로 알려진 것은?",
+    "code": "console.log(typeof null);",
+    "language": "JavaScript",
+    "options": [
+      "\"null\"",
+      "\"undefined\"",
+      "\"number\"",
+      "\"object\""
+    ],
+    "answer": 3,
+    "explanation": "자바스크립트 초기 구현 때부터 있던 유명한 역사적 버그예요. null 여부는 typeof가 아니라 value === null 로 확인해야 해요."
+  },
+  {
+    "id": "js-1-2-q2",
+    "lessonId": "js-1-2",
+    "type": "choice",
+    "prompt": "변수를 선언만 하고 값을 넣지 않았을 때 그 변수의 값은?",
+    "code": "let x;\nconsole.log(x);",
+    "language": "JavaScript",
+    "options": [
+      "undefined",
+      "null",
+      "0",
+      "ReferenceError 오류"
+    ],
+    "answer": 0,
+    "explanation": "선언만 한 변수는 undefined예요. null은 \"값이 없음\"을 개발자가 의도적으로 넣는 값이고, 선언하지 않은 변수를 읽으면 그때 ReferenceError가 나요."
+  },
+  {
+    "id": "js-1-2-q3",
+    "lessonId": "js-1-2",
+    "type": "choice",
+    "prompt": "아래 코드를 실행하면 어떻게 될까?",
+    "code": "let a = 10;\na = \"열\";\nconsole.log(typeof a);",
+    "language": "JavaScript",
+    "options": [
+      "TypeError가 발생한다",
+      "오류 없이 실행되고 a는 문자열이 된다",
+      "a는 처음 타입인 number로 유지되고 \"열\"은 NaN이 된다",
+      "재할당은 항상 SyntaxError다"
+    ],
+    "answer": 1,
+    "explanation": "자바스크립트는 동적 타입 언어라서 변수에 타입을 고정하지 않고, 값이 바뀌면 타입도 함께 바뀌어요. 자바처럼 타입 불일치 컴파일 오류가 나지 않아요."
+  }
+]

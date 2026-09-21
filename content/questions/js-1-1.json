@@ -1,0 +1,46 @@
+[
+  {
+    "id": "js-1-1-q1",
+    "lessonId": "js-1-1",
+    "type": "choice",
+    "prompt": "HTML 문서 안에 자바스크립트 코드를 넣을 때 쓰는 태그는?",
+    "code": "<script>\n  console.log(\"안녕\");\n</script>",
+    "language": "JavaScript",
+    "options": [
+      "<script>",
+      "<style>",
+      "<code>",
+      "<javascript>"
+    ],
+    "answer": 0,
+    "explanation": "자바스크립트는 <script> 태그 안에 쓰거나 src 속성으로 외부 .js 파일을 불러와요. <style>은 CSS를 넣는 태그예요."
+  },
+  {
+    "id": "js-1-1-q2",
+    "lessonId": "js-1-1",
+    "type": "choice",
+    "prompt": "브라우저에서 실행한 console.log(\"hi\")의 출력은 어디에서 볼 수 있을까?",
+    "options": [
+      "웹 페이지 본문 화면",
+      "브라우저 개발자 도구(F12)의 콘솔 탭",
+      "브라우저 주소창",
+      "웹 서버의 접속 로그 파일"
+    ],
+    "answer": 1,
+    "explanation": "console.log는 개발자가 확인용으로 찍는 출력이라 개발자 도구 콘솔에 나와요. 화면 본문에 출력하는 건 document.write나 DOM 조작이 하는 일이에요."
+  },
+  {
+    "id": "js-1-1-q3",
+    "lessonId": "js-1-1",
+    "type": "choice",
+    "prompt": "자바스크립트 문장 끝의 세미콜론(;)에 대한 설명으로 맞는 것은?",
+    "options": [
+      "반드시 있어야 하며 없으면 문법 오류로 스크립트가 시작되지 않는다",
+      "한 줄에 문장이 하나만 있을 때만 필요하다",
+      "자동 세미콜론 삽입(ASI)이 있어 생략해도 대체로 동작하지만, 팀 규칙에 맞춰 일관되게 쓰는 게 좋다",
+      "자바스크립트에서는 쓰면 오류가 나서 절대 쓰지 않는다"
+    ],
+    "answer": 2,
+    "explanation": "엔진이 줄바꿈을 보고 세미콜론을 자동으로 넣어 주지만, 예외 상황이 있어서 팀 스타일(ESLint/Prettier 설정)에 맞춰 일관되게 쓰는 게 안전해요."
+  }
+]

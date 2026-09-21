@@ -1,0 +1,48 @@
+[
+  {
+    "id": "js-8-1-q1",
+    "lessonId": "js-8-1",
+    "type": "choice",
+    "prompt": "아래 코드의 출력은?",
+    "code": "const n = 'A', a = 3;\nconsole.log(`${n}은 ${a + 1}살`);",
+    "language": "JavaScript",
+    "options": [
+      "${n}은 ${a+1}살",
+      "A은 3+1살",
+      "오류가 발생한다",
+      "A은 4살"
+    ],
+    "answer": 3,
+    "explanation": "백틱(`)으로 감싼 템플릿 리터럴 안의 ${ } 에는 변수와 수식을 넣을 수 있어요. 작은따옴표나 큰따옴표 문자열에서는 ${ }가 그대로 글자로 출력돼요."
+  },
+  {
+    "id": "js-8-1-q2",
+    "lessonId": "js-8-1",
+    "type": "choice",
+    "prompt": "console.log(s)의 결과는?",
+    "code": "let s = 'hello';\ns.toUpperCase();\nconsole.log(s);",
+    "language": "JavaScript",
+    "options": [
+      "hello",
+      "HELLO",
+      "Hello",
+      "undefined"
+    ],
+    "answer": 0,
+    "explanation": "문자열은 바꿀 수 없는(immutable) 값이라서 toUpperCase()는 새 문자열을 \"반환\"할 뿐 원본 s를 바꾸지 않아요. 결과를 쓰려면 변수에 다시 담아야 해요."
+  },
+  {
+    "id": "js-8-1-q3",
+    "lessonId": "js-8-1",
+    "type": "choice",
+    "prompt": "'JavaScript'.slice(0, 4)의 결과는?",
+    "options": [
+      "'JavaS'",
+      "'Java'",
+      "'avaS'",
+      "'Script'"
+    ],
+    "answer": 1,
+    "explanation": "slice(시작, 끝)은 끝 인덱스 바로 앞까지 잘라요. 0번부터 3번까지 4글자라서 Java예요."
+  }
+]

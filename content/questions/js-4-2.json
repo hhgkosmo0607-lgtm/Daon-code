@@ -1,0 +1,48 @@
+[
+  {
+    "id": "js-4-2-q1",
+    "lessonId": "js-4-2",
+    "type": "choice",
+    "prompt": "아래 코드의 출력은?",
+    "code": "for (let i = 1; i <= 5; i++) {\n  if (i === 3) continue;\n  console.log(i);\n}",
+    "language": "JavaScript",
+    "options": [
+      "1 2",
+      "1 2 4 5",
+      "1 2 3 4 5",
+      "1 2 3"
+    ],
+    "answer": 1,
+    "explanation": "continue는 이번 반복의 나머지만 건너뛰고 다음 반복으로 가요. i가 3일 때만 출력이 빠져요. break였다면 1 2에서 끝나요."
+  },
+  {
+    "id": "js-4-2-q2",
+    "lessonId": "js-4-2",
+    "type": "choice",
+    "prompt": "console.log가 실행되는 횟수는?",
+    "code": "for (let i = 0; i < 3; i++) {\n  for (let j = 0; j < 3; j++) {\n    if (j === 1) break;\n    console.log(i, j);\n  }\n}",
+    "language": "JavaScript",
+    "options": [
+      "1번",
+      "6번",
+      "3번",
+      "9번"
+    ],
+    "answer": 2,
+    "explanation": "break는 자기가 속한 가장 안쪽 반복문만 빠져나가요. 바깥 반복(i)은 3번 돌고, 안쪽은 j=0에서 한 번 출력한 뒤 j=1에서 break돼요."
+  },
+  {
+    "id": "js-4-2-q3",
+    "lessonId": "js-4-2",
+    "type": "choice",
+    "prompt": "조건이 처음부터 false여도 본문을 최소 한 번은 실행하는 반복문은?",
+    "options": [
+      "while",
+      "for",
+      "for...of",
+      "do...while"
+    ],
+    "answer": 3,
+    "explanation": "do...while은 본문을 먼저 실행하고 나서 조건을 검사해요. while과 for는 조건을 먼저 검사해서 처음부터 거짓이면 한 번도 실행하지 않아요."
+  }
+]

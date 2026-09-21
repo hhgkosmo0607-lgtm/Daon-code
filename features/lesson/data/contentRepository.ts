@@ -257,6 +257,40 @@ import q_ai_6_2 from '../../../content/questions/ai-6-2.json';
 import q_ai_6_3 from '../../../content/questions/ai-6-3.json';
 import q_ai_7_1 from '../../../content/questions/ai-7-1.json';
 import q_ai_7_2 from '../../../content/questions/ai-7-2.json';
+import q_js_1_1 from '../../../content/questions/js-1-1.json';
+import q_js_1_2 from '../../../content/questions/js-1-2.json';
+import q_js_2_1 from '../../../content/questions/js-2-1.json';
+import q_js_2_2 from '../../../content/questions/js-2-2.json';
+import q_js_3_1 from '../../../content/questions/js-3-1.json';
+import q_js_3_2 from '../../../content/questions/js-3-2.json';
+import q_js_4_1 from '../../../content/questions/js-4-1.json';
+import q_js_4_2 from '../../../content/questions/js-4-2.json';
+import q_js_4_3 from '../../../content/questions/js-4-3.json';
+import q_js_5_1 from '../../../content/questions/js-5-1.json';
+import q_js_5_2 from '../../../content/questions/js-5-2.json';
+import q_js_5_3 from '../../../content/questions/js-5-3.json';
+import q_js_6_1 from '../../../content/questions/js-6-1.json';
+import q_js_6_2 from '../../../content/questions/js-6-2.json';
+import q_js_7_1 from '../../../content/questions/js-7-1.json';
+import q_js_7_2 from '../../../content/questions/js-7-2.json';
+import q_js_8_1 from '../../../content/questions/js-8-1.json';
+import q_js_8_2 from '../../../content/questions/js-8-2.json';
+import q_js_9_1 from '../../../content/questions/js-9-1.json';
+import q_js_9_2 from '../../../content/questions/js-9-2.json';
+import q_js_10_1 from '../../../content/questions/js-10-1.json';
+import q_js_10_2 from '../../../content/questions/js-10-2.json';
+import q_js_11_1 from '../../../content/questions/js-11-1.json';
+import q_js_11_2 from '../../../content/questions/js-11-2.json';
+import q_js_12_1 from '../../../content/questions/js-12-1.json';
+import q_js_13_1 from '../../../content/questions/js-13-1.json';
+import q_js_13_2 from '../../../content/questions/js-13-2.json';
+import q_js_14_1 from '../../../content/questions/js-14-1.json';
+import q_js_14_2 from '../../../content/questions/js-14-2.json';
+import q_js_14_3 from '../../../content/questions/js-14-3.json';
+import q_js_15_1 from '../../../content/questions/js-15-1.json';
+import q_js_15_2 from '../../../content/questions/js-15-2.json';
+import q_js_15_3 from '../../../content/questions/js-15-3.json';
+import q_js_15_4 from '../../../content/questions/js-15-4.json';
 
 import type { Lesson, Question, Stage, Track } from '../domain/types';
 
@@ -530,6 +564,40 @@ const QUESTION_BANK: Record<string, unknown> = {
   'ai-6-3': q_ai_6_3,
   'ai-7-1': q_ai_7_1,
   'ai-7-2': q_ai_7_2,
+  'js-1-1': q_js_1_1,
+  'js-1-2': q_js_1_2,
+  'js-2-1': q_js_2_1,
+  'js-2-2': q_js_2_2,
+  'js-3-1': q_js_3_1,
+  'js-3-2': q_js_3_2,
+  'js-4-1': q_js_4_1,
+  'js-4-2': q_js_4_2,
+  'js-4-3': q_js_4_3,
+  'js-5-1': q_js_5_1,
+  'js-5-2': q_js_5_2,
+  'js-5-3': q_js_5_3,
+  'js-6-1': q_js_6_1,
+  'js-6-2': q_js_6_2,
+  'js-7-1': q_js_7_1,
+  'js-7-2': q_js_7_2,
+  'js-8-1': q_js_8_1,
+  'js-8-2': q_js_8_2,
+  'js-9-1': q_js_9_1,
+  'js-9-2': q_js_9_2,
+  'js-10-1': q_js_10_1,
+  'js-10-2': q_js_10_2,
+  'js-11-1': q_js_11_1,
+  'js-11-2': q_js_11_2,
+  'js-12-1': q_js_12_1,
+  'js-13-1': q_js_13_1,
+  'js-13-2': q_js_13_2,
+  'js-14-1': q_js_14_1,
+  'js-14-2': q_js_14_2,
+  'js-14-3': q_js_14_3,
+  'js-15-1': q_js_15_1,
+  'js-15-2': q_js_15_2,
+  'js-15-3': q_js_15_3,
+  'js-15-4': q_js_15_4,
 };
 
 /** 기본 트랙 — 온보딩/배치고사 등 트랙을 아직 명시하지 않은 기존 화면이 쓰는 값 */

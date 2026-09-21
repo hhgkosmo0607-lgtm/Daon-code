@@ -1,0 +1,48 @@
+[
+  {
+    "id": "js-15-1-q1",
+    "lessonId": "js-15-1",
+    "type": "choice",
+    "prompt": "console.log의 결과는?",
+    "code": "const user = {};\nconsole.log(user.address?.city);",
+    "language": "JavaScript",
+    "options": [
+      "TypeError가 발생한다",
+      "null",
+      "undefined",
+      "빈 문자열"
+    ],
+    "answer": 2,
+    "explanation": "옵셔널 체이닝(?.)은 중간 값이 null/undefined이면 오류 대신 undefined로 끝내요. 없으면 user.address.city는 TypeError가 나요."
+  },
+  {
+    "id": "js-15-1-q2",
+    "lessonId": "js-15-1",
+    "type": "choice",
+    "prompt": "console.log(n || 10, n ?? 10)의 결과는?",
+    "code": "const n = 0;\nconsole.log(n || 10, n ?? 10);",
+    "language": "JavaScript",
+    "options": [
+      "0 0",
+      "10 10",
+      "0 10",
+      "10 0"
+    ],
+    "answer": 3,
+    "explanation": "||는 0, \"\"도 falsy로 보고 오른쪽을 쓰지만, ??(널 병합)은 null/undefined일 때만 오른쪽을 써요. 0이 유효한 값이면 ??가 맞아요."
+  },
+  {
+    "id": "js-15-1-q3",
+    "lessonId": "js-15-1",
+    "type": "choice",
+    "prompt": "자바스크립트의 일반적인 네이밍 컨벤션은?",
+    "options": [
+      "변수·함수는 camelCase, 클래스는 PascalCase",
+      "변수·함수는 snake_case, 클래스는 camelCase",
+      "변수·함수는 PascalCase, 클래스는 snake_case",
+      "모든 이름을 소문자와 하이픈(kebab-case)으로 쓴다"
+    ],
+    "answer": 0,
+    "explanation": "자바스크립트는 camelCase(userName)가 표준이고, 클래스는 PascalCase(UserService), 상수는 UPPER_SNAKE_CASE를 쓰는 경우가 많아요. 하이픈은 빼기로 해석돼서 변수명에 못 써요."
+  }
+]
