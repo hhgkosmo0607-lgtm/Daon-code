@@ -1,0 +1,48 @@
+[
+  {
+    "id": "ai-4-2-q1",
+    "lessonId": "ai-4-2",
+    "type": "choice",
+    "prompt": "np.zeros((3, 2)) 를 실행하면 만들어지는 배열은?",
+    "code": "zeros_array = np.zeros((3, 2))\nprint(zeros_array.shape)",
+    "language": "Python",
+    "options": [
+      "3행 2열이고 모든 요소가 0인 배열",
+      "2행 3열이고 모든 요소가 1인 배열",
+      "요소가 3개, 2개인 배열 두 개",
+      "크기가 5인 1차원 배열"
+    ],
+    "answer": 0,
+    "explanation": "zeros(shape)는 지정한 shape로 모든 값이 0인 배열을 만들어요. (3, 2)는 3행 2열이에요. 값이 전부 1인 배열은 ones()예요."
+  },
+  {
+    "id": "ai-4-2-q2",
+    "lessonId": "ai-4-2",
+    "type": "choice",
+    "prompt": "np.arange(10).reshape(2, -1) 의 결과 shape은?",
+    "code": "arr = np.arange(10)      # 0~9, 요소 10개\nprint(arr.reshape(2, -1).shape)",
+    "language": "Python",
+    "options": [
+      "(2, 10)",
+      "(2, 5) — -1은 나머지 크기를 원본에 맞춰 자동 계산하라는 뜻",
+      "(10, 2)",
+      "에러 — -1은 reshape에 쓸 수 없다"
+    ],
+    "answer": 1,
+    "explanation": "요소가 총 10개라서 행을 2로 정하면 열은 10÷2=5가 자동으로 정해져요. -1은 '이 차원은 나머지에 맞춰 알아서 계산해라'는 표시예요."
+  },
+  {
+    "id": "ai-4-2-q3",
+    "lessonId": "ai-4-2",
+    "type": "choice",
+    "prompt": "np.arange(10).reshape(3, 4) 를 실행하면?",
+    "options": [
+      "부족한 두 칸이 자동으로 0으로 채워진다",
+      "남는 요소가 버려지고 3×4 배열이 만들어진다",
+      "요소 개수가 맞지 않아(10 ≠ 3×4=12) ValueError가 발생한다",
+      "요소가 자동으로 12개로 늘어난다"
+    ],
+    "answer": 2,
+    "explanation": "reshape는 요소를 늘리거나 버리지 않고 모양만 바꿔요. 총 개수(10)와 새 shape의 곱(12)이 다르면 변환할 수 없어서 ValueError가 나요."
+  }
+]

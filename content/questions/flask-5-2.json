@@ -1,0 +1,32 @@
+[
+  {
+    "id": "flask-5-2-q1",
+    "lessonId": "flask-5-2",
+    "type": "choice",
+    "prompt": "return redirect(url_for('login')) 에서 url_for()의 인자로 넘기는 것은?",
+    "code": "@app.route('/mypage')\ndef mypage():\n    if 'username' in session:\n        return render_template('welcome.html')\n    return redirect(url_for('login'))",
+    "language": "Python",
+    "options": [
+      "이동할 페이지의 HTML 파일 이름",
+      "URL 경로 문자열이 아니라, 라우트를 처리하는 함수(엔드포인트) 이름",
+      "브라우저의 이전 페이지 번호",
+      "반드시 완전한 도메인이 포함된 전체 URL"
+    ],
+    "answer": 1,
+    "explanation": "url_for('login')은 login이라는 함수에 연결된 주소를 만들어줘요. 주소 문자열을 직접 쓰지 않아서, 나중에 라우트 경로를 바꿔도 코드를 고치지 않아도 돼요."
+  },
+  {
+    "id": "flask-5-2-q2",
+    "lessonId": "flask-5-2",
+    "type": "choice",
+    "prompt": "redirect()가 브라우저에게 하는 일은?",
+    "options": [
+      "현재 페이지를 서버에서 삭제한다",
+      "현재 페이지의 HTML을 두 번 그린다",
+      "다른 주소로 다시 요청하라고 안내해서, 브라우저가 그 새 주소로 이동하게 한다",
+      "로그인 정보를 지운다"
+    ],
+    "answer": 2,
+    "explanation": "redirect는 보통 302 응답과 새 주소(Location)를 보내서, 브라우저가 그 주소로 새 요청을 보내도록 만들어요. 로그인 안 한 사용자를 로그인 페이지로 보내는 식으로 자주 써요."
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "id": "ai-5-1-q1",
+    "lessonId": "ai-5-1",
+    "type": "choice",
+    "prompt": "pandas의 Series와 DataFrame의 차이는?",
+    "options": [
+      "Series는 2차원, DataFrame은 1차원이다",
+      "Series는 1차원(한 열) 데이터, DataFrame은 여러 열을 가진 2차원 표 형태 데이터다",
+      "둘은 완전히 같은 자료구조다",
+      "Series는 숫자만, DataFrame은 문자열만 담는다"
+    ],
+    "answer": 1,
+    "explanation": "Series는 인덱스가 붙은 1차원 배열, DataFrame은 Series 여러 개가 열로 모인 엑셀 표 같은 2차원 구조예요. df['열이름']으로 한 열을 꺼내면 Series가 돼요."
+  },
+  {
+    "id": "ai-5-1-q2",
+    "lessonId": "ai-5-1",
+    "type": "choice",
+    "prompt": "df['age'] 처럼 DataFrame에서 열 이름 하나로 접근하면 얻는 것은?",
+    "code": "import pandas as pd\ndf = pd.DataFrame({'name': ['철수', '영희'], 'age': [20, 22]})\nages = df['age']",
+    "language": "Python",
+    "options": [
+      "age 열을 제거한 새 DataFrame",
+      "age 열의 평균값 숫자 하나",
+      "age 열 하나를 나타내는 Series",
+      "행 번호 목록"
+    ],
+    "answer": 2,
+    "explanation": "df['열이름']은 그 열을 Series로 돌려줘요. 열을 여러 개 골라 DataFrame으로 받으려면 df[['name', 'age']]처럼 대괄호 두 겹을 써요."
+  }
+]

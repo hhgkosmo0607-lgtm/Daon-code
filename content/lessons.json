@@ -473,6 +473,90 @@
       "stage": 12,
       "title": "CSS 실무 컨벤션",
       "description": "신입 소양 — CSS 변수, BEM 네이밍, 명시도 관리"
+    },
+    {
+      "trackId": "flask",
+      "stage": 1,
+      "title": "웹 요청-응답 기본",
+      "description": "클라이언트/서버, HTTP 요청과 응답"
+    },
+    {
+      "trackId": "flask",
+      "stage": 2,
+      "title": "Flask 시작하기",
+      "description": "라우팅, 앱 실행 방식"
+    },
+    {
+      "trackId": "flask",
+      "stage": 3,
+      "title": "템플릿과 정적 파일",
+      "description": "render_template, Jinja2, static"
+    },
+    {
+      "trackId": "flask",
+      "stage": 4,
+      "title": "폼과 요청 처리",
+      "description": "GET/POST, 경로 변수"
+    },
+    {
+      "trackId": "flask",
+      "stage": 5,
+      "title": "세션과 페이지 이동",
+      "description": "session, redirect, url_for"
+    },
+    {
+      "trackId": "flask",
+      "stage": 6,
+      "title": "파일 업로드",
+      "description": "request.files, 안전한 파일 저장"
+    },
+    {
+      "trackId": "flask",
+      "stage": 7,
+      "title": "웹 보안 소양",
+      "description": "신입 소양 — XSS, 비밀번호 저장, 입력 검증"
+    },
+    {
+      "trackId": "ai",
+      "stage": 1,
+      "title": "AI와 머신러닝 개념",
+      "description": "AI/ML/DL, 지도·비지도학습, 분류와 회귀"
+    },
+    {
+      "trackId": "ai",
+      "stage": 2,
+      "title": "학습 데이터",
+      "description": "데이터와 레이블, 훈련/테스트 분리, 정규화"
+    },
+    {
+      "trackId": "ai",
+      "stage": 3,
+      "title": "학습과 평가",
+      "description": "fit/predict, 정확도, 과적합"
+    },
+    {
+      "trackId": "ai",
+      "stage": 4,
+      "title": "numpy 기초",
+      "description": "ndarray, reshape, 브로드캐스팅"
+    },
+    {
+      "trackId": "ai",
+      "stage": 5,
+      "title": "데이터 다루기와 시각화",
+      "description": "pandas, CSV, matplotlib"
+    },
+    {
+      "trackId": "ai",
+      "stage": 6,
+      "title": "나만의 AI 모델 만들기",
+      "description": "학습 파이프라인, 모델 저장, Flask로 서비스"
+    },
+    {
+      "trackId": "ai",
+      "stage": 7,
+      "title": "AI 활용 소양",
+      "description": "신입 소양 — 데이터 편향, AI의 한계와 책임"
     }
   ],
   "lessons": [
@@ -699,6 +783,40 @@
     { "trackId": "css", "id": "css-11-1", "stage": 11, "title": "grid 기본", "subtitle": "grid-template-columns/rows", "orderNo": 1, "xpReward": 10 },
     { "trackId": "css", "id": "css-11-2", "stage": 11, "title": "grid 세부 속성", "subtitle": "gap, grid-column/row", "orderNo": 2, "xpReward": 10 },
     { "trackId": "css", "id": "css-12-1", "stage": 12, "title": "CSS 변수(커스텀 속성)", "subtitle": "--변수명, var()", "orderNo": 1, "xpReward": 10 },
-    { "trackId": "css", "id": "css-12-2", "stage": 12, "title": "BEM 네이밍과 명시도 관리", "subtitle": "유지보수하기 좋은 클래스 설계", "orderNo": 2, "xpReward": 10 }
+    { "trackId": "css", "id": "css-12-2", "stage": 12, "title": "BEM 네이밍과 명시도 관리", "subtitle": "유지보수하기 좋은 클래스 설계", "orderNo": 2, "xpReward": 10 },
+    { "trackId": "flask", "id": "flask-1-1", "stage": 1, "title": "클라이언트와 서버", "subtitle": "브라우저가 서버에 요청하는 흐름", "orderNo": 1, "xpReward": 10 },
+    { "trackId": "flask", "id": "flask-1-2", "stage": 1, "title": "HTTP 요청과 응답", "subtitle": "메서드와 상태코드", "orderNo": 2, "xpReward": 10 },
+    { "trackId": "flask", "id": "flask-2-1", "stage": 2, "title": "라우팅과 엔드포인트", "subtitle": "@app.route", "orderNo": 1, "xpReward": 10 },
+    { "trackId": "flask", "id": "flask-2-2", "stage": 2, "title": "앱 실행 방식", "subtitle": "flask run, app.run, debug", "orderNo": 2, "xpReward": 10 },
+    { "trackId": "flask", "id": "flask-3-1", "stage": 3, "title": "render_template과 Jinja2", "subtitle": "서버 데이터를 HTML에 넣기", "orderNo": 1, "xpReward": 10 },
+    { "trackId": "flask", "id": "flask-3-2", "stage": 3, "title": "templates와 static 폴더", "orderNo": 2, "xpReward": 10 },
+    { "trackId": "flask", "id": "flask-4-1", "stage": 4, "title": "GET과 POST", "subtitle": "request.args vs request.form", "orderNo": 1, "xpReward": 10 },
+    { "trackId": "flask", "id": "flask-4-2", "stage": 4, "title": "URL 경로 변수", "subtitle": "<int:num>", "orderNo": 2, "xpReward": 10 },
+    { "trackId": "flask", "id": "flask-5-1", "stage": 5, "title": "session과 secret_key", "subtitle": "로그인 상태 유지", "orderNo": 1, "xpReward": 10 },
+    { "trackId": "flask", "id": "flask-5-2", "stage": 5, "title": "redirect와 url_for", "orderNo": 2, "xpReward": 10 },
+    { "trackId": "flask", "id": "flask-6-1", "stage": 6, "title": "파일 업로드 처리", "subtitle": "request.files, multipart", "orderNo": 1, "xpReward": 10 },
+    { "trackId": "flask", "id": "flask-6-2", "stage": 6, "title": "안전한 파일 저장", "subtitle": "uuid, 원본 파일명의 위험", "orderNo": 2, "xpReward": 10 },
+    { "trackId": "flask", "id": "flask-7-1", "stage": 7, "title": "XSS와 escape", "orderNo": 1, "xpReward": 10 },
+    { "trackId": "flask", "id": "flask-7-2", "stage": 7, "title": "비밀번호 저장과 입력 검증", "subtitle": "평문 저장 금지, 해시", "orderNo": 2, "xpReward": 10 },
+    { "trackId": "ai", "id": "ai-1-1", "stage": 1, "title": "AI, 머신러닝, 딥러닝의 관계", "orderNo": 1, "xpReward": 10 },
+    { "trackId": "ai", "id": "ai-1-2", "stage": 1, "title": "지도학습과 비지도학습", "orderNo": 2, "xpReward": 10 },
+    { "trackId": "ai", "id": "ai-1-3", "stage": 1, "title": "분류와 회귀", "orderNo": 3, "xpReward": 10 },
+    { "trackId": "ai", "id": "ai-2-1", "stage": 2, "title": "데이터와 레이블", "subtitle": "특징(feature)과 정답", "orderNo": 1, "xpReward": 10 },
+    { "trackId": "ai", "id": "ai-2-2", "stage": 2, "title": "훈련 데이터와 테스트 데이터", "orderNo": 2, "xpReward": 10 },
+    { "trackId": "ai", "id": "ai-2-3", "stage": 2, "title": "정규화", "subtitle": "값의 범위 맞추기", "orderNo": 3, "xpReward": 10 },
+    { "trackId": "ai", "id": "ai-3-1", "stage": 3, "title": "fit()과 predict()", "subtitle": "학습시키고 예측하기", "orderNo": 1, "xpReward": 10 },
+    { "trackId": "ai", "id": "ai-3-2", "stage": 3, "title": "정확도로 평가하기", "orderNo": 2, "xpReward": 10 },
+    { "trackId": "ai", "id": "ai-3-3", "stage": 3, "title": "과적합", "orderNo": 3, "xpReward": 10 },
+    { "trackId": "ai", "id": "ai-4-1", "stage": 4, "title": "ndarray와 shape", "orderNo": 1, "xpReward": 10 },
+    { "trackId": "ai", "id": "ai-4-2", "stage": 4, "title": "배열 생성과 reshape", "subtitle": "arange, zeros, ones, -1", "orderNo": 2, "xpReward": 10 },
+    { "trackId": "ai", "id": "ai-4-3", "stage": 4, "title": "브로드캐스팅", "orderNo": 3, "xpReward": 10 },
+    { "trackId": "ai", "id": "ai-5-1", "stage": 5, "title": "pandas Series와 DataFrame", "orderNo": 1, "xpReward": 10 },
+    { "trackId": "ai", "id": "ai-5-2", "stage": 5, "title": "CSV 읽고 쓰기", "orderNo": 2, "xpReward": 10 },
+    { "trackId": "ai", "id": "ai-5-3", "stage": 5, "title": "matplotlib 그래프 고르기", "subtitle": "선/막대/산점도/히스토그램", "orderNo": 3, "xpReward": 10 },
+    { "trackId": "ai", "id": "ai-6-1", "stage": 6, "title": "학습 파이프라인 순서", "subtitle": "로드 → 전처리 → 학습 → 평가", "orderNo": 1, "xpReward": 10 },
+    { "trackId": "ai", "id": "ai-6-2", "stage": 6, "title": "모델 저장과 불러오기", "subtitle": "joblib", "orderNo": 2, "xpReward": 10 },
+    { "trackId": "ai", "id": "ai-6-3", "stage": 6, "title": "학습한 모델을 웹으로 서비스하기", "subtitle": "Flask + 모델", "orderNo": 3, "xpReward": 10 },
+    { "trackId": "ai", "id": "ai-7-1", "stage": 7, "title": "데이터 편향과 품질", "orderNo": 1, "xpReward": 10 },
+    { "trackId": "ai", "id": "ai-7-2", "stage": 7, "title": "AI의 한계와 책임 있는 활용", "subtitle": "할루시네이션, 개인정보, 저작권", "orderNo": 2, "xpReward": 10 }
   ]
 }

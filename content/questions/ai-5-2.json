@@ -1,0 +1,32 @@
+[
+  {
+    "id": "ai-5-2-q1",
+    "lessonId": "ai-5-2",
+    "type": "choice",
+    "prompt": "CSV 파일을 pandas로 읽어서 표(DataFrame)로 만드는 함수는?",
+    "code": "import pandas as pd\ndf = pd.read_csv('iris.csv')",
+    "language": "Python",
+    "options": [
+      "pd.open_csv()",
+      "pd.load_table_only()",
+      "pd.csv_to_list()",
+      "pd.read_csv()"
+    ],
+    "answer": 3,
+    "explanation": "read_csv()는 CSV를 한 번에 DataFrame으로 읽어줘요. 교안 iris 예제처럼 파일을 한 줄씩 열어 split(',')하고 float 변환하던 과정을 대신해줘서 훨씬 간단해요."
+  },
+  {
+    "id": "ai-5-2-q2",
+    "lessonId": "ai-5-2",
+    "type": "choice",
+    "prompt": "df.to_csv('result.csv', index=False) 에서 index=False의 효과는?",
+    "options": [
+      "행 번호(인덱스) 열을 파일에 따로 저장하지 않는다",
+      "열 이름(헤더)을 저장하지 않는다",
+      "데이터의 모든 값을 False로 바꾼다",
+      "파일이 저장되지 않는다"
+    ],
+    "answer": 0,
+    "explanation": "기본값으로 to_csv는 0,1,2… 행 번호도 첫 열로 함께 저장해요. index=False를 주면 그 번호 열을 빼고 실제 데이터 열만 저장해서, 다시 읽을 때 불필요한 열이 생기지 않아요."
+  }
+]

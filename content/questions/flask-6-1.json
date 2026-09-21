@@ -1,0 +1,34 @@
+[
+  {
+    "id": "flask-6-1-q1",
+    "lessonId": "flask-6-1",
+    "type": "choice",
+    "prompt": "파일 업로드 폼에서 반드시 지정해야 하는 설정 조합은?",
+    "code": "<form action=\"/upload\" method=\"post\" enctype=\"multipart/form-data\">\n  <input type=\"file\" name=\"userfile\">\n  <input type=\"submit\" value=\"업로드\">\n</form>",
+    "language": "HTML",
+    "options": [
+      "method=\"get\" 와 enctype=\"text/plain\"",
+      "method=\"get\" 만 지정하면 충분하다",
+      "enctype 없이 method 속성 자체를 빼야 한다",
+      "method=\"post\" 와 enctype=\"multipart/form-data\""
+    ],
+    "answer": 3,
+    "explanation": "파일은 URL에 담을 수 없어서 POST로 보내야 하고, 파일 같은 이진 데이터를 함께 보내려면 enctype을 multipart/form-data로 지정해야 해요. 이걸 빼면 서버에는 파일 내용이 아니라 파일 이름만 문자열로 오게 돼요."
+  },
+  {
+    "id": "flask-6-1-q2",
+    "lessonId": "flask-6-1",
+    "type": "choice",
+    "prompt": "서버(Flask)에서 업로드된 파일을 꺼내는 방법은?",
+    "code": "if 'userfile' not in request.files:\n    return redirect('/')\nfile = request.files['userfile']",
+    "language": "Python",
+    "options": [
+      "request.files 에서 폼의 input name(userfile)으로 꺼낸다",
+      "request.form['userfile'] 로 꺼낸다",
+      "request.args['userfile'] 로 꺼낸다",
+      "session['userfile'] 로 꺼낸다"
+    ],
+    "answer": 0,
+    "explanation": "업로드된 파일은 문자열 폼 값(request.form)과 분리되어 request.files에 담겨요. 키는 HTML input의 name 속성값이고, 파일을 안 골랐거나 name이 다르면 키가 없을 수 있어서 먼저 확인해요."
+  }
+]

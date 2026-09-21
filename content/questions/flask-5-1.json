@@ -1,0 +1,32 @@
+[
+  {
+    "id": "flask-5-1-q1",
+    "lessonId": "flask-5-1",
+    "type": "choice",
+    "prompt": "Flask에서 session을 쓰려면 app.secret_key를 반드시 설정해야 하는 이유는?",
+    "code": "app.secret_key = 'ZVLCSDKF28SZH39013'\n\nsession['username'] = 'admin'",
+    "language": "Python",
+    "options": [
+      "secret_key가 있어야만 파이썬 딕셔너리를 쓸 수 있어서",
+      "secret_key가 서버의 IP 주소를 대신하기 때문에",
+      "session 내용을 서버 하드디스크에 통째로 암호화 저장하기 위해",
+      "session 데이터가 브라우저 쿠키에 담겨 오가기 때문에, 서명해서 사용자가 몰래 내용을 바꾸지 못하게 하려고"
+    ],
+    "answer": 3,
+    "explanation": "Flask 기본 session은 서버가 아니라 클라이언트 쿠키에 저장돼요. secret_key로 서명(위조 방지)을 해서, 사용자가 쿠키 내용을 바꾸면 무효 처리해요. 그래서 키는 추측하기 어려운 값이어야 하고 코드에 그대로 공개(깃허브 업로드 등)하면 안 돼요."
+  },
+  {
+    "id": "flask-5-1-q2",
+    "lessonId": "flask-5-1",
+    "type": "choice",
+    "prompt": "로그인 성공 후 session['username']에 아이디를 저장해두는 목적은?",
+    "options": [
+      "이후 요청에서도 이 사용자가 로그인한 상태임을 서버가 알아보기 위해",
+      "브라우저를 닫아도 영원히 로그인이 풀리지 않게 하기 위해",
+      "비밀번호를 안전하게 삭제하기 위해",
+      "다른 사용자의 로그인 정보를 대신 저장하기 위해"
+    ],
+    "answer": 0,
+    "explanation": "HTTP는 요청마다 독립적이라 서버가 '아까 그 사람'을 자동으로 기억하지 못해요. session에 로그인 정보를 남겨두면, 마이페이지 같은 곳에서 'username' in session 으로 로그인 여부를 확인할 수 있어요."
+  }
+]

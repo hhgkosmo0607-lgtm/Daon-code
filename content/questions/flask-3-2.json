@@ -1,0 +1,30 @@
+[
+  {
+    "id": "flask-3-2-q1",
+    "lessonId": "flask-3-2",
+    "type": "choice",
+    "prompt": "Flask 프로젝트에서 render_template()이 HTML 파일을 자동으로 찾는 폴더 이름은?",
+    "options": [
+      "templates",
+      "static",
+      "views",
+      "html"
+    ],
+    "answer": 0,
+    "explanation": "render_template('form.html')처럼 파일명만 써도, Flask는 프로젝트의 templates 폴더 안에서 그 파일을 찾아요. 폴더 이름이 다르면 TemplateNotFound 에러가 나요."
+  },
+  {
+    "id": "flask-3-2-q2",
+    "lessonId": "flask-3-2",
+    "type": "choice",
+    "prompt": "이미지, CSS, JS처럼 내용이 바뀌지 않는 파일을 그대로 제공하려고 둘 때 쓰는 폴더는?",
+    "options": [
+      "templates",
+      "static",
+      "assets_only",
+      "public_html"
+    ],
+    "answer": 1,
+    "explanation": "static 폴더 안의 파일은 코드로 가공하지 않고 그대로 /static/... 경로로 제공돼요. 반대로 templates 안의 HTML은 Jinja2가 값을 채워서 가공한 뒤 응답하는 파일이에요."
+  }
+]

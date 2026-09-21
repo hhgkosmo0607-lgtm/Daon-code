@@ -223,6 +223,40 @@ import questionsCss11_1 from '../../../content/questions/css-11-1.json';
 import questionsCss11_2 from '../../../content/questions/css-11-2.json';
 import questionsCss12_1 from '../../../content/questions/css-12-1.json';
 import questionsCss12_2 from '../../../content/questions/css-12-2.json';
+import q_flask_1_1 from '../../../content/questions/flask-1-1.json';
+import q_flask_1_2 from '../../../content/questions/flask-1-2.json';
+import q_flask_2_1 from '../../../content/questions/flask-2-1.json';
+import q_flask_2_2 from '../../../content/questions/flask-2-2.json';
+import q_flask_3_1 from '../../../content/questions/flask-3-1.json';
+import q_flask_3_2 from '../../../content/questions/flask-3-2.json';
+import q_flask_4_1 from '../../../content/questions/flask-4-1.json';
+import q_flask_4_2 from '../../../content/questions/flask-4-2.json';
+import q_flask_5_1 from '../../../content/questions/flask-5-1.json';
+import q_flask_5_2 from '../../../content/questions/flask-5-2.json';
+import q_flask_6_1 from '../../../content/questions/flask-6-1.json';
+import q_flask_6_2 from '../../../content/questions/flask-6-2.json';
+import q_flask_7_1 from '../../../content/questions/flask-7-1.json';
+import q_flask_7_2 from '../../../content/questions/flask-7-2.json';
+import q_ai_1_1 from '../../../content/questions/ai-1-1.json';
+import q_ai_1_2 from '../../../content/questions/ai-1-2.json';
+import q_ai_1_3 from '../../../content/questions/ai-1-3.json';
+import q_ai_2_1 from '../../../content/questions/ai-2-1.json';
+import q_ai_2_2 from '../../../content/questions/ai-2-2.json';
+import q_ai_2_3 from '../../../content/questions/ai-2-3.json';
+import q_ai_3_1 from '../../../content/questions/ai-3-1.json';
+import q_ai_3_2 from '../../../content/questions/ai-3-2.json';
+import q_ai_3_3 from '../../../content/questions/ai-3-3.json';
+import q_ai_4_1 from '../../../content/questions/ai-4-1.json';
+import q_ai_4_2 from '../../../content/questions/ai-4-2.json';
+import q_ai_4_3 from '../../../content/questions/ai-4-3.json';
+import q_ai_5_1 from '../../../content/questions/ai-5-1.json';
+import q_ai_5_2 from '../../../content/questions/ai-5-2.json';
+import q_ai_5_3 from '../../../content/questions/ai-5-3.json';
+import q_ai_6_1 from '../../../content/questions/ai-6-1.json';
+import q_ai_6_2 from '../../../content/questions/ai-6-2.json';
+import q_ai_6_3 from '../../../content/questions/ai-6-3.json';
+import q_ai_7_1 from '../../../content/questions/ai-7-1.json';
+import q_ai_7_2 from '../../../content/questions/ai-7-2.json';
 
 import type { Lesson, Question, Stage, Track } from '../domain/types';
 
@@ -462,6 +496,40 @@ const QUESTION_BANK: Record<string, unknown> = {
   'css-11-2': questionsCss11_2,
   'css-12-1': questionsCss12_1,
   'css-12-2': questionsCss12_2,
+  'flask-1-1': q_flask_1_1,
+  'flask-1-2': q_flask_1_2,
+  'flask-2-1': q_flask_2_1,
+  'flask-2-2': q_flask_2_2,
+  'flask-3-1': q_flask_3_1,
+  'flask-3-2': q_flask_3_2,
+  'flask-4-1': q_flask_4_1,
+  'flask-4-2': q_flask_4_2,
+  'flask-5-1': q_flask_5_1,
+  'flask-5-2': q_flask_5_2,
+  'flask-6-1': q_flask_6_1,
+  'flask-6-2': q_flask_6_2,
+  'flask-7-1': q_flask_7_1,
+  'flask-7-2': q_flask_7_2,
+  'ai-1-1': q_ai_1_1,
+  'ai-1-2': q_ai_1_2,
+  'ai-1-3': q_ai_1_3,
+  'ai-2-1': q_ai_2_1,
+  'ai-2-2': q_ai_2_2,
+  'ai-2-3': q_ai_2_3,
+  'ai-3-1': q_ai_3_1,
+  'ai-3-2': q_ai_3_2,
+  'ai-3-3': q_ai_3_3,
+  'ai-4-1': q_ai_4_1,
+  'ai-4-2': q_ai_4_2,
+  'ai-4-3': q_ai_4_3,
+  'ai-5-1': q_ai_5_1,
+  'ai-5-2': q_ai_5_2,
+  'ai-5-3': q_ai_5_3,
+  'ai-6-1': q_ai_6_1,
+  'ai-6-2': q_ai_6_2,
+  'ai-6-3': q_ai_6_3,
+  'ai-7-1': q_ai_7_1,
+  'ai-7-2': q_ai_7_2,
 };
 
 /** 기본 트랙 — 온보딩/배치고사 등 트랙을 아직 명시하지 않은 기존 화면이 쓰는 값 */

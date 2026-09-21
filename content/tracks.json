@@ -33,5 +33,15 @@
     "id": "css",
     "label": "CSS 기초",
     "description": "선택자부터 박스모델, flexbox/grid, 실무 컨벤션까지"
+  },
+  {
+    "id": "flask",
+    "label": "Flask 웹 개발 기초",
+    "description": "웹 요청-응답 흐름부터 폼·세션·파일 업로드, 웹 보안 기초까지"
+  },
+  {
+    "id": "ai",
+    "label": "AI 기초: 학습부터 직접 만들기",
+    "description": "머신러닝 개념, 데이터 다루기, 나만의 모델을 만들어 웹으로 서비스하기까지"
   }
 ]
