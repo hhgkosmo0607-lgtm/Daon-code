@@ -46,5 +46,21 @@
     ],
     "answer": 1,
     "explanation": "자바스크립트는 동적 타입 언어라서 변수에 타입을 고정하지 않고, 값이 바뀌면 타입도 함께 바뀌어요. 자바처럼 타입 불일치 컴파일 오류가 나지 않아요."
+  },
+  {
+    "id": "js-1-2-q4",
+    "lessonId": "js-1-2",
+    "type": "choice",
+    "prompt": "console.log(typeof [1, 2, 3])의 결과는?",
+    "code": "console.log(typeof [1, 2, 3]);",
+    "language": "JavaScript",
+    "options": [
+      "\"array\"",
+      "\"object\"",
+      "\"undefined\"",
+      "\"number\""
+    ],
+    "answer": 1,
+    "explanation": "배열도 자바스크립트에서는 객체의 한 종류라서 typeof는 \"object\"를 돌려줘요. 배열인지 정확히 확인하려면 Array.isArray()를 써야 해요."
   }
 ]

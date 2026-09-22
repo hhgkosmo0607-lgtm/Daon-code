@@ -5,7 +5,7 @@
     "type": "choice",
     "prompt": "docker-compose.yml에 DB 비밀번호를 평문으로 적어 Git에 올리면 생기는 문제는?",
     "code": "environment:\n  MARIADB_ROOT_PASSWORD: mypassword1234   # 저장소에 올리면 안 됨",
-    "language": "Bash",
+    "language": "YAML",
     "options": [
       "compose 파일은 Git이 저장할 때 자동으로 암호화하므로 문제가 없다",
       "컨테이너가 시작될 때 Git에 올라간 비밀번호를 무시하고 기본값을 쓴다",
@@ -42,5 +42,21 @@
     ],
     "answer": 1,
     "explanation": "이미지 레이어는 파일과 환경변수 정보를 그대로 담고 있어요. 비밀은 실행할 때 환경변수·시크릿으로 주입하는 게 안전해요."
+  },
+  {
+    "id": "docker-9-2-q4",
+    "lessonId": "docker-9-2",
+    "type": "choice",
+    "prompt": "compose 파일에 MARIADB_ROOT_PASSWORD: ${DB_ROOT_PW} 처럼 적어 두면 실제 값은 어디서 가져올까?",
+    "code": "environment:\n  MARIADB_ROOT_PASSWORD: ${DB_ROOT_PW}",
+    "language": "YAML",
+    "options": [
+      "도커가 알아서 안전한 임의의 비밀번호를 매번 새로 만들어서 채워 넣는다",
+      "같은 폴더의 .env 파일(또는 셸 환경변수)에 정의된 값을 읽어 와서 채운다",
+      "로그인한 Docker Hub 계정에 저장된 비밀 값을 그 시점에 내려받는다",
+      "compose 파일 안의 volumes 항목에 미리 정의해 둔 값을 그대로 가져온다"
+    ],
+    "answer": 1,
+    "explanation": "${변수명} 문법은 compose가 실행 위치의 .env 파일이나 셸 환경변수에서 값을 채워 넣는 거예요. 그래서 실제 비밀번호는 .env에 적고 그 파일을 Git에서 제외해요."
   }
 ]

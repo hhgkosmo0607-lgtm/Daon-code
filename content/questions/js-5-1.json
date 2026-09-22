@@ -44,5 +44,19 @@
     ],
     "answer": 1,
     "explanation": "화살표 함수는 this가 정의된 위치에서 정해져서 콜백 안에서 this가 바뀌는 문제를 줄여 줘요. 대신 생성자로 못 쓰고 arguments도 없어요(나머지 매개변수 사용)."
+  },
+  {
+    "id": "js-5-1-q4",
+    "lessonId": "js-5-1",
+    "type": "choice",
+    "prompt": "다음 중 문법적으로 올바른 화살표 함수는?",
+    "options": [
+      "x, y => x + y",
+      "(x, y) => x + y",
+      "x => = x + y",
+      "function => x + y"
+    ],
+    "answer": 1,
+    "explanation": "매개변수가 두 개 이상이면 반드시 괄호로 묶어야 해요. x, y => ... 처럼 괄호 없이 쓰면 SyntaxError가 나요."
   }
 ]

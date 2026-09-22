@@ -42,5 +42,21 @@
     ],
     "answer": 0,
     "explanation": "Math.random()은 0 이상 1 미만이라 * 45 하고 floor를 하면 0~44, 여기에 +1을 해야 1~45예요. round는 양 끝 값의 확률이 절반이라 고르지 않아요."
+  },
+  {
+    "id": "js-8-2-q4",
+    "lessonId": "js-8-2",
+    "type": "choice",
+    "prompt": "console.log(d.getFullYear(), typeof d.getFullYear())의 결과는?",
+    "code": "const d = new Date(2024, 0, 15);\nconsole.log(d.getFullYear(), typeof d.getFullYear());",
+    "language": "JavaScript",
+    "options": [
+      "\"2024\" \"number\"",
+      "24 \"number\"",
+      "2024 \"number\"",
+      "2024 \"string\""
+    ],
+    "answer": 2,
+    "explanation": "getFullYear()는 네 자리 연도를 숫자(number) 타입으로 돌려줘요. 두 자리만 주는 옛날 getYear()와 헷갈리지 않도록 주의해요."
   }
 ]

@@ -30,5 +30,37 @@
     ],
     "answer": 1,
     "explanation": "static 메서드는 객체를 만들지 않아도 클래스 이름으로 바로 호출할 수 있어요. 그런데 인스턴스 변수는 객체마다 따로 존재하기 때문에, static 메서드 입장에서는 \"어떤 객체의 x\"를 말하는 건지 알 방법이 없어서 에러가 나요."
+  },
+  {
+    "id": "java-11-1-q3",
+    "lessonId": "java-11-1",
+    "type": "choice",
+    "prompt": "다음 중 static 메서드를 사용하기에 적합한 경우로 가장 알맞은 것은?",
+    "code": "static int max(int a, int b) {\n    return a > b ? a : b;\n} // 객체 상태와 무관하게 동작",
+    "language": "Java",
+    "options": [
+      "객체의 상태(필드)와 무관하게 동작하는 유틸리티 기능일 때",
+      "인스턴스마다 다른 값을 저장해야 하는 상태 기반 기능일 때",
+      "상속 후 자식 클래스마다 다르게 동작해야 하는 기능일 때",
+      "생성자 안에서만 호출되어야 하는 초기화 전용 기능일 때"
+    ],
+    "answer": 0,
+    "explanation": "static 메서드는 특정 인스턴스의 상태에 의존하지 않고 매개변수만으로 결과를 계산하는 유틸리티성 기능에 적합해요. Math.max()처럼 객체 생성 없이 바로 호출할 수 있어야 자연스러운 경우예요."
+  },
+  {
+    "id": "java-11-1-q4",
+    "lessonId": "java-11-1",
+    "type": "choice",
+    "prompt": "static 메서드 안에서 this 키워드를 사용하면 어떻게 될까?",
+    "code": "class A {\n    static void doSomething() {\n        System.out.println(this); // ?\n    }\n}",
+    "language": "Java",
+    "options": [
+      "가장 최근에 생성된 인스턴스를 가리키며 정상 동작한다",
+      "컴파일 에러 — static 메서드에는 this로 가리킬 인스턴스가 없다",
+      "this가 null로 처리되어 실행 중 NullPointerException이 발생한다",
+      "this가 클래스 자기 자신을 가리키는 참조로 자동 대체된다"
+    ],
+    "answer": 1,
+    "explanation": "this는 \"이 메서드를 호출한 인스턴스\"를 가리키는데, static 메서드는 인스턴스 없이 호출될 수 있어서 애초에 this가 존재하지 않아요. 그래서 static 메서드 안에서 this를 쓰면 컴파일 에러가 나요."
   }
 ]

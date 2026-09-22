@@ -46,5 +46,19 @@
     ],
     "answer": 2,
     "explanation": "parseInt는 숫자로 해석 가능한 문자열만 변환할 수 있어요. \"abc\"처럼 숫자가 아닌 문자열을 넣으면 NumberFormatException이 발생해요."
+  },
+  {
+    "id": "java-16-1-q4",
+    "lessonId": "java-16-1",
+    "type": "choice",
+    "prompt": "Checked Exception과 Unchecked Exception(RuntimeException 계열)의 가장 중요한 차이는?",
+    "options": [
+      "Checked Exception은 컴파일러가 처리를 강제하지 않고 넘어가지만, 반대로 Unchecked Exception은 반드시 강제한다는 규칙이 있다",
+      "Checked Exception(Exception 계열)은 처리를 컴파일러가 강제하고, Unchecked Exception(RuntimeException 계열)은 강제하지 않는다",
+      "Checked와 Unchecked의 차이는 오직 이름뿐이고 실제 동작 방식은 완전히 동일하다고 볼 수 있다",
+      "Unchecked Exception은 예외가 발생하는 즉시 프로그램을 무조건 강제로 종료시켜 버린다"
+    ],
+    "answer": 1,
+    "explanation": "Exception을 직접 상속한 checked exception은 컴파일러가 try-catch나 throws로 처리하도록 강제해요. 반면 RuntimeException 계열의 unchecked exception은 처리하지 않아도 컴파일은 되지만, 실행 중 발생하면 그대로 프로그램이 중단될 수 있어요."
   }
 ]

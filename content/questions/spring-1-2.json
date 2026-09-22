@@ -35,7 +35,7 @@
     "type": "choice",
     "prompt": "스프링 부트 내장 톰캣이 기본으로 사용하는 포트와 변경 방법은?",
     "code": "server.port=9090",
-    "language": "Java",
+    "language": "Properties",
     "options": [
       "8080이며 server.port 설정으로 바꾼다",
       "80이며 server.address 설정에서만 바꿀 수 있다",

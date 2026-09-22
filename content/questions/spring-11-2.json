@@ -42,5 +42,21 @@
     ],
     "answer": 1,
     "explanation": "save는 새 엔티티면 INSERT, 이미 존재하는 식별자면 UPDATE(merge)로 동작해요. 그래서 등록과 수정에 같은 메서드를 써요."
+  },
+  {
+    "id": "spring-11-2-q4",
+    "lessonId": "spring-11-2",
+    "type": "choice",
+    "prompt": "@Query로 만든 UPDATE 쿼리를 실행하려면 추가로 필요한 어노테이션은?",
+    "code": "@Modifying\n@Query(\"UPDATE Member m SET m.name = :name WHERE m.id = :id\")\nint updateName(@Param(\"id\") Long id, @Param(\"name\") String name);",
+    "language": "Java",
+    "options": [
+      "@ResponseBody (결과를 JSON으로 반환함을 알려준다)",
+      "@Async (쿼리를 비동기로 실행함을 알려준다)",
+      "@Valid (쿼리 파라미터를 검증함을 알려준다)",
+      "@Modifying (조회가 아닌 변경 쿼리임을 알려준다)"
+    ],
+    "answer": 3,
+    "explanation": "@Query만 쓰면 조회용으로 간주돼서 변경 쿼리를 실행하면 예외가 나요. @Modifying을 함께 붙여야 UPDATE/DELETE 쿼리를 실행할 수 있어요."
   }
 ]

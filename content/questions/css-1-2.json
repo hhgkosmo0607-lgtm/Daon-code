@@ -30,5 +30,37 @@
     ],
     "answer": 0,
     "explanation": "!important는 순서나 선택자 종류(태그/클래스/id)와 관계없이 가장 강력한 우선순위를 부여해요. 다만 남용하면 나중에 스타일을 덮어쓰기 어려워져서, 정말 필요한 경우에만 신중하게 써야 해요."
+  },
+  {
+    "id": "css-1-2-q3",
+    "lessonId": "css-1-2",
+    "type": "choice",
+    "prompt": ".box.active { color: red; } 와 .box { color: blue; }가 있을 때, class=\"box active\"인 요소의 색은?",
+    "code": ".box { color: blue; }\n.box.active { color: red; }",
+    "language": "CSS",
+    "options": [
+      "파란색 — class를 두 개 이어붙인 선택자는 항상 무시된다",
+      "빨간색 — 클래스 두 개를 붙인 선택자가 명시도가 더 높다",
+      "선언 순서와 관계없이 항상 나중에 로드된 파일의 색이 적용된다",
+      "색이 서로 충돌해서 브라우저 기본 검은색으로 표시된다"
+    ],
+    "answer": 1,
+    "explanation": ".box.active처럼 클래스 선택자를 이어붙이면 명시도가 .box 하나만 쓴 것보다 높아져요. 그래서 순서와 관계없이 .box.active의 색이 우선 적용돼요."
+  },
+  {
+    "id": "css-1-2-q4",
+    "lessonId": "css-1-2",
+    "type": "choice",
+    "prompt": "div p { color: red; } 와 p { color: blue; } 중 명시도가 더 높은 선택자는?",
+    "code": "p { color: blue; }\ndiv p { color: red; }",
+    "language": "CSS",
+    "options": [
+      "p — 선택자 길이가 짧을수록 명시도가 항상 더 높기 때문에",
+      "명시도는 동일해서 CSS 파일에서 나중에 쓴 것이 항상 이긴다",
+      "div p — 태그 선택자가 두 개 포함돼 있어 명시도가 더 높다",
+      "div — div 태그 자체가 p보다 명시도 점수가 높은 태그이기 때문에"
+    ],
+    "answer": 2,
+    "explanation": "명시도는 선택자에 포함된 태그·클래스·id의 개수로 계산돼요. div p는 태그 선택자 2개가 포함되어 있어서, 태그 선택자 1개뿐인 p보다 명시도가 더 높아요."
   }
 ]

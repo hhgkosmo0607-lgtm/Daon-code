@@ -54,5 +54,19 @@
     ],
     "answer": 2,
     "explanation": "윈도우 함수는 OVER() 절 없이는 쓸 수 없어요. OVER() 안에 PARTITION BY(그룹 나누기), ORDER BY(정렬 기준)를 넣어서 세부 동작을 정해요."
+  },
+  {
+    "id": "sqld-4-4-q5",
+    "lessonId": "sqld-4-4",
+    "type": "choice",
+    "prompt": "윈도우 함수에서 OVER(PARTITION BY 부서 ORDER BY 급여 DESC) 처럼 PARTITION BY를 쓰면?",
+    "options": [
+      "전체 데이터를 부서 단위로 나눠서, 각 부서 범위 안에서만 함수가 계산된다",
+      "부서 컬럼이 결과에서 제외되고 나머지 컬럼만 보여준다",
+      "부서별로 그룹화되어 부서당 한 행씩만 결과에 남는다(GROUP BY와 완전히 동일)",
+      "PARTITION BY는 정렬 순서에만 영향을 주고 계산 범위와는 무관하다"
+    ],
+    "answer": 0,
+    "explanation": "PARTITION BY는 GROUP BY처럼 행을 묶어서 그룹 수를 줄이는 게 아니라, 윈도우 함수의 계산 범위를 부서 단위로 나눠줄 뿐 원본 행 수는 그대로 유지돼요."
   }
 ]

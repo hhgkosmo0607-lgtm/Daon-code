@@ -42,5 +42,21 @@
     ],
     "answer": 3,
     "explanation": "같은 트랜잭션이면 바깥 롤백 때 로그도 함께 사라져요. 독립 트랜잭션으로 분리해야 로그가 남아요."
+  },
+  {
+    "id": "spring-7-2-q4",
+    "lessonId": "spring-7-2",
+    "type": "choice",
+    "prompt": "Propagation.SUPPORTS의 동작은?",
+    "code": "@Transactional(propagation = Propagation.SUPPORTS)\npublic List<Member> find(...) { ... }",
+    "language": "Java",
+    "options": [
+      "진행 중인 트랜잭션이 있어도 항상 무시하고 새로운 트랜잭션을 매번 새로 시작한다",
+      "트랜잭션이 없으면 예외를 던지고 실행을 거부한다",
+      "항상 REQUIRES_NEW와 동일하게 동작한다",
+      "진행 중인 트랜잭션이 있으면 참여하고, 없으면 트랜잭션 없이 실행한다"
+    ],
+    "answer": 3,
+    "explanation": "SUPPORTS는 트랜잭션을 요구하지 않아요. 이미 트랜잭션 안에서 호출되면 거기 참여하고, 트랜잭션 없이 호출되면 그냥 트랜잭션 없이 실행돼요."
   }
 ]

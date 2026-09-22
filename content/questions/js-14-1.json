@@ -44,5 +44,21 @@
     ],
     "answer": 2,
     "explanation": "reject되면 then은 건너뛰고 뒤의 catch가 실행돼요. catch가 없으면 처리되지 않은 거절 오류가 나요."
+  },
+  {
+    "id": "js-14-1-q4",
+    "lessonId": "js-14-1",
+    "type": "choice",
+    "prompt": "아래 코드에서 '시작'과 '중간' 중 어느 것이 먼저 출력될까?",
+    "code": "console.log('시작');\nnew Promise((resolve) => {\n  console.log('중간');\n  resolve();\n});",
+    "language": "JavaScript",
+    "options": [
+      "'중간'이 먼저 출력되고 그다음 '시작'이 출력되어 순서가 뒤바뀐다",
+      "executor가 비동기로 미뤄져서 둘 다 이 코드만으로는 출력되지 않는다",
+      "then을 붙여서 프로미스를 소비하지 않으면 executor 자체가 실행되지 않는다",
+      "'시작'이 먼저, 그다음 '중간'이 출력된다(executor는 동기적으로 즉시 실행된다)"
+    ],
+    "answer": 3,
+    "explanation": "new Promise에 넘긴 executor 함수는 then을 기다리지 않고 Promise를 만드는 즉시 동기적으로 실행돼요. 비동기로 미뤄지는 건 then/catch의 콜백이에요."
   }
 ]

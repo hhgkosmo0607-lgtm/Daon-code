@@ -30,5 +30,37 @@
     ],
     "answer": 1,
     "explanation": "예외 종류별로 알맞은 상태 코드와 오류 본문을 정해 두면 API 응답이 일관되고 코드가 깔끔해져요."
+  },
+  {
+    "id": "spring-13-2-q3",
+    "lessonId": "spring-13-2",
+    "type": "choice",
+    "prompt": "@Valid로 검증한 매개변수 바로 다음에 BindingResult를 추가하면 어떻게 달라질까?",
+    "code": "public String join(@Valid JoinRequest req, BindingResult bindingResult) {\n    if (bindingResult.hasErrors()) {\n        return \"join\";\n    }\n    ...\n}",
+    "language": "Java",
+    "options": [
+      "BindingResult 매개변수만 함께 선언해 두면 검증 자체를 아예 건너뛰고 무조건 통과시켜 버린다",
+      "검증 실패 시 서버가 즉시 500 오류로 응답을 강제한다",
+      "BindingResult는 검증 결과와 무관하게 항상 비어 있는 객체다",
+      "검증 실패해도 예외를 던지지 않고 오류 정보를 BindingResult에 담아 직접 처리할 수 있다"
+    ],
+    "answer": 3,
+    "explanation": "BindingResult가 없으면 검증 실패 시 MethodArgumentNotValidException이 던져지지만, 바로 다음 매개변수로 받아 두면 예외 대신 오류 정보를 직접 꺼내 화면 처리를 이어갈 수 있어요."
+  },
+  {
+    "id": "spring-13-2-q4",
+    "lessonId": "spring-13-2",
+    "type": "choice",
+    "prompt": "회원가입 나이 필드가 0보다 작은 값으로 들어오지 못하게 검증하려면 어떤 어노테이션이 알맞을까?",
+    "code": "@Min(0)\nprivate int age;",
+    "language": "Java",
+    "options": [
+      "@Min(0) (지정한 값 이상인지 검사한다)",
+      "@NotBlank (문자열이 비어 있지 않은지 검사한다)",
+      "@Email (이메일 형식인지 검사한다)",
+      "@Past (과거 날짜인지 검사한다)"
+    ],
+    "answer": 0,
+    "explanation": "@Min(0)은 숫자 필드가 지정한 값 이상인지 검사해요. @NotBlank는 문자열 전용이라 int 필드에는 적용할 수 없어요."
   }
 ]

@@ -28,5 +28,35 @@
     ],
     "answer": 2,
     "explanation": "<int:num>은 정수로 된 경로만 받아들이는 변환기예요. 정수가 아닌 값이 오면 이 라우트에 매칭되지 않아서 404가 나와요. 타입을 생략하면(<num>) 문자열로 받아요."
+  },
+  {
+    "id": "flask-4-2-q3",
+    "lessonId": "flask-4-2",
+    "type": "choice",
+    "prompt": "@app.route('/item/<string:name>/<int:qty>')처럼 경로에 변수를 두 개 이상 두면?",
+    "code": "@app.route('/item/<string:name>/<int:qty>')\ndef item(name, qty):\n    return f'{name} {qty}개'",
+    "language": "Python",
+    "options": [
+      "먼저 오는 변수 하나만 함수 인자로 전달되고 나머지 변수는 무시된다",
+      "두 변수가 하나로 합쳐져서 문자열 인자 하나로 전달된다",
+      "경로 변수를 두 개 이상 쓰면 무조건 오류가 발생한다",
+      "각 변수가 지정한 타입으로 변환되어 각각의 함수 인자로 전달된다"
+    ],
+    "answer": 3,
+    "explanation": "경로 변수는 여러 개를 함께 쓸 수 있고, 각각 지정한 컨버터(string, int 등)로 변환되어 이름이 같은 함수 매개변수로 전달돼요."
+  },
+  {
+    "id": "flask-4-2-q4",
+    "lessonId": "flask-4-2",
+    "type": "choice",
+    "prompt": "@app.route('/input/<num>')처럼 타입을 지정하지 않으면 num은 함수 안에서 어떤 타입으로 전달될까?",
+    "options": [
+      "항상 문자열(str) 타입으로 전달된다",
+      "항상 정수(int) 타입으로 자동 변환되어 전달된다",
+      "항상 리스트 타입으로 감싸져서 전달된다",
+      "타입을 지정하지 않으면 라우트 자체가 동작하지 않는다"
+    ],
+    "answer": 0,
+    "explanation": "<변수> 처럼 컨버터를 생략하면 기본값은 문자열이에요. 숫자로 다루고 싶으면 <int:변수>처럼 타입을 명시해야 해요."
   }
 ]

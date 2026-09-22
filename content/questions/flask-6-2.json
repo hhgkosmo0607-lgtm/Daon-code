@@ -28,5 +28,35 @@
     ],
     "answer": 2,
     "explanation": "uuid4는 무작위 32자리 16진수를 만들어서 이름이 겹칠 가능성이 사실상 없어요. 사용자 입력에서는 확장자만 참고하니 파일명으로 인한 문제가 줄어들어요. (확장자도 허용 목록으로 검사하면 더 안전해요.)"
+  },
+  {
+    "id": "flask-6-2-q3",
+    "lessonId": "flask-6-2",
+    "type": "choice",
+    "prompt": "업로드 파일의 확장자를 허용 목록(예: png, jpg만)으로 검사하는 이유는?",
+    "options": [
+      "이미지 파일만 용량이 작기 때문에 서버 저장 공간을 아끼기 위해",
+      "확장자를 검사하면 파일 내용도 자동으로 바이러스 검사가 되기 때문에",
+      "브라우저가 허용 목록에 없는 확장자는 아예 전송하지 않기 때문에",
+      "실행 파일 등 위험할 수 있는 형식이 업로드되는 것을 막기 위해"
+    ],
+    "answer": 3,
+    "explanation": "확장자를 제한하지 않으면 실행 스크립트 같은 위험한 파일도 그대로 업로드될 수 있어요. 허용 목록 검사는 기본적인 방어 수단이에요."
+  },
+  {
+    "id": "flask-6-2-q4",
+    "lessonId": "flask-6-2",
+    "type": "choice",
+    "prompt": "werkzeug.utils.secure_filename()이 원본 파일명에 대해 하는 일은?",
+    "code": "from werkzeug.utils import secure_filename\nfilename = secure_filename(file.filename)",
+    "language": "Python",
+    "options": [
+      "경로 조작 문자나 위험한 문자를 제거해 안전한 파일명으로 바꿔준다",
+      "파일명을 완전히 암호화해서 아무도 못 읽게 만들어 버린다",
+      "파일 확장자를 무조건 실행 파일(.exe) 형태로 강제 변경해 버린다",
+      "파일명을 서버의 IP 주소 문자열로 통째로 대체해 버린다"
+    ],
+    "answer": 0,
+    "explanation": "secure_filename()은 '../' 같은 경로 조작 문자나 공백·특수문자를 제거해 안전한 형태의 파일명으로 만들어줘요."
   }
 ]

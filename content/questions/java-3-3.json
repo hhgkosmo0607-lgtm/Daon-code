@@ -28,5 +28,37 @@
     ],
     "answer": 2,
     "explanation": "int, double 같은 기본형은 변수에 값 자체가 저장되기 때문에, ==는 그 값을 그대로 비교해요. 객체(참조형)의 ==와는 의미가 달라요."
+  },
+  {
+    "id": "java-3-3-q3",
+    "lessonId": "java-3-3",
+    "type": "choice",
+    "prompt": "int i = 5; double d = 5.0; 일 때 i == d의 결과는?",
+    "code": "int i = 5;\ndouble d = 5.0;\nSystem.out.println(i == d);",
+    "language": "Java",
+    "options": [
+      "true — i가 double로 자동 변환된 뒤 값을 비교해서 같다고 판단한다",
+      "false — 타입이 다른 값은 자동 변환 없이 비교되어 항상 거짓으로 처리된다",
+      "컴파일 에러 — int와 double은 ==로 비교할 수 없다",
+      "실행할 때마다 결과가 달라진다"
+    ],
+    "answer": 0,
+    "explanation": "기본형끼리는 타입이 달라도 ==로 비교할 수 있어요. 이때 더 작은 범위인 int가 double로 자동 형변환된 뒤 값이 비교되기 때문에, 5와 5.0은 같은 값으로 취급되어 true가 나와요."
+  },
+  {
+    "id": "java-3-3-q4",
+    "lessonId": "java-3-3",
+    "type": "choice",
+    "prompt": "int a = 5, b = 10, c = 15; 일 때 a < b < c 처럼 세 값을 한 번에 비교하는 식을 쓸 수 있을까?",
+    "code": "int a = 5, b = 10, c = 15;\nboolean result = a < b < c; // ?",
+    "language": "Java",
+    "options": [
+      "가능하다 — a, b, c를 왼쪽부터 차례로 비교해서 모두 참일 때만 true가 된다",
+      "가능하다 — 다만 세 값 중 가장 큰 값과 가장 작은 값만 비교된다",
+      "불가능하다 — 비교연산자는 한 문장에 하나만 쓸 수 있다",
+      "불가능하다 — a < b의 결과(boolean)와 c(int)를 다시 비교할 수 없어 컴파일 에러가 난다"
+    ],
+    "answer": 3,
+    "explanation": "자바는 비교연산자를 왼쪽부터 계산하는데, a < b의 결과는 boolean이에요. 그 boolean 값을 다시 c(int)와 <로 비교하는 건 타입이 맞지 않아 컴파일 에러가 나요. 범위를 확인하려면 (a < b) && (b < c)처럼 논리연산자로 따로 묶어야 해요."
   }
 ]

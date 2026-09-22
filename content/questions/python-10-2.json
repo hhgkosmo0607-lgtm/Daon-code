@@ -30,5 +30,37 @@
     ],
     "answer": 2,
     "explanation": "중첩 반복문은 바깥이 한 번 돌 때마다 안쪽이 처음부터 끝까지 전부 실행돼요. 바깥 3번 × 안쪽 2번 = 총 6번 실행돼요."
+  },
+  {
+    "id": "python-10-2-q3",
+    "lessonId": "python-10-2",
+    "type": "choice",
+    "prompt": "다음 코드를 실행하면 마지막으로 출력되는 줄은?",
+    "code": "for dan in range(2, 4):\n    for su in range(1, 3):\n        print(dan, \"x\", su, \"=\", dan * su)",
+    "language": "Python",
+    "options": [
+      "2 x 1 = 2",
+      "3 x 1 = 3",
+      "2 x 2 = 4",
+      "3 x 2 = 6"
+    ],
+    "answer": 3,
+    "explanation": "dan은 2, 3을 돌고, 각 dan마다 su가 1, 2를 도니까 마지막 조합은 dan=3, su=2예요. 3 x 2 = 6이 가장 마지막에 출력돼요."
+  },
+  {
+    "id": "python-10-2-q4",
+    "lessonId": "python-10-2",
+    "type": "choice",
+    "prompt": "리스트 안 숫자들의 합을 구하는 아래 코드에서, total = 0 을 반복문 안에 넣으면 어떻게 될까?",
+    "code": "nums = [1, 2, 3]\nfor n in nums:\n    total = 0  # 반복문 안으로 잘못 옮김\n    total += n\nprint(total)",
+    "language": "Python",
+    "options": [
+      "매번 total이 0으로 초기화돼서 마지막 요소 값(3)만 남는다",
+      "반복문 밖에 둔 것과 완전히 똑같이 정상적으로 1+2+3=6이 출력된다",
+      "total이 계속 누적되어 오히려 더 큰 값이 나온다",
+      "SyntaxError가 발생해서 실행되지 않는다"
+    ],
+    "answer": 0,
+    "explanation": "total = 0을 반복문 안에 넣으면 매 반복마다 다시 0으로 초기화된 뒤 그 요소만 더해져요. 그래서 누적이 안 되고 마지막 요소 값인 3만 남게 돼요. 누적할 변수는 반복문 시작 전에 한 번만 초기화해야 해요."
   }
 ]

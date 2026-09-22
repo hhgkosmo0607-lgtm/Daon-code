@@ -54,5 +54,19 @@
     ],
     "answer": 3,
     "explanation": "DISTINCT를 SELECT 바로 뒤에 붙이면 결과에서 중복 행을 제거해요."
+  },
+  {
+    "id": "sqld-3-1-q5",
+    "lessonId": "sqld-3-1",
+    "type": "choice",
+    "prompt": "ORDER BY절에 정렬 방향을 따로 지정하지 않으면 기본적으로 어떤 순서로 정렬되나?",
+    "options": [
+      "내림차순(DESC) — 큰 값에서 작은 값 순서",
+      "정렬 방향을 반드시 명시해야 하며 생략하면 에러가 난다",
+      "입력된 순서 그대로 정렬 없이 출력된다",
+      "오름차순(ASC) — 작은 값에서 큰 값 순서"
+    ],
+    "answer": 3,
+    "explanation": "ORDER BY에서 ASC/DESC를 생략하면 기본값은 오름차순(ASC)이에요. 내림차순으로 정렬하려면 반드시 DESC를 명시해야 해요."
   }
 ]

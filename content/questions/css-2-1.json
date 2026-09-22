@@ -46,5 +46,21 @@
     ],
     "answer": 3,
     "explanation": "em은 상대 단위로, 부모 요소의 font-size를 기준으로 배수를 계산해요. 부모가 20px이면 2em은 40px이 돼요. 참고로 rem은 부모가 아니라 문서 최상위(html)의 font-size를 기준으로 해요."
+  },
+  {
+    "id": "css-2-1-q4",
+    "lessonId": "css-2-1",
+    "type": "choice",
+    "prompt": "font-style: italic; 과 font-weight: bold; 를 함께 쓰면?",
+    "code": "p {\n  font-style: italic;\n  font-weight: bold;\n}",
+    "language": "CSS",
+    "options": [
+      "두 속성은 동시에 적용될 수 없어서 나중에 쓴 것만 반영된다",
+      "font-weight가 font-style 값을 덮어써서 굵게만 표시된다",
+      "italic이 bold보다 우선순위가 높아 기울임만 적용된다",
+      "글자가 기울어지면서 동시에 굵게, 두 스타일이 함께 적용된다"
+    ],
+    "answer": 3,
+    "explanation": "font-style과 font-weight는 서로 다른 속성이라 서로 영향을 주지 않고 각각 독립적으로 적용돼요. 그래서 기울어지고 굵은 글씨가 동시에 나타나요."
   }
 ]

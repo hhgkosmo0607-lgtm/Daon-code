@@ -28,5 +28,37 @@
     ],
     "answer": 2,
     "explanation": "pickle은 사람이 읽을 수 있는 텍스트가 아니라 바이트 단위의 이진 데이터로 저장해요. 그래서 파일을 열 때도 텍스트 모드(\"w\")가 아니라 바이너리 모드(\"wb\", 읽을 땐 \"rb\")를 써야 해요."
+  },
+  {
+    "id": "python-18-2-q3",
+    "lessonId": "python-18-2",
+    "type": "choice",
+    "prompt": "pickle.dump()로 name, age 순서로 저장했다면, pickle.load()로 불러올 때 순서는?",
+    "code": "with open(\"data.p\", \"wb\") as f:\n    pickle.dump(name, f)\n    pickle.dump(age, f)\n\nwith open(\"data.p\", \"rb\") as f:\n    a = pickle.load(f)  # name\n    b = pickle.load(f)  # age",
+    "language": "Python",
+    "options": [
+      "load()는 항상 마지막에 저장한 것부터 거꾸로 불러온다",
+      "저장 순서와 상관없이 데이터 타입 순으로 자동 정렬되어 불러와진다",
+      "load()를 한 번만 호출하면 저장된 모든 값이 리스트로 한 번에 반환된다",
+      "저장했던 순서 그대로 load()를 호출한 횟수만큼 하나씩 순서대로 불러온다"
+    ],
+    "answer": 3,
+    "explanation": "pickle은 dump()를 호출한 순서대로 파일에 데이터를 이어서 저장해요. load()도 그 저장 순서 그대로 호출할 때마다 하나씩 꺼내주기 때문에, dump한 순서와 load하는 순서를 맞춰야 해요."
+  },
+  {
+    "id": "python-18-2-q4",
+    "lessonId": "python-18-2",
+    "type": "choice",
+    "prompt": "딕셔너리를 일반 텍스트 파일로 저장했다가 다시 읽으면 어떤 점이 pickle과 다를까?",
+    "code": "# 텍스트 파일: 문자열로 저장되므로 다시 읽으면 딕셔너리가 아니라 문자열이다\n# pickle: 객체 그대로 저장되므로 다시 읽으면 그대로 딕셔너리다",
+    "language": "Python",
+    "options": [
+      "텍스트로 저장하면 문자열로 읽히지만, pickle로 저장하면 원래 타입(dict) 그대로 복원된다",
+      "텍스트 파일과 pickle 모두 항상 사람이 읽을 수 있는 문자열 형태로만 복원되어 나온다",
+      "pickle로 저장한 데이터는 텍스트 파일보다 항상 사람이 눈으로 읽기 더 쉬운 형태로 저장된다",
+      "둘 다 딕셔너리 자체는 저장할 수 없어서 반드시 리스트 형태로 먼저 변환해야만 한다"
+    ],
+    "answer": 0,
+    "explanation": "write()로 텍스트 파일에 저장하면 결국 문자열 형태로 남기 때문에, 다시 읽었을 때 딕셔너리가 아니라 그냥 문자열이에요(직접 파싱해야 함). pickle은 객체 구조 자체를 저장해서, load()하면 원래 타입(dict, list, 클래스 인스턴스 등) 그대로 복원돼요."
   }
 ]

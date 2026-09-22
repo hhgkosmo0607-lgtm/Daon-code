@@ -41,5 +41,20 @@
     ],
     "answer": 1,
     "explanation": "라우터가 주소(history)를 관리하도록 보통 main.jsx에서 <BrowserRouter><App /></BrowserRouter> 로 감싸요."
+  },
+  {
+    "id": "react-6-1-q4",
+    "lessonId": "react-6-1",
+    "type": "choice",
+    "prompt": "아래처럼 <Route index element={<BoardList />} />를 자식으로 두면 어떤 의미일까?",
+    "code": "<Route path=\"/board\" element={<BoardLayout />}>\n  <Route index element={<BoardList />} />\n  <Route path=\":id\" element={<BoardDetail />} />\n</Route>",
+    "options": [
+      "path가 없으므로 이 라우트는 항상 무시된다",
+      "/board 경로로 왔을 때 부모의 Outlet 자리에 기본으로 보여줄 화면을 지정한다",
+      "모든 하위 경로에서 항상 똑같이 함께 렌더링되어야 하는 공통 헤더 레이아웃 컴포넌트를 뜻한다",
+      "/board/index 라는 새 경로를 등록한다는 뜻이다"
+    ],
+    "answer": 1,
+    "explanation": "index 라우트는 부모 경로에 자식 경로가 더 붙지 않았을 때 Outlet 자리에 기본으로 그려질 화면이에요. 그 자체로 새 경로 문자열을 만들지는 않아요."
   }
 ]

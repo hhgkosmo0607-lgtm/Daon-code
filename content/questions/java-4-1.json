@@ -28,5 +28,37 @@
     ],
     "answer": 0,
     "explanation": "자바의 if 조건식은 반드시 boolean 값이어야 해요. C언어처럼 0과 1을 참/거짓으로 자동 변환해주지 않아서, if (1)처럼 쓰면 컴파일 에러가 나요."
+  },
+  {
+    "id": "java-4-1-q3",
+    "lessonId": "java-4-1",
+    "type": "choice",
+    "prompt": "아래처럼 중첩된 if문에서 중괄호 없이 else를 썼을 때, 이 else는 어느 if와 짝지어질까?",
+    "code": "if (a > 0)\n    if (b > 0)\n        System.out.println(\"둘 다 양수\");\n    else\n        System.out.println(\"b가 문제\");",
+    "language": "Java",
+    "options": [
+      "가장 가까운 if (b > 0)와 짝지어진다",
+      "가장 바깥쪽 if (a > 0)와 짝지어진다",
+      "두 if 모두와 동시에 짝지어져 항상 실행된다",
+      "컴파일 에러 — else는 어느 if와도 짝지을 수 없어 모호하다"
+    ],
+    "answer": 0,
+    "explanation": "중괄호가 없으면 else는 항상 바로 위의 가장 가까운 if와 짝지어져요. 그래서 이 코드의 else는 if (a > 0)이 아니라 if (b > 0)에 연결돼요. 의도한 짝이 헷갈릴 수 있으니 중첩 if에는 중괄호를 꼭 쓰는 게 안전해요."
+  },
+  {
+    "id": "java-4-1-q4",
+    "lessonId": "java-4-1",
+    "type": "choice",
+    "prompt": "아래처럼 else if 없이 독립된 if문 두 개를 나열하면, score가 95일 때 어떻게 될까?",
+    "code": "int score = 95;\nif (score >= 90) System.out.println(\"A\");\nif (score >= 80) System.out.println(\"B\");",
+    "language": "Java",
+    "options": [
+      "\"A\"만 출력된다 — 연속된 if문은 자바가 자동으로 else if 체인으로 묶어서 실행한다",
+      "\"B\"만 출력된다 — 나중에 검사한 조건이 우선 적용된다",
+      "\"A\"와 \"B\"가 모두 출력된다 — 두 if문이 각각 독립적으로 평가된다",
+      "컴파일 에러 — if문을 else 없이 연달아 쓸 수 없다"
+    ],
+    "answer": 2,
+    "explanation": "else if로 연결하지 않은 독립된 if문들은 서로 관계없이 각자 조건을 평가해요. score가 95면 두 조건(90 이상, 80 이상) 모두 참이라서 \"A\"와 \"B\"가 둘 다 출력돼요. 하나만 실행되길 원한다면 else if 체인으로 묶어야 해요."
   }
 ]

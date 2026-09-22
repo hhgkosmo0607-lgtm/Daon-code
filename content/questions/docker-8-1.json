@@ -42,5 +42,21 @@
     ],
     "answer": 3,
     "explanation": "레지스트리(Docker Hub, ECR 등)를 거치면 어느 서버에서든 같은 이미지를 받아 실행할 수 있어요. 이미지 파일 자체를 docker save/load로 옮길 수도 있어요."
+  },
+  {
+    "id": "docker-8-1-q4",
+    "lessonId": "docker-8-1",
+    "type": "choice",
+    "prompt": "서버가 재부팅되어도 컨테이너가 자동으로 다시 켜지게 하려면 docker run에 어떤 옵션을 주면 될까?",
+    "code": "docker run -d --restart always -p 80:80 httpd",
+    "language": "Bash",
+    "options": [
+      "--restart always",
+      "--auto-boot",
+      "--keep-alive",
+      "-d 옵션만으로 재부팅 후에도 자동 실행된다"
+    ],
+    "answer": 0,
+    "explanation": "--restart always(또는 unless-stopped)를 주면 도커 데몬이 다시 뜰 때 컨테이너도 함께 다시 시작돼요. -d는 그냥 백그라운드 실행일 뿐 재부팅 후 자동 실행을 보장하지 않아요."
   }
 ]

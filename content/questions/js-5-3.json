@@ -44,5 +44,21 @@
     ],
     "answer": 3,
     "explanation": "makeCounter()를 호출할 때마다 c가 새로 만들어지고, 각각의 함수가 자기 c만 기억해요. 그래서 b의 카운트는 a와 별개로 1부터 시작해요."
+  },
+  {
+    "id": "js-5-3-q4",
+    "lessonId": "js-5-3",
+    "type": "choice",
+    "prompt": "아래 코드에서 1초 뒤(setTimeout 콜백들이 실행될 때) 출력되는 값은?",
+    "code": "for (var i = 0; i < 3; i++) {\n  setTimeout(() => console.log(i), 0);\n}",
+    "language": "JavaScript",
+    "options": [
+      "0 1 2",
+      "0 0 0",
+      "1 2 3",
+      "3 3 3"
+    ],
+    "answer": 3,
+    "explanation": "var는 함수 스코프라서 세 콜백이 같은 i 하나를 공유해요. 콜백이 실제로 실행될 때는 반복문이 이미 끝나 i가 3이라서 세 번 모두 3이 찍혀요. let으로 바꾸면 반복마다 새 i가 생겨 0 1 2가 출력돼요."
   }
 ]

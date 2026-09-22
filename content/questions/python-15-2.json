@@ -30,5 +30,37 @@
     ],
     "answer": 1,
     "explanation": "filter(함수, 컬렉션)은 함수가 True를 반환하는 요소만 걸러서 남겨요. 여기선 짝수 조건을 만족하는 2, 4, 6만 남아요."
+  },
+  {
+    "id": "python-15-2-q3",
+    "lessonId": "python-15-2",
+    "type": "choice",
+    "prompt": "map, filter와 달리 reduce()를 바로 쓸 수 없고 별도로 import해야 하는 이유는?",
+    "code": "from functools import reduce\nresult = reduce(lambda x, y: x + y, [1, 2, 3, 4])\nprint(result)  # 10",
+    "language": "Python",
+    "options": [
+      "reduce()는 내장함수가 아니라 functools 모듈 안에 들어있기 때문",
+      "reduce()는 파이썬 3에서 완전히 삭제된 함수라 대체 문법을 써야 하기 때문",
+      "reduce()는 람다식과 함께 쓸 수 없어서 반드시 일반 함수가 필요하기 때문",
+      "import는 실행 속도를 높이기 위한 성능 최적화 옵션이기 때문"
+    ],
+    "answer": 0,
+    "explanation": "map()과 filter()는 내장함수라 바로 쓸 수 있지만, reduce()는 functools 모듈에 속해 있어서 from functools import reduce로 먼저 가져와야 써요. reduce는 리스트 전체를 순서대로 누적해서 하나의 값으로 합쳐줘요."
+  },
+  {
+    "id": "python-15-2-q4",
+    "lessonId": "python-15-2",
+    "type": "choice",
+    "prompt": "list(map(lambda x: x * 2, nums)) 와 [x * 2 for x in nums] 의 관계는?",
+    "code": "nums = [1, 2, 3]\nprint(list(map(lambda x: x * 2, nums)))\nprint([x * 2 for x in nums])",
+    "language": "Python",
+    "options": [
+      "완전히 다른 결과를 만들어내는 별개의 기능이다",
+      "같은 결과를 만들며, 리스트 컴프리헨션이 더 간결해 파이썬에서 자주 선호된다",
+      "map 방식만 실제로는 새로운 리스트 객체를 반환하고, 컴프리헨션은 항상 제너레이터만 반환해준다",
+      "리스트 컴프리헨션은 숫자에만 쓸 수 있고 map은 모든 타입에 쓸 수 있다"
+    ],
+    "answer": 1,
+    "explanation": "둘 다 각 요소에 연산을 적용해 새 리스트를 만드는 같은 결과를 내요. 다만 파이썬에서는 map+lambda 조합보다 리스트 컴프리헨션이 더 간결하고 읽기 쉬워서 흔히 더 선호돼요."
   }
 ]

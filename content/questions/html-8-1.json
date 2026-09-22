@@ -30,5 +30,37 @@
     ],
     "answer": 1,
     "explanation": "class는 공백으로 구분해서 여러 값을 동시에 줄 수 있어요. card와 highlight 각각에 정의된 CSS 스타일이 그 요소에 함께 적용돼요."
+  },
+  {
+    "id": "html-8-1-q3",
+    "lessonId": "html-8-1",
+    "type": "choice",
+    "prompt": "<a href=\"#section2\">이동</a> 과 <div id=\"section2\">...</div> 조합처럼 id를 앵커 링크로 사용하는 방식의 특징은?",
+    "code": "<a href=\"#section2\">2번 섹션으로</a>\n...\n<div id=\"section2\">여기로 이동</div>",
+    "language": "HTML",
+    "options": [
+      "id 값과는 상관없이 항상 페이지 맨 위쪽으로만 이동하게 된다",
+      "href의 # 뒤 값과 일치하는 id 요소로 이동한다",
+      "class 속성으로만 가능한 기능이라 id로는 동작하지 않는다",
+      "이 방식은 같은 페이지가 아닌 다른 도메인의 문서로만 이동할 수 있다"
+    ],
+    "answer": 1,
+    "explanation": "href=\"#값\"은 같은 문서 안에서 그 값과 일치하는 id를 가진 요소로 스크롤 이동시켜요. 이런 페이지 내 이동(앵커 링크)에는 문서 안에서 유일해야 하는 id가 적합해요."
+  },
+  {
+    "id": "html-8-1-q4",
+    "lessonId": "html-8-1",
+    "type": "choice",
+    "prompt": "한 문서 안에 id=\"box\"인 요소를 실수로 두 번 사용하면 어떤 문제가 생기기 쉬울까?",
+    "code": "<div id=\"box\">첫 번째</div>\n<div id=\"box\">두 번째</div>\n<script>\n  document.getElementById('box'); // 어떤 걸 가져올까?\n</script>",
+    "language": "HTML",
+    "options": [
+      "브라우저가 자동으로 두 요소의 id를 순서대로 1, 2로 바꿔서 저장한다",
+      "getElementById가 의도와 다른 요소를 가져와 예측이 어려워진다",
+      "HTML 문법 오류로 처리되어 두 요소 모두 화면에 렌더링되지 않는다",
+      "CSS 적용에는 문제가 없고 자바스크립트에서만 동작이 완전히 멈춰버린다"
+    ],
+    "answer": 1,
+    "explanation": "id는 문서 안에서 유일해야 한다는 규칙이 있어요. 중복되면 브라우저가 알아서 막아주지 않고, document.getElementById처럼 id로 요소를 찾는 코드가 의도와 다른(보통 첫 번째) 요소를 가져와서 버그의 원인이 될 수 있어요."
   }
 ]

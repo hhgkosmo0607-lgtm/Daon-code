@@ -41,5 +41,20 @@
     ],
     "answer": 2,
     "explanation": "effect는 그 렌더링 시점의 값을 기억해서 실행돼요. 그래서 react-hooks/exhaustive-deps 린트 경고를 무시하지 않는 게 좋아요."
+  },
+  {
+    "id": "react-12-1-q4",
+    "lessonId": "react-12-1",
+    "type": "choice",
+    "prompt": "한 이벤트 핸들러 안에서 setState를 여러 번 호출하면 리액트는 렌더링을 몇 번 할까?",
+    "code": "const onClick = () => {\n  setA(1);\n  setB(2);\n  setC(3);\n};",
+    "options": [
+      "호출 횟수만큼 세 번 따로 렌더링한다",
+      "가장 마지막 setState만 반영하고 나머지는 무시한다",
+      "동시에 호출하면 오류가 발생해 렌더링이 되지 않는다",
+      "변경 사항을 모아 한 번만 렌더링한다(배칭)"
+    ],
+    "answer": 3,
+    "explanation": "리액트는 이벤트 핸들러 안의 여러 setState 호출을 배칭(batching)해서 한 번의 렌더링으로 묶어 처리해요. 그래서 A, B, C 모두 반영된 화면이 한 번에 그려져요."
   }
 ]

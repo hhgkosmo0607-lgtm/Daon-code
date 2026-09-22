@@ -42,5 +42,21 @@
     ],
     "answer": 1,
     "explanation": "정확히 1건을 기대하는 메서드라서 0건이면 예외를 던져요. 0건이 정상인 경우는 query()로 리스트를 받아 비었는지 확인하거나 예외를 처리해요."
+  },
+  {
+    "id": "spring-5-1-q4",
+    "lessonId": "spring-5-1",
+    "type": "choice",
+    "prompt": "여러 행을 조회해서 자바 객체 리스트로 받고 싶을 때 쓰는 JdbcTemplate 메서드는?",
+    "code": "List<Member> list = jdbcTemplate.query(\n    \"SELECT * FROM member\",\n    (rs, rowNum) -> new Member(rs.getLong(\"id\"), rs.getString(\"name\"))\n);",
+    "language": "Java",
+    "options": [
+      "queryForObject (RowMapper를 함께 넘겨서 결과를 정확히 한 건만 반환받는다)",
+      "query (RowMapper로 각 행을 객체로 변환해 리스트로 반환한다)",
+      "update (RowMapper 결과를 리스트로 변환해 반환한다)",
+      "execute (SQL 결과를 그대로 문자열 리스트로 반환한다)"
+    ],
+    "answer": 1,
+    "explanation": "query()에 RowMapper를 넘기면 조회된 각 행을 원하는 객체로 변환해서 List로 돌려줘요. 한 건만 기대할 땐 queryForObject를 써요."
   }
 ]

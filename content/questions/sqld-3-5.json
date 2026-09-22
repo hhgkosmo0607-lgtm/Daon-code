@@ -11,7 +11,7 @@
       "GROUP BY절에 두 테이블의 공통 컬럼을 나열해서 적는다"
     ],
     "answer": 2,
-    "explanation": "ANSI 표준(FROM A JOIN B ON 조건) 이전의 Oracle 전통 방식은 FROM절에 테이블을 나열하고 WHERE절에 \"A.공통컬럼 = B.공통컬럼\"처럼 조인 조건을 적었어요. 이걸 EQUI JOIN이라고 해요."
+    "explanation": "ANSI 표준(FROM A JOIN B ON 조건) 이전의 Oracle 전통 방식은 FROM절에 테이블을 나열하고 WHERE절에 \"A.공통컬럼 = B.공통컬럼\"처럼 조인 조건을 적었어요. 이때 '=' 연산자로 조건을 걸면 동등조인(EQUI JOIN)이 되는데, EQUI JOIN 여부는 WHERE에 쓰든 ON에 쓰든 '=' 연산자를 쓰는지로 결정돼요."
   },
   {
     "id": "sqld-3-5-q2",
@@ -54,5 +54,19 @@
     ],
     "answer": 1,
     "explanation": "같은 테이블을 별칭을 다르게 줘서 두 번 참조하는 걸 SELF JOIN이라고 해요. 사원-상사처럼 같은 테이블 안에 계층 관계가 있을 때 자주 써요."
+  },
+  {
+    "id": "sqld-3-5-q5",
+    "lessonId": "sqld-3-5",
+    "type": "choice",
+    "prompt": "왼쪽 테이블과 오른쪽 테이블 중 어느 한쪽에만 있어도 결과에 남기고, 매칭 안 되는 쪽은 NULL로 채우는 조인은?",
+    "options": [
+      "FULL OUTER JOIN",
+      "INNER JOIN — 양쪽에 다 있는 행만 남긴다",
+      "LEFT OUTER JOIN — 왼쪽 기준으로만 전부 남긴다",
+      "CROSS JOIN — 조건 없이 모든 조합을 곱한다"
+    ],
+    "answer": 0,
+    "explanation": "FULL OUTER JOIN은 LEFT와 RIGHT OUTER JOIN을 합친 개념으로, 양쪽 중 어느 한쪽에만 있는 행도 모두 남기고 매칭되지 않는 반대쪽은 NULL로 채워요."
   }
 ]

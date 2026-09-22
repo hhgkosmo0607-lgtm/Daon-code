@@ -28,5 +28,35 @@
     ],
     "answer": 2,
     "explanation": "가변인자는 몇 개의 값이 들어올지 몰라서, 그 뒤에 다른 매개변수가 오면 어디까지가 가변인자인지 구분할 수 없어요. 그래서 매개변수 목록 맨 끝에 딱 하나만 허용돼요."
+  },
+  {
+    "id": "java-5-5-q3",
+    "lessonId": "java-5-5",
+    "type": "choice",
+    "prompt": "void sum(int... nums) { } 로 정의된 메서드를 인자 없이 sum(); 처럼 호출할 수 있을까?",
+    "code": "void sum(int... nums) {\n    System.out.println(nums.length);\n}\nsum(); // ?",
+    "language": "Java",
+    "options": [
+      "불가능하다 — 가변인자는 최소 1개 이상의 인자를 요구한다",
+      "가능하다 — 이때 nums는 길이가 0인 빈 배열이 되고 null이 아니다",
+      "가능하다 — 이때 nums는 null이 되어 length에 접근하면 예외가 발생한다",
+      "컴파일 에러 — 가변인자는 반드시 괄호 안에 명시적으로 배열을 넘겨야 한다"
+    ],
+    "answer": 1,
+    "explanation": "가변인자는 0개의 인자로도 호출할 수 있어요. 이때 내부적으로 길이가 0인 빈 배열이 만들어지기 때문에 nums는 null이 아니라 nums.length는 0이 돼요."
+  },
+  {
+    "id": "java-5-5-q4",
+    "lessonId": "java-5-5",
+    "type": "choice",
+    "prompt": "void sum(int... nums) { } 처럼 선언된 가변인자 nums는 메서드 내부에서 어떤 타입으로 취급될까?",
+    "options": [
+      "int 하나의 값으로 취급된다",
+      "List<Integer> 타입으로 취급된다",
+      "int[] 배열 타입으로 취급된다",
+      "여러 개의 개별 int 변수(nums0, nums1, ...)로 나뉘어 취급된다"
+    ],
+    "answer": 2,
+    "explanation": "가변인자는 컴파일될 때 배열로 변환돼요. 그래서 메서드 본문 안에서 nums는 int[]처럼 nums.length나 nums[0] 같은 배열 문법을 그대로 쓸 수 있어요."
   }
 ]

@@ -30,5 +30,37 @@
     ],
     "answer": 1,
     "explanation": "transition은 \"A상태 → B상태\"처럼 두 상태 사이의 변화만 부드럽게 이어줘요. @keyframes는 0%, 50%, 100%처럼 여러 중간 단계를 자유롭게 지정할 수 있고, infinite로 무한 반복하는 복잡한 애니메이션도 만들 수 있어요."
+  },
+  {
+    "id": "css-9-2-q3",
+    "lessonId": "css-9-2",
+    "type": "choice",
+    "prompt": "transition: all 0.3s ease; 에서 all이 의미하는 것은?",
+    "code": "button {\n  transition: all 0.3s ease;\n}\nbutton:hover {\n  background-color: navy;\n  transform: scale(1.05);\n}",
+    "language": "CSS",
+    "options": [
+      "값이 바뀌는 모든 속성에 대해 전환 효과를 적용한다는 뜻",
+      "transition을 모든 하위 요소에게도 강제로 상속시킨다는 뜻",
+      "애니메이션을 무한 반복(all cycles)한다는 뜻",
+      "all은 transition의 지속 시간을 뜻하는 값이다"
+    ],
+    "answer": 0,
+    "explanation": "transition의 첫 번째 값은 어떤 속성 변화에 전환 효과를 줄지 지정하는 자리예요. all을 쓰면 background-color, transform처럼 그 요소에서 값이 바뀌는 모든 속성에 전환 효과가 적용돼요."
+  },
+  {
+    "id": "css-9-2-q4",
+    "lessonId": "css-9-2",
+    "type": "choice",
+    "prompt": "@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } } 을 animation: spin 2s linear infinite; 로 적용하면?",
+    "code": "@keyframes spin {\n  from { transform: rotate(0deg); }\n  to { transform: rotate(360deg); }\n}\n.loader {\n  animation: spin 2s linear infinite;\n}",
+    "language": "CSS",
+    "options": [
+      "2초 동안 딱 한 번만 회전하고 멈춘다",
+      "요소가 2초에 한 바퀴씩 일정한 속도로 계속 회전한다",
+      "linear는 애니메이션을 즉시 멈추라는 뜻이라 회전하지 않는다",
+      "infinite 키워드가 없으면 이 코드는 문법 오류가 난다"
+    ],
+    "answer": 1,
+    "explanation": "spin 2s linear infinite는 spin 애니메이션을 2초 주기로, linear(일정한 속도)로, infinite(무한히) 반복하라는 뜻이에요. 그래서 로딩 스피너처럼 계속 같은 속도로 도는 효과가 나와요."
   }
 ]

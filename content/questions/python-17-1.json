@@ -46,5 +46,21 @@
     ],
     "answer": 2,
     "explanation": "__str__을 정의하지 않으면 print(인스턴스)는 <__main__.Person object at 0x...> 같은 의미 없는 값을 보여줘요. __str__을 정의하면 자바의 toString()처럼 원하는 형태의 문자열을 대신 보여줄 수 있어요."
+  },
+  {
+    "id": "python-17-1-q4",
+    "lessonId": "python-17-1",
+    "type": "choice",
+    "prompt": "circle1.calRound() 대신 괄호 없이 circle1.calRound 라고만 쓰면 어떻게 될까?",
+    "code": "class Circle:\n    def __init__(self, r):\n        self.r = r\n    def calRound(self):\n        return 2 * 3.14 * self.r\n\nc = Circle(5)\nprint(c.calRound)  # 괄호 없음",
+    "language": "Python",
+    "options": [
+      "메서드가 호출되지 않고, 메서드 객체 자체(<bound method ...>)가 출력된다",
+      "괄호가 없어도 자동으로 호출되어 둘레 값이 출력된다",
+      "AttributeError가 발생한다 — 메서드는 반드시 괄호와 함께 접근해야 한다",
+      "self.r 값만 단독으로 출력된다"
+    ],
+    "answer": 0,
+    "explanation": "괄호를 붙이지 않으면 메서드를 호출하는 게 아니라 그 메서드 자체(함수 객체)를 참조하게 돼요. 그래서 실제 계산 결과가 아니라 <bound method Circle.calRound ...> 같은 메서드 객체 정보가 출력돼요. 호출하려면 반드시 괄호를 붙여야 해요."
   }
 ]

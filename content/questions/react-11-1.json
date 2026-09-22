@@ -40,5 +40,20 @@
     ],
     "answer": 0,
     "explanation": "push는 시간순으로 정렬되는 고유 키를 만들어 자식 노드로 추가해요. 특정 경로에 덮어쓸 때는 set을 써요."
+  },
+  {
+    "id": "react-11-1-q4",
+    "lessonId": "react-11-1",
+    "type": "choice",
+    "prompt": "특정 경로의 데이터를 onValue처럼 계속 구독하지 않고 딱 한 번만 읽고 끝내고 싶을 때 쓰는 함수는?",
+    "code": "const snapshot = await get(ref(db, 'rooms/1'));\nconsole.log(snapshot.val());",
+    "options": [
+      "onValue",
+      "get",
+      "push",
+      "onDisconnect"
+    ],
+    "answer": 1,
+    "explanation": "get()은 그 시점의 값을 한 번만 읽어 오는 함수예요. onValue처럼 이후 변경 사항까지 계속 구독하지는 않아요."
   }
 ]

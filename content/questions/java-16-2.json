@@ -30,5 +30,37 @@
     ],
     "answer": 0,
     "explanation": "NullPointerException은 Exception의 자식이에요. Exception을 먼저 잡는 catch를 위에 두면 모든 예외가 거기서 걸려버려서, 그 아래의 더 구체적인 catch는 절대 실행될 수 없어 컴파일 에러가 나요. 구체적인 것부터, 포괄적인 것을 나중에 써야 해요."
+  },
+  {
+    "id": "java-16-2-q3",
+    "lessonId": "java-16-2",
+    "type": "choice",
+    "prompt": "다음처럼 catch에 여러 예외 타입을 |로 묶어 쓰는 문법의 의미는?",
+    "code": "try {\n    // ...\n} catch (IllegalArgumentException | IllegalStateException e) {\n    System.out.println(\"예외 처리: \" + e.getMessage());\n}",
+    "language": "Java",
+    "options": [
+      "여러 예외 타입을 |로 묶어서 한 catch 블록에서 함께 처리하는 멀티 catch 문법이다",
+      "두 예외가 동시에 발생해야만 이 catch 블록이 실행된다",
+      "문법 오류 — catch에는 예외 타입을 하나만 적을 수 있다",
+      "IllegalArgumentException만 잡고 IllegalStateException은 무시하겠다는 의미다"
+    ],
+    "answer": 0,
+    "explanation": "자바 7부터 지원하는 멀티 catch 문법이에요. 여러 예외를 같은 방식으로 처리하고 싶을 때, catch 블록을 여러 개 반복해서 쓰지 않고 |로 묶어 하나로 합칠 수 있어요."
+  },
+  {
+    "id": "java-16-2-q4",
+    "lessonId": "java-16-2",
+    "type": "choice",
+    "prompt": "try 블록에 return문이 있어도 finally 블록은 어떻게 동작할까?",
+    "code": "static int test() {\n    try {\n        return 1;\n    } finally {\n        System.out.println(\"finally 실행\");\n    }\n}",
+    "language": "Java",
+    "options": [
+      "finally 블록이 아예 생략된 채로 곧바로 1이라는 값만 반환되어 버리는 구조다",
+      "try의 return문 자체가 무시되고, finally 다음에 이어지는 코드가 대신 실행되어 버린다",
+      "try 블록 안에 return문이 있으면 finally를 함께 쓸 수 없어서 컴파일 에러가 발생한다",
+      "\"finally 실행\"이 출력된 뒤 1이 반환된다 — 반환할 값이 정해진 뒤에도 finally가 먼저 실행된다"
+    ],
+    "answer": 3,
+    "explanation": "try 블록에서 return을 만나도 메서드가 바로 끝나지 않고, 반환할 값을 정해둔 채로 finally 블록을 먼저 실행해요. finally 실행이 끝난 뒤에야 실제로 값이 반환돼요."
   }
 ]

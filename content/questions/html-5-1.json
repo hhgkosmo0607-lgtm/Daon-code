@@ -46,5 +46,21 @@
     ],
     "answer": 0,
     "explanation": "type=\"file\"은 파일 선택 창을 열어서 사용자가 로컬 파일을 고를 수 있게 해줘요. 폼 전송 시 파일까지 함께 보내려면 <form>의 enctype 속성도 multipart/form-data로 지정해야 해요."
+  },
+  {
+    "id": "html-5-1-q4",
+    "lessonId": "html-5-1",
+    "type": "choice",
+    "prompt": "<input type=\"text\" placeholder=\"이름을 입력하세요\">에서 placeholder 속성의 특징은?",
+    "code": "<input type=\"text\" placeholder=\"이름을 입력하세요\">",
+    "language": "HTML",
+    "options": [
+      "이 속성을 넣으면 그 입력창이 자동으로 필수 항목이 된다",
+      "입력창에 미리 채워진 값으로, 제출 시 그대로 서버에 전송된다",
+      "입력을 시작하면 사라지는 힌트일 뿐, 실제 값은 아니다",
+      "placeholder는 CSS로 글자색을 바꿀 수 없는 고정된 텍스트다"
+    ],
+    "answer": 2,
+    "explanation": "placeholder는 입력을 도와주는 힌트 텍스트일 뿐 실제 값(value)이 아니에요. 사용자가 아무것도 입력하지 않으면 폼 제출 시 그 칸은 빈 값으로 전송돼요. 실제 채워진 값을 지정하려면 value 속성을 써야 해요."
   }
 ]

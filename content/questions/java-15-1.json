@@ -30,5 +30,35 @@
     ],
     "answer": 1,
     "explanation": "Integer.parseInt()는 숫자로 이루어진 문자열을 int로 변환해줘요. 형변환 캐스팅((int))은 문자열과 숫자 사이에는 쓸 수 없어요."
+  },
+  {
+    "id": "java-15-1-q3",
+    "lessonId": "java-15-1",
+    "type": "choice",
+    "prompt": "다음 코드를 실행하면 두 println의 결과는?",
+    "code": "Integer a = 127;\nInteger b = 127;\nSystem.out.println(a == b); // ?\nInteger c = 200;\nInteger d = 200;\nSystem.out.println(c == d); // ?",
+    "language": "Java",
+    "options": [
+      "두 비교 모두 true가 나온다 — Integer는 어떤 값이든 항상 내용만으로 비교되도록 되어 있다",
+      "127은 true, 200은 false — -128~127 범위는 캐싱되어 같은 객체가 재사용된다",
+      "두 비교 모두 false가 나온다 — Integer는 원래부터 ==로는 비교할 수 없는 타입으로 취급된다",
+      "127은 false, 200은 true — 값이 클수록 오히려 캐싱 범위에 포함되는 구조로 되어 있다"
+    ],
+    "answer": 1,
+    "explanation": "Integer는 -128~127 범위의 값을 오토박싱할 때 내부적으로 캐시된 객체를 재사용해요. 그래서 127끼리는 == 비교가 true지만, 범위를 벗어난 200은 서로 다른 객체라 false가 나와요. 값을 비교할 땐 ==가 아니라 equals()를 쓰는 게 안전해요."
+  },
+  {
+    "id": "java-15-1-q4",
+    "lessonId": "java-15-1",
+    "type": "choice",
+    "prompt": "래퍼 클래스(Integer, Double 등) 객체의 값 변경 가능 여부에 대한 설명으로 옳은 것은?",
+    "options": [
+      "래퍼 클래스 객체는 생성된 뒤에도 내부 값을 자유롭게 바꿀 수 있는 가변 객체로 만들어져 있다",
+      "래퍼 클래스는 같은 값을 담더라도 기본형보다 항상 메모리를 더 적게 차지하도록 설계되어 있다",
+      "래퍼 클래스는 배열에는 저장할 수 없고 오직 컬렉션에만 저장할 수 있도록 제한되어 있다",
+      "래퍼 클래스 객체는 한 번 만들어지면 값이 바뀌지 않는 불변(immutable) 객체다"
+    ],
+    "answer": 3,
+    "explanation": "래퍼 클래스는 String처럼 불변 객체예요. Integer num = 10; num = 20; 처럼 값을 바꾼 것처럼 보여도, 실제로는 새 Integer 객체를 만들어 변수가 다시 가리키게 한 것이지 기존 객체의 값을 바꾼 게 아니에요."
   }
 ]

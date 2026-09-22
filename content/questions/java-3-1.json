@@ -28,5 +28,37 @@
     ],
     "answer": 2,
     "explanation": "일반 수식과 같아요. 괄호가 가장 먼저, 그다음 곱셈/나눗셈/나머지, 마지막이 덧셈/뺄셈이에요."
+  },
+  {
+    "id": "java-3-1-q3",
+    "lessonId": "java-3-1",
+    "type": "choice",
+    "prompt": "int result = -7 / 2; 를 실행하면 result는?",
+    "code": "int result = -7 / 2;\nSystem.out.println(result);",
+    "language": "Java",
+    "options": [
+      "-3 — 0에 가까운 방향으로 소수점 이하를 버린다",
+      "-4 — 수학의 내림(floor) 방식으로 소수점 이하를 버린다",
+      "-3.5 — 정수 연산이라도 소수부가 그대로 남는다",
+      "컴파일 에러 — 음수는 나눗셈에 바로 쓸 수 없다"
+    ],
+    "answer": 0,
+    "explanation": "자바의 정수 나눗셈은 수학적 내림이 아니라 0을 향해 소수점 이하를 잘라내요. -7 / 2는 -3.5인데, 0 쪽으로 버려서 -3이 나와요. 다른 언어(파이썬 등)의 내림 나눗셈과 결과가 다를 수 있으니 주의해야 해요."
+  },
+  {
+    "id": "java-3-1-q4",
+    "lessonId": "java-3-1",
+    "type": "choice",
+    "prompt": "int max = Integer.MAX_VALUE; int result = max + 1; 을 실행하면 result는?",
+    "code": "int max = Integer.MAX_VALUE; // 2147483647\nint result = max + 1;\nSystem.out.println(result);",
+    "language": "Java",
+    "options": [
+      "2147483648 — 결과가 int 범위를 넘으면 자동으로 long으로 승격된다",
+      "0 — 최댓값을 넘으면 0부터 다시 시작한다",
+      "ArithmeticException이 발생하며 프로그램이 중단된다",
+      "Integer.MIN_VALUE(-2147483648) — 범위를 넘으면 최솟값으로 순환한다"
+    ],
+    "answer": 3,
+    "explanation": "int는 표현할 수 있는 범위가 정해져 있어서, 최댓값을 넘으면 예외 없이 조용히 최솟값 쪽으로 순환(오버플로우)해요. 이런 오버플로우는 컴파일 에러도, 실행 예외도 없이 일어나기 때문에 큰 수를 다룰 땐 long 사용을 고려해야 해요."
   }
 ]

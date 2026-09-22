@@ -30,5 +30,37 @@
     ],
     "answer": 0,
     "explanation": "grid-column: 시작선 / 끝선 은 그 아이템이 몇 번째 격자선부터 몇 번째 격자선까지 차지할지 지정해요. 1 / 3은 1번 선에서 3번 선까지, 즉 두 개의 열 칸을 가로질러 차지한다는 뜻이에요."
+  },
+  {
+    "id": "css-11-2-q3",
+    "lessonId": "css-11-2",
+    "type": "choice",
+    "prompt": "grid-template-areas를 이용해 레이아웃 영역에 이름을 붙이는 방식의 장점은?",
+    "code": ".container {\n  grid-template-areas:\n    \"header header\"\n    \"sidebar main\";\n}\n.header { grid-area: header; }",
+    "language": "CSS",
+    "options": [
+      "코드만 보고도 각 영역이 레이아웃 어디에 위치하는지 직관적으로 파악할 수 있다",
+      "grid-template-areas를 쓰면 gap 속성을 더 이상 쓸 수 없게 된다",
+      "이름을 붙인 영역은 반응형(미디어 쿼리) 적용이 불가능해진다",
+      "영역 이름을 붙이면 grid-column/grid-row 속성이 모두 무효화된다"
+    ],
+    "answer": 0,
+    "explanation": "grid-template-areas는 레이아웃 구조를 문자열 그림처럼 표현할 수 있어서, 숫자로 된 격자선 번호보다 코드만 보고도 어디에 뭐가 배치되는지 훨씬 직관적으로 이해할 수 있어요."
+  },
+  {
+    "id": "css-11-2-q4",
+    "lessonId": "css-11-2",
+    "type": "choice",
+    "prompt": "row-gap과 column-gap을 각각 다른 값으로 지정할 수 있을까?",
+    "code": ".container {\n  display: grid;\n  row-gap: 20px;\n  column-gap: 10px;\n}",
+    "language": "CSS",
+    "options": [
+      "불가능하다 — gap 속성은 항상 행과 열에 동일한 값만 적용할 수 있다",
+      "가능하다 — row-gap은 행 사이, column-gap은 열 사이 간격을 지정한다",
+      "row-gap은 flex 레이아웃 전용 속성이라 grid에서는 지원되지 않는다",
+      "column-gap을 지정하면 이미 설정한 row-gap 값이 자동으로 무시되어 버린다"
+    ],
+    "answer": 1,
+    "explanation": "row-gap은 행과 행 사이, column-gap은 열과 열 사이의 간격을 각각 따로 지정할 수 있어요. gap 한 속성에 두 값을 [row-gap] [column-gap] 순서로 같이 써도 돼요."
   }
 ]

@@ -28,5 +28,37 @@
     ],
     "answer": 3,
     "explanation": "left/top으로 위치를 옮기려면 position 속성이 필요하고, 문서 흐름 자체를 건드릴 수 있어요. transform의 translate는 레이아웃 계산이 끝난 뒤 시각적으로만 이동시켜서 다른 요소 배치에 영향을 안 주고, 일반적으로 애니메이션 성능도 더 좋아요."
+  },
+  {
+    "id": "css-9-1-q3",
+    "lessonId": "css-9-1",
+    "type": "choice",
+    "prompt": "transform: scale(1.2); 를 요소에 적용하면?",
+    "code": "img:hover {\n  transform: scale(1.2);\n}",
+    "language": "CSS",
+    "options": [
+      "요소의 실제 width, height 속성값이 1.2배로 바뀌어 저장된다",
+      "요소가 원래 크기에서 20%만큼 더 투명해지고 흐릿하게 보이게 된다",
+      "시각적으로 확대되어 보이지만 실제 레이아웃 크기는 그대로다",
+      "요소가 세로 방향으로만 1.2배 늘어나고 가로 폭은 그대로 유지된다"
+    ],
+    "answer": 2,
+    "explanation": "scale()은 요소를 시각적으로 확대·축소해요. 실제 width/height 값이나 문서 흐름에서 차지하는 공간은 바뀌지 않고, 화면에 그려지는 모습만 커지거나 작아져요."
+  },
+  {
+    "id": "css-9-1-q4",
+    "lessonId": "css-9-1",
+    "type": "choice",
+    "prompt": "transform: rotate(), translate(), scale()을 한 요소에 동시에 적용하고 싶을 때 올바른 방법은?",
+    "code": "div {\n  transform: rotate(10deg) translate(20px, 0) scale(1.1);\n}",
+    "language": "CSS",
+    "options": [
+      "transform 속성은 한 번에 단 하나의 함수만 쓸 수 있어서 불가능하다",
+      "각각을 별도의 transform 속성 줄로 나누어 써야만 모두 적용된다",
+      "translate와 scale은 절대 함께 쓸 수 없고 항상 오류가 발생한다",
+      "공백으로 나열하면 순서대로 함께 적용된다"
+    ],
+    "answer": 3,
+    "explanation": "transform 속성 하나에 rotate(), translate(), scale() 같은 함수를 공백으로 구분해 나열하면, 왼쪽부터 순서대로 적용된 결과가 함께 나타나요."
   }
 ]

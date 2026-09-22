@@ -30,5 +30,35 @@
     ],
     "answer": 2,
     "explanation": "Exception을 직접 상속한 예외는 checked exception이라, 컴파일러가 처리를 강제해요. 그 예외가 발생할 수 있는 메서드를 호출하는 코드는 try-catch로 잡거나, 자기 메서드 선언에도 throws를 붙여서 \"나도 이 예외를 던질 수 있다\"고 명시해야 컴파일이 돼요."
+  },
+  {
+    "id": "java-16-3-q3",
+    "lessonId": "java-16-3",
+    "type": "choice",
+    "prompt": "사용자 정의 예외 클래스에서 super(message)를 생략하면 어떤 문제가 생길까?",
+    "code": "class MyException extends RuntimeException {\n    public MyException(String message) {\n        // super(message)를 생략한 경우\n    }\n}",
+    "language": "Java",
+    "options": [
+      "생략해도 getMessage()가 항상 null 대신 빈 문자열을 반환한다",
+      "생략하면 이 예외 객체의 getMessage()가 null을 반환하게 된다",
+      "생략하면 컴파일 에러가 발생해서 클래스를 정의할 수 없다",
+      "생략해도 message 매개변수 값이 자동으로 필드에 저장된다"
+    ],
+    "answer": 1,
+    "explanation": "message는 super(message)를 통해 부모(Exception/RuntimeException)에게 전달되어야 저장돼요. 이걸 생략하면 예외 메시지가 설정되지 않아서 getMessage()를 호출했을 때 null이 나와요."
+  },
+  {
+    "id": "java-16-3-q4",
+    "lessonId": "java-16-3",
+    "type": "choice",
+    "prompt": "RuntimeException을 상속한 사용자 정의 예외의 처리 방식에 대한 설명으로 옳은 것은?",
+    "options": [
+      "RuntimeException을 상속하면 반드시 throws로 선언해야만 그 메서드를 호출할 수 있게 된다",
+      "Exception과 RuntimeException 계열 둘 다 예외 처리를 컴파일러가 강제하지 않는다는 공통점이 있다",
+      "RuntimeException을 상속하면 checked exception과 달리 호출부에서 처리를 강제받지 않는다",
+      "RuntimeException을 상속한 예외는 catch 블록으로는 도저히 잡을 수 없게 제한되어 있다"
+    ],
+    "answer": 2,
+    "explanation": "RuntimeException 계열은 unchecked exception이라 try-catch나 throws 선언 없이도 컴파일이 돼요. 필요하다면 여전히 catch로 잡을 수 있지만, Exception을 직접 상속한 경우와 달리 컴파일러가 처리를 강제하지는 않아요."
   }
 ]

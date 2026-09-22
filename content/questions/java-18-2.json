@@ -30,5 +30,35 @@
     ],
     "answer": 3,
     "explanation": "큐는 줄을 서는 것과 같아요(먼저 온 사람이 먼저 처리됨). 1,2,3 순서로 넣었으니 poll()은 가장 먼저 넣은 1부터 나와요. 대기열, 작업 처리 순서 관리에 자주 쓰여요."
+  },
+  {
+    "id": "java-18-2-q3",
+    "lessonId": "java-18-2",
+    "type": "choice",
+    "prompt": "다음 중 스택(Stack)으로 구현하기에 가장 적합한 기능은?",
+    "options": [
+      "에디터의 되돌리기(Undo) 기능 — 가장 최근에 한 작업을 가장 먼저 취소해야 하는 구조다",
+      "은행 창구의 대기열 — 먼저 도착한 손님을 가장 먼저 처리해야 하는 구조로 되어 있다",
+      "프린터의 인쇄 대기열 — 먼저 요청이 들어온 문서를 가장 먼저 인쇄해야 하는 구조다",
+      "티켓 예매 대기열 — 신청한 순서 그대로 좌석을 배정해야 하는 구조로 운영된다"
+    ],
+    "answer": 0,
+    "explanation": "Undo 기능은 \"가장 최근에 한 작업을 가장 먼저 취소\"하는 LIFO 구조라 스택에 딱 맞아요. 나머지는 모두 먼저 들어온 것을 먼저 처리하는 FIFO 구조라 큐에 적합해요."
+  },
+  {
+    "id": "java-18-2-q4",
+    "lessonId": "java-18-2",
+    "type": "choice",
+    "prompt": "자바에서 Queue 인터페이스를 구현하는 클래스에 대한 설명으로 옳은 것은?",
+    "code": "Queue<Integer> q1 = new LinkedList<>();\nQueue<Integer> q2 = new ArrayDeque<>();",
+    "language": "Java",
+    "options": [
+      "Stack 클래스만 유일하게 Queue 인터페이스를 구현할 수 있도록 정해져 있다",
+      "LinkedList와 ArrayDeque 모두 Queue 인터페이스를 구현하고 있어서 큐로 활용할 수 있다",
+      "Queue는 인터페이스가 아니라 하나의 구체 클래스라서 바로 인스턴스를 만들 수 있다",
+      "ArrayList는 큐의 FIFO 동작을 처음부터 기본으로 지원하도록 설계되어 있다"
+    ],
+    "answer": 1,
+    "explanation": "Queue는 인터페이스이고, LinkedList와 ArrayDeque 둘 다 이를 구현하고 있어서 큐로 활용할 수 있어요. ArrayList는 Queue 인터페이스를 구현하지 않아서 offer()/poll() 같은 큐 전용 메서드를 쓸 수 없어요."
   }
 ]

@@ -42,5 +42,21 @@
     ],
     "answer": 1,
     "explanation": "test에 적은 조건이 참일 때만 그 안의 SQL 조각이 최종 쿼리에 포함돼요."
+  },
+  {
+    "id": "spring-6-3-q4",
+    "lessonId": "spring-6-3",
+    "type": "choice",
+    "prompt": "동적으로 만든 UPDATE 문에서 값이 있는 컬럼만 SET 절에 넣고 싶을 때 쓰는 태그는?",
+    "code": "<update id=\"update\">\n  UPDATE member\n  <set>\n    <if test=\"name != null\">name = #{name},</if>\n    <if test=\"age != null\">age = #{age},</if>\n  </set>\n  WHERE id = #{id}\n</update>",
+    "language": "XML",
+    "options": [
+      "<where> (조건이 있을 때만 WHERE를 붙이고 앞의 AND/OR를 정리해 준다)",
+      "<set> (SET 절을 만들고 마지막 콤마를 정리해 준다)",
+      "<foreach> (지정한 값 목록을 반복해서 SQL 조각으로 늘어놓는다)",
+      "<trim prefix=\"WHERE\"> (지정한 접두어를 조건 앞에 직접 붙여 준다)"
+    ],
+    "answer": 1,
+    "explanation": "<set>은 <where>처럼 내용이 있을 때만 SET 키워드를 붙이고, 조건들 사이의 불필요한 마지막 콤마를 자동으로 정리해 줘요."
   }
 ]

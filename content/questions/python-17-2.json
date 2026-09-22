@@ -30,5 +30,37 @@
     ],
     "answer": 0,
     "explanation": "정보은닉의 목적은 값을 아예 못 바꾸게 막는 게 아니라, 정해진 메서드(get_balance, deposit 등)를 통해서만 접근·수정하게 해서 유효성 검사 같은 규칙을 강제하는 거예요."
+  },
+  {
+    "id": "python-17-2-q3",
+    "lessonId": "python-17-2",
+    "type": "choice",
+    "prompt": "정보은닉된 __passwd가 있는 객체에 myCom.__passwd = \"new\" 처럼 외부에서 새 값을 대입하면?",
+    "code": "class Computer:\n    def __init__(self, passwd):\n        self.__passwd = passwd\n    def getPasswd(self):\n        return self.__passwd\n\nmyCom = Computer(\"qwer1234\")\nmyCom.__passwd = \"xxxx\"  # 외부에서 대입\nprint(myCom.getPasswd())",
+    "language": "Python",
+    "options": [
+      "AttributeError가 발생해서 그 대입 자체가 실행되지 못하고 즉시 막힌다",
+      "에러 없이 조용히 실행되지만, getPasswd()가 돌려주는 값은 여전히 원래 비밀번호 그대로다",
+      "정상적으로 대입이 이루어져서 이후 getPasswd()가 \"xxxx\"라는 새 값을 반환하게 된다",
+      "myCom 객체 전체가 그 순간 초기화되면서 다른 멤버변수 값들도 함께 사라진다"
+    ],
+    "answer": 1,
+    "explanation": "이름 맹글링 때문에 클래스 내부의 __passwd는 실제로 _Computer__passwd라는 이름으로 저장돼요. 외부에서 myCom.__passwd = \"xxxx\"라고 쓰면 에러 없이 실행되지만, 이건 전혀 다른 새 속성(__passwd)을 만드는 것일 뿐 진짜 비밀번호(_Computer__passwd)는 바뀌지 않아요."
+  },
+  {
+    "id": "python-17-2-q4",
+    "lessonId": "python-17-2",
+    "type": "choice",
+    "prompt": "밑줄 두 개 없이 self.name = name 처럼 선언한 멤버변수는 외부에서 어떻게 접근할 수 있나?",
+    "code": "class Computer:\n    def __init__(self, name):\n        self.name = name\n\nc = Computer(\"Lg Gram\")\nprint(c.name)  # 바로 접근 가능",
+    "language": "Python",
+    "options": [
+      "get 메서드를 거쳐야만 접근할 수 있다",
+      "AttributeError가 발생해서 접근할 수 없다",
+      "인스턴스.속성명 형태로 외부에서 바로 읽고 쓸 수 있다",
+      "클래스 안에서만 접근 가능하고 인스턴스에서는 접근할 수 없다"
+    ],
+    "answer": 2,
+    "explanation": "__로 시작하지 않는 일반 멤버변수는 파이썬에서 기본적으로 공개(public)라서, 인스턴스.변수명처럼 외부에서 자유롭게 읽고 쓸 수 있어요. 감추고 싶은 값만 __를 붙여서 제한하는 거예요."
   }
 ]

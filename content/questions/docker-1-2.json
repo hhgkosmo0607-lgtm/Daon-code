@@ -42,5 +42,21 @@
     ],
     "answer": 1,
     "explanation": "docker pull은 기본적으로 Docker Hub에서 이미지를 받아요. httpd, nginx, mariadb, wordpress 같은 공식 이미지가 올라와 있어요."
+  },
+  {
+    "id": "docker-1-2-q4",
+    "lessonId": "docker-1-2",
+    "type": "choice",
+    "prompt": "httpd의 최신 버전이 아니라 특정 버전(예: 2.4)을 정확히 받고 싶을 때 쓰는 명령은?",
+    "code": "docker pull httpd:2.4",
+    "language": "Bash",
+    "options": [
+      "docker pull httpd --version 2.4 처럼 별도의 버전 지정 옵션을 붙인다",
+      "docker pull httpd -v 2.4 처럼 -v 옵션 뒤에 원하는 버전 번호를 적는다",
+      "docker pull httpd:2.4 처럼 이미지 이름 뒤에 콜론과 태그를 붙인다",
+      "docker pull httpd/2.4 처럼 이미지 이름과 버전을 슬래시로 구분한다"
+    ],
+    "answer": 2,
+    "explanation": "이미지는 \"이름:태그\" 형식으로 특정 버전을 지정해요. 태그를 생략하면 latest를 받지만, 재현 가능한 환경을 위해서는 버전을 명시하는 게 좋아요."
   }
 ]

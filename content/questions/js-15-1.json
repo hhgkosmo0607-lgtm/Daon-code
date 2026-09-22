@@ -44,5 +44,21 @@
     ],
     "answer": 0,
     "explanation": "자바스크립트는 camelCase(userName)가 표준이고, 클래스는 PascalCase(UserService), 상수는 UPPER_SNAKE_CASE를 쓰는 경우가 많아요. 하이픈은 빼기로 해석돼서 변수명에 못 써요."
+  },
+  {
+    "id": "js-15-1-q4",
+    "lessonId": "js-15-1",
+    "type": "choice",
+    "prompt": "obj.greet?.() 문법의 의미는?",
+    "code": "const obj = {};\nobj.greet?.();",
+    "language": "JavaScript",
+    "options": [
+      "greet 속성이 없으면 그 즉시 TypeError를 던지며 멈춘다",
+      "greet가 함수면 호출하고, 없으면 호출하지 않고 undefined를 반환한다",
+      "greet라는 이름의 빈 함수를 그 자리에서 새로 만들어서 호출한다",
+      "greet가 실제로 있는지 없는지와 상관없이 무조건 실행을 시도한다"
+    ],
+    "answer": 1,
+    "explanation": "옵셔널 체이닝은 메서드 호출에도 쓸 수 있어요. greet 속성이 없거나 null/undefined이면 호출을 건너뛰고 undefined를 돌려줘서 \"없는 함수를 호출하려다 나는 에러\"를 막아 줘요."
   }
 ]

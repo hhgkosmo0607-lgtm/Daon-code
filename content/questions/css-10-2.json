@@ -30,5 +30,37 @@
     ],
     "answer": 0,
     "explanation": "justify-content는 주축(flex-direction이 정한 방향) 정렬, align-items는 그와 수직인 교차축 정렬을 담당해요. 이 둘을 같이 center로 주면 가로세로 모두 정중앙에 배치할 수 있어서, flexbox가 요소를 가운데 정렬하는 대표적인 방법으로 꼽혀요."
+  },
+  {
+    "id": "css-10-2-q3",
+    "lessonId": "css-10-2",
+    "type": "choice",
+    "prompt": "flex-wrap: wrap;인 컨테이너에서 줄이 여러 개가 됐을 때, 그 줄들 사이의 배치를 담당하는 속성은?",
+    "code": ".container {\n  display: flex;\n  flex-wrap: wrap;\n  align-content: space-between;\n}",
+    "language": "CSS",
+    "options": [
+      "align-content — 여러 줄 사이의 배치를 담당한다",
+      "justify-content — 각 줄 안에서 아이템들의 세로 간격을 담당하는 속성이다",
+      "flex-direction — 줄 사이 간격을 항상 자동으로 균등하게 만든다",
+      "align-items — 컨테이너 전체가 아니라 한 줄 안의 세로 정렬을 지정하는 속성이다"
+    ],
+    "answer": 0,
+    "explanation": "align-content는 flex-wrap으로 여러 줄이 생겼을 때, 그 줄들을 교차축 방향으로 어떻게 배치할지 정해요. align-items가 한 줄 안에서 아이템을 정렬하는 것과는 역할이 달라요."
+  },
+  {
+    "id": "css-10-2-q4",
+    "lessonId": "css-10-2",
+    "type": "choice",
+    "prompt": "flex-grow: 1을 모든 아이템에 동일하게 주면?",
+    "code": ".item {\n  flex-grow: 1;\n}",
+    "language": "CSS",
+    "options": [
+      "아이템들이 원래 크기를 유지한 채 전혀 늘어나지 않는다",
+      "남는 공간을 모든 아이템이 똑같은 비율로 나눠 가지며 늘어난다",
+      "첫 번째 아이템만 남는 공간을 전부 차지하고 나머지는 그대로다",
+      "flex-grow는 아이템의 높이에만 영향을 주고 너비와는 무관하다"
+    ],
+    "answer": 1,
+    "explanation": "flex-grow는 컨테이너에 남는 공간이 있을 때 그 공간을 아이템들이 나눠 가지는 비율을 정해요. 모든 아이템에 같은 값(1)을 주면 남는 공간을 똑같이 나눠서 늘어나요."
   }
 ]

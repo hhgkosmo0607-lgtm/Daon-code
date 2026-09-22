@@ -30,5 +30,35 @@
     ],
     "answer": 2,
     "explanation": "다른 패키지의 클래스를 쓰려면 파일 상단에 import문으로 명시하거나, 매번 com.company.model.User처럼 전체 경로를 써야 해요. 단, java.lang 패키지(String, System 등)는 예외적으로 import 없이 바로 쓸 수 있어요."
+  },
+  {
+    "id": "java-9-1-q3",
+    "lessonId": "java-9-1",
+    "type": "choice",
+    "prompt": "package문은 자바 소스 파일 안에서 어디에 위치해야 할까?",
+    "code": "package com.company.model;\n\nimport java.util.List;\n\npublic class User {\n}",
+    "language": "Java",
+    "options": [
+      "클래스 선언 바로 위, import문보다는 아래에 위치해야 한다",
+      "파일의 맨 마지막 줄에 위치해야 한다",
+      "주석을 제외하면 파일의 가장 첫 줄에 위치해야 한다",
+      "위치는 상관없으며 파일 어디에 있어도 동일하게 동작한다"
+    ],
+    "answer": 2,
+    "explanation": "package문은 (주석을 제외하고) 자바 소스 파일에서 가장 먼저 나와야 하는 문장이에요. import문이나 클래스 선언보다도 앞에 있어야 하고, 한 파일에 하나만 쓸 수 있어요."
+  },
+  {
+    "id": "java-9-1-q4",
+    "lessonId": "java-9-1",
+    "type": "choice",
+    "prompt": "package com.company.model; 으로 선언한 User 클래스 파일은 실제로 어떤 폴더 구조에 위치해야 할까?",
+    "options": [
+      "폴더 구조와 무관하게 아무 위치에 두어도 상관없다",
+      "model 폴더 하나에만 위치하면 된다",
+      "company/com/model 순서로 뒤집힌 폴더 구조에 위치해야 한다",
+      "com/company/model 폴더 구조 안에 위치해야 한다"
+    ],
+    "answer": 3,
+    "explanation": "패키지 이름은 실제 폴더 경로와 그대로 대응돼요. package com.company.model;이라면 소스 파일은 com/company/model/ 폴더 안에 있어야 컴파일러와 JVM이 올바르게 클래스를 찾을 수 있어요."
   }
 ]

@@ -40,5 +40,19 @@
     ],
     "answer": 0,
     "explanation": "경로 이동은 브라우저 안에서 라우터가 처리하지만, 새로고침하면 서버가 그 URL을 찾으려 해요. 서버(nginx, Firebase Hosting 등)가 index.html을 대신 내려주게 설정해요."
+  },
+  {
+    "id": "react-12-3-q4",
+    "lessonId": "react-12-3",
+    "type": "choice",
+    "prompt": "로그인 토큰을 localStorage에 저장해 두는 방식의 보안 위험은?",
+    "options": [
+      "localStorage는 반드시 https 환경에서만 동작하도록 브라우저가 제한해서 배포 환경에서는 아예 쓸 수 없다",
+      "XSS로 스크립트가 실행되면 localStorage의 토큰도 함께 읽혀 탈취될 수 있다",
+      "localStorage는 자동으로 5분마다 비워져서 로그인이 자주 끊긴다",
+      "localStorage에 저장한 값은 서버가 절대 검증할 수 없다"
+    ],
+    "answer": 1,
+    "explanation": "자바스크립트가 접근 가능한 저장소라서 XSS 공격에 취약해요. httpOnly 쿠키에 저장하면 스크립트가 직접 읽을 수 없어서 좀 더 안전해요."
   }
 ]

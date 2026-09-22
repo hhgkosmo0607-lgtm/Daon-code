@@ -30,5 +30,37 @@
     ],
     "answer": 2,
     "explanation": "Map의 키는 유일해야 해서, 같은 키로 다시 put하면 새 값이 기존 값을 덮어써요. 결과적으로 \"철수\"의 값은 25가 돼요."
+  },
+  {
+    "id": "java-17-4-q3",
+    "lessonId": "java-17-4",
+    "type": "choice",
+    "prompt": "HashMap에서 존재하지 않는 키로 get()을 호출한 뒤 그 결과를 바로 연산에 쓰면?",
+    "code": "Map<String, Integer> ages = new HashMap<>();\nInteger age = ages.get(\"없는키\"); // ?\nint result = age + 1; // ?",
+    "language": "Java",
+    "options": [
+      "get은 null을 반환하고, 그 null을 int에 더하려다 NullPointerException이 발생한다",
+      "get은 값이 없을 때도 항상 0을 반환하도록 되어 있어서, 결과적으로 result 값은 1이 된다",
+      "get을 호출하는 그 시점에 곧바로 NoSuchElementException 예외가 발생해 버린다",
+      "get은 값이 없으면 빈 문자열을 반환하며 그로 인해 컴파일 에러가 발생하게 된다"
+    ],
+    "answer": 0,
+    "explanation": "Map의 get()은 키가 없으면 예외 없이 null을 반환해요. 문제는 그 null을 언박싱해서 int 연산에 쓰려는 순간, null에서 값을 꺼낼 수 없어서 NullPointerException이 발생해요. 키 존재 여부를 미리 containsKey()로 확인하는 습관이 필요해요."
+  },
+  {
+    "id": "java-17-4-q4",
+    "lessonId": "java-17-4",
+    "type": "choice",
+    "prompt": "Map에 담긴 모든 키-값 쌍을 순회하는 방법으로 가장 적절한 것은?",
+    "code": "for (Map.Entry<String, Integer> entry : ages.entrySet()) {\n    System.out.println(entry.getKey() + \": \" + entry.getValue());\n}",
+    "language": "Java",
+    "options": [
+      "map.get()을 인덱스 0번부터 순서대로 반복 호출해서 순회하는 방식이 표준적인 방법이다",
+      "Map은 순회라는 개념 자체를 지원하지 않아서 각 키를 하나하나 직접 하드코딩해서 꺼내야 한다",
+      "entrySet()으로 키-값 쌍(Entry)을 얻어서 for-each 문으로 순회하는 방식을 쓴다",
+      "map.toArray()로 먼저 배열 형태로 바꾼 뒤에만 비로소 순회가 가능하도록 제한되어 있다"
+    ],
+    "answer": 2,
+    "explanation": "Map은 리스트처럼 인덱스가 없어서 entrySet()(키+값 쌍), keySet()(키만), values()(값만) 같은 메서드로 순회 가능한 형태를 얻어야 해요. 키와 값을 둘 다 써야 한다면 entrySet()이 가장 효율적이에요."
   }
 ]

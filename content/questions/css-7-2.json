@@ -44,5 +44,21 @@
     ],
     "answer": 3,
     "explanation": "fixed는 스크롤 위치와 무관하게 항상 브라우저 화면(뷰포트)의 지정된 위치에 고정돼요. 화면 상단에 항상 떠 있는 헤더나 우측 하단 채팅 버튼에 자주 써요."
+  },
+  {
+    "id": "css-7-2-q4",
+    "lessonId": "css-7-2",
+    "type": "choice",
+    "prompt": "z-index 값을 비교하려면 두 요소가 공통으로 만족해야 하는 조건은?",
+    "code": ".a { position: relative; z-index: 2; }\n.b { position: relative; z-index: 1; }",
+    "language": "CSS",
+    "options": [
+      "z-index는 position과 관계없이 모든 요소에서 항상 비교된다",
+      "두 요소의 배경색과 글자색이 완전히 같아야만 z-index 값이 비교된다",
+      "z-index는 두 요소의 width와 height가 같을 때만 의미를 가진다",
+      "position 값이 static이 아니어야 z-index가 적용된다"
+    ],
+    "answer": 3,
+    "explanation": "z-index는 position이 static이 아닌 요소에만 적용돼요. position: static인 요소에 z-index를 줘도 무시되고 기본 쌓임 순서를 따라요."
   }
 ]

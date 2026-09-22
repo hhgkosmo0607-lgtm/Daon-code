@@ -28,5 +28,37 @@
     ],
     "answer": 0,
     "explanation": "기본값으로 to_csv는 0,1,2… 행 번호도 첫 열로 함께 저장해요. index=False를 주면 그 번호 열을 빼고 실제 데이터 열만 저장해서, 다시 읽을 때 불필요한 열이 생기지 않아요."
+  },
+  {
+    "id": "ai-5-2-q3",
+    "lessonId": "ai-5-2",
+    "type": "choice",
+    "prompt": "df.head()를 호출하면 어떤 결과를 보여줄까?",
+    "code": "df = pd.read_csv('iris.csv')\nprint(df.head())",
+    "language": "Python",
+    "options": [
+      "DataFrame의 전체 행과 열의 개수만 숫자로 세어서 보여준다",
+      "DataFrame의 앞부분 일부 행(기본 5개)을 미리 보여준다",
+      "DataFrame을 CSV 파일로 다시 저장한다",
+      "DataFrame의 모든 값을 무작위로 섞어서 보여준다"
+    ],
+    "answer": 1,
+    "explanation": "head()는 기본적으로 앞에서부터 5개 행을 보여줘서, 데이터가 잘 읽혔는지 구조를 빠르게 확인할 때 써요."
+  },
+  {
+    "id": "ai-5-2-q4",
+    "lessonId": "ai-5-2",
+    "type": "choice",
+    "prompt": "df.groupby('species')['petal_length'].mean()이 계산하는 것은?",
+    "code": "df.groupby('species')['petal_length'].mean()",
+    "language": "Python",
+    "options": [
+      "전체 데이터에서 petal_length의 평균 하나만 계산한다",
+      "species 열에 있던 값을 통째로 petal_length 값으로 전부 바꿔치기해 버리는 작업이다",
+      "품종(species)별로 그룹을 나눠 각 그룹의 petal_length 평균을 계산한다",
+      "species와 petal_length 두 열을 더한 새 열을 만든다"
+    ],
+    "answer": 2,
+    "explanation": "groupby('species')는 같은 품종끼리 그룹을 묶고, 그 뒤 mean()을 붙이면 그룹별로 petal_length의 평균을 각각 계산해줘요."
   }
 ]

@@ -40,5 +40,19 @@
     ],
     "answer": 1,
     "explanation": "stop은 멈추기만 하고 컨테이너를 남겨 두어 start로 다시 켤 수 있어요. down은 컨테이너와 네트워크를 지워요."
+  },
+  {
+    "id": "docker-6-3-q4",
+    "lessonId": "docker-6-3",
+    "type": "choice",
+    "prompt": "compose로 띄운 서비스들이 정상적으로 실행 중인지 상태를 확인하는 명령은?",
+    "options": [
+      "docker compose status --all",
+      "docker compose inspect",
+      "docker compose health",
+      "docker compose ps"
+    ],
+    "answer": 3,
+    "explanation": "docker compose ps는 그 compose 파일에 정의된 서비스들의 컨테이너 상태를 보여 줘요. 단일 컨테이너의 docker ps와 비슷하지만 compose 단위로 묶어서 보여 줘요."
   }
 ]

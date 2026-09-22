@@ -30,5 +30,37 @@
     ],
     "answer": 2,
     "explanation": "pip은 파이썬의 표준 패키지 설치 도구예요(자바의 Maven/Gradle, 자바스크립트의 npm과 비슷한 역할). venv는 패키지를 설치하는 도구가 아니라, 그 패키지들을 담을 독립된 가상환경을 만드는 도구예요."
+  },
+  {
+    "id": "python-20-3-q3",
+    "lessonId": "python-20-3",
+    "type": "choice",
+    "prompt": "venv로 만든 가상환경을 실제로 사용하려면 설치 후 어떤 절차가 필요한가?",
+    "code": "python -m venv myenv\n# 이후 활성화(activate) 과정이 필요하다",
+    "language": "Python",
+    "options": [
+      "설치만 하면 자동으로 항상 켜져 있어서 별도 절차가 필요 없다",
+      "activate 스크립트를 실행해서 그 가상환경을 활성화해야 한다",
+      "컴퓨터를 재부팅해야만 가상환경이 적용된다",
+      "pip install venv를 별도로 한 번 더 실행해야 한다"
+    ],
+    "answer": 1,
+    "explanation": "venv로 가상환경을 만든 뒤에는 activate 스크립트를 실행해서 그 환경을 켜야 해요(윈도우는 Scripts\\activate, 리눅스/맥은 bin/activate). 활성화해야 그 환경 안에 설치한 패키지들을 사용할 수 있어요."
+  },
+  {
+    "id": "python-20-3-q4",
+    "lessonId": "python-20-3",
+    "type": "choice",
+    "prompt": "프로젝트에 설치한 패키지 목록을 다른 사람과 공유하고 싶을 때 흔히 쓰는 방법은?",
+    "code": "pip freeze > requirements.txt\n# 다른 환경에서는\npip install -r requirements.txt",
+    "language": "Python",
+    "options": [
+      "venv 폴더 전체를 압축해서 다른 사람에게 직접 파일로 전달해 준다",
+      "설치한 패키지 이름과 버전을 하나하나 채팅이나 메모로 직접 알려준다",
+      "pip freeze로 목록을 만들어 공유하고 install -r로 설치한다",
+      "파이썬 인터프리터를 완전히 재설치하기만 하면 예전에 설치했던 패키지들이 자동으로 함께 설치된다"
+    ],
+    "answer": 2,
+    "explanation": "pip freeze는 현재 환경에 설치된 패키지와 버전을 목록으로 보여줘요. 이걸 requirements.txt 파일로 저장해두면, 다른 사람이 pip install -r requirements.txt 한 줄로 똑같은 패키지 구성을 설치할 수 있어요."
   }
 ]

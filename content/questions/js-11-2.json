@@ -44,5 +44,21 @@
     ],
     "answer": 2,
     "explanation": "submit의 기본 동작은 서버로 전송하며 페이지를 이동하는 거예요. preventDefault로 막고 fetch 등으로 직접 전송하는 패턴을 자주 써요."
+  },
+  {
+    "id": "js-11-2-q4",
+    "lessonId": "js-11-2",
+    "type": "choice",
+    "prompt": "addEventListener의 세 번째 인자로 true를 주면 어떻게 될까?",
+    "code": "parent.addEventListener('click', handler, true);",
+    "language": "JavaScript",
+    "options": [
+      "이벤트가 자식에게 전달되지 않도록 막는다",
+      "핸들러가 한 번만 실행되도록 만든다",
+      "기본 동작을 자동으로 막아 준다(preventDefault와 같다)",
+      "버블링 대신 캡처링 단계에서 이 핸들러가 먼저 실행된다"
+    ],
+    "answer": 3,
+    "explanation": "세 번째 인자는 캡처링(capture) 옵션이에요. true로 주면 이벤트가 최상위에서 대상으로 내려오는 캡처링 단계에서 먼저 실행되고, 그다음 버블링 단계가 진행돼요."
   }
 ]

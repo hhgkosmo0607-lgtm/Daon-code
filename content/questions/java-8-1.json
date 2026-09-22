@@ -28,5 +28,37 @@
     ],
     "answer": 0,
     "explanation": "클래스 몸체에 바로 선언된 변수를 멤버변수 또는 필드라고 해요. 메서드 안에서만 임시로 쓰이는 지역변수와는 생존 범위가 달라요 — 멤버변수는 그 객체가 살아있는 동안 계속 유지돼요."
+  },
+  {
+    "id": "java-8-1-q3",
+    "lessonId": "java-8-1",
+    "type": "choice",
+    "prompt": "Person p1 = new Person(); Person p2 = new Person(); p1.name = \"철수\"; 를 실행했을 때 p2.name은 어떻게 될까?",
+    "code": "Person p1 = new Person();\nPerson p2 = new Person();\np1.name = \"철수\";\nSystem.out.println(p2.name); // ?",
+    "language": "Java",
+    "options": [
+      "\"철수\" — 같은 클래스로 만든 인스턴스들은 필드 값을 서로 자동으로 공유한다",
+      "그대로 영향받지 않는다(기본값 null) — p1과 p2는 서로 독립된 별개의 객체다",
+      "컴파일 에러 — 한 클래스의 인스턴스는 하나만 만들 수 있다",
+      "\"철수철수\" — 두 인스턴스의 값이 합쳐져서 저장된다"
+    ],
+    "answer": 1,
+    "explanation": "new로 만든 p1과 p2는 각각 독립적인 필드 공간을 가진 별개의 객체예요. p1.name을 바꿔도 p2.name에는 아무 영향이 없고, name을 따로 대입하지 않은 p2.name은 String의 기본값인 null 그대로예요."
+  },
+  {
+    "id": "java-8-1-q4",
+    "lessonId": "java-8-1",
+    "type": "choice",
+    "prompt": "인스턴스 메서드(static이 아닌 일반 메서드)를 객체 생성(new) 없이 클래스 이름으로 바로 호출할 수 있을까?",
+    "code": "class Person {\n    void greet() {\n        System.out.println(\"안녕\");\n    }\n}\n// Person.greet(); 가능할까?",
+    "language": "Java",
+    "options": [
+      "가능하다 — 자바의 모든 메서드는 클래스 이름으로 바로 호출할 수 있다",
+      "가능하다 — 단, 메서드 이름이 클래스 이름과 다를 때만 가능하다",
+      "불가능하다 — 인스턴스 메서드를 호출하려면 먼저 new로 객체를 만들어야 한다",
+      "불가능하다 — greet() 앞에 반드시 public을 붙여야만 클래스 이름으로 호출할 수 있다"
+    ],
+    "answer": 2,
+    "explanation": "인스턴스 메서드는 객체(인스턴스)에 속한 동작이라서, 먼저 new로 객체를 만들고 그 객체를 통해서(p.greet())만 호출할 수 있어요. 클래스 이름으로 바로 호출하려면 static 메서드여야 해요."
   }
 ]

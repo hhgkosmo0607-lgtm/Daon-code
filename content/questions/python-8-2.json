@@ -28,5 +28,37 @@
     ],
     "answer": 0,
     "explanation": "조건 안에 또 다른 조건을 확인해야 할 때 if문 안에 if문을 넣는 걸 중첩(nested) if문이라고 해요. 조건이 너무 깊게 중첩되면 가독성이 떨어져서, and로 조건을 합치는 게 나을 때도 많아요."
+  },
+  {
+    "id": "python-8-2-q3",
+    "lessonId": "python-8-2",
+    "type": "choice",
+    "prompt": "if a > 0: if b > 0: 처럼 중첩된 if문은 어떤 연산자로 한 줄로 줄일 수 있나?",
+    "code": "a, b = 3, 5\nif a > 0:\n    if b > 0:\n        print(\"둘 다 양수\")\n\n# 한 줄로 줄이면?\nif a > 0 and b > 0:\n    print(\"둘 다 양수\")",
+    "language": "Python",
+    "options": [
+      "or 연산자로 두 조건을 합치면 완전히 같은 의미가 된다",
+      "and 연산자로 두 조건을 합치면 같은 의미가 된다",
+      "중첩 if문은 다른 연산자로 절대 대체할 수 없다",
+      "쉼표(,)로 두 조건을 나열하면 같은 의미가 된다"
+    ],
+    "answer": 1,
+    "explanation": "바깥 조건과 안쪽 조건이 둘 다 참이어야 실행되는 중첩 if문은, and로 두 조건을 하나로 합친 if문과 같은 뜻이에요. 조건이 단순할 땐 이렇게 합치는 게 가독성이 더 좋아요."
+  },
+  {
+    "id": "python-8-2-q4",
+    "lessonId": "python-8-2",
+    "type": "choice",
+    "prompt": "다음 코드를 실행하면 무엇이 출력될까?",
+    "code": "num = -4\nif num != 0:\n    if num > 0:\n        print(\"양수\")\n    else:\n        print(\"음수\")\nelse:\n    print(\"0\")",
+    "language": "Python",
+    "options": [
+      "0",
+      "양수",
+      "음수",
+      "아무것도 출력되지 않는다"
+    ],
+    "answer": 2,
+    "explanation": "num이 -4라서 첫 조건(0이 아님)은 참이고, 안쪽에서 num > 0이 거짓이라 else인 \"음수\"가 출력돼요."
   }
 ]

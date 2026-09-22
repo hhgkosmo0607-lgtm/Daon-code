@@ -46,5 +46,21 @@
     ],
     "answer": 2,
     "explanation": "자바스크립트의 숫자는 정수/실수 구분이 없어서 /는 나눗셈 그대로 2.5가 돼요. 정수 나눗셈이 아니에요. %는 나머지라 2예요."
+  },
+  {
+    "id": "js-3-1-q4",
+    "lessonId": "js-3-1",
+    "type": "choice",
+    "prompt": "console.log('10' > '9')의 결과는?",
+    "code": "console.log('10' > '9');",
+    "language": "JavaScript",
+    "options": [
+      "false",
+      "true",
+      "NaN",
+      "오류가 발생한다"
+    ],
+    "answer": 0,
+    "explanation": "양쪽 다 문자열이면 숫자로 바꾸지 않고 글자 하나씩 사전순으로 비교해요. '1'이 '9'보다 코드값이 작아서 '10'은 '9'보다 작다고 판단돼 false예요."
   }
 ]

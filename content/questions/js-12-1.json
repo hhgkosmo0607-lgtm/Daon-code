@@ -42,5 +42,21 @@
     ],
     "answer": 1,
     "explanation": "브라우저 검증은 사용자 편의를 위한 것이고, 개발자 도구나 직접 요청으로 쉽게 우회돼요. 진짜 방어선은 항상 서버 검증이에요."
+  },
+  {
+    "id": "js-12-1-q4",
+    "lessonId": "js-12-1",
+    "type": "choice",
+    "prompt": "select 요소에서 사용자가 고른 값을 가져오는 속성은?",
+    "code": "<select id=\"color\">\n  <option value=\"red\">빨강</option>\n</select>",
+    "language": "JavaScript",
+    "options": [
+      "select.value",
+      "select.selected",
+      "select.text",
+      "select.option"
+    ],
+    "answer": 0,
+    "explanation": "select.value는 선택된 option의 value 속성 값을 돌려줘요. 화면에 보이는 글자(빨강)가 아니라 option에 지정한 값이 나와요."
   }
 ]

@@ -30,5 +30,37 @@
     ],
     "answer": 1,
     "explanation": "매개변수에 기본값을 지정해두면, 호출할 때 그 인자를 생략해도 기본값이 쓰이고, 값을 넘기면 그 값이 우선해요. 이런 매개변수는 기본값 없는 매개변수보다 뒤에 와야 해요."
+  },
+  {
+    "id": "python-14-1-q3",
+    "lessonId": "python-14-1",
+    "type": "choice",
+    "prompt": "def add_item(item, items=[]): 처럼 매개변수의 기본값으로 빈 리스트를 쓰면 생기는 문제는?",
+    "code": "def add_item(item, items=[]):\n    items.append(item)\n    return items\n\nprint(add_item(\"a\"))\nprint(add_item(\"b\"))",
+    "language": "Python",
+    "options": [
+      "기본값 리스트가 호출마다 새로 만들어지지 않고 계속 공유돼서 결과가 ['a', 'b']처럼 누적된다",
+      "호출할 때마다 매번 완전히 새로운 빈 리스트가 그 함수 안에서 새로 만들어져서 항상 ['a'], ['b']처럼 따로 출력된다",
+      "기본값이 지정된 매개변수는 같은 함수를 두 번째로 호출하는 순간부터 자동으로 에러가 발생한다",
+      "items=[] 라는 문법 자체가 파이썬에서는 허용되지 않아 정의 시점에 SyntaxError가 발생한다"
+    ],
+    "answer": 0,
+    "explanation": "파이썬은 함수의 기본값을 함수 정의 시점에 딱 한 번만 만들어요. 리스트처럼 가변 객체를 기본값으로 쓰면, 그 객체가 호출마다 재사용돼서 이전 호출의 흔적이 계속 쌓이는 유명한 함정이에요. 기본값은 None으로 두고 함수 안에서 새 리스트를 만드는 게 안전해요."
+  },
+  {
+    "id": "python-14-1-q4",
+    "lessonId": "python-14-1",
+    "type": "choice",
+    "prompt": "def paramFunc2(name, age): 를 paramFunc2(age=50, name='홍길동') 처럼 호출하면?",
+    "code": "def paramFunc2(name, age):\n    print(name, age)\n\nparamFunc2(age=50, name='홍길동')",
+    "language": "Python",
+    "options": [
+      "정의된 매개변수 순서와 달라서 에러가 발생한다",
+      "매개변수 이름을 지정했으므로 순서와 상관없이 올바르게 대입된다",
+      "순서대로만 대입되어 name에 50, age에 '홍길동'이 들어간다",
+      "첫 번째로 나온 age=50만 반영되고 name은 무시된다"
+    ],
+    "answer": 1,
+    "explanation": "매개변수 이름을 명시해서 값을 넘기는 걸 키워드 인자라고 해요. 키워드 인자를 쓰면 정의할 때의 순서와 상관없이 이름으로 정확히 매칭되기 때문에 정상적으로 name='홍길동', age=50이 대입돼요."
   }
 ]

@@ -30,5 +30,37 @@
     ],
     "answer": 3,
     "explanation": "직접 작성한 .py 파일도 다른 모듈과 똑같이 import할 수 있어요. 파일 이름(확장자 .py 제외)을 그대로 모듈 이름처럼 써서 import하고, 그 안의 함수는 모듈이름.함수이름() 형태로 호출해요."
+  },
+  {
+    "id": "python-16-1-q3",
+    "lessonId": "python-16-1",
+    "type": "choice",
+    "prompt": "import math 대신 from math import sqrt 처럼 가져오면 무엇이 달라지나?",
+    "code": "from math import sqrt\nprint(sqrt(16))  # math.sqrt(16) 대신 sqrt(16)으로 바로 호출",
+    "language": "Python",
+    "options": [
+      "sqrt 함수의 동작 자체가 더 빨라진다",
+      "sqrt 말고 math 모듈의 다른 함수도 전부 자동으로 함께 불러와진다",
+      "math.을 붙이지 않고 sqrt() 이름만으로 바로 호출할 수 있게 된다",
+      "math 모듈 전체가 아예 삭제되어 이후 import math를 쓸 수 없게 된다"
+    ],
+    "answer": 2,
+    "explanation": "from 모듈 import 이름 형태로 가져오면, 그 이름 앞에 모듈명을 붙이지 않고 바로 호출할 수 있어요. 대신 math 모듈의 다른 함수(factorial 등)는 따로 또 import해야 써요."
+  },
+  {
+    "id": "python-16-1-q4",
+    "lessonId": "python-16-1",
+    "type": "choice",
+    "prompt": "mod2.py 안에 if __name__ == \"__main__\": 코드가 있다면, 그 모듈을 import했을 때 이 블록은 실행될까?",
+    "code": "# mod2.py\ndef mul(a, b):\n    return a * b\n\nif __name__ == \"__main__\":\n    print(mul(2, 3))  # 직접 실행할 때만 동작\n\n# main.py\nimport mod2\nprint(mod2.mul(3, 4))",
+    "language": "Python",
+    "options": [
+      "실행된다 — 다른 파일에서 이 모듈을 import하기만 해도 항상 자동으로 함께 실행되어 버리는 코드이다",
+      "실행 여부는 매번 무작위로 결정되며 실행할 때마다 결과가 달라질 수 있다",
+      "mod2.py 파일 자체를 완전히 삭제해야만 이 블록이 실행되지 않게 된다",
+      "실행되지 않는다 — import될 때는 __name__ 값이 모듈명이 되어 조건식이 거짓이 되기 때문이다"
+    ],
+    "answer": 3,
+    "explanation": "파이썬 파일을 직접 실행하면 그 파일의 __name__은 \"__main__\"이 되지만, 다른 파일에서 import되면 __name__에는 모듈 이름(mod2)이 담겨요. 그래서 if __name__ == \"__main__\": 블록은 그 파일을 직접 실행했을 때만 동작하고, import될 때는 실행되지 않아요."
   }
 ]

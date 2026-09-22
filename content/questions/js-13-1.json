@@ -42,5 +42,21 @@
     ],
     "answer": 0,
     "explanation": "쿠키에는 삭제 함수가 없어서 expires(또는 max-age=0)를 과거로 지정하면 브라우저가 지워요."
+  },
+  {
+    "id": "js-13-1-q4",
+    "lessonId": "js-13-1",
+    "type": "choice",
+    "prompt": "쿠키에 유효기간을 설정하는 방법은?",
+    "code": "document.cookie = 'user=kim; max-age=3600';",
+    "language": "JavaScript",
+    "options": [
+      "document.cookie에 expires 또는 max-age 속성을 함께 적는다",
+      "쿠키가 아니라 localStorage.setExpire() 메서드를 대신 호출한다",
+      "쿠키는 애초에 유효기간을 설정할 수 없고 항상 세션 동안만 유지된다",
+      "document.cookie 객체의 duration이라는 속성에 값을 대입한다"
+    ],
+    "answer": 0,
+    "explanation": "expires에 날짜를, max-age에 초 단위 시간을 지정하면 그 시점까지 쿠키가 유지돼요. 아무것도 지정하지 않으면 브라우저(탭)를 닫을 때 사라지는 세션 쿠키가 돼요."
   }
 ]

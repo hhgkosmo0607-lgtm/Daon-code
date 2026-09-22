@@ -28,5 +28,37 @@
     ],
     "answer": 3,
     "explanation": "필드를 그냥 public으로 열어두면 누구든 아무 값이나 바로 대입할 수 있어요. setter를 거치게 하면 \"balance는 음수가 될 수 없다\" 같은 규칙을 강제할 수 있어서 객체가 항상 유효한 상태를 유지하게 도와줘요."
+  },
+  {
+    "id": "java-10-2-q3",
+    "lessonId": "java-10-2",
+    "type": "choice",
+    "prompt": "필드에 getter만 만들고 setter는 만들지 않으면 어떤 효과가 있을까?",
+    "code": "class Product {\n    private final String id;\n    Product(String id) { this.id = id; }\n\n    public String getId() { return id; }\n    // setId()는 없음\n}",
+    "language": "Java",
+    "options": [
+      "외부에서 값을 읽을 수만 있고 수정은 할 수 없는, 읽기 전용에 가까운 필드를 만들 수 있다",
+      "getter만 있어도 컴파일러가 자동으로 대응하는 setter를 만들어서 수정도 가능해진다",
+      "getter만 있는 필드는 클래스 외부에서 아예 조회조차 할 수 없다",
+      "컴파일 에러 — getter가 있으면 반드시 대응하는 setter도 정의해야 한다"
+    ],
+    "answer": 0,
+    "explanation": "getter만 제공하고 setter를 두지 않으면, 외부에서는 값을 조회만 할 수 있고 직접 바꿀 방법이 없어요. 생성자에서 한 번 정해진 뒤 바뀌지 않아야 하는 값(예: id)을 다룰 때 자주 쓰는 방식이에요."
+  },
+  {
+    "id": "java-10-2-q4",
+    "lessonId": "java-10-2",
+    "type": "choice",
+    "prompt": "필드를 캡슐화하지 않고 public으로 그냥 열어두면 어떤 문제가 생길 수 있을까?",
+    "code": "class Account {\n    public int balance; // 캡슐화하지 않음\n}\n\nAccount acc = new Account();\nacc.balance = -9999; // 검증 없이 그대로 대입됨",
+    "language": "Java",
+    "options": [
+      "외부에서 아무 검증 없이 값을 곧바로 바꿀 수 있어서 객체가 잘못된 상태에 빠질 위험이 있다",
+      "필드에 접근할 때마다 속도가 느려져서 프로그램 전체 성능이 떨어진다",
+      "public 필드는 자바 문법상 값을 아예 읽을 수 없게 된다",
+      "다른 클래스에서 상속을 받을 수 없게 된다"
+    ],
+    "answer": 0,
+    "explanation": "필드를 public으로 열어두면 setter 같은 검증 절차 없이 누구나 아무 값이나 바로 대입할 수 있어요. 위 예시처럼 잔액이 음수가 되는 것 같은 잘못된 상태를 막을 방법이 없어서, 객체의 일관성이 깨지기 쉬워요."
   }
 ]

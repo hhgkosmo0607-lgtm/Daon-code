@@ -44,5 +44,21 @@
     ],
     "answer": 3,
     "explanation": "스프레드는 1단계만 복사하는 얕은 복사라서 안쪽 객체 p는 a와 b가 공유해요. 완전히 분리하려면 structuredClone 같은 깊은 복사를 써요."
+  },
+  {
+    "id": "js-15-2-q4",
+    "lessonId": "js-15-2",
+    "type": "choice",
+    "prompt": "아래 코드의 출력은?",
+    "code": "let a = 5;\nlet b = a;\nb = 10;\nconsole.log(a);",
+    "language": "JavaScript",
+    "options": [
+      "10",
+      "undefined",
+      "5",
+      "오류가 발생한다"
+    ],
+    "answer": 2,
+    "explanation": "숫자, 문자열 같은 원시값은 대입할 때 값 자체가 복사돼요. b를 바꿔도 a가 가진 값 5는 그대로 유지돼요. 객체·배열이 참조를 공유하는 것과 대조적이에요."
   }
 ]

@@ -46,5 +46,21 @@
     ],
     "answer": 2,
     "explanation": "리스트의 append()와 달리, 딕셔너리는 그냥 새 키에 값을 대입하기만 하면 그 키-값 쌍이 자동으로 추가돼요. 이미 있는 키면 값이 덮어써져요."
+  },
+  {
+    "id": "python-6-1-q4",
+    "lessonId": "python-6-1",
+    "type": "choice",
+    "prompt": "person = {\"name\": \"철수\"}; person.get(\"height\", 0) 을 실행하면?",
+    "code": "person = {\"name\": \"철수\"}\nprint(person.get(\"height\", 0))",
+    "language": "Python",
+    "options": [
+      "0 — 키가 없으면 두 번째 인자로 지정한 기본값을 반환한다",
+      "KeyError가 발생한다 — get()도 대괄호와 똑같이 동작한다",
+      "None — 두 번째 인자는 무시되고 항상 None이 반환된다",
+      "\"height\" — 존재하지 않는 키 이름 자체가 반환된다"
+    ],
+    "answer": 0,
+    "explanation": "dict.get(키, 기본값)은 키가 없을 때 에러 대신 지정한 기본값을 돌려줘요. 기본값을 생략하면 None이 반환돼요."
   }
 ]

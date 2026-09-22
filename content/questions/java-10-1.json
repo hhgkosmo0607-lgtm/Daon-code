@@ -31,5 +31,35 @@
     ],
     "answer": 1,
     "explanation": "아무 접근제어자도 안 쓰면 default 상태가 되는데, 이건 같은 패키지 안에 있는 클래스들끼리만 접근할 수 있다는 뜻이에요."
+  },
+  {
+    "id": "java-10-1-q3",
+    "lessonId": "java-10-1",
+    "type": "choice",
+    "prompt": "같은 클래스 안의 메서드에서, private 필드를 '다른 인스턴스'의 것까지 접근할 수 있을까?",
+    "code": "class Point {\n    private int x;\n    Point(int x) { this.x = x; }\n\n    boolean sameX(Point other) {\n        return this.x == other.x; // 다른 인스턴스의 private 필드 접근\n    }\n}",
+    "language": "Java",
+    "options": [
+      "접근할 수 없다 — private은 오직 this가 가리키는 자기 자신의 필드에만 허용된다",
+      "접근할 수 있다 — private은 인스턴스 단위가 아니라 클래스 단위로 적용되는 접근 범위다",
+      "접근할 수 있다 — 단, getter 메서드를 거쳐야만 가능하다",
+      "컴파일 에러 — other.x처럼 다른 객체의 필드를 직접 쓰는 문법 자체가 없다"
+    ],
+    "answer": 1,
+    "explanation": "private은 '인스턴스별'이 아니라 '클래스별' 접근 제한이에요. 그래서 같은 클래스 안의 메서드라면 other.x처럼 다른 인스턴스의 private 필드에도 직접 접근할 수 있어요. equals() 같은 메서드에서 흔히 쓰이는 패턴이에요."
+  },
+  {
+    "id": "java-10-1-q4",
+    "lessonId": "java-10-1",
+    "type": "choice",
+    "prompt": "protected로 선언한 필드는 어디까지 접근할 수 있을까?",
+    "options": [
+      "선언된 클래스 내부에서만 접근할 수 있다",
+      "어떤 클래스에서든 제한 없이 접근할 수 있다",
+      "같은 패키지의 클래스와, 패키지가 달라도 상속받은 자식 클래스라면 접근할 수 있다",
+      "같은 패키지 안의 클래스에서만 접근할 수 있고 상속과는 무관하다"
+    ],
+    "answer": 2,
+    "explanation": "protected는 같은 패키지 안이라면 default처럼 접근할 수 있고, 거기에 더해 패키지가 달라도 그 클래스를 상속받은 자식 클래스에서는 접근할 수 있게 범위를 넓혀줘요."
   }
 ]

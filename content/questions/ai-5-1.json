@@ -28,5 +28,37 @@
     ],
     "answer": 2,
     "explanation": "df['열이름']은 그 열을 Series로 돌려줘요. 열을 여러 개 골라 DataFrame으로 받으려면 df[['name', 'age']]처럼 대괄호 두 겹을 써요."
+  },
+  {
+    "id": "ai-5-1-q3",
+    "lessonId": "ai-5-1",
+    "type": "choice",
+    "prompt": "df[['name', 'age']]처럼 대괄호를 두 겹으로 써서 열을 선택하면 결과는?",
+    "code": "df = pd.DataFrame({'name': ['철수', '영희'], 'age': [20, 22]})\nsub = df[['name', 'age']]",
+    "language": "Python",
+    "options": [
+      "name 열만 담긴 Series",
+      "age 열의 평균값",
+      "행과 열이 뒤바뀐 형태의 DataFrame",
+      "선택한 열들로 이루어진 DataFrame"
+    ],
+    "answer": 3,
+    "explanation": "대괄호 안에 열 이름 리스트를 넣으면 그 열들을 모은 DataFrame이 돼요. 열을 하나만 df['age']처럼 꺼내면 Series가 되는 것과 구분돼요."
+  },
+  {
+    "id": "ai-5-1-q4",
+    "lessonId": "ai-5-1",
+    "type": "choice",
+    "prompt": "df.loc[0, 'age']처럼 loc을 사용할 때의 의미는?",
+    "code": "df = pd.DataFrame({'name': ['철수', '영희'], 'age': [20, 22]})\nvalue = df.loc[0, 'age']",
+    "language": "Python",
+    "options": [
+      "인덱스가 0인 행의 'age' 열 값을 가져온다",
+      "0번째부터 age번째 행까지 모두 가져온다",
+      "age 열의 0번째로 작은 값을 가져온다",
+      "0행 0열의 값을 무조건 가져오며 열 이름은 무시된다"
+    ],
+    "answer": 0,
+    "explanation": "loc[행 라벨, 열 이름]은 라벨을 기준으로 값을 찾아요. loc[0, 'age']는 인덱스 0번 행의 age 열 값을 가져와요."
   }
 ]

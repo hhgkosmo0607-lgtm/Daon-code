@@ -42,5 +42,20 @@
     ],
     "answer": 1,
     "explanation": "태그 사이에 넣은 내용은 자동으로 children props가 돼요. 카드, 레이아웃처럼 내용을 감싸는 컴포넌트를 만들 때 써요."
+  },
+  {
+    "id": "react-2-2-q4",
+    "lessonId": "react-2-2",
+    "type": "choice",
+    "prompt": "name props를 넘기지 않았을 때 기본값 '손님'을 쓰도록 지정하는 올바른 방법은?",
+    "code": "function Hi({ name = '손님' }) {\n  return <p>안녕, {name}</p>;\n}",
+    "options": [
+      "컴포넌트 안에서 if (name === undefined) name = '손님'; 으로만 처리해야 한다",
+      "함수 매개변수를 구조 분해하면서 { name = '손님' }처럼 기본값을 준다",
+      "JSX 태그에 <Hi name?='손님' />처럼 물음표를 붙인다",
+      "defaultProps 없이는 기본값을 줄 방법이 아예 없다"
+    ],
+    "answer": 1,
+    "explanation": "구조 분해 할당 문법 자체가 기본값을 지원해서 name이 undefined일 때만 '손님'이 쓰여요. props 객체를 직접 검사하지 않아도 돼요."
   }
 ]

@@ -40,5 +40,33 @@
     ],
     "answer": 0,
     "explanation": "LEVEL은 루트가 1이고, 하위로 내려갈수록 1씩 증가하는 의사컬럼(pseudo column)이에요."
+  },
+  {
+    "id": "sqld-4-2-q4",
+    "lessonId": "sqld-4-2",
+    "type": "choice",
+    "prompt": "계층형 질의에서 해당 행이 더 이상 하위 행이 없는 최말단(리프) 노드인지 판별할 때 쓰는 의사컬럼은?",
+    "options": [
+      "LEVEL",
+      "CONNECT_BY_ROOT",
+      "SYS_CONNECT_BY_PATH",
+      "CONNECT_BY_ISLEAF"
+    ],
+    "answer": 3,
+    "explanation": "CONNECT_BY_ISLEAF는 해당 행이 최말단(자식이 없는) 노드면 1, 아니면 0을 반환해요. CONNECT_BY_ROOT는 최상위 루트 값을, SYS_CONNECT_BY_PATH는 루트부터의 경로를 보여줘요."
+  },
+  {
+    "id": "sqld-4-2-q5",
+    "lessonId": "sqld-4-2",
+    "type": "choice",
+    "prompt": "계층형 질의 결과에서 트리 구조(레벨 순서)는 깨지 않으면서, 같은 레벨(형제 노드) 안에서만 특정 컬럼 기준으로 정렬하고 싶을 때 쓰는 절은?",
+    "options": [
+      "ORDER SIBLINGS BY",
+      "ORDER BY — 트리 구조를 무시하고 전체를 다시 정렬",
+      "GROUP BY — 값을 그룹으로 묶어서 집계",
+      "SORT BY — 표준 SQL에는 없는 문법"
+    ],
+    "answer": 0,
+    "explanation": "일반 ORDER BY를 계층형 질의에 쓰면 트리 구조가 깨질 수 있어요. ORDER SIBLINGS BY는 트리 구조는 유지한 채로 형제 노드끼리만 정렬해줘요."
   }
 ]

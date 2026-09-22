@@ -30,5 +30,37 @@
     ],
     "answer": 2,
     "explanation": "color는 글자색, background-color는 그 요소의 배경 색을 지정해요. 흰 글씨에 검은 배경처럼 대비를 줄 때 이 둘을 같이 써요."
+  },
+  {
+    "id": "css-3-2-q3",
+    "lessonId": "css-3-2",
+    "type": "choice",
+    "prompt": "background-size: cover; 의 동작 방식은?",
+    "code": "div {\n  width: 300px;\n  height: 200px;\n  background-image: url(\"bg.jpg\");\n  background-size: cover;\n}",
+    "language": "CSS",
+    "options": [
+      "이미지의 원본 크기를 그대로 유지한 채 잘리는 부분 없이 표시해준다",
+      "이미지를 요소 크기에 딱 맞게 눌러서 비율이 깨지더라도 꽉 채워버린다",
+      "비율을 유지한 채 채우고 남는 부분은 잘라낸다",
+      "이미지를 요소 크기와 관계없이 항상 100px 정사각형 크기로 고정 표시한다"
+    ],
+    "answer": 2,
+    "explanation": "background-size: cover는 이미지 비율을 유지하면서 요소 영역을 빈틈없이 채워요. 이미지가 요소보다 크면 넘치는 부분이 잘려나가요."
+  },
+  {
+    "id": "css-3-2-q4",
+    "lessonId": "css-3-2",
+    "type": "choice",
+    "prompt": "background-position: center; 을 지정하면?",
+    "code": "div {\n  background-image: url(\"icon.png\");\n  background-repeat: no-repeat;\n  background-position: center;\n}",
+    "language": "CSS",
+    "options": [
+      "배경 이미지가 반복되면서 요소 전체를 채운다",
+      "배경 이미지가 요소의 왼쪽 위 모서리에 고정된다",
+      "배경 이미지의 투명도가 중간값(50%)으로 조정된다",
+      "배경 이미지가 요소 영역의 가운데에 위치하게 된다"
+    ],
+    "answer": 3,
+    "explanation": "background-position은 배경 이미지가 요소 안에서 어디에 놓일지 지정해요. center를 주면 가로세로 모두 가운데에 배치돼요."
   }
 ]

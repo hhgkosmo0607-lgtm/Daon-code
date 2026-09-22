@@ -42,5 +42,21 @@
     ],
     "answer": 0,
     "explanation": "읽기 전용임을 알려 주면 불필요한 변경 감지 등을 줄일 수 있고 의도도 드러나요."
+  },
+  {
+    "id": "spring-7-1-q4",
+    "lessonId": "spring-7-1",
+    "type": "choice",
+    "prompt": "체크 예외(Exception)가 발생해도 트랜잭션을 롤백시키고 싶을 때 쓰는 속성은?",
+    "code": "@Transactional(rollbackFor = Exception.class)\npublic void save(...) throws Exception { ... }",
+    "language": "Java",
+    "options": [
+      "@Transactional(readOnly = true)",
+      "@Transactional(propagation = Propagation.REQUIRES_NEW)",
+      "@Transactional(rollbackFor = Exception.class)",
+      "@Transactional(isolation = Isolation.SERIALIZABLE)"
+    ],
+    "answer": 2,
+    "explanation": "기본은 체크 예외에서 커밋하지만, rollbackFor에 예외 클래스를 지정하면 그 예외에서도 롤백하도록 정책을 바꿀 수 있어요."
   }
 ]

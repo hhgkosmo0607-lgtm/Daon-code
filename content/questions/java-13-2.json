@@ -30,5 +30,37 @@
     ],
     "answer": 1,
     "explanation": "인터페이스의 필드는 선언만 해도 자동으로 public static final이 붙어요. 그래서 값이 고정된 상수로만 쓸 수 있고, 구현체마다 다른 값을 가질 수 없어요."
+  },
+  {
+    "id": "java-13-2-q3",
+    "lessonId": "java-13-2",
+    "type": "choice",
+    "prompt": "자바 8부터 인터페이스에 추가된, 구현부(몸체)를 가질 수 있는 메서드는?",
+    "code": "interface Greeter {\n    default void greet() {\n        System.out.println(\"안녕하세요\");\n    }\n}",
+    "language": "Java",
+    "options": [
+      "abstract 메서드",
+      "static 필드",
+      "default 메서드",
+      "private 생성자"
+    ],
+    "answer": 2,
+    "explanation": "default 메서드는 인터페이스 안에 구현부를 직접 작성할 수 있는 메서드예요. 기존 구현체들을 깨뜨리지 않으면서 인터페이스에 새 기능을 추가할 때 유용해요."
+  },
+  {
+    "id": "java-13-2-q4",
+    "lessonId": "java-13-2",
+    "type": "choice",
+    "prompt": "한 클래스가 여러 인터페이스를 동시에 구현하려면 어떻게 해야 할까?",
+    "code": "interface Flyable { void fly(); }\ninterface Swimmable { void swim(); }\nclass Duck implements Flyable, Swimmable {\n    public void fly() { }\n    public void swim() { }\n}",
+    "language": "Java",
+    "options": [
+      "한 클래스는 인터페이스를 최대 1개까지만 구현(implements)할 수 있다",
+      "한 클래스는 콤마로 나열해서 여러 인터페이스를 동시에 구현할 수 있다",
+      "인터페이스를 구현하려면 반드시 추상클래스를 거쳐야 한다",
+      "인터페이스는 클래스가 아니라 변수만 구현할 수 있다"
+    ],
+    "answer": 1,
+    "explanation": "implements 뒤에 콤마로 여러 인터페이스를 나열하면 한 클래스가 동시에 여러 인터페이스를 구현할 수 있어요. 클래스 상속(extends)과 달리 인터페이스 구현에는 개수 제한이 없어요."
   }
 ]

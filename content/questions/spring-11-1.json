@@ -51,7 +51,7 @@
     "type": "choice",
     "prompt": "application.properties의 spring.jpa.hibernate.ddl-auto=create를 운영 DB에 쓰면 안 되는 이유는?",
     "code": "spring.jpa.hibernate.ddl-auto=create",
-    "language": "Java",
+    "language": "Properties",
     "options": [
       "기동할 때 테이블이 이미 존재하면 오류가 나서 서버가 시작되지 않아서",
       "생성된 테이블에 인덱스가 만들어지지 않아 조회가 느려져서",

@@ -42,5 +42,19 @@
     ],
     "answer": 1,
     "explanation": "HTML은 위에서 아래로 읽으며 요소를 만들어요. 스크립트를 body 맨 끝에 두거나 defer 속성, DOMContentLoaded 이벤트를 쓰면 해결돼요."
+  },
+  {
+    "id": "js-10-1-q4",
+    "lessonId": "js-10-1",
+    "type": "choice",
+    "prompt": "document.querySelectorAll('.item')이 반환하는 값에 대한 설명으로 맞는 것은?",
+    "options": [
+      "진짜 배열이라서 map, filter, reduce를 아무 변환 없이 바로 쓸 수 있다",
+      "NodeList로, forEach는 쓸 수 있지만 map 같은 배열 메서드는 배열로 바꿔야 쓴다",
+      "조건에 맞는 요소 중 첫 번째 요소 하나만 담고 있는 값을 반환한다",
+      "요소의 태그 이름만 모아 놓은 문자열 배열을 반환한다"
+    ],
+    "answer": 1,
+    "explanation": "querySelectorAll은 배열이 아니라 NodeList를 돌려줘요. forEach는 붙어 있지만 map/filter를 쓰려면 Array.from(list)이나 [...list]로 진짜 배열로 바꿔야 해요."
   }
 ]

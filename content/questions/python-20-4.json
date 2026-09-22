@@ -30,5 +30,37 @@
     ],
     "answer": 0,
     "explanation": "zip()은 여러 리스트를 같은 인덱스끼리 짝지어서 튜플로 묶어줘요. 두 리스트를 나란히 놓고 하나씩 같이 순회하고 싶을 때 자주 써요(예: for num, letter in zip(...))."
+  },
+  {
+    "id": "python-20-4-q3",
+    "lessonId": "python-20-4",
+    "type": "choice",
+    "prompt": "print(*[1, 2, 3]) 처럼 리스트 앞에 별표(*)를 붙여서 넘기면?",
+    "code": "nums = [1, 2, 3]\nprint(*nums)\n# 1 2 3",
+    "language": "Python",
+    "options": [
+      "리스트가 통째로 하나의 인자로 print에 전달된다",
+      "에러가 발생한다 — print() 함수에는 별표(*)를 아예 쓸 수 없다",
+      "리스트의 첫 번째 값만 별도로 강조되어 출력된다",
+      "리스트가 풀려서 1, 2, 3이 각각 별개의 인자로 전달된다"
+    ],
+    "answer": 3,
+    "explanation": "함수를 호출할 때 리스트나 튜플 앞에 *를 붙이면, 그 안의 요소들이 낱개로 풀려서 각각 별도의 인자로 전달돼요. print(*nums)는 print(1, 2, 3)과 같아져요."
+  },
+  {
+    "id": "python-20-4-q4",
+    "lessonId": "python-20-4",
+    "type": "choice",
+    "prompt": "if \"a\" in [\"a\", \"b\", \"c\"]: 처럼 in 연산자를 리스트에 쓰면 무엇을 검사하나?",
+    "code": "fruits = [\"사과\", \"바나나\"]\nprint(\"사과\" in fruits)   # True\nprint(\"포도\" in fruits)   # False",
+    "language": "Python",
+    "options": [
+      "리스트 안에 해당 값이 존재하는지 여부를 True 또는 False로 검사해서 알려준다",
+      "해당 값이 리스트 안에서 정확히 몇 번째 인덱스 위치에 있는지를 숫자 형태로 반환해준다",
+      "리스트 안에 들어있는 모든 값을 지정한 그 값으로 전부 바꿔서 반환해준다",
+      "리스트 전체가 텅 비어있는지 여부만 True/False로 검사해서 알려준다"
+    ],
+    "answer": 0,
+    "explanation": "in 연산자는 왼쪽 값이 오른쪽 컬렉션(리스트, 튜플, 문자열, 딕셔너리 등) 안에 들어있는지를 검사해서 True/False를 돌려줘요. 자바에서 리스트.contains(값)로 하던 걸 훨씬 간결하게 쓸 수 있어요."
   }
 ]

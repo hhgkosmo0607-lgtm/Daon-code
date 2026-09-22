@@ -44,5 +44,21 @@
     ],
     "answer": 3,
     "explanation": "<tr>(table row)이 한 행을 나타내요. 그 안에 <td>나 <th>로 각 셀을 채워요."
+  },
+  {
+    "id": "html-3-1-q4",
+    "lessonId": "html-3-1",
+    "type": "choice",
+    "prompt": "<table>의 <thead>와 <tbody>를 나누어 쓰는 이유는?",
+    "code": "<table>\n  <thead>\n    <tr><th>이름</th><th>나이</th></tr>\n  </thead>\n  <tbody>\n    <tr><td>철수</td><td>20</td></tr>\n  </tbody>\n</table>",
+    "language": "HTML",
+    "options": [
+      "나누지 않으면 <table> 자체가 화면에 렌더링되지 않기 때문에",
+      "<thead>가 없으면 <th> 태그를 아예 쓸 수 없게 되기 때문에",
+      "표 안의 전체 행 개수를 자동으로 계산해서 표시해주기 위해서",
+      "제목 행과 본문 행을 구분해 표를 더 명확히 다루기 위해"
+    ],
+    "answer": 3,
+    "explanation": "<thead>와 <tbody>는 표의 제목 부분과 본문 부분을 구조적으로 구분해줘요. 필수는 아니지만, 긴 표에 스크롤이나 스타일을 따로 줄 때 유용하고 문서 구조도 더 명확해져요."
   }
 ]

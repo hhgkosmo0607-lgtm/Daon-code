@@ -46,5 +46,21 @@
     ],
     "answer": 1,
     "explanation": "instanceof는 \"이 참조변수가 실제로 가리키는 객체가 이 타입이 맞는지\"를 boolean으로 알려줘요. 부모 타입으로 다루다가 자식 전용 기능이 필요할 때, 먼저 instanceof로 확인한 뒤 캐스팅하는 패턴으로 자주 써요."
+  },
+  {
+    "id": "java-12-3-q4",
+    "lessonId": "java-12-3",
+    "type": "choice",
+    "prompt": "실제로는 BaseSpeaker가 아닌 Speaker 인스턴스를 BaseSpeaker 타입으로 강제 캐스팅하면?",
+    "code": "Speaker speaker = new Speaker(); // BaseSpeaker가 아님\nBaseSpeaker bs = (BaseSpeaker) speaker; // ?",
+    "language": "Java",
+    "options": [
+      "정상적으로 실행된다 — 부모 타입은 어떤 상황에서도 자식 타입으로 안전하게 캐스팅이 가능하다",
+      "컴파일 단계에서부터 에러가 발생해서 애초에 이런 코드 자체를 작성할 수 없게 된다",
+      "실행 중 ClassCastException 발생 — 실제 객체가 BaseSpeaker가 아니기 때문이다",
+      "speaker 변수가 자동으로 진짜 BaseSpeaker 인스턴스로 바뀌면서 문제없이 실행된다"
+    ],
+    "answer": 2,
+    "explanation": "캐스팅 문법 자체는 컴파일되지만, 실제 객체가 그 타입이 아니면 실행 중에 ClassCastException이 발생해요. 이런 실수를 막으려면 캐스팅 전에 instanceof로 먼저 확인하는 습관이 필요해요."
   }
 ]

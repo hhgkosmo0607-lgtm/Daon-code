@@ -54,5 +54,19 @@
     ],
     "answer": 1,
     "explanation": "컬럼 개수와 타입 호환성만 맞으면 되고, 컬럼명은 달라도 상관없어요(결과 컬럼명은 첫 번째 SELECT문 기준으로 나와요)."
+  },
+  {
+    "id": "sqld-4-1-q5",
+    "lessonId": "sqld-4-1",
+    "type": "choice",
+    "prompt": "UNION으로 여러 SELECT문을 합칠 때, ORDER BY절은 어디에 써야 하나?",
+    "options": [
+      "합쳐지는 각 SELECT문마다 하나씩 나눠서 쓴다",
+      "가장 첫 번째 SELECT문에만 쓴다",
+      "가장 마지막 SELECT문 뒤에 한 번만 쓴다",
+      "ORDER BY는 UNION과 함께 쓸 수 없다"
+    ],
+    "answer": 2,
+    "explanation": "집합 연산자로 합친 결과 전체를 정렬하는 것이므로, ORDER BY는 맨 마지막 SELECT문 뒤에 한 번만 써야 해요. 중간 SELECT문에 쓰면 문법 오류가 나요."
   }
 ]

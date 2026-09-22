@@ -44,5 +44,21 @@
     ],
     "answer": 2,
     "explanation": "배열 순회에는 값을 바로 주는 for...of(또는 forEach)가 의도에 맞아요. for...in은 원래 객체의 키를 열거하는 용도예요."
+  },
+  {
+    "id": "js-4-3-q4",
+    "lessonId": "js-4-3",
+    "type": "choice",
+    "prompt": "for (const ch of 'ab') console.log(ch); 의 출력은?",
+    "code": "for (const ch of 'ab') console.log(ch);",
+    "language": "JavaScript",
+    "options": [
+      "문자 a, b가 한 글자씩 출력된다",
+      "'ab'가 한 번에 출력된다",
+      "인덱스 0, 1이 출력된다",
+      "TypeError가 발생한다(문자열은 순회할 수 없다)"
+    ],
+    "answer": 0,
+    "explanation": "문자열도 배열처럼 순회 가능한(iterable) 값이라 for...of로 한 글자씩 꺼낼 수 있어요. 여러 바이트로 이루어진 이모지 등도 한 글자 단위로 올바르게 나눠 줘요."
   }
 ]

@@ -42,5 +42,21 @@
     ],
     "answer": 1,
     "explanation": "&&는 왼쪽이 truthy이면 오른쪽 값을 그대로 돌려줘요(불리언으로 바꾸지 않음). 왼쪽이 falsy이면 그 값에서 멈춰요. || 도 같은 방식으로 값 자체를 돌려줘요."
+  },
+  {
+    "id": "js-3-2-q4",
+    "lessonId": "js-3-2",
+    "type": "choice",
+    "prompt": "console.log(!!'')의 결과는?",
+    "code": "console.log(!!'');",
+    "language": "JavaScript",
+    "options": [
+      "true",
+      "false",
+      "''",
+      "undefined"
+    ],
+    "answer": 1,
+    "explanation": "!는 값을 불리언으로 바꾼 뒤 뒤집어요. 빈 문자열은 falsy라서 !''는 true이고, 한 번 더 뒤집는 !!''는 false가 돼요. !!는 값을 truthy/falsy 그대로의 불리언으로 바꿀 때 자주 써요."
   }
 ]

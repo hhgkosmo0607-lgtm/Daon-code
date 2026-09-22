@@ -44,5 +44,20 @@
     ],
     "answer": 0,
     "explanation": "border-style은 solid(실선), dashed(파선), dotted(점선), double(이중선) 등 선 모양을 지정해요. auto는 border-style에 쓰이는 값이 아니에요."
+  },
+  {
+    "id": "css-3-1-q4",
+    "lessonId": "css-3-1",
+    "type": "choice",
+    "prompt": "border-width, border-style, border-color 중 실제로 테두리가 화면에 보이기 위해 반드시 지정해야 하는 값은?",
+    "language": "CSS",
+    "options": [
+      "border-color만 지정하면 나머지 값은 몰라도 항상 테두리가 화면에 보인다",
+      "border-style 기본값이 none이라 안 주면 선이 안 보인다",
+      "border-width만 지정해도 색상과 선 스타일까지 전부 자동으로 채워진다",
+      "셋 다 지정하지 않아도 border는 기본값 그대로 화면에 항상 표시된다"
+    ],
+    "answer": 1,
+    "explanation": "border-style의 기본값은 none이에요. 두께(width)나 색(color)을 지정해도 style을 solid 같은 값으로 지정하지 않으면 테두리 자체가 보이지 않아요."
   }
 ]

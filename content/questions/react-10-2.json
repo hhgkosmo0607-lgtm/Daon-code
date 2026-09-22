@@ -26,5 +26,34 @@
     ],
     "answer": 1,
     "explanation": "useOptimistic의 임시 값은 액션이 진행되는 동안만 유지되고, 끝나면 실제 state에서 다시 계산돼요. 실패했다면 실제 state가 안 바뀌었으니 원래대로 돌아가요."
+  },
+  {
+    "id": "react-10-2-q3",
+    "lessonId": "react-10-2",
+    "type": "choice",
+    "prompt": "useOptimistic(state, updateFn)의 기본 사용법으로 맞는 것은?",
+    "code": "const [optimisticTodos, addOptimisticTodo] = useOptimistic(\n  todos,\n  (state, newTodo) => [...state, newTodo]\n);",
+    "options": [
+      "서버 응답을 자동으로 캐싱해 다음 요청에 재사용하는 함수다",
+      "실제 state를 useOptimistic이 완전히 대신 떠맡아서 컴포넌트 밖 전역 변수처럼 영구히 관리하게 된다",
+      "Provider로 감싸야만 쓸 수 있는 Context 전용 훅이다",
+      "실제 state와 낙관적 값을 합치는 함수를 받아 [낙관적 값, 갱신 함수]를 반환한다"
+    ],
+    "answer": 3,
+    "explanation": "실제 state와, 낙관적 값을 어떻게 합칠지 정하는 함수를 인자로 넘기면 [낙관적으로 보여줄 값, 그 값을 갱신하는 함수]를 돌려줘요."
+  },
+  {
+    "id": "react-10-2-q4",
+    "lessonId": "react-10-2",
+    "type": "choice",
+    "prompt": "addOptimisticTodo(newTodo)를 일반 이벤트 핸들러가 아니라 액션(비동기 함수) 안에서 호출하는 이유는?",
+    "options": [
+      "액션이 진행되는 동안에만 낙관적 값이 유효하고, 이후 실제 state로 정리되기 때문",
+      "이벤트 핸들러 함수 안에서는 다른 함수를 호출하는 문법 자체가 리액트에서 금지되어 있기 때문",
+      "액션 밖에서 호출하면 앱이 즉시 종료되기 때문",
+      "낙관적 값은 서버에서만 만들 수 있고 클라이언트는 만들 수 없기 때문"
+    ],
+    "answer": 0,
+    "explanation": "useOptimistic은 트랜지션(액션)과 함께 쓰도록 설계돼서, 액션이 끝나면 실제 state를 기준으로 값이 다시 계산돼요. 일반 이벤트 핸들러에서 바로 부르면 경고가 나거나 기대한 대로 정리되지 않아요."
   }
 ]

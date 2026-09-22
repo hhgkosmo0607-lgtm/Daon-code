@@ -44,5 +44,21 @@
     ],
     "answer": 2,
     "explanation": "double은 64비트, float은 32비트를 사용해서 실수를 표현해요. 비트 수가 많을수록 더 세밀하게 표현할 수 있어서 double이 더 정밀해요. 자바는 특별한 이유가 없으면 double을 기본으로 써요."
+  },
+  {
+    "id": "java-2-2-q4",
+    "lessonId": "java-2-2",
+    "type": "choice",
+    "prompt": "double x = 5.0 / 0.0; 을 실행하면 x는 어떻게 될까?",
+    "code": "double x = 5.0 / 0.0;\nSystem.out.println(x);",
+    "language": "Java",
+    "options": [
+      "ArithmeticException이 발생하며 프로그램이 즉시 종료된다",
+      "0.0이 출력된다 — 0으로 나눈 값은 항상 0으로 취급된다",
+      "Infinity가 출력된다 — 예외 없이 무한대 값으로 처리된다",
+      "NaN이 항상 출력된다 — 정의되지 않은 값이라 계산이 불가능해진다"
+    ],
+    "answer": 2,
+    "explanation": "정수를 0으로 나누면 ArithmeticException이 발생하지만, 실수(double/float)는 0.0으로 나눠도 예외 없이 Infinity 같은 특수 값으로 처리돼요. 참고로 0.0 / 0.0처럼 정의할 수 없는 계산은 NaN이 나와요."
   }
 ]

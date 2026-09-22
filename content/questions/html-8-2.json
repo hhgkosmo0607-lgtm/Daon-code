@@ -30,5 +30,36 @@
     ],
     "answer": 3,
     "explanation": "버튼이나 링크는 원래 Tab 키로 포커스가 가지만, div나 span 같은 태그는 기본적으로 안 돼요. tabindex=\"0\"을 주면 그 요소도 자연스러운 순서로 Tab 이동이 가능해져서, 키보드만으로 사용하는 사용자의 접근성을 높여줘요."
+  },
+  {
+    "id": "html-8-2-q3",
+    "lessonId": "html-8-2",
+    "type": "choice",
+    "prompt": "data-* 속성의 값을 CSS에서도 활용할 수 있는 방법은?",
+    "code": "<div data-status=\"done\">완료</div>\n<style>\n  div[data-status=\"done\"] { color: green; }\n</style>",
+    "language": "HTML",
+    "options": [
+      "data 속성은 CSS에서 절대 참조할 수 없고 자바스크립트 전용이다",
+      "data-* 속성이 있으면 자동으로 해당 요소에 굵은 글씨가 적용된다",
+      "속성 선택자로 data 값에 따라 다른 스타일을 적용할 수 있다",
+      "data 속성은 id처럼 문서 안에서 값이 중복되면 오류가 발생한다"
+    ],
+    "answer": 2,
+    "explanation": "CSS의 속성 선택자를 쓰면 [data-status=\"done\"]처럼 data-* 속성의 값에 따라 다른 스타일을 적용할 수 있어요. 자바스크립트 없이도 상태에 따른 스타일링이 가능해요."
+  },
+  {
+    "id": "html-8-2-q4",
+    "lessonId": "html-8-2",
+    "type": "choice",
+    "prompt": "tabindex=\"-1\"을 요소에 주면 어떤 효과가 있을까?",
+    "language": "HTML",
+    "options": [
+      "그 요소가 항상 페이지에서 가장 먼저 포커스를 받게 된다",
+      "Tab 키 순서가 반대로 뒤집혀서 역순으로 이동하게 된다",
+      "그 요소가 화면에서 완전히 숨겨져서 클릭도 할 수 없게 된다",
+      "Tab 순서에서는 빠지지만 스크립트로는 포커스를 줄 수 있다"
+    ],
+    "answer": 3,
+    "explanation": "tabindex=\"-1\"은 그 요소를 Tab 키 이동 순서에서 제외시켜요. 대신 element.focus()처럼 자바스크립트 코드로는 여전히 포커스를 줄 수 있어서, 모달 창을 열 때 포커스를 옮기는 용도로 흔히 써요."
   }
 ]

@@ -54,5 +54,19 @@
     ],
     "answer": 0,
     "explanation": "트랜잭션을 제어하는 명령어들(COMMIT/ROLLBACK/SAVEPOINT)을 TCL이라고 불러요. DML(데이터 조작)과는 구분돼요."
+  },
+  {
+    "id": "sqld-5-3-q5",
+    "lessonId": "sqld-5-3",
+    "type": "choice",
+    "prompt": "SAVEPOINT A 설정 후 몇 개 작업을 하고 ROLLBACK TO A를 실행하면?",
+    "options": [
+      "트랜잭션 전체가 취소되고 처음 상태로 완전히 되돌아간다",
+      "ROLLBACK TO는 SAVEPOINT와 함께 절대 쓸 수 없는 잘못된 문법이다",
+      "SAVEPOINT A 이후에 일어난 변경만 취소되고, 트랜잭션은 계속된다",
+      "COMMIT과 완전히 동일하게 그 시점까지의 변경이 전부 확정된다"
+    ],
+    "answer": 2,
+    "explanation": "ROLLBACK TO SAVEPOINT는 그 저장점 이후의 변경만 취소하고, 트랜잭션 자체는 아직 끝나지 않아서 이어서 작업하거나 최종 COMMIT/ROLLBACK을 할 수 있어요."
   }
 ]

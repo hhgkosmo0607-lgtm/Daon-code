@@ -41,5 +41,20 @@
     ],
     "answer": 0,
     "explanation": "set은 기본적으로 새 상태를 기존 상태에 얕게 병합해요. 그래서 바꾸려는 필드만 넘겨도 돼요. 단 중첩 객체 안쪽은 직접 병합해야 해요."
+  },
+  {
+    "id": "react-9-3-q4",
+    "lessonId": "react-9-3",
+    "type": "choice",
+    "prompt": "zustand의 create((set, get) => ({...}))에서 get의 역할은?",
+    "code": "const useStore = create((set, get) => ({\n  count: 0,\n  double: () => set({ count: get().count * 2 }),\n}));",
+    "options": [
+      "다른 컴포넌트의 props를 읽어 오는 함수다",
+      "현재 스토어 상태를 읽어 오는 함수다",
+      "서버에 GET 요청을 보내는 함수다",
+      "스토어를 초기 상태로 되돌리는 함수다"
+    ],
+    "answer": 1,
+    "explanation": "get()을 호출하면 현재 스토어의 최신 상태를 읽을 수 있어요. 액션 안에서 이전 값을 기반으로 새 값을 계산할 때 유용해요."
   }
 ]

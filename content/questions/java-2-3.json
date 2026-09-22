@@ -42,5 +42,21 @@
     ],
     "answer": 1,
     "explanation": "boolean은 참/거짓 두 값만 가지는 타입이에요. 자바는 C언어와 달리 0/1을 boolean으로 취급하지 않고, 반드시 true/false 리터럴만 허용해요."
+  },
+  {
+    "id": "java-2-3-q4",
+    "lessonId": "java-2-3",
+    "type": "choice",
+    "prompt": "char c = 'a'; char next = c + 1; 을 실행하면?",
+    "code": "char c = 'a';\nchar next = c + 1;\nSystem.out.println(next);",
+    "language": "Java",
+    "options": [
+      "'b'가 출력된다 — char끼리의 연산 결과는 다시 char로 저장된다",
+      "98이 출력된다 — 문자가 자동으로 정수로 바뀌어 계산된 뒤 그대로 char에 저장된다",
+      "런타임 예외가 발생한다 — char 연산은 실행 중에만 오류가 확인된다",
+      "컴파일 에러 — c + 1의 결과는 int로 취급되어 char에 바로 대입할 수 없다"
+    ],
+    "answer": 3,
+    "explanation": "char는 다른 값과 연산하면 int로 자동 승격돼요. c + 1의 결과 타입은 int라서 char 변수에 그대로 대입할 수 없고, char next = (char)(c + 1); 처럼 명시적으로 캐스팅해야 컴파일이 돼요."
   }
 ]

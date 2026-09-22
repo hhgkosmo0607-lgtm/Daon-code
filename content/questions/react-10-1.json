@@ -42,5 +42,20 @@
     ],
     "answer": 3,
     "explanation": "useFormStatus는 \"자신을 감싼 부모 form\"의 상태를 읽어요. 그래서 제출 버튼을 별도 컴포넌트로 분리하고 그 안에서 호출해요."
+  },
+  {
+    "id": "react-10-1-q4",
+    "lessonId": "react-10-1",
+    "type": "choice",
+    "prompt": "제출 버튼 컴포넌트에서 useFormStatus()의 pending 값을 이용해 흔히 하는 처리는?",
+    "code": "function SubmitButton() {\n  const { pending } = useFormStatus();\n  return <button disabled={pending}>{pending ? '저장 중...' : '저장'}</button>;\n}",
+    "options": [
+      "pending이 true일 때 폼 전체를 화면에서 숨긴다",
+      "pending 값으로 서버에 보낼 데이터를 새로 만든다",
+      "제출이 진행되는 동안 버튼을 비활성화하고 안내 문구를 바꾼다",
+      "pending은 항상 false만 반환되므로 조건으로 쓸 수 없다"
+    ],
+    "answer": 2,
+    "explanation": "pending은 부모 form의 제출이 진행 중인지를 알려줘요. 중복 제출을 막기 위해 버튼을 비활성화하고 상태 문구를 바꾸는 데 자주 써요."
   }
 ]

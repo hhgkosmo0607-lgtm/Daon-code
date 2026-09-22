@@ -28,5 +28,37 @@
     ],
     "answer": 2,
     "explanation": "둘 다 가변 문자열을 다루는 기능은 거의 같아요. 차이는 동기화 여부예요 — StringBuffer는 여러 스레드가 동시에 접근해도 안전하도록 동기화 처리가 돼있어 그만큼 느리고, StringBuilder는 동기화가 없어 단일 스레드 환경에서 더 빠르게 동작해요."
+  },
+  {
+    "id": "java-7-3-q3",
+    "lessonId": "java-7-3",
+    "type": "choice",
+    "prompt": "sb.append(\"a\").append(\"b\").append(\"c\"); 처럼 append를 점으로 계속 이어 쓸 수 있는(메서드 체이닝) 이유는?",
+    "code": "StringBuilder sb = new StringBuilder();\nsb.append(\"a\").append(\"b\").append(\"c\");\nSystem.out.println(sb);",
+    "language": "Java",
+    "options": [
+      "append가 항상 새로운 StringBuilder 객체를 만들어서 반환하기 때문이다",
+      "append가 아무 값도 반환하지 않는 void라서, 컴파일러가 이 경우만 예외적으로 점 연결을 허용해 주기 때문이다",
+      "append가 자기 자신(this, StringBuilder 객체)을 반환해서 이어서 또 호출할 수 있기 때문이다",
+      "StringBuilder의 모든 메서드는 static이라 점을 몇 번이든 이어 쓸 수 있기 때문이다"
+    ],
+    "answer": 2,
+    "explanation": "append 메서드는 값을 덧붙인 뒤 그 StringBuilder 객체 자기 자신(this)을 반환하도록 설계돼 있어요. 그래서 반환된 객체에 또 append를 호출하는 식으로 점을 계속 이어 쓸 수 있어요."
+  },
+  {
+    "id": "java-7-3-q4",
+    "lessonId": "java-7-3",
+    "type": "choice",
+    "prompt": "StringBuilder에 담긴 내용을 일반 String으로 변환하려면 어떻게 해야 할까?",
+    "code": "StringBuilder sb = new StringBuilder(\"hi\");\nString result = sb.toString();",
+    "language": "Java",
+    "options": [
+      "(String) sb 처럼 캐스팅하면 자동으로 변환된다",
+      "String.valueOf() 없이 대입만 하면 자동으로 변환된다",
+      "변환할 수 없다 — StringBuilder는 String과 완전히 호환되지 않는 별개 타입이다",
+      "sb.toString()을 호출해서 그 반환값을 String 변수에 담는다"
+    ],
+    "answer": 3,
+    "explanation": "StringBuilder는 String과 상속 관계가 아니라서 캐스팅으로 바로 바꿀 수 없어요. toString() 메서드를 호출하면 지금까지 쌓인 내용을 담은 새로운 String 객체를 만들어 돌려줘요."
   }
 ]

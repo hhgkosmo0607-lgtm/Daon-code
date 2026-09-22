@@ -28,5 +28,35 @@
     ],
     "answer": 1,
     "explanation": "정렬된 데이터를 그대로 자르면 훈련에는 한두 품종만, 테스트에는 다른 품종만 들어가는 식으로 치우칠 수 있어요. 섞어서 나누면 두 집합이 전체 분포를 고르게 대표해요."
+  },
+  {
+    "id": "ai-2-2-q3",
+    "lessonId": "ai-2-2",
+    "type": "choice",
+    "prompt": "scikit-learn에서 데이터를 훈련/테스트로 편리하게 나눌 때 흔히 쓰는 함수는?",
+    "code": "from sklearn.model_selection import train_test_split\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)",
+    "language": "Python",
+    "options": [
+      "train_test_split() — 지정한 비율로 무작위로 나눠준다",
+      "train_only_split() — 훈련 데이터만 따로 추출해준다",
+      "merge_dataset() — 여러 데이터셋을 하나로 합쳐준다",
+      "normalize_split() — 데이터를 정규화한 뒤 자동 분류해준다"
+    ],
+    "answer": 0,
+    "explanation": "train_test_split()은 데이터를 지정한 비율(test_size)로 무작위로 섞어 훈련/테스트 세트로 나눠주는 scikit-learn 함수예요."
+  },
+  {
+    "id": "ai-2-2-q4",
+    "lessonId": "ai-2-2",
+    "type": "choice",
+    "prompt": "모델 성능을 최대한 좋아 보이게 하려고 테스트 데이터를 학습(fit)에도 함께 사용했다면?",
+    "options": [
+      "테스트 데이터를 학습에 더 많이 썼으니 실전 성능도 그만큼 좋아진다고 볼 수 있다",
+      "테스트 점수가 실제로는 새 데이터에 대한 성능을 보여주지 못해 신뢰할 수 없다",
+      "훈련 데이터와 테스트 데이터가 겹치면 자동으로 실행 자체가 안 된다",
+      "정규화 기준이 자동으로 다시 계산되어 더 정확한 모델이 만들어진다"
+    ],
+    "answer": 1,
+    "explanation": "테스트 데이터를 학습에 섞어 쓰면(데이터 누수) 모델이 이미 본 데이터로 시험을 보는 셈이라, 높게 나온 점수는 실제 성능을 보여주지 못해요."
   }
 ]

@@ -41,5 +41,20 @@
     ],
     "answer": 2,
     "explanation": "단순한 값은 useState가 간단해요. 상태가 여러 필드로 복잡하고 변경 방식이 다양하면 useReducer가 코드를 정리해 줘요."
+  },
+  {
+    "id": "react-9-1-q4",
+    "lessonId": "react-9-1",
+    "type": "choice",
+    "prompt": "useReducer의 리듀서 함수 안에서 state를 직접 변경(mutate)하면 어떻게 될까?",
+    "code": "const reducer = (state, action) => {\n  state.count += 1; // 직접 변경\n  return state;\n};",
+    "options": [
+      "리액트가 변경된 값을 자동으로 감지해서 항상 정상적으로 다시 렌더링해 준다",
+      "리듀서 함수 실행 중 즉시 오류가 발생해 앱이 멈춘다",
+      "state가 자동으로 불변 객체로 변환되어 문제없이 동작한다",
+      "리액트가 변경을 감지하지 못해 화면이 다시 그려지지 않을 수 있다"
+    ],
+    "answer": 3,
+    "explanation": "useState와 마찬가지로 리듀서도 새 객체를 반환해야 해요. 같은 객체를 그대로 돌려주면 이전 state와 같다고 판단해 리렌더링을 건너뛸 수 있어요."
   }
 ]

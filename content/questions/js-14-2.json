@@ -44,5 +44,21 @@
     ],
     "answer": 1,
     "explanation": "await로 기다리는 프로미스가 거절되면 예외가 던져지는 것처럼 동작해서 try...catch로 잡을 수 있어요."
+  },
+  {
+    "id": "js-14-2-q4",
+    "lessonId": "js-14-2",
+    "type": "choice",
+    "prompt": "아래처럼 await를 두 번 연달아 쓰면 두 요청은 동시에 실행될까?",
+    "code": "const a = await fetch(url1);\nconst b = await fetch(url2);",
+    "language": "JavaScript",
+    "options": [
+      "아니다. 첫 번째가 끝난 뒤에 두 번째가 시작되는 순차 실행이다",
+      "그렇다. await로 적어 두기만 하면 항상 자동으로 병렬 실행된다",
+      "브라우저가 코드를 분석해서 병렬 여부를 알아서 판단해 처리한다",
+      "await를 쓴 순서와는 무관하게 완전히 무작위 순서로 실행된다"
+    ],
+    "answer": 0,
+    "explanation": "await는 그 줄에서 결과가 올 때까지 멈추기 때문에 위에서부터 순서대로 실행돼요. 두 요청을 동시에 보내고 싶다면 Promise.all([fetch(url1), fetch(url2)])처럼 써야 해요."
   }
 ]

@@ -28,5 +28,37 @@
     ],
     "answer": 2,
     "explanation": "${}는 바인딩이 안 되므로 서버가 값을 직접 통제해야 해요. 입력이 SQL 조각이 되지 않도록 미리 정한 값 중 하나만 허용해요."
+  },
+  {
+    "id": "spring-6-2-q3",
+    "lessonId": "spring-6-2",
+    "type": "choice",
+    "prompt": "제목에 검색어가 포함된 게시글을 찾을 때, 안전하게 LIKE 검색을 만드는 방법은?",
+    "code": "SELECT * FROM board\nWHERE title LIKE CONCAT('%', #{keyword}, '%')",
+    "language": "XML",
+    "options": [
+      "검색어를 ${}로 두고 앞뒤에 %를 직접 문자열로 붙여 완성한다",
+      "검색어에서 %와 _ 같은 문자는 미리 전부 지운 뒤 ${}로 넣는다",
+      "LIKE를 이용한 검색 자체는 MyBatis에서 전혀 지원하지 않아서 항상 별도의 자바 코드로 직접 필터링해야 한다",
+      "검색어는 #{}로 바인딩하고, %는 CONCAT 같은 SQL 함수로 앞뒤에 붙인다"
+    ],
+    "answer": 3,
+    "explanation": "검색어 자체는 #{}로 안전하게 바인딩하고, 와일드카드(%)는 SQL의 CONCAT 함수로 붙이면 인젝션 위험 없이 LIKE 검색을 만들 수 있어요."
+  },
+  {
+    "id": "spring-6-2-q4",
+    "lessonId": "spring-6-2",
+    "type": "choice",
+    "prompt": "매퍼 메서드의 매개변수가 두 개 이상일 때 XML에서 각각을 구분해서 쓰려면?",
+    "code": "int update(@Param(\"id\") Long id, @Param(\"name\") String name);",
+    "language": "Java",
+    "options": [
+      "@Param으로 이름을 지정하고 XML에서 그 이름으로 #{}를 쓴다",
+      "매개변수 순서에 따라 #{0}, #{1}처럼 숫자 인덱스로만 접근할 수 있게 정해져 있다",
+      "매개변수는 하나의 Map으로 직접 합쳐서 넘겨야만 동작한다",
+      "두 개 이상이면 반드시 DTO 클래스 하나로 감싸야 한다"
+    ],
+    "answer": 0,
+    "explanation": "@Param(\"이름\")을 붙이면 XML의 #{} 안에서 그 이름으로 값을 참조할 수 있어요. 매개변수가 하나뿐이면 생략해도 되지만, 여러 개면 구분을 위해 필요해요."
   }
 ]

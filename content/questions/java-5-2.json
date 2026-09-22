@@ -26,5 +26,37 @@
     ],
     "answer": 0,
     "explanation": "반환타입이 정해진 메서드는 어떤 조건을 타든 결국 그 타입의 값을 return해야 해요. 하나라도 값을 반환하지 않고 끝날 수 있는 경로가 있으면 컴파일 에러가 나요."
+  },
+  {
+    "id": "java-5-2-q3",
+    "lessonId": "java-5-2",
+    "type": "choice",
+    "prompt": "메서드 안에서 int 매개변수의 값을 바꾸면, 호출한 쪽에 있던 원래 변수도 바뀔까?",
+    "code": "static void addOne(int n) {\n    n = n + 1;\n}\n\npublic static void main(String[] args) {\n    int x = 5;\n    addOne(x);\n    System.out.println(x);\n}",
+    "language": "Java",
+    "options": [
+      "안 바뀐다(5 출력) — 기본형은 값이 복사되어 전달되어 원본과 무관하다",
+      "바뀐다(6 출력) — 매개변수와 원본 변수가 같은 메모리 주소를 공유해서 함께 바뀐다",
+      "컴파일 에러 — 매개변수는 메서드 안에서 값을 재대입할 수 없다",
+      "0이 출력된다 — 메서드 호출 후 x가 초기화된다"
+    ],
+    "answer": 0,
+    "explanation": "int 같은 기본형 매개변수는 값 자체가 복사되어 전달돼요(call by value). addOne 안의 n은 x의 복사본일 뿐이라, n을 바꿔도 main의 x는 전혀 영향을 받지 않아 그대로 5가 출력돼요."
+  },
+  {
+    "id": "java-5-2-q4",
+    "lessonId": "java-5-2",
+    "type": "choice",
+    "prompt": "메서드 안에서 return 문을 만나면 그 아래에 남은 코드는 실행될까?",
+    "code": "int check(int n) {\n    if (n < 0) {\n        return -1;\n    }\n    System.out.println(\"양수 처리\"); // n이 음수면 실행될까?\n    return 1;\n}",
+    "language": "Java",
+    "options": [
+      "실행된다 — return은 메서드가 끝나는 시점에 한 번만 검사되고 무시된다",
+      "실행되지 않는다 — return을 만나는 즉시 메서드 실행이 종료된다",
+      "컴파일 에러 — 메서드 중간에 return을 두 번 쓸 수 없다",
+      "조건에 따라 실행 여부가 무작위로 결정된다"
+    ],
+    "answer": 1,
+    "explanation": "return은 만나는 즉시 메서드 실행을 끝내고 호출한 곳으로 돌아가요. n이 음수라서 첫 번째 return -1;이 실행되면, 그 아래에 있는 println과 두 번째 return은 아예 실행되지 않아요."
   }
 ]

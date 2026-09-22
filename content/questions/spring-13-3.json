@@ -40,5 +40,21 @@
     ],
     "answer": 0,
     "explanation": "사용자에게는 일반적인 오류 메시지를, 자세한 내용은 서버 로그에만 남기는 것이 좋아요."
+  },
+  {
+    "id": "spring-13-3-q4",
+    "lessonId": "spring-13-3",
+    "type": "choice",
+    "prompt": "N+1 문제를 fetch join으로 해결할 때의 방식은?",
+    "code": "@Query(\"SELECT t FROM Team t JOIN FETCH t.members WHERE t.id = :id\")\nTeam findWithMembers(@Param(\"id\") Long id);",
+    "language": "Java",
+    "options": [
+      "연관 엔티티를 아예 조회하지 않도록 필드를 삭제해 버린다",
+      "지연 로딩 대신 연관 엔티티마다 매번 새로운 트랜잭션을 열어서 따로 조회한다",
+      "연관된 엔티티까지 한 번의 쿼리로 함께 조회해서 추가 쿼리를 없앤다",
+      "결과를 캐시 서버에 저장해서 두 번째 조회부터 빠르게 한다"
+    ],
+    "answer": 2,
+    "explanation": "JOIN FETCH는 연관된 엔티티를 별도 쿼리 없이 한 번의 조인 쿼리로 함께 가져와요. 그래서 반복문에서 항목마다 추가 쿼리가 나가는 N+1을 막을 수 있어요."
   }
 ]

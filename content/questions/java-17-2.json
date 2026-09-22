@@ -30,5 +30,37 @@
     ],
     "answer": 2,
     "explanation": "리스트도 배열처럼 인덱스가 0부터 시작해요. get(1)은 두 번째 요소를 가져오는 거라서 2가 나와요."
+  },
+  {
+    "id": "java-17-2-q3",
+    "lessonId": "java-17-2",
+    "type": "choice",
+    "prompt": "ArrayList<Integer>에서 remove(1)을 호출하면 어떻게 동작할까?",
+    "code": "List<Integer> list = new ArrayList<>(Arrays.asList(10, 20, 30));\nlist.remove(1); // ?\nSystem.out.println(list);",
+    "language": "Java",
+    "options": [
+      "값이 1인 요소를 찾아서 제거한다 — 리스트에 없으므로 아무 일도 없다",
+      "리스트 전체를 초기화(clear)한다",
+      "컴파일 에러 — remove에는 정수를 바로 쓸 수 없다",
+      "인덱스 1번 요소(20)를 제거한다 — int 인자는 인덱스로 해석된다"
+    ],
+    "answer": 3,
+    "explanation": "List의 remove(int index)는 인덱스를 기준으로 제거하는 오버로딩된 메서드가 따로 있어서, int 값을 그대로 넘기면 값이 아니라 인덱스로 해석돼요. 값 자체를 제거하고 싶다면 remove(Integer.valueOf(1))처럼 객체로 넘겨야 해요."
+  },
+  {
+    "id": "java-17-2-q4",
+    "lessonId": "java-17-2",
+    "type": "choice",
+    "prompt": "리스트의 유효 범위를 벗어난 인덱스로 get()을 호출하면 어떻게 될까?",
+    "code": "List<String> list = new ArrayList<>();\nlist.add(\"a\");\nlist.get(5); // ?",
+    "language": "Java",
+    "options": [
+      "리스트의 유효 범위를 벗어났기 때문에 IndexOutOfBoundsException 예외가 곧바로 발생한다",
+      "null 값이 조용히 반환되어서 다음 코드로 별다른 문제없이 그냥 넘어가게 된다",
+      "빈 문자열이 대신 반환되어서 겉으로는 눈치채기 어려운 문제로 이어질 수 있다",
+      "리스트의 크기가 자동으로 늘어나면서 그 빈 자리에 기본값이 채워지게 된다"
+    ],
+    "answer": 0,
+    "explanation": "리스트의 get()은 배열처럼 정해진 범위(0 ~ size-1) 안의 인덱스만 유효해요. 범위를 벗어나면 IndexOutOfBoundsException이 발생해서, 미리 size()로 범위를 확인하는 습관이 필요해요."
   }
 ]

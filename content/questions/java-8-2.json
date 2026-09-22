@@ -28,5 +28,37 @@
     ],
     "answer": 2,
     "explanation": "생성자를 하나도 정의하지 않으면 자바 컴파일러가 매개변수 없는 기본 생성자(Person() {})를 자동으로 넣어줘요. 단, 생성자를 하나라도 직접 정의하면 이 자동 생성은 더 이상 일어나지 않아요."
+  },
+  {
+    "id": "java-8-2-q3",
+    "lessonId": "java-8-2",
+    "type": "choice",
+    "prompt": "한 클래스에 매개변수 목록이 서로 다른 생성자를 여러 개 만들 수 있을까?",
+    "code": "class Person {\n    String name;\n    int age;\n\n    Person() { }\n    Person(String name) { this.name = name; }\n    Person(String name, int age) { this.name = name; this.age = age; }\n}",
+    "language": "Java",
+    "options": [
+      "없다 — 한 클래스에는 생성자를 이름과 상관없이 딱 하나만 정의할 수 있다",
+      "있다 — 메서드 오버로딩과 같은 규칙으로 매개변수가 다른 생성자를 여러 개 둘 수 있다",
+      "없다 — 매개변수가 다른 생성자는 별도의 클래스로 분리해야 한다",
+      "있다 — 단, 매개변수 개수가 늘어나는 순서로만 정의해야 한다"
+    ],
+    "answer": 1,
+    "explanation": "생성자도 이름(클래스 이름)이 같은 메서드처럼 취급돼서, 매개변수의 개수나 타입이 다르면 오버로딩 규칙에 따라 여러 개를 만들 수 있어요. 호출할 때 넘기는 인자에 맞는 생성자가 자동으로 선택돼요."
+  },
+  {
+    "id": "java-8-2-q4",
+    "lessonId": "java-8-2",
+    "type": "choice",
+    "prompt": "아래처럼 클래스 이름과 같지만 반환타입(void)을 적어버린 메서드는 생성자로 동작할까?",
+    "code": "class Person {\n    void Person() {\n        System.out.println(\"생성자일까?\");\n    }\n}",
+    "language": "Java",
+    "options": [
+      "생성자로 동작한다 — 이름이 클래스명과 같으면 반환타입은 상관없다",
+      "생성자로 동작하되, new Person() 대신 Person.Person()으로만 호출해야 한다",
+      "컴파일 에러 — 메서드 이름을 클래스 이름과 같게 지을 수 없다",
+      "생성자로 동작하지 않는다 — 반환타입을 적는 순간 이름이 같은 일반 메서드로 인식된다"
+    ],
+    "answer": 3,
+    "explanation": "생성자는 반환타입을 아예 적지 않아야 해요. void라도 반환타입을 적으면 그 순간 생성자가 아니라 이름이 우연히 클래스명과 같은 일반 메서드가 돼서, new Person()을 해도 이 메서드는 자동으로 호출되지 않아요."
   }
 ]

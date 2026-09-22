@@ -40,5 +40,21 @@
     ],
     "answer": 1,
     "explanation": "바인드 마운트는 호스트 파일을 그대로 들여다보는 방식이라 코드 수정이 즉시 보여요. 운영에서는 소스를 이미지에 담아 배포하는 게 일반적이에요."
+  },
+  {
+    "id": "docker-4-2-q4",
+    "lessonId": "docker-4-2",
+    "type": "choice",
+    "prompt": "-v C:\\work\\html:/usr/local/apache2/htdocs:ro 처럼 끝에 :ro를 붙이면?",
+    "code": "docker run -v C:\\work\\html:/usr/local/apache2/htdocs:ro httpd",
+    "language": "Bash",
+    "options": [
+      "컨테이너 안에서는 그 경로를 읽기 전용으로만 쓸 수 있고 쓰기는 막힌다",
+      "내 PC 쪽 폴더가 읽기 전용으로 바뀌어 더 이상 수정할 수 없다",
+      "롤백(rollback)의 줄임말로, 컨테이너 종료 시 마운트 이전 상태로 되돌린다",
+      "원격(remote) 서버의 폴더를 마운트한다는 의미다"
+    ],
+    "answer": 0,
+    "explanation": ":ro는 read-only의 줄임말로 컨테이너 쪽에서의 쓰기를 막아요. 설정 파일처럼 컨테이너가 실수로 건드리면 안 되는 데이터를 보호할 때 써요."
   }
 ]

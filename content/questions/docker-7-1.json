@@ -5,7 +5,7 @@
     "type": "choice",
     "prompt": "Oracle XE 컨테이너(gvenzl/oracle-xe)에서 ORACLE_PASSWORD 환경변수의 역할은?",
     "code": "myOracle03:\n  image: gvenzl/oracle-xe\n  ports:\n    - \"1533:1521\"\n  environment:\n    ORACLE_PASSWORD: ${ORACLE_PW}",
-    "language": "Bash",
+    "language": "YAML",
     "options": [
       "오라클 XE 사용을 위한 라이선스 키를 입력해서 제품을 활성화한다",
       "오라클 리스너가 접속을 받을 포트 번호를 컨테이너에 지정한다",
@@ -42,5 +42,21 @@
     ],
     "answer": 0,
     "explanation": "볼륨이 없으면 컨테이너를 삭제할 때 데이터도 함께 사라져요. compose에서는 volumes 항목에 이름을 정의하고 서비스에 연결해요."
+  },
+  {
+    "id": "docker-7-1-q4",
+    "lessonId": "docker-7-1",
+    "type": "choice",
+    "prompt": "별도의 DB 클라이언트 프로그램 없이 MariaDB 컨테이너 안에서 바로 mysql 명령으로 접속하려면?",
+    "code": "docker exec -it edu17mariadb mysql -u root -p",
+    "language": "Bash",
+    "options": [
+      "docker attach edu17mariadb --client mysql 로 클라이언트 모드에 바로 붙는다",
+      "docker exec -it 컨테이너이름 mysql -u root -p 로 컨테이너 안의 클라이언트를 실행한다",
+      "docker run mysql edu17mariadb 명령으로 클라이언트 전용 컨테이너를 새로 만든다",
+      "docker logs -f edu17mariadb 명령으로 접속 화면을 그대로 열어서 입력한다"
+    ],
+    "answer": 1,
+    "explanation": "DB 이미지 안에는 대부분 자체 CLI 클라이언트(mysql, sqlplus 등)가 들어 있어서 exec로 그 컨테이너 안에 들어가 바로 실행할 수 있어요. 굳이 호스트에 별도 클라이언트를 설치하지 않아도 돼요."
   }
 ]

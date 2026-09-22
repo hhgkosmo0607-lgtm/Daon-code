@@ -54,5 +54,19 @@
     ],
     "answer": 1,
     "explanation": "CREATE/ALTER/DROP/TRUNCATE/RENAME은 테이블 등 객체의 '구조'를 다루는 DDL이에요. UPDATE는 데이터 '내용'을 바꾸는 DML이에요."
+  },
+  {
+    "id": "sqld-5-1-q5",
+    "lessonId": "sqld-5-1",
+    "type": "choice",
+    "prompt": "CHECK 제약조건의 역할로 가장 적절한 것은?",
+    "options": [
+      "다른 테이블을 참조해서 그 테이블과의 참조 무결성을 강제한다",
+      "컬럼 값이 NULL이 될 수 없도록 강제한다",
+      "테이블 안에서 값이 중복되지 않도록 강제한다",
+      "컬럼 값이 특정 조건을 만족하는지 검증해서 위반하면 입력을 막는다"
+    ],
+    "answer": 3,
+    "explanation": "CHECK 제약조건은 컬럼 값이 지정한 조건식을 만족해야만 입력/수정을 허용해요. 참조 무결성은 FOREIGN KEY, NULL 금지는 NOT NULL, 중복 금지는 UNIQUE가 담당해요."
   }
 ]

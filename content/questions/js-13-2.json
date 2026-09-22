@@ -42,5 +42,21 @@
     ],
     "answer": 3,
     "explanation": "값이 문자열로 변환되는데 객체의 기본 문자열이 \"[object Object]\"예요. 객체는 JSON.stringify로 문자열로 바꿔 저장하고 JSON.parse로 읽어요."
+  },
+  {
+    "id": "js-13-2-q4",
+    "lessonId": "js-13-2",
+    "type": "choice",
+    "prompt": "localStorage에 저장한 값 중 특정 키 하나만 지우는 메서드는?",
+    "code": "localStorage.removeItem('count');",
+    "language": "JavaScript",
+    "options": [
+      "localStorage.clear()",
+      "delete localStorage[key]만 유일한 방법이다",
+      "localStorage.removeItem(key)",
+      "localStorage.delete(key)"
+    ],
+    "answer": 2,
+    "explanation": "removeItem(key)는 그 키 하나만 지워요. clear()는 저장된 값을 전부 지운다는 점에서 달라요."
   }
 ]

@@ -28,5 +28,36 @@
     ],
     "answer": 2,
     "explanation": "scroll은 내용이 넘치지 않아도 스크롤바 자리를 항상 확보해두고, auto는 실제로 내용이 넘칠 때만 필요한 방향에 스크롤바를 보여줘요."
+  },
+  {
+    "id": "css-4-2-q3",
+    "lessonId": "css-4-2",
+    "type": "choice",
+    "prompt": "overflow-x와 overflow-y를 각각 다르게 지정할 수 있을까?",
+    "code": "div {\n  overflow-x: hidden;\n  overflow-y: scroll;\n}",
+    "language": "CSS",
+    "options": [
+      "불가능하다 — overflow는 가로세로를 항상 동일하게만 지정할 수 있다",
+      "overflow-x는 세로, overflow-y는 가로 방향을 의미해서 이름과 반대로 동작한다",
+      "가능하다 — 가로와 세로의 넘친 콘텐츠 처리 방식을 따로 지정할 수 있다",
+      "가능은 하지만 브라우저 대부분이 이 두 속성을 지원하지 않는다"
+    ],
+    "answer": 2,
+    "explanation": "overflow-x는 가로 방향, overflow-y는 세로 방향의 넘친 콘텐츠 처리 방식을 따로 지정해요. 가로는 숨기고 세로만 스크롤하는 것처럼 방향별로 다르게 줄 수 있어요."
+  },
+  {
+    "id": "css-4-2-q4",
+    "lessonId": "css-4-2",
+    "type": "choice",
+    "prompt": "float으로 떠 있는 자식 요소들만 있는 부모 요소의 높이가 0이 되는 문제를, 부모에 overflow: hidden을 주어 해결하는 원리는?",
+    "language": "CSS",
+    "options": [
+      "overflow: hidden은 float 속성 자체를 자동으로 제거해버리기 때문에",
+      "overflow: hidden을 주면 자식 요소들이 자동으로 flex 레이아웃으로 바뀌기 때문에",
+      "overflow는 색상이나 배경에만 영향을 주고 높이 계산과는 전혀 무관하기 때문에",
+      "부모가 새 BFC를 형성해 float 자식 높이까지 포함되기 때문에"
+    ],
+    "answer": 3,
+    "explanation": "float된 자식은 부모의 높이 계산에서 빠지는 경우가 많아요. 부모에 overflow: hidden(또는 auto)을 주면 그 부모가 새로운 블록 서식 맥락(BFC)을 만들어서, float 자식의 높이까지 포함해 계산하게 돼요."
   }
 ]

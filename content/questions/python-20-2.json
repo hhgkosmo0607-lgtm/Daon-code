@@ -30,5 +30,37 @@
     ],
     "answer": 0,
     "explanation": "리스트 컴프리헨션 끝에 if 조건을 붙이면, 그 조건을 만족하는 값만 걸러서 리스트에 넣어요. filter()와 map()을 한 줄로 합친 것과 비슷한 효과예요."
+  },
+  {
+    "id": "python-20-2-q3",
+    "lessonId": "python-20-2",
+    "type": "choice",
+    "prompt": "{x: x**2 for x in range(3)} 처럼 중괄호로 컴프리헨션을 쓰면 무엇이 만들어지나?",
+    "code": "squares = {x: x**2 for x in range(3)}\nprint(squares)",
+    "language": "Python",
+    "options": [
+      "리스트 [0, 1, 4] — 각 x의 제곱 값만 순서대로 모은 리스트가 만들어진다",
+      "집합 {0, 1, 4} — 제곱 값들이 중복 없이 집합 형태로 모아진다",
+      "튜플 (0, 1, 4) — 제곱 값들이 변경 불가능한 튜플로 묶인다",
+      "딕셔너리 {0: 0, 1: 1, 2: 4} — 키:값 쌍으로 만들어지는 컴프리헨션이다"
+    ],
+    "answer": 3,
+    "explanation": "대괄호([])를 쓰면 리스트 컴프리헨션이지만, 중괄호({}) 안에 key: value 형태를 쓰면 딕셔너리 컴프리헨션이 돼요. 각 x에 대해 x를 키, x**2를 값으로 하는 딕셔너리가 만들어져요."
+  },
+  {
+    "id": "python-20-2-q4",
+    "lessonId": "python-20-2",
+    "type": "choice",
+    "prompt": "[x if x % 2 == 0 else -x for x in range(5)] 처럼 컴프리헨션 안에 if-else를 함께 쓰면?",
+    "code": "result = [x if x % 2 == 0 else -x for x in range(5)]\nprint(result)",
+    "language": "Python",
+    "options": [
+      "[0, -1, 2, -3, 4] — 짝수는 그대로, 홀수는 음수로 바꾼 값이 담긴다",
+      "[0, 2, 4] — 조건을 만족하는 짝수만 걸러서 담긴다",
+      "에러가 발생한다 — 컴프리헨션 안에는 if만 쓸 수 있고 else는 쓸 수 없다",
+      "[0, 1, 2, 3, 4] — else 부분은 무시되고 원본 값이 그대로 담긴다"
+    ],
+    "answer": 0,
+    "explanation": "컴프리헨션 맨 끝에 붙는 if는 필터링(조건 만족하는 것만 담기)이지만, for 앞에 x if 조건 else y 형태로 쓰면 삼항연산자처럼 값 자체를 조건에 따라 다르게 정해요. 짝수는 그대로, 홀수는 부호를 바꿔서 담았어요."
   }
 ]

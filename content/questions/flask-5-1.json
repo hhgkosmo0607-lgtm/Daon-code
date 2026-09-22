@@ -28,5 +28,37 @@
     ],
     "answer": 0,
     "explanation": "HTTP는 요청마다 독립적이라 서버가 '아까 그 사람'을 자동으로 기억하지 못해요. session에 로그인 정보를 남겨두면, 마이페이지 같은 곳에서 'username' in session 으로 로그인 여부를 확인할 수 있어요."
+  },
+  {
+    "id": "flask-5-1-q3",
+    "lessonId": "flask-5-1",
+    "type": "choice",
+    "prompt": "로그인 상태를 해제(로그아웃)할 때 흔히 사용하는 방법은?",
+    "code": "@app.route('/logout')\ndef logout():\n    session.pop('username', None)\n    return redirect(url_for('login'))",
+    "language": "Python",
+    "options": [
+      "app.secret_key 값을 매 요청마다 새로 무작위 생성한다",
+      "session.pop()으로 세션에 저장된 로그인 정보를 지운다",
+      "request.files를 비워서 업로드된 파일을 모두 삭제한다",
+      "render_template()을 다시 호출해 같은 페이지를 새로고침한다"
+    ],
+    "answer": 1,
+    "explanation": "session.pop('username', None)은 세션에서 username 값을 제거해요. 이렇게 하면 'username' in session이 거짓이 되어 로그아웃 상태가 돼요."
+  },
+  {
+    "id": "flask-5-1-q4",
+    "lessonId": "flask-5-1",
+    "type": "choice",
+    "prompt": "flash('로그인 성공!') 처럼 flash()를 쓰는 목적은?",
+    "code": "flash('로그인 성공!')\nreturn redirect(url_for('index'))",
+    "language": "Python",
+    "options": [
+      "session.secret_key 값을 자동으로 재발급하기 위해",
+      "요청 값을 request.form에서 request.args로 옮기기 위해",
+      "리다이렉트된 다음 페이지에서 한 번 보여줄 임시 메시지를 저장하기 위해",
+      "업로드된 파일을 안전한 이름으로 바꿔 저장하기 위해"
+    ],
+    "answer": 2,
+    "explanation": "flash()는 다음 요청까지만 유지되는 짧은 메시지를 세션에 담아둬요. 리다이렉트된 페이지에서 get_flashed_messages()로 꺼내 한 번 보여주고 사라져요."
   }
 ]

@@ -26,5 +26,37 @@
     ],
     "answer": 0,
     "explanation": "redirect는 응답으로 \"다른 주소로 가라\"고 알려 새 요청이 생기므로 이전 요청의 데이터는 사라져요. forward는 같은 요청 안에서 다른 자원으로 넘겨요."
+  },
+  {
+    "id": "spring-3-2-q3",
+    "lessonId": "spring-3-2",
+    "type": "choice",
+    "prompt": "redirect 후 \"저장되었습니다\" 같은 안내 메시지를 다음 화면에 한 번만 보여주고 싶을 때 쓰는 방법은?",
+    "code": "@PostMapping(\"/write\")\npublic String write(BoardDTO dto, RedirectAttributes ra) {\n    boardService.save(dto);\n    ra.addFlashAttribute(\"message\", \"저장되었습니다\");\n    return \"redirect:/list\";\n}",
+    "language": "Java",
+    "options": [
+      "redirect 주소 뒤에 물음표 없이 메시지를 그냥 이어 붙인다",
+      "RedirectAttributes의 addFlashAttribute로 담아 다음 요청 한 번만 전달한다",
+      "세션에 메시지를 영구히 저장해 두고 이후 여러 화면을 옮겨 다니면서 필요할 때마다 계속 꺼내서 보여 준다",
+      "forward로 바꾸면 메시지가 자동으로 한 번만 전달된다"
+    ],
+    "answer": 1,
+    "explanation": "플래시 속성은 리다이렉트로 이동한 다음 요청에서 한 번 읽히고 사라져요. 새로고침해도 메시지가 계속 남는 세션과 달리 일회성 안내에 알맞아요."
+  },
+  {
+    "id": "spring-3-2-q4",
+    "lessonId": "spring-3-2",
+    "type": "choice",
+    "prompt": "redirect 주소에 페이지 번호 같은 쿼리스트링 값을 함께 담아 이동시키는 방법은?",
+    "code": "return \"redirect:/list?page=\" + page;",
+    "language": "Java",
+    "options": [
+      "redirect는 쿼리스트링을 절대 포함할 수 없어 세션에 담아야만 한다",
+      "Model에 addAttribute로 담아 둔 값들은 redirect 주소 뒤에 자동으로 쿼리스트링 형태로 붙는다",
+      "redirect 뒤에 쿼리스트링을 이어 붙이거나 RedirectAttributes.addAttribute를 쓴다",
+      "쿼리스트링은 forward에서만 가능하고 redirect에서는 지원하지 않는다"
+    ],
+    "answer": 2,
+    "explanation": "redirect 문자열은 그냥 URL이라서 쿼리스트링을 그대로 붙일 수 있어요. RedirectAttributes.addAttribute를 쓰면 값을 자동으로 URL 인코딩해서 붙여 줘요."
   }
 ]

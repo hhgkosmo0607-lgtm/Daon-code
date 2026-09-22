@@ -30,5 +30,37 @@
     ],
     "answer": 0,
     "explanation": "margin/padding에 값을 2개 쓰면 [위아래] [좌우] 순서로 적용돼요. 4개를 다 쓰면 [위] [오른쪽] [아래] [왼쪽] 시계방향 순서로 적용돼요."
+  },
+  {
+    "id": "css-4-1-q3",
+    "lessonId": "css-4-1",
+    "type": "choice",
+    "prompt": "위아래로 이웃한 두 블록 요소에 각각 margin-bottom: 20px와 margin-top: 30px를 주면, 두 요소 사이 간격은?",
+    "code": ".a { margin-bottom: 20px; }\n.b { margin-top: 30px; }",
+    "language": "CSS",
+    "options": [
+      "더해지지 않고 더 큰 값인 30px만 적용된다(마진 상쇄)",
+      "20px와 30px이 항상 그대로 더해져서 50px 간격이 만들어진다",
+      "먼저 쓴 margin-bottom: 20px만 적용되고 나머지는 무시된다",
+      "margin 속성은 세로 방향에는 아예 적용되지 않는 속성이다"
+    ],
+    "answer": 0,
+    "explanation": "위아래로 인접한 블록 요소의 세로 margin은 서로 더해지지 않고, 둘 중 더 큰 값 하나만 적용돼요. 이걸 마진 상쇄(margin collapsing)라고 해요."
+  },
+  {
+    "id": "css-4-1-q4",
+    "lessonId": "css-4-1",
+    "type": "choice",
+    "prompt": "box-sizing: border-box;를 요소에 지정하면 width 값의 기준이 어떻게 바뀔까?",
+    "code": "div {\n  box-sizing: border-box;\n  width: 200px;\n  padding: 20px;\n  border: 5px solid black;\n}",
+    "language": "CSS",
+    "options": [
+      "width는 padding과 border를 제외한 content 영역만의 너비를 뜻한다(기본값과 동일)",
+      "width에 padding과 border까지 포함되어, 실제 박스 전체 너비가 200px로 고정된다",
+      "box-sizing을 border-box로 하면 padding 속성 자체가 무시된다",
+      "border-box를 쓰면 width 값과 관계없이 항상 내용에 맞춰 자동으로 늘어난다"
+    ],
+    "answer": 1,
+    "explanation": "기본값인 content-box는 width가 content 영역만의 너비라서 padding·border만큼 박스가 더 커져요. border-box로 바꾸면 padding과 border를 포함해서 지정한 width 안에 다 들어가도록 계산돼서, 레이아웃 크기를 예측하기 쉬워져요."
   }
 ]

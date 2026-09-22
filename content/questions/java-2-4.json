@@ -28,5 +28,37 @@
     ],
     "answer": 3,
     "explanation": "==는 두 참조변수가 같은 객체를 가리키는지(주소 비교)를 보고, equals()는 객체 안의 실제 내용을 비교해요. 문자열 내용 비교는 항상 equals()를 써야 해요."
+  },
+  {
+    "id": "java-2-4-q3",
+    "lessonId": "java-2-4",
+    "type": "choice",
+    "prompt": "String a = \"hi\"; String b = \"hi\"; 를 실행하면 a == b의 결과는?",
+    "code": "String a = \"hi\";\nString b = \"hi\";\nSystem.out.println(a == b);",
+    "language": "Java",
+    "options": [
+      "true — 같은 리터럴은 문자열 풀의 같은 객체를 재사용한다",
+      "false — 리터럴이라도 변수 이름이 다르면 매번 새로운 객체로 취급된다",
+      "컴파일 에러 — 문자열은 ==로 비교할 수 없다",
+      "실행할 때마다 true/false가 무작위로 바뀐다"
+    ],
+    "answer": 0,
+    "explanation": "문자열 리터럴 \"hi\"는 문자열 풀에 저장되고, 같은 내용의 리터럴을 또 쓰면 새로 만들지 않고 풀에 있던 객체를 그대로 재사용해요. 그래서 a와 b는 실제로 같은 객체를 가리켜 ==가 true가 돼요."
+  },
+  {
+    "id": "java-2-4-q4",
+    "lessonId": "java-2-4",
+    "type": "choice",
+    "prompt": "String a = new String(\"hi\"); String b = new String(\"hi\"); 를 실행하면 a == b의 결과는?",
+    "code": "String a = new String(\"hi\");\nString b = new String(\"hi\");\nSystem.out.println(a == b);",
+    "language": "Java",
+    "options": [
+      "true — new로 만들어도 내용이 같으면 결국 같은 객체가 된다",
+      "false — new String()은 호출할 때마다 별개의 새 객체를 힙에 만든다",
+      "컴파일 에러 — new String()은 한 프로그램에서 한 번만 쓸 수 있다",
+      "NullPointerException — new String()은 초기화가 끝나지 않은 상태다"
+    ],
+    "answer": 1,
+    "explanation": "new String(...)은 문자열 풀을 거치지 않고, 호출할 때마다 힙 메모리에 완전히 새로운 객체를 만들어요. 그래서 내용이 똑같아도 a와 b는 서로 다른 객체라서 ==는 false가 나오고, 내용 비교는 equals()를 써야 해요."
   }
 ]

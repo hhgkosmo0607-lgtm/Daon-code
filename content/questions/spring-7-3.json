@@ -42,5 +42,21 @@
     ],
     "answer": 2,
     "explanation": "트랜잭션 경계가 없으면 각 SQL이 개별적으로 커밋될 수 있어요. 함께 성공/실패해야 하는 작업은 반드시 하나의 트랜잭션으로 묶어야 해요."
+  },
+  {
+    "id": "spring-7-3-q4",
+    "lessonId": "spring-7-3",
+    "type": "choice",
+    "prompt": "@Transactional 메서드 안에서 예외를 catch로 잡아 로그만 남기고 넘어가면 트랜잭션은 어떻게 될까?",
+    "code": "@Transactional\npublic void save(...) {\n    try {\n        risky();\n    } catch (Exception e) {\n        log.error(\"실패\", e);\n    }\n}",
+    "language": "Java",
+    "options": [
+      "예외가 메서드 밖으로 전파되지 않아 트랜잭션이 정상 커밋될 수 있다",
+      "catch로 잡아도 예외가 발생했다는 사실만으로 항상 롤백된다",
+      "컴파일 시점에 트랜잭션 메서드에서는 catch를 쓸 수 없다고 막는다",
+      "로그를 남기는 즉시 자동으로 롤백이 실행된다"
+    ],
+    "answer": 0,
+    "explanation": "트랜잭션 프록시는 메서드 밖으로 예외가 던져져야 롤백 여부를 판단해요. catch로 삼켜 버리면 정상 종료로 보여서 의도와 다르게 커밋될 수 있어요."
   }
 ]

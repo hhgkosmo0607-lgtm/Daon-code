@@ -44,5 +44,21 @@
     ],
     "answer": 3,
     "explanation": "do...while은 본문을 먼저 실행하고 나서 조건을 검사해요. while과 for는 조건을 먼저 검사해서 처음부터 거짓이면 한 번도 실행하지 않아요."
+  },
+  {
+    "id": "js-4-2-q4",
+    "lessonId": "js-4-2",
+    "type": "choice",
+    "prompt": "아래 코드를 실행하면 어떻게 될까?",
+    "code": "let i = 0;\nwhile (true) {\n  console.log(i);\n  i++;\n}",
+    "language": "JavaScript",
+    "options": [
+      "i 값이 3에 도달하는 순간 엔진이 자동으로 반복을 멈춰 준다",
+      "조건에 변수가 없다는 이유로 문법 오류가 나서 실행되지 않는다",
+      "while 블록 안의 코드는 항상 딱 한 번만 실행되고 끝난다",
+      "break문이 없어서 멈추지 않고 무한히 반복된다(무한 루프)"
+    ],
+    "answer": 3,
+    "explanation": "while(true)는 조건이 항상 참이라 스스로 멈추지 않아요. 안에서 조건에 따라 break를 걸어 주지 않으면 브라우저나 프로그램이 멈출 정도로 계속 반복돼요."
   }
 ]

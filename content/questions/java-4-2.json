@@ -28,5 +28,35 @@
     ],
     "answer": 2,
     "explanation": "default는 if-else의 마지막 else와 비슷한 역할이에요. 생략할 수도 있지만, 예상 못한 값을 대비해 습관적으로 넣는 게 안전해요."
+  },
+  {
+    "id": "java-4-2-q3",
+    "lessonId": "java-4-2",
+    "type": "choice",
+    "prompt": "switch문의 조건식(괄호 안)에 사용할 수 없는 타입은?",
+    "options": [
+      "int(정수형)",
+      "String(문자열형)",
+      "double(실수형)",
+      "char(문자형)"
+    ],
+    "answer": 2,
+    "explanation": "switch는 byte, short, char, int와 그 래퍼 타입, String, enum만 조건식으로 쓸 수 있어요. double, float, long, boolean은 switch 조건식에 올 수 없어서 컴파일 에러가 나요."
+  },
+  {
+    "id": "java-4-2-q4",
+    "lessonId": "java-4-2",
+    "type": "choice",
+    "prompt": "아래처럼 여러 case를 콜론(:)만 이어서 쓴 코드의 의미는?",
+    "code": "switch (month) {\n    case 12:\n    case 1:\n    case 2:\n        season = \"겨울\";\n        break;\n    default:\n        season = \"그 외\";\n}",
+    "language": "Java",
+    "options": [
+      "문법 오류 — case 레이블은 break 없이 연달아 쓸 수 없어 컴파일이 실패한다",
+      "case 12, 1, 2의 코드가 순서대로 모두 실행된다",
+      "case 12만 실제로 동작하고 나머지 case는 무시된다",
+      "12, 1, 2 중 어떤 값이 와도 같은 코드(\"겨울\")를 실행한다"
+    ],
+    "answer": 3,
+    "explanation": "case 뒤에 바로 다음 case를 이어 쓰면 그 사이에 실행할 코드가 없어서, 여러 값 중 하나만 맞아도 곧바로 아래에 있는 공통 코드로 흘러가요(fall-through 활용). month가 12, 1, 2 중 하나면 모두 \"겨울\"이 실행돼요."
   }
 ]

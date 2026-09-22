@@ -46,5 +46,21 @@
     ],
     "answer": 2,
     "explanation": "파이썬은 이런 연쇄 비교(chained comparison)를 지원해요. 3 < 5 < 10은 \"3은 5보다 작고, 그리고 5는 10보다 작다\"를 한 번에 검사하는 문법이에요. 자바에는 없는 파이썬만의 편의 문법이에요."
+  },
+  {
+    "id": "python-2-3-q4",
+    "lessonId": "python-2-3",
+    "type": "choice",
+    "prompt": "a = [1, 2, 3]; b = [1, 2, 3] 일 때 a == b 와 a is b 의 결과는?",
+    "code": "a = [1, 2, 3]\nb = [1, 2, 3]\nprint(a == b)\nprint(a is b)",
+    "language": "Python",
+    "options": [
+      "a == b는 True(값이 같음), a is b는 False(서로 다른 객체)",
+      "a == b와 a is b 모두 True — 값과 객체가 둘 다 같다고 판단된다",
+      "a == b와 a is b 모두 False — 리스트는 항상 다르다고 판단된다",
+      "a == b는 False(타입이 다름), a is b는 True(같은 객체)"
+    ],
+    "answer": 0,
+    "explanation": "==는 값이 같은지를 비교하고, is는 완전히 같은 객체(메모리 주소)인지를 비교해요. a와 b는 내용은 같지만 각각 다른 리스트 객체라서 ==는 True, is는 False가 나와요. 자바의 equals()와 ==의 차이와 비슷한 개념이에요."
   }
 ]

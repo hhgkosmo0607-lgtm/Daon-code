@@ -28,5 +28,37 @@
     ],
     "answer": 0,
     "explanation": "list-style-type은 마커의 모양을 지정해요. square는 정사각형, disc(기본값)는 원, decimal은 숫자, circle은 속이 빈 원이에요."
+  },
+  {
+    "id": "css-5-1-q3",
+    "lessonId": "css-5-1",
+    "type": "choice",
+    "prompt": "list-style-position: inside;와 기본값 outside;의 차이는?",
+    "code": "ul {\n  list-style-position: inside;\n}",
+    "language": "CSS",
+    "options": [
+      "inside는 텍스트 안쪽, outside는 바깥쪽에 마커가 표시된다",
+      "inside는 마커를 아예 표시하지 않고, outside만 마커를 보여주는 방식이다",
+      "list-style-position은 마커의 색상과 굵기를 지정하는 속성이다",
+      "outside를 지정하면 목록 항목 전체가 가로 방향으로 나열되도록 바뀐다"
+    ],
+    "answer": 0,
+    "explanation": "list-style-position은 마커(불릿, 숫자)가 콘텐츠 박스 안쪽(inside)에 들어갈지, 바깥쪽(outside, 기본값)에 놓일지를 정해요. inside면 마커가 텍스트와 함께 들여쓰기 영역 안에 표시돼요."
+  },
+  {
+    "id": "css-5-1-q4",
+    "lessonId": "css-5-1",
+    "type": "choice",
+    "prompt": "list-style-image: url(\"star.png\"); 를 지정하면?",
+    "code": "ul {\n  list-style-image: url(\"star.png\");\n}",
+    "language": "CSS",
+    "options": [
+      "목록의 배경 전체가 지정한 이미지로 채워진다",
+      "기본 불릿·숫자 마커 대신 지정한 이미지가 마커로 쓰인다",
+      "li 안의 텍스트가 이미지로 대체되어 텍스트가 사라진다",
+      "이미지가 li 태그 뒤쪽 여백에 배경처럼 반복해서 나타난다"
+    ],
+    "answer": 1,
+    "explanation": "list-style-image는 disc나 숫자 같은 기본 마커 대신 원하는 이미지를 마커로 쓸 수 있게 해줘요. 마커 부분만 바뀌고 목록 항목의 텍스트 내용은 그대로예요."
   }
 ]

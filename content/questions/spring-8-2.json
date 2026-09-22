@@ -42,5 +42,21 @@
     ],
     "answer": 1,
     "explanation": "실습을 단순하게 하려고 끄는 경우가 많지만, 세션 쿠키 기반 서비스에서는 CSRF 토큰 보호를 켜 두는 것이 안전해요."
+  },
+  {
+    "id": "spring-8-2-q4",
+    "lessonId": "spring-8-2",
+    "type": "choice",
+    "prompt": "같은 비밀번호를 BCryptPasswordEncoder.encode()로 두 번 인코딩하면 결과 해시는?",
+    "code": "String h1 = encoder.encode(\"1234\");\nString h2 = encoder.encode(\"1234\");\n// h1 과 h2 는?",
+    "language": "Java",
+    "options": [
+      "항상 완전히 똑같은 해시 문자열이 결과로 나와서 두 값을 비교하면 일치한다",
+      "매번 랜덤한 솔트가 섞여서 h1과 h2는 서로 다른 문자열이 된다",
+      "첫 번째 호출만 해시되고 두 번째는 원본 그대로 반환된다",
+      "호출할 때마다 길이가 점점 길어진다"
+    ],
+    "answer": 1,
+    "explanation": "BCrypt는 매번 랜덤한 솔트를 섞어서 같은 입력이라도 다른 해시가 나와요. 대신 matches()로 비교하면 솔트를 감안해 올바르게 일치 여부를 판단해 줘요."
   }
 ]

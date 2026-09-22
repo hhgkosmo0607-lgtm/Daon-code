@@ -30,5 +30,37 @@
     ],
     "answer": 2,
     "explanation": "파이썬은 자바처럼 {}로 블록을 감싸지 않고, 들여쓰기 자체가 블록의 범위를 결정해요. 들여쓰기가 잘못되면 실행 결과가 달라지거나 에러가 나기 때문에 꼭 일관되게 맞춰야 해요."
+  },
+  {
+    "id": "python-8-1-q3",
+    "lessonId": "python-8-1",
+    "type": "choice",
+    "prompt": "score = 95 일 때, 아래 코드에서 몇 개의 print가 실행될까?",
+    "code": "score = 95\nif score >= 90:\n    print(\"A\")\nif score >= 80:\n    print(\"B\")",
+    "language": "Python",
+    "options": [
+      "0개 — 조건이 모두 거짓으로 처리된다",
+      "3개 이상 — elif가 없으면 모든 블록이 반복 실행된다",
+      "1개 — if는 elif가 없어도 하나만 실행되도록 자동 제한된다",
+      "2개 — 독립된 두 if문이라 둘 다 조건을 만족하면 둘 다 실행된다"
+    ],
+    "answer": 3,
+    "explanation": "elif로 묶이지 않은 두 개의 if문은 서로 완전히 독립적이에요. 각각 조건을 따로 검사하기 때문에, 두 조건을 모두 만족하면 A와 B가 둘 다 출력돼요. elif를 썼다면 첫 조건이 참인 순간 나머지는 검사하지 않아요."
+  },
+  {
+    "id": "python-8-1-q4",
+    "lessonId": "python-8-1",
+    "type": "choice",
+    "prompt": "age = 20; if age: 처럼 조건에 정수 하나만 쓰면 어떻게 판단되나?",
+    "code": "age = 20\nif age:\n    print(\"참으로 처리됨\")",
+    "language": "Python",
+    "options": [
+      "0이 아닌 숫자는 True로, 0은 False로 취급된다",
+      "숫자는 조건식에 쓸 수 없어 TypeError가 발생한다",
+      "양수는 항상 False, 음수만 True로 취급된다",
+      "정수를 조건에 쓰면 항상 무조건 False로 취급된다"
+    ],
+    "answer": 0,
+    "explanation": "파이썬은 조건식에서 0, 0.0, 빈 문자열/리스트 등을 False로, 그 외 값은 True로 취급해요. age가 20이라 0이 아니므로 참으로 처리돼서 print가 실행돼요."
   }
 ]

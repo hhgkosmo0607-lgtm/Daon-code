@@ -42,5 +42,19 @@
     ],
     "answer": 2,
     "explanation": "JSON.stringify는 undefined 값과 함수 속성을 결과에서 빼 버려요. 배열 안에서는 null로 바뀌는 점도 알아 두면 좋아요."
+  },
+  {
+    "id": "js-9-2-q4",
+    "lessonId": "js-9-2",
+    "type": "choice",
+    "prompt": "JSON 문자열 형식에 대한 설명으로 옳은 것은?",
+    "options": [
+      "키와 문자열 값은 반드시 큰따옴표로 감싸야 한다",
+      "마지막 속성 뒤에 쉼표(trailing comma)를 붙여도 된다",
+      "주석(//)을 자유롭게 쓸 수 있다",
+      "작은따옴표와 큰따옴표를 섞어 써도 된다"
+    ],
+    "answer": 0,
+    "explanation": "JSON은 자바스크립트 문법보다 엄격해서 큰따옴표만 허용하고, 트레일링 콤마나 주석도 허용하지 않아요. 규칙을 어기면 JSON.parse에서 SyntaxError가 나요."
   }
 ]

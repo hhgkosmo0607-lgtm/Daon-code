@@ -30,5 +30,37 @@
     ],
     "answer": 0,
     "explanation": "\"w\"(write) 모드는 파일이 이미 있으면 기존 내용을 지우고 새로 써요. 기존 내용 뒤에 이어붙이고 싶으면 \"a\"(append) 모드를 써야 해요."
+  },
+  {
+    "id": "python-18-1-q3",
+    "lessonId": "python-18-1",
+    "type": "choice",
+    "prompt": "open(\"없는파일.txt\", \"r\") 처럼 존재하지 않는 파일을 읽기 모드로 열면?",
+    "code": "f = open(\"없는파일.txt\", \"r\")  # ?",
+    "language": "Python",
+    "options": [
+      "빈 파일이 새로 자동 생성되어 정상적으로 열린다",
+      "FileNotFoundError가 발생한다",
+      "None이 반환되고 이후 코드가 계속 실행된다",
+      "쓰기 모드로 자동 전환되어 파일이 만들어진다"
+    ],
+    "answer": 1,
+    "explanation": "쓰기 모드(\"w\")는 파일이 없으면 새로 만들어주지만, 읽기 모드(\"r\")는 읽을 파일이 실제로 있어야 해요. 없는 파일을 \"r\"로 열려고 하면 FileNotFoundError가 발생해요."
+  },
+  {
+    "id": "python-18-1-q4",
+    "lessonId": "python-18-1",
+    "type": "choice",
+    "prompt": "while문에서 line = f.readline(); if not line: break 처럼 쓰는 이유는?",
+    "code": "f = open(\"data.txt\", \"r\", encoding=\"utf-8\")\nwhile True:\n    line = f.readline()\n    if not line:\n        break\n    print(line)\nf.close()",
+    "language": "Python",
+    "options": [
+      "line이 줄바꿈 문자만 담긴 빈 줄일 때만 정확히 반복을 멈추게 하는 코드다",
+      "파일을 끝까지 모두 다 읽고 나면 파이썬이 자동으로 에러를 발생시키기 때문에, 이를 미리 막기 위한 코드다",
+      "readline()이 파일 끝에 도달하면 빈 문자열을 반환하는데, 그걸 감지해서 반복을 끝내는 코드다",
+      "line 변수의 타입이 더 이상 문자열이 아니게 되는 순간을 감지해서 멈추기 위한 코드다"
+    ],
+    "answer": 2,
+    "explanation": "readline()은 파일의 끝에 도달하면 더 읽을 내용이 없다는 뜻으로 빈 문자열(\"\")을 반환해요. 빈 문자열은 False로 취급되니까, if not line: break로 파일 끝을 감지해서 반복을 멈춰요."
   }
 ]

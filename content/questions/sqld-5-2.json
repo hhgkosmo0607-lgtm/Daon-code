@@ -40,5 +40,33 @@
     ],
     "answer": 0,
     "explanation": "MERGE는 WHEN MATCHED(조건 일치)면 UPDATE, WHEN NOT MATCHED(불일치)면 INSERT를 한 문장으로 처리해요. \"있으면 수정, 없으면 추가\" 로직을 짧게 쓸 때 유용해요."
+  },
+  {
+    "id": "sqld-5-2-q4",
+    "lessonId": "sqld-5-2",
+    "type": "choice",
+    "prompt": "INSERT INTO 사원 (사원번호, 이름) VALUES (101, '홍길동'); 처럼 일부 컬럼만 지정해서 입력하면, 지정하지 않은 나머지 컬럼은?",
+    "options": [
+      "DEFAULT 제약이 있으면 그 값으로, 없으면 NULL로 채워진다",
+      "입력 자체가 거부되어 에러가 난다",
+      "0이나 빈 문자열 같은 임의의 기본값으로 자동 채워진다",
+      "가장 최근에 입력된 다른 행의 값을 그대로 복사해온다"
+    ],
+    "answer": 0,
+    "explanation": "컬럼 목록에서 빠진 컬럼은 DEFAULT로 정의된 값이 있으면 그 값이, 없으면 NULL이 들어가요. NOT NULL 제약이 있고 DEFAULT도 없다면 에러가 나요."
+  },
+  {
+    "id": "sqld-5-2-q5",
+    "lessonId": "sqld-5-2",
+    "type": "choice",
+    "prompt": "UPDATE 사원 SET 부서명 = (SELECT 부서명 FROM 부서 WHERE 부서.부서번호 = 사원.부서번호); 처럼 SET절에 서브쿼리를 쓰면?",
+    "options": [
+      "문법 오류로 실행되지 않는다",
+      "서브쿼리 결과로 나온 값으로 해당 컬럼 값을 갱신한다",
+      "서브쿼리는 무시되고 컬럼 값이 NULL로 초기화된다",
+      "서브쿼리 결과가 여러 행이어도 항상 첫 행 값이 조용히 사용된다"
+    ],
+    "answer": 1,
+    "explanation": "SET절에 서브쿼리를 쓰면 그 서브쿼리가 반환하는 값으로 컬럼을 갱신해요. 단, 서브쿼리는 반드시 한 행(스칼라)만 반환해야 하고, 여러 행이 나오면 에러가 나요."
   }
 ]

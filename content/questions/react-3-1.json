@@ -41,5 +41,20 @@
     ],
     "answer": 0,
     "explanation": "인자가 필요할 땐 화살표 함수로 한 번 감싸서 \"클릭됐을 때 실행할 함수\"를 넘겨야 해요. 감싸지 않으면 렌더링 때 바로 실행돼요."
+  },
+  {
+    "id": "react-3-1-q4",
+    "lessonId": "react-3-1",
+    "type": "choice",
+    "prompt": "부모와 자식에 각각 onClick이 있을 때, 자식 클릭 시 부모의 onClick까지 함께 실행되는 걸 막으려면?",
+    "code": "<div onClick={onParentClick}>\n  <button onClick={(e) => { e.stopPropagation(); onChildClick(); }}>클릭</button>\n</div>",
+    "options": [
+      "e.preventDefault()를 호출해서 이벤트를 막는다",
+      "부모의 onClick 핸들러를 지우고 렌더링될 때마다 새로 다시 등록해 주어야 한다",
+      "e.stopPropagation()을 호출해서 이벤트 전파를 막는다",
+      "자식 버튼을 <a> 태그로 바꿔서 전파 경로를 끊는다"
+    ],
+    "answer": 2,
+    "explanation": "클릭 이벤트는 자식에서 부모로 전파(버블링)돼요. e.stopPropagation()을 호출하면 그 전파를 막아서 부모의 핸들러가 실행되지 않아요."
   }
 ]

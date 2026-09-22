@@ -44,5 +44,19 @@
     ],
     "answer": 0,
     "explanation": "대괄호로 없는 키에 접근하면 Flask가 잘못된 요청(400 Bad Request)으로 처리해요. get()은 키가 없으면 None(또는 지정한 기본값)을 돌려줘서, 선택 입력값을 안전하게 읽을 때 좋아요."
+  },
+  {
+    "id": "flask-4-1-q4",
+    "lessonId": "flask-4-1",
+    "type": "choice",
+    "prompt": "request.args, request.form, request.files의 공통점은?",
+    "options": [
+      "셋 다 서버가 아니라 브라우저에만 저장되는 객체다",
+      "셋 다 세션에 값을 자동으로 저장해 로그인 상태를 계속 유지시켜준다",
+      "셋 다 요청에 담겨 온 값을 종류별로 나눠서 꺼내 쓰는 객체다",
+      "셋 다 응답 상태코드를 지정할 때만 사용하는 객체다"
+    ],
+    "answer": 2,
+    "explanation": "args는 쿼리스트링, form은 폼 본문, files는 업로드 파일처럼 요청에 담겨 온 값을 각각의 방식으로 꺼내 쓸 수 있게 해줘요."
   }
 ]

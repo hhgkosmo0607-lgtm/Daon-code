@@ -28,5 +28,37 @@
     ],
     "answer": 0,
     "explanation": "i가 0, 1, 2일 때 조건(i < 3)이 참이라 실행되고, i가 3이 되면 조건이 거짓이 돼서 멈춰요. 총 3번(0, 1, 2) 실행돼요."
+  },
+  {
+    "id": "java-4-3-q3",
+    "lessonId": "java-4-3",
+    "type": "choice",
+    "prompt": "아래 while문을 실행하면 어떻게 될까?",
+    "code": "int i = 0;\nwhile (i < 5) {\n    System.out.println(i);\n}",
+    "language": "Java",
+    "options": [
+      "0부터 4까지 5번 출력되고 정상 종료된다",
+      "0만 한 번 출력되고 종료된다",
+      "컴파일 에러 — while문 본문에는 최소 한 번은 i를 변경해야 한다",
+      "무한 반복된다 — i가 증가하지 않아 조건이 계속 참이다"
+    ],
+    "answer": 3,
+    "explanation": "본문 안에서 i를 증가시키는 코드가 없어서 i는 계속 0으로 남아있고, 조건 i < 5는 영원히 참이에요. 그래서 0만 끝없이 출력되는 무한 루프가 돼요. 반복문을 쓸 때는 조건이 언젠가 거짓이 되도록 변수를 변경하는 코드를 꼭 넣어야 해요."
+  },
+  {
+    "id": "java-4-3-q4",
+    "lessonId": "java-4-3",
+    "type": "choice",
+    "prompt": "do-while문을 작성할 때 지켜야 하는 문법 규칙은?",
+    "code": "int i = 0;\ndo {\n    System.out.println(i);\n    i++;\n} while (i < 3);",
+    "language": "Java",
+    "options": [
+      "while(조건) 뒤에 세미콜론(;)을 반드시 붙여야 완전한 문장으로 컴파일된다",
+      "do 블록 안에는 최소 두 문장이 있어야 한다",
+      "while(조건) 앞에는 항상 else를 함께 써야 한다",
+      "do와 while 사이의 중괄호는 생략할 수 없다"
+    ],
+    "answer": 0,
+    "explanation": "do-while문은 일반 while문과 달리 while(조건) 뒤에 세미콜론을 꼭 붙여야 완전한 문장이 돼요. 이걸 빠뜨리면 컴파일 에러가 나는, 초보자들이 자주 하는 실수예요."
   }
 ]

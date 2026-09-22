@@ -41,5 +41,20 @@
     ],
     "answer": 2,
     "explanation": "state는 리액트가 컴포넌트 밖에 보관해서 다시 렌더링돼도 유지돼요. 초깃값은 첫 렌더링에만 사용돼요."
+  },
+  {
+    "id": "react-4-1-q4",
+    "lessonId": "react-4-1",
+    "type": "choice",
+    "prompt": "무거운 계산으로 초깃값을 만들 때 매 렌더링마다 다시 계산되지 않게 하려면?",
+    "code": "const [data, setData] = useState(() => expensiveCompute());",
+    "options": [
+      "useState(() => expensiveCompute())처럼 함수 자체를 넘긴다",
+      "useState(expensiveCompute())처럼 함수를 미리 호출해서 그 결과 값을 넘긴다",
+      "useEffect 안에서 useState를 호출해 초깃값을 늦게 설정한다",
+      "useMemo 없이는 초깃값 계산을 늦출 방법이 없다"
+    ],
+    "answer": 0,
+    "explanation": "useState에 함수(지연 초기화)를 넘기면 첫 렌더링 때 딱 한 번만 실행돼요. 함수를 호출한 결과를 바로 넘기면 렌더링마다 매번 다시 계산돼요."
   }
 ]

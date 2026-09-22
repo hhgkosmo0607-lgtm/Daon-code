@@ -30,5 +30,37 @@
     ],
     "answer": 0,
     "explanation": "파이썬의 for는 자바의 향상된 for문(foreach)과 비슷해요. range() 없이 리스트를 바로 순회하면, 인덱스 없이 각 요소 값을 순서대로 fruit에 담아줘요."
+  },
+  {
+    "id": "python-10-1-q3",
+    "lessonId": "python-10-1",
+    "type": "choice",
+    "prompt": "range(0, 10, 2) 는 어떤 값들을 만들어내나?",
+    "code": "for i in range(0, 10, 2):\n    print(i)",
+    "language": "Python",
+    "options": [
+      "0, 2, 4, 6, 8, 10",
+      "0, 2, 4, 6, 8",
+      "0, 1, 2, ..., 10 (2는 무시된다)",
+      "10, 8, 6, 4, 2, 0"
+    ],
+    "answer": 1,
+    "explanation": "range(시작, 끝, 증가폭)에서 세 번째 인자는 몇씩 건너뛸지 정해요. 0부터 10 직전까지 2씩 증가하면서 0, 2, 4, 6, 8을 만들어요(10은 끝 값이라 포함되지 않아요)."
+  },
+  {
+    "id": "python-10-1-q4",
+    "lessonId": "python-10-1",
+    "type": "choice",
+    "prompt": "for ch in \"abc\": 처럼 문자열을 for문에 바로 쓰면 어떻게 순회하나?",
+    "code": "for ch in \"abc\":\n    print(ch)",
+    "language": "Python",
+    "options": [
+      "문자열은 for문에 바로 쓸 수 없어 에러가 난다",
+      "문자열 전체(\"abc\")가 한 번만 통째로 출력된다",
+      "문자를 한 글자씩 순서대로 순회한다",
+      "문자열의 길이만큼 인덱스 숫자만 순회한다"
+    ],
+    "answer": 2,
+    "explanation": "문자열도 리스트처럼 반복 가능한(iterable) 자료형이라, for문에 바로 쓰면 한 글자씩 순서대로 꺼내서 순회해요."
   }
 ]

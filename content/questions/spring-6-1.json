@@ -42,5 +42,21 @@
     ],
     "answer": 0,
     "explanation": "SQL을 코드에서 분리해 관리하는 것이 MyBatis의 핵심이에요. JPA는 반대로 SQL을 거의 직접 쓰지 않고 객체 중심으로 다뤄요."
+  },
+  {
+    "id": "spring-6-1-q4",
+    "lessonId": "spring-6-1",
+    "type": "choice",
+    "prompt": "매퍼 인터페이스를 스프링이 자동으로 찾아 구현체를 만들어 등록하게 하려면 필요한 설정은?",
+    "code": "@MapperScan(\"com.edu.springboot.mapper\")\n@SpringBootApplication\npublic class DemoApplication { ... }",
+    "language": "Java",
+    "options": [
+      "매퍼 인터페이스에 @Entity를 붙인다",
+      "XML 파일 이름을 인터페이스 이름과 다르게 지어야 한다",
+      "@MapperScan으로 매퍼 인터페이스가 있는 패키지를 지정한다",
+      "매퍼 인터페이스가 RestController 클래스를 반드시 상속받도록 만들어야 한다"
+    ],
+    "answer": 2,
+    "explanation": "@MapperScan에 지정한 패키지 안의 매퍼 인터페이스들을 MyBatis가 찾아서 구현체를 자동으로 만들어 빈으로 등록해요. 메서드 하나하나에 @Mapper를 붙이는 방법도 있어요."
   }
 ]

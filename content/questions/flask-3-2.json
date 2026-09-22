@@ -26,5 +26,35 @@
     ],
     "answer": 1,
     "explanation": "static 폴더 안의 파일은 코드로 가공하지 않고 그대로 /static/... 경로로 제공돼요. 반대로 templates 안의 HTML은 Jinja2가 값을 채워서 가공한 뒤 응답하는 파일이에요."
+  },
+  {
+    "id": "flask-3-2-q3",
+    "lessonId": "flask-3-2",
+    "type": "choice",
+    "prompt": "HTML에서 static 폴더의 CSS 파일 경로를 만들 때 흔히 쓰는 방법은?",
+    "code": "<link rel=\"stylesheet\" href=\"{{ url_for('static', filename='style.css') }}\">",
+    "language": "HTML",
+    "options": [
+      "url_for()로 static 폴더 기준 경로를 자동으로 만든다",
+      "static 폴더의 파일은 경로 없이 파일명만 써도 브라우저가 항상 알아서 찾아준다",
+      "CSS 파일은 반드시 templates 폴더 안에 넣어야만 링크가 정상적으로 동작한다",
+      "style.css라는 이름은 반드시 Jinja2 변수로 먼저 등록해야만 불러올 수 있다"
+    ],
+    "answer": 0,
+    "explanation": "url_for('static', filename=...)을 쓰면 static 폴더를 기준으로 한 올바른 경로를 자동으로 만들어줘요. 경로를 직접 문자열로 적는 것보다 안전해요."
+  },
+  {
+    "id": "flask-3-2-q4",
+    "lessonId": "flask-3-2",
+    "type": "choice",
+    "prompt": "templates 폴더 이름을 templates가 아닌 다른 이름(예: views)으로 바꾸고 render_template('index.html')을 그대로 호출하면?",
+    "options": [
+      "자동으로 views 폴더도 함께 검색해서 정상 동작한다",
+      "TemplateNotFound 오류가 발생한다",
+      "static 폴더에서 대신 파일을 찾아 보여준다",
+      "HTML 대신 Python 코드 자체를 그대로 화면에 출력한다"
+    ],
+    "answer": 1,
+    "explanation": "render_template()은 기본적으로 templates라는 이름의 폴더에서 파일을 찾아요. 폴더 이름이 다르면 파일을 찾지 못해 TemplateNotFound 에러가 나요."
   }
 ]

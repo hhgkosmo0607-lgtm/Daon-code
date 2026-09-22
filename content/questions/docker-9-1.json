@@ -40,5 +40,21 @@
     ],
     "answer": 2,
     "explanation": "이미지가 작으면 다운로드·배포가 빠르고 공격 표면도 줄어요. 다만 alpine은 일부 라이브러리 호환 문제가 있을 수 있어 확인이 필요해요."
+  },
+  {
+    "id": "docker-9-1-q4",
+    "lessonId": "docker-9-1",
+    "type": "choice",
+    "prompt": "어떤 컨테이너에서도 더 이상 쓰지 않는(dangling) 이미지들만 한 번에 정리하는 명령은?",
+    "code": "docker image prune",
+    "language": "Bash",
+    "options": [
+      "docker rm -a",
+      "docker rmi --all",
+      "docker system restart",
+      "docker image prune"
+    ],
+    "answer": 3,
+    "explanation": "docker image prune은 태그도 없고 어떤 컨테이너도 참조하지 않는 이미지를 정리해요. 사용 중인 이미지까지 포함해 더 넓게 지우려면 -a 옵션을 붙여요."
   }
 ]

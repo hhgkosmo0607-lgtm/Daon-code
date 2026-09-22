@@ -30,5 +30,35 @@
     ],
     "answer": 1,
     "explanation": "<source>를 여러 개 나열하면 브라우저가 위에서부터 순서대로 확인해서, 자신이 지원하는 첫 번째 형식을 재생해요. 브라우저마다 지원하는 오디오/비디오 형식이 달라서 호환성을 위해 이렇게 여러 형식을 같이 제공하는 게 안전해요."
+  },
+  {
+    "id": "html-6-1-q3",
+    "lessonId": "html-6-1",
+    "type": "choice",
+    "prompt": "<video src=\"movie.mp4\" autoplay></video> 처럼 autoplay만 주고 muted를 안 주면 대부분의 최신 브라우저에서 어떻게 될까?",
+    "language": "HTML",
+    "options": [
+      "소리 나는 자동재생은 대부분 차단되어 무음으로만 재생된다",
+      "재생 볼륨이 자동으로 최대치로 설정된 채로 재생이 시작된다",
+      "autoplay는 소리 여부와 관계없이 항상 정상적으로 자동재생된다",
+      "영상 파일 자체가 서버에서 아예 다운로드되지 않는다"
+    ],
+    "answer": 0,
+    "explanation": "대부분의 최신 브라우저는 사용자 경험을 위해 소리가 있는 자동재생을 막아요. 자동재생을 시키려면 보통 muted 속성을 함께 줘서 무음으로 시작하게 해야 해요."
+  },
+  {
+    "id": "html-6-1-q4",
+    "lessonId": "html-6-1",
+    "type": "choice",
+    "prompt": "<audio> 태그와 <video> 태그의 공통점은?",
+    "language": "HTML",
+    "options": [
+      "둘 다 자막(track) 태그 없이는 절대로 재생이 불가능하다",
+      "둘 다 controls로 재생 UI를 켤 수 있고 src로 파일을 지정한다",
+      "둘 다 반드시 autoplay 속성을 함께 지정해야만 동작이 시작된다",
+      "둘 다 iframe 태그의 하위 태그로만 사용할 수 있다"
+    ],
+    "answer": 1,
+    "explanation": "<audio>와 <video>는 둘 다 controls로 재생 UI를 켜고, src 속성이나 자식으로 <source>를 여러 개 두어 파일 경로를 지정할 수 있어요. 미디어 종류만 다를 뿐 쓰는 방식은 비슷해요."
   }
 ]

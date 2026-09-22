@@ -44,5 +44,21 @@
     ],
     "answer": 3,
     "explanation": "keys는 키 배열, values는 값 배열, entries는 [키, 값] 쌍의 배열이에요. for (const [k, v] of Object.entries(obj))로 객체를 순회하는 패턴을 자주 써요."
+  },
+  {
+    "id": "js-9-1-q4",
+    "lessonId": "js-9-1",
+    "type": "choice",
+    "prompt": "아래 코드에서 obj의 값은?",
+    "code": "const name = 'kim';\nconst age = 20;\nconst obj = { name, age };\nconsole.log(obj);",
+    "language": "JavaScript",
+    "options": [
+      "{ name: 'name', age: 'age' }",
+      "undefined",
+      "오류가 발생한다(변수명은 그대로 못 쓴다)",
+      "{ name: 'kim', age: 20 }"
+    ],
+    "answer": 3,
+    "explanation": "속성 이름과 변수 이름이 같으면 { name: name } 대신 { name } 처럼 줄여 쓸 수 있어요(축약 프로퍼티). 값은 그 변수가 담고 있는 값이 그대로 들어가요."
   }
 ]

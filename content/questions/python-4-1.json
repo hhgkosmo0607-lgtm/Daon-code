@@ -44,5 +44,21 @@
     ],
     "answer": 1,
     "explanation": "리스트([])는 요소 추가·수정·삭제가 자유로운 가변(mutable) 객체이고, 튜플(())은 한 번 만들면 요소를 바꿀 수 없는 불변(immutable) 객체예요. 바뀌면 안 되는 값 묶음(좌표, 설정값 등)에는 튜플을 써요."
+  },
+  {
+    "id": "python-4-1-q4",
+    "lessonId": "python-4-1",
+    "type": "choice",
+    "prompt": "list1 = [1, 2, 3]; list2 = list1; list2.append(4) 를 실행하면 list1도 바뀔까?",
+    "code": "list1 = [1, 2, 3]\nlist2 = list1\nlist2.append(4)\nprint(list1)",
+    "language": "Python",
+    "options": [
+      "list1은 그대로 [1, 2, 3]으로 남는다 — list2는 완전히 별개의 새 복사본이기 때문이다",
+      "list1도 [1, 2, 3, 4]로 함께 바뀐다 — list2가 list1과 같은 객체를 가리키기 때문이다",
+      "에러가 발생한다 — 리스트는 다른 변수에 그대로 대입할 수 없는 자료형이기 때문이다",
+      "list1은 빈 리스트가 된다 — list2에 대입하는 순간 원본 리스트가 초기화되기 때문이다"
+    ],
+    "answer": 1,
+    "explanation": "list2 = list1은 값을 복사하는 게 아니라 같은 리스트 객체를 가리키는 별명(참조)을 하나 더 만드는 거예요. 그래서 list2를 바꾸면 list1도 같이 바뀌어요. 진짜 복사본이 필요하면 list1.copy()나 list1[:]을 써야 해요."
   }
 ]

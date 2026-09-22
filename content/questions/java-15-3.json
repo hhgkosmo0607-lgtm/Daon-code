@@ -30,5 +30,35 @@
     ],
     "answer": 1,
     "explanation": "Object가 기본 제공하는 equals()는 == 처럼 주소 비교예요. p1과 p2는 필드값이 같아도 서로 다른 객체라 false가 나와요. \"내용이 같으면 같다고 보고 싶다\"면 equals()를 직접 오버라이딩해서 필드를 비교하도록 만들어야 해요."
+  },
+  {
+    "id": "java-15-3-q3",
+    "lessonId": "java-15-3",
+    "type": "choice",
+    "prompt": "equals()를 오버라이딩할 때 hashCode()도 함께 오버라이딩해야 하는 이유는?",
+    "options": [
+      "hashCode를 재정의하지 않으면 equals 메서드 자체가 아예 컴파일되지 않는 문법 오류가 나기 때문에",
+      "equals가 true인 두 객체는 hashCode도 같아야 한다는 규약이 있고, 어기면 HashMap/HashSet에서 오작동할 수 있기 때문에",
+      "hashCode는 toString 메서드와 내부적으로 강하게 연결되어 있어서 반드시 같이 바꿔야만 하기 때문에",
+      "자바 문법상 equals와 hashCode는 항상 완전히 똑같은 반환 타입을 가져야만 하기 때문에"
+    ],
+    "answer": 1,
+    "explanation": "자바에는 \"equals()로 같다고 판단된 두 객체는 hashCode()도 같아야 한다\"는 규약이 있어요. 이걸 어기면 HashMap이나 HashSet에 넣은 객체를 제대로 찾지 못하는 문제가 생길 수 있어요."
+  },
+  {
+    "id": "java-15-3-q4",
+    "lessonId": "java-15-3",
+    "type": "choice",
+    "prompt": "new로 각각 만든 두 String 객체를 == 와 equals()로 비교하면?",
+    "code": "String s1 = new String(\"hello\");\nString s2 = new String(\"hello\");\nSystem.out.println(s1 == s2);      // ?\nSystem.out.println(s1.equals(s2)); // ?",
+    "language": "Java",
+    "options": [
+      "s1 == s2는 false(서로 다른 객체), s1.equals(s2)는 true(내용이 같음)로 결과가 서로 갈린다",
+      "둘 다 true가 나온다 — new로 만든 문자열이라도 내용이 같으면 언제나 같은 객체로 취급된다",
+      "둘 다 false가 나온다 — String은 equals를 오버라이딩하지 않아서 항상 다르다고 판정된다",
+      "s1 == s2는 true, s1.equals(s2)는 false로 두 결과가 서로 완전히 반대로 나오게 된다"
+    ],
+    "answer": 0,
+    "explanation": "new String(...)은 매번 새로운 객체를 만들기 때문에 s1과 s2는 서로 다른 객체라 ==는 false예요. 반면 String은 equals()를 오버라이딩해서 내용(문자열)을 비교하도록 만들어져 있어서, 내용이 같은 \"hello\"끼리는 true가 나와요."
   }
 ]

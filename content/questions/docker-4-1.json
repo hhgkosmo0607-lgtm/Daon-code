@@ -40,5 +40,21 @@
     ],
     "answer": 2,
     "explanation": "데이터 파일이 컨테이너 안에만 있으면 컨테이너를 지우는 순간 데이터도 사라져요. /var/lib/mysql 같은 데이터 경로를 볼륨에 연결해요."
+  },
+  {
+    "id": "docker-4-1-q4",
+    "lessonId": "docker-4-1",
+    "type": "choice",
+    "prompt": "docker run -v edu10data:/var/lib/mysql mariadb 처럼 실행할 때 -v 뒤에 쓴 edu10data가 미리 docker volume create로 만들어지지 않았다면?",
+    "code": "docker run -v edu10data:/var/lib/mysql mariadb",
+    "language": "Bash",
+    "options": [
+      "이름이 없다는 오류로 컨테이너 실행이 즉시 실패한다",
+      "도커가 같은 이름의 볼륨을 자동으로 만들어서 연결한다",
+      "바인드 마운트로 자동 전환되어 내 PC의 같은 이름 폴더를 찾는다",
+      "볼륨 없이 컨테이너의 임시 쓰기 레이어만 사용해서 실행된다"
+    ],
+    "answer": 1,
+    "explanation": "docker run에 없는 볼륨 이름을 쓰면 도커가 그 이름으로 볼륨을 새로 만들어 연결해 줘요. 미리 volume create를 해 두지 않아도 동작해요."
   }
 ]

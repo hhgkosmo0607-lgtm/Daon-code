@@ -20,8 +20,8 @@
     "lessonId": "spring-9-1",
     "type": "choice",
     "prompt": "스프링 부트에서 업로드 파일의 기본 최대 크기는?",
-    "code": "spring.servlet.multipart.max-file-size=10MB\nspring.servlet.multipart.max-request-size=50MB",
-    "language": "Java",
+    "code": "# 아무 설정도 하지 않았을 때 적용되는 기본값\nspring.servlet.multipart.max-file-size=1MB\nspring.servlet.multipart.max-request-size=10MB",
+    "language": "Properties",
     "options": [
       "제한이 없어 서버 메모리가 허용하는 만큼 올릴 수 있다",
       "파일당 10MB (그 이상은 설정으로 늘려야 한다)",
@@ -37,7 +37,7 @@
     "type": "choice",
     "prompt": "파일 업로드 폼에서 필요한 form 설정은?",
     "code": "<form method=\"post\" enctype=\"multipart/form-data\">\n  <input type=\"file\" name=\"file\">\n</form>",
-    "language": "Java",
+    "language": "HTML",
     "options": [
       "method=\"post\"와 enctype=\"multipart/form-data\"",
       "method=\"post\"와 enctype=\"application/x-www-form-urlencoded\"",
@@ -46,5 +46,21 @@
     ],
     "answer": 0,
     "explanation": "파일은 일반 폼 인코딩으로는 전송되지 않아요. multipart/form-data로 보내야 서버가 MultipartFile로 받을 수 있어요."
+  },
+  {
+    "id": "spring-9-1-q4",
+    "lessonId": "spring-9-1",
+    "type": "choice",
+    "prompt": "업로드된 파일이 실제로 선택되었는지 확인할 때 쓰는 MultipartFile의 메서드는?",
+    "code": "if (file.isEmpty()) {\n    // 선택된 파일이 없음\n}",
+    "language": "Java",
+    "options": [
+      "file.isNull() (파일 객체가 null인지 확인한다)",
+      "file.exists() (디스크에 저장됐는지 확인한다)",
+      "file.isEmpty() (파일이 비어 있는지 확인한다)",
+      "file.isValid() (파일 형식이 올바른지 확인한다)"
+    ],
+    "answer": 2,
+    "explanation": "폼에 파일을 선택하지 않고 제출하면 MultipartFile 자체는 null이 아니라 내용이 빈 객체로 넘어와요. isEmpty()로 실제 선택 여부를 확인해야 해요."
   }
 ]

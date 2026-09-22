@@ -42,5 +42,21 @@
     ],
     "answer": 3,
     "explanation": "templates는 서버가 렌더링하는 템플릿, static은 그대로 내려주는 정적 리소스(css, js, 이미지)를 두는 곳이에요."
+  },
+  {
+    "id": "spring-2-2-q4",
+    "lessonId": "spring-2-2",
+    "type": "choice",
+    "prompt": "Thymeleaf에서 컨텍스트 경로까지 포함해 서버 쪽 URL을 안전하게 만들어 주는 문법은?",
+    "code": "<a th:href=\"@{/board/{id}(id=${board.id})}\">상세보기</a>",
+    "language": "HTML",
+    "options": [
+      "#{...} 메시지 표현식",
+      "@{...} URL 표현식",
+      "${...} 변수 표현식",
+      "*{...} 선택 변수 표현식"
+    ],
+    "answer": 1,
+    "explanation": "@{...}는 URL을 만들 때 쓰는 표현식이에요. 컨텍스트 경로를 자동으로 붙여 주고, 괄호로 경로 변수나 쿼리스트링도 넣을 수 있어요."
   }
 ]

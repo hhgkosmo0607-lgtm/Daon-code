@@ -26,5 +26,47 @@
     ],
     "answer": 2,
     "explanation": "UNPIVOT은 PIVOT의 반대 작업이에요. 항목별로 나뉜 여러 열을 다시 하나의 컬럼(항목)+값 형태의 행으로 풀어줘요."
+  },
+  {
+    "id": "sqld-4-3-q3",
+    "lessonId": "sqld-4-3",
+    "type": "choice",
+    "prompt": "PIVOT 절을 작성할 때 반드시 필요한 세 가지 구성요소로 옳은 것은?",
+    "options": [
+      "GROUP BY로 묶을 컬럼, HAVING 조건, ORDER BY 정렬 기준",
+      "집계 함수, FOR로 지정할 피벗 대상 컬럼, IN으로 나열할 값 목록",
+      "조인 조건, WHERE 필터, 서브쿼리",
+      "PRIMARY KEY, FOREIGN KEY, UNIQUE 제약조건"
+    ],
+    "answer": 1,
+    "explanation": "PIVOT은 '집계함수(값을 어떻게 모을지) FOR 컬럼(무엇을 기준으로 펼칠지) IN (값 목록)(어떤 값들을 열로 만들지)' 형태로 작성해요."
+  },
+  {
+    "id": "sqld-4-3-q4",
+    "lessonId": "sqld-4-3",
+    "type": "choice",
+    "prompt": "PIVOT의 IN절에 나열하지 않은 값을 가진 행은 결과에서 어떻게 처리되나?",
+    "options": [
+      "별도의 '기타' 열로 자동 합산되어 결과에 나타난다",
+      "그 값이 있다는 이유만으로 쿼리 실행이 실패한다",
+      "IN절에 나열한 값들만 열로 만들어지고, 나열되지 않은 값은 반영되지 않는다",
+      "나열 여부와 상관없이 모든 값이 자동으로 열로 펼쳐진다"
+    ],
+    "answer": 2,
+    "explanation": "PIVOT은 IN절에 명시한 값만 각각 하나의 열로 만들어요. 나열하지 않은 값은 그 어떤 열에도 집계되지 않고 결과에서 빠져요."
+  },
+  {
+    "id": "sqld-4-3-q5",
+    "lessonId": "sqld-4-3",
+    "type": "choice",
+    "prompt": "UNPIVOT을 실행할 때, 원본 컬럼 값이 NULL인 경우 기본 동작은?",
+    "options": [
+      "NULL 값을 가진 행도 그대로 결과 행에 포함시킨다",
+      "NULL은 자동으로 0으로 변환되어 포함된다",
+      "NULL이 있으면 UNPIVOT 자체가 에러로 실패한다",
+      "NULL 값을 가진 행은 기본적으로 결과에서 제외한다"
+    ],
+    "answer": 3,
+    "explanation": "UNPIVOT은 원본 값이 NULL인 행을 기본적으로 결과에서 제외해요(오라클은 INCLUDE NULLS 옵션으로 포함시킬 수 있어요). 그래서 NULL이 많은 데이터는 UNPIVOT 후 행 수가 줄어들 수 있어요."
   }
 ]

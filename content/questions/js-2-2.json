@@ -46,5 +46,21 @@
     ],
     "answer": 3,
     "explanation": "var 선언은 위쪽으로 끌어올려져(호이스팅) 선언만 먼저 처리되고 값 대입은 원래 자리에서 일어나요. 그래서 대입 전에는 undefined예요. let/const는 선언 전에 접근하면 ReferenceError가 나요."
+  },
+  {
+    "id": "js-2-2-q4",
+    "lessonId": "js-2-2",
+    "type": "choice",
+    "prompt": "아래 코드를 실행하면 어떻게 될까?",
+    "code": "console.log(x);\nlet x = 5;",
+    "language": "JavaScript",
+    "options": [
+      "let은 호이스팅 대상이 아니라서 선언 전에 접근해도 곧바로 5가 출력된다",
+      "var와 똑같은 방식으로 호이스팅되어 선언 전에는 undefined가 출력된다",
+      "let은 아예 호이스팅되지 않아서 문법 오류로 스크립트 전체가 실행되지 않는다",
+      "호이스팅은 되지만 초기화 전 구간(TDZ)에 있어 접근하면 ReferenceError가 난다"
+    ],
+    "answer": 3,
+    "explanation": "let/const도 사실 호이스팅되지만, 선언문에 도달하기 전까지는 \"일시적 사각지대(TDZ)\"에 있어서 접근하면 ReferenceError가 나요. var처럼 조용히 undefined가 되지 않아요."
   }
 ]

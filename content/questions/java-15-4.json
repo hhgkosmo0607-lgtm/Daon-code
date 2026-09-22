@@ -28,5 +28,35 @@
     ],
     "answer": 3,
     "explanation": "LocalDate는 날짜(연/월/일)만, LocalTime은 시간만, LocalDateTime은 날짜+시간을 함께 다뤄요. 필요한 정보만 딱 담는 타입을 고르면 코드 의도가 더 명확해져요."
+  },
+  {
+    "id": "java-15-4-q3",
+    "lessonId": "java-15-4",
+    "type": "choice",
+    "prompt": "LocalDate의 plusDays()를 호출한 뒤 원본 변수를 출력하면 결과는?",
+    "code": "LocalDate today = LocalDate.now();\ntoday.plusDays(1); // 반환값을 사용하지 않음\nSystem.out.println(today); // ?",
+    "language": "Java",
+    "options": [
+      "plusDays(1)의 반환값을 무시해도 today 변수 자체가 하루 뒤로 자동으로 바뀌어 버린다",
+      "plusDays(1)을 호출하는 순간 예외가 발생해서 프로그램이 그 자리에서 곧바로 종료되어 버린다",
+      "today가 갑자기 null로 바뀌면서 다음 줄에서 NullPointerException이 발생하게 된다",
+      "today는 그대로 오늘 날짜다 — LocalDate는 불변이라 새 객체를 반환할 뿐 원본은 바뀌지 않는다"
+    ],
+    "answer": 3,
+    "explanation": "LocalDate, LocalDateTime 같은 java.time 클래스는 모두 불변(immutable)이에요. plusDays()는 하루 뒤 날짜를 담은 새 객체를 반환할 뿐 원본 today를 바꾸지 않기 때문에, 반환값을 변수에 다시 담지 않으면 아무 변화도 없어요."
+  },
+  {
+    "id": "java-15-4-q4",
+    "lessonId": "java-15-4",
+    "type": "choice",
+    "prompt": "java.time 패키지의 Period와 Duration의 차이로 옳은 것은?",
+    "options": [
+      "Duration은 날짜(연/월/일) 간격, Period는 시간(시/분/초) 간격을 다룬다",
+      "Duration과 Period는 완전히 같은 기능이라 아무거나 써도 무방하다",
+      "Period는 날짜(연/월/일) 간격, Duration은 시간(시/분/초) 간격을 다룬다",
+      "Period와 Duration 둘 다 LocalDate와 LocalTime을 구분 없이 처리한다"
+    ],
+    "answer": 2,
+    "explanation": "Period는 \"3년 2개월 5일\"처럼 날짜 단위의 간격을, Duration은 \"2시간 30분\"처럼 시간 단위의 간격을 표현할 때 써요. 다루는 정보의 성격이 달라서 용도에 맞게 골라야 해요."
   }
 ]

@@ -42,5 +42,21 @@
     ],
     "answer": 1,
     "explanation": "10lang-train-save.py(학습·저장)와 11lang-Webapp.py(불러와서 서비스)처럼 역할을 나누면, 모델을 다시 학습해도 웹 코드는 그대로 두고 pkl만 교체할 수 있어요."
+  },
+  {
+    "id": "ai-6-3-q4",
+    "lessonId": "ai-6-3",
+    "type": "choice",
+    "prompt": "request.form.get('text', '')처럼 두 번째 인자로 빈 문자열을 주는 이유는?",
+    "code": "text = request.form.get('text', '')",
+    "language": "Python",
+    "options": [
+      "None 대신 빈 문자열을 기본값으로 써서 이후 처리가 끊기지 않게 하려고",
+      "text라는 이름의 입력 파일을 서버 디스크 어딘가에 새로 생성해 저장해 두려고",
+      "입력값의 길이를 무조건 0으로 강제 고정하려고",
+      "GET 요청만 허용하고 POST 요청은 차단하려고"
+    ],
+    "answer": 0,
+    "explanation": "get()의 두 번째 인자는 값이 없을 때 쓸 기본값이에요. None 대신 빈 문자열을 주면 이후 문자열 처리 코드에서 에러 없이 자연스럽게 이어갈 수 있어요."
   }
 ]

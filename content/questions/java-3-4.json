@@ -28,5 +28,35 @@
     ],
     "answer": 0,
     "explanation": "!(NOT)은 true를 false로, false를 true로 뒤집어요. &&는 둘 다 참이어야 참(AND), ||는 하나만 참이어도 참(OR)이에요."
+  },
+  {
+    "id": "java-3-4-q3",
+    "lessonId": "java-3-4",
+    "type": "choice",
+    "prompt": "boolean result = true || check(); 를 실행하면 check()는 호출될까?",
+    "code": "boolean result = true || check();",
+    "language": "Java",
+    "options": [
+      "호출되지 않는다 — 왼쪽이 true인 순간 전체 결과가 정해져 오른쪽은 평가하지 않는다",
+      "호출된다 — ||는 short-circuit 없이 왼쪽과 오른쪽을 항상 모두 평가한다",
+      "컴파일 에러 — true 같은 리터럴은 ||의 피연산자로 쓸 수 없다",
+      "실행 순서에 따라 호출될 수도, 안 될 수도 있다"
+    ],
+    "answer": 0,
+    "explanation": "||(OR)는 왼쪽이 true인 순간 전체 결과가 true로 확정되기 때문에 오른쪽은 평가하지 않아요. &&가 왼쪽이 false일 때 오른쪽을 건너뛰는 것과 대칭되는 단축평가예요."
+  },
+  {
+    "id": "java-3-4-q4",
+    "lessonId": "java-3-4",
+    "type": "choice",
+    "prompt": "&&(논리 AND)와 &(비트 AND를 boolean에 적용)의 차이는?",
+    "options": [
+      "&&는 boolean 타입에 아예 쓸 수 없고, &만 boolean 비교 연산자로 사용할 수 있다",
+      "&는 boolean에 쓸 수 없고 &&만 boolean 비교에 쓸 수 있다",
+      "&&는 왼쪽이 false면 오른쪽을 평가하지 않지만, &는 항상 양쪽을 모두 평가한다",
+      "&&와 &는 boolean에 대해서는 완전히 동일하게 동작해 차이가 없다"
+    ],
+    "answer": 2,
+    "explanation": "&&는 단축평가를 하지만, &는 boolean 값에도 쓸 수 있는 연산자로 왼쪽 결과와 상관없이 오른쪽까지 항상 평가해요. 그래서 오른쪽에 부작용(메서드 호출 등)이 있다면 두 연산자의 동작이 달라질 수 있어요."
   }
 ]

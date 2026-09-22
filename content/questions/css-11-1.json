@@ -28,5 +28,36 @@
     ],
     "answer": 2,
     "explanation": "flexbox는 한 줄(행 또는 열) 안에서 아이템을 배치하는 1차원 레이아웃에 강하고, grid는 행과 열을 동시에 지정해서 전체 페이지 레이아웃 같은 2차원 구조를 짤 때 강해요. 실무에서는 상황에 맞춰 둘 다 함께 써요."
+  },
+  {
+    "id": "css-11-1-q3",
+    "lessonId": "css-11-1",
+    "type": "choice",
+    "prompt": "grid-template-rows: 100px auto; 처럼 값을 두 개 쓰면?",
+    "code": ".container {\n  display: grid;\n  grid-template-rows: 100px auto;\n}",
+    "language": "CSS",
+    "options": [
+      "행이 자동으로 하나로 합쳐져서 100px 높이 하나만 만들어진다",
+      "grid-template-rows는 열(column) 개수를 지정하는 속성이라 무시된다",
+      "첫 번째 행은 100px 고정, 두 번째 행은 내용에 맞춰 자동으로 높이가 정해진다",
+      "두 값 모두 무시되고 모든 행이 균등한 fr 비율로 자동 계산된다"
+    ],
+    "answer": 2,
+    "explanation": "grid-template-rows에 값을 나열하면 각 값이 순서대로 각 행의 높이를 지정해요. 100px auto는 첫 행은 100px 고정, 둘째 행은 콘텐츠 크기에 맞춰 자동으로 정해진다는 뜻이에요."
+  },
+  {
+    "id": "css-11-1-q4",
+    "lessonId": "css-11-1",
+    "type": "choice",
+    "prompt": "grid-template-columns/rows로 미리 정하지 않았는데 콘텐츠 때문에 행이 자동으로 추가될 때, grid-auto-rows가 하는 역할은?",
+    "language": "CSS",
+    "options": [
+      "grid-auto-rows는 grid에서는 쓸 수 없고 flex 전용 속성이다",
+      "이미 정의된 행의 개수를 강제로 줄이는 속성이다",
+      "grid의 gap 값을 자동으로 계산해주는 속성이다",
+      "명시적으로 정의되지 않아 자동으로 생성되는 행들의 크기를 지정한다"
+    ],
+    "answer": 3,
+    "explanation": "grid-template-rows로 미리 지정하지 않은 행이 콘텐츠 때문에 자동으로 추가로 생길 때, 그 자동 생성된 행들의 크기를 grid-auto-rows로 지정할 수 있어요."
   }
 ]
