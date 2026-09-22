@@ -2,18 +2,18 @@
 
 바이브코딩하는 사람을 위한 코드 읽기 학습 앱 (Expo + React Native)
 
-## 현재 상태 — Phase 0~2 완료
+## 현재 상태 — Phase 8(출시 준비) 진행 중
 
 ```
 ✅ Phase 0  프로젝트 뼈대, TypeScript strict, 폴더 구조
 🔶 Phase 1  Expo Router 배선 + 온보딩(위저드·배치고사·로그인 게이트) — 코드 작성 완료, 실기기 검증 필요
 ✅ Phase 2  로컬 콘텐츠 + 문제 4유형 렌더링
-🔶 Phase 3  Supabase 연동 — 이메일/익명 로그인 완료, 구글·카카오 남음
+✅ Phase 3  Supabase 연동 — 이메일/구글/카카오/익명 로그인 전부 완료
 🔶 Phase 4  submitAnswer / complete-placement — 배포·백엔드 검증 완료, 앱 화면 확인만 남음
-⬜ Phase 5  복습 시스템 (라이트너 박스)
-⬜ Phase 6  푸시 알림, EAS Update
-✅ Phase 7  콘텐츠 58레슨 채우기 — 406문제 전체 변환 + 오답 품질 개선 완료
-⬜ Phase 8  출시 준비
+⬜ Phase 5  복습 시스템 (라이트너 박스) — DB 테이블만 있고 화면·콘텐츠 없음
+⬜ Phase 6  푸시 알림, EAS Update — 미착수
+✅ Phase 7  콘텐츠 — 자바스크립트 등 코딩 입문 트랙 외 언어별/자격증 트랙 13개 추가, 1850문제+
+🔶 Phase 8  출시 준비 — app.json/eas.json 정비, EAS 프로젝트 연결, 첫 개발 빌드 진행 중
 ```
 
 상세는 `daon-content/Daon-code_할일.md` 참고.
@@ -102,12 +102,6 @@ user_id가 유지되므로 progress·XP가 그대로 따라온다.
 
 **코드 비교는 4줄 제한**
 비교는 스크롤 없이 한눈에 봐야 의미가 있어서, 한 블록당 4줄을 넘기면 개발 중 콘솔 경고가 뜹니다.
-
-## 알려진 미구현 (Phase 4에서 처리)
-
-**레슨을 완료해도 진도가 서버에 저장되지 않습니다.** `submitAnswer` Edge Function이
-아직 없어서, 현재는 홈 화면의 잠금 상태가 갱신되지 않고 첫 레슨만 열려 있습니다.
-XP·스트릭도 화면상 예상치만 보여주고 실제로 적립되지 않습니다.
 
 ## 검증된 도메인 로직
 

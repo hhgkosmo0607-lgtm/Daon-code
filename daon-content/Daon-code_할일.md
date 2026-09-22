@@ -5,7 +5,58 @@
 
 ---
 
-## 1. 이번 세션에서 한 일
+## 0. 2026-09-22 세션 — 콘텐츠 대량 확장 + Phase 8(출시 준비) 착수
+
+### 콘텐츠: 언어별/자격증 트랙 13개 신설 (완료)
+
+기존 "코딩 입문 + AI 활용"(ai-coding, 406문제) 외에 사용자의 실제 학원 교안
+(`D:\02Workspaces_backup`)을 근거로 언어별 기초 트랙을 대량으로 추가했습니다.
+
+| 트랙 | 레슨 | 문제 |
+|---|---|---|
+| java, python, html, css | 143 | 572 |
+| sqld (SQLD 자격증) | 22 | 111 |
+| flask, ai | 34 | 136 |
+| js, react, spring, docker | 106 | 425 |
+| pgcert(프로그래밍기능사), ite(정보기기운용기능사) | 34 | 136 |
+
+모든 트랙에 정답 위치 균등화(0~3번 고르게), 오답 보기 길이 균형(정답만 유독 길지
+않게) 작업을 거쳤고, 서브에이전트로 전체 최종 검토(사실 오류 확인)까지 했습니다.
+상세 히스토리는 `daon-content/기능_로드맵.md` 참고. 사무자동화산업기사/정보처리기사는
+참고 자료 없어서 보류(사용자 판단).
+
+### Phase 8 — 출시 준비 착수 (진행 중)
+
+README의 Phase 표가 오래돼서 실제 코드 상태(구글/카카오 로그인 이미 완료 등)와
+어긋나 있던 걸 확인하고 바로잡았습니다. 이번에 실제로 진행한 것:
+
+- **`app.json` 정비**: `ios.bundleIdentifier`/`android.package` = `com.daoncode.app`,
+  `versionCode`/`buildNumber` 초기값, `userInterfaceStyle: light` → `automatic`
+  (테마 시스템이 이미 시스템 다크모드를 따라가므로 네이티브 설정도 맞춤)
+- **`eas.json` 신규 생성**: development/preview/production 빌드 프로필,
+  `cli.version`을 설치된 eas-cli 버전으로 고정
+- **스플래시 화면**: `expo-splash-screen` 설치, 라이트/다크 배경색을 앱 기본 테마
+  (Alucard `#F8F8F0` / Dracula `#282A36`)에 맞춰 설정
+- **EAS 프로젝트 연결 완료**: `npx eas init --id 6d7bff8c-4728-4886-b12a-14dd6a8b5210`
+  (owner: `daon-codes-team`), `app.json`에 `extra.eas.projectId` 반영됨
+- **`expo-dev-client` 설치**: development 빌드 프로필에 필요
+- **버그 발견 및 수정**: `eas-cli`를 프로젝트 devDependency로 넣었더니 EAS 클라우드
+  빌드의 "Install dependencies" 단계가 실패함 — `eas-cli`가 물고 오는
+  `dtrace-provider`(네이티브 컴파일 필요) 때문으로 추정. `eas-cli`는 로컬 CLI
+  도구일 뿐 앱 빌드에 필요 없으므로 devDependency에서 제거하고
+  `npx eas-cli@latest`로 그때그때 실행하는 방식으로 바꿈 (`npm audit` 취약점도
+  26→14개로 감소)
+- **첫 안드로이드 development 빌드**: 위 수정 후 재시도, 진행 중(대기열 상태에서
+  세션 종료 — 다음에 https://expo.dev/accounts/daon-codes-team/projects/daon-code/builds
+  에서 결과 확인 필요)
+
+**주의할 점**: `EXPO_TOKEN`(Expo 개인 액세스 토큰)을 대화 중 두 번 노출함 — 둘 다
+사용 후 폐기 안내함. 앞으로 토큰은 `https://expo.dev/settings/access-tokens`에서
+매번 새로 발급하고 쓰고 나서 바로 삭제하는 걸 권장.
+
+---
+
+## 1. 이전 세션에서 한 일
 
 ### 테마 시스템 구현 (완료 — 웹 화면 확인 중)
 
@@ -304,50 +355,45 @@ Edge Function이 클라이언트와 **같은 파일을 그대로 import**하게 
 
 ---
 
-## 4. 다음에 할 일 (우선순위 순)
+## 4. 다음에 할 일 (우선순위 순, 2026-09-22 기준 갱신)
 
-### 🔶 Phase 4 마무리 — 백엔드는 검증 완료, UI 화면만 남음
-2번 항목 참고. 연결·배포·익명로그인·백엔드 로직(채점/XP/RLS/배치고사)까지 curl로 실제
-검증 완료. 남은 건 `.env` 채우고 `npx expo start`로 화면을 직접 눌러보는 것뿐입니다.
+### ① 첫 development 빌드 결과 확인 ← 지금 여기부터
+https://expo.dev/accounts/daon-codes-team/projects/daon-code/builds 에서 빌드가
+성공했는지 확인. 성공하면 APK를 실제 안드로이드 기기에 설치해서 README의
+"실기기(UI) 검증 체크리스트"(온보딩, 배치고사, 로그인 게이트, 게스트 흐름, 하루목표
+보너스)를 직접 눌러보며 확인. 실패하면 빌드 로그 보고 원인 파악.
 
-### ~~lessons.json 보정~~ — 완료
-1~8단계 40레슨 메타데이터 전체가 `content/lessons.json`에 있습니다.
+### ② Phase 8 나머지 — 출시 준비
+- 개인정보처리방침 작성 (구글/카카오 로그인 + Supabase로 개인정보를 다루므로
+  스토어 등록 전 법적으로 필요)
+- Apple 개발자 계정(연 $99, iOS 빌드/배포용) / Google Play Console 계정(최초 1회 $25)
+  가입 — 사용자가 직접 해야 함
+- 스토어 스크린샷, 앱 설명 문구
+- iOS 빌드 (`eas build --platform ios`)도 시도
 
-### ~~Phase 7 — 콘텐츠 JSON 변환~~ — 완료
-280문제 × 40레슨 전체 변환 완료. 상세는 위 "1. 이번 세션에서 한 일" 참고.
+### ③ Phase 5 — 복습 시스템 (라이트너 박스)
+`terms`/`user_term_review` 테이블은 스키마에 이미 있음. 화면(플래시카드)과 용어 콘텐츠가
+없음. 용어 사전(`terms`) 콘텐츠 자체도 아직 없어서, 화면 작업 전에 용어 목록부터
+정리해야 합니다.
 
-### ~~온보딩 구현~~ — 완료 (실기기 미검증)
-위저드·배치고사·로그인 게이트까지 코드 작성 완료. 상세는 위 "온보딩 구현" 항목 참고.
-구글/카카오 버튼, pendingBonus 금액 표시는 남아있음 (아래 ①에 포함).
-
-### ① Phase 3 마무리 ← 지금 여기부터
-구글/카카오 로그인 (expo-auth-session + 딥링크 + setSession, RN 전용 플로우 필요).
-겸사겸사 온보딩에서 빠진 "게스트로 놓친 XP 돌려받기" 금액 표시(`calculatePendingBonus`를
-`AuthScreen`에 연결)도 로그인 화면을 만지는 김에 같이 하면 좋습니다.
-
-### ② Phase 5 — 복습 시스템 (라이트너 박스)
-`terms`/`user_term_review` 테이블은 스키마에 이미 있음. 화면(플래시카드)과 용어 콘텐츠가 없음.
-용어 사전(`terms`) 콘텐츠 자체도 아직 없어서, 화면 작업 전에 용어 목록부터 정리해야 합니다.
-
-### ~~`order` 유형 재배치~~ — 완료
-7개 레슨의 Q7을 `order`로 전환 완료. 상세는 위 "Phase 7" 섹션 참고. **검토 권장**:
-질문 문구를 새로 쓴 것들이라, 사람이 한 번 읽어보고 어색한 부분 있으면 알려주세요.
-
-### ③ Phase 6 — 푸시 알림, EAS Update
+### ④ Phase 6 — 푸시 알림, EAS Update
 온보딩에서 `notify_time`은 이미 수집·저장하지만, 실제로 그 시간에 발송하는 스케줄러
-(pg_cron + Edge Function + Expo Push)는 아직 없습니다.
+(pg_cron + Edge Function + Expo Push)는 아직 없습니다. `send-notifications` Edge
+Function 폴더는 만들어져 있지만 빈 껍데기 상태. 구현 시 `app.json` plugins에
+`expo-notifications` 설정도 추가해야 함.
 
-### ④ Phase 8 — 출시 준비
-앱 아이콘, 스토어 스크린샷, 개인정보처리방침, QA.
+### ⑤ 자잘한 것
+- D2Coding 폰트 적용 — 폰트 파일(`assets/fonts/D2Coding-*.ttf`)을 사용자가 넣어줘야
+  진행 가능
+- `npm audit` 남은 취약점 14개 확인 (devDependency 위주라 급하지 않음)
+- 실기기(UI) 검증 체크리스트 — Phase 1 온보딩 화면들이 실제로 잘 도는지 아직 확인
+  기록이 없음 (①의 development 빌드로 겸사겸사 확인)
 
 ---
 
 ## 5. 순서를 이렇게 잡은 이유
 
-①은 로그인 화면을 이미 만지고 있어서 구글/카카오·pendingBonus를 묶어 처리하기 좋은
-타이밍입니다. ②는 콘텐츠(용어 사전)부터 채워야 하는 선행 작업이 있어 그 다음입니다.
-③④는 문서 자체가 "나머지는 그 다음"이라고 이미 못박아둔 순서입니다.
-
-**Phase 4(Edge Function 배포)는 별도 트랙**: 보류였다가 재개해서 배포·검증까지 끝났고
-(2번 섹션 참고), 남은 건 사용자가 직접 앱을 켜서 화면을 보는 것뿐이라 이 우선순위
-목록에는 포함하지 않았습니다.
+①은 지금 막 돌려놓은 빌드 결과부터 봐야 다음 단계(스토어 등록이든 버그 수정이든)를
+정할 수 있어서 최우선입니다. ②는 ①이 잘 되면 바로 이어지는 실제 출시 절차입니다.
+③④는 새 기능이라 출시와 별개로 나중에 붙여도 되는 것들이고, 문서 자체가 이전부터
+"나머지는 그 다음"이라고 정리해둔 순서를 그대로 유지했습니다.
