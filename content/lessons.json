@@ -905,6 +905,54 @@
       "stage": 9,
       "title": "SQL 활용 핵심 요약",
       "description": "SELECT/JOIN/GROUP BY 핵심 (심화는 SQLD 트랙 참고)"
+    },
+    {
+      "trackId": "ite",
+      "stage": 1,
+      "title": "전자계산기일반 — 진법과 연산",
+      "description": "진법 변환, 보수(1의 보수/2의 보수)"
+    },
+    {
+      "trackId": "ite",
+      "stage": 2,
+      "title": "논리회로 기초",
+      "description": "기본 게이트, 불 대수, 논리식 간소화"
+    },
+    {
+      "trackId": "ite",
+      "stage": 3,
+      "title": "컴퓨터 하드웨어",
+      "description": "CPU/메모리/저장장치, 포트 규격"
+    },
+    {
+      "trackId": "ite",
+      "stage": 4,
+      "title": "장애진단과 최신 기술 동향",
+      "description": "PC 장애 진단, 클라우드/IoT/AI 개념"
+    },
+    {
+      "trackId": "ite",
+      "stage": 5,
+      "title": "OSI와 IP 주소",
+      "description": "OSI 7계층, IP 주소 클래스"
+    },
+    {
+      "trackId": "ite",
+      "stage": 6,
+      "title": "라우팅과 네트워크 장비",
+      "description": "RIP/OSPF, 허브/스위치/라우터"
+    },
+    {
+      "trackId": "ite",
+      "stage": 7,
+      "title": "표준화 기구",
+      "description": "ISO/ITU/IEEE, KS/TTA/W3C"
+    },
+    {
+      "trackId": "ite",
+      "stage": 8,
+      "title": "정보통신 법·제도",
+      "description": "정보통신망법, 개인정보보호법, 저작권과 정보통신 윤리"
     }
   ],
   "lessons": [
@@ -4155,6 +4203,139 @@
       "id": "pgcert-9-2",
       "stage": 9,
       "title": "JOIN과 GROUP BY",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ite",
+      "id": "ite-1-1",
+      "stage": 1,
+      "title": "진법 변환",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ite",
+      "id": "ite-1-2",
+      "stage": 1,
+      "title": "보수와 연산",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ite",
+      "id": "ite-2-1",
+      "stage": 2,
+      "title": "논리 게이트와 불 대수",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ite",
+      "id": "ite-2-2",
+      "stage": 2,
+      "title": "논리식 간소화",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ite",
+      "id": "ite-3-1",
+      "stage": 3,
+      "title": "CPU·메모리·저장장치",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ite",
+      "id": "ite-3-2",
+      "stage": 3,
+      "title": "입출력 장치와 포트 규격",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ite",
+      "id": "ite-4-1",
+      "stage": 4,
+      "title": "PC 장애 진단 기초",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ite",
+      "id": "ite-4-2",
+      "stage": 4,
+      "title": "최신 IT 기술 동향",
+      "subtitle": "클라우드, IoT, AI",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ite",
+      "id": "ite-5-1",
+      "stage": 5,
+      "title": "OSI 7계층",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ite",
+      "id": "ite-5-2",
+      "stage": 5,
+      "title": "IP 주소 클래스",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ite",
+      "id": "ite-6-1",
+      "stage": 6,
+      "title": "라우팅 프로토콜",
+      "subtitle": "RIP, OSPF",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ite",
+      "id": "ite-6-2",
+      "stage": 6,
+      "title": "네트워크 장비",
+      "subtitle": "허브, 스위치, 라우터, 리피터",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ite",
+      "id": "ite-7-1",
+      "stage": 7,
+      "title": "국제 표준화 기구",
+      "subtitle": "ISO, ITU, IEEE",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ite",
+      "id": "ite-7-2",
+      "stage": 7,
+      "title": "국내 표준화 기구와 웹 표준",
+      "subtitle": "KS, TTA, W3C",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ite",
+      "id": "ite-8-1",
+      "stage": 8,
+      "title": "정보통신망법과 개인정보보호법",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "ite",
+      "id": "ite-8-2",
+      "stage": 8,
+      "title": "저작권과 정보통신 윤리",
       "orderNo": 2,
       "xpReward": 10
     }

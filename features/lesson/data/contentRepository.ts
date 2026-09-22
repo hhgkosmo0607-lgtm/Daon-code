@@ -381,6 +381,22 @@ import q_pgcert_8_1 from '../../../content/questions/pgcert-8-1.json';
 import q_pgcert_8_2 from '../../../content/questions/pgcert-8-2.json';
 import q_pgcert_9_1 from '../../../content/questions/pgcert-9-1.json';
 import q_pgcert_9_2 from '../../../content/questions/pgcert-9-2.json';
+import q_ite_1_1 from '../../../content/questions/ite-1-1.json';
+import q_ite_1_2 from '../../../content/questions/ite-1-2.json';
+import q_ite_2_1 from '../../../content/questions/ite-2-1.json';
+import q_ite_2_2 from '../../../content/questions/ite-2-2.json';
+import q_ite_3_1 from '../../../content/questions/ite-3-1.json';
+import q_ite_3_2 from '../../../content/questions/ite-3-2.json';
+import q_ite_4_1 from '../../../content/questions/ite-4-1.json';
+import q_ite_4_2 from '../../../content/questions/ite-4-2.json';
+import q_ite_5_1 from '../../../content/questions/ite-5-1.json';
+import q_ite_5_2 from '../../../content/questions/ite-5-2.json';
+import q_ite_6_1 from '../../../content/questions/ite-6-1.json';
+import q_ite_6_2 from '../../../content/questions/ite-6-2.json';
+import q_ite_7_1 from '../../../content/questions/ite-7-1.json';
+import q_ite_7_2 from '../../../content/questions/ite-7-2.json';
+import q_ite_8_1 from '../../../content/questions/ite-8-1.json';
+import q_ite_8_2 from '../../../content/questions/ite-8-2.json';
 
 import type { Lesson, Question, Stage, Track } from '../domain/types';
 
@@ -778,6 +794,22 @@ const QUESTION_BANK: Record<string, unknown> = {
   'pgcert-8-2': q_pgcert_8_2,
   'pgcert-9-1': q_pgcert_9_1,
   'pgcert-9-2': q_pgcert_9_2,
+  'ite-1-1': q_ite_1_1,
+  'ite-1-2': q_ite_1_2,
+  'ite-2-1': q_ite_2_1,
+  'ite-2-2': q_ite_2_2,
+  'ite-3-1': q_ite_3_1,
+  'ite-3-2': q_ite_3_2,
+  'ite-4-1': q_ite_4_1,
+  'ite-4-2': q_ite_4_2,
+  'ite-5-1': q_ite_5_1,
+  'ite-5-2': q_ite_5_2,
+  'ite-6-1': q_ite_6_1,
+  'ite-6-2': q_ite_6_2,
+  'ite-7-1': q_ite_7_1,
+  'ite-7-2': q_ite_7_2,
+  'ite-8-1': q_ite_8_1,
+  'ite-8-2': q_ite_8_2,
 };
 
 /** 기본 트랙 — 온보딩/배치고사 등 트랙을 아직 명시하지 않은 기존 화면이 쓰는 값 */

@@ -1,0 +1,58 @@
+[
+  {
+    "id": "ite-3-2-q1",
+    "lessonId": "ite-3-2",
+    "type": "choice",
+    "prompt": "USB 포트의 주된 용도는?",
+    "options": [
+      "모니터로 영상 신호만 전달할 수 있는 전용 출력 포트",
+      "전화선을 연결해서 인터넷에 접속할 때 쓰이는 통신 포트",
+      "오직 전원을 공급하는 용도로만 쓰이는 전용 포트",
+      "다양한 주변기기를 연결하는 범용 직렬 버스"
+    ],
+    "answer": 3,
+    "explanation": "USB(Universal Serial Bus)는 이름처럼 범용으로 여러 종류의 주변기기를 하나의 규격으로 연결할 수 있게 해줘요."
+  },
+  {
+    "id": "ite-3-2-q2",
+    "lessonId": "ite-3-2",
+    "type": "choice",
+    "prompt": "HDMI 포트가 주로 전달하는 신호는?",
+    "options": [
+      "영상과 음성 신호를 함께 전달한다",
+      "영상 신호만 전달하고 음성은 전달하지 않는다",
+      "네트워크 데이터만 전달한다",
+      "전원만 공급하고 신호는 전달하지 않는다"
+    ],
+    "answer": 0,
+    "explanation": "HDMI(High-Definition Multimedia Interface)는 모니터·TV에 영상과 소리를 한 케이블로 함께 보낼 수 있어요."
+  },
+  {
+    "id": "ite-3-2-q3",
+    "lessonId": "ite-3-2",
+    "type": "choice",
+    "prompt": "저장장치를 메인보드에 연결할 때 쓰는 대표적인 인터페이스 규격은?",
+    "options": [
+      "HDMI",
+      "SATA(또는 NVMe)",
+      "RJ-45",
+      "VGA"
+    ],
+    "answer": 1,
+    "explanation": "SATA는 HDD·SSD 연결에 널리 쓰이고, 더 빠른 NVMe(M.2)도 최근 많이 쓰여요. HDMI·VGA는 영상 출력용, RJ-45는 유선 네트워크 연결용이에요."
+  },
+  {
+    "id": "ite-3-2-q4",
+    "lessonId": "ite-3-2",
+    "type": "choice",
+    "prompt": "네트워크 케이블을 컴퓨터의 랜(LAN) 포트에 연결할 때 쓰는 커넥터 규격은?",
+    "options": [
+      "RJ-11",
+      "DB-9",
+      "RJ-45",
+      "PS/2"
+    ],
+    "answer": 2,
+    "explanation": "RJ-45는 이더넷 케이블(UTP)의 표준 커넥터예요. RJ-11은 전화선에, PS/2는 옛날 키보드/마우스 연결에 쓰였어요."
+  }
+]
