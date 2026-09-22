@@ -1,0 +1,58 @@
+[
+  {
+    "id": "pgcert-9-1-q1",
+    "lessonId": "pgcert-9-1",
+    "type": "choice",
+    "prompt": "학생(STUDENT) 테이블에서 이름(NAME)만 조회하는 SQL은?",
+    "options": [
+      "SELECT * FROM STUDENT WHERE NAME;",
+      "SELECT NAME FROM STUDENT;",
+      "GET NAME FROM STUDENT;",
+      "SELECT STUDENT FROM NAME;"
+    ],
+    "answer": 1,
+    "explanation": "SELECT 조회할컬럼 FROM 테이블명; 이 기본 구조예요. *는 모든 컬럼을 뜻해요."
+  },
+  {
+    "id": "pgcert-9-1-q2",
+    "lessonId": "pgcert-9-1",
+    "type": "choice",
+    "prompt": "나이(AGE)가 20 이상인 학생만 조회하려면?",
+    "options": [
+      "SELECT * FROM STUDENT HAVING AGE >= 20;",
+      "SELECT * FROM STUDENT ORDER BY AGE >= 20;",
+      "SELECT * FROM STUDENT WHERE AGE >= 20;",
+      "SELECT * FROM STUDENT IF AGE >= 20;"
+    ],
+    "answer": 2,
+    "explanation": "행 단위로 조건을 거를 때는 WHERE절을 써요. HAVING은 GROUP BY로 묶은 그룹에 조건을 걸 때 써요."
+  },
+  {
+    "id": "pgcert-9-1-q3",
+    "lessonId": "pgcert-9-1",
+    "type": "choice",
+    "prompt": "학생 테이블에 새 행을 추가하는 SQL 명령은?",
+    "options": [
+      "ADD INTO STUDENT VALUES (...);  -- 존재하지 않는 문법",
+      "UPDATE STUDENT VALUES (...);  -- UPDATE는 SET 절이 필요",
+      "CREATE STUDENT VALUES (...);  -- CREATE는 테이블 생성용",
+      "INSERT INTO STUDENT VALUES (...);"
+    ],
+    "answer": 3,
+    "explanation": "데이터 추가는 INSERT, 수정은 UPDATE, 삭제는 DELETE예요. CREATE는 테이블 같은 구조를 새로 만들 때 써요."
+  },
+  {
+    "id": "pgcert-9-1-q4",
+    "lessonId": "pgcert-9-1",
+    "type": "choice",
+    "prompt": "STUDENT 테이블에서 나이(AGE)가 20 미만인 행만 삭제하는 SQL은?",
+    "options": [
+      "DROP FROM STUDENT WHERE AGE < 20;  -- DROP은 테이블 자체를 삭제하는 구문",
+      "DELETE STUDENT SET AGE < 20;  -- DELETE에는 SET을 쓰지 않음",
+      "DELETE FROM STUDENT WHERE AGE < 20;",
+      "REMOVE FROM STUDENT WHERE AGE < 20;  -- REMOVE는 존재하지 않는 SQL 키워드"
+    ],
+    "answer": 2,
+    "explanation": "특정 조건에 맞는 행만 지울 때는 DELETE FROM 테이블 WHERE 조건; 형태를 써요. WHERE를 빼면 모든 행이 삭제되니 주의해야 해요."
+  }
+]

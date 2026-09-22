@@ -1,0 +1,64 @@
+[
+  {
+    "id": "pgcert-7-1-q1",
+    "lessonId": "pgcert-7-1",
+    "type": "choice",
+    "prompt": "아래 C 코드의 출력은?",
+    "code": "int a = 7, b = 2;\nprintf(\"%d\", a / b + a % b + a / b);",
+    "language": "C",
+    "options": [
+      "3",
+      "3.5",
+      "7",
+      "4"
+    ],
+    "answer": 2,
+    "explanation": "/는 두 피연산자가 모두 정수(int)면 소수점을 버리는 정수 나눗셈이 돼요. a/b는 3, a%b(나머지)는 1이라서 3+1+3=7이에요."
+  },
+  {
+    "id": "pgcert-7-1-q2",
+    "lessonId": "pgcert-7-1",
+    "type": "choice",
+    "prompt": "아래 C 코드의 출력은?",
+    "code": "int a = 3, b = 3;\nprintf(\"%d\", a == b);",
+    "language": "C",
+    "options": [
+      "0",
+      "2",
+      "컴파일 오류",
+      "1"
+    ],
+    "answer": 3,
+    "explanation": "==는 비교 결과가 참(1)/거짓(0)인 정수를 돌려줘요. 3과 3은 같으므로 1이 출력돼요."
+  },
+  {
+    "id": "pgcert-7-1-q3",
+    "lessonId": "pgcert-7-1",
+    "type": "choice",
+    "prompt": "아래 C 코드에서 x의 최종 값은?",
+    "code": "int x = 0;\nfor (int i = 1; i <= 3; i++) {\n    x += i;\n}",
+    "language": "C",
+    "options": [
+      "6",
+      "5",
+      "11",
+      "무한 반복"
+    ],
+    "answer": 0,
+    "explanation": "for(초기식; 조건식; 증감식)에서 i가 1,2,3일 때만 조건(i<=3)이 참이라 세 번 돌면서 x에 1,2,3이 더해져요. 0+1+2+3=6이에요."
+  },
+  {
+    "id": "pgcert-7-1-q4",
+    "lessonId": "pgcert-7-1",
+    "type": "choice",
+    "prompt": "C 언어에서 변수를 선언할 때 초기화하지 않으면?",
+    "options": [
+      "지역 변수든 전역 변수든 상관없이 항상 자동으로 0으로 초기화된다",
+      "쓰레기 값(메모리에 남아 있던 임의의 값)이 들어 있을 수 있다",
+      "선언할 때 바로 초기화하지 않으면 반드시 컴파일 오류가 발생한다",
+      "지역 변수든 전역 변수든 항상 자동으로 -1로 초기화된다"
+    ],
+    "answer": 1,
+    "explanation": "C는 지역 변수를 자동으로 초기화해 주지 않아요(전역/static 변수는 0으로 초기화됨). 사용 전에 꼭 값을 넣어야 해요."
+  }
+]

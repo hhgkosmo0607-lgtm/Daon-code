@@ -1,0 +1,58 @@
+[
+  {
+    "id": "pgcert-9-2-q1",
+    "lessonId": "pgcert-9-2",
+    "type": "choice",
+    "prompt": "STUDENT 테이블과 CLASS 테이블을 학번(STU_NO)이 같은 행끼리 연결해서 함께 조회하려면?",
+    "options": [
+      "SELECT * FROM STUDENT S JOIN CLASS C ON S.STU_NO = C.STU_NO;",
+      "SELECT * FROM STUDENT, CLASS WHERE STU_NO = STU_NO;  -- 컬럼명이 모호해 오류 발생 가능",
+      "SELECT * FROM STUDENT UNION CLASS;  -- UNION은 열 구조가 같은 결과를 합치는 구문",
+      "SELECT * FROM STUDENT COPY CLASS;  -- COPY는 존재하지 않는 SQL 키워드"
+    ],
+    "answer": 0,
+    "explanation": "두 테이블을 연결할 때는 JOIN ... ON 조건 형태를 써요. 같은 컬럼명이면 테이블 별칭(S., C.)으로 구분해야 오류가 안 나요."
+  },
+  {
+    "id": "pgcert-9-2-q2",
+    "lessonId": "pgcert-9-2",
+    "type": "choice",
+    "prompt": "학과(DEPT)별 학생 수를 구하는 SQL은?",
+    "options": [
+      "SELECT DEPT, COUNT(*) FROM STUDENT WHERE DEPT;",
+      "SELECT DEPT, COUNT(*) FROM STUDENT GROUP BY DEPT;",
+      "SELECT DEPT, SUM(DEPT) FROM STUDENT ORDER BY DEPT;",
+      "SELECT COUNT(DEPT) FROM STUDENT;"
+    ],
+    "answer": 1,
+    "explanation": "GROUP BY로 같은 학과끼리 묶고, COUNT(*)로 각 그룹의 행 개수를 세요."
+  },
+  {
+    "id": "pgcert-9-2-q3",
+    "lessonId": "pgcert-9-2",
+    "type": "choice",
+    "prompt": "테이블 자체를 완전히 삭제(구조까지 삭제)하는 SQL 명령은?",
+    "options": [
+      "DELETE TABLE 테이블명;",
+      "REMOVE TABLE 테이블명;",
+      "DROP TABLE 테이블명;",
+      "TRUNCATE COLUMN 테이블명;"
+    ],
+    "answer": 2,
+    "explanation": "DROP은 테이블 구조 자체를 없애고, DELETE는 데이터(행)만 지우고 구조는 남겨요."
+  },
+  {
+    "id": "pgcert-9-2-q4",
+    "lessonId": "pgcert-9-2",
+    "type": "choice",
+    "prompt": "학과(DEPT)별 학생 수를 구한 뒤, 학생 수가 5명을 초과하는 학과만 보려면?",
+    "options": [
+      "WHERE COUNT(*) > 5  -- WHERE절에는 집계함수를 직접 못 씀",
+      "ORDER BY COUNT(*) > 5  -- ORDER BY는 정렬만 담당함",
+      "WHERE 절 안에 GROUP BY를 넣는다  -- 문법 순서가 잘못됨",
+      "GROUP BY DEPT 뒤에 HAVING COUNT(*) > 5를 추가한다"
+    ],
+    "answer": 3,
+    "explanation": "그룹으로 묶은 결과에 조건을 걸 때는 WHERE가 아니라 HAVING을 써요. WHERE는 그룹으로 묶기 전 개별 행에만 조건을 걸 수 있어요."
+  }
+]

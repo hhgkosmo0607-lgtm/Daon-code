@@ -1,0 +1,66 @@
+[
+  {
+    "id": "pgcert-7-2-q1",
+    "lessonId": "pgcert-7-2",
+    "type": "choice",
+    "prompt": "아래 C 코드의 출력은?",
+    "code": "int arr[3] = {10, 20, 30};\nfor (int i = 0; i < 3; i++) {\n    printf(\"%d \", arr[i]);\n}",
+    "language": "C",
+    "options": [
+      "0 0 0 (초기화 안 됨)",
+      "1 2 3 (인덱스 값)",
+      "10 20 30",
+      "주소값이 3개 출력됨"
+    ],
+    "answer": 2,
+    "explanation": "배열은 순서대로 값을 저장해요. for문이 인덱스 0,1,2를 돌며 각 값을 출력해요."
+  },
+  {
+    "id": "pgcert-7-2-q2",
+    "lessonId": "pgcert-7-2",
+    "type": "choice",
+    "prompt": "포인터 변수 int *p; 에서 *가 뜻하는 것은?",
+    "code": "int a = 5;\nint *p = &a;\nprintf(\"%d\", *p);  // a의 값 5 출력",
+    "language": "C",
+    "options": [
+      "선언한 p의 값을 다른 값과 곱셈하겠다는 뜻이다",
+      "선언한 p를 배열 형태로 선언하겠다는 뜻이다",
+      "선언한 p를 값이 고정된 상수로 만들겠다는 뜻이다",
+      "p가 int형 변수의 주소를 저장하는 포인터라는 뜻이다"
+    ],
+    "answer": 3,
+    "explanation": "선언에서 *는 \"이 변수는 포인터다\"라는 표시예요. 사용할 때 *p는 그 주소에 있는 값을 가리켜요(역참조)."
+  },
+  {
+    "id": "pgcert-7-2-q3",
+    "lessonId": "pgcert-7-2",
+    "type": "choice",
+    "prompt": "아래 C 코드의 출력은?",
+    "code": "int a = 5;\nint *p = &a;\nprintf(\"%d \", a);\n*p = 6;\nprintf(\"%d\", a);",
+    "language": "C",
+    "options": [
+      "5 6",
+      "5 5",
+      "6 6",
+      "주소값 두 개"
+    ],
+    "answer": 0,
+    "explanation": "&a는 a의 주소를 p에 저장해요. *p = 6은 p가 가리키는 곳(즉 a)의 값을 6으로 바꾸는 거라 a도 6이 돼요."
+  },
+  {
+    "id": "pgcert-7-2-q4",
+    "lessonId": "pgcert-7-2",
+    "type": "choice",
+    "prompt": "함수 void swap(int a, int b) { int t=a; a=b; b=t; }처럼 값을 그대로 전달(call by value)하면?",
+    "code": "void swap(int a, int b) {\n    int t = a; a = b; b = t;\n}  // 호출한 쪽의 원본은 안 바뀜",
+    "language": "C",
+    "options": [
+      "함수 안에서 값을 바꾸면 호출한 쪽의 원래 변수도 함께 바뀐다",
+      "함수 안에서 a, b를 바꿔도 호출한 쪽의 원래 변수는 바뀌지 않는다",
+      "매개변수 이름이 같으면 컴파일 오류가 발생한다",
+      "함수를 호출하면 항상 두 변수가 0으로 초기화된다"
+    ],
+    "answer": 1,
+    "explanation": "call by value는 값만 복사해서 넘기기 때문에, 원본을 바꾸려면 포인터(주소)를 넘기는 call by reference 방식을 써야 해요."
+  }
+]

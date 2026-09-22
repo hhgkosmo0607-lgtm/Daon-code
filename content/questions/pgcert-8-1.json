@@ -1,0 +1,66 @@
+[
+  {
+    "id": "pgcert-8-1-q1",
+    "lessonId": "pgcert-8-1",
+    "type": "choice",
+    "prompt": "아래 Java 코드의 출력은?",
+    "code": "static int add(int a, int b) { return a + b; }\nstatic int add(int a, int b, int c) { return a + b + c; }\n\nSystem.out.println(add(4, 5, 6));",
+    "language": "Java",
+    "options": [
+      "10",
+      "20",
+      "15",
+      "null"
+    ],
+    "answer": 2,
+    "explanation": "메서드 오버로딩에서는 인자 개수·타입에 맞는 메서드가 호출돼요. add(int, int, int)가 있으면 세 인자 호출은 그쪽으로 가요."
+  },
+  {
+    "id": "pgcert-8-1-q2",
+    "lessonId": "pgcert-8-1",
+    "type": "choice",
+    "prompt": "아래 Java 코드의 출력은?",
+    "code": "int[] arr = {1, 2, 3, 4};\nSystem.out.println(arr[2]);",
+    "language": "Java",
+    "options": [
+      "4",
+      "2",
+      "5",
+      "3"
+    ],
+    "answer": 3,
+    "explanation": "배열 인덱스는 0부터 시작해요. arr[2]는 세 번째 요소인 3이에요."
+  },
+  {
+    "id": "pgcert-8-1-q3",
+    "lessonId": "pgcert-8-1",
+    "type": "choice",
+    "prompt": "아래 Python 코드의 출력은?",
+    "code": "a = [1, 2, 3]\na.append(4)\nprint(a)",
+    "language": "Python",
+    "options": [
+      "[1, 2, 3, 4]",
+      "[1, 2, 3] (변경 없음)",
+      "[4] (기존 값 사라짐)",
+      "TypeError 오류 발생"
+    ],
+    "answer": 0,
+    "explanation": "append는 리스트 끝에 요소를 하나 추가해요. [1,2,3]에 4를 추가하면 [1,2,3,4]가 돼요."
+  },
+  {
+    "id": "pgcert-8-1-q4",
+    "lessonId": "pgcert-8-1",
+    "type": "choice",
+    "prompt": "아래 Python 코드의 출력은?",
+    "code": "def f(x):\n    return x * 2\n\nprint(f(3) + f(4))",
+    "language": "Python",
+    "options": [
+      "140",
+      "14",
+      "34",
+      "7"
+    ],
+    "answer": 1,
+    "explanation": "f(3)은 3*2=6, f(4)는 4*2=8이라서 두 결과를 더한 6+8=14가 출력돼요."
+  }
+]

@@ -851,6 +851,60 @@
       "stage": 9,
       "title": "신입 소양",
       "description": "신입 소양 — 이미지 관리, 비밀과 권한, 운영 함정"
+    },
+    {
+      "trackId": "pgcert",
+      "stage": 1,
+      "title": "SW공학 기초",
+      "description": "생명주기 모델, 요구사항 분석, 테스트 종류"
+    },
+    {
+      "trackId": "pgcert",
+      "stage": 2,
+      "title": "운영체제 기초",
+      "description": "프로세스/스레드, CPU 스케줄링, 메모리 관리"
+    },
+    {
+      "trackId": "pgcert",
+      "stage": 3,
+      "title": "컴퓨터 구조 기초",
+      "description": "자료 표현, 기억장치 계층"
+    },
+    {
+      "trackId": "pgcert",
+      "stage": 4,
+      "title": "자료구조/알고리즘 기초",
+      "description": "스택/큐/배열/연결리스트/트리, 탐색과 복잡도"
+    },
+    {
+      "trackId": "pgcert",
+      "stage": 5,
+      "title": "네트워크 기초",
+      "description": "OSI 7계층, TCP/UDP, IP, 프로토콜"
+    },
+    {
+      "trackId": "pgcert",
+      "stage": 6,
+      "title": "정보보안 기초",
+      "description": "CIA, 암호화, 인증, 악성코드"
+    },
+    {
+      "trackId": "pgcert",
+      "stage": 7,
+      "title": "C 언어 기초",
+      "description": "변수/연산자/제어문, 배열과 포인터"
+    },
+    {
+      "trackId": "pgcert",
+      "stage": 8,
+      "title": "실행결과 예측 집중훈련",
+      "description": "C/자바/파이썬/HTML·CSS 결과 예측"
+    },
+    {
+      "trackId": "pgcert",
+      "stage": 9,
+      "title": "SQL 활용 핵심 요약",
+      "description": "SELECT/JOIN/GROUP BY 핵심 (심화는 SQLD 트랙 참고)"
     }
   ],
   "lessons": [
@@ -3954,6 +4008,154 @@
       "stage": 9,
       "title": "운영 함정",
       "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "pgcert",
+      "id": "pgcert-1-1",
+      "stage": 1,
+      "title": "소프트웨어 생명주기",
+      "subtitle": "폭포수, 애자일",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "pgcert",
+      "id": "pgcert-1-2",
+      "stage": 1,
+      "title": "테스트 종류",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "pgcert",
+      "id": "pgcert-2-1",
+      "stage": 2,
+      "title": "프로세스와 CPU 스케줄링",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "pgcert",
+      "id": "pgcert-2-2",
+      "stage": 2,
+      "title": "메모리 관리",
+      "subtitle": "가상메모리, 교착상태",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "pgcert",
+      "id": "pgcert-3-1",
+      "stage": 3,
+      "title": "자료 표현",
+      "subtitle": "2진수, 보수",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "pgcert",
+      "id": "pgcert-3-2",
+      "stage": 3,
+      "title": "기억장치 계층",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "pgcert",
+      "id": "pgcert-4-1",
+      "stage": 4,
+      "title": "스택·큐·배열·연결리스트",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "pgcert",
+      "id": "pgcert-4-2",
+      "stage": 4,
+      "title": "탐색과 트리",
+      "subtitle": "시간복잡도",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "pgcert",
+      "id": "pgcert-5-1",
+      "stage": 5,
+      "title": "OSI 7계층과 TCP/UDP",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "pgcert",
+      "id": "pgcert-5-2",
+      "stage": 5,
+      "title": "DNS와 HTTP, 라우터",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "pgcert",
+      "id": "pgcert-6-1",
+      "stage": 6,
+      "title": "CIA와 암호화",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "pgcert",
+      "id": "pgcert-6-2",
+      "stage": 6,
+      "title": "악성코드와 방화벽",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "pgcert",
+      "id": "pgcert-7-1",
+      "stage": 7,
+      "title": "변수·연산자·제어문",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "pgcert",
+      "id": "pgcert-7-2",
+      "stage": 7,
+      "title": "배열과 포인터",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "pgcert",
+      "id": "pgcert-8-1",
+      "stage": 8,
+      "title": "자바·파이썬 결과 예측 1",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "pgcert",
+      "id": "pgcert-8-2",
+      "stage": 8,
+      "title": "자바·파이썬·HTML/CSS 결과 예측 2",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "pgcert",
+      "id": "pgcert-9-1",
+      "stage": 9,
+      "title": "SELECT와 조건",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "pgcert",
+      "id": "pgcert-9-2",
+      "stage": 9,
+      "title": "JOIN과 GROUP BY",
+      "orderNo": 2,
       "xpReward": 10
     }
   ]
