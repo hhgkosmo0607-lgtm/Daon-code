@@ -29,6 +29,13 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "6d7bff8c-4728-4886-b12a-14dd6a8b5210"
+      }
+    },
+    "owner": "daon-codes-team"
   }
 }
