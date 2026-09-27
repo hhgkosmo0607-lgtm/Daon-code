@@ -5,26 +5,6 @@
     "description": "AI와 함께 코드를 읽고 고치는 법을 배우는 기본 커리큘럼"
   },
   {
-    "id": "ipe",
-    "label": "정보처리기사",
-    "description": "국가기술자격 정보처리기사 시험 대비 (준비중)"
-  },
-  {
-    "id": "sqld",
-    "label": "SQLD",
-    "description": "SQL 개발자(SQLD) 자격증 시험 대비"
-  },
-  {
-    "id": "java",
-    "label": "자바 기초",
-    "description": "자바 문법 기초부터 신입 개발자 소양(자료구조, 설계원칙, 실무 컨벤션)까지"
-  },
-  {
-    "id": "python",
-    "label": "파이썬 기초",
-    "description": "파이썬 문법 기초부터 파이썬다운 코드 스타일까지"
-  },
-  {
     "id": "html",
     "label": "HTML 기초",
     "description": "문서 구조부터 폼, 시맨틱 태그, 웹 접근성까지"
@@ -35,24 +15,49 @@
     "description": "선택자부터 박스모델, flexbox/grid, 실무 컨벤션까지"
   },
   {
-    "id": "flask",
-    "label": "Flask 웹 개발 기초",
-    "description": "웹 요청-응답 흐름부터 폼·세션·파일 업로드, 웹 보안 기초까지"
-  },
-  {
-    "id": "ai",
-    "label": "AI 기초: 학습부터 직접 만들기",
-    "description": "머신러닝 개념, 데이터 다루기, 나만의 모델을 만들어 웹으로 서비스하기까지"
-  },
-  {
     "id": "js",
     "label": "자바스크립트 기초",
     "description": "변수·함수·배열부터 DOM, 이벤트, 비동기(fetch)까지, 신입이 알아야 할 함정 포함"
   },
   {
+    "id": "python",
+    "label": "파이썬 기초",
+    "description": "파이썬 문법 기초부터 파이썬다운 코드 스타일까지"
+  },
+  {
+    "id": "ite",
+    "label": "정보기기운용기능사 대비",
+    "description": "진법·논리회로부터 컴퓨터 하드웨어, 네트워크, 표준화 기구, 정보통신 법·제도까지"
+  },
+  {
+    "id": "java",
+    "label": "자바 기초",
+    "description": "자바 문법 기초부터 신입 개발자 소양(자료구조, 설계원칙, 실무 컨벤션)까지"
+  },
+  {
     "id": "react",
     "label": "리액트 기초",
     "description": "컴포넌트·state부터 라우터, useEffect, 전역 상태, React 19 훅, 실무 소양까지"
+  },
+  {
+    "id": "flask",
+    "label": "Flask 웹 개발 기초",
+    "description": "웹 요청-응답 흐름부터 폼·세션·파일 업로드, 웹 보안 기초까지"
+  },
+  {
+    "id": "pgcert",
+    "label": "프로그래밍기능사 대비",
+    "description": "SW공학·운영체제·컴퓨터구조·자료구조·네트워크·보안 기초 + C 언어 + 실행결과 예측 집중훈련"
+  },
+  {
+    "id": "sqld",
+    "label": "SQLD",
+    "description": "SQL 개발자(SQLD) 자격증 시험 대비"
+  },
+  {
+    "id": "ai",
+    "label": "AI 기초: 학습부터 직접 만들기",
+    "description": "머신러닝 개념, 데이터 다루기, 나만의 모델을 만들어 웹으로 서비스하기까지"
   },
   {
     "id": "spring",
@@ -65,13 +70,8 @@
     "description": "컨테이너·이미지·볼륨부터 Dockerfile, Compose, 배포 맛보기와 운영 소양까지"
   },
   {
-    "id": "pgcert",
-    "label": "프로그래밍기능사 대비",
-    "description": "SW공학·운영체제·컴퓨터구조·자료구조·네트워크·보안 기초 + C 언어 + 실행결과 예측 집중훈련"
-  },
-  {
-    "id": "ite",
-    "label": "정보기기운용기능사 대비",
-    "description": "진법·논리회로부터 컴퓨터 하드웨어, 네트워크, 표준화 기구, 정보통신 법·제도까지"
+    "id": "ipe",
+    "label": "정보처리기사",
+    "description": "국가기술자격 정보처리기사 시험 대비 (준비중)"
   }
 ]

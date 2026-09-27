@@ -105,7 +105,7 @@ export function HomeScreen() {
 
       <Pressable style={styles.trackBar} onPress={() => router.push('/settings/track')}>
         <Text style={styles.trackBarText}>{track.label}</Text>
-        <Text style={styles.trackBarSwitch}>바꾸기 ›</Text>
+        <Text style={styles.trackBarSwitch}>커리큘럼 ›</Text>
       </Pressable>
 
       <ScrollView contentContainerStyle={styles.body}>
