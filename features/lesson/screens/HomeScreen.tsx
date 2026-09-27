@@ -9,7 +9,7 @@ import type { ThemeColors } from '../../../shared/theme/themes';
 import { useAuth } from '../../auth/AuthContext';
 import { useTrack } from '../../track/TrackContext';
 import { getLessons, getStages, hasContent } from '../data/contentRepository';
-import { levelProgress } from '../domain/scoring';
+import { XP_PER_LEVEL, levelProgress } from '../domain/scoring';
 import { useUserProgress } from '../hooks/useUserProgress';
 import { useWrongAnswerCount } from '../hooks/useWrongAnswerCount';
 
@@ -69,7 +69,7 @@ export function HomeScreen() {
         >
           <Text style={[styles.stat, { color: colors.streak }]}>ϟ {streak}d</Text>
           <Text style={[styles.stat, { color: colors.xp }]}>
-            LV{progress.level} {levelBar(progress.percent)} {progress.percent}%
+            LV{progress.level} {levelBar(progress.percent)} {progress.xpIntoLevel}/{XP_PER_LEVEL}xp
           </Text>
         </Pressable>
         <View style={styles.rightGroup}>
