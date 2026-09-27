@@ -67,7 +67,7 @@ export function HomeScreen() {
           accessibilityRole="button"
           accessibilityLabel={`${streak}일 연속 학습, 레벨 ${progress.level}, 다음 레벨까지 ${progress.xpToNext} XP`}
         >
-          <Text style={[styles.stat, { color: colors.streak }]}>ϟ {streak}d</Text>
+          <Text style={[styles.stat, { color: colors.streak }]}>{streak}d</Text>
           <Text style={[styles.stat, { color: colors.xp }]}>
             LV{progress.level} {levelBar(progress.percent)} {progress.xpIntoLevel}/{XP_PER_LEVEL}xp
           </Text>
