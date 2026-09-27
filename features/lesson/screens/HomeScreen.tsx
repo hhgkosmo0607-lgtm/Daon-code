@@ -1,6 +1,6 @@
 import { useRouter } from 'expo-router';
-import { Fragment, useEffect, useMemo } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Fragment, useEffect, useMemo, useState } from 'react';
+import { Platform, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { useTheme } from '../../../shared/theme/ThemeContext';
@@ -9,6 +9,7 @@ import type { ThemeColors } from '../../../shared/theme/themes';
 import { useAuth } from '../../auth/AuthContext';
 import { useTrack } from '../../track/TrackContext';
 import { getLessons, getStages, hasContent } from '../data/contentRepository';
+import { levelProgress } from '../domain/scoring';
 import { useUserProgress } from '../hooks/useUserProgress';
 import { useWrongAnswerCount } from '../hooks/useWrongAnswerCount';
 
@@ -32,6 +33,12 @@ export function HomeScreen() {
   const { profile, statusMap, loading } = useUserProgress();
   const { count: wrongAnswerCount } = useWrongAnswerCount();
 
+  const streak = profile?.streak ?? 0;
+  const totalXp = profile?.total_xp ?? 0;
+  const progress = levelProgress(totalXp);
+  // 상단바 숫자를 누르면 뜻을 풀어서 보여준다 (7d, LV 진행바가 처음엔 낯설 수 있어서)
+  const [showStatInfo, setShowStatInfo] = useState(false);
+
   const statusOf = (lessonId: string) => {
     return statusMap[lessonId] ?? 'open';
   };
@@ -53,9 +60,18 @@ export function HomeScreen() {
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
       <View style={styles.topBar}>
-        <Text style={styles.stat}>🔥 {profile?.streak ?? 0}</Text>
-        <Text style={styles.stat}>⭐ {profile?.total_xp ?? 0}</Text>
-        <Text style={styles.stat}>Lv.{profile?.level ?? 1}</Text>
+        <Pressable
+          style={styles.statGroup}
+          onPress={() => setShowStatInfo((v) => !v)}
+          hitSlop={6}
+          accessibilityRole="button"
+          accessibilityLabel={`${streak}일 연속 학습, 레벨 ${progress.level}, 다음 레벨까지 ${progress.xpToNext} XP`}
+        >
+          <Text style={[styles.stat, { color: colors.streak }]}>ϟ {streak}d</Text>
+          <Text style={[styles.stat, { color: colors.xp }]}>
+            LV{progress.level} {levelBar(progress.percent)} {progress.percent}%
+          </Text>
+        </Pressable>
         <View style={styles.rightGroup}>
           {wrongAnswerCount > 0 && (
             <Pressable style={styles.reviewButton} onPress={() => router.push('/review')}>
@@ -63,7 +79,9 @@ export function HomeScreen() {
             </Pressable>
           )}
           <Pressable onPress={() => router.push('/settings/theme')} hitSlop={8}>
-            <Text style={styles.themeButton}>🎨</Text>
+            <Text style={styles.themeButton} accessibilityLabel="테마 바꾸기">
+              ◐
+            </Text>
           </Pressable>
           <Pressable style={styles.badgeWrap} onPress={() => router.push('/auth')}>
             {!user && <Text style={styles.badge}>로그인</Text>}
@@ -71,6 +89,14 @@ export function HomeScreen() {
           </Pressable>
         </View>
       </View>
+
+      {showStatInfo && (
+        <Pressable style={styles.statInfo} onPress={() => setShowStatInfo(false)}>
+          <Text style={styles.statInfoText}>
+            {streak}일 연속 학습 중 · 누적 {totalXp} XP · 다음 레벨까지 {progress.xpToNext} XP
+          </Text>
+        </Pressable>
+      )}
 
       <Pressable style={styles.trackBar} onPress={() => router.push('/settings/track')}>
         <Text style={styles.trackBarText}>{track.label}</Text>
@@ -129,11 +155,24 @@ export function HomeScreen() {
   );
 }
 
+const LEVEL_BAR_CELLS = 8;
+
+/** 진행률(%)을 ▓░ 블록 문자 진행바로 바꾼다. 예: 40% → ▓▓▓░░░░░ */
+function levelBar(percent: number): string {
+  const filled = Math.floor((percent / 100) * LEVEL_BAR_CELLS);
+  return '▓'.repeat(filled) + '░'.repeat(LEVEL_BAR_CELLS - filled);
+}
+
+const MONO = Platform.select({ ios: 'Menlo', android: 'monospace', default: 'monospace' });
+
 const createStyles = (colors: ThemeColors) =>
   StyleSheet.create({
     container: { flex: 1, backgroundColor: colors.background },
     topBar: {
       flexDirection: 'row',
+      alignItems: 'center',
+      flexWrap: 'wrap',
+      rowGap: spacing.xs,
       gap: spacing.lg,
       paddingHorizontal: spacing.md,
       paddingVertical: spacing.sm,
@@ -141,9 +180,18 @@ const createStyles = (colors: ThemeColors) =>
       borderBottomWidth: 1,
       borderBottomColor: colors.border,
     },
-    stat: { fontSize: 15, fontWeight: '600', color: colors.text },
+    statGroup: { flexDirection: 'row', alignItems: 'center', gap: spacing.md },
+    stat: { fontSize: 13, fontWeight: '700', fontFamily: MONO },
     rightGroup: { marginLeft: 'auto', flexDirection: 'row', alignItems: 'center', gap: spacing.md },
-    themeButton: { fontSize: 18 },
+    themeButton: { fontSize: 18, color: colors.text, fontFamily: MONO },
+    statInfo: {
+      paddingHorizontal: spacing.md,
+      paddingVertical: spacing.xs,
+      backgroundColor: colors.surface,
+      borderBottomWidth: 1,
+      borderBottomColor: colors.border,
+    },
+    statInfoText: { fontSize: 12, color: colors.textMuted, fontFamily: MONO },
     reviewButton: {
       borderWidth: 1,
       borderColor: colors.accent,

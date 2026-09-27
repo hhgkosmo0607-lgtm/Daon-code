@@ -4,6 +4,7 @@ import {
   calculateXp,
   isCorrect,
   levelFromXp,
+  levelProgress,
 } from './scoring';
 import type { Question } from './types';
 
@@ -107,5 +108,20 @@ describe('levelFromXp', () => {
     expect(levelFromXp(99)).toBe(1);
     expect(levelFromXp(100)).toBe(2);
     expect(levelFromXp(250)).toBe(3);
+  });
+});
+
+describe('levelProgress', () => {
+  it('레벨 안에서의 진행도와 다음 레벨까지 남은 XP를 계산한다', () => {
+    expect(levelProgress(1240)).toEqual({ level: 13, xpIntoLevel: 40, xpToNext: 60, percent: 40 });
+  });
+
+  it('레벨 경계에서는 진행도가 0이다', () => {
+    expect(levelProgress(0)).toEqual({ level: 1, xpIntoLevel: 0, xpToNext: 100, percent: 0 });
+    expect(levelProgress(100)).toEqual({ level: 2, xpIntoLevel: 0, xpToNext: 100, percent: 0 });
+  });
+
+  it('레벨업 직전은 99%다', () => {
+    expect(levelProgress(199).percent).toBe(99);
   });
 });

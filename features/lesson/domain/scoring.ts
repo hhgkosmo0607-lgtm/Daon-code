@@ -86,7 +86,31 @@ export function calculatePendingBonus(guestEarnedXp: number): number {
   return Math.max(0, fullValue - guestEarnedXp);
 }
 
+export const XP_PER_LEVEL = 100;
+
 /** 누적 XP → 레벨 (100 XP마다 1레벨) */
 export function levelFromXp(totalXp: number): number {
-  return Math.floor(totalXp / 100) + 1;
+  return Math.floor(totalXp / XP_PER_LEVEL) + 1;
+}
+
+export interface LevelProgress {
+  level: number;
+  /** 현재 레벨에서 쌓은 XP (0 ~ XP_PER_LEVEL-1) */
+  xpIntoLevel: number;
+  /** 다음 레벨까지 남은 XP */
+  xpToNext: number;
+  /** 현재 레벨 진행률 0~99 (%) */
+  percent: number;
+}
+
+/** 홈 상단바의 레벨 진행바용: 누적 XP를 레벨과 그 레벨 안에서의 진행도로 나눈다 */
+export function levelProgress(totalXp: number): LevelProgress {
+  const xp = Math.max(0, totalXp);
+  const xpIntoLevel = xp % XP_PER_LEVEL;
+  return {
+    level: levelFromXp(xp),
+    xpIntoLevel,
+    xpToNext: XP_PER_LEVEL - xpIntoLevel,
+    percent: Math.floor((xpIntoLevel / XP_PER_LEVEL) * 100),
+  };
 }
