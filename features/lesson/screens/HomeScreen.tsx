@@ -85,7 +85,7 @@ export function HomeScreen() {
           </Pressable>
           <Pressable style={styles.badgeWrap} onPress={() => router.push('/auth')}>
             {!user && <Text style={styles.badge}>로그인</Text>}
-            {isGuest && <Text style={styles.badge}>게스트 · XP 80%</Text>}
+            {isGuest && <Text style={styles.badge}>게스트</Text>}
           </Pressable>
         </View>
       </View>
@@ -95,6 +95,11 @@ export function HomeScreen() {
           <Text style={styles.statInfoText}>
             {streak}일 연속 학습 중 · 누적 {totalXp} XP · 다음 레벨까지 {progress.xpToNext} XP
           </Text>
+          {isGuest && (
+            <Text style={styles.statInfoText}>
+              게스트는 XP를 80%만 받아요 · 로그인하면 나머지를 돌려받아요
+            </Text>
+          )}
         </Pressable>
       )}
 
