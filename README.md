@@ -30,8 +30,10 @@ Supabase 프로젝트 `daon-code`(ap-northeast-2)에 연결·배포 완료, curl
 
 `submit-answer`는 `features/lesson/domain/`의 채점·XP·스트릭 로직과
 `content/` 콘텐츠 JSON을 상대 경로로 그대로 import한다(중복 관리 방지).
-새 레슨의 JSON을 추가하면 `features/lesson/data/contentRepository.ts`와
-`supabase/functions/_shared/content.ts` 양쪽에 import를 추가해야 한다.
+레슨 id → 문제 JSON 매핑(`questionBank.generated.ts`)은 앱·서버용 두 벌 모두
+`content/questions/*.json` 목록으로 자동 생성된다. 레슨 JSON을 추가·삭제하면
+`npm run gen:content`를 실행하고 Edge Function을 재배포할 것
+(`npm run gen:content -- --check`로 최신인지 확인 가능).
 
 **남은 검증 (UI, 실기기 필요)**:
 - [ ] 온보딩 화면이 실제로 뜨고 순서대로 넘어가는지
