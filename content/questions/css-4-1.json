@@ -7,7 +7,7 @@
     "code": "div {\n  border: 1px solid black;\n  padding: 20px;  /* 테두리 안쪽 여백 */\n  margin: 20px;   /* 테두리 바깥쪽 여백 */\n}",
     "language": "CSS",
     "options": [
-      "margin은 테두리 안쪽, padding은 테두리 바깥쪽 여백이다(반대로 알려진 경우가 많음)",
+      "margin은 테두리 안쪽, padding은 테두리 바깥쪽 여백이다",
       "padding과 margin은 이름만 다른 같은 속성이라 서로 바꿔 써도 된다",
       "margin은 텍스트 요소에만, padding은 이미지 요소에만 적용된다",
       "padding은 테두리 안쪽 여백, margin은 테두리 바깥쪽(요소 간 간격) 여백이다"

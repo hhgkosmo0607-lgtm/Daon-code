@@ -43,11 +43,11 @@
     "id": "2-6-q4",
     "lessonId": "2-6",
     "type": "blank",
-    "prompt": "상품카드에 가격을 전달하려면?",
+    "prompt": "ProductCard는 props.price로 가격을 읽도록 만들어져 있습니다. 가격을 전달하려면 빈칸에 무엇을 써야 할까요?",
     "code": "<ProductCard ___={15000} />",
     "options": ["price", "Price", "amount", "product"],
     "answer": 0,
-    "explanation": "이름={값} 형태로 쓰고, 그 값이 뭔지 알아볼 수 있는 이름을 붙여요."
+    "explanation": "받는 쪽이 props.price로 읽으니, 넘기는 쪽 이름도 대소문자까지 정확히 price여야 해요. Price나 amount처럼 다른 이름으로 넘기면 받는 쪽에서는 undefined가 돼요."
   },
   {
     "id": "2-6-q5",

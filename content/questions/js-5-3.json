@@ -35,7 +35,7 @@
     "id": "js-5-3-q3",
     "lessonId": "js-5-3",
     "type": "choice",
-    "prompt": "위 makeCounter로 새로 만든 b = makeCounter()의 첫 b() 결과는?",
+    "prompt": "function makeCounter() { let c = 0; return () => ++c; } 로 a = makeCounter(), b = makeCounter() 두 개를 만들었다. a()를 세 번 호출한 뒤 b()를 처음 호출하면 결과는?",
     "options": [
       "3",
       "0",
@@ -49,7 +49,7 @@
     "id": "js-5-3-q4",
     "lessonId": "js-5-3",
     "type": "choice",
-    "prompt": "아래 코드에서 1초 뒤(setTimeout 콜백들이 실행될 때) 출력되는 값은?",
+    "prompt": "아래 코드에서 setTimeout 콜백들이 실행될 때 출력되는 값은?",
     "code": "for (var i = 0; i < 3; i++) {\n  setTimeout(() => console.log(i), 0);\n}",
     "language": "JavaScript",
     "options": [

@@ -32,7 +32,7 @@
     "id": "4-5-q3",
     "lessonId": "4-5",
     "type": "choice",
-    "prompt": "CORS 에러와 \"Cannot read property... of undefined\" 에러의 차이는?",
+    "prompt": "CORS 에러와 \"Cannot read properties of undefined...\" 에러의 차이는?",
     "options": [
       "CORS는 요청 자체가 막힌 것, undefined 에러는 값이 없는 걸 읽으려 한 것",
       "CORS 에러도 결국 undefined 값을 참조하다가 발생하는 것이라 근본 원인은 같다",

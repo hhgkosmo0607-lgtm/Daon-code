@@ -18,7 +18,7 @@
     "id": "11-4-q2",
     "lessonId": "11-4",
     "type": "choice",
-    "prompt": "위 코드에서 \"내(HEAD) 브랜치\"의 코드는 어느 부분일까요?",
+    "prompt": "아래 코드에서 \"내(HEAD) 브랜치\"의 코드는 어느 부분일까요?",
     "code": "<<<<<<< HEAD\nconst buttonColor = \"blue\"\n=======\nconst buttonColor = \"orange\"\n>>>>>>> feature/theme",
     "options": [
       "const buttonColor = \"blue\"",

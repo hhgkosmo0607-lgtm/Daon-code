@@ -19,7 +19,7 @@
     "id": "docker-7-2-q2",
     "lessonId": "docker-7-2",
     "type": "choice",
-    "prompt": "위 compose에서 tomcat_mount 폴더를 바인드 마운트한 결과로 맞는 것은?",
+    "prompt": "compose에서 volumes: - ..\\tomcat_mount:/usr/local/tomcat/webapps 처럼 tomcat_mount 폴더를 바인드 마운트한 결과로 맞는 것은?",
     "options": [
       "컨테이너의 webapps 폴더가 내 PC의 tomcat_mount 폴더로 이동해 사라진다",
       "tomcat_mount 폴더의 내용이 이미지에 복사되어 다음 빌드부터 반영된다",

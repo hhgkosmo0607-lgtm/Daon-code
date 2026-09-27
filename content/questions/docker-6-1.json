@@ -19,7 +19,7 @@
     "id": "docker-6-1-q2",
     "lessonId": "docker-6-1",
     "type": "choice",
-    "prompt": "위 compose 파일의 ports: - \"8016:80\" 은 어떤 docker run 옵션과 같을까?",
+    "prompt": "compose 파일의 ports: - \"8016:80\" 은 어떤 docker run 옵션과 같을까?",
     "options": [
       "-v 8016:80",
       "--expose 8016:80",

@@ -11,7 +11,7 @@
       "업무에 필요해서 관리하려는, 유일하게 식별 가능한 인스턴스의 집합"
     ],
     "answer": 3,
-    "explanation": "엔터티는 인스턴스 하나가 아니라 '집합' 개념이에요. B는 인스턴스(occurrence) 하나에 대한 설명이고, C는 관계(relationship), D는 속성(attribute)에 대한 설명이에요."
+    "explanation": "엔터티는 인스턴스 하나가 아니라 '집합' 개념이에요. '개별 행 하나하나'는 인스턴스(occurrence)에 대한 설명이고, '연관성을 나타내는 선'은 관계(relationship), '개별 정보 항목'은 속성(attribute)에 대한 설명이에요."
   },
   {
     "id": "sqld-1-1-q2",

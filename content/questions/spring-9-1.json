@@ -20,7 +20,7 @@
     "lessonId": "spring-9-1",
     "type": "choice",
     "prompt": "스프링 부트에서 업로드 파일의 기본 최대 크기는?",
-    "code": "# 아무 설정도 하지 않았을 때 적용되는 기본값\nspring.servlet.multipart.max-file-size=1MB\nspring.servlet.multipart.max-request-size=10MB",
+    "code": "# application.properties에 업로드 관련 설정을 하나도 적지 않았다면?\n# spring.servlet.multipart.max-file-size=???",
     "language": "Properties",
     "options": [
       "제한이 없어 서버 메모리가 허용하는 만큼 올릴 수 있다",
@@ -29,7 +29,7 @@
       "파일당 1MB (그 이상은 설정으로 늘려야 한다)"
     ],
     "answer": 3,
-    "explanation": "spring.servlet.multipart.max-file-size와 max-request-size로 제한을 바꿔요. 기본값이 작아서 큰 파일을 올리면 오류가 나요."
+    "explanation": "아무 설정이 없으면 파일당 1MB, 요청 전체 10MB가 기본 제한이에요. 더 큰 파일을 받으려면 spring.servlet.multipart.max-file-size와 max-request-size를 늘려야 하고, 그대로 두면 큰 파일 업로드 시 오류가 나요."
   },
   {
     "id": "spring-9-1-q3",

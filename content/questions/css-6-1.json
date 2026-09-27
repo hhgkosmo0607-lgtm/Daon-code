@@ -9,7 +9,7 @@
     "options": [
       "둘은 요소를 숨긴다는 점에서 완전히 같은 효과를 낸다",
       "display: none은 공간까지 사라지고, visibility: hidden은 안 보일 뿐 공간은 남는다",
-      "display: none은 요소를 안 보이게만 하고, visibility: hidden은 공간까지 없앤다(반대)",
+      "display: none은 요소를 안 보이게만 하고, visibility: hidden은 공간까지 없앤다",
       "visibility: hidden은 클릭 이벤트도 그대로 받을 수 있어서 실제로는 보이는 것과 같다"
     ],
     "answer": 1,

@@ -18,7 +18,7 @@
     "id": "12-5-q2",
     "lessonId": "12-5",
     "type": "choice",
-    "prompt": "이 폴더 구조에서 \"이 프로젝트가 Next.js로 만들어졌다\"는 힌트를 주는 파일은?",
+    "prompt": "이 폴더 구조에서, 파일을 열어보지 않고 이름만으로 \"Next.js로 만들어졌다\"는 걸 가장 확실하게 알 수 있는 파일은?",
     "code": "project/\n  app/\n    layout.tsx\n    page.tsx\n  next.config.js\n  package.json",
     "options": ["next.config.js", "package.json", "layout.tsx", "page.tsx"],
     "answer": 0,

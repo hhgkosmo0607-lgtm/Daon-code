@@ -33,15 +33,15 @@
     "id": "ai-3-2-q3",
     "lessonId": "ai-3-2",
     "type": "choice",
-    "prompt": "metrics.accuracy_score(test_label, predict)를 호출할 때 인자 순서로 올바른 것은?",
+    "prompt": "scikit-learn의 평가 함수(accuracy_score, precision_score 등)에 인자를 넘길 때 올바른 순서는?",
     "options": [
-      "예측값을 먼저 적고 실제 정답을 나중에 적어도 결과는 항상 같다",
-      "두 인자를 적는 순서는 결과에 전혀 영향을 주지 않으니 아무렇게나 순서를 바꿔 적어도 상관없다",
+      "모델의 예측값(predict)을 먼저, 실제 정답(test_label)을 나중에 적는다",
+      "어떤 평가 함수든 순서는 결과에 영향이 없으니 아무렇게나 적어도 된다",
       "실제 정답(test_label)을 먼저, 모델의 예측값(predict)을 나중에 적는다",
       "훈련 데이터를 먼저 적고 테스트 데이터를 나중에 적어야 한다"
     ],
     "answer": 2,
-    "explanation": "accuracy_score(y_true, y_pred)의 관례처럼 실제 정답을 먼저, 예측값을 나중에 적어요. accuracy 자체는 순서를 바꿔도 값은 같지만, 다른 지표는 순서가 중요해서 관례를 지키는 게 안전해요."
+    "explanation": "scikit-learn 평가 함수는 (y_true, y_pred), 즉 실제 정답을 먼저, 예측값을 나중에 받아요. accuracy는 우연히 순서를 바꿔도 값이 같지만, precision·recall 같은 지표는 순서가 바뀌면 값이 달라지니 항상 정답 → 예측 순서를 지켜야 해요."
   },
   {
     "id": "ai-3-2-q4",

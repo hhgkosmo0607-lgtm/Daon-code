@@ -39,7 +39,7 @@
     "code": "<input type=\"submit\" value=\"전송\">\n<input type=\"button\" value=\"클릭\">",
     "language": "HTML",
     "options": [
-      "button은 누르면 폼을 서버로 제출하고, submit은 아무 기본 동작이 없다(반대)",
+      "button은 누르면 폼을 서버로 제출하고, submit은 아무 기본 동작이 없다",
       "둘은 type만 다를 뿐 기본 동작이 같아서 어느 것을 써도 폼이 제출된다",
       "submit은 파일 첨부용, button은 텍스트 입력용 버튼이다",
       "submit은 누르면 폼을 제출하고, button은 기본 동작이 없어 자바스크립트로 지정해야 한다"

@@ -23,7 +23,7 @@
     "code": ".container {\n  display: flex;\n  flex-direction: column; /* 세로로 배치 */\n}",
     "language": "CSS",
     "options": [
-      "row는 세로로, column은 가로로 배치한다(반대)",
+      "row는 세로로, column은 가로로 배치한다",
       "flex-direction은 아이템의 정렬이 아니라 크기를 조절하는 속성이다",
       "row는 아이템을 가로로, column은 세로로 배치한다",
       "row와 column은 완전히 같은 결과를 낸다"

@@ -59,6 +59,6 @@
       "position 값이 static이 아니어야 z-index가 적용된다"
     ],
     "answer": 3,
-    "explanation": "z-index는 position이 static이 아닌 요소에만 적용돼요. position: static인 요소에 z-index를 줘도 무시되고 기본 쌓임 순서를 따라요."
+    "explanation": "z-index는 position이 static이 아닌 요소에만 적용돼요. position: static인 요소에 z-index를 줘도 무시되고 기본 쌓임 순서를 따라요. (참고: flex·grid 컨테이너의 자식은 예외로 position 없이도 z-index가 적용돼요.)"
   }
 ]

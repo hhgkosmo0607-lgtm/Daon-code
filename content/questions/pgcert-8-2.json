@@ -35,7 +35,7 @@
     "id": "pgcert-8-2-q3",
     "lessonId": "pgcert-8-2",
     "type": "choice",
-    "prompt": "\"HTML/CSS 명령어 서술\" 유형에서 자주 나오는 것처럼, <a> 태그의 target=\"_blank\" 속성이 하는 일은?",
+    "prompt": "<a> 태그의 target=\"_blank\" 속성이 하는 일은?",
     "code": "<a href=\"https://example.com\" target=\"_blank\">이동</a>",
     "options": [
       "클릭한 링크의 글자 색을 항상 파란색으로 고정한다",

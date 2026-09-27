@@ -4,7 +4,7 @@
     "lessonId": "12-4",
     "type": "choice",
     "prompt": "useFetch 함수가 하는 역할은?",
-    "code": "// 여러 화면에서 이 코드가 계속 반복됨\nfunction useFetch(url) {\n  const [isLoading, setIsLoading] = useState(true)\n  const [data, setData] = useState(null)\n  useEffect(() => {\n    fetch(url).then(res => res.json()).then(setData)\n  }, [url])\n  return { isLoading, data }\n}",
+    "code": "// 여러 화면에서 이 코드가 계속 반복됨\nfunction useFetch(url) {\n  const [isLoading, setIsLoading] = useState(true)\n  const [data, setData] = useState(null)\n  useEffect(() => {\n    fetch(url).then(res => res.json()).then(d => { setData(d); setIsLoading(false) })\n  }, [url])\n  return { isLoading, data }\n}",
     "options": [
       "여러 화면에서 반복되던 로딩/데이터 처리 코드를 하나로 묶어서 재사용할 수 있게 만든 것",
       "새로운 화면을 만드는 것",
@@ -19,7 +19,7 @@
     "lessonId": "12-4",
     "type": "choice",
     "prompt": "ProductList 화면이 useFetch를 실제로 사용하는 줄은?",
-    "code": "1  function useFetch(url) {\n2    const [isLoading, setIsLoading] = useState(true)\n3    const [data, setData] = useState(null)\n4    useEffect(() => {\n5      fetch(url).then(res => res.json()).then(setData)\n6    }, [url])\n7    return { isLoading, data }\n8  }\n9\n10 function ProductList() {\n11   const { data } = useFetch('/api/products')\n12   return <View>{/* ... */}</View>\n13 }",
+    "code": "1  function useFetch(url) {\n2    const [isLoading, setIsLoading] = useState(true)\n3    const [data, setData] = useState(null)\n4    useEffect(() => {\n5      fetch(url).then(res => res.json()).then(d => { setData(d); setIsLoading(false) })\n6    }, [url])\n7    return { isLoading, data }\n8  }\n9\n10 function ProductList() {\n11   const { data } = useFetch('/api/products')\n12   return <View>{/* ... */}</View>\n13 }",
     "options": ["7번", "11번", "5번", "2번"],
     "answer": 1,
     "explanation": "const { data } = useFetch('/api/products')가 ProductList 화면에서 커스텀 훅을 실제로 불러 쓰는 부분이에요."

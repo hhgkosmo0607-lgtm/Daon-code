@@ -4,7 +4,7 @@
     "lessonId": "4-1",
     "type": "choice",
     "prompt": "화면에 이런 빨간 글씨가 떴습니다. 가장 먼저 해야 할 일은?",
-    "code": "TypeError: Cannot read property 'name' of undefined",
+    "code": "TypeError: Cannot read properties of undefined (reading 'name')",
     "options": [
       "당황해서 전부 지우고 다시 시작한다",
       "메시지를 천천히 읽어서 뭐가 문제인지 파악한다",
@@ -19,8 +19,8 @@
     "lessonId": "4-1",
     "type": "choice",
     "prompt": "아래 에러에서 \"종류(무슨 문제인지)\"에 해당하는 부분은?",
-    "code": "TypeError: Cannot read property 'name' of undefined",
-    "options": ["TypeError", "Cannot read property", "'name'", "undefined"],
+    "code": "TypeError: Cannot read properties of undefined (reading 'name')",
+    "options": ["TypeError", "Cannot read properties", "'name'", "undefined"],
     "answer": 0,
     "explanation": "콜론(:) 앞부분이 에러의 종류예요. TypeError는 \"값의 종류가 예상과 달라서 생긴 문제\"라는 뜻입니다."
   },
@@ -84,7 +84,7 @@
     "prompt": "에러가 났을 때 AI에게 더 나은 요청은?",
     "options": [
       "에러 나요 고쳐주세요",
-      "TypeError: Cannot read property 'name' of undefined 라는 에러가 떴어요"
+      "TypeError: Cannot read properties of undefined (reading 'name') 라는 에러가 떴어요"
     ],
     "answer": 1,
     "explanation": "정확한 메시지를 그대로 전달하면 AI가 훨씬 정확하게 원인을 찾을 수 있어요."

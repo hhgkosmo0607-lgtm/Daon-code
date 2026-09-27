@@ -6,12 +6,12 @@
     "prompt": "STUDENT 테이블과 CLASS 테이블을 학번(STU_NO)이 같은 행끼리 연결해서 함께 조회하려면?",
     "options": [
       "SELECT * FROM STUDENT S JOIN CLASS C ON S.STU_NO = C.STU_NO;",
-      "SELECT * FROM STUDENT, CLASS WHERE STU_NO = STU_NO;  -- 컬럼명이 모호해 오류 발생 가능",
-      "SELECT * FROM STUDENT UNION CLASS;  -- UNION은 열 구조가 같은 결과를 합치는 구문",
-      "SELECT * FROM STUDENT COPY CLASS;  -- COPY는 존재하지 않는 SQL 키워드"
+      "SELECT * FROM STUDENT, CLASS WHERE STU_NO = STU_NO;",
+      "SELECT * FROM STUDENT UNION CLASS;",
+      "SELECT * FROM STUDENT COPY CLASS;"
     ],
     "answer": 0,
-    "explanation": "두 테이블을 연결할 때는 JOIN ... ON 조건 형태를 써요. 같은 컬럼명이면 테이블 별칭(S., C.)으로 구분해야 오류가 안 나요."
+    "explanation": "두 테이블을 연결할 때는 JOIN ... ON 조건 형태를 써요. WHERE STU_NO = STU_NO처럼 쓰면 어느 테이블의 컬럼인지 모호해 오류가 나서 별칭(S., C.)으로 구분해야 하고, UNION은 열 구조가 같은 두 결과를 위아래로 합치는 구문이며, COPY는 SQL 키워드가 아니에요."
   },
   {
     "id": "pgcert-9-2-q2",
@@ -47,12 +47,12 @@
     "type": "choice",
     "prompt": "학과(DEPT)별 학생 수를 구한 뒤, 학생 수가 5명을 초과하는 학과만 보려면?",
     "options": [
-      "WHERE COUNT(*) > 5  -- WHERE절에는 집계함수를 직접 못 씀",
-      "ORDER BY COUNT(*) > 5  -- ORDER BY는 정렬만 담당함",
-      "WHERE 절 안에 GROUP BY를 넣는다  -- 문법 순서가 잘못됨",
+      "WHERE COUNT(*) > 5 조건을 추가한다",
+      "ORDER BY COUNT(*) > 5를 추가한다",
+      "WHERE 절 안에 GROUP BY를 넣는다",
       "GROUP BY DEPT 뒤에 HAVING COUNT(*) > 5를 추가한다"
     ],
     "answer": 3,
-    "explanation": "그룹으로 묶은 결과에 조건을 걸 때는 WHERE가 아니라 HAVING을 써요. WHERE는 그룹으로 묶기 전 개별 행에만 조건을 걸 수 있어요."
+    "explanation": "그룹으로 묶은 결과에 조건을 걸 때는 WHERE가 아니라 HAVING을 써요. WHERE는 그룹으로 묶기 전 개별 행에만 조건을 걸 수 있어서 집계함수를 직접 쓸 수 없고, ORDER BY는 정렬만 담당해요."
   }
 ]

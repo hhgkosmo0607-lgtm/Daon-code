@@ -3,7 +3,7 @@
     "id": "3-3-q1",
     "lessonId": "3-3",
     "type": "choice",
-    "prompt": "아래 코드에서 \"지금까지 몇 번 눌렀는지\"를 기억하는 부분은?",
+    "prompt": "아래 코드에서 React에게 \"이 값을 기억해 줘\"라고 요청하는 부분은?",
     "code": "const [count, setCount] = useState(0)",
     "options": ["useState(0) 전체", "count만", "setCount만", "기억하는 부분이 없다"],
     "answer": 0,

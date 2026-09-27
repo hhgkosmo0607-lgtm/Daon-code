@@ -53,7 +53,7 @@
     "lessonId": "9-2",
     "type": "choice",
     "prompt": "상품 상세 화면에서 이 에러가 났습니다. 가장 가능성 높은 원인은?",
-    "code": "Cannot read property 'id' of undefined\n  at ProductDetail.jsx:5",
+    "code": "Cannot read properties of undefined (reading 'id')\n  at ProductDetail.jsx:5",
     "options": [
       "이동할 때 상품 id를 제대로 안 넘겨서, 화면이 받을 값이 없는 상태",
       "useLocalSearchParams 대신 useState로 파라미터를 받으려고 해서",

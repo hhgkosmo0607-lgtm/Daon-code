@@ -35,7 +35,7 @@
     "id": "flask-3-1-q3",
     "lessonId": "flask-3-1",
     "type": "choice",
-    "prompt": "위 템플릿에서 {% if %} ~ {% endif %}의 역할은?",
+    "prompt": "아래 템플릿에서 {% if %} ~ {% endif %}의 역할은?",
     "code": "{% if user %}\n  <p>{{ user }}님 환영합니다</p>\n{% else %}\n  <p>로그인 해주세요</p>\n{% endif %}",
     "language": "HTML",
     "options": [

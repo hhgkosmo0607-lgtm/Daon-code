@@ -47,7 +47,7 @@
     "id": "spring-8-1-q4",
     "lessonId": "spring-8-1",
     "type": "choice",
-    "prompt": "아래 설정에서 anyRequest().authenticated()의 의미는?",
+    "prompt": "스프링 시큐리티 설정의 authorizeHttpRequests에서 마지막에 쓴 anyRequest().authenticated()의 의미는?",
     "options": [
       "앞에서 정하지 않은 나머지 요청을 로그인 없이 누구나 허용한다",
       "나머지 요청은 로그인 여부와 관계없이 전부 접근이 차단된다",

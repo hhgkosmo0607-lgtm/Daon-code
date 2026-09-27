@@ -48,9 +48,9 @@
     "type": "blank",
     "prompt": "실행 중인 서버를 멈추려면 터미널에서 무엇을 눌러야 할까요?",
     "code": "터미널 창에서 ___ 를 누른다",
-    "options": ["Ctrl + C (Mac은 Command + C)", "Enter", "Ctrl + Z", "Esc"],
+    "options": ["Ctrl + C (Mac도 Control + C)", "Enter", "Ctrl + Z", "Esc"],
     "answer": 0,
-    "explanation": "Ctrl + C가 \"지금 실행 중인 걸 멈춰줘\"라는 명령이에요. 창만 닫으면 뒤에서 계속 돌고 있을 수도 있어요."
+    "explanation": "Ctrl + C가 \"지금 실행 중인 걸 멈춰줘\"라는 명령이에요. Mac에서도 Command가 아니라 Control 키를 써요 — Command + C는 복사 단축키라 서버가 멈추지 않아요. 창만 닫으면 뒤에서 계속 돌고 있을 수도 있어요."
   },
   {
     "id": "1-5-q5",

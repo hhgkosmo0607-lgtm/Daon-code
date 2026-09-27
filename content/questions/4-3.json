@@ -18,7 +18,7 @@
     "lessonId": "4-3",
     "type": "choice",
     "prompt": "콘솔에 이런 메시지가 있었습니다. 알 수 있는 것은?",
-    "code": "Uncaught TypeError: Cannot read property 'map' of undefined\n  at ProductList.jsx:12",
+    "code": "Uncaught TypeError: Cannot read properties of undefined (reading 'map')\n  at ProductList.jsx:12",
     "options": [
       "ProductList.jsx 파일의 12번 줄 근처에서 문제가 생겼다",
       "map이라는 함수 자체가 고장났다",

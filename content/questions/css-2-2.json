@@ -57,7 +57,7 @@
     "options": [
       "두 방법은 이름만 다를 뿐 결과와 적용 대상이 완전히 동일하다",
       "text-align은 텍스트를, margin: 0 auto는 박스 자체를 가운데로 옮긴다",
-      "text-align은 박스 위치를, margin: 0 auto는 텍스트 정렬을 담당한다(반대)",
+      "text-align은 박스 위치를, margin: 0 auto는 텍스트 정렬을 담당한다",
       "margin: 0 auto는 세로 중앙 정렬에만 쓰이고 가로 정렬에는 못 쓴다"
     ],
     "answer": 1,

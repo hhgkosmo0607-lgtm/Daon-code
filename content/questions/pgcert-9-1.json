@@ -33,13 +33,13 @@
     "type": "choice",
     "prompt": "학생 테이블에 새 행을 추가하는 SQL 명령은?",
     "options": [
-      "ADD INTO STUDENT VALUES (...);  -- 존재하지 않는 문법",
-      "UPDATE STUDENT VALUES (...);  -- UPDATE는 SET 절이 필요",
-      "CREATE STUDENT VALUES (...);  -- CREATE는 테이블 생성용",
+      "ADD INTO STUDENT VALUES (...);",
+      "UPDATE STUDENT VALUES (...);",
+      "CREATE STUDENT VALUES (...);",
       "INSERT INTO STUDENT VALUES (...);"
     ],
     "answer": 3,
-    "explanation": "데이터 추가는 INSERT, 수정은 UPDATE, 삭제는 DELETE예요. CREATE는 테이블 같은 구조를 새로 만들 때 써요."
+    "explanation": "데이터 추가는 INSERT, 수정은 UPDATE, 삭제는 DELETE예요. ADD INTO라는 SQL 문법은 없고, UPDATE는 SET 절로 값을 바꾸는 명령이며, CREATE는 테이블 같은 구조를 새로 만들 때 써요."
   },
   {
     "id": "pgcert-9-1-q4",
@@ -47,12 +47,12 @@
     "type": "choice",
     "prompt": "STUDENT 테이블에서 나이(AGE)가 20 미만인 행만 삭제하는 SQL은?",
     "options": [
-      "DROP FROM STUDENT WHERE AGE < 20;  -- DROP은 테이블 자체를 삭제하는 구문",
-      "DELETE STUDENT SET AGE < 20;  -- DELETE에는 SET을 쓰지 않음",
+      "DROP FROM STUDENT WHERE AGE < 20;",
+      "DELETE STUDENT SET AGE < 20;",
       "DELETE FROM STUDENT WHERE AGE < 20;",
-      "REMOVE FROM STUDENT WHERE AGE < 20;  -- REMOVE는 존재하지 않는 SQL 키워드"
+      "REMOVE FROM STUDENT WHERE AGE < 20;"
     ],
     "answer": 2,
-    "explanation": "특정 조건에 맞는 행만 지울 때는 DELETE FROM 테이블 WHERE 조건; 형태를 써요. WHERE를 빼면 모든 행이 삭제되니 주의해야 해요."
+    "explanation": "특정 조건에 맞는 행만 지울 때는 DELETE FROM 테이블 WHERE 조건; 형태를 써요. DROP은 테이블 자체를 없애는 명령이고, DELETE에는 SET을 쓰지 않으며, REMOVE라는 SQL 키워드는 없어요. WHERE를 빼면 모든 행이 삭제되니 주의해야 해요."
   }
 ]

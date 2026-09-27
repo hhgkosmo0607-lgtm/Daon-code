@@ -3,7 +3,7 @@
     "id": "python-15-1-q1",
     "lessonId": "python-15-1",
     "type": "choice",
-    "prompt": "sum = lambda a, b: a + b 처럼 정의한 람다식의 특징은?",
+    "prompt": "add = lambda a, b: a + b 처럼 정의한 람다식의 특징은?",
     "code": "add = lambda a, b: a + b\nprint(add(10, 20))",
     "language": "Python",
     "options": [
@@ -35,7 +35,7 @@
     "id": "python-15-1-q3",
     "lessonId": "python-15-1",
     "type": "choice",
-    "prompt": "lambda x: print(x) 처럼 람다식 본문에 대입문 같은 여러 문장을 넣을 수 있을까?",
+    "prompt": "람다식 본문에 y = x + 1 같은 대입문이나 여러 문장을 넣을 수 있을까?",
     "code": "f = lambda x: print(x)  # 가능\n# g = lambda x: y = x + 1  # 이런 건 불가능",
     "language": "Python",
     "options": [

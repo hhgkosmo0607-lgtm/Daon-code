@@ -50,7 +50,7 @@
     "id": "ite-2-2-q4",
     "lessonId": "ite-2-2",
     "type": "choice",
-    "prompt": "기본 게이트(AND, OR, NOT)만으로 만들 수 있는 조합이 아닌, NAND나 NOR 게이트를 \"범용 게이트\"라고 부르는 이유는?",
+    "prompt": "NAND나 NOR 게이트를 \"범용 게이트(universal gate)\"라고 부르는 이유는?",
     "options": [
       "NAND 게이트는 동작할 때 전력을 전혀 소비하지 않아서",
       "NAND 게이트는 항상 다른 모든 기본 게이트보다 크기와 소비 전력이 작아서",

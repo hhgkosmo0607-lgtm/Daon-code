@@ -63,7 +63,7 @@
     "id": "docker-6-2-q5",
     "lessonId": "docker-6-2",
     "type": "choice",
-    "prompt": "아래처럼 ports를 \"3307:3306\"으로 지정한 MariaDB에 같은 compose의 워드프레스 컨테이너가 접속할 때 쓸 포트는?",
+    "prompt": "ports를 \"3307:3306\"으로 지정한 MariaDB에, 같은 compose 네트워크의 워드프레스 컨테이너가 접속할 때 쓸 포트는?",
     "options": [
       "3307 (호스트에 게시된 포트로 접속해야 컨테이너끼리 통신된다)",
       "8018 (같은 compose의 게시 포트를 함께 공유해서 쓴다)",
