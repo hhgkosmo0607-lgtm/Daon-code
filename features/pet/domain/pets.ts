@@ -1,56 +1,101 @@
 /*
- * 홈 상단바를 돌아다니는 터미널 펫. (daon-content/Daon-code_아이디어.md — 캐릭터)
+ * 홈 상단바를 돌아다니는 도트 펫 (다마고치 방식). (daon-content/Daon-code_아이디어.md — 캐릭터)
  *
- * 전부 글자로만 그린다 — 이미지 없이 터미널에서도 그대로 찍히는 모양이어야 한다.
- * 여러 줄(\n)로 쓰면 블록 문자(▄█▌)로 픽셀 아트처럼 그릴 수 있다.
+ * 그림은 흑백 도트다: 한 줄에 '#'(켜짐)과 '.'(꺼짐)을 적은 문자열 배열.
+ * 글꼴과 상관없이 어느 기기에서나 같은 모양으로 찍히고, 이 데이터를 터미널에
+ * 그대로 출력해도 모양이 보인다. 색은 테마 색 하나로만 칠한다.
  * 나중에 상점에서 캐릭터를 팔게 되면 이 목록이 상품 목록이 된다.
  */
+
+/** 도트 그림 한 장. 모든 줄의 길이가 같아야 한다 */
+export type Sprite = string[];
 
 export interface PetDefinition {
   id: string;
   label: string;
-  /** 오른쪽으로 걸을 때 번갈아 보여줄 프레임 (1개면 통통 튀기만 한다) */
-  right: string[];
+  /** 오른쪽으로 걸을 때 번갈아 보여줄 그림 */
+  right: Sprite[];
   /** 왼쪽으로 걸을 때 */
-  left: string[];
-  /** 멈춰 있을 때 가끔 깜빡이는 모양 */
-  blink: string;
+  left: Sprite[];
+  /** 쉴 때 기본 모습 */
+  idle: Sprite;
+  /** 쉬다가 가끔 깜빡이는 모습 */
+  blink: Sprite;
 }
 
 /*
- * 다온봇 — 블록 문자 픽셀 캐릭터 (기본 펫)
- *
- *   ▗▄▄▄▄▄▖   머리
- *   ▐██ █ ▌   눈 (빈칸 두 개, 보는 방향으로 쏠린다)
- *    ▘▝ ▘▝    다리 (걸을 때 ▘▝ ↔ ▝▘ 번갈아)
+ * 다온이 — 머리에 새싹, 동그란 몸, 점 눈, 작은 발 (16×15)
+ * 눈·입은 보는 방향으로 한 칸 쏠리고, 걸을 때 발이 벌어졌다 모였다 한다.
  */
-const BOT_HEAD = '▗▄▄▄▄▄▖';
-const BOT_LEGS_A = ' ▘▝ ▘▝ ';
-const BOT_LEGS_B = ' ▝▘ ▝▘ ';
-const bot = (eyes: string, legs: string) => `${BOT_HEAD}\n${eyes}\n${legs}`;
+const HEAD = [
+  '.........##.....',
+  '........#.......',
+  '......####......',
+  '....##....##....',
+  '...#........#...',
+  '..#..........#..',
+  '.#............#.',
+];
+const BODY_BOTTOM = ['.#............#.', '..#..........#..', '...##......##...', '.....######.....'];
+const EMPTY_ROW = '.#............#.';
+
+const EYES = { front: '.#...##..##...#.', right: '.#....##..##..#.', left: '.#..##..##....#.' };
+const MOUTH = { front: '.#.....##.....#.', right: '.#......##....#.', left: '.#....##......#.' };
+const FEET = { apart: '...##......##...', together: '.....##..##.....' };
+
+function daon(look: keyof typeof EYES, feet: keyof typeof FEET, closedEyes = false): Sprite {
+  return [
+    ...HEAD,
+    closedEyes ? EMPTY_ROW : EYES[look],
+    EYES[look],
+    EMPTY_ROW,
+    MOUTH[look],
+    ...BODY_BOTTOM,
+    FEET[feet],
+  ];
+}
 
 export const PETS: Record<string, PetDefinition> = {
-  bot: {
-    id: 'bot',
-    label: '다온봇',
-    right: [bot('▐██ █ ▌', BOT_LEGS_A), bot('▐██ █ ▌', BOT_LEGS_B)],
-    left: [bot('▐ █ ██▌', BOT_LEGS_A), bot('▐ █ ██▌', BOT_LEGS_B)],
-    blink: bot('▐█▄█▄█▌', BOT_LEGS_A),
+  daon: {
+    id: 'daon',
+    label: '다온이',
+    right: [daon('right', 'apart'), daon('right', 'together')],
+    left: [daon('left', 'apart'), daon('left', 'together')],
+    idle: daon('front', 'apart'),
+    blink: daon('front', 'apart', true),
   },
-  bear: { id: 'bear', label: '곰', right: ['ʕ•ᴥ•ʔ'], left: ['ʕ•ᴥ•ʔ'], blink: 'ʕ-ᴥ-ʔ' },
-  cat: { id: 'cat', label: '고양이', right: ['ᓚᘏᗢ'], left: ['ᗢᘏᓗ'], blink: 'ᓚᘏᗢ' },
-  slime: { id: 'slime', label: '슬라임', right: ['(•ᴗ•)'], left: ['(•ᴗ•)'], blink: '(-ᴗ-)' },
-  ghost: { id: 'ghost', label: '유령', right: ['[°_°]>'], left: ['<[°_°]'], blink: '[-_-]' },
 };
 
-export const DEFAULT_PET_ID = 'bot';
+export const DEFAULT_PET_ID = 'daon';
 
 /** 펫이 걷는 속도 (px/초) */
 export const PET_SPEED = 28;
 
-/** 여러 줄 펫인지 (줄 간격을 붙여서 블록이 이어져 보이게 해야 한다) */
-export function isMultiline(pet: PetDefinition): boolean {
-  return pet.right[0].includes('\n');
+export interface PixelRun {
+  x: number;
+  y: number;
+  width: number;
+}
+
+/**
+ * 그림을 "가로로 이어진 켜진 칸" 묶음으로 바꾼다.
+ * 칸마다 네모를 하나씩 그리면 수백 개가 되므로, 한 줄에서 연달아 켜진 칸은
+ * 네모 하나로 합쳐서 그린다.
+ */
+export function spriteToRuns(sprite: Sprite): PixelRun[] {
+  const runs: PixelRun[] = [];
+  sprite.forEach((row, y) => {
+    let start = -1;
+    for (let x = 0; x <= row.length; x++) {
+      const on = row[x] === '#';
+      if (on && start < 0) start = x;
+      if (!on && start >= 0) {
+        runs.push({ x: start, y, width: x - start });
+        start = -1;
+      }
+    }
+  });
+  return runs;
 }
 
 /**

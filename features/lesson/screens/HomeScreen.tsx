@@ -139,7 +139,7 @@ export function HomeScreen() {
           </Pressable>
         </View>
         {/* 상단바 둘째 줄 — 글자 펫이 돌아다니는 길 (topBar가 flexWrap이라 100% 폭이면 새 줄로 내려간다) */}
-        <TerminalPet color={colors.success} fontSize={PET_FONT_SIZE} />
+        <TerminalPet color={colors.text} />
       </View>
 
       {showStatInfo && (
@@ -215,9 +215,6 @@ export function HomeScreen() {
   );
 }
 
-/** 상단바 숫자와 펫의 글자 크기 — 펫이 숫자와 같은 크기로 보이게 맞춘다 */
-const PET_FONT_SIZE = 13;
-
 const LEVEL_BAR_CELLS = 8;
 
 /**
@@ -247,7 +244,7 @@ const createStyles = (colors: ThemeColors) =>
       borderBottomColor: colors.border,
     },
     statGroup: { flexDirection: 'row', alignItems: 'center', gap: spacing.md },
-    stat: { fontSize: PET_FONT_SIZE, fontWeight: '700', fontFamily: fonts.mono },
+    stat: { fontSize: 13, fontWeight: '700', fontFamily: fonts.mono },
     rightGroup: { marginLeft: 'auto', flexDirection: 'row', alignItems: 'center', gap: spacing.md },
     themeButton: { fontSize: 18, color: colors.text, fontFamily: fonts.mono },
     statInfo: {
