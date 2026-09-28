@@ -22,6 +22,13 @@ PROJECT_REF="fjtjoqdsrndnemhiqbmc"
 
 cd "$(dirname "$0")/.."
 
+# expo-updates가 node_modules에 없으면 EAS가 fingerprint를 계산하지 못하고
+# runtimeVersion을 "file:fingerprint"로 발행해서, 설치된 앱이 업데이트를 받지 못한다.
+if [ ! -d node_modules/expo-updates ]; then
+  echo "▶ node_modules가 package-lock.json과 달라서 npm ci 실행"
+  npm ci
+fi
+
 echo "▶ 1/4 QUESTION_BANK 재생성"
 npm run -s gen:content
 
