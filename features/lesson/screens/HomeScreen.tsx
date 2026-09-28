@@ -1,5 +1,5 @@
-import { useRouter } from 'expo-router';
-import { Fragment, useEffect, useMemo, useState } from 'react';
+import { useFocusEffect, useRouter } from 'expo-router';
+import { Fragment, useCallback, useEffect, useMemo, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -32,6 +32,12 @@ export function HomeScreen() {
 
   const { user, isGuest } = useAuth();
   const { profile, statusMap, loading, error, reload } = useUserProgress();
+  // 레슨·상점 같은 모달에서 돌아오면 XP·코인이 바뀌었을 수 있어서 다시 불러온다
+  useFocusEffect(
+    useCallback(() => {
+      reload();
+    }, [reload])
+  );
   const { count: wrongAnswerCount } = useWrongAnswerCount();
 
   // DB의 streak는 제출할 때만 갱신되므로, 며칠 쉬어서 끊긴 스트릭은 여기서 0으로 보여준다
@@ -91,7 +97,7 @@ export function HomeScreen() {
             onPress={() => setStatInfoToggled(!showStatInfo)}
             hitSlop={6}
             accessibilityRole="button"
-            accessibilityLabel={`${streak}일 연속 학습, 레벨 ${progress.level}, 다음 레벨까지 ${progress.xpToNext} XP, 코인 ${coins}개`}
+            accessibilityLabel={`${streak}일 연속 학습, 레벨 ${progress.level}, 다음 레벨까지 ${progress.xpToNext} XP`}
             accessibilityHint="눌러서 설명 보기"
             accessibilityState={{ expanded: showStatInfo }}
           >
@@ -99,8 +105,17 @@ export function HomeScreen() {
             <Text style={[styles.stat, { color: colors.xp }]}>
               LV{progress.level} {levelBar(progress.xpIntoLevel)} {progress.xpIntoLevel}/{XP_PER_LEVEL}xp
             </Text>
-            <Text style={[styles.stat, { color: colors.accent }]}>{coins}c</Text>
             <Text style={[styles.stat, styles.mutedText]}>{showStatInfo ? '▴' : '▾'}</Text>
+          </Pressable>
+        )}
+        {!error && user && (
+          <Pressable
+            onPress={() => router.push('/shop')}
+            hitSlop={6}
+            accessibilityRole="button"
+            accessibilityLabel={`코인 ${coins}개, 상점 열기`}
+          >
+            <Text style={[styles.stat, { color: colors.accent }]}>{coins}c</Text>
           </Pressable>
         )}
         <View style={styles.rightGroup}>
@@ -130,7 +145,7 @@ export function HomeScreen() {
             {streak}일 연속 학습 중 · 누적 {totalXp} XP · 다음 레벨까지 {progress.xpToNext} XP
           </Text>
           <Text style={styles.statInfoText}>
-            코인 {coins}개 · 레슨을 풀면 쌓이고, 곧 상점에서 스트릭 프리즈를 살 수 있어요
+            코인 {coins}개 · 프리즈 {profile?.freeze_count ?? 0}개 · 코인(c)을 누르면 상점
           </Text>
           {isGuest && (
             <Text style={styles.statInfoText}>

@@ -21,7 +21,7 @@ export interface Profile {
   daily_goal: number;
   /** 게스트 상태에서 받은 XP — 계정 연결 시 환급 기준 (0002_guest_refund_and_atomic_submit.sql) */
   guest_xp: number;
-  /** 상점에서 쓰는 화폐 (0004_coins.sql) */
+  /** 상점에서 쓰는 화폐 (0004_coins_and_shop.sql) */
   coins: number;
   /** 게스트 상태에서 받은 코인 — 계정 연결 시 XP와 함께 환급 */
   guest_coins: number;

@@ -1,5 +1,5 @@
 -- ============================================
--- 코인 (daon-content/Daon-code_아이디어.md 1번 — 듀오링고식 보상 구조)
+-- 코인 + 상점 (daon-content/Daon-code_아이디어.md 1번 — 듀오링고식 보상 구조)
 --
 -- EXP(total_xp)는 레벨용으로 쌓이기만 하고, 코인은 모아서 상점에 쓰는 화폐다.
 -- 지급 규칙은 scoring.ts의 calculateCoins가 정하고, 저장은 apply_lesson_result가
@@ -188,3 +188,36 @@ grant execute on function public.apply_lesson_result(
   uuid, text, text, date, int, text[], boolean, int, boolean, int, int,
   boolean, int, boolean, int, date, int, int
 ) to service_role;
+
+-- ---------- 상점: 스트릭 프리즈 구매 ----------
+-- 가격과 보유 한도는 features/shop/domain/shopItems.ts가 정하고 purchase Edge Function이 넘긴다.
+-- 잔액 확인 → 차감 → 지급을 프로필 행을 잠근 채 한 번에 해서, 동시에 눌러도 잔액이 음수가 되지 않는다.
+create or replace function public.purchase_freeze(p_user uuid, p_price int, p_max int)
+returns jsonb
+language plpgsql security definer set search_path = public as $$
+declare
+  prof profiles%rowtype;
+begin
+  select * into prof from profiles where id = p_user for update;
+  if not found then
+    return jsonb_build_object('error', 'profile_not_found');
+  end if;
+
+  if prof.freeze_count >= p_max then
+    return jsonb_build_object('error', 'max_reached');
+  end if;
+  if prof.coins < p_price then
+    return jsonb_build_object('error', 'not_enough_coins');
+  end if;
+
+  update profiles
+     set coins        = coins - p_price,
+         freeze_count = freeze_count + 1
+   where id = p_user
+  returning * into prof;
+
+  return jsonb_build_object('coins', prof.coins, 'freeze_count', prof.freeze_count);
+end $$;
+
+revoke all on function public.purchase_freeze(uuid, int, int) from public, anon, authenticated;
+grant execute on function public.purchase_freeze(uuid, int, int) to service_role;

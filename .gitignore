@@ -43,3 +43,6 @@ supabase/.temp/
 /ios
 /android
 .env
+
+# Claude Code 개인 설정 (권한 허용 규칙 등)
+.claude/settings.local.json

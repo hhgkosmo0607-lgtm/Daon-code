@@ -76,3 +76,13 @@ export async function completePlacement(
 ): Promise<CompletePlacementResult> {
   return invokeFunction<CompletePlacementResult>('complete-placement', { answers });
 }
+
+export interface PurchaseResult {
+  coins: number;
+  freezeCount: number;
+}
+
+/** 상점에서 스트릭 프리즈 1개 구매. 코인 부족·보유 한도 초과면 한국어 메시지로 에러가 난다. */
+export async function purchaseFreeze(): Promise<PurchaseResult> {
+  return invokeFunction<PurchaseResult>('purchase', { item: 'freeze' });
+}
