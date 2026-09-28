@@ -1,15 +1,16 @@
 import { useRouter } from 'expo-router';
 import { Fragment, useEffect, useMemo, useState } from 'react';
-import { Platform, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { useTheme } from '../../../shared/theme/ThemeContext';
-import { radius, spacing } from '../../../shared/theme/theme';
+import { fonts, radius, spacing } from '../../../shared/theme/theme';
 import type { ThemeColors } from '../../../shared/theme/themes';
 import { useAuth } from '../../auth/AuthContext';
 import { useTrack } from '../../track/TrackContext';
 import { getLessons, getStages, hasContent } from '../data/contentRepository';
 import { XP_PER_LEVEL, levelProgress } from '../domain/scoring';
+import { displayStreak, toKstDateString } from '../domain/streak';
 import { useUserProgress } from '../hooks/useUserProgress';
 import { useWrongAnswerCount } from '../hooks/useWrongAnswerCount';
 
@@ -30,14 +31,26 @@ export function HomeScreen() {
   const styles = useMemo(() => createStyles(colors), [colors]);
 
   const { user, isGuest } = useAuth();
-  const { profile, statusMap, loading } = useUserProgress();
+  const { profile, statusMap, loading, error, reload } = useUserProgress();
   const { count: wrongAnswerCount } = useWrongAnswerCount();
 
-  const streak = profile?.streak ?? 0;
+  // DB의 streak는 제출할 때만 갱신되므로, 며칠 쉬어서 끊긴 스트릭은 여기서 0으로 보여준다
+  // 오늘 날짜가 바뀌면 결과도 바뀌므로 메모하지 않는다 (계산 자체는 가볍다)
+  const streak = profile
+    ? displayStreak({
+        savedStreak: profile.streak,
+        lastStudyDate: profile.last_study_date,
+        freezeCount: profile.freeze_count,
+        today: toKstDateString(),
+      })
+    : 0;
   const totalXp = profile?.total_xp ?? 0;
   const progress = levelProgress(totalXp);
   // 상단바 숫자를 누르면 뜻을 풀어서 보여준다 (7d, LV 진행바가 처음엔 낯설 수 있어서)
-  const [showStatInfo, setShowStatInfo] = useState(false);
+  // 직접 열고 닫기 전까지는, 게스트면 XP 80% 규칙을 알 수 있게 펼쳐서 보여준다.
+  // (홈이 세션 복구보다 먼저 뜰 수 있어서 isGuest를 초기값으로 굳히지 않는다)
+  const [statInfoToggled, setStatInfoToggled] = useState<boolean | null>(null);
+  const showStatInfo = statInfoToggled ?? isGuest;
 
   const statusOf = (lessonId: string) => {
     return statusMap[lessonId] ?? 'open';
@@ -54,34 +67,53 @@ export function HomeScreen() {
     if (stage1AllDone) {
       router.replace('/auth');
     }
+    // 커리큘럼을 바꾸면(track.id) 그 트랙의 1단계 기준으로 다시 확인한다
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loading, isGuest, statusMap]);
+  }, [loading, isGuest, statusMap, track.id]);
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
       <View style={styles.topBar}>
-        <Pressable
-          style={styles.statGroup}
-          onPress={() => setShowStatInfo((v) => !v)}
-          hitSlop={6}
-          accessibilityRole="button"
-          accessibilityLabel={`${streak}일 연속 학습, 레벨 ${progress.level}, 다음 레벨까지 ${progress.xpToNext} XP`}
-        >
-          <Text style={[styles.stat, { color: colors.streak }]}>{streak}d</Text>
-          <Text style={[styles.stat, { color: colors.xp }]}>
-            LV{progress.level} {levelBar(progress.percent)} {progress.xpIntoLevel}/{XP_PER_LEVEL}xp
-          </Text>
-        </Pressable>
+        {error ? (
+          <Pressable
+            style={styles.statGroup}
+            onPress={reload}
+            hitSlop={6}
+            accessibilityRole="button"
+            accessibilityLabel="학습 기록을 불러오지 못했어요. 다시 시도"
+          >
+            <Text style={[styles.stat, { color: colors.error }]}>불러오기 실패 · 다시 시도</Text>
+          </Pressable>
+        ) : (
+          <Pressable
+            style={styles.statGroup}
+            onPress={() => setStatInfoToggled(!showStatInfo)}
+            hitSlop={6}
+            accessibilityRole="button"
+            accessibilityLabel={`${streak}일 연속 학습, 레벨 ${progress.level}, 다음 레벨까지 ${progress.xpToNext} XP`}
+            accessibilityHint="눌러서 설명 보기"
+            accessibilityState={{ expanded: showStatInfo }}
+          >
+            <Text style={[styles.stat, { color: colors.streak }]}>{streak}d</Text>
+            <Text style={[styles.stat, { color: colors.xp }]}>
+              LV{progress.level} {levelBar(progress.xpIntoLevel)} {progress.xpIntoLevel}/{XP_PER_LEVEL}xp
+            </Text>
+            <Text style={[styles.stat, styles.mutedText]}>{showStatInfo ? '▴' : '▾'}</Text>
+          </Pressable>
+        )}
         <View style={styles.rightGroup}>
           {wrongAnswerCount > 0 && (
             <Pressable style={styles.reviewButton} onPress={() => router.push('/review')}>
               <Text style={styles.reviewButtonText}>오답노트 {wrongAnswerCount}</Text>
             </Pressable>
           )}
-          <Pressable onPress={() => router.push('/settings/theme')} hitSlop={8}>
-            <Text style={styles.themeButton} accessibilityLabel="테마 바꾸기">
-              ◐
-            </Text>
+          <Pressable
+            onPress={() => router.push('/settings/theme')}
+            hitSlop={8}
+            accessibilityRole="button"
+            accessibilityLabel="테마 바꾸기"
+          >
+            <Text style={styles.themeButton}>◐</Text>
           </Pressable>
           <Pressable style={styles.badgeWrap} onPress={() => router.push('/auth')}>
             {!user && <Text style={styles.badge}>로그인</Text>}
@@ -91,7 +123,7 @@ export function HomeScreen() {
       </View>
 
       {showStatInfo && (
-        <Pressable style={styles.statInfo} onPress={() => setShowStatInfo(false)}>
+        <Pressable style={styles.statInfo} onPress={() => setStatInfoToggled(false)}>
           <Text style={styles.statInfoText}>
             {streak}일 연속 학습 중 · 누적 {totalXp} XP · 다음 레벨까지 {progress.xpToNext} XP
           </Text>
@@ -162,13 +194,15 @@ export function HomeScreen() {
 
 const LEVEL_BAR_CELLS = 8;
 
-/** 진행률(%)을 ▓░ 블록 문자 진행바로 바꾼다. 예: 40% → ▓▓▓░░░░░ */
-function levelBar(percent: number): string {
-  const filled = Math.floor((percent / 100) * LEVEL_BAR_CELLS);
+/**
+ * 현재 레벨에서 쌓은 XP를 ▓░ 블록 문자 진행바로 바꾼다. 예: 40xp → ▓▓▓░░░░░
+ * XP가 조금이라도 있으면 최소 한 칸은 채워서, 문제를 풀었는데 바가 비어 보이지 않게 한다.
+ */
+function levelBar(xpIntoLevel: number): string {
+  const cells = Math.floor((xpIntoLevel * LEVEL_BAR_CELLS) / XP_PER_LEVEL);
+  const filled = xpIntoLevel > 0 ? Math.max(1, cells) : 0;
   return '▓'.repeat(filled) + '░'.repeat(LEVEL_BAR_CELLS - filled);
 }
-
-const MONO = Platform.select({ ios: 'Menlo', android: 'monospace', default: 'monospace' });
 
 const createStyles = (colors: ThemeColors) =>
   StyleSheet.create({
@@ -186,9 +220,9 @@ const createStyles = (colors: ThemeColors) =>
       borderBottomColor: colors.border,
     },
     statGroup: { flexDirection: 'row', alignItems: 'center', gap: spacing.md },
-    stat: { fontSize: 13, fontWeight: '700', fontFamily: MONO },
+    stat: { fontSize: 13, fontWeight: '700', fontFamily: fonts.mono },
     rightGroup: { marginLeft: 'auto', flexDirection: 'row', alignItems: 'center', gap: spacing.md },
-    themeButton: { fontSize: 18, color: colors.text, fontFamily: MONO },
+    themeButton: { fontSize: 18, color: colors.text, fontFamily: fonts.mono },
     statInfo: {
       paddingHorizontal: spacing.md,
       paddingVertical: spacing.xs,
@@ -196,7 +230,7 @@ const createStyles = (colors: ThemeColors) =>
       borderBottomWidth: 1,
       borderBottomColor: colors.border,
     },
-    statInfoText: { fontSize: 12, color: colors.textMuted, fontFamily: MONO },
+    statInfoText: { fontSize: 12, color: colors.textMuted, fontFamily: fonts.mono },
     reviewButton: {
       borderWidth: 1,
       borderColor: colors.accent,

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { daysBetween, toKstDateString, updateStreak } from './streak';
+import { daysBetween, displayStreak, toKstDateString, updateStreak } from './streak';
 
 describe('toKstDateString', () => {
   it('UTC 기준 자정 근처 시각도 한국 날짜로 변환한다', () => {
@@ -78,5 +78,27 @@ describe('updateStreak', () => {
       today: '2024-01-05',
     });
     expect(result).toEqual({ streak: 1, freezeCount: 3, freezeUsed: false });
+  });
+});
+
+describe('displayStreak', () => {
+  const base = { savedStreak: 7, freezeCount: 0, today: '2024-01-10' };
+
+  it('학습 기록이 없으면 0', () => {
+    expect(displayStreak({ ...base, lastStudyDate: null })).toBe(0);
+  });
+
+  it('오늘이나 어제 학습했으면 저장된 스트릭 유지', () => {
+    expect(displayStreak({ ...base, lastStudyDate: '2024-01-10' })).toBe(7);
+    expect(displayStreak({ ...base, lastStudyDate: '2024-01-09' })).toBe(7);
+  });
+
+  it('하루 빠졌으면 프리즈가 있을 때만 유지', () => {
+    expect(displayStreak({ ...base, lastStudyDate: '2024-01-08' })).toBe(0);
+    expect(displayStreak({ ...base, lastStudyDate: '2024-01-08', freezeCount: 1 })).toBe(7);
+  });
+
+  it('그보다 오래 쉬었으면 0', () => {
+    expect(displayStreak({ ...base, lastStudyDate: '2024-01-02', freezeCount: 3 })).toBe(0);
   });
 });

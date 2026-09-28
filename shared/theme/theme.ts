@@ -1,3 +1,5 @@
+import { Platform } from 'react-native';
+
 /*
  * 앱 전체에서 재사용하는 여백/모서리 값.
  * 색상은 여기 없다 — 테마별로 값이 달라지므로 `shared/theme/themes.ts` +
@@ -21,4 +23,9 @@ export const radius = {
   md: 0,
   lg: 0,
   full: 0,
+} as const;
+
+/* 터미널/코드 느낌을 내는 고정폭 글꼴. 번들 폰트로 바꾸려면 여기만 고치면 된다. */
+export const fonts = {
+  mono: Platform.select({ ios: 'Menlo', android: 'monospace', default: 'monospace' }),
 } as const;

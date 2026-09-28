@@ -54,8 +54,11 @@ Expo Go 앱으로 QR을 찍으면 실물 기기에서 바로 확인할 수 있�
 
 ### Supabase 사전 설정 (최초 1회)
 
-1. **SQL Editor**에서 `supabase/migrations/0001_init.sql` 실행
-   → 테이블 5개 + RLS 정책 + XP 변경 차단 트리거 생성
+1. **SQL Editor**에서 `supabase/migrations/` 파일을 번호 순서대로 실행
+   - `0001_init.sql` → 테이블 5개 + RLS 정책 + XP 변경 차단 트리거
+   - `0002_guest_refund_and_atomic_submit.sql` → 게스트 XP 환급 트리거 + 레슨 제출 저장 함수
+     (`submit-answer` Edge Function이 이 함수를 쓰므로 **함수 배포 전에** 실행해야 한다.
+     여러 번 실행해도 안전하다)
 2. **Authentication → Providers**
    - Email 활성화 (기본 켜짐)
    - **Anonymous sign-ins 활성화** ← 기본이 꺼져 있어 반드시 켜야 "나중에 하기"가 동작

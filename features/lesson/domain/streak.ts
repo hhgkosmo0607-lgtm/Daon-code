@@ -6,12 +6,16 @@
  * 다른 날짜로 기록되어 스트릭이 잘못 계산된다. (기획서 7번)
  */
 
-const TIMEZONE = 'Asia/Seoul';
+/** 한국은 서머타임이 없어서 항상 UTC+9다 */
+const KST_OFFSET_MS = 9 * 60 * 60 * 1000;
 
-/** 주어진 시각을 한국 날짜(YYYY-MM-DD 문자열)로 변환 */
+/**
+ * 주어진 시각을 한국 날짜(YYYY-MM-DD 문자열)로 변환.
+ * toLocaleDateString(timeZone)은 기기·JS 엔진(Hermes 등)마다 형식이 달라질 수 있어서
+ * 쓰지 않고, UTC+9만큼 옮긴 뒤 ISO 문자열의 날짜 부분을 자른다.
+ */
 export function toKstDateString(date: Date = new Date()): string {
-  // en-CA 로케일은 YYYY-MM-DD 형식을 반환한다
-  return date.toLocaleDateString('en-CA', { timeZone: TIMEZONE });
+  return new Date(date.getTime() + KST_OFFSET_MS).toISOString().slice(0, 10);
 }
 
 /** 두 날짜 문자열(YYYY-MM-DD)의 차이를 일 단위로 */
@@ -59,14 +63,45 @@ export function updateStreak(input: StreakInput): StreakResult {
     return { streak: currentStreak, freezeCount, freezeUsed: false };
   }
 
-  if (gap === 1) {
-    return { streak: currentStreak + 1, freezeCount, freezeUsed: false };
+  if (!canContinue(gap, freezeCount)) {
+    return { streak: 1, freezeCount, freezeUsed: false };
   }
 
-  if (gap === 2 && freezeCount > 0) {
-    // 하루 빠졌지만 프리즈로 방어
-    return { streak: currentStreak + 1, freezeCount: freezeCount - 1, freezeUsed: true };
-  }
+  // 하루 빠졌으면(gap 2) 프리즈로 방어
+  const freezeUsed = gap === 2;
+  return {
+    streak: currentStreak + 1,
+    freezeCount: freezeUsed ? freezeCount - 1 : freezeCount,
+    freezeUsed,
+  };
+}
 
-  return { streak: 1, freezeCount, freezeUsed: false };
+/**
+ * 마지막 학습 후 gap일이 지났을 때 스트릭을 이어갈 수 있는가.
+ * 어제 학습했거나, 하루 빠졌지만 프리즈가 남아 있으면 이어진다.
+ */
+function canContinue(gap: number, freezeCount: number): boolean {
+  return gap <= 1 || (gap === 2 && freezeCount > 0);
+}
+
+export interface DisplayStreakInput {
+  /** DB에 저장된 스트릭 (마지막 학습 시점 기준) */
+  savedStreak: number;
+  lastStudyDate: string | null;
+  freezeCount: number;
+  /** 오늘 한국 기준 날짜 */
+  today: string;
+}
+
+/**
+ * 화면에 보여줄 "지금" 스트릭.
+ *
+ * DB의 streak는 레슨을 제출할 때만 갱신되므로, 며칠 쉬면 끊긴 스트릭이
+ * 그대로 남아있다. 오늘 학습하면 이어갈 수 있는 상태인지를 updateStreak와
+ * 같은 규칙(canContinue)으로 판단해서, 이미 끊겼으면 0을 돌려준다.
+ */
+export function displayStreak(input: DisplayStreakInput): number {
+  const { savedStreak, lastStudyDate, freezeCount, today } = input;
+  if (!lastStudyDate) return 0;
+  return canContinue(daysBetween(lastStudyDate, today), freezeCount) ? savedStreak : 0;
 }

@@ -1,9 +1,9 @@
 import { useMemo } from 'react';
-import { Platform, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { CODE_PANEL_BACKGROUND, HighlightedCode } from '../../../shared/components/HighlightedCode';
 import { ensureContrast } from '../../../shared/theme/contrast';
 import { useTheme } from '../../../shared/theme/ThemeContext';
-import { radius, spacing } from '../../../shared/theme/theme';
+import { fonts, radius, spacing } from '../../../shared/theme/theme';
 import type { ThemeColors } from '../../../shared/theme/themes';
 
 /*
@@ -94,6 +94,6 @@ const createStyles = (colors: ThemeColors) =>
     code: {
       fontSize: 13,
       lineHeight: 20,
-      fontFamily: Platform.select({ ios: 'Menlo', android: 'monospace', default: 'monospace' }),
+      fontFamily: fonts.mono,
     },
   });

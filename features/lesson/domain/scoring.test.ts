@@ -113,15 +113,15 @@ describe('levelFromXp', () => {
 
 describe('levelProgress', () => {
   it('레벨 안에서의 진행도와 다음 레벨까지 남은 XP를 계산한다', () => {
-    expect(levelProgress(1240)).toEqual({ level: 13, xpIntoLevel: 40, xpToNext: 60, percent: 40 });
+    expect(levelProgress(1240)).toEqual({ level: 13, xpIntoLevel: 40, xpToNext: 60 });
   });
 
   it('레벨 경계에서는 진행도가 0이다', () => {
-    expect(levelProgress(0)).toEqual({ level: 1, xpIntoLevel: 0, xpToNext: 100, percent: 0 });
-    expect(levelProgress(100)).toEqual({ level: 2, xpIntoLevel: 0, xpToNext: 100, percent: 0 });
+    expect(levelProgress(0)).toEqual({ level: 1, xpIntoLevel: 0, xpToNext: 100 });
+    expect(levelProgress(100)).toEqual({ level: 2, xpIntoLevel: 0, xpToNext: 100 });
   });
 
-  it('레벨업 직전은 99%다', () => {
-    expect(levelProgress(199).percent).toBe(99);
+  it('레벨업 직전은 다음 레벨까지 1 XP 남는다', () => {
+    expect(levelProgress(199)).toEqual({ level: 2, xpIntoLevel: 99, xpToNext: 1 });
   });
 });

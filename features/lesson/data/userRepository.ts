@@ -19,6 +19,8 @@ export interface Profile {
   last_study_date: string | null;
   freeze_count: number;
   daily_goal: number;
+  /** 게스트 상태에서 받은 XP — 계정 연결 시 환급 기준 (0002_guest_refund_and_atomic_submit.sql) */
+  guest_xp: number;
 }
 
 export interface ProgressRow {
@@ -65,8 +67,8 @@ export function toStatusMap(rows: ProgressRow[]): Record<string, LessonStatus> {
   return map;
 }
 
-/** 게스트가 지금까지 받은 총 XP — 로그인 전환 시 환급 보너스 계산에 쓴다 */
+/** 아직 환급받지 않은 게스트 XP — 로그인 화면에서 돌려받을 금액을 미리 보여줄 때 쓴다 */
 export async function fetchGuestEarnedXp(userId: string): Promise<number> {
   const profile = await fetchProfile(userId);
-  return profile?.total_xp ?? 0;
+  return profile?.guest_xp ?? 0;
 }

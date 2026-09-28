@@ -1,6 +1,6 @@
-import { createClient, type SupabaseClient } from 'npm:@supabase/supabase-js@2.116.0';
+import { createClient } from 'npm:@supabase/supabase-js@2.116.0';
 
-import { calculateXp, isCorrect, levelFromXp } from '../../../features/lesson/domain/scoring.ts';
+import { calculateXp, isCorrect } from '../../../features/lesson/domain/scoring.ts';
 import { toKstDateString, updateStreak } from '../../../features/lesson/domain/streak.ts';
 import { getLesson, getNextLesson, getQuestions } from '../_shared/content.ts';
 
@@ -15,6 +15,8 @@ import { getLesson, getNextLesson, getQuestions } from '../_shared/content.ts';
  *
  * progress/daily_xp/profiles 쓰기는 이 함수(service_role)만 할 수 있다.
  * RLS가 일반 클라이언트의 직접 쓰기를 막고 있다. (0001_init.sql)
+ * 실제 저장은 apply_lesson_result DB 함수가 한 트랜잭션으로 한다.
+ * 게스트가 받은 XP는 guest_xp에도 쌓여서, 계정 연결 시 20%를 돌려받는다. (0002)
  */
 
 const corsHeaders = {
@@ -40,24 +42,17 @@ function json(body: unknown, status = 200) {
   });
 }
 
-/** 오답 노트(wrong_answers) 갱신 — 기존 오답 횟수에 이어서 누적한다 */
-async function upsertWrongAnswers(admin: SupabaseClient, userId: string, questionIds: string[]) {
-  const { data: existing } = await admin
-    .from('wrong_answers')
-    .select('question_id, wrong_count')
-    .eq('user_id', userId)
-    .in('question_id', questionIds);
+/** 한 번 계산한 결과를 저장하려다 다른 제출과 겹치면(conflict) 다시 읽고 계산한다 */
+const MAX_ATTEMPTS = 3;
 
-  const countMap = new Map((existing ?? []).map((r) => [r.question_id, r.wrong_count]));
-
-  const rows = questionIds.map((qid) => ({
-    user_id: userId,
-    question_id: qid,
-    wrong_count: (countMap.get(qid) ?? 0) + 1,
-    last_wrong: new Date().toISOString(),
-  }));
-
-  return admin.from('wrong_answers').upsert(rows, { onConflict: 'user_id,question_id' });
+interface ApplyResult {
+  conflict?: boolean;
+  is_anonymous?: boolean;
+  error?: string;
+  total_xp?: number;
+  level?: number;
+  streak?: number;
+  max_streak?: number;
 }
 
 Deno.serve(async (req) => {
@@ -72,7 +67,9 @@ Deno.serve(async (req) => {
 
     // 이 요청을 보낸 사람이 누구인지는 유저 권한 클라이언트로만 확인한다.
     const userClient = createClient(supabaseUrl, anonKey, {
-      global: { headers: { Authorization: req.headers.get('Authorization') ?? '' } },
+      global: {
+        headers: { Authorization: req.headers.get('Authorization') ?? '' },
+      },
     });
 
     const {
@@ -110,134 +107,120 @@ Deno.serve(async (req) => {
       }
     }
     const totalCount = questions.length;
-
-    const [{ data: profile, error: profileError }, { data: progressRow }] = await Promise.all([
-      admin.from('profiles').select('*').eq('id', user.id).maybeSingle(),
-      admin
-        .from('progress')
-        .select('*')
-        .eq('user_id', user.id)
-        .eq('lesson_id', body.lessonId)
-        .maybeSingle(),
-    ]);
-
-    if (profileError || !profile) {
-      return json({ error: '프로필을 찾을 수 없어요' }, 500);
-    }
-
-    const alreadyCompleted = progressRow?.completed === true;
-    const isAnonymous = user.is_anonymous === true;
-    const today = toKstDateString();
-
-    const { data: dailyRow } = await admin
-      .from('daily_xp')
-      .select('*')
-      .eq('user_id', user.id)
-      .eq('date', today)
-      .maybeSingle();
-
-    const preXp = dailyRow?.xp ?? 0;
-    const goalAlreadyGiven = dailyRow?.goal_bonus_given ?? false;
-
-    // 하루 목표 보너스 여부를 판단하려면, 그 보너스를 뺀 XP를 먼저 알아야 한다.
-    const partial = calculateXp({
-      correctCount,
-      totalCount,
-      alreadyCompleted,
-      isAnonymous,
-      reachesDailyGoalFirstTime: false,
-    });
-    const reachesGoal =
-      !alreadyCompleted &&
-      !goalAlreadyGiven &&
-      preXp + partial.lessonXp + partial.perfectBonus >= profile.daily_goal;
-
-    const xp = calculateXp({
-      correctCount,
-      totalCount,
-      alreadyCompleted,
-      isAnonymous,
-      reachesDailyGoalFirstTime: reachesGoal,
-    });
-
-    const streak = updateStreak({
-      currentStreak: profile.streak,
-      lastStudyDate: profile.last_study_date,
-      freezeCount: profile.freeze_count,
-      today,
-    });
-
-    const newTotalXp = profile.total_xp + xp.total;
-    const newMaxStreak = Math.max(profile.max_streak, streak.streak);
     const nextLesson = getNextLesson(body.lessonId);
+    let isAnonymous = user.is_anonymous === true;
 
-    const [progressResult, dailyResult, profileResult, nextLessonResult, wrongAnswersResult] =
-      await Promise.all([
-        admin.from('progress').upsert(
-          {
-            user_id: user.id,
-            lesson_id: body.lessonId,
-            completed: true,
-            best_score: Math.max(progressRow?.best_score ?? 0, correctCount),
-            attempts: (progressRow?.attempts ?? 0) + 1,
-            updated_at: new Date().toISOString(),
-          },
-          { onConflict: 'user_id,lesson_id' }
-        ),
-        admin.from('daily_xp').upsert(
-          {
-            user_id: user.id,
-            date: today,
-            xp: preXp + xp.total,
-            goal_bonus_given: goalAlreadyGiven || reachesGoal,
-          },
-          { onConflict: 'user_id,date' }
-        ),
+    for (let attempt = 0; attempt < MAX_ATTEMPTS; attempt++) {
+      const today = toKstDateString();
+
+      const [profileRes, progressRes, dailyRes] = await Promise.all([
+        admin.from('profiles').select('*').eq('id', user.id).maybeSingle(),
         admin
-          .from('profiles')
-          .update({
-            total_xp: newTotalXp,
-            level: levelFromXp(newTotalXp),
-            streak: streak.streak,
-            max_streak: newMaxStreak,
-            freeze_count: streak.freezeCount,
-            last_study_date: today,
-          })
-          .eq('id', user.id),
-        // 다음 레슨은 아직 행이 없을 때만 만든다 — 이미 있으면(완료 포함) 건드리지 않는다.
-        nextLesson
-          ? admin
-              .from('progress')
-              .upsert(
-                { user_id: user.id, lesson_id: nextLesson.id, completed: false, attempts: 0 },
-                { onConflict: 'user_id,lesson_id', ignoreDuplicates: true }
-              )
-          : Promise.resolve({ error: null }),
-        wrongQuestionIds.length > 0
-          ? upsertWrongAnswers(admin, user.id, wrongQuestionIds)
-          : Promise.resolve({ error: null }),
+          .from('progress')
+          .select('completed')
+          .eq('user_id', user.id)
+          .eq('lesson_id', body.lessonId)
+          .maybeSingle(),
+        admin
+          .from('daily_xp')
+          .select('xp, goal_bonus_given')
+          .eq('user_id', user.id)
+          .eq('date', today)
+          .maybeSingle(),
       ]);
 
-    if (progressResult.error) throw progressResult.error;
-    if (dailyResult.error) throw dailyResult.error;
-    if (profileResult.error) throw profileResult.error;
-    if (nextLessonResult.error) throw nextLessonResult.error;
-    if (wrongAnswersResult.error) throw wrongAnswersResult.error;
+      // 읽기 실패를 "행 없음"으로 착각하면 XP를 다시 주거나 하루 XP를 덮어쓴다 — 그냥 실패로 끝낸다.
+      if (profileRes.error) throw profileRes.error;
+      if (progressRes.error) throw progressRes.error;
+      if (dailyRes.error) throw dailyRes.error;
 
-    return json({
-      correctCount,
-      totalCount,
-      alreadyCompleted,
-      xp,
-      streak,
-      profile: {
-        totalXp: newTotalXp,
-        level: levelFromXp(newTotalXp),
-        streak: streak.streak,
-        maxStreak: newMaxStreak,
-      },
-      unlockedNextLessonId: nextLesson?.id ?? null,
-    });
+      const profile = profileRes.data;
+      if (!profile) {
+        return json({ error: '프로필을 찾을 수 없어요' }, 500);
+      }
+
+      const alreadyCompleted = progressRes.data?.completed === true;
+      const preXp = dailyRes.data?.xp ?? 0;
+      const goalAlreadyGiven = dailyRes.data?.goal_bonus_given ?? false;
+
+      // 하루 목표 보너스 여부를 판단하려면, 그 보너스를 뺀 XP를 먼저 알아야 한다.
+      const partial = calculateXp({
+        correctCount,
+        totalCount,
+        alreadyCompleted,
+        isAnonymous,
+        reachesDailyGoalFirstTime: false,
+      });
+      const reachesGoal =
+        !alreadyCompleted &&
+        !goalAlreadyGiven &&
+        preXp + partial.lessonXp + partial.perfectBonus >= profile.daily_goal;
+
+      const xp = calculateXp({
+        correctCount,
+        totalCount,
+        alreadyCompleted,
+        isAnonymous,
+        reachesDailyGoalFirstTime: reachesGoal,
+      });
+
+      const streak = updateStreak({
+        currentStreak: profile.streak,
+        lastStudyDate: profile.last_study_date,
+        freezeCount: profile.freeze_count,
+        today,
+      });
+
+      // 저장은 DB 함수가 한 트랜잭션으로 한다. 위 계산에 쓴 상태(p_seen_*)가
+      // 그 사이 바뀌었으면 저장하지 않고 conflict를 돌려준다. (0002_guest_refund_and_atomic_submit.sql)
+      const { data, error } = await admin.rpc('apply_lesson_result', {
+        p_user: user.id,
+        p_lesson: body.lessonId,
+        p_next_lesson: nextLesson?.id ?? null,
+        p_today: today,
+        p_correct: correctCount,
+        p_wrong_question_ids: wrongQuestionIds,
+        p_was_anonymous: isAnonymous,
+        p_xp: xp.total,
+        p_reaches_goal: reachesGoal,
+        p_streak: streak.streak,
+        p_freeze_count: streak.freezeCount,
+        p_seen_completed: alreadyCompleted,
+        p_seen_daily_xp: preXp,
+        p_seen_goal_given: goalAlreadyGiven,
+        p_seen_streak: profile.streak,
+        p_seen_last_study_date: profile.last_study_date,
+        p_seen_freeze_count: profile.freeze_count,
+      });
+      if (error) throw error;
+
+      const result = data as ApplyResult;
+      if (result.error === 'profile_not_found') {
+        return json({ error: '프로필을 찾을 수 없어요' }, 500);
+      }
+      if (result.conflict) {
+        // 그 사이 계정 연결이 끝났을 수도 있으니 게스트 여부도 DB 값으로 맞춘다
+        isAnonymous = result.is_anonymous === true;
+        continue;
+      }
+
+      return json({
+        correctCount,
+        totalCount,
+        alreadyCompleted,
+        xp,
+        streak,
+        profile: {
+          totalXp: result.total_xp,
+          level: result.level,
+          streak: result.streak,
+          maxStreak: result.max_streak,
+        },
+        unlockedNextLessonId: nextLesson?.id ?? null,
+      });
+    }
+
+    return json({ error: '다른 제출과 겹쳤어요. 다시 시도해주세요' }, 409);
   } catch (error) {
     console.error(error);
     return json({ error: '서버 오류가 발생했어요' }, 500);

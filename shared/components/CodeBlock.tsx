@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
-import { Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useTheme } from '../theme/ThemeContext';
-import { radius, spacing } from '../theme/theme';
+import { fonts, radius, spacing } from '../theme/theme';
 import type { ThemeColors } from '../theme/themes';
 import { detectLanguageLabel } from './codeHighlight';
 import { CODE_PANEL_BACKGROUND, HighlightedCode } from './HighlightedCode';
@@ -58,6 +58,6 @@ const createStyles = (colors: ThemeColors) =>
     code: {
       fontSize: 13,
       lineHeight: 20,
-      fontFamily: Platform.select({ ios: 'Menlo', android: 'monospace', default: 'monospace' }),
+      fontFamily: fonts.mono,
     },
   });

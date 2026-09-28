@@ -99,8 +99,6 @@ export interface LevelProgress {
   xpIntoLevel: number;
   /** 다음 레벨까지 남은 XP */
   xpToNext: number;
-  /** 현재 레벨 진행률 0~99 (%) */
-  percent: number;
 }
 
 /** 홈 상단바의 레벨 진행바용: 누적 XP를 레벨과 그 레벨 안에서의 진행도로 나눈다 */
@@ -111,6 +109,5 @@ export function levelProgress(totalXp: number): LevelProgress {
     level: levelFromXp(xp),
     xpIntoLevel,
     xpToNext: XP_PER_LEVEL - xpIntoLevel,
-    percent: Math.floor((xpIntoLevel / XP_PER_LEVEL) * 100),
   };
 }
