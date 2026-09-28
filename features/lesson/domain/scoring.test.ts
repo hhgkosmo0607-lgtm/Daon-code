@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import {
+  calculateCoins,
   calculatePendingBonus,
   calculateXp,
   isCorrect,
@@ -123,5 +124,36 @@ describe('levelProgress', () => {
 
   it('레벨업 직전은 다음 레벨까지 1 XP 남는다', () => {
     expect(levelProgress(199)).toEqual({ level: 2, xpIntoLevel: 99, xpToNext: 1 });
+  });
+});
+
+describe('calculateCoins', () => {
+  const base = {
+    correctCount: 5,
+    totalCount: 5,
+    alreadyCompleted: false,
+    isAnonymous: false,
+    reachesDailyGoalFirstTime: false,
+  };
+
+  it('최초 완료 + 전부 정답 = 5 + 3', () => {
+    expect(calculateCoins(base)).toBe(8);
+  });
+
+  it('하루 목표를 처음 넘기면 +10', () => {
+    expect(calculateCoins({ ...base, reachesDailyGoalFirstTime: true })).toBe(18);
+  });
+
+  it('하나라도 틀리면 전부 정답 보너스 없음', () => {
+    expect(calculateCoins({ ...base, correctCount: 4 })).toBe(5);
+  });
+
+  it('게스트는 항목별 80% (반올림)', () => {
+    // 5*0.8=4, 3*0.8=2.4→2, 10*0.8=8
+    expect(calculateCoins({ ...base, isAnonymous: true, reachesDailyGoalFirstTime: true })).toBe(14);
+  });
+
+  it('이미 완료한 레슨 재도전은 0', () => {
+    expect(calculateCoins({ ...base, alreadyCompleted: true, reachesDailyGoalFirstTime: true })).toBe(0);
   });
 });

@@ -134,7 +134,7 @@ export function AuthScreen() {
           </Text>
         )}
         {isGuest && pendingBonus !== null && pendingBonus > 0 && (
-          <Text style={styles.bonus}>지금 가입하면 XP {pendingBonus}를 추가로 받아요</Text>
+          <Text style={styles.bonus}>지금 가입하면 XP {pendingBonus}와 코인을 추가로 받아요</Text>
         )}
         {isPlacementGate && (
           <Text style={styles.subtitle}>

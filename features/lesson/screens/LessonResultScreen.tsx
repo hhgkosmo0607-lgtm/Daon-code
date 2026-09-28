@@ -38,12 +38,13 @@ export function LessonResultScreen({ lesson, result, wrongCount, onRetryWrong }:
 
         <View style={styles.stats}>
           <Stat label="획득 XP" value={`+${result.xp.total}`} />
+          <Stat label="코인" value={`+${result.coins}`} />
           <Stat label="정답" value={`${result.correctCount}/${result.totalCount}`} />
           <Stat label="스트릭" value={`🔥 ${result.streak.streak}`} />
         </View>
 
         {result.alreadyCompleted && (
-          <Text style={styles.note}>이미 완료한 레슨이라 XP는 지급되지 않았어요</Text>
+          <Text style={styles.note}>이미 완료한 레슨이라 XP와 코인은 지급되지 않았어요</Text>
         )}
       </View>
 
@@ -83,7 +84,7 @@ const createStyles = (colors: ThemeColors) =>
     emoji: { fontSize: 56 },
     title: { fontSize: 24, fontWeight: '800', color: colors.text },
     subtitle: { fontSize: 15, color: colors.textMuted, marginBottom: spacing.lg },
-    stats: { flexDirection: 'row', gap: spacing.md },
+    stats: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', gap: spacing.md },
     stat: {
       backgroundColor: colors.surface,
       borderRadius: radius.md,

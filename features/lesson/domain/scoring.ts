@@ -77,8 +77,34 @@ export function calculateXp(input: XpInput): XpResult {
   };
 }
 
+/*
+ * 코인 — 모아서 상점(스트릭 프리즈·테마·캐릭터)에 쓰는 화폐. (daon-content/Daon-code_아이디어.md 1번)
+ * EXP(XP)는 레벨용이라 쓰지 않고 쌓이기만 하고, 코인은 쓰면 줄어든다.
+ * 지급 조건은 XP와 똑같다: 최초 완료만, 게스트는 80%, 하루 목표 보너스는 그날 1회.
+ */
+export const COIN_PER_LESSON = 5;
+export const COIN_PERFECT_BONUS = 3;
+export const COIN_DAILY_GOAL_BONUS = 10;
+
+/** 레슨 제출 1건에 대해 지급할 코인 (calculateXp와 같은 입력, 같은 규칙) */
+export function calculateCoins(input: XpInput): number {
+  if (input.alreadyCompleted) {
+    return 0;
+  }
+
+  const rate = input.isAnonymous ? GUEST_XP_RATE : 1;
+  const perfect = input.correctCount === input.totalCount;
+
+  return (
+    Math.round(COIN_PER_LESSON * rate) +
+    (perfect ? Math.round(COIN_PERFECT_BONUS * rate) : 0) +
+    (input.reachesDailyGoalFirstTime ? Math.round(COIN_DAILY_GOAL_BONUS * rate) : 0)
+  );
+}
+
 /**
  * 게스트로 깎인 XP를 정식 로그인 시 돌려줄 금액.
+ * 코인도 같은 비율로 깎였으므로 같은 함수로 계산한다.
  * (기획서 6번: "게스트로 놓친 XP를 돌려받아요" 프레이밍)
  */
 export function calculatePendingBonus(guestEarnedXp: number): number {

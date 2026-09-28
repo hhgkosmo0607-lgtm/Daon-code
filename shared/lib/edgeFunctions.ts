@@ -40,6 +40,8 @@ export interface SubmitAnswerResult {
     dailyGoalBonus: number;
     total: number;
   };
+  /** 이번 제출로 받은 코인 */
+  coins: number;
   streak: {
     streak: number;
     freezeCount: number;
@@ -50,6 +52,7 @@ export interface SubmitAnswerResult {
     level: number;
     streak: number;
     maxStreak: number;
+    coins: number;
   };
   unlockedNextLessonId: string | null;
 }

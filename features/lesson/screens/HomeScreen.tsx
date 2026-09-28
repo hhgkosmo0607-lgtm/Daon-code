@@ -46,6 +46,7 @@ export function HomeScreen() {
     : 0;
   const totalXp = profile?.total_xp ?? 0;
   const progress = levelProgress(totalXp);
+  const coins = profile?.coins ?? 0;
   // 상단바 숫자를 누르면 뜻을 풀어서 보여준다 (7d, LV 진행바가 처음엔 낯설 수 있어서)
   // 직접 열고 닫기 전까지는, 게스트면 XP 80% 규칙을 알 수 있게 펼쳐서 보여준다.
   // (홈이 세션 복구보다 먼저 뜰 수 있어서 isGuest를 초기값으로 굳히지 않는다)
@@ -90,7 +91,7 @@ export function HomeScreen() {
             onPress={() => setStatInfoToggled(!showStatInfo)}
             hitSlop={6}
             accessibilityRole="button"
-            accessibilityLabel={`${streak}일 연속 학습, 레벨 ${progress.level}, 다음 레벨까지 ${progress.xpToNext} XP`}
+            accessibilityLabel={`${streak}일 연속 학습, 레벨 ${progress.level}, 다음 레벨까지 ${progress.xpToNext} XP, 코인 ${coins}개`}
             accessibilityHint="눌러서 설명 보기"
             accessibilityState={{ expanded: showStatInfo }}
           >
@@ -98,6 +99,7 @@ export function HomeScreen() {
             <Text style={[styles.stat, { color: colors.xp }]}>
               LV{progress.level} {levelBar(progress.xpIntoLevel)} {progress.xpIntoLevel}/{XP_PER_LEVEL}xp
             </Text>
+            <Text style={[styles.stat, { color: colors.accent }]}>{coins}c</Text>
             <Text style={[styles.stat, styles.mutedText]}>{showStatInfo ? '▴' : '▾'}</Text>
           </Pressable>
         )}
@@ -127,9 +129,12 @@ export function HomeScreen() {
           <Text style={styles.statInfoText}>
             {streak}일 연속 학습 중 · 누적 {totalXp} XP · 다음 레벨까지 {progress.xpToNext} XP
           </Text>
+          <Text style={styles.statInfoText}>
+            코인 {coins}개 · 레슨을 풀면 쌓이고, 곧 상점에서 스트릭 프리즈를 살 수 있어요
+          </Text>
           {isGuest && (
             <Text style={styles.statInfoText}>
-              게스트는 XP를 80%만 받아요 · 로그인하면 나머지를 돌려받아요
+              게스트는 XP·코인을 80%만 받아요 · 로그인하면 나머지를 돌려받아요
             </Text>
           )}
         </Pressable>

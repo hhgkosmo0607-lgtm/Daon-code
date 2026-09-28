@@ -135,7 +135,7 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
 
       {showGuestNotice && (
         <View style={styles.guestNotice}>
-          <Text style={styles.guestNoticeText}>게스트 모드로 진행 중 (XP 80%) · 로그인하면 전체 XP</Text>
+          <Text style={styles.guestNoticeText}>게스트 모드로 진행 중 (XP·코인 80%) · 로그인하면 전체 지급</Text>
           <Pressable onPress={() => setNoticeDismissed(true)} hitSlop={8}>
             <Text style={styles.guestNoticeClose}>✕</Text>
           </Pressable>

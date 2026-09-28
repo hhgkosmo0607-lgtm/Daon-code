@@ -60,6 +60,7 @@ Expo Go 앱으로 QR을 찍으면 실물 기기에서 바로 확인할 수 있�
      (`submit-answer` Edge Function이 이 함수를 쓰므로 **함수 배포 전에** 실행해야 한다.
      여러 번 실행해도 안전하다)
    - `0003_backfill_linked_guest_refund.sql` → 0002 이전에 계정을 연결한 전 게스트 환급 (재실행 안전)
+   - `0004_coins.sql` → 코인(상점 화폐) 컬럼 + 제출 시 코인 적립 (**submit-answer 배포 전에** 실행)
    - CLI로는 `npx supabase@latest db push` (프로젝트 link 필요, `--dry-run`으로 미리보기)
 2. **Authentication → Providers**
    - Email 활성화 (기본 켜짐)

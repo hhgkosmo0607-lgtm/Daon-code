@@ -1,6 +1,6 @@
 import { createClient } from 'npm:@supabase/supabase-js@2.116.0';
 
-import { calculateXp, isCorrect } from '../../../features/lesson/domain/scoring.ts';
+import { calculateCoins, calculateXp, isCorrect } from '../../../features/lesson/domain/scoring.ts';
 import { toKstDateString, updateStreak } from '../../../features/lesson/domain/streak.ts';
 import { getLesson, getNextLesson, getQuestions } from '../_shared/content.ts';
 
@@ -53,6 +53,7 @@ interface ApplyResult {
   level?: number;
   streak?: number;
   max_streak?: number;
+  coins?: number;
 }
 
 Deno.serve(async (req) => {
@@ -156,13 +157,15 @@ Deno.serve(async (req) => {
         !goalAlreadyGiven &&
         preXp + partial.lessonXp + partial.perfectBonus >= profile.daily_goal;
 
-      const xp = calculateXp({
+      const xpInput = {
         correctCount,
         totalCount,
         alreadyCompleted,
         isAnonymous,
         reachesDailyGoalFirstTime: reachesGoal,
-      });
+      };
+      const xp = calculateXp(xpInput);
+      const coins = calculateCoins(xpInput);
 
       const streak = updateStreak({
         currentStreak: profile.streak,
@@ -191,6 +194,7 @@ Deno.serve(async (req) => {
         p_seen_streak: profile.streak,
         p_seen_last_study_date: profile.last_study_date,
         p_seen_freeze_count: profile.freeze_count,
+        p_coins: coins,
       });
       if (error) throw error;
 
@@ -209,12 +213,14 @@ Deno.serve(async (req) => {
         totalCount,
         alreadyCompleted,
         xp,
+        coins,
         streak,
         profile: {
           totalXp: result.total_xp,
           level: result.level,
           streak: result.streak,
           maxStreak: result.max_streak,
+          coins: result.coins,
         },
         unlockedNextLessonId: nextLesson?.id ?? null,
       });
