@@ -1,10 +1,19 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { AccessibilityInfo, Animated, Easing, StyleSheet, View, type LayoutChangeEvent } from 'react-native';
+import { Animated, Easing, StyleSheet, View, type LayoutChangeEvent } from 'react-native';
 
-import { DEFAULT_PET_ID, PETS, PET_SPEED, nextPetTarget, spriteToRuns, type Sprite } from '../domain/pets';
+import {
+  DEFAULT_PET_ID,
+  PETS,
+  PET_SPEED,
+  nextPetTarget,
+  spriteFill,
+  type Sprite,
+} from '../domain/pets';
+import { useReduceMotion } from '../hooks/useReduceMotion';
+import { PixelSprite } from './PixelSprite';
 
 /*
- * 상단바 한 줄을 좌우로 돌아다니는 도트 펫 (다마고치 방식).
+ * 좌우로 돌아다니는 도트 펫 (다마고치 방식). PetScene이 풍경 위에 올려서 쓴다.
  *
  * 걷기 → 잠깐 쉬기(가끔 깜빡임) → 다른 곳으로 걷기를 반복한다.
  * 이동은 네이티브 드라이버 애니메이션이라 JS가 바빠도 끊기지 않고,
@@ -19,12 +28,14 @@ const BLINK_MS = 180;
 
 interface Props {
   color: string;
+  /** 몸 안쪽을 칠할 색 (보통 배경색). 없으면 외곽선만 그린다 */
+  fillColor?: string;
   /** 도트 한 칸의 크기 (px) */
   pixelSize?: number;
   petId?: string;
 }
 
-export function TerminalPet({ color, pixelSize = 2, petId = DEFAULT_PET_ID }: Props) {
+export function TerminalPet({ color, fillColor, pixelSize = 2, petId = DEFAULT_PET_ID }: Props) {
   const pet = PETS[petId] ?? PETS[DEFAULT_PET_ID];
   const petWidth = pet.idle[0].length * pixelSize;
   const petHeight = pet.idle.length * pixelSize;
@@ -39,13 +50,7 @@ export function TerminalPet({ color, pixelSize = 2, petId = DEFAULT_PET_ID }: Pr
   const [blinking, setBlinking] = useState(false);
   /** 걷는 동안 늘어나는 걸음 수 — 걷기 그림(발 모양)을 번갈아 고른다 */
   const [step, setStep] = useState(0);
-  const [reduceMotion, setReduceMotion] = useState(false);
-
-  useEffect(() => {
-    AccessibilityInfo.isReduceMotionEnabled().then(setReduceMotion).catch(() => {});
-    const sub = AccessibilityInfo.addEventListener('reduceMotionChanged', setReduceMotion);
-    return () => sub.remove();
-  }, []);
+  const reduceMotion = useReduceMotion();
 
   useEffect(() => {
     const maxX = laneWidth - petWidth;
@@ -117,7 +122,8 @@ export function TerminalPet({ color, pixelSize = 2, petId = DEFAULT_PET_ID }: Pr
   } else {
     sprite = blinking ? pet.blink : pet.idle;
   }
-  const runs = useMemo(() => spriteToRuns(sprite), [sprite]);
+  // 몸 안쪽 — 뒤에 있는 꽃·구름이 비쳐 보이지 않게 배경색으로 칠한다
+  const fill = useMemo(() => spriteFill(sprite), [sprite]);
 
   return (
     <View
@@ -127,19 +133,10 @@ export function TerminalPet({ color, pixelSize = 2, petId = DEFAULT_PET_ID }: Pr
       accessibilityLabel={`${pet.label} 펫`}
     >
       <Animated.View style={{ width: petWidth, height: petHeight, transform: [{ translateX: x }] }}>
-        {runs.map((run) => (
-          <View
-            key={`${run.x}-${run.y}`}
-            style={{
-              position: 'absolute',
-              left: run.x * pixelSize,
-              top: run.y * pixelSize,
-              width: run.width * pixelSize,
-              height: pixelSize,
-              backgroundColor: color,
-            }}
-          />
-        ))}
+        {fillColor && (
+          <PixelSprite sprite={fill} color={fillColor} pixelSize={pixelSize} style={styles.layer} />
+        )}
+        <PixelSprite sprite={sprite} color={color} pixelSize={pixelSize} style={styles.layer} />
       </Animated.View>
     </View>
   );
@@ -147,4 +144,5 @@ export function TerminalPet({ color, pixelSize = 2, petId = DEFAULT_PET_ID }: Pr
 
 const styles = StyleSheet.create({
   lane: { width: '100%', overflow: 'hidden' },
+  layer: { position: 'absolute', left: 0, top: 0 },
 });

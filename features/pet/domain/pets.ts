@@ -36,7 +36,12 @@ const HEAD = [
   '..#..........#..',
   '.#............#.',
 ];
-const BODY_BOTTOM = ['.#............#.', '..#..........#..', '...##......##...', '.....######.....'];
+const BODY_BOTTOM = [
+  '.#............#.',
+  '..#..........#..',
+  '...##......##...',
+  '.....######.....',
+];
 const EMPTY_ROW = '.#............#.';
 
 const EYES = { front: '.#...##..##...#.', right: '.#....##..##..#.', left: '.#..##..##....#.' };
@@ -96,6 +101,42 @@ export function spriteToRuns(sprite: Sprite): PixelRun[] {
     }
   });
   return runs;
+}
+
+/**
+ * 외곽선 안쪽(바깥과 이어지지 않은 빈칸)만 켠 그림을 만든다.
+ * 펫 뒤로 꽃·구름이 비쳐 보이지 않게, 몸 안을 배경색으로 칠하는 데 쓴다.
+ */
+export function spriteFill(sprite: Sprite): Sprite {
+  const h = sprite.length;
+  const w = sprite[0]?.length ?? 0;
+  const outside = sprite.map((row) => [...row].map(() => false));
+  const stack: [number, number][] = [];
+  const push = (x: number, y: number) => {
+    if (x < 0 || y < 0 || x >= w || y >= h) return;
+    if (outside[y][x] || sprite[y][x] === '#') return;
+    outside[y][x] = true;
+    stack.push([x, y]);
+  };
+  // 테두리의 빈칸에서 시작해서, 바깥과 이어진 빈칸을 전부 표시한다
+  for (let x = 0; x < w; x++) {
+    push(x, 0);
+    push(x, h - 1);
+  }
+  for (let y = 0; y < h; y++) {
+    push(0, y);
+    push(w - 1, y);
+  }
+  while (stack.length > 0) {
+    const [x, y] = stack.pop()!;
+    push(x + 1, y);
+    push(x - 1, y);
+    push(x, y + 1);
+    push(x, y - 1);
+  }
+  return sprite.map((row, y) =>
+    [...row].map((c, x) => (c === '.' && !outside[y][x] ? '#' : '.')).join('')
+  );
 }
 
 /**

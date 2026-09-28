@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { DEFAULT_PET_ID, PETS, nextPetTarget, spriteToRuns } from './pets';
+import { DEFAULT_PET_ID, PETS, nextPetTarget, spriteFill, spriteToRuns } from './pets';
 
 describe('PETS', () => {
   it('기본 펫이 목록에 있다', () => {
@@ -33,6 +33,24 @@ describe('spriteToRuns', () => {
 
   it('빈 그림은 네모가 없다', () => {
     expect(spriteToRuns(['....'])).toEqual([]);
+  });
+});
+
+describe('spriteFill', () => {
+  it('외곽선 안쪽 빈칸만 채우고, 바깥 빈칸과 외곽선은 비운다', () => {
+    // prettier-ignore
+    const ring = [
+      '.###.',
+      '#...#',
+      '#.#.#',
+      '#...#',
+      '.###.',
+    ];
+    expect(spriteFill(ring)).toEqual(['.....', '.###.', '.#.#.', '.###.', '.....']);
+  });
+
+  it('열린 모양(바깥과 이어진 빈칸)은 채우지 않는다', () => {
+    expect(spriteFill(['#.#', '#.#', '###'])).toEqual(['...', '...', '...']);
   });
 });
 

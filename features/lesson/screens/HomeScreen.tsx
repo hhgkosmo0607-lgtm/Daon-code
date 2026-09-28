@@ -7,7 +7,7 @@ import { useTheme } from '../../../shared/theme/ThemeContext';
 import { fonts, radius, spacing } from '../../../shared/theme/theme';
 import type { ThemeColors } from '../../../shared/theme/themes';
 import { useAuth } from '../../auth/AuthContext';
-import { TerminalPet } from '../../pet/components/TerminalPet';
+import { PetScene } from '../../pet/components/PetScene';
 import { useTrack } from '../../track/TrackContext';
 import { getLessons, getStages, hasContent } from '../data/contentRepository';
 import { XP_PER_LEVEL, levelProgress } from '../domain/scoring';
@@ -82,6 +82,7 @@ export function HomeScreen() {
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
       <View style={styles.topBar}>
+        <View style={styles.topRow}>
         {error ? (
           <Pressable
             style={styles.statGroup}
@@ -103,10 +104,9 @@ export function HomeScreen() {
             accessibilityState={{ expanded: showStatInfo }}
           >
             <Text style={[styles.stat, { color: colors.streak }]}>{streak}d</Text>
-            <Text style={[styles.stat, { color: colors.xp }]}>
-              LV{progress.level} {levelBar(progress.xpIntoLevel)} {progress.xpIntoLevel}/{XP_PER_LEVEL}xp
+            <Text style={[styles.stat, { color: colors.xp }]} numberOfLines={1}>
+              LV{progress.level} {levelBar(progress.xpIntoLevel)} {progress.xpIntoLevel}/{XP_PER_LEVEL}
             </Text>
-            <Text style={[styles.stat, styles.mutedText]}>{showStatInfo ? '▴' : '▾'}</Text>
           </Pressable>
         )}
         {!error && user && (
@@ -121,8 +121,13 @@ export function HomeScreen() {
         )}
         <View style={styles.rightGroup}>
           {wrongAnswerCount > 0 && (
-            <Pressable style={styles.reviewButton} onPress={() => router.push('/review')}>
-              <Text style={styles.reviewButtonText}>오답노트 {wrongAnswerCount}</Text>
+            <Pressable
+              style={styles.reviewButton}
+              onPress={() => router.push('/review')}
+              accessibilityRole="button"
+              accessibilityLabel={`오답노트 ${wrongAnswerCount}개`}
+            >
+              <Text style={styles.reviewButtonText}>오답 {wrongAnswerCount}</Text>
             </Pressable>
           )}
           <Pressable
@@ -138,8 +143,9 @@ export function HomeScreen() {
             {isGuest && <Text style={styles.badge}>게스트</Text>}
           </Pressable>
         </View>
-        {/* 상단바 둘째 줄 — 글자 펫이 돌아다니는 길 (topBar가 flexWrap이라 100% 폭이면 새 줄로 내려간다) */}
-        <TerminalPet color={colors.text} />
+        </View>
+        {/* 상단바 둘째 줄 — 펫이 사는 도트 풍경 */}
+        <PetScene colors={colors} />
       </View>
 
       {showStatInfo && (
@@ -215,10 +221,10 @@ export function HomeScreen() {
   );
 }
 
-const LEVEL_BAR_CELLS = 8;
+const LEVEL_BAR_CELLS = 5;
 
 /**
- * 현재 레벨에서 쌓은 XP를 ▓░ 블록 문자 진행바로 바꾼다. 예: 40xp → ▓▓▓░░░░░
+ * 현재 레벨에서 쌓은 XP를 ▓░ 블록 문자 진행바로 바꾼다. 예: 40xp → ▓▓░░░
  * XP가 조금이라도 있으면 최소 한 칸은 채워서, 문제를 풀었는데 바가 비어 보이지 않게 한다.
  */
 function levelBar(xpIntoLevel: number): string {
@@ -231,21 +237,22 @@ const createStyles = (colors: ThemeColors) =>
   StyleSheet.create({
     container: { flex: 1, backgroundColor: colors.background },
     topBar: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      flexWrap: 'wrap',
-      rowGap: spacing.xs,
-      gap: spacing.lg,
-      paddingHorizontal: spacing.md,
-      paddingTop: spacing.md,
-      paddingBottom: spacing.sm,
       backgroundColor: colors.surface,
       borderBottomWidth: 1,
       borderBottomColor: colors.border,
     },
-    statGroup: { flexDirection: 'row', alignItems: 'center', gap: spacing.md },
+    // 첫 줄: 스트릭·레벨·코인 + 오답·테마·게스트를 한 줄에 (좁은 폰에서도 넘치지 않게 간격을 줄임)
+    topRow: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      gap: spacing.sm,
+      paddingHorizontal: spacing.md,
+      paddingTop: spacing.md,
+      paddingBottom: spacing.sm,
+    },
+    statGroup: { flexDirection: 'row', alignItems: 'center', gap: spacing.sm, flexShrink: 1 },
     stat: { fontSize: 13, fontWeight: '700', fontFamily: fonts.mono },
-    rightGroup: { marginLeft: 'auto', flexDirection: 'row', alignItems: 'center', gap: spacing.md },
+    rightGroup: { marginLeft: 'auto', flexDirection: 'row', alignItems: 'center', gap: spacing.sm },
     themeButton: { fontSize: 18, color: colors.text, fontFamily: fonts.mono },
     statInfo: {
       paddingHorizontal: spacing.md,
