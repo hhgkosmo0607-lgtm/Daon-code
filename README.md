@@ -59,6 +59,8 @@ Expo Go 앱으로 QR을 찍으면 실물 기기에서 바로 확인할 수 있�
    - `0002_guest_refund_and_atomic_submit.sql` → 게스트 XP 환급 트리거 + 레슨 제출 저장 함수
      (`submit-answer` Edge Function이 이 함수를 쓰므로 **함수 배포 전에** 실행해야 한다.
      여러 번 실행해도 안전하다)
+   - `0003_backfill_linked_guest_refund.sql` → 0002 이전에 계정을 연결한 전 게스트 환급 (재실행 안전)
+   - CLI로는 `npx supabase@latest db push` (프로젝트 link 필요, `--dry-run`으로 미리보기)
 2. **Authentication → Providers**
    - Email 활성화 (기본 켜짐)
    - **Anonymous sign-ins 활성화** ← 기본이 꺼져 있어 반드시 켜야 "나중에 하기"가 동작
