@@ -29,9 +29,10 @@ echo "▶ 2/4 타입체크·테스트"
 npx tsc --noEmit
 npm test --silent
 
+# --use-api: Windows에서 Docker 번들링이 ENAMETOOLONG으로 실패해서 서버에서 번들링한다
 echo "▶ 3/4 Edge Function 재배포"
-npx -y supabase functions deploy submit-answer --project-ref "$PROJECT_REF"
-npx -y supabase functions deploy complete-placement --project-ref "$PROJECT_REF"
+npx -y supabase functions deploy submit-answer --project-ref "$PROJECT_REF" --use-api
+npx -y supabase functions deploy complete-placement --project-ref "$PROJECT_REF" --use-api
 
 echo "▶ 4/4 EAS Update 발행 (channel: $CHANNEL)"
 npx -y eas-cli@latest update --channel "$CHANNEL" --environment "$CHANNEL" --message "$MESSAGE" --non-interactive
