@@ -6,6 +6,7 @@
 --   - 보유 한도 없음. 고양이 채굴로 얻고, 스토어 출시 후 현금으로도 산다. 코인으로는 못 산다.
 --   - 스트릭 자동 보호 없음. 하루 빠지면 사용자가 홈에서 프리즘을 써서 직접 지킨다 (repair_streak).
 --   - 쓰는 곳: 스트릭 지키기, 프리즘 고양이(무지개), 코인으로 교환
+--   - 운영자 계정 표시(is_admin)
 --   - 먹이(잔디) 제거: 출석하면 고양이들이 알아서 캐서 게이지가 찬다 (check_in 교체, 고양이별 채굴력)
 --
 -- 배포 순서: 이 마이그레이션 → submit-answer·purchase·check-in·repair-streak 함수 (feed-pet은 삭제).
@@ -14,7 +15,12 @@
 
 alter table public.profiles rename column freeze_count to prisms;
 
--- 가드: freeze_count 대신 prisms, 지운 컬럼(grass, pet_working_until)은 뺀다
+-- 운영자 계정 — 앱의 테스트 메뉴(재화 지급·출석 초기화 등)를 쓸 수 있다. 가드로 본인이 못 바꾸고,
+-- admin-tools Edge Function이 이 값을 다시 확인한다. 켜는 건 DB에서 직접 (scripts/create-accounts.mjs).
+alter table public.profiles
+  add column if not exists is_admin boolean not null default false;
+
+-- 가드: freeze_count 대신 prisms, 지운 컬럼(grass, pet_working_until)은 빼고 is_admin은 추가
 create or replace function public.guard_profile_xp_columns()
 returns trigger language plpgsql as $$
 declare
@@ -36,7 +42,8 @@ begin
      or new.guest_coins  is distinct from old.guest_coins
      or new.mine_progress is distinct from old.mine_progress
      or new.last_checkin_date is distinct from old.last_checkin_date
-     or new.owned_cats   is distinct from old.owned_cats then
+     or new.owned_cats   is distinct from old.owned_cats
+     or new.is_admin     is distinct from old.is_admin then
     raise exception 'xp/streak/coin/prism/펫 컬럼은 서버(Edge Function)에서만 변경할 수 있습니다';
   end if;
 

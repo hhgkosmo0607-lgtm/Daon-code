@@ -121,3 +121,14 @@ export interface RepairStreakResult {
 export async function repairStreak(): Promise<RepairStreakResult> {
   return invokeFunction<RepairStreakResult>('repair-streak', {});
 }
+
+export type AdminAction =
+  | { action: 'grant'; coins?: number; prisms?: number }
+  | { action: 'reset_checkin' }
+  | { action: 'miss_day' }
+  | { action: 'reset_cats' };
+
+/** 운영자 테스트 도구. 운영자 계정이 아니면 에러가 난다. */
+export async function adminTool(request: AdminAction): Promise<{ ok: true }> {
+  return invokeFunction<{ ok: true }>('admin-tools', request);
+}

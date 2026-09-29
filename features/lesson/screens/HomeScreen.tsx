@@ -164,6 +164,16 @@ export function HomeScreen() {
                 <Text style={styles.reviewButtonText}>오답 {wrongAnswerCount}</Text>
               </Pressable>
             )}
+            {profile?.is_admin && (
+              <Pressable
+                onPress={() => router.push('/admin')}
+                hitSlop={8}
+                accessibilityRole="button"
+                accessibilityLabel="운영자 테스트 메뉴"
+              >
+                <Text style={styles.themeButton}>🛠</Text>
+              </Pressable>
+            )}
             <Pressable
               onPress={() => router.push('/settings/theme')}
               hitSlop={8}

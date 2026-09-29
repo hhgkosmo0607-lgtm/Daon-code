@@ -56,6 +56,7 @@ function AppShell() {
         <Stack.Screen name="settings/track" options={{ presentation: 'modal' }} />
         <Stack.Screen name="shop" options={{ presentation: 'modal' }} />
         <Stack.Screen name="cats" options={{ presentation: 'modal' }} />
+        <Stack.Screen name="admin" options={{ presentation: 'modal' }} />
       </Stack>
     </>
   );

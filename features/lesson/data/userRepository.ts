@@ -30,6 +30,10 @@ export interface Profile {
   mine_progress: number;
   /** 가진 고양이 색 id 목록 — 처음엔 ['orange'] (0006_checkin_and_cats.sql) */
   owned_cats: string[];
+  /** 마지막으로 출석 채굴 보상을 받은 한국 날짜 */
+  last_checkin_date: string | null;
+  /** 운영자 계정 — 테스트 메뉴(/admin)가 보인다 (0007_prisms.sql) */
+  is_admin: boolean;
 }
 
 export interface ProgressRow {
