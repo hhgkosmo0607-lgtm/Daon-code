@@ -8,7 +8,9 @@ import { fonts, radius, spacing } from '../../../shared/theme/theme';
 import type { ThemeColors } from '../../../shared/theme/themes';
 import { useAuth } from '../../auth/AuthContext';
 import { StudyGrass } from '../../grass/components/StudyGrass';
+import { PetPanel } from '../../pet/components/PetPanel';
 import { PetScene } from '../../pet/components/PetScene';
+import { isWorking } from '../../pet/domain/mining';
 import { useTrack } from '../../track/TrackContext';
 import { getLessons, getStages, hasContent } from '../data/contentRepository';
 import { XP_PER_LEVEL, levelProgress } from '../domain/scoring';
@@ -60,6 +62,7 @@ export function HomeScreen() {
   // (홈이 세션 복구보다 먼저 뜰 수 있어서 isGuest를 초기값으로 굳히지 않는다)
   const [statInfoToggled, setStatInfoToggled] = useState<boolean | null>(null);
   const showStatInfo = statInfoToggled ?? isGuest;
+  const [showPetPanel, setShowPetPanel] = useState(false);
 
   const statusOf = (lessonId: string) => {
     return statusMap[lessonId] ?? 'open';
@@ -146,8 +149,14 @@ export function HomeScreen() {
         </View>
         </View>
         {/* 상단바 둘째 줄 — 고양이가 일하는 광산 */}
-        <PetScene />
+        <PetScene
+          resting={!!profile && !isWorking(profile.pet_working_until)}
+          onPress={profile ? () => setShowPetPanel(!showPetPanel) : undefined}
+          expanded={showPetPanel}
+        />
       </View>
+
+      {showPetPanel && profile && <PetPanel profile={profile} colors={colors} onFed={reload} />}
 
       {showStatInfo && (
         <Pressable style={styles.statInfo} onPress={() => setStatInfoToggled(false)}>

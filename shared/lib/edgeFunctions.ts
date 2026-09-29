@@ -42,6 +42,8 @@ export interface SubmitAnswerResult {
   };
   /** 이번 제출로 받은 코인 */
   coins: number;
+  /** 이번 제출로 받은 고양이 먹이 잔디 (그날 첫 제출만) */
+  grass: number;
   streak: {
     streak: number;
     freezeCount: number;
@@ -53,6 +55,7 @@ export interface SubmitAnswerResult {
     streak: number;
     maxStreak: number;
     coins: number;
+    grass: number;
   };
   unlockedNextLessonId: string | null;
 }
@@ -85,4 +88,18 @@ export interface PurchaseResult {
 /** 상점에서 스트릭 프리즈 1개 구매. 코인 부족·보유 한도 초과면 한국어 메시지로 에러가 난다. */
 export async function purchaseFreeze(): Promise<PurchaseResult> {
   return invokeFunction<PurchaseResult>('purchase', { item: 'freeze' });
+}
+
+export interface FeedPetResult {
+  grass: number;
+  mineProgress: number;
+  freezeCount: number;
+  petWorkingUntil: string;
+  /** 이번 먹이로 캔 프리즈 수 */
+  minted: number;
+}
+
+/** 고양이에게 잔디 1개를 먹인다. 잔디가 없거나 프리즈가 가득이면 한국어 메시지로 에러가 난다. */
+export async function feedPet(): Promise<FeedPetResult> {
+  return invokeFunction<FeedPetResult>('feed-pet', {});
 }

@@ -2,6 +2,7 @@ import { createClient } from 'npm:@supabase/supabase-js@2.116.0';
 
 import { calculateCoins, calculateXp, isCorrect } from '../../../features/lesson/domain/scoring.ts';
 import { toKstDateString, updateStreak } from '../../../features/lesson/domain/streak.ts';
+import { grassForSubmission } from '../../../features/pet/domain/mining.ts';
 import { getLesson, getNextLesson, getQuestions } from '../_shared/content.ts';
 
 /*
@@ -54,6 +55,7 @@ interface ApplyResult {
   streak?: number;
   max_streak?: number;
   coins?: number;
+  grass?: number;
 }
 
 Deno.serve(async (req) => {
@@ -166,6 +168,8 @@ Deno.serve(async (req) => {
       };
       const xp = calculateXp(xpInput);
       const coins = calculateCoins(xpInput);
+      // 오늘 첫 제출(출석)이면 고양이 먹이 잔디 (0005_pet_mining.sql)
+      const grass = grassForSubmission(profile.last_study_date, today);
 
       const streak = updateStreak({
         currentStreak: profile.streak,
@@ -195,6 +199,7 @@ Deno.serve(async (req) => {
         p_seen_last_study_date: profile.last_study_date,
         p_seen_freeze_count: profile.freeze_count,
         p_coins: coins,
+        p_grass: grass,
       });
       if (error) throw error;
 
@@ -214,6 +219,7 @@ Deno.serve(async (req) => {
         alreadyCompleted,
         xp,
         coins,
+        grass,
         streak,
         profile: {
           totalXp: result.total_xp,
@@ -221,6 +227,7 @@ Deno.serve(async (req) => {
           streak: result.streak,
           maxStreak: result.max_streak,
           coins: result.coins,
+          grass: result.grass,
         },
         unlockedNextLessonId: nextLesson?.id ?? null,
       });

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Image, StyleSheet, View, type LayoutChangeEvent } from 'react-native';
+import { Image, Pressable, StyleSheet, type LayoutChangeEvent } from 'react-native';
 
 import { ART_SCALE, BG_H, BG_W, GROUND_Y, PROPS, PROPS_H, PROPS_W } from '../domain/catSheet';
 import { CatPet } from './CatPet';
@@ -17,18 +17,34 @@ const PROPS_SHEET = require('../../../assets/pets/props.png');
 const S = ART_SCALE;
 const ROCK_MARGIN_RIGHT = 6 * S;
 
-export function PetScene({ catId, resting }: { catId?: string; resting?: boolean }) {
+export function PetScene({
+  catId,
+  resting,
+  onPress,
+  expanded,
+}: {
+  catId?: string;
+  /** 먹이가 없어서 쉬는 중 */
+  resting?: boolean;
+  /** 누르면 먹이 패널 열기/닫기 */
+  onPress?: () => void;
+  expanded?: boolean;
+}) {
   const [width, setWidth] = useState(0);
   const tileW = BG_W * S;
   const tiles = Math.ceil(width / tileW);
   const rockLeft = width - PROPS.rock.w * S - ROCK_MARGIN_RIGHT;
 
   return (
-    <View
+    <Pressable
       style={styles.scene}
       onLayout={(e: LayoutChangeEvent) => setWidth(e.nativeEvent.layout.width)}
-      accessible
-      accessibilityLabel="광산에서 일하는 고양이"
+      onPress={onPress}
+      disabled={!onPress}
+      accessibilityRole="button"
+      accessibilityLabel={resting ? '배고파서 쉬는 고양이' : '광산에서 일하는 고양이'}
+      accessibilityHint="눌러서 먹이 주기"
+      accessibilityState={{ expanded }}
     >
       {Array.from({ length: tiles }, (_, i) => (
         <Image
@@ -51,7 +67,7 @@ export function PetScene({ catId, resting }: { catId?: string; resting?: boolean
           <CatPet rockLeft={rockLeft} catId={catId} resting={resting} />
         </>
       )}
-    </View>
+    </Pressable>
   );
 }
 
