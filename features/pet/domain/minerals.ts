@@ -1,8 +1,6 @@
 /*
- * 광산에 놓는 광물. 색은 props.png의 바위·크리스탈 색을 그대로 쓴다.
- *
- * 큰 바위(ROCK)는 props.png 그림, 작은 크리스탈 무더기(CLUSTER)는 여기서 도트로 그린다.
- * 고양이는 이 광물들 중 하나를 골라 캐러 간다 (PetScene이 자리를 정한다).
+ * 광물 색 — props.png의 바위·크리스탈 색을 그대로 뽑았다.
+ * 광산의 광물은 props.png 그림을 쓰고(PetScene), 이 색은 프리즘 아이콘 같은 도트 그림에 쓴다.
  */
 
 /** 크리스탈·바위 색 (props.png에서 뽑음) */
@@ -15,19 +13,3 @@ export const CRYSTAL_PALETTE: Record<string, string> = {
   r: '#6c6574', // 바위
   d: '#534c5b', // 바위 그림자
 };
-
-/** 작은 크리스탈 무더기 16×11 — 바닥 바위에 크리스탈 기둥 세 개 */
-// prettier-ignore
-export const CLUSTER = [
-  '......W.........',
-  '.....LMD........',
-  '.....LMD....L...',
-  '..L..LMD...LMD..',
-  '.LMD.LMD...LMD..',
-  '.LMD.LMD...LMD..',
-  '.LMDhLMDhhhLMDh.',
-  'hhhhhrrrrrrrrrrh',
-  'hrrrrrrrrrrrrrrr',
-  'rrrrrrrrrddddrrd',
-  '.dddddddddddddd.',
-];

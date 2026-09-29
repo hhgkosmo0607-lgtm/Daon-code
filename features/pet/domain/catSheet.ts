@@ -81,20 +81,26 @@ export function ownedCoinCatCount(ownedCats: string[]): number {
 
 export const DEFAULT_CAT_ID = 'orange';
 
-/** props 시트(40×24) 안의 소품 위치 (도트) */
+/** props 시트(80×24) 안의 소품 위치 (도트) */
 export const PROPS = {
   sparkle: { x: 0, y: 0, w: 9, h: 5 },
   z: { x: 9, y: 0, w: 6, h: 5 },
   rock: { x: 16, y: 6, w: 24, h: 18 },
+  /** 광석 실은 광차 — 레일 위에 둔다 */
+  cart: { x: 42, y: 10, w: 16, h: 13 },
+  /** 보라 크리스탈 (작은 광물) */
+  crystal: { x: 62, y: 14, w: 9, h: 10 },
 } as const;
 
-export const PROPS_W = 40;
+export const PROPS_W = 80;
 export const PROPS_H = 24;
 
-/** 배경 타일 64×32. 고양이·바위는 발이 GROUND_Y 줄에 닿게 선다 */
-export const BG_W = 64;
+/** 배경 타일 128×32. 고양이·바위는 발이 GROUND_Y 줄에 닿게 선다 */
+export const BG_W = 128;
 export const BG_H = 32;
 export const GROUND_Y = 24;
+/** 광차 바퀴 아래 끝 줄 — 배경 레일(28·31줄) 사이에 바퀴가 걸친다 */
+export const RAIL_Y = 30;
 
 /** 쉬는 동안 할 일 */
 export type Activity = 'wander' | 'mine' | 'code' | 'video' | 'nap';

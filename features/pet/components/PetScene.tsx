@@ -11,24 +11,24 @@ import {
   PROPS,
   PROPS_H,
   PROPS_W,
+  RAIL_Y,
 } from '../domain/catSheet';
-import { CLUSTER, CRYSTAL_PALETTE } from '../domain/minerals';
 import { CatPet } from './CatPet';
-import { PixelArt } from './PixelArt';
 import { BACKGROUND_TILE, PROPS_SHEET } from './catAssets';
 import { SheetCrop } from './SheetCrop';
 
 /*
  * 홈 상단바 둘째 줄 — 고양이가 일하는 광산 동굴.
- * 배경 타일(64×32 도트)을 가로로 이어 붙이고, 광물 세 개를 둔다:
- *   왼쪽 작은 크리스탈 무더기 · 가운데 큰 바위(좌우 반전) · 오른쪽 끝 큰 바위
+ * 배경 타일(128×32 도트)을 가로로 이어 붙이고, 광물 세 개와 광차를 둔다:
+ *   왼쪽 보라 크리스탈 · 가운데 큰 바위(좌우 반전) · 오른쪽 큰 바위 · 맨 오른쪽 레일 위 광차
  * 가진 고양이(최대 8마리)가 전부 오른쪽 바위 왼쪽에서 돌아다니다가, 광물 하나를 골라 캔다.
  */
 
 const S = ART_SCALE;
-const ROCK_MARGIN_RIGHT = 6 * S;
+const CART_MARGIN_RIGHT = 2 * S;
+const ROCK_GAP = 4 * S;
 /** 광물 자리 (화면 폭 비율) */
-const CLUSTER_AT = 0.22;
+const CRYSTAL_AT = 0.22;
 const MID_ROCK_AT = 0.5;
 
 /** 도트 칸에 맞춘 x */
@@ -48,16 +48,17 @@ export function PetScene({
   const [width, setWidth] = useState(0);
   const tileW = BG_W * S;
   const tiles = Math.ceil(width / tileW);
-  const rockLeft = width - PROPS.rock.w * S - ROCK_MARGIN_RIGHT;
-  const clusterLeft = snap(width * CLUSTER_AT);
+  const cartLeft = snap(width - PROPS.cart.w * S - CART_MARGIN_RIGHT);
+  const rockLeft = cartLeft - PROPS.rock.w * S - ROCK_GAP;
+  const crystalLeft = snap(width * CRYSTAL_AT);
   const midRockLeft = snap(width * MID_ROCK_AT);
   // 곡괭이 끝(PICKAXE_RIGHT)이 광물 왼쪽 끝에 살짝 닿는 자리 — 광물마다 하나
   const mineSpots = useMemo(
     () =>
-      [clusterLeft + S, midRockLeft, rockLeft]
+      [crystalLeft, midRockLeft, rockLeft]
         .map((left) => left - PICKAXE_RIGHT * S + 2 * S)
         .filter((x) => x >= 0),
-    [clusterLeft, midRockLeft, rockLeft]
+    [crystalLeft, midRockLeft, rockLeft]
   );
 
   return (
@@ -82,11 +83,12 @@ export function PetScene({
 
       {width > 0 && (
         <>
-          <PixelArt
-            sprite={CLUSTER}
-            palette={CRYSTAL_PALETTE}
-            pixel={S}
-            style={[styles.abs, { left: clusterLeft, top: (GROUND_Y - CLUSTER.length) * S }]}
+          <SheetCrop
+            source={PROPS_SHEET}
+            sheetW={PROPS_W}
+            sheetH={PROPS_H}
+            {...PROPS.crystal}
+            style={[styles.abs, { left: crystalLeft, top: (GROUND_Y - PROPS.crystal.h) * S }]}
           />
           <SheetCrop
             source={PROPS_SHEET}
@@ -108,6 +110,13 @@ export function PetScene({
             sheetH={PROPS_H}
             {...PROPS.rock}
             style={[styles.abs, { left: rockLeft, top: (GROUND_Y - PROPS.rock.h) * S }]}
+          />
+          <SheetCrop
+            source={PROPS_SHEET}
+            sheetW={PROPS_W}
+            sheetH={PROPS_H}
+            {...PROPS.cart}
+            style={[styles.abs, { left: cartLeft, top: (RAIL_Y - PROPS.cart.h) * S }]}
           />
           {catIds.map((id, i) => (
             <CatPet
