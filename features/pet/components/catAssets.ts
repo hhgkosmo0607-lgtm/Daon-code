@@ -13,3 +13,4 @@ export const CAT_SHEETS: Record<string, ImageSourcePropType> = {
 };
 export const PROPS_SHEET: ImageSourcePropType = require('../../../assets/pets/props.png');
 export const BACKGROUND_TILE: ImageSourcePropType = require('../../../assets/pets/background_tile.png');
+export const ROOM_BACKGROUND_TILE: ImageSourcePropType = require('../../../assets/pets/room_background_tile.png');

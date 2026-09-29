@@ -1,7 +1,8 @@
 /*
- * 고양이 스프라이트 시트 규칙. (원본: assets/prompt_cat_png, 변환: scripts/build-pet-assets.mjs)
+ * 펫 스프라이트 시트 규칙. (원본: assets/pixel_pets_png, 변환: scripts/build-pet-assets.mjs)
  *
- * 시트 한 장 = 가로 4칸 × 세로 7줄, 한 칸 40×24 도트. 고양이는 오른쪽을 보고 있고
+ * 시트 한 장 = 가로 4칸 × 세로 10줄, 한 칸 40×24 도트. 모든 종(고양이·토끼·강아지·용·유령·로봇·
+ * 슬라임)이 같은 배치다. 펫은 오른쪽을 보고 있고
  * 발이 칸 맨 아래에 닿는다. 왼쪽으로 갈 때는 좌우로 뒤집어서 그린다.
  * 화면에는 도트 1칸을 ART_SCALE dp로 그린다 (빌드 스크립트와 같은 값이어야 한다).
  */
@@ -11,9 +12,10 @@ export const ART_SCALE = 2;
 export const CELL_W = 40;
 export const CELL_H = 24;
 export const SHEET_W = 160;
-export const SHEET_H = 168;
+export const SHEET_H = 240;
 
-export type CatAnim = 'idle' | 'walk' | 'mine' | 'rest' | 'laptopOpen' | 'code' | 'video';
+export type CatAnim =
+  'idle' | 'walk' | 'mine' | 'rest' | 'laptopOpen' | 'code' | 'video' | 'eat' | 'play' | 'sleep';
 
 /** 동작별 시트 줄 번호, 프레임 수, 프레임 간격(ms) */
 export const ANIMS: Record<CatAnim, { row: number; frames: number; frameMs: number }> = {
@@ -24,6 +26,12 @@ export const ANIMS: Record<CatAnim, { row: number; frames: number; frameMs: numb
   laptopOpen: { row: 4, frames: 3, frameMs: 260 },
   code: { row: 5, frames: 4, frameMs: 220 },
   video: { row: 6, frames: 4, frameMs: 450 },
+  /** 밥그릇(칸 안에 그려져 있다) */
+  eat: { row: 7, frames: 4, frameMs: 350 },
+  /** 공놀이 */
+  play: { row: 8, frames: 4, frameMs: 260 },
+  /** 방석 위에서 잠 */
+  sleep: { row: 9, frames: 2, frameMs: 900 },
 };
 
 /** 칸 안에서 고양이 몸이 차지하는 가로 범위 (도트). 곡괭이 끝은 26, 노트북 끝은 35 */
@@ -103,15 +111,40 @@ export const GROUND_Y = 24;
 export const RAIL_Y = 30;
 
 /** 쉬는 동안 할 일 */
-export type Activity = 'wander' | 'mine' | 'code' | 'video' | 'nap';
+export type Activity = 'wander' | 'mine' | 'code' | 'video' | 'nap' | 'eat' | 'play' | 'sleep';
+
+/** 펫이 있는 곳 — 상단바 둘째 줄을 옆으로 밀어서 오간다 */
+export type Place = 'mine' | 'room';
+
+/** 곳마다 할 일과 비율 (합이 1) */
+const ACTIVITY_WEIGHTS: Record<Place, [Activity, number][]> = {
+  // 광산: 주로 캔다
+  mine: [
+    ['wander', 0.4],
+    ['mine', 0.3],
+    ['code', 0.15],
+    ['video', 0.1],
+    ['nap', 0.05],
+  ],
+  // 방: 밥·놀이·잠
+  room: [
+    ['wander', 0.35],
+    ['eat', 0.15],
+    ['play', 0.2],
+    ['sleep', 0.1],
+    ['code', 0.1],
+    ['video', 0.1],
+  ],
+};
 
 /** 다음 할 일을 고른다 (random: 0~1, 테스트에서 고정하려고 주입받는다) */
-export function pickActivity(random: number): Activity {
-  if (random < 0.4) return 'wander';
-  if (random < 0.7) return 'mine';
-  if (random < 0.85) return 'code';
-  if (random < 0.95) return 'video';
-  return 'nap';
+export function pickActivity(random: number, place: Place = 'mine'): Activity {
+  let acc = 0;
+  for (const [activity, weight] of ACTIVITY_WEIGHTS[place]) {
+    acc += weight;
+    if (random < acc) return activity;
+  }
+  return 'wander';
 }
 
 /**

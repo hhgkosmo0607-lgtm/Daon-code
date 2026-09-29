@@ -1,5 +1,15 @@
 import { useMemo, useState } from 'react';
-import { Image, Pressable, StyleSheet, type LayoutChangeEvent } from 'react-native';
+import {
+  Image,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  View,
+  type ImageSourcePropType,
+  type LayoutChangeEvent,
+  type NativeScrollEvent,
+  type NativeSyntheticEvent,
+} from 'react-native';
 
 import {
   ART_SCALE,
@@ -12,16 +22,20 @@ import {
   PROPS_H,
   PROPS_W,
   RAIL_Y,
+  type Place,
 } from '../domain/catSheet';
 import { CatPet } from './CatPet';
-import { BACKGROUND_TILE, PROPS_SHEET } from './catAssets';
+import { BACKGROUND_TILE, PROPS_SHEET, ROOM_BACKGROUND_TILE } from './catAssets';
 import { SheetCrop } from './SheetCrop';
 
 /*
- * 홈 상단바 둘째 줄 — 고양이가 일하는 광산 동굴.
- * 배경 타일(128×32 도트)을 가로로 이어 붙이고, 광물 세 개와 광차를 둔다:
- *   왼쪽 보라 크리스탈 · 가운데 큰 바위(좌우 반전) · 오른쪽 큰 바위 · 맨 오른쪽 레일 위 광차
- * 가진 고양이(최대 8마리)가 전부 오른쪽 바위 왼쪽에서 돌아다니다가, 광물 하나를 골라 캔다.
+ * 홈 상단바 둘째 줄 — 펫이 사는 두 곳. 옆으로 밀면 광산 ↔ 방으로 넘어간다.
+ *
+ *   광산: 배경 타일(128×32 도트) + 왼쪽 보라 크리스탈 · 가운데 큰 바위(반전) · 오른쪽 큰 바위 ·
+ *         맨 오른쪽 레일 위 광차. 펫은 광물 하나를 골라 캔다.
+ *   방:   나무 방 배경. 펫은 밥 먹고 놀고 방석에서 잔다.
+ *
+ * 가진 펫(최대 8마리)이 지금 보고 있는 곳에만 나온다 — 안 보이는 곳은 애니메이션을 돌리지 않는다.
  */
 
 const S = ART_SCALE;
@@ -30,6 +44,10 @@ const ROCK_GAP = 4 * S;
 /** 광물 자리 (화면 폭 비율) */
 const CRYSTAL_AT = 0.22;
 const MID_ROCK_AT = 0.5;
+const PLACES: { place: Place; label: string }[] = [
+  { place: 'mine', label: '광산' },
+  { place: 'room', label: '방' },
+];
 
 /** 도트 칸에 맞춘 x */
 const snap = (v: number) => Math.round(v / S) * S;
@@ -39,15 +57,15 @@ export function PetScene({
   onPress,
   expanded,
 }: {
-  /** 가진 고양이 색 id 목록 — 전부 광산에 나온다 */
+  /** 가진 펫 id 목록 — 전부 나온다 */
   catIds?: string[];
   /** 누르면 채굴 패널 열기/닫기 */
   onPress?: () => void;
   expanded?: boolean;
 }) {
   const [width, setWidth] = useState(0);
-  const tileW = BG_W * S;
-  const tiles = Math.ceil(width / tileW);
+  const [page, setPage] = useState(0);
+
   const cartLeft = snap(width - PROPS.cart.w * S - CART_MARGIN_RIGHT);
   const rockLeft = cartLeft - PROPS.rock.w * S - ROCK_GAP;
   const crystalLeft = snap(width * CRYSTAL_AT);
@@ -61,81 +79,129 @@ export function PetScene({
     [crystalLeft, midRockLeft, rockLeft]
   );
 
+  const onScrollEnd = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
+    if (width > 0) setPage(Math.round(e.nativeEvent.contentOffset.x / width));
+  };
+
+  const pets = (place: Place, rightLimit: number) =>
+    catIds.map((id, i) => (
+      <CatPet
+        key={id}
+        catId={id}
+        place={place}
+        rockLeft={rightLimit}
+        mineSpots={place === 'mine' ? mineSpots : undefined}
+        // 처음엔 걸을 수 있는 폭에 고르게 나눠 세운다
+        startX={((rightLimit - PICKAXE_RIGHT * S) * i) / Math.max(1, catIds.length)}
+      />
+    ));
+
+  const pageProps = (place: Place, label: string) => ({
+    style: [styles.page, { width }],
+    onPress,
+    disabled: !onPress,
+    accessibilityRole: 'button' as const,
+    accessibilityLabel: `${label} · 펫 ${catIds.length}마리 · 옆으로 밀면 ${place === 'mine' ? '방' : '광산'}`,
+    accessibilityHint: '눌러서 채굴 현황 보기',
+    accessibilityState: { expanded },
+  });
+
   return (
-    <Pressable
+    <View
       style={styles.scene}
       onLayout={(e: LayoutChangeEvent) => setWidth(e.nativeEvent.layout.width)}
-      onPress={onPress}
-      disabled={!onPress}
-      accessibilityRole="button"
-      accessibilityLabel={`고양이 ${catIds.length}마리가 광산에서 일하는 중`}
-      accessibilityHint="눌러서 채굴 현황 보기"
-      accessibilityState={{ expanded }}
     >
-      {Array.from({ length: tiles }, (_, i) => (
-        <Image
-          key={i}
-          source={BACKGROUND_TILE}
-          fadeDuration={0}
-          style={[styles.tile, { left: i * tileW, width: tileW }]}
-        />
-      ))}
-
       {width > 0 && (
-        <>
-          <SheetCrop
-            source={PROPS_SHEET}
-            sheetW={PROPS_W}
-            sheetH={PROPS_H}
-            {...PROPS.crystal}
-            style={[styles.abs, { left: crystalLeft, top: (GROUND_Y - PROPS.crystal.h) * S }]}
-          />
-          <SheetCrop
-            source={PROPS_SHEET}
-            sheetW={PROPS_W}
-            sheetH={PROPS_H}
-            {...PROPS.rock}
-            style={[
-              styles.abs,
-              {
-                left: midRockLeft,
-                top: (GROUND_Y - PROPS.rock.h) * S,
-                transform: [{ scaleX: -1 }],
-              },
-            ]}
-          />
-          <SheetCrop
-            source={PROPS_SHEET}
-            sheetW={PROPS_W}
-            sheetH={PROPS_H}
-            {...PROPS.rock}
-            style={[styles.abs, { left: rockLeft, top: (GROUND_Y - PROPS.rock.h) * S }]}
-          />
-          <SheetCrop
-            source={PROPS_SHEET}
-            sheetW={PROPS_W}
-            sheetH={PROPS_H}
-            {...PROPS.cart}
-            style={[styles.abs, { left: cartLeft, top: (RAIL_Y - PROPS.cart.h) * S }]}
-          />
-          {catIds.map((id, i) => (
-            <CatPet
-              key={id}
-              catId={id}
-              rockLeft={rockLeft}
-              mineSpots={mineSpots}
-              // 처음엔 걸을 수 있는 폭에 고르게 나눠 세운다
-              startX={((rockLeft - PICKAXE_RIGHT * S) * i) / Math.max(1, catIds.length)}
+        <ScrollView
+          horizontal
+          pagingEnabled
+          showsHorizontalScrollIndicator={false}
+          onMomentumScrollEnd={onScrollEnd}
+        >
+          {/* 광산 */}
+          <Pressable {...pageProps('mine', '광산')}>
+            <Tiles source={BACKGROUND_TILE} width={width} />
+            <SheetCrop
+              source={PROPS_SHEET}
+              sheetW={PROPS_W}
+              sheetH={PROPS_H}
+              {...PROPS.crystal}
+              style={[styles.abs, { left: crystalLeft, top: (GROUND_Y - PROPS.crystal.h) * S }]}
             />
-          ))}
-        </>
+            <SheetCrop
+              source={PROPS_SHEET}
+              sheetW={PROPS_W}
+              sheetH={PROPS_H}
+              {...PROPS.rock}
+              style={[
+                styles.abs,
+                {
+                  left: midRockLeft,
+                  top: (GROUND_Y - PROPS.rock.h) * S,
+                  transform: [{ scaleX: -1 }],
+                },
+              ]}
+            />
+            <SheetCrop
+              source={PROPS_SHEET}
+              sheetW={PROPS_W}
+              sheetH={PROPS_H}
+              {...PROPS.rock}
+              style={[styles.abs, { left: rockLeft, top: (GROUND_Y - PROPS.rock.h) * S }]}
+            />
+            <SheetCrop
+              source={PROPS_SHEET}
+              sheetW={PROPS_W}
+              sheetH={PROPS_H}
+              {...PROPS.cart}
+              style={[styles.abs, { left: cartLeft, top: (RAIL_Y - PROPS.cart.h) * S }]}
+            />
+            {page === 0 && pets('mine', rockLeft)}
+          </Pressable>
+
+          {/* 방 */}
+          <Pressable {...pageProps('room', '방')}>
+            <Tiles source={ROOM_BACKGROUND_TILE} width={width} />
+            {page === 1 && pets('room', width - 4 * S)}
+          </Pressable>
+        </ScrollView>
       )}
-    </Pressable>
+
+      {/* 지금 어느 곳인지 — 점 두 개 */}
+      <View style={styles.dots} pointerEvents="none">
+        {PLACES.map((p, i) => (
+          <View key={p.place} style={[styles.dot, i === page && styles.dotActive]} />
+        ))}
+      </View>
+    </View>
   );
+}
+
+/** 배경 타일을 가로로 이어 붙인다 */
+function Tiles({ source, width }: { source: ImageSourcePropType; width: number }) {
+  const tileW = BG_W * S;
+  return Array.from({ length: Math.ceil(width / tileW) }, (_, i) => (
+    <Image
+      key={i}
+      source={source}
+      fadeDuration={0}
+      style={[styles.tile, { left: i * tileW, width: tileW }]}
+    />
+  ));
 }
 
 const styles = StyleSheet.create({
   scene: { width: '100%', height: BG_H * S, overflow: 'hidden', backgroundColor: '#1d1a24' },
+  page: { height: BG_H * S, overflow: 'hidden' },
   tile: { position: 'absolute', top: 0, height: BG_H * S },
   abs: { position: 'absolute' },
+  dots: {
+    position: 'absolute',
+    top: 3,
+    right: 4,
+    flexDirection: 'row',
+    gap: 3,
+  },
+  dot: { width: 4, height: 4, borderRadius: 2, backgroundColor: 'rgba(255,255,255,0.3)' },
+  dotActive: { backgroundColor: 'rgba(255,255,255,0.85)' },
 });

@@ -27,12 +27,18 @@ describe('frameOrigin', () => {
 });
 
 describe('pickActivity', () => {
-  it('난수 구간별로 할 일을 고른다', () => {
+  it('광산에서는 난수 구간별로 캐기·노트북·낮잠을 고른다', () => {
     expect(pickActivity(0)).toBe('wander');
     expect(pickActivity(0.5)).toBe('mine');
     expect(pickActivity(0.8)).toBe('code');
     expect(pickActivity(0.9)).toBe('video');
     expect(pickActivity(0.99)).toBe('nap');
+  });
+
+  it('방에서는 캐지 않고 밥·놀이·잠을 한다', () => {
+    const seen = new Set(Array.from({ length: 100 }, (_, i) => pickActivity(i / 100, 'room')));
+    expect(seen.has('mine')).toBe(false);
+    expect(seen.has('eat') && seen.has('play') && seen.has('sleep')).toBe(true);
   });
 });
 

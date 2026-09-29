@@ -4,11 +4,11 @@
  *
  *   node scripts/build-pet-assets.mjs
  *
- * assets/prompt_cat_png/out/1x/ 의 원본(도트 1칸 = 1px)을 최근접 보간으로 키워서
+ * assets/pixel_pets_png/pixel_pets/1x/ 의 원본(도트 1칸 = 1px)을 최근접 보간으로 키워서
  * assets/pets/ 에 name.png(2배) · name@2x.png(4배) · name@3x.png(6배)로 저장한다.
  * 앱은 도트 1칸을 2dp로 그리는데(ART_SCALE), 기기 화면 밀도에 맞는 파일을 RN이 골라서
  * 도트 1칸이 항상 정수 개의 실제 픽셀에 맞는다 → 확대해도 흐려지지 않는다.
- * 새 색 고양이를 추가하면 원본을 1x 폴더에 넣고 이 스크립트를 다시 돌리면 된다.
+ * 새 펫을 추가하면 원본을 1x 폴더에 넣고 이 스크립트를 다시 돌리면 된다.
  */
 import { mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { inflateSync, deflateSync } from 'node:zlib';
@@ -69,7 +69,7 @@ function scaleNearest(img, k) {
 }
 
 
-const SRC = 'assets/prompt_cat_png/out/1x';
+const SRC = 'assets/pixel_pets_png/pixel_pets/1x';
 const OUT = 'assets/pets';
 /** 도트 1칸 = ART_SCALE dp (features/pet/domain/catSheet.ts와 같아야 한다) */
 const ART_SCALE = 2;

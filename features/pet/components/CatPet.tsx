@@ -19,15 +19,17 @@ import {
   nextWalkTarget,
   pickActivity,
   type CatAnim,
+  type Place,
 } from '../domain/catSheet';
 import { useReduceMotion } from '../hooks/useReduceMotion';
 import { CAT_SHEETS, PROPS_SHEET } from './catAssets';
 import { SheetCrop } from './SheetCrop';
 
 /*
- * 동굴을 돌아다니는 고양이.
+ * 광산·방을 돌아다니는 펫.
  *
- * 돌아다니기 · 광물 하나를 골라 곡괭이질 · 노트북으로 코딩/영상 · 낮잠을 번갈아 한다.
+ * 광산: 돌아다니기 · 광물 하나를 골라 곡괭이질 · 노트북으로 코딩/영상 · 낮잠
+ * 방:   돌아다니기 · 밥 먹기 · 공놀이 · 방석에서 잠 · 노트북 (밥그릇·공·방석은 시트 칸에 그려져 있다)
  * 이동은 네이티브 드라이버 애니메이션이고, 프레임 교체는 이 컴포넌트 안에서만 일어난다.
  * 기기에서 "동작 줄이기"를 켜 두면 제자리에 가만히 앉아 있다.
  */
@@ -41,8 +43,10 @@ const FLIP_SHIFT = (CELL_W - 2 * BODY_LEFT - BODY_W) * S;
 const rand = (min: number, max: number) => min + Math.random() * (max - min);
 
 interface Props {
-  /** 바위 왼쪽 끝 x (dp). 고양이는 이 왼쪽에서만 움직인다 */
+  /** 오른쪽 끝 x (dp) — 광산에선 오른쪽 바위 왼쪽 끝. 펫은 이 왼쪽에서만 움직인다 */
   rockLeft: number;
+  /** 있는 곳 — 할 일이 달라진다 */
+  place?: Place;
   catId?: string;
   /** 처음 서 있는 x (dp) — 여러 마리가 겹쳐서 시작하지 않게 */
   startX?: number;
@@ -50,7 +54,13 @@ interface Props {
   mineSpots?: number[];
 }
 
-export function CatPet({ rockLeft, catId = DEFAULT_CAT_ID, startX = 0, mineSpots }: Props) {
+export function CatPet({
+  rockLeft,
+  place = 'mine',
+  catId = DEFAULT_CAT_ID,
+  startX = 0,
+  mineSpots,
+}: Props) {
   const sheet = CAT_SHEETS[catId] ?? CAT_SHEETS[DEFAULT_CAT_ID];
   const reduceMotion = useReduceMotion();
 
@@ -122,7 +132,7 @@ export function CatPet({ rockLeft, catId = DEFAULT_CAT_ID, startX = 0, mineSpots
     };
 
     function next() {
-      const activity = pickActivity(Math.random());
+      const activity = pickActivity(Math.random(), place);
       if (activity === 'wander') {
         walkTo(nextWalkTarget(posRef.current, walkMax, Math.random()), idleThenNext);
       } else if (activity === 'mine') {
@@ -136,6 +146,11 @@ export function CatPet({ rockLeft, catId = DEFAULT_CAT_ID, startX = 0, mineSpots
       } else if (activity === 'nap') {
         setAnim('rest');
         later(idleThenNext, rand(4000, 7000));
+      } else if (activity === 'eat' || activity === 'play' || activity === 'sleep') {
+        // 제자리에서 (밥그릇·공·방석이 오른쪽에 그려져 있어서 오른쪽을 본다)
+        setFacingLeft(false);
+        setAnim(activity);
+        later(idleThenNext, activity === 'sleep' ? rand(6000, 10000) : rand(3000, 6000));
       } else {
         openLaptop(activity);
       }
@@ -155,7 +170,7 @@ export function CatPet({ rockLeft, catId = DEFAULT_CAT_ID, startX = 0, mineSpots
         posRef.current = value;
       });
     };
-  }, [rockLeft, mineSpots, reduceMotion, x]);
+  }, [rockLeft, place, mineSpots, reduceMotion, x]);
 
   const origin = frameOrigin(anim, tick);
   const striking = anim === 'mine' && tick % 2 === 1;
@@ -188,7 +203,7 @@ export function CatPet({ rockLeft, catId = DEFAULT_CAT_ID, startX = 0, mineSpots
           style={[styles.abs, { left: (PICKAXE_RIGHT - 3) * S, top: (CELL_H - 12) * S }]}
         />
       )}
-      {anim === 'rest' && (
+      {(anim === 'rest' || anim === 'sleep') && (
         <SheetCrop
           source={PROPS_SHEET}
           sheetW={PROPS_W}
