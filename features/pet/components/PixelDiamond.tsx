@@ -1,7 +1,7 @@
 import { View } from 'react-native';
 
 /*
- * 스트릭 프리즈 아이콘 — 동굴 바위의 크리스탈과 같은 색의 도트 다이아몬드.
+ * 스트릭 프리즘 아이콘 — 동굴 바위의 크리스탈과 같은 색의 도트 다이아몬드.
  * 글자(❄) 대신 쓴다. 테마와 상관없이 같은 색이다.
  *
  * L 밝은 면 · M 가운데 · D 어두운 면 · W 반짝임 · . 빈칸
@@ -42,7 +42,7 @@ const RUNS = DIAMOND.flatMap((row, y) => {
 export function PixelDiamond({ pixel = 2 }: { pixel?: number }) {
   return (
     <View
-      accessibilityLabel="프리즈"
+      accessibilityLabel="프리즘"
       style={{ width: DIAMOND[0].length * pixel, height: DIAMOND.length * pixel }}
     >
       {RUNS.map((r) => (

@@ -12,9 +12,9 @@ import { FREEZE_MAX } from '../../../features/shop/domain/shopItems.ts';
 /*
  * 고양이에게 잔디(먹이) 1개 주기. (daon-content/Daon-code_아이디어.md 2-A)
  *
- * 잔디·게이지·프리즈는 클라이언트가 직접 못 바꾸므로(가드 트리거) 서버에서만 한다.
+ * 잔디·게이지·프리즘은 클라이언트가 직접 못 바꾸므로(가드 트리거) 서버에서만 한다.
  * 수치는 앱 화면과 같은 mining.ts에서 가져오고, 확인·차감·지급은 feed_pet DB 함수가
- * 한 트랜잭션으로 한다. (0006_checkin_and_cats.sql — 고양이 수만큼 더 캐고, 넘친 프리즈는 코인)
+ * 한 트랜잭션으로 한다. (0006_checkin_and_cats.sql — 고양이 수만큼 더 캐고, 넘친 프리즘은 코인)
  */
 
 const corsHeaders = {

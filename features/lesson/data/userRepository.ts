@@ -27,7 +27,7 @@ export interface Profile {
   guest_coins: number;
   /** 고양이 먹이 — 출석(그날 첫 제출)마다 받는다 (0005_pet_mining.sql) */
   grass: number;
-  /** 채굴 게이지 — MINE_PER_FREEZE만큼 차면 프리즈 1개 */
+  /** 채굴 게이지 — MINE_PER_FREEZE만큼 차면 프리즘 1개 */
   mine_progress: number;
   /** 먹이 효과가 끝나는 시각. 지나면 고양이가 쉰다 */
   pet_working_until: string | null;

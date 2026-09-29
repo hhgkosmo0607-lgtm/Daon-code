@@ -177,7 +177,7 @@ export function HomeScreen() {
             {streak}일 연속 학습 중 · 누적 {totalXp} XP · 다음 레벨까지 {progress.xpToNext} XP
           </Text>
           <Text style={styles.statInfoText}>
-            코인 {coins}개 · 프리즈 {profile?.freeze_count ?? 0}개 · 코인(c)을 누르면 상점
+            코인 {coins}개 · 프리즘 {profile?.freeze_count ?? 0}개 · 코인(c)을 누르면 상점
           </Text>
           {isGuest && (
             <Text style={styles.statInfoText}>

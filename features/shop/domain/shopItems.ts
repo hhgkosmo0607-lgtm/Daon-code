@@ -5,15 +5,20 @@
  * 같은 파일을 쓴다. 최종 판단은 서버가 DB 잔액으로 다시 한다.
  */
 
-/** 스트릭 프리즈 1개 가격 (코인) */
+/*
+ * 이름: 코드의 freeze(FREEZE_*, freeze_count) = 화면의 '프리즘' (스트릭을 지켜 주는 크리스탈).
+ * 처음엔 '스트릭 프리즈'였다가 고양이가 캐는 다이아몬드 모양에 맞춰 화면 이름만 바꿨다.
+ */
+
+/** 스트릭 프리즘 1개 가격 (코인) */
 export const FREEZE_PRICE = 50;
 
-/** 프리즈 최대 보유 개수 (기획서 7번) */
+/** 프리즘 최대 보유 개수 (기획서 7번) */
 export const FREEZE_MAX = 2;
 
 export type PurchaseBlockReason = 'not_enough_coins' | 'max_reached';
 
-/** 프리즈를 살 수 있는지. 살 수 없으면 이유를, 살 수 있으면 null을 돌려준다 */
+/** 프리즘을 살 수 있는지. 살 수 없으면 이유를, 살 수 있으면 null을 돌려준다 */
 export function freezePurchaseBlock(
   coins: number,
   freezeCount: number

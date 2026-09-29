@@ -14,7 +14,7 @@ import { PixelDiamond } from './PixelDiamond';
 
 /*
  * 광산(상단바 둘째 줄)을 누르면 펼쳐지는 먹이 패널.
- * 잔디·채굴 게이지·프리즈를 보여주고, 먹이 주기는 서버(feed-pet)가 처리한다.
+ * 잔디·채굴 게이지·프리즘을 보여주고, 먹이 주기는 서버(feed-pet)가 처리한다.
  */
 
 /** 채굴 게이지를 5칸 ▓░ 바로 */
@@ -53,8 +53,8 @@ export function PetPanel({
       const result = await feedPet();
       await onFed();
       const parts = [`고양이 ${catCount}마리가 게이지 +${result.gain}`];
-      if (result.minted > 0) parts.push(`프리즈 ${result.minted}개를 캤어요!`);
-      if (result.overflowCoins > 0) parts.push(`프리즈가 가득이라 +${result.overflowCoins}코인`);
+      if (result.minted > 0) parts.push(`프리즘 ${result.minted}개를 캤어요!`);
+      if (result.overflowCoins > 0) parts.push(`프리즘이 가득이라 +${result.overflowCoins}코인`);
       setMessage({ text: parts.join(' · '), ok: true });
     } catch (e) {
       setMessage({ text: e instanceof Error ? e.message : '먹이를 주지 못했어요', ok: false });

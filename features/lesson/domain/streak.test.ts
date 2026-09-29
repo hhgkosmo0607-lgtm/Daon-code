@@ -50,7 +50,7 @@ describe('updateStreak', () => {
     expect(result).toEqual({ streak: 6, freezeCount: 1, freezeUsed: false });
   });
 
-  it('하루 빠짐 + 프리즈 보유 — 프리즈를 소모해 스트릭 방어', () => {
+  it('하루 빠짐 + 프리즘 보유 — 프리즘을 소모해 스트릭 방어', () => {
     const result = updateStreak({
       currentStreak: 5,
       lastStudyDate: '2024-01-01',
@@ -60,7 +60,7 @@ describe('updateStreak', () => {
     expect(result).toEqual({ streak: 6, freezeCount: 1, freezeUsed: true });
   });
 
-  it('하루 빠짐 + 프리즈 없음 — 스트릭 1로 리셋', () => {
+  it('하루 빠짐 + 프리즘 없음 — 스트릭 1로 리셋', () => {
     const result = updateStreak({
       currentStreak: 5,
       lastStudyDate: '2024-01-01',
@@ -70,7 +70,7 @@ describe('updateStreak', () => {
     expect(result).toEqual({ streak: 1, freezeCount: 0, freezeUsed: false });
   });
 
-  it('이틀 넘게 빠짐 — 프리즈가 있어도 리셋 (프리즈는 하루 결석만 방어)', () => {
+  it('이틀 넘게 빠짐 — 프리즘이 있어도 리셋 (프리즘은 하루 결석만 방어)', () => {
     const result = updateStreak({
       currentStreak: 5,
       lastStudyDate: '2024-01-01',
@@ -93,7 +93,7 @@ describe('displayStreak', () => {
     expect(displayStreak({ ...base, lastStudyDate: '2024-01-09' })).toBe(7);
   });
 
-  it('하루 빠졌으면 프리즈가 있을 때만 유지', () => {
+  it('하루 빠졌으면 프리즘이 있을 때만 유지', () => {
     expect(displayStreak({ ...base, lastStudyDate: '2024-01-08' })).toBe(0);
     expect(displayStreak({ ...base, lastStudyDate: '2024-01-08', freezeCount: 1 })).toBe(7);
   });

@@ -22,7 +22,7 @@ import {
 } from '../domain/shopItems';
 
 /*
- * 상점 — 코인으로 스트릭 프리즈와 고양이를 산다. (daon-content/Daon-code_아이디어.md 1번)
+ * 상점 — 코인으로 스트릭 프리즘과 고양이를 산다. (daon-content/Daon-code_아이디어.md 1번)
  *
  * 버튼 활성화 여부는 화면에서 미리 판단하지만(shopItems.ts), 실제 차감은
  * 서버(purchase Edge Function)가 DB 잔액으로 다시 확인한다.
@@ -47,7 +47,7 @@ export function ShopScreen() {
     try {
       await purchaseFreeze();
       await reload();
-      setMessage({ text: '프리즈를 샀어요. 하루 빠져도 스트릭이 지켜져요', ok: true });
+      setMessage({ text: '프리즘을 샀어요. 하루 빠져도 스트릭이 지켜져요', ok: true });
     } catch (e) {
       setMessage({ text: e instanceof Error ? e.message : '구매하지 못했어요', ok: false });
     } finally {
@@ -90,7 +90,7 @@ export function ShopScreen() {
             <PixelDiamond pixel={3} />
           </View>
           <View style={styles.itemText}>
-            <Text style={styles.itemName}>스트릭 프리즈</Text>
+            <Text style={styles.itemName}>스트릭 프리즘</Text>
             <Text style={styles.itemDesc}>하루 빠져도 스트릭이 끊기지 않아요 (자동 사용)</Text>
             <Text style={styles.itemDesc}>
               보유 {freezeCount}/{FREEZE_MAX}
@@ -101,7 +101,7 @@ export function ShopScreen() {
             onPress={buy}
             disabled={!!block || busy}
             accessibilityRole="button"
-            accessibilityLabel={`스트릭 프리즈 ${FREEZE_PRICE}코인에 구매`}
+            accessibilityLabel={`스트릭 프리즘 ${FREEZE_PRICE}코인에 구매`}
             accessibilityState={{ disabled: !!block || busy }}
           >
             {busy ? (

@@ -29,7 +29,7 @@ export interface StreakInput {
   currentStreak: number;
   /** 마지막으로 학습한 한국 기준 날짜 (YYYY-MM-DD), 없으면 null */
   lastStudyDate: string | null;
-  /** 보유한 스트릭 프리즈 개수 */
+  /** 보유한 스트릭 프리즘 개수 */
   freezeCount: number;
   /** 이번 학습이 일어난 한국 기준 날짜 */
   today: string;
@@ -38,7 +38,7 @@ export interface StreakInput {
 export interface StreakResult {
   streak: number;
   freezeCount: number;
-  /** 프리즈를 사용해서 끊길 뻔한 스트릭을 방어했는지 */
+  /** 프리즘을 사용해서 끊길 뻔한 스트릭을 방어했는지 */
   freezeUsed: boolean;
 }
 
@@ -46,7 +46,7 @@ export interface StreakResult {
  * 학습 완료 시 스트릭을 갱신한다.
  * - 같은 날 다시 학습 → 변화 없음
  * - 어제 학습했으면 → +1
- * - 하루 건너뛴 경우(2일 차이) → 프리즈가 있으면 소모해서 유지, 없으면 1로 리셋
+ * - 하루 건너뛴 경우(2일 차이) → 프리즘이 있으면 소모해서 유지, 없으면 1로 리셋
  * - 그보다 오래 쉬었으면 → 1로 리셋
  */
 export function updateStreak(input: StreakInput): StreakResult {
@@ -67,7 +67,7 @@ export function updateStreak(input: StreakInput): StreakResult {
     return { streak: 1, freezeCount, freezeUsed: false };
   }
 
-  // 하루 빠졌으면(gap 2) 프리즈로 방어
+  // 하루 빠졌으면(gap 2) 프리즘으로 방어
   const freezeUsed = gap === 2;
   return {
     streak: currentStreak + 1,
@@ -78,7 +78,7 @@ export function updateStreak(input: StreakInput): StreakResult {
 
 /**
  * 마지막 학습 후 gap일이 지났을 때 스트릭을 이어갈 수 있는가.
- * 어제 학습했거나, 하루 빠졌지만 프리즈가 남아 있으면 이어진다.
+ * 어제 학습했거나, 하루 빠졌지만 프리즘이 남아 있으면 이어진다.
  */
 function canContinue(gap: number, freezeCount: number): boolean {
   return gap <= 1 || (gap === 2 && freezeCount > 0);

@@ -82,7 +82,7 @@ export interface PurchaseResult {
   freezeCount: number;
 }
 
-/** 상점에서 스트릭 프리즈 1개 구매. 코인 부족·보유 한도 초과면 한국어 메시지로 에러가 난다. */
+/** 상점에서 스트릭 프리즘 1개 구매. 코인 부족·보유 한도 초과면 한국어 메시지로 에러가 난다. */
 export async function purchaseFreeze(): Promise<PurchaseResult> {
   return invokeFunction<PurchaseResult>('purchase', { item: 'freeze' });
 }
@@ -95,9 +95,9 @@ export interface FeedPetResult {
   coins: number;
   /** 이번 먹이로 찬 게이지 (고양이 수에 비례) */
   gain: number;
-  /** 이번 먹이로 캔 프리즈 수 */
+  /** 이번 먹이로 캔 프리즘 수 */
   minted: number;
-  /** 프리즈가 가득이라 코인으로 바뀐 양 */
+  /** 프리즘이 가득이라 코인으로 바뀐 양 */
   overflowCoins: number;
 }
 

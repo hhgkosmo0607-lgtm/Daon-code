@@ -32,12 +32,12 @@ describe('minePerGrass', () => {
     expect(minePerGrass(0)).toBe(2);
   });
 
-  it('1마리는 5일, 8마리는 이틀 안에 프리즈 1개', () => {
+  it('1마리는 5일, 8마리는 이틀 안에 프리즘 1개', () => {
     expect(Math.ceil(MINE_PER_FREEZE / minePerGrass(1))).toBe(5);
     expect(Math.ceil(MINE_PER_FREEZE / minePerGrass(8))).toBeLessThanOrEqual(2);
   });
 
-  it('넘친 프리즈의 코인은 상점 가격보다 싸다 (사고팔기로 못 불림)', () => {
+  it('넘친 프리즘의 코인은 상점 가격보다 싸다 (사고팔기로 못 불림)', () => {
     expect(FREEZE_OVERFLOW_COINS).toBeLessThan(FREEZE_PRICE);
   });
 });

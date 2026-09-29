@@ -78,7 +78,7 @@ export function calculateXp(input: XpInput): XpResult {
 }
 
 /*
- * 코인 — 모아서 상점(스트릭 프리즈·테마·캐릭터)에 쓰는 화폐. (daon-content/Daon-code_아이디어.md 1번)
+ * 코인 — 모아서 상점(스트릭 프리즘·테마·캐릭터)에 쓰는 화폐. (daon-content/Daon-code_아이디어.md 1번)
  * EXP(XP)는 레벨용이라 쓰지 않고 쌓이기만 하고, 코인은 쓰면 줄어든다.
  * 지급 조건은 XP와 똑같다: 최초 완료만, 게스트는 80%, 하루 목표 보너스는 그날 1회.
  */

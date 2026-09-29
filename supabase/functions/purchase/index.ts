@@ -9,7 +9,7 @@ import {
 } from '../../../features/shop/domain/shopItems.ts';
 
 /*
- * 상점 구매 — 스트릭 프리즈, 고양이. (daon-content/Daon-code_아이디어.md 1번)
+ * 상점 구매 — 스트릭 프리즘, 고양이. (daon-content/Daon-code_아이디어.md 1번)
  *
  * 코인은 클라이언트가 직접 못 바꾸므로(가드 트리거) 구매도 서버에서만 한다.
  * 가격·한도는 앱 화면과 같은 shopItems.ts에서 가져오고, 잔액 확인과 차감은
@@ -29,8 +29,8 @@ function json(body: unknown, status = 200) {
 }
 
 const ERROR_MESSAGES: Record<string, string> = {
-  not_enough_coins: `코인이 부족해요 (프리즈 ${FREEZE_PRICE}코인)`,
-  max_reached: `프리즈는 최대 ${FREEZE_MAX}개까지 가질 수 있어요`,
+  not_enough_coins: `코인이 부족해요 (프리즘 ${FREEZE_PRICE}코인)`,
+  max_reached: `프리즘은 최대 ${FREEZE_MAX}개까지 가질 수 있어요`,
   profile_not_found: '프로필을 찾을 수 없어요',
   already_owned: '이미 가진 고양이예요',
 };

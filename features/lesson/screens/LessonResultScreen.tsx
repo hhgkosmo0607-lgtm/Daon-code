@@ -29,7 +29,7 @@ function rewardLog(result: SubmitAnswerResult): string[] {
 
   lines.push(
     result.streak.freezeUsed
-      ? `> streak ${result.streak.streak}d ✔  (프리즈 1개 사용)`
+      ? `> streak ${result.streak.streak}d ✔  (프리즘 1개 사용)`
       : `> streak ${result.streak.streak}d ✔`
   );
   return lines;
