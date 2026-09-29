@@ -9,14 +9,18 @@
 export type Currency = 'coin' | 'prism';
 
 /*
- * 코인 고양이 — 처음 고양이(치즈)는 무료, 그다음부터 80코인에서 한 마리마다 40씩 오른다.
- *   80 · 120 · 160 · 200 · 240 · 280 (6마리 전부 1,080 ≈ 레슨만으로 한 달 남짓)
+ * 코인 고양이 — 처음 고양이(치즈)는 무료, 그다음부터 40코인에서 한 마리마다 10씩 오른다.
+ *   40 · 50 · 60 · 70 · 80 · 90 (6마리 전부 390) — 빨리 모이게:
+ *   매일 레슨 2개면 2주, 1개면 7주 (재화_경제.md 시뮬레이션)
  */
-export const CAT_BASE_PRICE = 80;
-export const CAT_PRICE_STEP = 40;
+export const CAT_BASE_PRICE = 40;
+export const CAT_PRICE_STEP = 10;
 
-/** 프리즘 고양이(무지개) 가격 — 코인 고양이를 다 모으고 채굴하면 2주쯤 걸린다 */
-export const PRISM_CAT_PRICE = 10;
+/**
+ * 프리즘 고양이(무지개) 가격 — 목표가 되게: 코인 고양이를 다 모은 뒤 두 달쯤 모아야 한다.
+ * 고양이가 늘수록 채굴이 빨라지는 것까지 계산해서 매일 레슨 2개면 약 69일째.
+ */
+export const PRISM_CAT_PRICE = 50;
 
 /** 하루 빠진 스트릭을 지키는 데 드는 프리즘 */
 export const STREAK_REPAIR_PRISMS = 1;
