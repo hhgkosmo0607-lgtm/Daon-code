@@ -1,6 +1,7 @@
 import { createClient } from 'npm:@supabase/supabase-js@2.116.0';
 
 import { toKstDateString } from '../../../features/lesson/domain/streak.ts';
+import { CAT_POWER } from '../../../features/pet/domain/catSheet.ts';
 import { MINE_BASE, MINE_PER_CAT, MINE_PER_PRISM } from '../../../features/pet/domain/mining.ts';
 
 /*
@@ -53,6 +54,7 @@ Deno.serve(async (req) => {
       p_mine_base: MINE_BASE,
       p_mine_per_cat: MINE_PER_CAT,
       p_mine_per_prism: MINE_PER_PRISM,
+      p_cat_power: CAT_POWER,
     });
     if (error) throw error;
 

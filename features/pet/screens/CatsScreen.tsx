@@ -55,7 +55,7 @@ export function CatsScreen() {
               </View>
               <Text style={styles.name}>{cat.label}</Text>
               <Text style={[styles.sub, has && { color: colors.success }]}>
-                {has ? '광산에서 일해요' : `${priceLabel} · 상점`}
+                {has ? `채굴력 ${cat.power}${cat.power > 1 ? ' ★' : ''}` : `${priceLabel} · 상점`}
               </Text>
             </Pressable>
           );

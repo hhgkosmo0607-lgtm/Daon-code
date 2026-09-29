@@ -5,8 +5,8 @@
 --   - 이름: profiles.freeze_count → prisms (기존 개수는 그대로 옮겨진다)
 --   - 보유 한도 없음. 고양이 채굴로 얻고, 스토어 출시 후 현금으로도 산다. 코인으로는 못 산다.
 --   - 스트릭 자동 보호 없음. 하루 빠지면 사용자가 홈에서 프리즘을 써서 직접 지킨다 (repair_streak).
---   - 쓰는 곳: 스트릭 지키기, 프리즘 고양이(무지개)
---   - 먹이(잔디) 제거: 출석하면 고양이들이 알아서 캐서 게이지가 찬다 (check_in 교체)
+--   - 쓰는 곳: 스트릭 지키기, 프리즘 고양이(무지개), 코인으로 교환
+--   - 먹이(잔디) 제거: 출석하면 고양이들이 알아서 캐서 게이지가 찬다 (check_in 교체, 고양이별 채굴력)
 --
 -- 배포 순서: 이 마이그레이션 → submit-answer·purchase·check-in·repair-streak 함수 (feed-pet은 삭제).
 -- 그 사이 몇 분은 예전 함수가 없는 인자로 불러서 제출·구매가 실패한다 (사용자 거의 없을 때 적용).
@@ -179,18 +179,21 @@ alter table public.profiles
   drop column if exists pet_working_until;
 
 -- 하루 한 번만: 오늘 이미 받았으면 아무것도 안 하고 gain=0
--- 수치는 features/pet/domain/mining.ts(applyCheckIn)가 정하고 check-in Edge Function이 넘긴다.
+-- 수치는 features/pet/domain/mining.ts(applyCheckIn)가, 고양이별 채굴력은 catSheet.ts(CAT_POWER)가
+-- 정하고 check-in Edge Function이 넘긴다. 표에 없는 고양이는 채굴력 1로 본다.
 create function public.check_in(
   p_user           uuid,
   p_today          date,
   p_mine_base      int,
   p_mine_per_cat   int,
-  p_mine_per_prism int
+  p_mine_per_prism int,
+  p_cat_power      jsonb
 ) returns jsonb
 language plpgsql security definer set search_path = public as $$
 declare
   prof   profiles%rowtype;
   cats   int;
+  cat_power int;
   gain   int;
   gauge  int;
   minted int;
@@ -201,12 +204,14 @@ begin
   end if;
 
   cats := greatest(1, cardinality(prof.owned_cats));
+  select coalesce(sum(coalesce((p_cat_power ->> c)::int, 1)), 0) into cat_power
+    from unnest(prof.owned_cats) as c;
   if prof.last_checkin_date = p_today then
     return jsonb_build_object('gain', 0, 'minted', 0, 'cats', cats,
                               'mine_progress', prof.mine_progress, 'prisms', prof.prisms);
   end if;
 
-  gain   := p_mine_base + p_mine_per_cat * cats;
+  gain   := p_mine_base + p_mine_per_cat * greatest(1, cat_power);
   gauge  := prof.mine_progress + gain;
   minted := gauge / p_mine_per_prism;
 
@@ -221,8 +226,8 @@ begin
                             'mine_progress', prof.mine_progress, 'prisms', prof.prisms);
 end $$;
 
-revoke all on function public.check_in(uuid, date, int, int, int) from public, anon, authenticated;
-grant execute on function public.check_in(uuid, date, int, int, int) to service_role;
+revoke all on function public.check_in(uuid, date, int, int, int, jsonb) from public, anon, authenticated;
+grant execute on function public.check_in(uuid, date, int, int, int, jsonb) to service_role;
 
 -- ---------- 고양이 구매: 코인 고양이 / 프리즘 고양이 ----------
 -- 가격은 features/shop/domain/shopItems.ts(catPrice)로 purchase Edge Function이 계산해서 넘긴다.
@@ -304,3 +309,36 @@ end $$;
 
 revoke all on function public.repair_streak(uuid, date, int) from public, anon, authenticated;
 grant execute on function public.repair_streak(uuid, date, int) to service_role;
+
+-- ---------- 프리즘 → 코인 교환 ----------
+-- 한 방향만 (코인으로 프리즘은 못 산다). 비율·묶음은 features/shop/domain/shopItems.ts가 정하고
+-- purchase Edge Function이 확인해서 넘긴다.
+create or replace function public.exchange_prisms(p_user uuid, p_prisms int, p_coins_per_prism int)
+returns jsonb
+language plpgsql security definer set search_path = public as $$
+declare
+  prof profiles%rowtype;
+begin
+  if p_prisms < 1 then
+    return jsonb_build_object('error', 'invalid');
+  end if;
+
+  select * into prof from profiles where id = p_user for update;
+  if not found then
+    return jsonb_build_object('error', 'profile_not_found');
+  end if;
+  if prof.prisms < p_prisms then
+    return jsonb_build_object('error', 'not_enough_prisms');
+  end if;
+
+  update profiles
+     set prisms = prisms - p_prisms,
+         coins  = coins + p_prisms * p_coins_per_prism
+   where id = p_user
+  returning * into prof;
+
+  return jsonb_build_object('coins', prof.coins, 'prisms', prof.prisms);
+end $$;
+
+revoke all on function public.exchange_prisms(uuid, int, int) from public, anon, authenticated;
+grant execute on function public.exchange_prisms(uuid, int, int) to service_role;

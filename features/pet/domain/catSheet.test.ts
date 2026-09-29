@@ -6,6 +6,7 @@ import {
   SHEET_H,
   SHEET_W,
   frameOrigin,
+  miningPower,
   nextWalkTarget,
   pickActivity,
 } from './catSheet';
@@ -50,5 +51,12 @@ describe('nextWalkTarget', () => {
 
   it('오른쪽 끝 근처에서 가까운 곳이 뽑히면 왼쪽으로 간다', () => {
     expect(nextWalkTarget(300, 300, 0.99)).toBe(260);
+  });
+});
+
+describe('miningPower', () => {
+  it('코인 고양이는 1, 무지개는 3', () => {
+    expect(miningPower(['orange'])).toBe(1);
+    expect(miningPower(['orange', 'pink', 'rainbow'])).toBe(5);
   });
 });

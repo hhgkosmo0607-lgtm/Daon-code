@@ -2,13 +2,13 @@ import { describe, expect, it } from 'vitest';
 import { MINE_PER_PRISM, applyCheckIn, minePerCheckIn } from './mining';
 
 describe('minePerCheckIn', () => {
-  it('고양이가 많을수록 많이 캔다', () => {
+  it('채굴력이 클수록 많이 캔다', () => {
     expect(minePerCheckIn(1)).toBe(2);
     expect(minePerCheckIn(4)).toBe(5);
     expect(minePerCheckIn(8)).toBe(9);
   });
 
-  it('고양이 수를 못 읽어도 최소 1마리로 본다', () => {
+  it('채굴력을 못 읽어도 최소 1로 본다', () => {
     expect(minePerCheckIn(0)).toBe(2);
   });
 

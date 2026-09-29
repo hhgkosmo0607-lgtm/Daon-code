@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { PRISM_CAT_PRICE, catPrice, catPurchaseBlock } from './shopItems';
+import { PRISM_CAT_PRICE, catPrice, catPurchaseBlock, exchangeBlock } from './shopItems';
 
 describe('catPrice', () => {
   it('코인 고양이는 40에서 10씩 오르고, 6마리 전부 390', () => {
@@ -37,5 +37,13 @@ describe('catPurchaseBlock', () => {
       'already_owned'
     );
     expect(catPurchaseBlock({ coins: 999, prisms: 99 }, [], undefined, 0)).toBe('unknown_cat');
+  });
+});
+
+describe('exchangeBlock', () => {
+  it('정해진 묶음만, 프리즘이 있을 때만 바꾼다', () => {
+    expect(exchangeBlock(5, 5)).toBeNull();
+    expect(exchangeBlock(4, 5)).toBe('not_enough_prisms');
+    expect(exchangeBlock(99, 3)).toBe('invalid');
   });
 });

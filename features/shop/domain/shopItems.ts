@@ -22,6 +22,23 @@ export const CAT_PRICE_STEP = 10;
  */
 export const PRISM_CAT_PRICE = 50;
 
+/*
+ * 프리즘 → 코인 교환 (한 방향만. 코인으로 프리즘은 못 산다 — 되돌려 사서 불리는 게 불가능하다).
+ * 프리즘 20개면 코인 고양이 전부(390), 스트릭 지키기 1번(프리즘 1) ≈ 레슨 하루치 코인.
+ */
+export const COINS_PER_PRISM = 20;
+/** 상점에서 한 번에 바꿀 수 있는 묶음 */
+export const EXCHANGE_BUNDLES = [1, 5];
+
+/** 프리즘 n개를 코인으로 바꿀 수 있는지 */
+export function exchangeBlock(
+  prisms: number,
+  amount: number
+): 'not_enough_prisms' | 'invalid' | null {
+  if (!EXCHANGE_BUNDLES.includes(amount)) return 'invalid';
+  return prisms < amount ? 'not_enough_prisms' : null;
+}
+
 /** 하루 빠진 스트릭을 지키는 데 드는 프리즘 */
 export const STREAK_REPAIR_PRISMS = 1;
 

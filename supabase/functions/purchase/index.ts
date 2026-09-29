@@ -1,10 +1,14 @@
 import { createClient } from 'npm:@supabase/supabase-js@2.116.0';
 
 import { catById, ownedCoinCatCount } from '../../../features/pet/domain/catSheet.ts';
-import { catPrice } from '../../../features/shop/domain/shopItems.ts';
+import {
+  COINS_PER_PRISM,
+  catPrice,
+  exchangeBlock,
+} from '../../../features/shop/domain/shopItems.ts';
 
 /*
- * 상점 구매 — 고양이. 코인 고양이는 코인으로, 프리즘 고양이(무지개)는 프리즘으로 산다.
+ * 상점 — 고양이 구매(코인 고양이는 코인, 프리즘 고양이는 프리즘)와 프리즘 → 코인 교환.
  * (daon-content/재화_경제.md)
  *
  * 코인·프리즘은 클라이언트가 직접 못 바꾸므로(가드 트리거) 구매도 서버에서만 한다.
@@ -57,12 +61,30 @@ Deno.serve(async (req) => {
     }
 
     const body = await req.json().catch(() => null);
+    const admin = createClient(supabaseUrl, serviceRoleKey);
+
+    // 프리즘 → 코인 교환 (한 방향만)
+    if (body?.item === 'coins') {
+      const amount = Number(body.prisms);
+      if (exchangeBlock(Number.MAX_SAFE_INTEGER, amount) === 'invalid') {
+        return json({ error: '없는 상품이에요' }, 400);
+      }
+      const { data, error } = await admin.rpc('exchange_prisms', {
+        p_user: user.id,
+        p_prisms: amount,
+        p_coins_per_prism: COINS_PER_PRISM,
+      });
+      if (error) throw error;
+      if (data?.error) {
+        return json({ error: ERROR_MESSAGES[data.error] ?? '바꾸지 못했어요' }, 400);
+      }
+      return json({ coins: data.coins, prisms: data.prisms });
+    }
+
     const cat = body?.item === 'cat' ? catById(body.catId) : undefined;
     if (!cat) {
       return json({ error: '없는 상품이에요' }, 400);
     }
-
-    const admin = createClient(supabaseUrl, serviceRoleKey);
     const { data: profile, error: profileError } = await admin
       .from('profiles')
       .select('owned_cats')

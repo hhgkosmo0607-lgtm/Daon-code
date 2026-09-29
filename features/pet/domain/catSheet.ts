@@ -44,23 +44,35 @@ export interface CatColor {
   id: string;
   label: string;
   currency: CatCurrency;
+  /** 출석 채굴력 — 코인 고양이 1, 프리즘 고양이는 더 많이 캔다 */
+  power: number;
 }
 
-/** 치즈(orange)는 처음부터 가진다. 무지개만 프리즘 고양이 (재화_경제.md) */
+/** 치즈(orange)는 처음부터 가진다. 무지개만 프리즘 고양이이고 3마리 몫을 캔다 (재화_경제.md) */
 export const CAT_COLORS: CatColor[] = [
-  { id: 'orange', label: '치즈', currency: 'coin' },
-  { id: 'white', label: '하양', currency: 'coin' },
-  { id: 'cream', label: '크림', currency: 'coin' },
-  { id: 'gray', label: '회색', currency: 'coin' },
-  { id: 'blue', label: '파랑', currency: 'coin' },
-  { id: 'mint', label: '민트', currency: 'coin' },
-  { id: 'pink', label: '분홍', currency: 'coin' },
-  { id: 'rainbow', label: '무지개', currency: 'prism' },
+  { id: 'orange', label: '치즈', currency: 'coin', power: 1 },
+  { id: 'white', label: '하양', currency: 'coin', power: 1 },
+  { id: 'cream', label: '크림', currency: 'coin', power: 1 },
+  { id: 'gray', label: '회색', currency: 'coin', power: 1 },
+  { id: 'blue', label: '파랑', currency: 'coin', power: 1 },
+  { id: 'mint', label: '민트', currency: 'coin', power: 1 },
+  { id: 'pink', label: '분홍', currency: 'coin', power: 1 },
+  { id: 'rainbow', label: '무지개', currency: 'prism', power: 3 },
 ];
 
 export function catById(id: string): CatColor | undefined {
   return CAT_COLORS.find((c) => c.id === id);
 }
+
+/** 가진 고양이 채굴력 합 — 출석 1번 게이지를 정한다 (mining.ts의 minePerCheckIn) */
+export function miningPower(ownedCats: string[]): number {
+  return ownedCats.reduce((sum, id) => sum + (catById(id)?.power ?? 1), 0);
+}
+
+/** 고양이별 채굴력 표 — 서버가 DB 함수(check_in)에 그대로 넘긴다 */
+export const CAT_POWER: Record<string, number> = Object.fromEntries(
+  CAT_COLORS.map((c) => [c.id, c.power])
+);
 
 /** 가진 코인 고양이 수 — 다음 코인 고양이 가격을 정한다 */
 export function ownedCoinCatCount(ownedCats: string[]): number {

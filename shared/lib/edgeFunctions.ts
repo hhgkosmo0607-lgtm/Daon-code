@@ -86,6 +86,16 @@ export async function purchaseCat(catId: string): Promise<PurchaseCatResult> {
   return invokeFunction<PurchaseCatResult>('purchase', { item: 'cat', catId });
 }
 
+export interface ExchangeResult {
+  coins: number;
+  prisms: number;
+}
+
+/** 프리즘 n개를 코인으로 바꾼다 (EXCHANGE_BUNDLES 중 하나). 프리즘이 모자라면 한국어 메시지로 에러가 난다. */
+export async function exchangePrisms(prisms: number): Promise<ExchangeResult> {
+  return invokeFunction<ExchangeResult>('purchase', { item: 'coins', prisms });
+}
+
 export interface CheckInResult {
   /** 이번 출석으로 찬 게이지 (오늘 이미 받았으면 0) */
   gain: number;
