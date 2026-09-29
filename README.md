@@ -63,6 +63,7 @@ Expo Go 앱으로 QR을 찍으면 실물 기기에서 바로 확인할 수 있�
    - `0004_coins_and_shop.sql` → 코인(상점 화폐) 컬럼 + 제출 시 코인 적립 + 프리즈 구매 함수 (**submit-answer 배포 전에** 실행)
    - `0005_pet_mining.sql` → 고양이 채굴: 잔디·채굴 컬럼 + 먹이 주기 함수 (**submit-answer·feed-pet 배포 전에** 실행)
    - `0006_checkin_and_cats.sql` → 출석 잔디(앱을 열면 하루 한 번) + 보유 고양이·고양이 구매 (**check-in·purchase 배포 전에** 실행)
+   - `0007_prisms.sql` → 프리즈를 프리즘으로(컬럼 prisms, 한도 없음), 먹이 제거·출석 자동 채굴, 스트릭 직접 지키기, 코인·프리즘 고양이 (**함수 배포 전에** 실행)
    - CLI로는 `npx supabase@latest db push` (프로젝트 link 필요, `--dry-run`으로 미리보기)
 2. **Authentication → Providers**
    - Email 활성화 (기본 켜짐)

@@ -9,7 +9,7 @@ import type { ThemeColors } from '../../../shared/theme/themes';
 import { useUserProgress } from '../../lesson/hooks/useUserProgress';
 import { catPrice } from '../../shop/domain/shopItems';
 import { CatPortrait } from '../components/CatPortrait';
-import { CAT_COLORS } from '../domain/catSheet';
+import { CAT_COLORS, ownedCoinCatCount } from '../domain/catSheet';
 
 /*
  * 내 고양이 — 8색 중 가진 고양이와 아직 없는 고양이를 보여준다.
@@ -21,7 +21,7 @@ export function CatsScreen() {
   const styles = useMemo(() => createStyles(colors), [colors]);
   const { profile } = useUserProgress();
   const owned = profile?.owned_cats ?? ['orange'];
-  const nextPrice = catPrice(owned.length);
+  const coinCats = ownedCoinCatCount(owned);
 
   return (
     <SafeAreaView style={styles.container} edges={['top', 'bottom']}>
@@ -37,6 +37,8 @@ export function CatsScreen() {
       <ScrollView contentContainerStyle={styles.grid}>
         {CAT_COLORS.map((cat) => {
           const has = owned.includes(cat.id);
+          const price = catPrice(cat.currency, coinCats);
+          const priceLabel = cat.currency === 'prism' ? `프리즘 ${price}` : `${price}c`;
           return (
             <Pressable
               key={cat.id}
@@ -45,9 +47,7 @@ export function CatsScreen() {
               disabled={has}
               accessibilityRole={has ? undefined : 'button'}
               accessibilityLabel={
-                has
-                  ? `${cat.label} 고양이, 보유 중`
-                  : `${cat.label} 고양이, 상점에서 ${nextPrice}코인`
+                has ? `${cat.label} 고양이, 보유 중` : `${cat.label} 고양이, 상점에서 ${priceLabel}`
               }
             >
               <View style={styles.portraitBox}>
@@ -55,7 +55,7 @@ export function CatsScreen() {
               </View>
               <Text style={styles.name}>{cat.label}</Text>
               <Text style={[styles.sub, has && { color: colors.success }]}>
-                {has ? '광산에서 일해요' : `${nextPrice}c · 상점`}
+                {has ? '광산에서 일해요' : `${priceLabel} · 상점`}
               </Text>
             </Pressable>
           );

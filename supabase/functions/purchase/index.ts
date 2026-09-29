@@ -1,19 +1,16 @@
 import { createClient } from 'npm:@supabase/supabase-js@2.116.0';
 
-import { CAT_COLORS } from '../../../features/pet/domain/catSheet.ts';
-import {
-  CAT_BASE_PRICE,
-  CAT_PRICE_STEP,
-  FREEZE_MAX,
-  FREEZE_PRICE,
-} from '../../../features/shop/domain/shopItems.ts';
+import { catById, ownedCoinCatCount } from '../../../features/pet/domain/catSheet.ts';
+import { catPrice } from '../../../features/shop/domain/shopItems.ts';
 
 /*
- * 상점 구매 — 스트릭 프리즘, 고양이. (daon-content/Daon-code_아이디어.md 1번)
+ * 상점 구매 — 고양이. 코인 고양이는 코인으로, 프리즘 고양이(무지개)는 프리즘으로 산다.
+ * (daon-content/재화_경제.md)
  *
- * 코인은 클라이언트가 직접 못 바꾸므로(가드 트리거) 구매도 서버에서만 한다.
- * 가격·한도는 앱 화면과 같은 shopItems.ts에서 가져오고, 잔액 확인과 차감은
- * purchase_freeze DB 함수가 한 트랜잭션으로 한다. (0004_coins_and_shop.sql)
+ * 코인·프리즘은 클라이언트가 직접 못 바꾸므로(가드 트리거) 구매도 서버에서만 한다.
+ * 가격은 앱 화면과 같은 shopItems.ts로 계산하고, 잔액 확인과 차감은 purchase_cat DB 함수가
+ * 한 트랜잭션으로 한다. 가격을 계산할 때 본 보유 목록이 그 사이 바뀌면 DB 함수가 거절한다.
+ * (0007_prisms.sql)
  */
 
 const corsHeaders = {
@@ -29,13 +26,12 @@ function json(body: unknown, status = 200) {
 }
 
 const ERROR_MESSAGES: Record<string, string> = {
-  not_enough_coins: `코인이 부족해요 (프리즘 ${FREEZE_PRICE}코인)`,
-  max_reached: `프리즘은 최대 ${FREEZE_MAX}개까지 가질 수 있어요`,
-  profile_not_found: '프로필을 찾을 수 없어요',
+  not_enough_coins: '코인이 부족해요',
+  not_enough_prisms: '프리즘이 부족해요',
   already_owned: '이미 가진 고양이예요',
+  conflict: '다른 구매와 겹쳤어요. 다시 시도해주세요',
+  profile_not_found: '프로필을 찾을 수 없어요',
 };
-
-const CAT_IDS = CAT_COLORS.map((c) => c.id);
 
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') {
@@ -61,45 +57,37 @@ Deno.serve(async (req) => {
     }
 
     const body = await req.json().catch(() => null);
-    const admin = createClient(supabaseUrl, serviceRoleKey);
-
-    if (body?.item === 'cat') {
-      if (!CAT_IDS.includes(body.catId)) {
-        return json({ error: '없는 고양이예요' }, 400);
-      }
-      const { data, error } = await admin.rpc('purchase_cat', {
-        p_user: user.id,
-        p_cat: body.catId,
-        p_base_price: CAT_BASE_PRICE,
-        p_price_step: CAT_PRICE_STEP,
-      });
-      if (error) throw error;
-      if (data?.error) {
-        const message =
-          data.error === 'not_enough_coins'
-            ? `코인이 부족해요 (다음 고양이 ${data.price}코인)`
-            : (ERROR_MESSAGES[data.error] ?? '구매하지 못했어요');
-        return json({ error: message }, 400);
-      }
-      return json({ coins: data.coins, ownedCats: data.owned_cats });
-    }
-
-    if (body?.item !== 'freeze') {
+    const cat = body?.item === 'cat' ? catById(body.catId) : undefined;
+    if (!cat) {
       return json({ error: '없는 상품이에요' }, 400);
     }
 
-    const { data, error } = await admin.rpc('purchase_freeze', {
+    const admin = createClient(supabaseUrl, serviceRoleKey);
+    const { data: profile, error: profileError } = await admin
+      .from('profiles')
+      .select('owned_cats')
+      .eq('id', user.id)
+      .single();
+    if (profileError) throw profileError;
+
+    const owned: string[] = profile.owned_cats ?? [];
+    const price = catPrice(cat.currency, ownedCoinCatCount(owned));
+
+    const { data, error } = await admin.rpc('purchase_cat', {
       p_user: user.id,
-      p_price: FREEZE_PRICE,
-      p_max: FREEZE_MAX,
+      p_cat: cat.id,
+      p_currency: cat.currency,
+      p_price: price,
+      p_seen_owned: owned,
     });
     if (error) throw error;
 
     if (data?.error) {
-      return json({ error: ERROR_MESSAGES[data.error] ?? '구매하지 못했어요' }, 400);
+      const status = data.error === 'conflict' ? 409 : 400;
+      return json({ error: ERROR_MESSAGES[data.error] ?? '구매하지 못했어요' }, status);
     }
 
-    return json({ coins: data.coins, freezeCount: data.freeze_count });
+    return json({ coins: data.coins, prisms: data.prisms, ownedCats: data.owned_cats });
   } catch (error) {
     console.error(error);
     return json({ error: '서버 오류가 발생했어요' }, 500);

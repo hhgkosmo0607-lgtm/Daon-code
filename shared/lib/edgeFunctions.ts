@@ -44,8 +44,6 @@ export interface SubmitAnswerResult {
   coins: number;
   streak: {
     streak: number;
-    freezeCount: number;
-    freezeUsed: boolean;
   };
   profile: {
     totalXp: number;
@@ -77,52 +75,39 @@ export async function completePlacement(
   return invokeFunction<CompletePlacementResult>('complete-placement', { answers });
 }
 
-export interface PurchaseResult {
+export interface PurchaseCatResult {
   coins: number;
-  freezeCount: number;
+  prisms: number;
+  ownedCats: string[];
 }
 
-/** 상점에서 스트릭 프리즘 1개 구매. 코인 부족·보유 한도 초과면 한국어 메시지로 에러가 난다. */
-export async function purchaseFreeze(): Promise<PurchaseResult> {
-  return invokeFunction<PurchaseResult>('purchase', { item: 'freeze' });
-}
-
-export interface FeedPetResult {
-  grass: number;
-  mineProgress: number;
-  freezeCount: number;
-  petWorkingUntil: string;
-  coins: number;
-  /** 이번 먹이로 찬 게이지 (고양이 수에 비례) */
-  gain: number;
-  /** 이번 먹이로 캔 프리즘 수 */
-  minted: number;
-  /** 프리즘이 가득이라 코인으로 바뀐 양 */
-  overflowCoins: number;
-}
-
-/** 고양이에게 잔디 1개를 먹인다. 잔디가 없으면 한국어 메시지로 에러가 난다. */
-export async function feedPet(): Promise<FeedPetResult> {
-  return invokeFunction<FeedPetResult>('feed-pet', {});
+/** 상점에서 고양이 1마리 구매 (코인 고양이는 코인, 프리즘 고양이는 프리즘). 잔액 부족이면 한국어 메시지로 에러가 난다. */
+export async function purchaseCat(catId: string): Promise<PurchaseCatResult> {
+  return invokeFunction<PurchaseCatResult>('purchase', { item: 'cat', catId });
 }
 
 export interface CheckInResult {
-  /** 이번 출석으로 받은 잔디 (오늘 이미 받았으면 0) */
-  granted: number;
-  grass: number;
+  /** 이번 출석으로 찬 게이지 (오늘 이미 받았으면 0) */
+  gain: number;
+  /** 이번 출석으로 나온 프리즘 */
+  minted: number;
+  /** 일한 고양이 수 */
+  cats: number;
+  mineProgress: number;
+  prisms: number;
 }
 
-/** 하루 한 번 출석 — 오늘 처음이면 고양이 먹이 잔디를 받는다. 여러 번 불러도 하루 한 번만 준다. */
+/** 하루 한 번 출석 — 오늘 처음이면 고양이들이 캔 만큼 게이지가 차고 프리즘이 나온다. 여러 번 불러도 하루 한 번만. */
 export async function checkIn(): Promise<CheckInResult> {
   return invokeFunction<CheckInResult>('check-in', {});
 }
 
-export interface PurchaseCatResult {
-  coins: number;
-  ownedCats: string[];
+export interface RepairStreakResult {
+  prisms: number;
+  streak: number;
 }
 
-/** 상점에서 고양이 1마리 구매. 코인 부족·이미 보유면 한국어 메시지로 에러가 난다. */
-export async function purchaseCat(catId: string): Promise<PurchaseCatResult> {
-  return invokeFunction<PurchaseCatResult>('purchase', { item: 'cat', catId });
+/** 하루 빠진 스트릭을 프리즘으로 지킨다. 사용자가 직접 눌렀을 때만 부른다. */
+export async function repairStreak(): Promise<RepairStreakResult> {
+  return invokeFunction<RepairStreakResult>('repair-streak', {});
 }

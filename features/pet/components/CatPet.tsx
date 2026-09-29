@@ -28,7 +28,6 @@ import { SheetCrop } from './SheetCrop';
  * 동굴을 돌아다니는 고양이.
  *
  * 돌아다니기 · 바위에서 곡괭이질 · 노트북으로 코딩/영상 · 낮잠을 번갈아 한다.
- * resting이면 (나중에: 먹이 잔디가 없으면) 아무것도 안 하고 누워 쉰다.
  * 이동은 네이티브 드라이버 애니메이션이고, 프레임 교체는 이 컴포넌트 안에서만 일어난다.
  * 기기에서 "동작 줄이기"를 켜 두면 제자리에 가만히 앉아 있다.
  */
@@ -45,12 +44,11 @@ interface Props {
   /** 바위 왼쪽 끝 x (dp). 고양이는 이 왼쪽에서만 움직인다 */
   rockLeft: number;
   catId?: string;
-  resting?: boolean;
   /** 처음 서 있는 x (dp) — 여러 마리가 겹쳐서 시작하지 않게 */
   startX?: number;
 }
 
-export function CatPet({ rockLeft, catId = DEFAULT_CAT_ID, resting = false, startX = 0 }: Props) {
+export function CatPet({ rockLeft, catId = DEFAULT_CAT_ID, startX = 0 }: Props) {
   const sheet = CAT_SHEETS[catId] ?? CAT_SHEETS[DEFAULT_CAT_ID];
   const reduceMotion = useReduceMotion();
 
@@ -61,9 +59,9 @@ export function CatPet({ rockLeft, catId = DEFAULT_CAT_ID, resting = false, star
   const setAnim = (next: CatAnim) => setMotion({ anim: next, tick: 0 });
   const [facingLeft, setFacingLeft] = useState(false);
 
-  // 동작 줄이기·쉬는 중이면 스케줄과 상관없이 고정 동작
+  // 동작 줄이기면 스케줄과 상관없이 고정 동작
   const walkable = rockLeft - PICKAXE_RIGHT * S > 0;
-  const anim: CatAnim = reduceMotion || !walkable ? 'idle' : resting ? 'rest' : motion.anim;
+  const anim: CatAnim = reduceMotion || !walkable ? 'idle' : motion.anim;
   const tick = reduceMotion ? 0 : motion.tick;
 
   // 프레임 넘기기
@@ -79,7 +77,7 @@ export function CatPet({ rockLeft, catId = DEFAULT_CAT_ID, resting = false, star
   // 할 일 고르기 → 걸어가기 → 하기 → 쉬기를 반복
   useEffect(() => {
     const walkMax = rockLeft - PICKAXE_RIGHT * S;
-    if (reduceMotion || walkMax <= 0 || resting) return;
+    if (reduceMotion || walkMax <= 0) return;
 
     let cancelled = false;
     const timers: ReturnType<typeof setTimeout>[] = [];
@@ -154,7 +152,7 @@ export function CatPet({ rockLeft, catId = DEFAULT_CAT_ID, resting = false, star
         posRef.current = value;
       });
     };
-  }, [rockLeft, resting, reduceMotion, x]);
+  }, [rockLeft, reduceMotion, x]);
 
   const origin = frameOrigin(anim, tick);
   const striking = anim === 'mine' && tick % 2 === 1;

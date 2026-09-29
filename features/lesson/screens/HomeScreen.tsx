@@ -9,13 +9,14 @@ import { fonts, radius, spacing } from '../../../shared/theme/theme';
 import type { ThemeColors } from '../../../shared/theme/themes';
 import { useAuth } from '../../auth/AuthContext';
 import { StudyGrass } from '../../grass/components/StudyGrass';
-import { PetPanel } from '../../pet/components/PetPanel';
+import { PetPanel, checkInMessage } from '../../pet/components/PetPanel';
 import { PetScene } from '../../pet/components/PetScene';
-import { isWorking } from '../../pet/domain/mining';
+import { PixelDiamond } from '../../pet/components/PixelDiamond';
 import { useTrack } from '../../track/TrackContext';
 import { getLessons, getStages, hasContent } from '../data/contentRepository';
 import { XP_PER_LEVEL, levelProgress } from '../domain/scoring';
-import { displayStreak, toKstDateString } from '../domain/streak';
+import { StreakRepairBanner } from '../components/StreakRepairBanner';
+import { displayStreak, streakStatus, toKstDateString } from '../domain/streak';
 import { useUserProgress } from '../hooks/useUserProgress';
 import { useWrongAnswerCount } from '../hooks/useWrongAnswerCount';
 
@@ -38,9 +39,11 @@ export function HomeScreen() {
   const { user, isGuest } = useAuth();
   const { profile, statusMap, loading, error, reload } = useUserProgress();
   // 레슨·상점 같은 모달에서 돌아오면 XP·코인이 바뀌었을 수 있어서 다시 불러온다
-  // 하루 한 번 출석 잔디 — 레슨을 안 풀어도 홈에 들어오면 받는다. 판단은 서버가 하고,
-  // 여기서는 같은 날 반복 호출만 줄인다 (앱을 켜 둔 채 자정을 넘기면 다음 포커스 때 다시 부른다)
+  // 하루 한 번 출석 — 레슨을 안 풀어도 홈에 들어오면 고양이들이 캔 만큼 채굴 게이지가 찬다.
+  // 판단은 서버가 하고, 여기서는 같은 날 반복 호출만 줄인다 (자정을 넘기면 다음 포커스 때 다시 부른다)
   const checkedInDate = useRef<string | null>(null);
+  const [todayReward, setTodayReward] = useState<string | null>(null);
+  const [showPetPanel, setShowPetPanel] = useState(false);
   useFocusEffect(
     useCallback(() => {
       reload();
@@ -49,7 +52,12 @@ export function HomeScreen() {
       checkIn()
         .then((r) => {
           checkedInDate.current = today;
-          if (r.granted > 0) reload();
+          const message = checkInMessage(r);
+          if (!message) return;
+          // 받은 보상을 보여주려고 광산 패널을 펼친다
+          setTodayReward(message);
+          setShowPetPanel(true);
+          reload();
         })
         .catch(() => {});
     }, [reload, user])
@@ -62,7 +70,6 @@ export function HomeScreen() {
     ? displayStreak({
         savedStreak: profile.streak,
         lastStudyDate: profile.last_study_date,
-        freezeCount: profile.freeze_count,
         today: toKstDateString(),
       })
     : 0;
@@ -74,7 +81,14 @@ export function HomeScreen() {
   // (홈이 세션 복구보다 먼저 뜰 수 있어서 isGuest를 초기값으로 굳히지 않는다)
   const [statInfoToggled, setStatInfoToggled] = useState<boolean | null>(null);
   const showStatInfo = statInfoToggled ?? isGuest;
-  const [showPetPanel, setShowPetPanel] = useState(false);
+  // 하루 빠진 스트릭 — "괜찮아요"를 누른 날은 다시 묻지 않는다 (앱을 다시 켜면 다시 묻는다)
+  const [repairDismissedOn, setRepairDismissedOn] = useState<string | null>(null);
+  const todayKst = toKstDateString();
+  const canRepairStreak =
+    !!profile &&
+    profile.streak > 0 &&
+    streakStatus(profile.last_study_date, todayKst) === 'repairable' &&
+    repairDismissedOn !== todayKst;
 
   const statusOf = (lessonId: string) => {
     return statusMap[lessonId] ?? 'open';
@@ -99,77 +113,92 @@ export function HomeScreen() {
     <SafeAreaView style={styles.container} edges={['top']}>
       <View style={styles.topBar}>
         <View style={styles.topRow}>
-        {error ? (
-          <Pressable
-            style={styles.statGroup}
-            onPress={reload}
-            hitSlop={6}
-            accessibilityRole="button"
-            accessibilityLabel="학습 기록을 불러오지 못했어요. 다시 시도"
-          >
-            <Text style={[styles.stat, { color: colors.error }]}>불러오기 실패 · 다시 시도</Text>
-          </Pressable>
-        ) : (
-          <Pressable
-            style={styles.statGroup}
-            onPress={() => setStatInfoToggled(!showStatInfo)}
-            hitSlop={6}
-            accessibilityRole="button"
-            accessibilityLabel={`${streak}일 연속 학습, 레벨 ${progress.level}, 다음 레벨까지 ${progress.xpToNext} XP`}
-            accessibilityHint="눌러서 설명 보기"
-            accessibilityState={{ expanded: showStatInfo }}
-          >
-            <Text style={[styles.stat, { color: colors.streak }]}>{streak}d</Text>
-            <Text style={[styles.stat, { color: colors.xp }]} numberOfLines={1}>
-              LV{progress.level} {levelBar(progress.xpIntoLevel)} {progress.xpIntoLevel}/{XP_PER_LEVEL}
-            </Text>
-          </Pressable>
-        )}
-        {!error && user && (
-          <Pressable
-            onPress={() => router.push('/shop')}
-            hitSlop={6}
-            accessibilityRole="button"
-            accessibilityLabel={`코인 ${coins}개, 상점 열기`}
-          >
-            <Text style={[styles.stat, { color: colors.accent }]}>{coins}c</Text>
-          </Pressable>
-        )}
-        <View style={styles.rightGroup}>
-          {wrongAnswerCount > 0 && (
+          {error ? (
             <Pressable
-              style={styles.reviewButton}
-              onPress={() => router.push('/review')}
+              style={styles.statGroup}
+              onPress={reload}
+              hitSlop={6}
               accessibilityRole="button"
-              accessibilityLabel={`오답노트 ${wrongAnswerCount}개`}
+              accessibilityLabel="학습 기록을 불러오지 못했어요. 다시 시도"
             >
-              <Text style={styles.reviewButtonText}>오답 {wrongAnswerCount}</Text>
+              <Text style={[styles.stat, { color: colors.error }]}>불러오기 실패 · 다시 시도</Text>
+            </Pressable>
+          ) : (
+            <Pressable
+              style={styles.statGroup}
+              onPress={() => setStatInfoToggled(!showStatInfo)}
+              hitSlop={6}
+              accessibilityRole="button"
+              accessibilityLabel={`${streak}일 연속 학습, 레벨 ${progress.level}, 다음 레벨까지 ${progress.xpToNext} XP`}
+              accessibilityHint="눌러서 설명 보기"
+              accessibilityState={{ expanded: showStatInfo }}
+            >
+              <Text style={[styles.stat, { color: colors.streak }]}>{streak}d</Text>
+              <Text style={[styles.stat, { color: colors.xp }]} numberOfLines={1}>
+                LV{progress.level} {levelBar(progress.xpIntoLevel)} {progress.xpIntoLevel}/
+                {XP_PER_LEVEL}
+              </Text>
             </Pressable>
           )}
-          <Pressable
-            onPress={() => router.push('/settings/theme')}
-            hitSlop={8}
-            accessibilityRole="button"
-            accessibilityLabel="테마 바꾸기"
-          >
-            <Text style={styles.themeButton}>◐</Text>
-          </Pressable>
-          <Pressable style={styles.badgeWrap} onPress={() => router.push('/auth')}>
-            {!user && <Text style={styles.badge}>로그인</Text>}
-            {isGuest && <Text style={styles.badge}>게스트</Text>}
-          </Pressable>
-        </View>
+          {!error && user && (
+            <Pressable
+              onPress={() => router.push('/shop')}
+              hitSlop={6}
+              accessibilityRole="button"
+              accessibilityLabel={`코인 ${coins}개, 프리즘 ${profile?.prisms ?? 0}개, 상점 열기`}
+              style={styles.wallet}
+            >
+              <Text style={[styles.stat, { color: colors.accent }]}>{coins}c</Text>
+              <PixelDiamond pixel={1.5} />
+              <Text style={[styles.stat, { color: colors.text }]}>{profile?.prisms ?? 0}</Text>
+            </Pressable>
+          )}
+          <View style={styles.rightGroup}>
+            {wrongAnswerCount > 0 && (
+              <Pressable
+                style={styles.reviewButton}
+                onPress={() => router.push('/review')}
+                accessibilityRole="button"
+                accessibilityLabel={`오답노트 ${wrongAnswerCount}개`}
+              >
+                <Text style={styles.reviewButtonText}>오답 {wrongAnswerCount}</Text>
+              </Pressable>
+            )}
+            <Pressable
+              onPress={() => router.push('/settings/theme')}
+              hitSlop={8}
+              accessibilityRole="button"
+              accessibilityLabel="테마 바꾸기"
+            >
+              <Text style={styles.themeButton}>◐</Text>
+            </Pressable>
+            <Pressable style={styles.badgeWrap} onPress={() => router.push('/auth')}>
+              {!user && <Text style={styles.badge}>로그인</Text>}
+              {isGuest && <Text style={styles.badge}>게스트</Text>}
+            </Pressable>
+          </View>
         </View>
         {/* 상단바 둘째 줄 — 고양이가 일하는 광산 */}
         <PetScene
           catIds={profile?.owned_cats}
-          resting={!!profile && !isWorking(profile.pet_working_until)}
           onPress={profile ? () => setShowPetPanel(!showPetPanel) : undefined}
           expanded={showPetPanel}
         />
       </View>
 
-      {showPetPanel && profile && <PetPanel profile={profile} colors={colors} onFed={reload} />}
+      {showPetPanel && profile && (
+        <PetPanel profile={profile} colors={colors} todayReward={todayReward} />
+      )}
+
+      {canRepairStreak && (
+        <StreakRepairBanner
+          streak={profile.streak}
+          prisms={profile.prisms}
+          colors={colors}
+          onRepaired={reload}
+          onDismiss={() => setRepairDismissedOn(todayKst)}
+        />
+      )}
 
       {showStatInfo && (
         <Pressable style={styles.statInfo} onPress={() => setStatInfoToggled(false)}>
@@ -177,7 +206,7 @@ export function HomeScreen() {
             {streak}일 연속 학습 중 · 누적 {totalXp} XP · 다음 레벨까지 {progress.xpToNext} XP
           </Text>
           <Text style={styles.statInfoText}>
-            코인 {coins}개 · 프리즘 {profile?.freeze_count ?? 0}개 · 코인(c)을 누르면 상점
+            코인 {coins}개 · 프리즘 {profile?.prisms ?? 0}개 · 코인(c)을 누르면 상점
           </Text>
           {isGuest && (
             <Text style={styles.statInfoText}>
@@ -228,7 +257,9 @@ export function HomeScreen() {
                     </Text>
 
                     <View style={styles.lessonText}>
-                      <Text style={[styles.lessonTitle, status !== 'completed' && styles.mutedText]}>
+                      <Text
+                        style={[styles.lessonTitle, status !== 'completed' && styles.mutedText]}
+                      >
                         {lesson.id} {lesson.title}
                       </Text>
                       {lesson.subtitle && (
@@ -276,6 +307,7 @@ const createStyles = (colors: ThemeColors) =>
       paddingTop: spacing.md,
       paddingBottom: spacing.sm,
     },
+    wallet: { flexDirection: 'row', alignItems: 'center', gap: 4 },
     statGroup: { flexDirection: 'row', alignItems: 'center', gap: spacing.sm, flexShrink: 1 },
     stat: { fontSize: 13, fontWeight: '700', fontFamily: fonts.mono },
     rightGroup: { marginLeft: 'auto', flexDirection: 'row', alignItems: 'center', gap: spacing.sm },

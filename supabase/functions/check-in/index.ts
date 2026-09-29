@@ -1,14 +1,14 @@
 import { createClient } from 'npm:@supabase/supabase-js@2.116.0';
 
 import { toKstDateString } from '../../../features/lesson/domain/streak.ts';
-import { GRASS_PER_ATTENDANCE } from '../../../features/pet/domain/mining.ts';
+import { MINE_BASE, MINE_PER_CAT, MINE_PER_PRISM } from '../../../features/pet/domain/mining.ts';
 
 /*
- * 하루 한 번 출석 — 그날 처음 앱에 들어오면 고양이 먹이 잔디를 준다.
- * 레슨을 풀지 않아도 준다. (daon-content/Daon-code_아이디어.md 2-A)
+ * 하루 한 번 출석 — 그날 처음 앱에 들어오면 고양이들이 캔 만큼 채굴 게이지가 차고,
+ * 가득 차면 프리즘이 나온다. 레슨을 풀지 않아도 준다. (daon-content/재화_경제.md)
  *
  * 앱은 홈에 들어올 때마다 불러도 되고, 하루 한 번만 주는 판단은 check_in DB 함수가 한다.
- * 날짜는 기기 시계가 아니라 서버 시각의 한국 날짜로 정한다. (0006_checkin_and_cats.sql)
+ * 날짜는 기기 시계가 아니라 서버 시각의 한국 날짜로 정한다. (0007_prisms.sql)
  */
 
 const corsHeaders = {
@@ -50,7 +50,9 @@ Deno.serve(async (req) => {
     const { data, error } = await admin.rpc('check_in', {
       p_user: user.id,
       p_today: toKstDateString(),
-      p_grass: GRASS_PER_ATTENDANCE,
+      p_mine_base: MINE_BASE,
+      p_mine_per_cat: MINE_PER_CAT,
+      p_mine_per_prism: MINE_PER_PRISM,
     });
     if (error) throw error;
 
@@ -58,7 +60,13 @@ Deno.serve(async (req) => {
       return json({ error: '프로필을 찾을 수 없어요' }, 500);
     }
 
-    return json({ granted: data.granted, grass: data.grass });
+    return json({
+      gain: data.gain,
+      minted: data.minted,
+      cats: data.cats,
+      mineProgress: data.mine_progress,
+      prisms: data.prisms,
+    });
   } catch (error) {
     console.error(error);
     return json({ error: '서버 오류가 발생했어요' }, 500);

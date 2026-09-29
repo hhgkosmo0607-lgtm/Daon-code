@@ -27,15 +27,12 @@ const ROCK_MARGIN_RIGHT = 6 * S;
 
 export function PetScene({
   catIds = [DEFAULT_CAT_ID],
-  resting,
   onPress,
   expanded,
 }: {
   /** 가진 고양이 색 id 목록 — 전부 광산에 나온다 */
   catIds?: string[];
-  /** 먹이가 없어서 쉬는 중 */
-  resting?: boolean;
-  /** 누르면 먹이 패널 열기/닫기 */
+  /** 누르면 채굴 패널 열기/닫기 */
   onPress?: () => void;
   expanded?: boolean;
 }) {
@@ -51,8 +48,8 @@ export function PetScene({
       onPress={onPress}
       disabled={!onPress}
       accessibilityRole="button"
-      accessibilityLabel={`고양이 ${catIds.length}마리, ${resting ? '배고파서 쉬는 중' : '광산에서 일하는 중'}`}
-      accessibilityHint="눌러서 먹이 주기"
+      accessibilityLabel={`고양이 ${catIds.length}마리가 광산에서 일하는 중`}
+      accessibilityHint="눌러서 채굴 현황 보기"
       accessibilityState={{ expanded }}
     >
       {Array.from({ length: tiles }, (_, i) => (
@@ -78,7 +75,6 @@ export function PetScene({
               key={id}
               catId={id}
               rockLeft={rockLeft}
-              resting={resting}
               // 처음엔 걸을 수 있는 폭에 고르게 나눠 세운다
               startX={((rockLeft - PICKAXE_RIGHT * S) * i) / Math.max(1, catIds.length)}
             />

@@ -17,7 +17,8 @@ export interface Profile {
   streak: number;
   max_streak: number;
   last_study_date: string | null;
-  freeze_count: number;
+  /** 프리즘 — 스트릭 지키기·프리즘 고양이에 쓰는 재화, 한도 없음 (0007_prisms.sql) */
+  prisms: number;
   daily_goal: number;
   /** 게스트 상태에서 받은 XP — 계정 연결 시 환급 기준 (0002_guest_refund_and_atomic_submit.sql) */
   guest_xp: number;
@@ -25,12 +26,8 @@ export interface Profile {
   coins: number;
   /** 게스트 상태에서 받은 코인 — 계정 연결 시 XP와 함께 환급 */
   guest_coins: number;
-  /** 고양이 먹이 — 출석(그날 첫 제출)마다 받는다 (0005_pet_mining.sql) */
-  grass: number;
-  /** 채굴 게이지 — MINE_PER_FREEZE만큼 차면 프리즘 1개 */
+  /** 채굴 게이지 — 출석마다 고양이 수만큼 차고, MINE_PER_PRISM이 차면 프리즘 1개 */
   mine_progress: number;
-  /** 먹이 효과가 끝나는 시각. 지나면 고양이가 쉰다 */
-  pet_working_until: string | null;
   /** 가진 고양이 색 id 목록 — 처음엔 ['orange'] (0006_checkin_and_cats.sql) */
   owned_cats: string[];
 }

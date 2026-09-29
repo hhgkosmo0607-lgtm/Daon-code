@@ -29,66 +29,52 @@ export interface StreakInput {
   currentStreak: number;
   /** 마지막으로 학습한 한국 기준 날짜 (YYYY-MM-DD), 없으면 null */
   lastStudyDate: string | null;
-  /** 보유한 스트릭 프리즘 개수 */
-  freezeCount: number;
   /** 이번 학습이 일어난 한국 기준 날짜 */
   today: string;
 }
 
 export interface StreakResult {
   streak: number;
-  freezeCount: number;
-  /** 프리즘을 사용해서 끊길 뻔한 스트릭을 방어했는지 */
-  freezeUsed: boolean;
 }
 
 /**
  * 학습 완료 시 스트릭을 갱신한다.
  * - 같은 날 다시 학습 → 변화 없음
  * - 어제 학습했으면 → +1
- * - 하루 건너뛴 경우(2일 차이) → 프리즘이 있으면 소모해서 유지, 없으면 1로 리셋
  * - 그보다 오래 쉬었으면 → 1로 리셋
+ *
+ * 하루 빠진 스트릭은 자동으로 지켜 주지 않는다. 사용자가 홈에서 프리즘을 써서
+ * 직접 복구하면(repair-streak) 마지막 학습일이 어제로 바뀌어 여기서 +1로 이어진다.
  */
 export function updateStreak(input: StreakInput): StreakResult {
-  const { currentStreak, lastStudyDate, freezeCount, today } = input;
-
-  if (!lastStudyDate) {
-    return { streak: 1, freezeCount, freezeUsed: false };
-  }
+  const { currentStreak, lastStudyDate, today } = input;
+  if (!lastStudyDate) return { streak: 1 };
 
   const gap = daysBetween(lastStudyDate, today);
-
-  if (gap <= 0) {
-    // 같은 날 재학습 — 스트릭 변화 없음
-    return { streak: currentStreak, freezeCount, freezeUsed: false };
-  }
-
-  if (!canContinue(gap, freezeCount)) {
-    return { streak: 1, freezeCount, freezeUsed: false };
-  }
-
-  // 하루 빠졌으면(gap 2) 프리즘으로 방어
-  const freezeUsed = gap === 2;
-  return {
-    streak: currentStreak + 1,
-    freezeCount: freezeUsed ? freezeCount - 1 : freezeCount,
-    freezeUsed,
-  };
+  if (gap <= 0) return { streak: currentStreak };
+  return { streak: gap === 1 ? currentStreak + 1 : 1 };
 }
 
 /**
- * 마지막 학습 후 gap일이 지났을 때 스트릭을 이어갈 수 있는가.
- * 어제 학습했거나, 하루 빠졌지만 프리즘이 남아 있으면 이어진다.
+ * 지금 스트릭 상태.
+ *   none       학습 기록 없음
+ *   active     오늘이나 어제 학습 — 오늘 풀면 이어진다
+ *   repairable 딱 하루 빠짐 — 프리즘을 쓰면 지킬 수 있다 (안 쓰고 레슨을 풀면 1부터)
+ *   broken     이틀 이상 빠짐 — 끊겼다
  */
-function canContinue(gap: number, freezeCount: number): boolean {
-  return gap <= 1 || (gap === 2 && freezeCount > 0);
+export type StreakStatus = 'none' | 'active' | 'repairable' | 'broken';
+
+export function streakStatus(lastStudyDate: string | null, today: string): StreakStatus {
+  if (!lastStudyDate) return 'none';
+  const gap = daysBetween(lastStudyDate, today);
+  if (gap <= 1) return 'active';
+  return gap === 2 ? 'repairable' : 'broken';
 }
 
 export interface DisplayStreakInput {
   /** DB에 저장된 스트릭 (마지막 학습 시점 기준) */
   savedStreak: number;
   lastStudyDate: string | null;
-  freezeCount: number;
   /** 오늘 한국 기준 날짜 */
   today: string;
 }
@@ -97,11 +83,9 @@ export interface DisplayStreakInput {
  * 화면에 보여줄 "지금" 스트릭.
  *
  * DB의 streak는 레슨을 제출할 때만 갱신되므로, 며칠 쉬면 끊긴 스트릭이
- * 그대로 남아있다. 오늘 학습하면 이어갈 수 있는 상태인지를 updateStreak와
- * 같은 규칙(canContinue)으로 판단해서, 이미 끊겼으면 0을 돌려준다.
+ * 그대로 남아있다. 아직 이어가거나 복구할 수 있으면 저장된 값을, 끊겼으면 0을 돌려준다.
  */
 export function displayStreak(input: DisplayStreakInput): number {
-  const { savedStreak, lastStudyDate, freezeCount, today } = input;
-  if (!lastStudyDate) return 0;
-  return canContinue(daysBetween(lastStudyDate, today), freezeCount) ? savedStreak : 0;
+  const status = streakStatus(input.lastStudyDate, input.today);
+  return status === 'active' || status === 'repairable' ? input.savedStreak : 0;
 }

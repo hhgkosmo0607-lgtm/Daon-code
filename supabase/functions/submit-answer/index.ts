@@ -170,7 +170,6 @@ Deno.serve(async (req) => {
       const streak = updateStreak({
         currentStreak: profile.streak,
         lastStudyDate: profile.last_study_date,
-        freezeCount: profile.freeze_count,
         today,
       });
 
@@ -187,13 +186,11 @@ Deno.serve(async (req) => {
         p_xp: xp.total,
         p_reaches_goal: reachesGoal,
         p_streak: streak.streak,
-        p_freeze_count: streak.freezeCount,
         p_seen_completed: alreadyCompleted,
         p_seen_daily_xp: preXp,
         p_seen_goal_given: goalAlreadyGiven,
         p_seen_streak: profile.streak,
         p_seen_last_study_date: profile.last_study_date,
-        p_seen_freeze_count: profile.freeze_count,
         p_coins: coins,
       });
       if (error) throw error;

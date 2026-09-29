@@ -37,21 +37,35 @@ export function frameOrigin(anim: CatAnim, tick: number): { x: number; y: number
   return { x: (tick % frames) * CELL_W, y: row * CELL_H };
 }
 
+/** 고양이를 사는 재화 — 코인 고양이는 레슨 코인으로, 프리즘 고양이는 프리즘으로 */
+export type CatCurrency = 'coin' | 'prism';
+
 export interface CatColor {
   id: string;
   label: string;
+  currency: CatCurrency;
 }
 
+/** 치즈(orange)는 처음부터 가진다. 무지개만 프리즘 고양이 (재화_경제.md) */
 export const CAT_COLORS: CatColor[] = [
-  { id: 'orange', label: '치즈' },
-  { id: 'white', label: '하양' },
-  { id: 'cream', label: '크림' },
-  { id: 'gray', label: '회색' },
-  { id: 'blue', label: '파랑' },
-  { id: 'mint', label: '민트' },
-  { id: 'pink', label: '분홍' },
-  { id: 'rainbow', label: '무지개' },
+  { id: 'orange', label: '치즈', currency: 'coin' },
+  { id: 'white', label: '하양', currency: 'coin' },
+  { id: 'cream', label: '크림', currency: 'coin' },
+  { id: 'gray', label: '회색', currency: 'coin' },
+  { id: 'blue', label: '파랑', currency: 'coin' },
+  { id: 'mint', label: '민트', currency: 'coin' },
+  { id: 'pink', label: '분홍', currency: 'coin' },
+  { id: 'rainbow', label: '무지개', currency: 'prism' },
 ];
+
+export function catById(id: string): CatColor | undefined {
+  return CAT_COLORS.find((c) => c.id === id);
+}
+
+/** 가진 코인 고양이 수 — 다음 코인 고양이 가격을 정한다 */
+export function ownedCoinCatCount(ownedCats: string[]): number {
+  return ownedCats.filter((id) => catById(id)?.currency === 'coin').length;
+}
 
 export const DEFAULT_CAT_ID = 'orange';
 

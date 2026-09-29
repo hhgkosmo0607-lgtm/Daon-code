@@ -27,11 +27,7 @@ function rewardLog(result: SubmitAnswerResult): string[] {
     lines.push(`> LEVEL UP  LV${levelBefore} → LV${result.profile.level}`);
   }
 
-  lines.push(
-    result.streak.freezeUsed
-      ? `> streak ${result.streak.streak}d ✔  (프리즘 1개 사용)`
-      : `> streak ${result.streak.streak}d ✔`
-  );
+  lines.push(`> streak ${result.streak.streak}d ✔`);
   return lines;
 }
 
