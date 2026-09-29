@@ -145,8 +145,8 @@ export function HomeScreen() {
           </Pressable>
         </View>
         </View>
-        {/* 상단바 둘째 줄 — 펫이 사는 도트 풍경 */}
-        <PetScene colors={colors} />
+        {/* 상단바 둘째 줄 — 고양이가 일하는 광산 */}
+        <PetScene />
       </View>
 
       {showStatInfo && (
