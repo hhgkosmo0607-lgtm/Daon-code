@@ -27,7 +27,7 @@ import { SheetCrop } from './SheetCrop';
 /*
  * 동굴을 돌아다니는 고양이.
  *
- * 돌아다니기 · 바위에서 곡괭이질 · 노트북으로 코딩/영상 · 낮잠을 번갈아 한다.
+ * 돌아다니기 · 광물 하나를 골라 곡괭이질 · 노트북으로 코딩/영상 · 낮잠을 번갈아 한다.
  * 이동은 네이티브 드라이버 애니메이션이고, 프레임 교체는 이 컴포넌트 안에서만 일어난다.
  * 기기에서 "동작 줄이기"를 켜 두면 제자리에 가만히 앉아 있다.
  */
@@ -46,9 +46,11 @@ interface Props {
   catId?: string;
   /** 처음 서 있는 x (dp) — 여러 마리가 겹쳐서 시작하지 않게 */
   startX?: number;
+  /** 곡괭이질할 때 서는 x 후보 (dp) — 광물마다 하나. 없으면 오른쪽 바위 앞 */
+  mineSpots?: number[];
 }
 
-export function CatPet({ rockLeft, catId = DEFAULT_CAT_ID, startX = 0 }: Props) {
+export function CatPet({ rockLeft, catId = DEFAULT_CAT_ID, startX = 0, mineSpots }: Props) {
   const sheet = CAT_SHEETS[catId] ?? CAT_SHEETS[DEFAULT_CAT_ID];
   const reduceMotion = useReduceMotion();
 
@@ -124,8 +126,9 @@ export function CatPet({ rockLeft, catId = DEFAULT_CAT_ID, startX = 0 }: Props) 
       if (activity === 'wander') {
         walkTo(nextWalkTarget(posRef.current, walkMax, Math.random()), idleThenNext);
       } else if (activity === 'mine') {
-        // 곡괭이 끝이 바위에 닿는 자리까지 가서 오른쪽을 보고 캔다
-        walkTo(walkMax + 2 * S, () => {
+        // 광물 하나를 골라, 곡괭이 끝이 닿는 자리까지 가서 오른쪽을 보고 캔다
+        const spots = mineSpots?.length ? mineSpots : [walkMax + 2 * S];
+        walkTo(spots[Math.floor(Math.random() * spots.length)], () => {
           setFacingLeft(false);
           setAnim('mine');
           later(idleThenNext, rand(4000, 8000));
@@ -152,7 +155,7 @@ export function CatPet({ rockLeft, catId = DEFAULT_CAT_ID, startX = 0 }: Props) 
         posRef.current = value;
       });
     };
-  }, [rockLeft, reduceMotion, x]);
+  }, [rockLeft, mineSpots, reduceMotion, x]);
 
   const origin = frameOrigin(anim, tick);
   const striking = anim === 'mine' && tick % 2 === 1;

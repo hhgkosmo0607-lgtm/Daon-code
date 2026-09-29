@@ -11,7 +11,12 @@ import type { ThemeColors } from '../../../shared/theme/themes';
 import { useUserProgress } from '../../lesson/hooks/useUserProgress';
 import { CatPortrait } from '../../pet/components/CatPortrait';
 import { PixelDiamond } from '../../pet/components/PixelDiamond';
-import { CAT_COLORS, ownedCoinCatCount, type CatColor } from '../../pet/domain/catSheet';
+import {
+  CAT_COLORS,
+  DEFAULT_CAT_ID,
+  ownedCoinCatCount,
+  type CatColor,
+} from '../../pet/domain/catSheet';
 import {
   COINS_PER_PRISM,
   EXCHANGE_BUNDLES,
@@ -39,7 +44,8 @@ export function ShopScreen() {
   const wallet = { coins: profile?.coins ?? 0, prisms: profile?.prisms ?? 0 };
   const owned = profile?.owned_cats ?? ['orange'];
   const coinCats = ownedCoinCatCount(owned);
-  const forSale = CAT_COLORS.filter((cat) => !owned.includes(cat.id));
+  // 처음부터 가진 치즈를 뺀 상품 목록 — 산 고양이도 사라지지 않고 '구매 완료'로 남는다
+  const shopCats = CAT_COLORS.filter((cat) => cat.id !== DEFAULT_CAT_ID);
 
   const buyCat = async (cat: CatColor) => {
     setBusy(true);
@@ -76,6 +82,7 @@ export function ShopScreen() {
     const price = catPrice(cat.currency, coinCats);
     const block = profile ? catPurchaseBlock(wallet, owned, cat, coinCats) : 'not_enough_coins';
     const prism = cat.currency === 'prism';
+    const bought = owned.includes(cat.id);
     return (
       <View key={cat.id} style={[styles.item, prism && { borderColor: colors.xp }]}>
         <View style={[styles.itemIcon, styles.catBox]}>
@@ -88,31 +95,37 @@ export function ShopScreen() {
             {prism ? ' ★ 보통 고양이 3마리 몫' : ''}
           </Text>
         </View>
-        <Pressable
-          style={[styles.buyButton, (block || busy) && styles.buyButtonDisabled]}
-          onPress={() => buyCat(cat)}
-          disabled={!!block || busy}
-          accessibilityRole="button"
-          accessibilityLabel={`${cat.label} 고양이 ${prism ? '프리즘' : '코인'} ${price}개에 구매`}
-          accessibilityState={{ disabled: !!block || busy }}
-        >
-          {busy ? (
-            <ActivityIndicator color={getReadableTextColor(colors.accent)} />
-          ) : prism ? (
-            <View style={styles.priceRow}>
-              <PixelDiamond pixel={1.5} />
-              <Text style={styles.buyButtonText}>{price}</Text>
-            </View>
-          ) : (
-            <Text style={styles.buyButtonText}>{price}c</Text>
-          )}
-        </Pressable>
+        {bought ? (
+          <View style={styles.boughtBadge} accessibilityLabel={`${cat.label} 고양이 구매 완료`}>
+            <Text style={styles.boughtText}>구매 완료</Text>
+          </View>
+        ) : (
+          <Pressable
+            style={[styles.buyButton, (block || busy) && styles.buyButtonDisabled]}
+            onPress={() => buyCat(cat)}
+            disabled={!!block || busy}
+            accessibilityRole="button"
+            accessibilityLabel={`${cat.label} 고양이 ${prism ? '프리즘' : '코인'} ${price}개에 구매`}
+            accessibilityState={{ disabled: !!block || busy }}
+          >
+            {busy ? (
+              <ActivityIndicator color={getReadableTextColor(colors.accent)} />
+            ) : prism ? (
+              <View style={styles.priceRow}>
+                <PixelDiamond pixel={1.5} />
+                <Text style={styles.buyButtonText}>{price}</Text>
+              </View>
+            ) : (
+              <Text style={styles.buyButtonText}>{price}c</Text>
+            )}
+          </Pressable>
+        )}
       </View>
     );
   };
 
-  const coinForSale = forSale.filter((c) => c.currency === 'coin');
-  const prismForSale = forSale.filter((c) => c.currency === 'prism');
+  const coinCatsInShop = shopCats.filter((c) => c.currency === 'coin');
+  const prismCatsInShop = shopCats.filter((c) => c.currency === 'prism');
 
   return (
     <SafeAreaView style={styles.container} edges={['top', 'bottom']}>
@@ -140,12 +153,10 @@ export function ShopScreen() {
         )}
 
         <Text style={styles.section}>코인 고양이 · 많을수록 많이 캐요 · 살수록 비싸져요</Text>
-        {coinForSale.map(renderCat)}
-        {coinForSale.length === 0 && <Text style={styles.hint}>코인 고양이를 전부 모았어요!</Text>}
+        {coinCatsInShop.map(renderCat)}
 
         <Text style={styles.section}>프리즘 고양이</Text>
-        {prismForSale.map(renderCat)}
-        {prismForSale.length === 0 && <Text style={styles.hint}>프리즘 고양이를 모았어요!</Text>}
+        {prismCatsInShop.map(renderCat)}
 
         <Text style={styles.section}>프리즘 → 코인</Text>
         <View style={styles.item}>
@@ -246,6 +257,16 @@ const createStyles = (colors: ThemeColors) =>
     },
     buyButtonDisabled: { opacity: 0.4 },
     exchangeButtons: { gap: spacing.xs },
+    boughtBadge: {
+      borderWidth: 1,
+      borderColor: colors.success,
+      borderRadius: radius.sm,
+      paddingHorizontal: spacing.sm,
+      paddingVertical: spacing.sm,
+      minWidth: 64,
+      alignItems: 'center',
+    },
+    boughtText: { fontSize: 12, fontWeight: '700', color: colors.success },
     priceRow: { flexDirection: 'row', alignItems: 'center', gap: 4 },
     buyButtonText: {
       fontSize: 14,
