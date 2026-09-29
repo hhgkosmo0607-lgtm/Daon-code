@@ -7,6 +7,7 @@ import { useTheme } from '../../../shared/theme/ThemeContext';
 import { fonts, radius, spacing } from '../../../shared/theme/theme';
 import type { ThemeColors } from '../../../shared/theme/themes';
 import { useAuth } from '../../auth/AuthContext';
+import { StudyGrass } from '../../grass/components/StudyGrass';
 import { PetScene } from '../../pet/components/PetScene';
 import { useTrack } from '../../track/TrackContext';
 import { getLessons, getStages, hasContent } from '../data/contentRepository';
@@ -160,6 +161,9 @@ export function HomeScreen() {
             <Text style={styles.statInfoText}>
               게스트는 XP·코인을 80%만 받아요 · 로그인하면 나머지를 돌려받아요
             </Text>
+          )}
+          {user && (
+            <StudyGrass userId={user.id} dailyGoal={profile?.daily_goal ?? 20} colors={colors} />
           )}
         </Pressable>
       )}
