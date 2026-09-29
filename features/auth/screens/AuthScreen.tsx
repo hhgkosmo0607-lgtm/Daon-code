@@ -43,6 +43,9 @@ export function AuthScreen() {
   const showGuestOption = !isGuest && allowGuest !== 'false';
 
   const [mode, setMode] = useState<'signin' | 'signup'>('signin');
+  // 게스트: 'link' = 지금 기록에 이메일을 붙여 계정 연결, 'signin' = 이미 있는 계정(운영자·테스트 등)으로 로그인
+  const [guestMode, setGuestMode] = useState<'link' | 'signin'>('link');
+  const linking = isGuest && guestMode === 'link';
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [busy, setBusy] = useState(false);
@@ -88,7 +91,7 @@ export function AuthScreen() {
         setNotice(pendingMessage ?? '메일함에서 인증 링크를 눌러 완료해주세요.');
       }
     } catch (e) {
-      setError(e instanceof Error ? e.message : '문제가 생겼어요');
+      setError(authErrorMessage(e, linking));
     } finally {
       setBusy(false);
     }
@@ -103,7 +106,7 @@ export function AuthScreen() {
       return;
     }
 
-    if (isGuest) {
+    if (linking) {
       // 게스트 → 정식 계정 전환 (진도 유지)
       return run(
         () => upgradeGuestToEmail(email, password),
@@ -120,9 +123,11 @@ export function AuthScreen() {
     <SafeAreaView style={styles.container}>
       <View style={styles.body}>
         <Text style={styles.title}>
-          {isGuest
+          {linking
             ? '게스트로 놓친 XP를 돌려받아요'
-            : isPlacementGate
+            : isGuest
+              ? '이미 있는 계정으로 로그인'
+              : isPlacementGate
               ? '결과를 보려면 로그인이 필요해요'
               : mode === 'signup'
                 ? '회원가입'
@@ -130,10 +135,12 @@ export function AuthScreen() {
         </Text>
         {isGuest && (
           <Text style={styles.subtitle}>
-            지금까지의 학습 기록은 그대로 유지돼요
+            {linking
+              ? '지금까지의 학습 기록은 그대로 유지돼요'
+              : '지금 게스트 기록은 그 계정으로 옮겨지지 않아요'}
           </Text>
         )}
-        {isGuest && pendingBonus !== null && pendingBonus > 0 && (
+        {linking && pendingBonus !== null && pendingBonus > 0 && (
           <Text style={styles.bonus}>지금 가입하면 XP {pendingBonus}와 코인을 추가로 받아요</Text>
         )}
         {isPlacementGate && (
@@ -187,10 +194,24 @@ export function AuthScreen() {
             <ActivityIndicator color={getReadableTextColor(colors.accent)} />
           ) : (
             <Text style={styles.primaryText}>
-              {isGuest ? '계정 연결하기' : mode === 'signup' ? '가입하기' : '로그인'}
+              {linking ? '계정 연결하기' : isGuest ? '로그인' : mode === 'signup' ? '가입하기' : '로그인'}
             </Text>
           )}
         </Pressable>
+
+        {isGuest && (
+          <Pressable
+            onPress={() => {
+              setGuestMode(linking ? 'signin' : 'link');
+              setError(null);
+              setNotice(null);
+            }}
+          >
+            <Text style={styles.link}>
+              {linking ? '이미 계정이 있어요 · 로그인' : '← 지금 기록으로 계정 연결하기'}
+            </Text>
+          </Pressable>
+        )}
 
         {!isGuest && (
           <Pressable onPress={() => setMode(mode === 'signup' ? 'signin' : 'signup')}>
@@ -208,6 +229,20 @@ export function AuthScreen() {
       </View>
     </SafeAreaView>
   );
+}
+
+/** Supabase 인증 오류(영어)를 사용자에게 보여줄 한국어로 */
+function authErrorMessage(e: unknown, linking: boolean): string {
+  const raw = e instanceof Error ? e.message : '';
+  if (/already (been )?registered|already exists/i.test(raw)) {
+    return linking
+      ? '이미 가입된 이메일이에요. 아래 "이미 계정이 있어요 · 로그인"으로 들어가세요'
+      : '이미 가입된 이메일이에요';
+  }
+  if (/invalid login credentials/i.test(raw)) return '이메일이나 비밀번호가 맞지 않아요';
+  if (/password should be at least/i.test(raw)) return '비밀번호는 6자 이상이어야 해요';
+  if (/invalid.*email|email.*invalid/i.test(raw)) return '이메일 형식을 확인해주세요';
+  return raw || '문제가 생겼어요';
 }
 
 const createStyles = (colors: ThemeColors) =>
