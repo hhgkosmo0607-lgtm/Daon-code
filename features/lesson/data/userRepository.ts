@@ -31,6 +31,8 @@ export interface Profile {
   mine_progress: number;
   /** 먹이 효과가 끝나는 시각. 지나면 고양이가 쉰다 */
   pet_working_until: string | null;
+  /** 가진 고양이 색 id 목록 — 처음엔 ['orange'] (0006_checkin_and_cats.sql) */
+  owned_cats: string[];
 }
 
 export interface ProgressRow {

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Animated, Easing, StyleSheet, View, type ImageSourcePropType } from 'react-native';
+import { Animated, Easing, StyleSheet, View } from 'react-native';
 
 import {
   ANIMS,
@@ -21,6 +21,7 @@ import {
   type CatAnim,
 } from '../domain/catSheet';
 import { useReduceMotion } from '../hooks/useReduceMotion';
+import { CAT_SHEETS, PROPS_SHEET } from './catAssets';
 import { SheetCrop } from './SheetCrop';
 
 /*
@@ -31,19 +32,6 @@ import { SheetCrop } from './SheetCrop';
  * 이동은 네이티브 드라이버 애니메이션이고, 프레임 교체는 이 컴포넌트 안에서만 일어난다.
  * 기기에서 "동작 줄이기"를 켜 두면 제자리에 가만히 앉아 있다.
  */
-
-// require는 정적이어야 해서 색마다 적어 둔다 (scripts/build-pet-assets.mjs가 만든 파일)
-const SHEETS: Record<string, ImageSourcePropType> = {
-  orange: require('../../../assets/pets/cat_orange.png'),
-  white: require('../../../assets/pets/cat_white.png'),
-  cream: require('../../../assets/pets/cat_cream.png'),
-  gray: require('../../../assets/pets/cat_gray.png'),
-  blue: require('../../../assets/pets/cat_blue.png'),
-  mint: require('../../../assets/pets/cat_mint.png'),
-  pink: require('../../../assets/pets/cat_pink.png'),
-  rainbow: require('../../../assets/pets/cat_rainbow.png'),
-};
-const PROPS_SHEET: ImageSourcePropType = require('../../../assets/pets/props.png');
 
 const S = ART_SCALE;
 const WALK_SPEED = 30; // dp/초
@@ -58,14 +46,16 @@ interface Props {
   rockLeft: number;
   catId?: string;
   resting?: boolean;
+  /** 처음 서 있는 x (dp) — 여러 마리가 겹쳐서 시작하지 않게 */
+  startX?: number;
 }
 
-export function CatPet({ rockLeft, catId = DEFAULT_CAT_ID, resting = false }: Props) {
-  const sheet = SHEETS[catId] ?? SHEETS[DEFAULT_CAT_ID];
+export function CatPet({ rockLeft, catId = DEFAULT_CAT_ID, resting = false, startX = 0 }: Props) {
+  const sheet = CAT_SHEETS[catId] ?? CAT_SHEETS[DEFAULT_CAT_ID];
   const reduceMotion = useReduceMotion();
 
-  const [x] = useState(() => new Animated.Value(0));
-  const posRef = useRef(0);
+  const [x] = useState(() => new Animated.Value(startX));
+  const posRef = useRef(startX);
   // 동작과 프레임 순번을 함께 둬서, 동작이 바뀌면 항상 첫 프레임부터 그린다
   const [motion, setMotion] = useState<{ anim: CatAnim; tick: number }>({ anim: 'idle', tick: 0 });
   const setAnim = (next: CatAnim) => setMotion({ anim: next, tick: 0 });

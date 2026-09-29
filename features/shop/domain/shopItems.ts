@@ -14,8 +14,29 @@ export const FREEZE_MAX = 2;
 export type PurchaseBlockReason = 'not_enough_coins' | 'max_reached';
 
 /** 프리즈를 살 수 있는지. 살 수 없으면 이유를, 살 수 있으면 null을 돌려준다 */
-export function freezePurchaseBlock(coins: number, freezeCount: number): PurchaseBlockReason | null {
+export function freezePurchaseBlock(
+  coins: number,
+  freezeCount: number
+): PurchaseBlockReason | null {
   if (freezeCount >= FREEZE_MAX) return 'max_reached';
   if (coins < FREEZE_PRICE) return 'not_enough_coins';
+  return null;
+}
+
+/** 고양이 1마리 가격 (코인). 처음 고양이(치즈)는 무료로 가지고 시작한다 */
+export const CAT_PRICE = 150;
+
+export type CatPurchaseBlockReason = 'not_enough_coins' | 'already_owned' | 'unknown_cat';
+
+/** 고양이를 살 수 있는지. 살 수 없으면 이유를, 살 수 있으면 null */
+export function catPurchaseBlock(
+  coins: number,
+  ownedCats: string[],
+  catId: string,
+  validCatIds: string[]
+): CatPurchaseBlockReason | null {
+  if (!validCatIds.includes(catId)) return 'unknown_cat';
+  if (ownedCats.includes(catId)) return 'already_owned';
+  if (coins < CAT_PRICE) return 'not_enough_coins';
   return null;
 }

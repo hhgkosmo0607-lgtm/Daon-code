@@ -1,14 +1,14 @@
 import { describe, expect, it } from 'vitest';
-import { GRASS_PER_ATTENDANCE, feedBlock, grassForSubmission, isWorking } from './mining';
+import { GRASS_PER_ATTENDANCE, feedBlock, grassForCheckIn, isWorking } from './mining';
 
-describe('grassForSubmission', () => {
-  it('오늘 첫 제출이면 잔디를 준다', () => {
-    expect(grassForSubmission('2026-09-28', '2026-09-29')).toBe(GRASS_PER_ATTENDANCE);
-    expect(grassForSubmission(null, '2026-09-29')).toBe(GRASS_PER_ATTENDANCE);
+describe('grassForCheckIn', () => {
+  it('오늘 첫 출석이면 잔디를 준다 (레슨과 무관)', () => {
+    expect(grassForCheckIn('2026-09-28', '2026-09-29')).toBe(GRASS_PER_ATTENDANCE);
+    expect(grassForCheckIn(null, '2026-09-29')).toBe(GRASS_PER_ATTENDANCE);
   });
 
-  it('오늘 이미 공부했으면 0', () => {
-    expect(grassForSubmission('2026-09-29', '2026-09-29')).toBe(0);
+  it('오늘 이미 받았으면 0', () => {
+    expect(grassForCheckIn('2026-09-29', '2026-09-29')).toBe(0);
   });
 });
 

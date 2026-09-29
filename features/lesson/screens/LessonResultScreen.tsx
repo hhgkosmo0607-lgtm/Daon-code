@@ -21,7 +21,6 @@ function rewardLog(result: SubmitAnswerResult): string[] {
   }
 
   const lines = [`> +${result.xp.total} XP  +${result.coins} coin`];
-  if (result.grass > 0) lines.push(`> +${result.grass} 잔디  (오늘 출석 · 고양이 먹이)`);
 
   const levelBefore = levelFromXp(result.profile.totalXp - result.xp.total);
   if (result.profile.level > levelBefore) {

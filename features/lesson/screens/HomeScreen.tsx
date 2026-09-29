@@ -1,8 +1,9 @@
 import { useFocusEffect, useRouter } from 'expo-router';
-import { Fragment, useCallback, useEffect, useMemo, useState } from 'react';
+import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { checkIn } from '../../../shared/lib/edgeFunctions';
 import { useTheme } from '../../../shared/theme/ThemeContext';
 import { fonts, radius, spacing } from '../../../shared/theme/theme';
 import type { ThemeColors } from '../../../shared/theme/themes';
@@ -37,10 +38,21 @@ export function HomeScreen() {
   const { user, isGuest } = useAuth();
   const { profile, statusMap, loading, error, reload } = useUserProgress();
   // 레슨·상점 같은 모달에서 돌아오면 XP·코인이 바뀌었을 수 있어서 다시 불러온다
+  // 하루 한 번 출석 잔디 — 레슨을 안 풀어도 홈에 들어오면 받는다. 판단은 서버가 하고,
+  // 여기서는 같은 날 반복 호출만 줄인다 (앱을 켜 둔 채 자정을 넘기면 다음 포커스 때 다시 부른다)
+  const checkedInDate = useRef<string | null>(null);
   useFocusEffect(
     useCallback(() => {
       reload();
-    }, [reload])
+      const today = toKstDateString();
+      if (!user || checkedInDate.current === today) return;
+      checkIn()
+        .then((r) => {
+          checkedInDate.current = today;
+          if (r.granted > 0) reload();
+        })
+        .catch(() => {});
+    }, [reload, user])
   );
   const { count: wrongAnswerCount } = useWrongAnswerCount();
 
@@ -150,6 +162,7 @@ export function HomeScreen() {
         </View>
         {/* 상단바 둘째 줄 — 고양이가 일하는 광산 */}
         <PetScene
+          catIds={profile?.owned_cats}
           resting={!!profile && !isWorking(profile.pet_working_until)}
           onPress={profile ? () => setShowPetPanel(!showPetPanel) : undefined}
           expanded={showPetPanel}

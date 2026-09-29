@@ -61,7 +61,8 @@ Expo Go 앱으로 QR을 찍으면 실물 기기에서 바로 확인할 수 있�
      여러 번 실행해도 안전하다)
    - `0003_backfill_linked_guest_refund.sql` → 0002 이전에 계정을 연결한 전 게스트 환급 (재실행 안전)
    - `0004_coins_and_shop.sql` → 코인(상점 화폐) 컬럼 + 제출 시 코인 적립 + 프리즈 구매 함수 (**submit-answer 배포 전에** 실행)
-   - `0005_pet_mining.sql` → 고양이 채굴: 출석 잔디 + 먹이 주기 함수 (**submit-answer·feed-pet 배포 전에** 실행)
+   - `0005_pet_mining.sql` → 고양이 채굴: 잔디·채굴 컬럼 + 먹이 주기 함수 (**submit-answer·feed-pet 배포 전에** 실행)
+   - `0006_checkin_and_cats.sql` → 출석 잔디(앱을 열면 하루 한 번) + 보유 고양이·고양이 구매 (**check-in·purchase 배포 전에** 실행)
    - CLI로는 `npx supabase@latest db push` (프로젝트 link 필요, `--dry-run`으로 미리보기)
 2. **Authentication → Providers**
    - Email 활성화 (기본 켜짐)

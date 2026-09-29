@@ -28,7 +28,7 @@ function json(body: unknown, status = 200) {
 }
 
 const ERROR_MESSAGES: Record<string, string> = {
-  no_grass: '먹일 잔디가 없어요 · 레슨을 풀면 하루 한 번 받아요',
+  no_grass: '먹일 잔디가 없어요 · 매일 앱에 들어오면 하루 한 번 받아요',
   freeze_full: `프리즈가 가득 찼어요 (최대 ${FREEZE_MAX}개) · 쓰고 나면 다시 캘 수 있어요`,
   profile_not_found: '프로필을 찾을 수 없어요',
 };

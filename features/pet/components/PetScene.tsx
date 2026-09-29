@@ -1,29 +1,38 @@
 import { useState } from 'react';
 import { Image, Pressable, StyleSheet, type LayoutChangeEvent } from 'react-native';
 
-import { ART_SCALE, BG_H, BG_W, GROUND_Y, PROPS, PROPS_H, PROPS_W } from '../domain/catSheet';
+import {
+  ART_SCALE,
+  BG_H,
+  BG_W,
+  DEFAULT_CAT_ID,
+  GROUND_Y,
+  PICKAXE_RIGHT,
+  PROPS,
+  PROPS_H,
+  PROPS_W,
+} from '../domain/catSheet';
 import { CatPet } from './CatPet';
+import { BACKGROUND_TILE, PROPS_SHEET } from './catAssets';
 import { SheetCrop } from './SheetCrop';
 
 /*
  * 홈 상단바 둘째 줄 — 고양이가 일하는 광산 동굴.
  * 배경 타일(64×32 도트)을 가로로 이어 붙이고, 오른쪽 끝에 크리스탈 바위를 둔다.
- * 고양이는 바위 왼쪽에서 돌아다니다가 가끔 바위를 캔다.
+ * 가진 고양이(최대 8마리)가 전부 바위 왼쪽에서 돌아다니다가 가끔 바위를 캔다.
  */
-
-const BG = require('../../../assets/pets/background_tile.png');
-const PROPS_SHEET = require('../../../assets/pets/props.png');
 
 const S = ART_SCALE;
 const ROCK_MARGIN_RIGHT = 6 * S;
 
 export function PetScene({
-  catId,
+  catIds = [DEFAULT_CAT_ID],
   resting,
   onPress,
   expanded,
 }: {
-  catId?: string;
+  /** 가진 고양이 색 id 목록 — 전부 광산에 나온다 */
+  catIds?: string[];
   /** 먹이가 없어서 쉬는 중 */
   resting?: boolean;
   /** 누르면 먹이 패널 열기/닫기 */
@@ -42,14 +51,14 @@ export function PetScene({
       onPress={onPress}
       disabled={!onPress}
       accessibilityRole="button"
-      accessibilityLabel={resting ? '배고파서 쉬는 고양이' : '광산에서 일하는 고양이'}
+      accessibilityLabel={`고양이 ${catIds.length}마리, ${resting ? '배고파서 쉬는 중' : '광산에서 일하는 중'}`}
       accessibilityHint="눌러서 먹이 주기"
       accessibilityState={{ expanded }}
     >
       {Array.from({ length: tiles }, (_, i) => (
         <Image
           key={i}
-          source={BG}
+          source={BACKGROUND_TILE}
           fadeDuration={0}
           style={[styles.tile, { left: i * tileW, width: tileW }]}
         />
@@ -64,7 +73,16 @@ export function PetScene({
             {...PROPS.rock}
             style={[styles.abs, { left: rockLeft, top: (GROUND_Y - PROPS.rock.h) * S }]}
           />
-          <CatPet rockLeft={rockLeft} catId={catId} resting={resting} />
+          {catIds.map((id, i) => (
+            <CatPet
+              key={id}
+              catId={id}
+              rockLeft={rockLeft}
+              resting={resting}
+              // 처음엔 걸을 수 있는 폭에 고르게 나눠 세운다
+              startX={((rockLeft - PICKAXE_RIGHT * S) * i) / Math.max(1, catIds.length)}
+            />
+          ))}
         </>
       )}
     </Pressable>

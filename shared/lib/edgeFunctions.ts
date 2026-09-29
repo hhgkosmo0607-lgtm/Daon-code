@@ -42,8 +42,6 @@ export interface SubmitAnswerResult {
   };
   /** 이번 제출로 받은 코인 */
   coins: number;
-  /** 이번 제출로 받은 고양이 먹이 잔디 (그날 첫 제출만) */
-  grass: number;
   streak: {
     streak: number;
     freezeCount: number;
@@ -55,7 +53,6 @@ export interface SubmitAnswerResult {
     streak: number;
     maxStreak: number;
     coins: number;
-    grass: number;
   };
   unlockedNextLessonId: string | null;
 }
@@ -102,4 +99,25 @@ export interface FeedPetResult {
 /** 고양이에게 잔디 1개를 먹인다. 잔디가 없거나 프리즈가 가득이면 한국어 메시지로 에러가 난다. */
 export async function feedPet(): Promise<FeedPetResult> {
   return invokeFunction<FeedPetResult>('feed-pet', {});
+}
+
+export interface CheckInResult {
+  /** 이번 출석으로 받은 잔디 (오늘 이미 받았으면 0) */
+  granted: number;
+  grass: number;
+}
+
+/** 하루 한 번 출석 — 오늘 처음이면 고양이 먹이 잔디를 받는다. 여러 번 불러도 하루 한 번만 준다. */
+export async function checkIn(): Promise<CheckInResult> {
+  return invokeFunction<CheckInResult>('check-in', {});
+}
+
+export interface PurchaseCatResult {
+  coins: number;
+  ownedCats: string[];
+}
+
+/** 상점에서 고양이 1마리 구매. 코인 부족·이미 보유면 한국어 메시지로 에러가 난다. */
+export async function purchaseCat(catId: string): Promise<PurchaseCatResult> {
+  return invokeFunction<PurchaseCatResult>('purchase', { item: 'cat', catId });
 }

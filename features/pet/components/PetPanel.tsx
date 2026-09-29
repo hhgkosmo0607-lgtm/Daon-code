@@ -1,3 +1,4 @@
+import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { ActivityIndicator, Pressable, StyleSheet, Text, View } from 'react-native';
 
@@ -7,7 +8,9 @@ import { fonts, radius, spacing } from '../../../shared/theme/theme';
 import type { ThemeColors } from '../../../shared/theme/themes';
 import type { Profile } from '../../lesson/data/userRepository';
 import { FREEZE_MAX } from '../../shop/domain/shopItems';
+import { CAT_COLORS } from '../domain/catSheet';
 import { MINE_PER_FREEZE, feedBlock, isWorking } from '../domain/mining';
+import { PixelDiamond } from './PixelDiamond';
 
 /*
  * 광산(상단바 둘째 줄)을 누르면 펼쳐지는 먹이 패널.
@@ -28,6 +31,7 @@ export function PetPanel({
   onFed: () => Promise<void> | void;
 }) {
   const styles = createStyles(colors);
+  const router = useRouter();
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState<{ text: string; ok: boolean } | null>(null);
 
@@ -59,11 +63,17 @@ export function PetPanel({
     <View style={styles.panel}>
       <View style={styles.row}>
         <View style={styles.info}>
-          <Text style={styles.line}>
-            잔디 {profile.grass} · 채굴 {'▓'.repeat(gauge)}
-            {'░'.repeat(MINE_PER_FREEZE - gauge)} {gauge}/{MINE_PER_FREEZE} · 프리즈{' '}
-            {profile.freeze_count}/{FREEZE_MAX}
-          </Text>
+          <View style={styles.lineRow}>
+            <Text style={styles.line}>
+              잔디 {profile.grass} · 채굴 {'▓'.repeat(gauge)}
+              {'░'.repeat(MINE_PER_FREEZE - gauge)} {gauge}/{MINE_PER_FREEZE} ·{' '}
+            </Text>
+            <PixelDiamond pixel={1.5} />
+            <Text style={styles.line}>
+              {' '}
+              {profile.freeze_count}/{FREEZE_MAX}
+            </Text>
+          </View>
           <Text style={styles.sub}>
             {working
               ? `일하는 중 · ${hoursLeft(profile.pet_working_until!)}시간 남음`
@@ -86,8 +96,18 @@ export function PetPanel({
         </Pressable>
       </View>
 
+      <Pressable
+        onPress={() => router.push('/cats')}
+        hitSlop={6}
+        accessibilityRole="button"
+        accessibilityLabel="내 고양이 보기"
+      >
+        <Text style={[styles.sub, { color: colors.accent }]}>
+          내 고양이 {profile.owned_cats.length}/{CAT_COLORS.length} ›
+        </Text>
+      </Pressable>
       {block === 'no_grass' && !message && (
-        <Text style={styles.sub}>잔디는 레슨을 풀면 하루 한 번 받아요</Text>
+        <Text style={styles.sub}>잔디는 매일 앱에 들어오면 하루 한 번 받아요</Text>
       )}
       {block === 'freeze_full' && !message && (
         <Text style={styles.sub}>프리즈가 가득 찼어요 · 쓰고 나면 다시 캘 수 있어요</Text>
@@ -113,6 +133,7 @@ const createStyles = (colors: ThemeColors) =>
     },
     row: { flexDirection: 'row', alignItems: 'center', gap: spacing.sm },
     info: { flex: 1 },
+    lineRow: { flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap' },
     line: { fontSize: 12, fontWeight: '700', color: colors.text, fontFamily: fonts.mono },
     sub: { fontSize: 11, color: colors.textMuted, fontFamily: fonts.mono, marginTop: 2 },
     button: {
