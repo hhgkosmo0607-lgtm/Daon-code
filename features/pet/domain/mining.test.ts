@@ -1,5 +1,14 @@
 import { describe, expect, it } from 'vitest';
-import { GRASS_PER_ATTENDANCE, feedBlock, grassForCheckIn, isWorking } from './mining';
+import { FREEZE_PRICE } from '../../shop/domain/shopItems';
+import {
+  FREEZE_OVERFLOW_COINS,
+  GRASS_PER_ATTENDANCE,
+  MINE_PER_FREEZE,
+  feedBlock,
+  grassForCheckIn,
+  isWorking,
+  minePerGrass,
+} from './mining';
 
 describe('grassForCheckIn', () => {
   it('오늘 첫 출석이면 잔디를 준다 (레슨과 무관)', () => {
@@ -12,17 +21,31 @@ describe('grassForCheckIn', () => {
   });
 });
 
+describe('minePerGrass', () => {
+  it('고양이가 많을수록 많이 캔다', () => {
+    expect(minePerGrass(1)).toBe(2);
+    expect(minePerGrass(4)).toBe(5);
+    expect(minePerGrass(8)).toBe(9);
+  });
+
+  it('고양이 수를 못 읽어도 최소 1마리로 본다', () => {
+    expect(minePerGrass(0)).toBe(2);
+  });
+
+  it('1마리는 5일, 8마리는 이틀 안에 프리즈 1개', () => {
+    expect(Math.ceil(MINE_PER_FREEZE / minePerGrass(1))).toBe(5);
+    expect(Math.ceil(MINE_PER_FREEZE / minePerGrass(8))).toBeLessThanOrEqual(2);
+  });
+
+  it('넘친 프리즈의 코인은 상점 가격보다 싸다 (사고팔기로 못 불림)', () => {
+    expect(FREEZE_OVERFLOW_COINS).toBeLessThan(FREEZE_PRICE);
+  });
+});
+
 describe('feedBlock', () => {
-  it('잔디가 있고 프리즈가 덜 찼으면 줄 수 있다', () => {
-    expect(feedBlock(1, 0, 2)).toBeNull();
-  });
-
-  it('잔디가 없으면 no_grass', () => {
-    expect(feedBlock(0, 0, 2)).toBe('no_grass');
-  });
-
-  it('프리즈가 가득이면 freeze_full', () => {
-    expect(feedBlock(3, 2, 2)).toBe('freeze_full');
+  it('잔디가 있으면 줄 수 있고, 없으면 no_grass', () => {
+    expect(feedBlock(1)).toBeNull();
+    expect(feedBlock(0)).toBe('no_grass');
   });
 });
 

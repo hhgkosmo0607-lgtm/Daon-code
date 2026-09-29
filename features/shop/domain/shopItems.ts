@@ -23,8 +23,18 @@ export function freezePurchaseBlock(
   return null;
 }
 
-/** 고양이 1마리 가격 (코인). 처음 고양이(치즈)는 무료로 가지고 시작한다 */
-export const CAT_PRICE = 150;
+/*
+ * 고양이 가격 — 처음 고양이(치즈)는 무료, 그다음부터 80코인에서 한 마리마다 40씩 오른다.
+ *   2번째 80 · 3번째 120 · … · 8번째 320 (전부 1,400 ≈ 레슨만으로 한 달 반)
+ * 첫 구매는 사흘 치 코인으로 채굴량이 1.5배가 돼서 금방 본전을 뽑는다.
+ */
+export const CAT_BASE_PRICE = 80;
+export const CAT_PRICE_STEP = 40;
+
+/** 지금 가진 수가 ownedCount일 때 다음 고양이 가격 */
+export function catPrice(ownedCount: number): number {
+  return CAT_BASE_PRICE + CAT_PRICE_STEP * Math.max(0, ownedCount - 1);
+}
 
 export type CatPurchaseBlockReason = 'not_enough_coins' | 'already_owned' | 'unknown_cat';
 
@@ -37,6 +47,6 @@ export function catPurchaseBlock(
 ): CatPurchaseBlockReason | null {
   if (!validCatIds.includes(catId)) return 'unknown_cat';
   if (ownedCats.includes(catId)) return 'already_owned';
-  if (coins < CAT_PRICE) return 'not_enough_coins';
+  if (coins < catPrice(ownedCats.length)) return 'not_enough_coins';
   return null;
 }

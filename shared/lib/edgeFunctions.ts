@@ -92,11 +92,16 @@ export interface FeedPetResult {
   mineProgress: number;
   freezeCount: number;
   petWorkingUntil: string;
+  coins: number;
+  /** 이번 먹이로 찬 게이지 (고양이 수에 비례) */
+  gain: number;
   /** 이번 먹이로 캔 프리즈 수 */
   minted: number;
+  /** 프리즈가 가득이라 코인으로 바뀐 양 */
+  overflowCoins: number;
 }
 
-/** 고양이에게 잔디 1개를 먹인다. 잔디가 없거나 프리즈가 가득이면 한국어 메시지로 에러가 난다. */
+/** 고양이에게 잔디 1개를 먹인다. 잔디가 없으면 한국어 메시지로 에러가 난다. */
 export async function feedPet(): Promise<FeedPetResult> {
   return invokeFunction<FeedPetResult>('feed-pet', {});
 }

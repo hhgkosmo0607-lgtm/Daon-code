@@ -1,7 +1,12 @@
 import { createClient } from 'npm:@supabase/supabase-js@2.116.0';
 
 import { CAT_COLORS } from '../../../features/pet/domain/catSheet.ts';
-import { CAT_PRICE, FREEZE_MAX, FREEZE_PRICE } from '../../../features/shop/domain/shopItems.ts';
+import {
+  CAT_BASE_PRICE,
+  CAT_PRICE_STEP,
+  FREEZE_MAX,
+  FREEZE_PRICE,
+} from '../../../features/shop/domain/shopItems.ts';
 
 /*
  * 상점 구매 — 스트릭 프리즈, 고양이. (daon-content/Daon-code_아이디어.md 1번)
@@ -65,13 +70,14 @@ Deno.serve(async (req) => {
       const { data, error } = await admin.rpc('purchase_cat', {
         p_user: user.id,
         p_cat: body.catId,
-        p_price: CAT_PRICE,
+        p_base_price: CAT_BASE_PRICE,
+        p_price_step: CAT_PRICE_STEP,
       });
       if (error) throw error;
       if (data?.error) {
         const message =
           data.error === 'not_enough_coins'
-            ? `코인이 부족해요 (고양이 ${CAT_PRICE}코인)`
+            ? `코인이 부족해요 (다음 고양이 ${data.price}코인)`
             : (ERROR_MESSAGES[data.error] ?? '구매하지 못했어요');
         return json({ error: message }, 400);
       }

@@ -7,7 +7,7 @@ import { useTheme } from '../../../shared/theme/ThemeContext';
 import { fonts, radius, spacing } from '../../../shared/theme/theme';
 import type { ThemeColors } from '../../../shared/theme/themes';
 import { useUserProgress } from '../../lesson/hooks/useUserProgress';
-import { CAT_PRICE } from '../../shop/domain/shopItems';
+import { catPrice } from '../../shop/domain/shopItems';
 import { CatPortrait } from '../components/CatPortrait';
 import { CAT_COLORS } from '../domain/catSheet';
 
@@ -21,6 +21,7 @@ export function CatsScreen() {
   const styles = useMemo(() => createStyles(colors), [colors]);
   const { profile } = useUserProgress();
   const owned = profile?.owned_cats ?? ['orange'];
+  const nextPrice = catPrice(owned.length);
 
   return (
     <SafeAreaView style={styles.container} edges={['top', 'bottom']}>
@@ -46,7 +47,7 @@ export function CatsScreen() {
               accessibilityLabel={
                 has
                   ? `${cat.label} 고양이, 보유 중`
-                  : `${cat.label} 고양이, 상점에서 ${CAT_PRICE}코인`
+                  : `${cat.label} 고양이, 상점에서 ${nextPrice}코인`
               }
             >
               <View style={styles.portraitBox}>
@@ -54,14 +55,16 @@ export function CatsScreen() {
               </View>
               <Text style={styles.name}>{cat.label}</Text>
               <Text style={[styles.sub, has && { color: colors.success }]}>
-                {has ? '광산에서 일해요' : `${CAT_PRICE}c · 상점`}
+                {has ? '광산에서 일해요' : `${nextPrice}c · 상점`}
               </Text>
             </Pressable>
           );
         })}
       </ScrollView>
 
-      <Text style={styles.footer}>가진 고양이는 모두 홈 광산에서 함께 지내요</Text>
+      <Text style={styles.footer}>
+        가진 고양이는 모두 광산에서 함께 일해요 · 많을수록 많이 캐요
+      </Text>
     </SafeAreaView>
   );
 }

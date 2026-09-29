@@ -7,6 +7,7 @@
 -- 날짜는 Asia/Seoul 기준이고, check-in Edge Function이 계산해서 넘긴다.
 --
 -- 보유 고양이: 처음엔 치즈(orange)만. 나머지 7색은 상점에서 코인으로 산다 (최대 8마리).
+-- 먹이 주기: 고양이 수만큼 더 캐고, 프리즈가 넘치면 코인으로 (feed_pet 교체).
 -- ============================================
 
 alter table public.profiles
@@ -75,34 +76,110 @@ revoke all on function public.check_in(uuid, date, int) from public, anon, authe
 grant execute on function public.check_in(uuid, date, int) to service_role;
 
 -- ---------- 상점: 고양이 구매 ----------
--- 가격과 고양이 목록은 features/shop/domain/shopItems.ts, features/pet/domain/catSheet.ts가 정하고
--- purchase Edge Function이 확인해서 넘긴다. 잔액 확인 → 차감 → 지급을 행을 잠근 채 한 번에 한다.
-create or replace function public.purchase_cat(p_user uuid, p_cat text, p_price int)
-returns jsonb
+-- 고양이 목록은 features/pet/domain/catSheet.ts, 가격 규칙은 features/shop/domain/shopItems.ts(catPrice)가
+-- 정하고 purchase Edge Function이 넘긴다. 가격 = 기본가 + 단계 × (가진 수 - 1) — 살수록 비싸진다.
+-- 잔액 확인 → 차감 → 지급을 행을 잠근 채 한 번에 한다.
+create or replace function public.purchase_cat(
+  p_user       uuid,
+  p_cat        text,
+  p_base_price int,
+  p_price_step int
+) returns jsonb
 language plpgsql security definer set search_path = public as $$
 declare
-  prof profiles%rowtype;
+  prof  profiles%rowtype;
+  price int;
 begin
   select * into prof from profiles where id = p_user for update;
   if not found then
     return jsonb_build_object('error', 'profile_not_found');
   end if;
 
+  price := p_base_price + p_price_step * greatest(0, cardinality(prof.owned_cats) - 1);
+
   if p_cat = any(prof.owned_cats) then
     return jsonb_build_object('error', 'already_owned');
   end if;
-  if prof.coins < p_price then
-    return jsonb_build_object('error', 'not_enough_coins');
+  if prof.coins < price then
+    return jsonb_build_object('error', 'not_enough_coins', 'price', price);
   end if;
 
   update profiles
-     set coins      = coins - p_price,
+     set coins      = coins - price,
          owned_cats = owned_cats || p_cat
    where id = p_user
   returning * into prof;
 
-  return jsonb_build_object('coins', prof.coins, 'owned_cats', prof.owned_cats);
+  return jsonb_build_object('coins', prof.coins, 'owned_cats', prof.owned_cats, 'price', price);
 end $$;
 
-revoke all on function public.purchase_cat(uuid, text, int) from public, anon, authenticated;
-grant execute on function public.purchase_cat(uuid, text, int) to service_role;
+revoke all on function public.purchase_cat(uuid, text, int, int) from public, anon, authenticated;
+grant execute on function public.purchase_cat(uuid, text, int, int) to service_role;
+
+-- ---------- 먹이 주기 (0005 버전 교체) ----------
+-- 바뀐 점: 고양이가 많을수록 많이 캔다(게이지 = 기본 + 고양이 수 × 마리당),
+--          프리즈가 가득이어도 먹일 수 있고 넘친 프리즈는 코인으로 바꿔 준다.
+-- 수치는 features/pet/domain/mining.ts가 정하고 feed-pet Edge Function이 넘긴다.
+drop function if exists public.feed_pet(uuid, int, int, int, int);
+
+create function public.feed_pet(
+  p_user            uuid,
+  p_mine_base       int,
+  p_mine_per_cat    int,
+  p_mine_per_freeze int,
+  p_freeze_max      int,
+  p_work_hours      int,
+  p_overflow_coins  int
+) returns jsonb
+language plpgsql security definer set search_path = public as $$
+declare
+  prof     profiles%rowtype;
+  gain     int;
+  gauge    int;
+  minted   int := 0;
+  overflow int := 0;
+begin
+  select * into prof from profiles where id = p_user for update;
+  if not found then
+    return jsonb_build_object('error', 'profile_not_found');
+  end if;
+
+  if prof.grass < 1 then
+    return jsonb_build_object('error', 'no_grass');
+  end if;
+
+  gain  := p_mine_base + p_mine_per_cat * greatest(1, cardinality(prof.owned_cats));
+  gauge := prof.mine_progress + gain;
+  while gauge >= p_mine_per_freeze loop
+    gauge := gauge - p_mine_per_freeze;
+    if prof.freeze_count + minted < p_freeze_max then
+      minted := minted + 1;
+    else
+      overflow := overflow + 1;
+    end if;
+  end loop;
+
+  update profiles
+     set grass             = grass - 1,
+         mine_progress     = gauge,
+         freeze_count      = freeze_count + minted,
+         coins             = coins + overflow * p_overflow_coins,
+         pet_working_until = greatest(coalesce(pet_working_until, now()), now())
+                             + make_interval(hours => p_work_hours)
+   where id = p_user
+  returning * into prof;
+
+  return jsonb_build_object(
+    'grass',             prof.grass,
+    'mine_progress',     prof.mine_progress,
+    'freeze_count',      prof.freeze_count,
+    'coins',             prof.coins,
+    'pet_working_until', prof.pet_working_until,
+    'gain',              gain,
+    'minted',            minted,
+    'overflow_coins',    overflow * p_overflow_coins
+  );
+end $$;
+
+revoke all on function public.feed_pet(uuid, int, int, int, int, int, int) from public, anon, authenticated;
+grant execute on function public.feed_pet(uuid, int, int, int, int, int, int) to service_role;

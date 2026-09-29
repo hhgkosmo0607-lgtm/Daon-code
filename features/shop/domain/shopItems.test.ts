@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import {
-  CAT_PRICE,
+  catPrice,
   FREEZE_MAX,
   FREEZE_PRICE,
   catPurchaseBlock,
@@ -25,7 +25,7 @@ describe('catPurchaseBlock', () => {
   const valid = ['orange', 'pink'];
 
   it('안 가진 고양이를 코인이 충분하면 살 수 있다', () => {
-    expect(catPurchaseBlock(CAT_PRICE, ['orange'], 'pink', valid)).toBeNull();
+    expect(catPurchaseBlock(catPrice(1), ['orange'], 'pink', valid)).toBeNull();
   });
 
   it('이미 가진 고양이는 already_owned', () => {
@@ -33,10 +33,19 @@ describe('catPurchaseBlock', () => {
   });
 
   it('코인이 모자라면 not_enough_coins', () => {
-    expect(catPurchaseBlock(CAT_PRICE - 1, ['orange'], 'pink', valid)).toBe('not_enough_coins');
+    expect(catPurchaseBlock(catPrice(1) - 1, ['orange'], 'pink', valid)).toBe('not_enough_coins');
   });
 
   it('없는 고양이는 unknown_cat', () => {
     expect(catPurchaseBlock(999, [], 'dragon', valid)).toBe('unknown_cat');
+  });
+});
+
+describe('catPrice', () => {
+  it('두 번째 80에서 한 마리마다 40씩 오르고, 8마리 전부 1,400', () => {
+    expect(catPrice(1)).toBe(80);
+    expect(catPrice(7)).toBe(320);
+    const total = [1, 2, 3, 4, 5, 6, 7].reduce((sum, n) => sum + catPrice(n), 0);
+    expect(total).toBe(1400);
   });
 });

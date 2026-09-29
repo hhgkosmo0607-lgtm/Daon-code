@@ -12,8 +12,9 @@ import { useUserProgress } from '../../lesson/hooks/useUserProgress';
 import { CatPortrait } from '../../pet/components/CatPortrait';
 import { PixelDiamond } from '../../pet/components/PixelDiamond';
 import { CAT_COLORS } from '../../pet/domain/catSheet';
+import { MINE_PER_CAT } from '../../pet/domain/mining';
 import {
-  CAT_PRICE,
+  catPrice,
   FREEZE_MAX,
   FREEZE_PRICE,
   catPurchaseBlock,
@@ -55,6 +56,7 @@ export function ShopScreen() {
   };
 
   const owned = profile?.owned_cats ?? ['orange'];
+  const nextCatPrice = catPrice(owned.length);
   const buyCat = async (catId: string, label: string) => {
     setBusy(true);
     setMessage(null);
@@ -123,7 +125,7 @@ export function ShopScreen() {
         )}
 
         <Text style={styles.section}>
-          고양이 {owned.length}/{CAT_COLORS.length} · 가진 고양이는 모두 광산에서 일해요
+          고양이 {owned.length}/{CAT_COLORS.length} · 많을수록 많이 캐요 · 살수록 비싸져요
         </Text>
         {CAT_COLORS.filter((cat) => !owned.includes(cat.id)).map((cat) => {
           const catBlock = profile
@@ -141,17 +143,17 @@ export function ShopScreen() {
               </View>
               <View style={styles.itemText}>
                 <Text style={styles.itemName}>{cat.label} 고양이</Text>
-                <Text style={styles.itemDesc}>광산에서 함께 일해요</Text>
+                <Text style={styles.itemDesc}>먹이 1개 채굴량 +{MINE_PER_CAT}</Text>
               </View>
               <Pressable
                 style={[styles.buyButton, (catBlock || busy) && styles.buyButtonDisabled]}
                 onPress={() => buyCat(cat.id, cat.label)}
                 disabled={!!catBlock || busy}
                 accessibilityRole="button"
-                accessibilityLabel={`${cat.label} 고양이 ${CAT_PRICE}코인에 구매`}
+                accessibilityLabel={`${cat.label} 고양이 ${nextCatPrice}코인에 구매`}
                 accessibilityState={{ disabled: !!catBlock || busy }}
               >
-                <Text style={styles.buyButtonText}>{CAT_PRICE}c</Text>
+                <Text style={styles.buyButtonText}>{nextCatPrice}c</Text>
               </Pressable>
             </View>
           );

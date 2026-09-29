@@ -1,8 +1,10 @@
 import { createClient } from 'npm:@supabase/supabase-js@2.116.0';
 
 import {
+  FREEZE_OVERFLOW_COINS,
+  MINE_BASE,
+  MINE_PER_CAT,
   MINE_PER_FREEZE,
-  MINE_PER_GRASS,
   WORK_HOURS_PER_GRASS,
 } from '../../../features/pet/domain/mining.ts';
 import { FREEZE_MAX } from '../../../features/shop/domain/shopItems.ts';
@@ -12,7 +14,7 @@ import { FREEZE_MAX } from '../../../features/shop/domain/shopItems.ts';
  *
  * 잔디·게이지·프리즈는 클라이언트가 직접 못 바꾸므로(가드 트리거) 서버에서만 한다.
  * 수치는 앱 화면과 같은 mining.ts에서 가져오고, 확인·차감·지급은 feed_pet DB 함수가
- * 한 트랜잭션으로 한다. (0005_pet_mining.sql)
+ * 한 트랜잭션으로 한다. (0006_checkin_and_cats.sql — 고양이 수만큼 더 캐고, 넘친 프리즈는 코인)
  */
 
 const corsHeaders = {
@@ -29,7 +31,6 @@ function json(body: unknown, status = 200) {
 
 const ERROR_MESSAGES: Record<string, string> = {
   no_grass: '먹일 잔디가 없어요 · 매일 앱에 들어오면 하루 한 번 받아요',
-  freeze_full: `프리즈가 가득 찼어요 (최대 ${FREEZE_MAX}개) · 쓰고 나면 다시 캘 수 있어요`,
   profile_not_found: '프로필을 찾을 수 없어요',
 };
 
@@ -59,10 +60,12 @@ Deno.serve(async (req) => {
     const admin = createClient(supabaseUrl, serviceRoleKey);
     const { data, error } = await admin.rpc('feed_pet', {
       p_user: user.id,
-      p_mine_per_grass: MINE_PER_GRASS,
+      p_mine_base: MINE_BASE,
+      p_mine_per_cat: MINE_PER_CAT,
       p_mine_per_freeze: MINE_PER_FREEZE,
       p_freeze_max: FREEZE_MAX,
       p_work_hours: WORK_HOURS_PER_GRASS,
+      p_overflow_coins: FREEZE_OVERFLOW_COINS,
     });
     if (error) throw error;
 
@@ -75,7 +78,10 @@ Deno.serve(async (req) => {
       mineProgress: data.mine_progress,
       freezeCount: data.freeze_count,
       petWorkingUntil: data.pet_working_until,
+      coins: data.coins,
+      gain: data.gain,
       minted: data.minted,
+      overflowCoins: data.overflow_coins,
     });
   } catch (error) {
     console.error(error);
