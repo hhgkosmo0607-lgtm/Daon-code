@@ -10,7 +10,6 @@ import { useTheme } from '../../../shared/theme/ThemeContext';
 import { fonts, radius, spacing } from '../../../shared/theme/theme';
 import type { ThemeColors } from '../../../shared/theme/themes';
 import { useAuth } from '../../auth/AuthContext';
-import { StudyGrass } from '../../grass/components/StudyGrass';
 import { PetPanel, type LastCollect } from '../../pet/components/PetPanel';
 import { pendingPrisms } from '../../pet/domain/mining';
 import { miningPower } from '../../pet/domain/petCatalog';
@@ -102,11 +101,6 @@ export function HomeScreen() {
   const totalXp = profile?.total_xp ?? 0;
   const progress = levelProgress(totalXp);
   const coins = profile?.coins ?? 0;
-  // 상단바 숫자를 누르면 뜻을 풀어서 보여준다 (7d, LV 진행바가 처음엔 낯설 수 있어서)
-  // 직접 열고 닫기 전까지는, 게스트면 XP 80% 규칙을 알 수 있게 펼쳐서 보여준다.
-  // (홈이 세션 복구보다 먼저 뜰 수 있어서 isGuest를 초기값으로 굳히지 않는다)
-  const [statInfoToggled, setStatInfoToggled] = useState<boolean | null>(null);
-  const showStatInfo = statInfoToggled ?? isGuest;
   // 하루 빠진 스트릭 — "괜찮아요"를 누른 날은 다시 묻지 않는다 (앱을 다시 켜면 다시 묻는다)
   const [repairDismissedOn, setRepairDismissedOn] = useState<string | null>(null);
   const todayKst = toKstDateString();
@@ -150,21 +144,17 @@ export function HomeScreen() {
               <Text style={[styles.stat, { color: colors.error }]}>불러오기 실패 · 다시 시도</Text>
             </Pressable>
           ) : (
-            <Pressable
+            <View
               style={styles.statGroup}
-              onPress={() => setStatInfoToggled(!showStatInfo)}
-              hitSlop={6}
-              accessibilityRole="button"
+              accessible
               accessibilityLabel={`${streak}일 연속 학습, 레벨 ${progress.level}, 다음 레벨까지 ${progress.xpToNext} XP`}
-              accessibilityHint="눌러서 설명 보기"
-              accessibilityState={{ expanded: showStatInfo }}
             >
               <Text style={[styles.stat, { color: colors.streak }]}>{streak}d</Text>
               <Text style={[styles.stat, { color: colors.xp }]} numberOfLines={1}>
                 LV{progress.level} {levelBar(progress.xpIntoLevel)} {progress.xpIntoLevel}/
                 {XP_PER_LEVEL}
               </Text>
-            </Pressable>
+            </View>
           )}
           {!error && user && (
             <Pressable
@@ -241,25 +231,6 @@ export function HomeScreen() {
           onRepaired={reload}
           onDismiss={() => setRepairDismissedOn(todayKst)}
         />
-      )}
-
-      {showStatInfo && (
-        <Pressable style={styles.statInfo} onPress={() => setStatInfoToggled(false)}>
-          <Text style={styles.statInfoText}>
-            {streak}일 연속 학습 중 · 누적 {totalXp} XP · 다음 레벨까지 {progress.xpToNext} XP
-          </Text>
-          <Text style={styles.statInfoText}>
-            코인 {coins}개 · 프리즘 {profile?.prisms ?? 0}개 · 코인(c)을 누르면 상점
-          </Text>
-          {isGuest && (
-            <Text style={styles.statInfoText}>
-              게스트는 XP·코인을 80%만 받아요 · 로그인하면 나머지를 돌려받아요
-            </Text>
-          )}
-          {user && (
-            <StudyGrass userId={user.id} dailyGoal={profile?.daily_goal ?? 20} colors={colors} />
-          )}
-        </Pressable>
       )}
 
       <Pressable style={styles.trackBar} onPress={() => router.push('/settings/track')}>
@@ -374,14 +345,6 @@ const createStyles = (colors: ThemeColors) =>
     stat: { fontSize: 13, fontWeight: '700', fontFamily: fonts.mono },
     rightGroup: { marginLeft: 'auto', flexDirection: 'row', alignItems: 'center', gap: spacing.sm },
     themeButton: { fontSize: 18, color: colors.text, fontFamily: fonts.mono },
-    statInfo: {
-      paddingHorizontal: spacing.md,
-      paddingVertical: spacing.xs,
-      backgroundColor: colors.surface,
-      borderBottomWidth: 1,
-      borderBottomColor: colors.border,
-    },
-    statInfoText: { fontSize: 12, color: colors.textMuted, fontFamily: fonts.mono },
     reviewButton: {
       borderWidth: 1,
       borderColor: colors.accent,

@@ -3,8 +3,10 @@ import { PETS } from '../../pet/domain/petCatalog';
 import {
   COIN_PET_PRICE,
   LEGENDARY_PET_PRICE,
+  PRISM_PACKS,
   PRISM_PET_PRICE,
   exchangeBlock,
+  packBonusPercent,
   petPrice,
   petPurchaseBlock,
 } from './shopItems';
@@ -59,5 +61,15 @@ describe('exchangeBlock', () => {
     expect(exchangeBlock(5, 5)).toBeNull();
     expect(exchangeBlock(4, 5)).toBe('not_enough_prisms');
     expect(exchangeBlock(99, 3)).toBe('invalid');
+  });
+});
+
+describe('PRISM_PACKS', () => {
+  it('큰 묶음일수록 보너스가 커진다 (10개 1,000원 기준)', () => {
+    expect(PRISM_PACKS.map(packBonusPercent)).toEqual([0, 20, 30, 40]);
+  });
+
+  it('id가 겹치지 않는다 (스토어 상품 id로 쓴다)', () => {
+    expect(new Set(PRISM_PACKS.map((p) => p.id)).size).toBe(PRISM_PACKS.length);
   });
 });

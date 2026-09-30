@@ -93,3 +93,28 @@ export function petPurchaseBlock(
   if (pet.currency === 'prism') return wallet.prisms < price ? 'not_enough_prisms' : null;
   return wallet.coins < price ? 'not_enough_coins' : null;
 }
+
+/*
+ * 프리즘 충전(현금) 상품 — 지금은 목록·가격만 보여주고, 결제는 스토어 출시 때 붙인다.
+ * 기준: 10개 = 1,000원. 큰 묶음일수록 보너스 (프리즘 펫 30개 ≈ 3천 원, 전설 50개 ≈ 4~5천 원).
+ * 결제를 붙일 때 id를 스토어(구글 플레이) 인앱 상품 id로 그대로 쓴다.
+ */
+export interface PrismPack {
+  id: string;
+  prisms: number;
+  /** 원 */
+  priceKrw: number;
+}
+
+export const PRISM_PACKS: PrismPack[] = [
+  { id: 'prism_10', prisms: 10, priceKrw: 1000 },
+  { id: 'prism_60', prisms: 60, priceKrw: 5000 },
+  { id: 'prism_130', prisms: 130, priceKrw: 10000 },
+  { id: 'prism_350', prisms: 350, priceKrw: 25000 },
+];
+
+/** 기준(10개 = 1,000원)보다 몇 % 더 주는지 — 0이면 보너스 없음 */
+export function packBonusPercent(pack: PrismPack): number {
+  const base = PRISM_PACKS[0].prisms / PRISM_PACKS[0].priceKrw;
+  return Math.round((pack.prisms / (pack.priceKrw * base) - 1) * 100);
+}

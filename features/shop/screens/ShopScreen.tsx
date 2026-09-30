@@ -19,7 +19,9 @@ import { DEFAULT_PET_ID, PETS, SPECIES_LABEL, type PetDef } from '../../pet/doma
 import {
   COINS_PER_PRISM,
   EXCHANGE_BUNDLES,
+  PRISM_PACKS,
   exchangeBlock,
+  packBonusPercent,
   petPrice,
   petPurchaseBlock,
 } from '../domain/shopItems';
@@ -92,7 +94,9 @@ export function ShopScreen() {
       await reload();
       setSelected(null);
       toast.show(
-        teamFull ? `${pet.label} · 데려왔어요 (팀은 꽉 차 있어요)` : `${pet.label} · 팀에 들어왔어요`
+        teamFull
+          ? `${pet.label} · 데려왔어요 (팀은 꽉 차 있어요)`
+          : `${pet.label} · 팀에 들어왔어요`
       );
     } catch (e) {
       toast.show(e instanceof Error ? e.message : '구매하지 못했어요', 'error');
@@ -259,7 +263,28 @@ export function ShopScreen() {
 
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>프리즘 충전</Text>
-          <Text style={styles.soon}>스토어 출시 때 열려요 · 지금은 팀 펫이 시간마다 캐요</Text>
+          <View style={styles.grid}>
+            {PRISM_PACKS.map((pack) => {
+              const bonus = packBonusPercent(pack);
+              return (
+                <Pressable
+                  key={pack.id}
+                  style={({ pressed }) => [styles.card, styles.packCard, pressed && styles.pressed]}
+                  onPress={() => toast.show('스토어 출시 후 결제할 수 있어요')}
+                  accessibilityRole="button"
+                  accessibilityLabel={`프리즘 ${pack.prisms}개, ${pack.priceKrw.toLocaleString('ko-KR')}원, 출시 후 구매 가능`}
+                >
+                  {bonus > 0 && <Text style={styles.bonus}>+{bonus}%</Text>}
+                  <PixelDiamond pixel={3} />
+                  <Text style={styles.packCount}>{pack.prisms}개</Text>
+                  <Text style={styles.packPrice}>₩{pack.priceKrw.toLocaleString('ko-KR')}</Text>
+                </Pressable>
+              );
+            })}
+          </View>
+          <Text style={styles.soon}>
+            결제는 스토어 출시 후 열려요 · 지금은 팀 펫이 시간마다 캐요
+          </Text>
         </View>
       </ScrollView>
 
@@ -346,7 +371,21 @@ const createStyles = (colors: ThemeColors) =>
     },
     chipText: { fontSize: 13, fontWeight: '800', color: colors.text, fontFamily: fonts.mono },
     chipArrow: { fontSize: 12, color: colors.textMuted },
-    soon: { fontSize: 13, color: colors.textMuted },
+    soon: { fontSize: 12, color: colors.textMuted },
+    packCard: { borderColor: colors.xp, paddingTop: spacing.lg },
+    bonus: {
+      position: 'absolute',
+      top: 0,
+      right: 0,
+      backgroundColor: colors.xp,
+      color: getReadableTextColor(colors.xp),
+      fontSize: 11,
+      fontWeight: '800',
+      paddingHorizontal: 6,
+      paddingVertical: 2,
+    },
+    packCount: { fontSize: 16, fontWeight: '800', color: colors.text, fontFamily: fonts.mono },
+    packPrice: { fontSize: 14, fontWeight: '700', color: colors.textMuted },
     disabled: { opacity: 0.4 },
 
     sheetHead: { flexDirection: 'row', alignItems: 'center', gap: spacing.md },
