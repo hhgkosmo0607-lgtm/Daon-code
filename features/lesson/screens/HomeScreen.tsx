@@ -44,6 +44,8 @@ export function HomeScreen() {
   const checkedInDate = useRef<string | null>(null);
   const [todayReward, setTodayReward] = useState<string | null>(null);
   const [showPetPanel, setShowPetPanel] = useState(false);
+  /** 올리면 광산에서 출석 드릴 연출이 재생된다 */
+  const [drillKey, setDrillKey] = useState(0);
   useFocusEffect(
     useCallback(() => {
       reload();
@@ -54,9 +56,9 @@ export function HomeScreen() {
           checkedInDate.current = today;
           const message = checkInMessage(r);
           if (!message) return;
-          // 받은 보상을 보여주려고 광산 패널을 펼친다
+          // 드릴 연출이 끝나면 받은 보상을 광산 패널로 보여준다 (onDrillDone)
           setTodayReward(message);
-          setShowPetPanel(true);
+          setDrillKey((k) => k + 1);
           reload();
         })
         .catch(() => {});
@@ -193,6 +195,8 @@ export function HomeScreen() {
           catIds={profile?.owned_cats}
           onPress={profile ? () => setShowPetPanel(!showPetPanel) : undefined}
           expanded={showPetPanel}
+          drillKey={drillKey}
+          onDrillDone={() => setShowPetPanel(true)}
         />
       </View>
 

@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   Image,
   Pressable,
@@ -25,6 +25,7 @@ import {
   type Place,
 } from '../domain/catSheet';
 import { CatPet } from './CatPet';
+import { DrillEffect, drillLeftFor } from './DrillEffect';
 import { BACKGROUND_TILE, PROPS_SHEET, ROOM_BACKGROUND_TILE } from './catAssets';
 import { SheetCrop } from './SheetCrop';
 
@@ -56,15 +57,36 @@ export function PetScene({
   catIds = [DEFAULT_CAT_ID],
   onPress,
   expanded,
+  drillKey = 0,
+  onDrillDone,
 }: {
   /** 가진 펫 id 목록 — 전부 나온다 */
   catIds?: string[];
   /** 누르면 채굴 패널 열기/닫기 */
   onPress?: () => void;
   expanded?: boolean;
+  /** 올리면 광산으로 넘어가서 출석 드릴 연출을 한 번 재생한다 (0이면 안 함) */
+  drillKey?: number;
+  onDrillDone?: () => void;
 }) {
   const [width, setWidth] = useState(0);
   const [page, setPage] = useState(0);
+  const scrollRef = useRef<ScrollView>(null);
+  // 끝까지 재생한 드릴 번호 — drillKey가 이것보다 크면 재생 중이다
+  const [drilledKey, setDrilledKey] = useState(0);
+  const drilling = drillKey > drilledKey && width > 0;
+  // 재생하는 동안은 광산을 보여준다
+  const shownPage = drilling ? 0 : page;
+
+  useEffect(() => {
+    if (drillKey > 0) scrollRef.current?.scrollTo({ x: 0, animated: true });
+  }, [drillKey]);
+
+  const finishDrill = () => {
+    setDrilledKey(drillKey);
+    setPage(0);
+    onDrillDone?.();
+  };
 
   const cartLeft = snap(width - PROPS.cart.w * S - CART_MARGIN_RIGHT);
   const rockLeft = cartLeft - PROPS.rock.w * S - ROCK_GAP;
@@ -113,6 +135,7 @@ export function PetScene({
     >
       {width > 0 && (
         <ScrollView
+          ref={scrollRef}
           horizontal
           pagingEnabled
           showsHorizontalScrollIndicator={false}
@@ -156,13 +179,16 @@ export function PetScene({
               {...PROPS.cart}
               style={[styles.abs, { left: cartLeft, top: (RAIL_Y - PROPS.cart.h) * S }]}
             />
-            {page === 0 && pets('mine', rockLeft)}
+            {shownPage === 0 && pets('mine', rockLeft)}
+            {drilling && (
+              <DrillEffect key={drillKey} left={drillLeftFor(width)} onDone={finishDrill} />
+            )}
           </Pressable>
 
           {/* 방 */}
           <Pressable {...pageProps('room', '방')}>
             <Tiles source={ROOM_BACKGROUND_TILE} width={width} />
-            {page === 1 && pets('room', width - 4 * S)}
+            {shownPage === 1 && pets('room', width - 4 * S)}
           </Pressable>
         </ScrollView>
       )}
@@ -170,7 +196,7 @@ export function PetScene({
       {/* 지금 어느 곳인지 — 점 두 개 */}
       <View style={styles.dots} pointerEvents="none">
         {PLACES.map((p, i) => (
-          <View key={p.place} style={[styles.dot, i === page && styles.dotActive]} />
+          <View key={p.place} style={[styles.dot, i === shownPage && styles.dotActive]} />
         ))}
       </View>
     </View>
