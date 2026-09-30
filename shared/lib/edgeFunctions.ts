@@ -102,20 +102,23 @@ export async function exchangePrisms(prisms: number): Promise<ExchangeResult> {
   return invokeFunction<ExchangeResult>('purchase', { item: 'coins', prisms });
 }
 
-export interface CheckInResult {
-  /** 이번 출석으로 찬 게이지 (오늘 이미 받았으면 0) */
-  gain: number;
-  /** 이번 출석으로 나온 프리즘 */
+export interface CollectMiningResult {
+  /** 이번에 받은 채굴 시간 (최대 24) */
+  hours: number;
+  /** 이번에 쌓인 게이지 */
+  gained: number;
+  /** 새로 나온 프리즘 */
   minted: number;
   /** 일한 팀 펫 수 */
   team: number;
-  mineProgress: number;
+  minePoints: number;
   prisms: number;
+  collectedAt: string;
 }
 
-/** 하루 한 번 출석 — 오늘 처음이면 팀 펫들이 캔 만큼 게이지가 차고 프리즘이 나온다. 여러 번 불러도 하루 한 번만. */
-export async function checkIn(): Promise<CheckInResult> {
-  return invokeFunction<CheckInResult>('check-in', {});
+/** 팀 펫이 지난번 뒤로 캔 만큼(최대 24시간치) 받는다. 자주 불러도 흐른 시간만큼만 준다. */
+export async function collectMining(): Promise<CollectMiningResult> {
+  return invokeFunction<CollectMiningResult>('collect-mining', {});
 }
 
 export interface RepairStreakResult {
@@ -130,7 +133,7 @@ export async function repairStreak(): Promise<RepairStreakResult> {
 
 export type AdminAction =
   | { action: 'grant'; coins?: number; prisms?: number }
-  | { action: 'reset_checkin' }
+  | { action: 'rewind_mining' }
   | { action: 'miss_day' }
   | { action: 'reset_pets' };
 

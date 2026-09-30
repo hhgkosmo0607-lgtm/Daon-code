@@ -72,9 +72,9 @@ Deno.serve(async (req) => {
         patch = { coins: profile.coins + coins, prisms: profile.prisms + prisms };
         break;
       }
-      case 'reset_checkin':
-        // 오늘 출석 보상을 다시 받을 수 있게
-        patch = { last_checkin_date: null };
+      case 'rewind_mining':
+        // 마지막으로 채굴을 받은 시각을 24시간 전으로 → 홈에 가면 24시간치를 받고 드릴 연출이 나온다
+        patch = { mine_collected_at: new Date(Date.now() - 24 * 3_600_000).toISOString() };
         break;
       case 'miss_day':
         // 마지막 학습을 그저께로 → 홈에 "스트릭 지킬래요?" 배너가 뜬다

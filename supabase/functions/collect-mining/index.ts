@@ -1,20 +1,18 @@
 import { createClient } from 'npm:@supabase/supabase-js@2.116.0';
 
-import { toKstDateString } from '../../../features/lesson/domain/streak.ts';
 import { PET_POWER } from '../../../features/pet/domain/petCatalog.ts';
 import {
-  MINE_BASE,
-  MINE_PER_CAT,
-  MINE_PER_PRISM,
+  BASE_PER_HOUR,
+  MAX_HOURS,
+  PER_POWER_PER_HOUR,
+  POINTS_PER_PRISM,
   TEAM_MAX,
 } from '../../../features/pet/domain/mining.ts';
 
 /*
- * 하루 한 번 출석 — 그날 처음 앱에 들어오면 팀 펫들이 캔 만큼 채굴 게이지가 차고,
- * 가득 차면 프리즘이 나온다. 레슨을 풀지 않아도 준다. (daon-content/재화_경제.md)
- *
- * 앱은 홈에 들어올 때마다 불러도 되고, 하루 한 번만 주는 판단은 check_in DB 함수가 한다.
- * 날짜는 기기 시계가 아니라 서버 시각의 한국 날짜로 정한다. (0008_pets.sql)
+ * 채굴 받기 — 팀 펫이 지난번에 받은 뒤로 캔 만큼(최대 24시간치) 게이지를 쌓고,
+ * 가득 차면 프리즘을 준다. 앱은 홈에 들어올 때마다 불러도 된다 (자주 부르면 조금씩 받는다).
+ * 시간은 서버 now()로 잰다 — 기기 시계를 바꿔도 소용없다. (daon-content/재화_경제.md, 0009_time_mining.sql)
  */
 
 const corsHeaders = {
@@ -53,12 +51,12 @@ Deno.serve(async (req) => {
     }
 
     const admin = createClient(supabaseUrl, serviceRoleKey);
-    const { data, error } = await admin.rpc('check_in', {
+    const { data, error } = await admin.rpc('collect_mining', {
       p_user: user.id,
-      p_today: toKstDateString(),
-      p_mine_base: MINE_BASE,
-      p_mine_per_cat: MINE_PER_CAT,
-      p_mine_per_prism: MINE_PER_PRISM,
+      p_base_per_hour: BASE_PER_HOUR,
+      p_per_power_per_hour: PER_POWER_PER_HOUR,
+      p_points_per_prism: POINTS_PER_PRISM,
+      p_max_hours: MAX_HOURS,
       p_pet_power: PET_POWER,
       p_team_max: TEAM_MAX,
     });
@@ -69,11 +67,13 @@ Deno.serve(async (req) => {
     }
 
     return json({
-      gain: data.gain,
+      hours: Number(data.hours),
+      gained: Number(data.gained),
       minted: data.minted,
       team: data.team,
-      mineProgress: data.mine_progress,
+      minePoints: Number(data.mine_points),
       prisms: data.prisms,
+      collectedAt: data.collected_at,
     });
   } catch (error) {
     console.error(error);

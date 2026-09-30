@@ -1,29 +1,63 @@
 import { describe, expect, it } from 'vitest';
-import { MINE_PER_PRISM, applyCheckIn, minePerCheckIn } from './mining';
+import {
+  MAX_HOURS,
+  POINTS_PER_PRISM,
+  collectMining,
+  hoursToNextPrism,
+  minedHours,
+  pointsPerHour,
+} from './mining';
 
-describe('minePerCheckIn', () => {
-  it('채굴력이 클수록 많이 캔다', () => {
-    expect(minePerCheckIn(1)).toBe(2);
-    expect(minePerCheckIn(4)).toBe(5);
-    expect(minePerCheckIn(8)).toBe(9);
+const at = (h: number) => new Date(Date.UTC(2026, 8, 30, 0, 0, 0) + h * 3_600_000);
+
+describe('pointsPerHour', () => {
+  it('팀 채굴력이 클수록 시간당 많이 캔다', () => {
+    expect(pointsPerHour(1)).toBeCloseTo(0.8);
+    expect(pointsPerHour(8)).toBeCloseTo(3.6);
+    expect(pointsPerHour(24)).toBeCloseTo(10);
   });
 
   it('채굴력을 못 읽어도 최소 1로 본다', () => {
-    expect(minePerCheckIn(0)).toBe(2);
+    expect(pointsPerHour(0)).toBeCloseTo(0.8);
   });
 
-  it('매일 출석하면 1마리는 5일, 8마리는 이틀 안에 프리즘 1개', () => {
-    expect(Math.ceil(MINE_PER_PRISM / minePerCheckIn(1))).toBe(5);
-    expect(Math.ceil(MINE_PER_PRISM / minePerCheckIn(8))).toBeLessThanOrEqual(2);
+  it('하루치가 예전 출석 방식과 비슷하다 (치즈만 약 5일, 코인 펫 8마리 1~2일에 프리즘 1개)', () => {
+    expect(POINTS_PER_PRISM / (pointsPerHour(1) * 24)).toBeGreaterThan(4.5);
+    expect(POINTS_PER_PRISM / (pointsPerHour(1) * 24)).toBeLessThan(5.5);
+    expect(POINTS_PER_PRISM / (pointsPerHour(8) * 24)).toBeLessThan(1.5);
   });
 });
 
-describe('applyCheckIn', () => {
-  it('게이지가 10을 넘으면 프리즘이 나오고 나머지는 남는다', () => {
-    expect(applyCheckIn(8, 3)).toEqual({ gain: 4, minted: 1, gauge: 2 });
+describe('minedHours', () => {
+  it('지난번에 받은 뒤로 흐른 시간, 최대 MAX_HOURS', () => {
+    expect(minedHours(at(0), at(5))).toBe(5);
+    expect(minedHours(at(0), at(100))).toBe(MAX_HOURS);
   });
 
-  it('덜 찼으면 게이지만 오른다', () => {
-    expect(applyCheckIn(0, 1)).toEqual({ gain: 2, minted: 0, gauge: 2 });
+  it('시계가 거꾸로면 0', () => {
+    expect(minedHours(at(5), at(0))).toBe(0);
+  });
+});
+
+describe('collectMining', () => {
+  it('쌓인 게이지가 100을 넘으면 프리즘이 나오고 나머지는 남는다', () => {
+    // 채굴력 24 → 시간당 10, 12시간 → 120
+    const r = collectMining(30, at(0), 24, at(12));
+    expect(r.hours).toBe(12);
+    expect(r.gained).toBeCloseTo(120);
+    expect(r.minted).toBe(1);
+    expect(r.points).toBeCloseTo(50);
+  });
+
+  it('24시간이 넘게 안 들어와도 24시간치만 받는다', () => {
+    const r = collectMining(0, at(0), 1, at(72));
+    expect(r.hours).toBe(MAX_HOURS);
+    expect(r.gained).toBeCloseTo(0.8 * MAX_HOURS);
+  });
+});
+
+describe('hoursToNextPrism', () => {
+  it('남은 게이지 ÷ 시간당 게이지', () => {
+    expect(hoursToNextPrism(60, 24)).toBeCloseTo(4);
   });
 });

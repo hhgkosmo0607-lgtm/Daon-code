@@ -3,15 +3,14 @@ import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from 'rea
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { checkIn } from '../../../shared/lib/edgeFunctions';
+import { collectMining } from '../../../shared/lib/edgeFunctions';
 import { useTheme } from '../../../shared/theme/ThemeContext';
 import { fonts, radius, spacing } from '../../../shared/theme/theme';
 import type { ThemeColors } from '../../../shared/theme/themes';
 import { useAuth } from '../../auth/AuthContext';
 import { StudyGrass } from '../../grass/components/StudyGrass';
-import { PetPanel, checkInMessage } from '../../pet/components/PetPanel';
+import { PetPanel, type LastCollect } from '../../pet/components/PetPanel';
 import { PetScene } from '../../pet/components/PetScene';
-import { PetPortrait } from '../../pet/components/PetPortrait';
 import { PixelCoin } from '../../pet/components/PixelCoin';
 import { PixelDiamond } from '../../pet/components/PixelDiamond';
 import { useTrack } from '../../track/TrackContext';
@@ -29,6 +28,11 @@ import { useWrongAnswerCount } from '../hooks/useWrongAnswerCount';
  * 완료 표시(●)만 실제 진도(progress 테이블, useUserProgress)를 그대로 보여준다.
  */
 
+/** 홈에 다시 들어와도 이 간격 안이면 채굴을 다시 받지 않는다 */
+const COLLECT_EVERY_MS = 5 * 60 * 1000;
+/** 이만큼 넘게 쌓인 걸 받았을 때만 드릴 연출을 보여준다 */
+const DRILL_MIN_HOURS = 1;
+
 export function HomeScreen() {
   const router = useRouter();
   const { track } = useTrack();
@@ -42,26 +46,23 @@ export function HomeScreen() {
   const { profile, statusMap, loading, error, reload } = useUserProgress();
   // 레슨·상점 같은 모달에서 돌아오면 XP·코인이 바뀌었을 수 있어서 다시 불러온다
   // 하루 한 번 출석 — 레슨을 안 풀어도 홈에 들어오면 팀 펫들이 캔 만큼 채굴 게이지가 찬다.
-  // 판단은 서버가 하고, 여기서는 같은 날 반복 호출만 줄인다 (자정을 넘기면 다음 포커스 때 다시 부른다)
-  const checkedInDate = useRef<string | null>(null);
-  const [todayReward, setTodayReward] = useState<string | null>(null);
+  // 흐른 시간만큼만 주는 건 서버가 정하고, 여기서는 너무 잦은 호출만 줄인다
+  const lastCollectAt = useRef(0);
+  const [lastCollect, setLastCollect] = useState<LastCollect | null>(null);
   const [showPetPanel, setShowPetPanel] = useState(false);
   /** 올리면 광산에서 출석 드릴 연출이 재생된다 */
   const [drillKey, setDrillKey] = useState(0);
   useFocusEffect(
     useCallback(() => {
       reload();
-      const today = toKstDateString();
-      if (!user || checkedInDate.current === today) return;
-      checkIn()
+      if (!user || Date.now() - lastCollectAt.current < COLLECT_EVERY_MS) return;
+      lastCollectAt.current = Date.now();
+      collectMining()
         .then((r) => {
-          checkedInDate.current = today;
-          const message = checkInMessage(r);
-          if (!message) return;
-          // 드릴 연출이 끝나면 받은 보상을 광산 패널로 보여준다 (onDrillDone)
-          setTodayReward(message);
-          setDrillKey((k) => k + 1);
+          setLastCollect({ hours: r.hours, gained: r.gained, minted: r.minted });
           reload();
+          // 한 시간 넘게 쌓인 걸 받았을 때만 드릴 연출 → 끝나면 광산 패널로 보여준다 (onDrillDone)
+          if (r.hours >= DRILL_MIN_HOURS) setDrillKey((k) => k + 1);
         })
         .catch(() => {});
     }, [reload, user])
@@ -161,13 +162,12 @@ export function HomeScreen() {
           <View style={styles.rightGroup}>
             {!error && user && (
               <Pressable
+                style={styles.reviewButton}
                 onPress={() => router.push('/pets')}
-                hitSlop={6}
                 accessibilityRole="button"
-                accessibilityLabel="내 펫과 팀 보기"
-                style={styles.petButton}
+                accessibilityLabel="펫 관리"
               >
-                <PetPortrait petId={profile?.team_pets[0] ?? 'cat_orange'} pixel={1} />
+                <Text style={styles.reviewButtonText}>펫 관리</Text>
               </Pressable>
             )}
             {wrongAnswerCount > 0 && (
@@ -215,7 +215,7 @@ export function HomeScreen() {
       </View>
 
       {showPetPanel && profile && (
-        <PetPanel profile={profile} colors={colors} todayReward={todayReward} />
+        <PetPanel profile={profile} colors={colors} lastCollect={lastCollect} />
       )}
 
       {canRepairStreak && (
@@ -336,13 +336,6 @@ const createStyles = (colors: ThemeColors) =>
       paddingBottom: spacing.sm,
     },
     wallet: { flexDirection: 'row', alignItems: 'center', gap: 4 },
-    petButton: {
-      borderWidth: 1,
-      borderColor: colors.border,
-      borderRadius: radius.sm,
-      backgroundColor: '#2a2533',
-      padding: 2,
-    },
     statGroup: { flexDirection: 'row', alignItems: 'center', gap: spacing.sm, flexShrink: 1 },
     stat: { fontSize: 13, fontWeight: '700', fontFamily: fonts.mono },
     rightGroup: { marginLeft: 'auto', flexDirection: 'row', alignItems: 'center', gap: spacing.sm },

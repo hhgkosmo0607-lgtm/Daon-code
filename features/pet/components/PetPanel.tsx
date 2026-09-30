@@ -1,71 +1,87 @@
 import { useRouter } from 'expo-router';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
-import type { CheckInResult } from '../../../shared/lib/edgeFunctions';
-import { fonts, spacing } from '../../../shared/theme/theme';
+import { fonts, radius, spacing } from '../../../shared/theme/theme';
 import type { ThemeColors } from '../../../shared/theme/themes';
 import type { Profile } from '../../lesson/data/userRepository';
-import { PETS, miningPower } from '../domain/petCatalog';
-import { MINE_PER_PRISM, TEAM_MAX, minePerCheckIn } from '../domain/mining';
+import { POINTS_PER_PRISM, TEAM_MAX, hoursToNextPrism, pointsPerHour } from '../domain/mining';
+import { miningPower } from '../domain/petCatalog';
 import { PixelDiamond } from './PixelDiamond';
 
 /*
- * 광산(상단바 둘째 줄)을 누르면 펼쳐지는 패널 — 채굴 게이지, 프리즘, 오늘 출석 보상.
- * 팀 펫(최대 8마리)은 따로 돌볼 필요 없이 매일 출석하면 알아서 캔다. (daon-content/재화_경제.md)
+ * 광산(상단바 둘째 줄)을 누르면 펼쳐지는 패널 — 카드 세 칸.
+ *   가진 프리즘 · 다음 프리즘(게이지 %, 남은 시간) · 팀(시간당 채굴, 펫 관리)
+ * 팀 펫(최대 8마리)은 시간마다 알아서 캐고, 앱을 켜면 쌓인 만큼 받는다. (daon-content/재화_경제.md)
  */
 
-/** 채굴 게이지를 5칸 ▓░ 바로 */
-function gaugeBar(gauge: number): string {
-  const cells = Math.floor((gauge * 5) / MINE_PER_PRISM);
-  return '▓'.repeat(cells) + '░'.repeat(5 - cells);
+/** 이번 실행에서 마지막으로 받은 채굴 */
+export interface LastCollect {
+  hours: number;
+  gained: number;
+  minted: number;
 }
 
-/** 오늘 출석 보상 한 줄 (받은 게 없으면 null) */
-export function checkInMessage(result: CheckInResult): string | null {
-  if (result.gain <= 0) return null;
-  const minted = result.minted > 0 ? ` · 프리즘 +${result.minted}` : '';
-  return `출석 보상 · 펫 ${result.team}마리가 게이지 +${result.gain}${minted}`;
+/** 남은 시간을 "약 16시간" / "약 40분" / "곧"으로 */
+function formatHours(hours: number): string {
+  if (hours < 1 / 60) return '곧';
+  if (hours < 1) return `약 ${Math.round(hours * 60)}분`;
+  if (hours < 48) return `약 ${Math.round(hours)}시간`;
+  return `약 ${Math.round(hours / 24)}일`;
 }
 
 export function PetPanel({
   profile,
   colors,
-  todayReward,
+  lastCollect,
 }: {
   profile: Profile;
   colors: ThemeColors;
-  /** 오늘 출석으로 받은 보상 문구 (이번 실행에서 받았을 때만) */
-  todayReward: string | null;
+  lastCollect: LastCollect | null;
 }) {
   const styles = createStyles(colors);
   const router = useRouter();
-  const teamCount = profile.team_pets.length;
+
   const power = miningPower(profile.team_pets);
-  const gauge = profile.mine_progress;
+  const points = Number(profile.mine_points);
+  const percent = Math.floor((points / POINTS_PER_PRISM) * 100);
+  const perHour = pointsPerHour(power);
 
   return (
     <View style={styles.panel}>
-      <View style={styles.lineRow}>
-        <Text style={styles.line}>
-          채굴 {gaugeBar(gauge)} {gauge}/{MINE_PER_PRISM} ·{' '}
-        </Text>
-        <PixelDiamond pixel={1.5} />
-        <Text style={styles.line}> {profile.prisms}</Text>
+      <View style={styles.card}>
+        <View style={styles.big}>
+          <PixelDiamond pixel={1.5} />
+          <Text style={styles.bigText}>{profile.prisms}</Text>
+        </View>
+        <Text style={styles.cap}>가진 프리즘</Text>
+        {lastCollect && lastCollect.minted > 0 ? (
+          <Text style={[styles.foot, { color: colors.success }]}>+{lastCollect.minted} 방금</Text>
+        ) : (
+          <Text style={styles.foot}> </Text>
+        )}
       </View>
-      <Text style={styles.sub}>
-        매일 출석하면 팀 {teamCount}마리가 게이지 +{minePerCheckIn(power)} · 가득 차면 프리즘 1개
-      </Text>
-      {todayReward && <Text style={[styles.sub, { color: colors.success }]}>{todayReward}</Text>}
-      <Pressable
-        onPress={() => router.push('/pets')}
-        hitSlop={6}
-        accessibilityRole="button"
-        accessibilityLabel="내 펫과 팀 보기"
-      >
-        <Text style={[styles.sub, { color: colors.accent }]}>
-          내 펫 {profile.owned_pets.length}/{PETS.length} · 팀 {teamCount}/{TEAM_MAX} ›
+
+      <View style={styles.card}>
+        <Text style={styles.bigText}>{percent}%</Text>
+        <Text style={styles.cap}>다음 프리즘</Text>
+        <Text style={styles.foot}>{formatHours(hoursToNextPrism(points, power))}</Text>
+      </View>
+
+      <View style={styles.card}>
+        <Text style={styles.bigText}>
+          {profile.team_pets.length}/{TEAM_MAX}
         </Text>
-      </Pressable>
+        <Text style={styles.cap}>팀 · 시간당 +{perHour.toFixed(1)}%</Text>
+        <Pressable
+          style={styles.manage}
+          onPress={() => router.push('/pets')}
+          hitSlop={6}
+          accessibilityRole="button"
+          accessibilityLabel="펫 관리"
+        >
+          <Text style={styles.manageText}>펫 관리</Text>
+        </Pressable>
+      </View>
     </View>
   );
 }
@@ -73,14 +89,35 @@ export function PetPanel({
 const createStyles = (colors: ThemeColors) =>
   StyleSheet.create({
     panel: {
+      flexDirection: 'row',
+      gap: spacing.xs,
       paddingHorizontal: spacing.md,
       paddingVertical: spacing.sm,
-      gap: 2,
       backgroundColor: colors.surface,
       borderBottomWidth: 1,
       borderBottomColor: colors.border,
     },
-    lineRow: { flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap' },
-    line: { fontSize: 12, fontWeight: '700', color: colors.text, fontFamily: fonts.mono },
-    sub: { fontSize: 11, color: colors.textMuted, fontFamily: fonts.mono, marginTop: 2 },
+    card: {
+      flex: 1,
+      alignItems: 'center',
+      gap: 3,
+      paddingVertical: spacing.sm,
+      paddingHorizontal: 4,
+      borderWidth: 1,
+      borderColor: colors.border,
+      borderRadius: radius.sm,
+      backgroundColor: colors.background,
+    },
+    big: { flexDirection: 'row', alignItems: 'center', gap: 4 },
+    bigText: { fontSize: 16, fontWeight: '800', color: colors.text, fontFamily: fonts.mono },
+    cap: { fontSize: 10, color: colors.textMuted, textAlign: 'center' },
+    foot: { fontSize: 11, color: colors.textMuted, fontFamily: fonts.mono },
+    manage: {
+      borderWidth: 1,
+      borderColor: colors.accent,
+      borderRadius: radius.sm,
+      paddingHorizontal: spacing.sm,
+      paddingVertical: 2,
+    },
+    manageText: { fontSize: 11, fontWeight: '700', color: colors.accent },
   });

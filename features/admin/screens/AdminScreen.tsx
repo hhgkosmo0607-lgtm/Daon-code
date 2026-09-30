@@ -26,9 +26,9 @@ const TOOLS: { label: string; desc: string; request: AdminAction }[] = [
     request: { action: 'grant', prisms: 100 },
   },
   {
-    label: '오늘 출석 초기화',
-    desc: '홈으로 돌아가면 출석 채굴 보상을 다시 받는다',
-    request: { action: 'reset_checkin' },
+    label: '채굴 24시간 앞당기기',
+    desc: '홈으로 돌아가면 24시간치를 받고 드릴 연출이 나온다',
+    request: { action: 'rewind_mining' },
   },
   {
     label: '하루 빠진 상태 만들기',
@@ -74,8 +74,8 @@ export function AdminScreen() {
           <Text style={styles.state}>
             코인 {profile.coins} · 프리즘 {profile.prisms} · 스트릭 {profile.streak}일 · 펫{' '}
             {profile.owned_pets.length}마리 (팀 {profile.team_pets.length}){'\n'}
-            마지막 학습 {profile.last_study_date ?? '-'} · 마지막 출석{' '}
-            {profile.last_checkin_date ?? '-'}
+            마지막 학습 {profile.last_study_date ?? '-'} · 마지막 채굴{' '}
+            {profile.mine_collected_at.slice(5, 16).replace('T', ' ')}
           </Text>
         )}
         {message && (

@@ -251,7 +251,7 @@ export const PET_POWER: Record<string, number> = Object.fromEntries(
   PETS.map((p) => [p.id, p.power])
 );
 
-/** 팀 채굴력 합 — 출석 1번 게이지를 정한다 (mining.ts의 minePerCheckIn) */
+/** 팀 채굴력 합 — 시간당 게이지를 정한다 (mining.ts의 pointsPerHour) */
 export function miningPower(team: string[]): number {
   return team.reduce((sum, id) => sum + (petById(id)?.power ?? 1), 0);
 }
