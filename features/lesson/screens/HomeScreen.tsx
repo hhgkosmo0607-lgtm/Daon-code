@@ -1,5 +1,5 @@
 import { useFocusEffect, useRouter } from 'expo-router';
-import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Fragment, useCallback, useEffect, useMemo, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -10,6 +10,8 @@ import type { ThemeColors } from '../../../shared/theme/themes';
 import { useAuth } from '../../auth/AuthContext';
 import { StudyGrass } from '../../grass/components/StudyGrass';
 import { PetPanel, type LastCollect } from '../../pet/components/PetPanel';
+import { pendingPrisms } from '../../pet/domain/mining';
+import { miningPower } from '../../pet/domain/petCatalog';
 import { PetScene } from '../../pet/components/PetScene';
 import { PixelCoin } from '../../pet/components/PixelCoin';
 import { PixelDiamond } from '../../pet/components/PixelDiamond';
@@ -28,10 +30,8 @@ import { useWrongAnswerCount } from '../hooks/useWrongAnswerCount';
  * 완료 표시(●)만 실제 진도(progress 테이블, useUserProgress)를 그대로 보여준다.
  */
 
-/** 홈에 다시 들어와도 이 간격 안이면 채굴을 다시 받지 않는다 */
-const COLLECT_EVERY_MS = 5 * 60 * 1000;
-/** 이만큼 넘게 쌓인 걸 받았을 때만 드릴 연출을 보여준다 */
-const DRILL_MIN_HOURS = 1;
+/** 쌓인 프리즘을 다시 계산하는 간격 — 1개가 넘으면 광산의 펫이 말풍선으로 알려 준다 */
+const PENDING_TICK_MS = 60 * 1000;
 
 export function HomeScreen() {
   const router = useRouter();
@@ -44,28 +44,45 @@ export function HomeScreen() {
 
   const { user, isGuest } = useAuth();
   const { profile, statusMap, loading, error, reload } = useUserProgress();
-  // 레슨·상점 같은 모달에서 돌아오면 XP·코인이 바뀌었을 수 있어서 다시 불러온다
-  // 하루 한 번 출석 — 레슨을 안 풀어도 홈에 들어오면 팀 펫들이 캔 만큼 채굴 게이지가 찬다.
-  // 흐른 시간만큼만 주는 건 서버가 정하고, 여기서는 너무 잦은 호출만 줄인다
-  const lastCollectAt = useRef(0);
+  // 시간 채굴 — 팀 펫이 시간마다 캐서 쌓인다 (최대 24시간치). 1개가 넘게 쌓이면 광산의 펫 하나가
+  // "💎 N개 받기" 말풍선을 띄우고, 누르면 받는다(collect-mining). 소수 부분은 계속 쌓인다.
   const [lastCollect, setLastCollect] = useState<LastCollect | null>(null);
+  const [collecting, setCollecting] = useState(false);
+  const [now, setNow] = useState(() => Date.now());
+  useEffect(() => {
+    const timer = setInterval(() => setNow(Date.now()), PENDING_TICK_MS);
+    return () => clearInterval(timer);
+  }, []);
+  const pending = profile
+    ? pendingPrisms(
+        Number(profile.mine_points),
+        new Date(profile.mine_collected_at),
+        miningPower(profile.team_pets),
+        new Date(now)
+      )
+    : 0;
+  const collect = () => {
+    if (collecting) return;
+    setCollecting(true);
+    collectMining()
+      .then((r) => {
+        setLastCollect({ hours: r.hours, gained: r.gained, minted: r.minted });
+        // 드릴 연출이 끝나면 받은 결과를 광산 패널로 보여준다 (onDrillDone)
+        setDrillKey((k) => k + 1);
+        return reload();
+      })
+      .catch(() => {})
+      .finally(() => setCollecting(false));
+  };
   const [showPetPanel, setShowPetPanel] = useState(false);
   /** 올리면 광산에서 출석 드릴 연출이 재생된다 */
   const [drillKey, setDrillKey] = useState(0);
   useFocusEffect(
     useCallback(() => {
+      // 레슨·상점 같은 모달에서 돌아오면 XP·코인·팀이 바뀌었을 수 있어서 다시 불러온다
       reload();
-      if (!user || Date.now() - lastCollectAt.current < COLLECT_EVERY_MS) return;
-      lastCollectAt.current = Date.now();
-      collectMining()
-        .then((r) => {
-          setLastCollect({ hours: r.hours, gained: r.gained, minted: r.minted });
-          reload();
-          // 한 시간 넘게 쌓인 걸 받았을 때만 드릴 연출 → 끝나면 광산 패널로 보여준다 (onDrillDone)
-          if (r.hours >= DRILL_MIN_HOURS) setDrillKey((k) => k + 1);
-        })
-        .catch(() => {});
-    }, [reload, user])
+      setNow(Date.now());
+    }, [reload])
   );
   const { count: wrongAnswerCount } = useWrongAnswerCount();
 
@@ -201,11 +218,15 @@ export function HomeScreen() {
           expanded={showPetPanel}
           drillKey={drillKey}
           onDrillDone={() => setShowPetPanel(true)}
+          readyPrisms={Math.floor(pending)}
+          bubbleSeed={profile?.mine_collected_at}
+          onCollect={profile ? collect : undefined}
+          onPetPress={profile ? () => router.push('/pets') : undefined}
         />
       </View>
 
       {showPetPanel && profile && (
-        <PetPanel profile={profile} colors={colors} lastCollect={lastCollect} />
+        <PetPanel profile={profile} colors={colors} lastCollect={lastCollect} pending={pending} />
       )}
 
       {canRepairStreak && (

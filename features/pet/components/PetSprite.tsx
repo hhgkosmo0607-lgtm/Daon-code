@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Animated, Easing, StyleSheet, View } from 'react-native';
+import { Animated, Easing, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import {
   ANIMS,
@@ -23,6 +23,7 @@ import {
 import { useReduceMotion } from '../hooks/useReduceMotion';
 import { DEFAULT_PET_ID } from '../domain/petCatalog';
 import { PET_SHEETS, PROPS_SHEET } from './petAssets';
+import { PixelDiamond } from './PixelDiamond';
 import { SheetCrop } from './SheetCrop';
 
 /*
@@ -52,6 +53,10 @@ interface Props {
   startX?: number;
   /** 곡괭이질할 때 서는 x 후보 (dp) — 광물마다 하나. 없으면 오른쪽 바위 앞 */
   mineSpots?: number[];
+  /** 펫을 누르면 (펫 관리로) */
+  onPress?: () => void;
+  /** 머리 위 말풍선 — 받을 프리즘이 있을 때 이 펫이 알려 준다 */
+  bubble?: { count: number; onPress: () => void };
 }
 
 export function PetSprite({
@@ -60,6 +65,8 @@ export function PetSprite({
   petId = DEFAULT_PET_ID,
   startX = 0,
   mineSpots,
+  onPress,
+  bubble,
 }: Props) {
   const sheet = PET_SHEETS[petId] ?? PET_SHEETS[DEFAULT_PET_ID];
   const reduceMotion = useReduceMotion();
@@ -177,22 +184,30 @@ export function PetSprite({
 
   return (
     <Animated.View style={[styles.cat, { transform: [{ translateX: x }] }]}>
-      <View
-        style={[
-          styles.fill,
-          facingLeft && { marginLeft: -FLIP_SHIFT, transform: [{ scaleX: -1 }] },
-        ]}
+      <Pressable
+        onPress={onPress}
+        disabled={!onPress}
+        accessibilityRole="button"
+        accessibilityLabel="펫 관리"
+        style={styles.fill}
       >
-        <SheetCrop
-          source={sheet}
-          sheetW={SHEET_W}
-          sheetH={SHEET_H}
-          x={origin.x}
-          y={origin.y}
-          w={CELL_W}
-          h={CELL_H}
-        />
-      </View>
+        <View
+          style={[
+            styles.fill,
+            facingLeft && { marginLeft: -FLIP_SHIFT, transform: [{ scaleX: -1 }] },
+          ]}
+        >
+          <SheetCrop
+            source={sheet}
+            sheetW={SHEET_W}
+            sheetH={SHEET_H}
+            x={origin.x}
+            y={origin.y}
+            w={CELL_W}
+            h={CELL_H}
+          />
+        </View>
+      </Pressable>
 
       {striking && (
         <SheetCrop
@@ -212,6 +227,18 @@ export function PetSprite({
           style={[styles.abs, { left: 22 * S, top: (tick % 2 === 0 ? 1 : 0) * S }]}
         />
       )}
+      {bubble && bubble.count > 0 && (
+        <Pressable
+          style={styles.bubble}
+          onPress={bubble.onPress}
+          hitSlop={8}
+          accessibilityRole="button"
+          accessibilityLabel={`프리즘 ${bubble.count}개 받기`}
+        >
+          <PixelDiamond pixel={1} />
+          <Text style={styles.bubbleText}>{bubble.count}개 받기</Text>
+        </Pressable>
+      )}
     </Animated.View>
   );
 }
@@ -220,4 +247,18 @@ const styles = StyleSheet.create({
   cat: { position: 'absolute', left: 0, top: 0, width: CELL_W * S, height: CELL_H * S },
   fill: { width: CELL_W * S, height: CELL_H * S },
   abs: { position: 'absolute' },
+  // 머리 오른쪽 위 흰 말풍선 (장면 위쪽 안에 들어가게)
+  bubble: {
+    position: 'absolute',
+    left: 20 * S,
+    top: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 3,
+    backgroundColor: '#f8f8f2',
+    borderRadius: 6,
+    paddingHorizontal: 5,
+    paddingVertical: 2,
+  },
+  bubbleText: { fontSize: 10, fontWeight: '800', color: '#282A36' },
 });

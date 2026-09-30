@@ -5,6 +5,7 @@ import {
   collectMining,
   hoursToNextPrism,
   minedHours,
+  pendingPrisms,
   pointsPerHour,
 } from './mining';
 
@@ -59,5 +60,16 @@ describe('collectMining', () => {
 describe('hoursToNextPrism', () => {
   it('남은 게이지 ÷ 시간당 게이지', () => {
     expect(hoursToNextPrism(60, 24)).toBeCloseTo(4);
+  });
+});
+
+describe('pendingPrisms', () => {
+  it('남은 게이지 + 쌓인 시간을 프리즘 개수로 (소수)', () => {
+    // 게이지 50 + 채굴력 24(시간당 10) × 8시간 = 130 → 1.3개
+    expect(pendingPrisms(50, at(0), 24, at(8))).toBeCloseTo(1.3);
+  });
+
+  it('24시간이 넘어도 24시간치까지만', () => {
+    expect(pendingPrisms(0, at(0), 1, at(99))).toBeCloseTo((0.8 * 24) / 100);
   });
 });

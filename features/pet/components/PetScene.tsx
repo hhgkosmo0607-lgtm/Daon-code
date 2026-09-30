@@ -59,6 +59,10 @@ export function PetScene({
   expanded,
   drillKey = 0,
   onDrillDone,
+  readyPrisms = 0,
+  bubbleSeed = '',
+  onCollect,
+  onPetPress,
 }: {
   /** 팀 펫 id 목록 (최대 8) — 이 펫들이 나온다 */
   petIds?: string[];
@@ -68,6 +72,13 @@ export function PetScene({
   /** 올리면 광산으로 넘어가서 출석 드릴 연출을 한 번 재생한다 (0이면 안 함) */
   drillKey?: number;
   onDrillDone?: () => void;
+  /** 지금 받을 수 있는 프리즘 (정수). 1 이상이면 광산의 펫 하나가 말풍선으로 알려 준다 */
+  readyPrisms?: number;
+  /** 말풍선 펫 고르기 — 받을 때마다 바뀌는 값(마지막으로 받은 시각)으로 정한다 */
+  bubbleSeed?: string;
+  onCollect?: () => void;
+  /** 펫을 누르면 (펫 관리로) */
+  onPetPress?: () => void;
 }) {
   const [width, setWidth] = useState(0);
   const [page, setPage] = useState(0);
@@ -105,6 +116,11 @@ export function PetScene({
     if (width > 0) setPage(Math.round(e.nativeEvent.contentOffset.x / width));
   };
 
+  // 말풍선 펫: 받을 때마다 바뀌는 값으로 골라서, 받기 전까지는 같은 펫이 계속 알려 준다
+  const bubbleIndex =
+    [...bubbleSeed].reduce((h, ch) => (h * 31 + ch.charCodeAt(0)) >>> 0, 7) %
+    Math.max(1, petIds.length);
+
   const pets = (place: Place, rightLimit: number) =>
     petIds.map((id, i) => (
       <PetSprite
@@ -113,6 +129,12 @@ export function PetScene({
         place={place}
         rockLeft={rightLimit}
         mineSpots={place === 'mine' ? mineSpots : undefined}
+        onPress={onPetPress}
+        bubble={
+          place === 'mine' && i === bubbleIndex && onCollect && readyPrisms >= 1
+            ? { count: readyPrisms, onPress: onCollect }
+            : undefined
+        }
         // 처음엔 걸을 수 있는 폭에 고르게 나눠 세운다
         startX={((rightLimit - PICKAXE_RIGHT * S) * i) / Math.max(1, petIds.length)}
       />

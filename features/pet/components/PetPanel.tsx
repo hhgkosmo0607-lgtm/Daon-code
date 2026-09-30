@@ -4,14 +4,15 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { fonts, radius, spacing } from '../../../shared/theme/theme';
 import type { ThemeColors } from '../../../shared/theme/themes';
 import type { Profile } from '../../lesson/data/userRepository';
-import { POINTS_PER_PRISM, TEAM_MAX, hoursToNextPrism, pointsPerHour } from '../domain/mining';
+import { POINTS_PER_PRISM, TEAM_MAX, pointsPerHour } from '../domain/mining';
 import { miningPower } from '../domain/petCatalog';
 import { PixelDiamond } from './PixelDiamond';
 
 /*
  * 광산(상단바 둘째 줄)을 누르면 펼쳐지는 패널 — 카드 세 칸.
- *   가진 프리즘 · 다음 프리즘(게이지 %, 남은 시간) · 팀(시간당 채굴, 펫 관리)
- * 팀 펫(최대 8마리)은 시간마다 알아서 캐고, 앱을 켜면 쌓인 만큼 받는다. (daon-content/재화_경제.md)
+ *   가진 프리즘 · 쌓인 프리즘(개수, 1개까지 남은 시간) · 팀(하루 채굴량, 펫 관리)
+ * 팀 펫(최대 8마리)은 시간마다 알아서 캐고, 1개가 넘게 쌓이면 광산의 펫이 말풍선으로
+ * "💎 N개 받기"를 띄운다. 프리즘은 %가 아니라 개수로 보여준다. (daon-content/재화_경제.md)
  */
 
 /** 이번 실행에서 마지막으로 받은 채굴 */
@@ -33,18 +34,22 @@ export function PetPanel({
   profile,
   colors,
   lastCollect,
+  pending,
 }: {
   profile: Profile;
   colors: ThemeColors;
   lastCollect: LastCollect | null;
+  /** 지금 쌓여 있는 프리즘 (소수) — mining.ts의 pendingPrisms */
+  pending: number;
 }) {
   const styles = createStyles(colors);
   const router = useRouter();
 
-  const power = miningPower(profile.team_pets);
-  const points = Number(profile.mine_points);
-  const percent = Math.floor((points / POINTS_PER_PRISM) * 100);
-  const perHour = pointsPerHour(power);
+  const perHour = pointsPerHour(miningPower(profile.team_pets));
+  const perDay = (perHour * 24) / POINTS_PER_PRISM;
+  const ready = Math.floor(pending);
+  // 다음 1개가 될 때까지 남은 시간 (소수 부분 기준)
+  const hoursToNext = ((1 - (pending - ready)) * POINTS_PER_PRISM) / perHour;
 
   return (
     <View style={styles.panel}>
@@ -62,16 +67,21 @@ export function PetPanel({
       </View>
 
       <View style={styles.card}>
-        <Text style={styles.bigText}>{percent}%</Text>
-        <Text style={styles.cap}>다음 프리즘</Text>
-        <Text style={styles.foot}>{formatHours(hoursToNextPrism(points, power))}</Text>
+        <View style={styles.big}>
+          <PixelDiamond pixel={1.5} />
+          <Text style={styles.bigText}>{pending.toFixed(1)}</Text>
+        </View>
+        <Text style={styles.cap}>쌓인 프리즘</Text>
+        <Text style={[styles.foot, ready > 0 && { color: colors.success }]}>
+          {ready > 0 ? `${ready}개 받을 수 있어요` : `1개까지 ${formatHours(hoursToNext)}`}
+        </Text>
       </View>
 
       <View style={styles.card}>
         <Text style={styles.bigText}>
           {profile.team_pets.length}/{TEAM_MAX}
         </Text>
-        <Text style={styles.cap}>팀 · 시간당 +{perHour.toFixed(1)}%</Text>
+        <Text style={styles.cap}>팀 · 하루 약 {perDay.toFixed(1)}개</Text>
         <Pressable
           style={styles.manage}
           onPress={() => router.push('/pets')}

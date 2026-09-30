@@ -10,7 +10,7 @@ import { fonts, radius, spacing } from '../../../shared/theme/theme';
 import type { ThemeColors } from '../../../shared/theme/themes';
 import { useUserProgress } from '../../lesson/hooks/useUserProgress';
 import { PetPortrait } from '../components/PetPortrait';
-import { TEAM_MAX, pointsPerHour } from '../domain/mining';
+import { POINTS_PER_PRISM, TEAM_MAX, pointsPerHour } from '../domain/mining';
 import { DEFAULT_PET_ID, PETS, miningPower, petById } from '../domain/petCatalog';
 
 /*
@@ -84,7 +84,8 @@ export function PetsScreen() {
 
       <View style={styles.teamBar}>
         <Text style={styles.teamTitle}>
-          팀 {team.length}/{TEAM_MAX} · 시간당 +{pointsPerHour(power).toFixed(1)}%
+          팀 {team.length}/{TEAM_MAX} · 하루 프리즘 약{' '}
+          {((pointsPerHour(power) * 24) / POINTS_PER_PRISM).toFixed(1)}개
         </Text>
         <Text style={styles.sub}>
           팀만 광산·방에 나오고 채굴해요 · 채굴력 코인 펫 1, 프리즘 펫 3

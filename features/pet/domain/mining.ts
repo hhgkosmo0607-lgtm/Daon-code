@@ -59,3 +59,16 @@ export function collectMining(
 export function hoursToNextPrism(points: number, power: number): number {
   return Math.max(0, POINTS_PER_PRISM - points) / pointsPerHour(power);
 }
+
+/**
+ * 지금 받을 수 있는 프리즘 (소수 — 1.3이면 받기를 눌렀을 때 1개, 0.3은 계속 쌓인다).
+ * 서버에 묻지 않고 화면에서 바로 계산한다 (받기를 누르면 서버가 같은 계산으로 다시 정한다).
+ */
+export function pendingPrisms(
+  points: number,
+  collectedAt: Date,
+  power: number,
+  now: Date = new Date()
+): number {
+  return (points + minedHours(collectedAt, now) * pointsPerHour(power)) / POINTS_PER_PRISM;
+}
