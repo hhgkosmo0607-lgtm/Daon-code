@@ -10,6 +10,7 @@ import { fonts, radius, spacing } from '../../../shared/theme/theme';
 import type { ThemeColors } from '../../../shared/theme/themes';
 import { useUserProgress } from '../../lesson/hooks/useUserProgress';
 import { PetPortrait } from '../../pet/components/PetPortrait';
+import { PixelCoin } from '../../pet/components/PixelCoin';
 import { PixelDiamond } from '../../pet/components/PixelDiamond';
 import { TEAM_MAX } from '../../pet/domain/mining';
 import { DEFAULT_PET_ID, PETS, SPECIES_LABEL, type PetDef } from '../../pet/domain/petCatalog';
@@ -120,13 +121,11 @@ export function ShopScreen() {
           >
             {busy === pet.id ? (
               <ActivityIndicator color={getReadableTextColor(colors.accent)} />
-            ) : prism ? (
+            ) : (
               <View style={styles.priceRow}>
-                <PixelDiamond pixel={1.5} />
+                {prism ? <PixelDiamond pixel={1.5} /> : <PixelCoin pixel={1.5} />}
                 <Text style={styles.buyButtonText}>{price}</Text>
               </View>
-            ) : (
-              <Text style={styles.buyButtonText}>{price}c</Text>
             )}
           </Pressable>
         )}
@@ -148,7 +147,8 @@ export function ShopScreen() {
           <Text style={styles.balance}>잔액을 불러오지 못했어요</Text>
         ) : (
           <View style={styles.balanceRow}>
-            <Text style={styles.balance}>{wallet.coins}c</Text>
+            <PixelCoin pixel={2} />
+            <Text style={styles.balance}>{wallet.coins}</Text>
             <PixelDiamond pixel={2} />
             <Text style={[styles.balance, { color: colors.text }]}>{wallet.prisms}</Text>
             <Text style={styles.hint}>
@@ -197,7 +197,10 @@ export function ShopScreen() {
                   accessibilityLabel={`프리즘 ${amount}개를 ${amount * COINS_PER_PRISM}코인으로 바꾸기`}
                   accessibilityState={{ disabled: blocked || !!busy }}
                 >
-                  <Text style={styles.buyButtonText}>{amount * COINS_PER_PRISM}c</Text>
+                  <View style={styles.priceRow}>
+                    <PixelCoin pixel={1.5} />
+                    <Text style={styles.buyButtonText}>{amount * COINS_PER_PRISM}</Text>
+                  </View>
                 </Pressable>
               );
             })}
@@ -237,7 +240,7 @@ const createStyles = (colors: ThemeColors) =>
     close: { fontSize: 20, color: colors.textMuted },
     body: { padding: spacing.md, gap: spacing.sm },
     balanceRow: { flexDirection: 'row', alignItems: 'center', gap: spacing.sm },
-    balance: { fontSize: 15, fontWeight: '700', color: colors.accent, fontFamily: fonts.mono },
+    balance: { fontSize: 15, fontWeight: '700', color: colors.text, fontFamily: fonts.mono },
     section: {
       fontSize: 13,
       fontWeight: '700',

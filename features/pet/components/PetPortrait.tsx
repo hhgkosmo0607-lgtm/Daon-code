@@ -11,12 +11,21 @@ export const PORTRAIT_W = 30;
  * 상점·보유 목록에 쓰는 펫 정지 그림 (서 있는 첫 프레임).
  * 펫을 한꺼번에 많이 보여주는 화면이라 시트 전체 대신 작은 초상화 파일을 쓴다.
  */
-export function PetPortrait({ petId, style }: { petId: string; style?: StyleProp<ImageStyle> }) {
+export function PetPortrait({
+  petId,
+  pixel = ART_SCALE,
+  style,
+}: {
+  petId: string;
+  /** 도트 한 칸 크기 (dp). 작게 쓸 땐 1 */
+  pixel?: number;
+  style?: StyleProp<ImageStyle>;
+}) {
   return (
     <Image
       source={PET_PORTRAITS[petId] ?? PET_PORTRAITS[DEFAULT_PET_ID]}
       fadeDuration={0}
-      style={[{ width: PORTRAIT_W * ART_SCALE, height: CELL_H * ART_SCALE }, style]}
+      style={[{ width: PORTRAIT_W * pixel, height: CELL_H * pixel }, style]}
     />
   );
 }

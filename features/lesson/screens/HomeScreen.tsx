@@ -11,6 +11,8 @@ import { useAuth } from '../../auth/AuthContext';
 import { StudyGrass } from '../../grass/components/StudyGrass';
 import { PetPanel, checkInMessage } from '../../pet/components/PetPanel';
 import { PetScene } from '../../pet/components/PetScene';
+import { PetPortrait } from '../../pet/components/PetPortrait';
+import { PixelCoin } from '../../pet/components/PixelCoin';
 import { PixelDiamond } from '../../pet/components/PixelDiamond';
 import { useTrack } from '../../track/TrackContext';
 import { getLessons, getStages, hasContent } from '../data/contentRepository';
@@ -150,12 +152,24 @@ export function HomeScreen() {
               accessibilityLabel={`코인 ${coins}개, 프리즘 ${profile?.prisms ?? 0}개, 상점 열기`}
               style={styles.wallet}
             >
-              <Text style={[styles.stat, { color: colors.accent }]}>{coins}c</Text>
+              <PixelCoin pixel={1.5} />
+              <Text style={[styles.stat, { color: colors.xp }]}>{coins}</Text>
               <PixelDiamond pixel={1.5} />
               <Text style={[styles.stat, { color: colors.text }]}>{profile?.prisms ?? 0}</Text>
             </Pressable>
           )}
           <View style={styles.rightGroup}>
+            {!error && user && (
+              <Pressable
+                onPress={() => router.push('/pets')}
+                hitSlop={6}
+                accessibilityRole="button"
+                accessibilityLabel="내 펫과 팀 보기"
+                style={styles.petButton}
+              >
+                <PetPortrait petId={profile?.team_pets[0] ?? 'cat_orange'} pixel={1} />
+              </Pressable>
+            )}
             {wrongAnswerCount > 0 && (
               <Pressable
                 style={styles.reviewButton}
@@ -322,6 +336,13 @@ const createStyles = (colors: ThemeColors) =>
       paddingBottom: spacing.sm,
     },
     wallet: { flexDirection: 'row', alignItems: 'center', gap: 4 },
+    petButton: {
+      borderWidth: 1,
+      borderColor: colors.border,
+      borderRadius: radius.sm,
+      backgroundColor: '#2a2533',
+      padding: 2,
+    },
     statGroup: { flexDirection: 'row', alignItems: 'center', gap: spacing.sm, flexShrink: 1 },
     stat: { fontSize: 13, fontWeight: '700', fontFamily: fonts.mono },
     rightGroup: { marginLeft: 'auto', flexDirection: 'row', alignItems: 'center', gap: spacing.sm },
