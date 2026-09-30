@@ -137,7 +137,11 @@ export function PetScene({
     ));
 
   const pageProps = (place: Place, label: string) => ({
-    style: [styles.page, { width }],
+    style: ({ pressed }: { pressed: boolean }) => [
+      styles.page,
+      { width },
+      pressed && styles.pagePressed,
+    ],
     onPress,
     disabled: !onPress,
     accessibilityRole: 'button' as const,
@@ -237,6 +241,7 @@ function Tiles({ source, width }: { source: ImageSourcePropType; width: number }
 const styles = StyleSheet.create({
   scene: { width: '100%', height: BG_H * S, overflow: 'hidden', backgroundColor: '#1d1a24' },
   page: { height: BG_H * S, overflow: 'hidden' },
+  pagePressed: { opacity: 0.85 },
   tile: { position: 'absolute', top: 0, height: BG_H * S },
   abs: { position: 'absolute' },
   dots: {

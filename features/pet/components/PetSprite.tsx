@@ -217,17 +217,47 @@ export function PetSprite({
         />
       )}
       {bubble && bubble.count > 0 && (
-        <Pressable
-          style={styles.bubble}
-          onPress={bubble.onPress}
-          hitSlop={8}
-          accessibilityRole="button"
-          accessibilityLabel={`프리즘 ${bubble.count}개 받기`}
-        >
-          <PixelDiamond pixel={1} />
-          <Text style={styles.bubbleText}>{bubble.count}개 받기</Text>
-        </Pressable>
+        <CollectBubble count={bubble.count} onPress={bubble.onPress} still={reduceMotion} />
       )}
+    </Animated.View>
+  );
+}
+
+/** 흰 말풍선 "💎 N개 받기" — 둥실둥실 떠서 눈에 띄게 */
+function CollectBubble({
+  count,
+  onPress,
+  still,
+}: {
+  count: number;
+  onPress: () => void;
+  still: boolean;
+}) {
+  const [bob] = useState(() => new Animated.Value(0));
+  useEffect(() => {
+    if (still) return;
+    const loop = Animated.loop(
+      Animated.sequence([
+        Animated.timing(bob, { toValue: -2, duration: 500, useNativeDriver: true }),
+        Animated.timing(bob, { toValue: 0, duration: 500, useNativeDriver: true }),
+      ])
+    );
+    loop.start();
+    return () => loop.stop();
+  }, [bob, still]);
+
+  return (
+    <Animated.View style={[styles.bubbleWrap, { transform: [{ translateY: bob }] }]}>
+      <Pressable
+        style={({ pressed }) => [styles.bubble, pressed && { opacity: 0.7 }]}
+        onPress={onPress}
+        hitSlop={10}
+        accessibilityRole="button"
+        accessibilityLabel={`프리즘 ${count}개 받기`}
+      >
+        <PixelDiamond pixel={1} />
+        <Text style={styles.bubbleText}>{count}개 받기</Text>
+      </Pressable>
     </Animated.View>
   );
 }
@@ -237,10 +267,8 @@ const styles = StyleSheet.create({
   fill: { width: CELL_W * S, height: CELL_H * S },
   abs: { position: 'absolute' },
   // 머리 오른쪽 위 흰 말풍선 (장면 위쪽 안에 들어가게)
+  bubbleWrap: { position: 'absolute', left: 20 * S, top: 1 },
   bubble: {
-    position: 'absolute',
-    left: 20 * S,
-    top: 1,
     flexDirection: 'row',
     alignItems: 'center',
     gap: 3,

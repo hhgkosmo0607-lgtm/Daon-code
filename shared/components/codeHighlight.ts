@@ -7,7 +7,8 @@
  * Java 키워드를 한 목록에 같이 두고 있는데, 두 언어 다 겹치는 단어가 많고
  * 이 정도 가벼운 강조기에서는 언어별로 나눌 실익이 없다.
  */
-export type CodeTokenType = 'keyword' | 'string' | 'number' | 'comment' | 'function' | 'tag' | 'plain';
+export type CodeTokenType =
+  'keyword' | 'string' | 'number' | 'comment' | 'function' | 'tag' | 'plain';
 
 export interface CodeToken {
   text: string;
@@ -39,11 +40,46 @@ const PATTERNS: { type: CodeTokenType; regex: RegExp }[] = [
  * 태그명일 때만 JSX로 판단한다.
  */
 const HTML_TAG_NAMES = new Set([
-  'div', 'span', 'button', 'input', 'ul', 'ol', 'li', 'p',
-  'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'img', 'a', 'form', 'label',
-  'section', 'header', 'footer', 'nav', 'table', 'thead', 'tbody',
-  'tr', 'td', 'th', 'br', 'svg', 'path', 'textarea', 'select', 'option',
-  'main', 'article', 'aside', 'video', 'audio', 'canvas',
+  'div',
+  'span',
+  'button',
+  'input',
+  'ul',
+  'ol',
+  'li',
+  'p',
+  'h1',
+  'h2',
+  'h3',
+  'h4',
+  'h5',
+  'h6',
+  'img',
+  'a',
+  'form',
+  'label',
+  'section',
+  'header',
+  'footer',
+  'nav',
+  'table',
+  'thead',
+  'tbody',
+  'tr',
+  'td',
+  'th',
+  'br',
+  'svg',
+  'path',
+  'textarea',
+  'select',
+  'option',
+  'main',
+  'article',
+  'aside',
+  'video',
+  'audio',
+  'canvas',
 ]);
 
 function hasJsxTag(code: string): boolean {
@@ -62,7 +98,11 @@ function hasJsxTag(code: string): boolean {
  * 짧은 코드 라인이 이 앱 문제에 꽤 많이 나온다.
  */
 function looksLikeJsCode(code: string): boolean {
-  if (/[{};]|=>|\b(function|const|let|var|return|import|export|class|typeof|async|await|new|this)\b/.test(code)) {
+  if (
+    /[{};]|=>|\b(function|const|let|var|return|import|export|class|typeof|async|await|new|this)\b/.test(
+      code
+    )
+  ) {
     return true;
   }
   return /[A-Za-z_$][\w$]*(?:\.[A-Za-z_$][\w$]*)*\(/.test(code);

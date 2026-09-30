@@ -23,7 +23,13 @@ import { CODE_PANEL_BACKGROUND, HighlightedCode } from './HighlightedCode';
  * "<대문자로시작하는이름"을 JSX 태그로 보기 때문에, 예를 들어 자바 제네릭
  * List<String>을 그대로 두면 JSX로 잘못 판단한다.
  */
-export function CodeBlock({ code, language: explicitLanguage }: { code: string; language?: string }) {
+export function CodeBlock({
+  code,
+  language: explicitLanguage,
+}: {
+  code: string;
+  language?: string;
+}) {
   const { colors } = useTheme();
   const styles = useMemo(() => createStyles(colors), [colors]);
   const detected = useMemo(() => detectLanguageLabel(code), [code]);

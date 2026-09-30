@@ -3,7 +3,9 @@ import { Fragment, useCallback, useEffect, useMemo, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { useToast } from '../../../shared/components/Toast';
 import { collectMining } from '../../../shared/lib/edgeFunctions';
+import { getReadableTextColor } from '../../../shared/theme/contrast';
 import { useTheme } from '../../../shared/theme/ThemeContext';
 import { fonts, radius, spacing } from '../../../shared/theme/theme';
 import type { ThemeColors } from '../../../shared/theme/themes';
@@ -48,6 +50,7 @@ export function HomeScreen() {
   // "💎 N개 받기" 말풍선을 띄우고, 누르면 받는다(collect-mining). 소수 부분은 계속 쌓인다.
   const [lastCollect, setLastCollect] = useState<LastCollect | null>(null);
   const [collecting, setCollecting] = useState(false);
+  const toast = useToast();
   const [now, setNow] = useState(() => Date.now());
   useEffect(() => {
     const timer = setInterval(() => setNow(Date.now()), PENDING_TICK_MS);
@@ -67,6 +70,7 @@ export function HomeScreen() {
     collectMining()
       .then((r) => {
         setLastCollect({ hours: r.hours, gained: r.gained, minted: r.minted });
+        if (r.minted > 0) toast.show(`프리즘 ${r.minted}개를 받았어요`);
         // 드릴 연출이 끝나면 받은 결과를 광산 패널로 보여준다 (onDrillDone)
         setDrillKey((k) => k + 1);
         return reload();
@@ -168,12 +172,13 @@ export function HomeScreen() {
               hitSlop={6}
               accessibilityRole="button"
               accessibilityLabel={`코인 ${coins}개, 프리즘 ${profile?.prisms ?? 0}개, 상점 열기`}
-              style={styles.wallet}
+              style={({ pressed }) => [styles.wallet, pressed && { opacity: 0.7 }]}
             >
               <PixelCoin pixel={1.5} />
-              <Text style={[styles.stat, { color: colors.xp }]}>{coins}</Text>
+              <Text style={[styles.stat, { color: colors.text }]}>{coins}</Text>
               <PixelDiamond pixel={1.5} />
               <Text style={[styles.stat, { color: colors.text }]}>{profile?.prisms ?? 0}</Text>
+              <Text style={styles.walletPlus}>+</Text>
             </Pressable>
           )}
           <View style={styles.rightGroup}>
@@ -312,6 +317,7 @@ export function HomeScreen() {
           </Fragment>
         ))}
       </ScrollView>
+      {toast.element}
     </SafeAreaView>
   );
 }
@@ -345,7 +351,25 @@ const createStyles = (colors: ThemeColors) =>
       paddingTop: spacing.md,
       paddingBottom: spacing.sm,
     },
-    wallet: { flexDirection: 'row', alignItems: 'center', gap: 4 },
+    // 지갑 — 끝의 +가 "눌러서 상점"이라는 표시 (게임 앱 관례)
+    wallet: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      gap: 4,
+      borderWidth: 1,
+      borderColor: colors.border,
+      backgroundColor: colors.background,
+      paddingLeft: 6,
+      paddingVertical: 2,
+    },
+    walletPlus: {
+      fontSize: 13,
+      fontWeight: '800',
+      color: getReadableTextColor(colors.accent),
+      backgroundColor: colors.accent,
+      paddingHorizontal: 5,
+      marginLeft: 2,
+    },
     statGroup: { flexDirection: 'row', alignItems: 'center', gap: spacing.sm, flexShrink: 1 },
     stat: { fontSize: 13, fontWeight: '700', fontFamily: fonts.mono },
     rightGroup: { marginLeft: 'auto', flexDirection: 'row', alignItems: 'center', gap: spacing.sm },
