@@ -127,7 +127,7 @@ function scaleNearest(img, k) {
 
 const SRC = 'assets/pixel_pets_png/pixel_pets/1x';
 const OUT = 'assets/pets';
-/** 도트 1칸 = ART_SCALE dp (features/pet/domain/catSheet.ts와 같아야 한다) */
+/** 도트 1칸 = ART_SCALE dp (features/pet/domain/petSheet.ts와 같아야 한다) */
 const ART_SCALE = 2;
 
 /*
@@ -185,3 +185,68 @@ for (const file of files) {
   writePng(`${OUT}/${name}@3x.png`, scaleNearest(img, ART_SCALE * 3));
 }
 console.log(`${seen.size}개 → ${OUT} (2x/4x/6x)`);
+
+/*
+ * 앱 코드 자동 생성
+ *  - features/pet/domain/petCatalog.ts 의 <generated> 블록: 무료/프리미엄 펫 id 목록
+ *  - features/pet/components/petAssets.generated.ts: 펫 시트 require 표 (RN은 require가 정적이어야 한다)
+ */
+const idsIn = (dir) =>
+  readdirSync(`${SRC}/characters/${dir}`)
+    .filter((f) => f.endsWith('.png'))
+    .map((f) => f.slice(0, -'.png'.length))
+    .sort();
+const free = idsIn('free');
+const premium = idsIn('premium');
+
+/*
+ * 초상화 — 상점·보유 화면은 펫을 한꺼번에 많이 보여줘서, 시트 전체(6배면 한 장 5MB 넘게 메모리에
+ * 풀린다) 대신 서 있는 첫 프레임만 잘라 작은 그림으로 쓴다. 폭은 PetPortrait.tsx의 PORTRAIT_W와 같다.
+ */
+const PORTRAIT = { w: 30, h: 24 };
+for (const [dir, ids] of [['free', free], ['premium', premium]]) {
+  for (const id of ids) {
+    const src = readPng(`${SRC}/characters/${dir}/${id}.png`);
+    const out = Buffer.alloc(PORTRAIT.w * PORTRAIT.h * 4);
+    for (let y = 0; y < PORTRAIT.h; y++) {
+      src.rgba.copy(out, y * PORTRAIT.w * 4, y * src.width * 4, (y * src.width + PORTRAIT.w) * 4);
+    }
+    const img = { width: PORTRAIT.w, height: PORTRAIT.h, rgba: out };
+    writePng(`${OUT}/portrait_${id}.png`, scaleNearest(img, ART_SCALE));
+    writePng(`${OUT}/portrait_${id}@2x.png`, scaleNearest(img, ART_SCALE * 2));
+    writePng(`${OUT}/portrait_${id}@3x.png`, scaleNearest(img, ART_SCALE * 3));
+  }
+}
+const NL = '\n';
+const list = (ids) => '[' + NL + ids.map((id) => `  '${id}',`).join(NL) + NL + ']';
+
+const catalogPath = 'features/pet/domain/petCatalog.ts';
+const catalog = readFileSync(catalogPath, 'utf8');
+const START = '// <generated';
+const END = '// </generated>';
+const s = catalog.indexOf(START);
+const e = catalog.indexOf(END);
+if (s < 0 || e < 0) throw new Error(`${catalogPath}에 <generated> 블록이 없어요`);
+const startLineEnd = catalog.indexOf(NL, s) + 1;
+writeFileSync(
+  catalogPath,
+  catalog.slice(0, startLineEnd) +
+    `const FREE_IDS: string[] = ${list(free)};` + NL +
+    `const PREMIUM_IDS: string[] = ${list(premium)};` + NL +
+    catalog.slice(e)
+);
+
+const assetsPath = 'features/pet/components/petAssets.generated.ts';
+writeFileSync(
+  assetsPath,
+  '// scripts/build-pet-assets.mjs가 만든 파일 — 손으로 고치지 말 것' + NL +
+    "import type { ImageSourcePropType } from 'react-native';" + NL + NL +
+    'export const PET_SHEETS: Record<string, ImageSourcePropType> = {' + NL +
+    [...premium, ...free].map((id) => `  ${id}: require('../../../assets/pets/${id}.png'),`).join(NL) +
+    NL + '};' + NL + NL +
+    '/** 상점·보유 화면용 작은 초상화 (서 있는 첫 프레임) */' + NL +
+    'export const PET_PORTRAITS: Record<string, ImageSourcePropType> = {' + NL +
+    [...premium, ...free].map((id) => `  ${id}: require('../../../assets/pets/portrait_${id}.png'),`).join(NL) +
+    NL + '};' + NL
+);
+console.log(`펫 목록: 무료 ${free.length} · 프리미엄 ${premium.length} → ${catalogPath}, ${assetsPath}`);

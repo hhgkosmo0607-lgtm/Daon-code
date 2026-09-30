@@ -17,7 +17,7 @@ export interface Profile {
   streak: number;
   max_streak: number;
   last_study_date: string | null;
-  /** 프리즘 — 스트릭 지키기·프리즘 고양이에 쓰는 재화, 한도 없음 (0007_prisms.sql) */
+  /** 프리즘 — 스트릭 지키기·프리즘 펫에 쓰는 재화, 한도 없음 (0007_prisms.sql) */
   prisms: number;
   daily_goal: number;
   /** 게스트 상태에서 받은 XP — 계정 연결 시 환급 기준 (0002_guest_refund_and_atomic_submit.sql) */
@@ -26,10 +26,12 @@ export interface Profile {
   coins: number;
   /** 게스트 상태에서 받은 코인 — 계정 연결 시 XP와 함께 환급 */
   guest_coins: number;
-  /** 채굴 게이지 — 출석마다 고양이 수만큼 차고, MINE_PER_PRISM이 차면 프리즘 1개 */
+  /** 채굴 게이지 — 출석마다 팀 채굴력만큼 차고, MINE_PER_PRISM이 차면 프리즘 1개 */
   mine_progress: number;
-  /** 가진 고양이 색 id 목록 — 처음엔 ['orange'] (0006_checkin_and_cats.sql) */
-  owned_cats: string[];
+  /** 가진 펫 id 목록 ('종_색') — 처음엔 ['cat_orange'] (0008_pets.sql) */
+  owned_pets: string[];
+  /** 팀 — 화면에 나오고 출석 때 채굴하는 펫, 최대 8마리 */
+  team_pets: string[];
   /** 마지막으로 출석 채굴 보상을 받은 한국 날짜 */
   last_checkin_date: string | null;
   /** 운영자 계정 — 테스트 메뉴(/admin)가 보인다 (0007_prisms.sql) */

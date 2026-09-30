@@ -15,7 +15,6 @@ import {
   ART_SCALE,
   BG_H,
   BG_W,
-  DEFAULT_CAT_ID,
   GROUND_Y,
   PICKAXE_RIGHT,
   PROPS,
@@ -23,10 +22,11 @@ import {
   PROPS_W,
   RAIL_Y,
   type Place,
-} from '../domain/catSheet';
-import { CatPet } from './CatPet';
+} from '../domain/petSheet';
+import { DEFAULT_PET_ID } from '../domain/petCatalog';
+import { PetSprite } from './PetSprite';
 import { DrillEffect, drillLeftFor } from './DrillEffect';
-import { BACKGROUND_TILE, PROPS_SHEET, ROOM_BACKGROUND_TILE } from './catAssets';
+import { BACKGROUND_TILE, PROPS_SHEET, ROOM_BACKGROUND_TILE } from './petAssets';
 import { SheetCrop } from './SheetCrop';
 
 /*
@@ -54,14 +54,14 @@ const PLACES: { place: Place; label: string }[] = [
 const snap = (v: number) => Math.round(v / S) * S;
 
 export function PetScene({
-  catIds = [DEFAULT_CAT_ID],
+  petIds = [DEFAULT_PET_ID],
   onPress,
   expanded,
   drillKey = 0,
   onDrillDone,
 }: {
-  /** 가진 펫 id 목록 — 전부 나온다 */
-  catIds?: string[];
+  /** 팀 펫 id 목록 (최대 8) — 이 펫들이 나온다 */
+  petIds?: string[];
   /** 누르면 채굴 패널 열기/닫기 */
   onPress?: () => void;
   expanded?: boolean;
@@ -106,15 +106,15 @@ export function PetScene({
   };
 
   const pets = (place: Place, rightLimit: number) =>
-    catIds.map((id, i) => (
-      <CatPet
+    petIds.map((id, i) => (
+      <PetSprite
         key={id}
-        catId={id}
+        petId={id}
         place={place}
         rockLeft={rightLimit}
         mineSpots={place === 'mine' ? mineSpots : undefined}
         // 처음엔 걸을 수 있는 폭에 고르게 나눠 세운다
-        startX={((rightLimit - PICKAXE_RIGHT * S) * i) / Math.max(1, catIds.length)}
+        startX={((rightLimit - PICKAXE_RIGHT * S) * i) / Math.max(1, petIds.length)}
       />
     ));
 
@@ -123,7 +123,7 @@ export function PetScene({
     onPress,
     disabled: !onPress,
     accessibilityRole: 'button' as const,
-    accessibilityLabel: `${label} · 펫 ${catIds.length}마리 · 옆으로 밀면 ${place === 'mine' ? '방' : '광산'}`,
+    accessibilityLabel: `${label} · 펫 ${petIds.length}마리 · 옆으로 밀면 ${place === 'mine' ? '방' : '광산'}`,
     accessibilityHint: '눌러서 채굴 현황 보기',
     accessibilityState: { expanded },
   });

@@ -80,8 +80,8 @@ Deno.serve(async (req) => {
         // 마지막 학습을 그저께로 → 홈에 "스트릭 지킬래요?" 배너가 뜬다
         patch = { last_study_date: daysAgo(today, 2), streak: Math.max(profile.streak, 3) };
         break;
-      case 'reset_cats':
-        patch = { owned_cats: ['orange'] };
+      case 'reset_pets':
+        patch = { owned_pets: ['cat_orange'], team_pets: ['cat_orange'] };
         break;
       default:
         return json({ error: '없는 도구예요' }, 400);

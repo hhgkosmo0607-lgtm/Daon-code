@@ -39,7 +39,7 @@ export function HomeScreen() {
   const { user, isGuest } = useAuth();
   const { profile, statusMap, loading, error, reload } = useUserProgress();
   // 레슨·상점 같은 모달에서 돌아오면 XP·코인이 바뀌었을 수 있어서 다시 불러온다
-  // 하루 한 번 출석 — 레슨을 안 풀어도 홈에 들어오면 고양이들이 캔 만큼 채굴 게이지가 찬다.
+  // 하루 한 번 출석 — 레슨을 안 풀어도 홈에 들어오면 팀 펫들이 캔 만큼 채굴 게이지가 찬다.
   // 판단은 서버가 하고, 여기서는 같은 날 반복 호출만 줄인다 (자정을 넘기면 다음 포커스 때 다시 부른다)
   const checkedInDate = useRef<string | null>(null);
   const [todayReward, setTodayReward] = useState<string | null>(null);
@@ -190,9 +190,9 @@ export function HomeScreen() {
             </Pressable>
           </View>
         </View>
-        {/* 상단바 둘째 줄 — 고양이가 일하는 광산 */}
+        {/* 상단바 둘째 줄 — 팀 펫이 사는 광산·방 */}
         <PetScene
-          catIds={profile?.owned_cats}
+          petIds={profile?.team_pets}
           onPress={profile ? () => setShowPetPanel(!showPetPanel) : undefined}
           expanded={showPetPanel}
           drillKey={drillKey}

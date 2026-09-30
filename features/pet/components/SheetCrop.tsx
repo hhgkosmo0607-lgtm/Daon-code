@@ -6,7 +6,7 @@ import {
   type ViewStyle,
 } from 'react-native';
 
-import { ART_SCALE } from '../domain/catSheet';
+import { ART_SCALE } from '../domain/petSheet';
 
 /**
  * 스프라이트 시트에서 한 칸만 잘라 보여준다 (도트 단위 좌표).

@@ -1,42 +1,56 @@
 import { describe, expect, it } from 'vitest';
-import { PRISM_CAT_PRICE, catPrice, catPurchaseBlock, exchangeBlock } from './shopItems';
+import { PETS } from '../../pet/domain/petCatalog';
+import {
+  COIN_PET_PRICE,
+  LEGENDARY_PET_PRICE,
+  PRISM_PET_PRICE,
+  exchangeBlock,
+  petPrice,
+  petPurchaseBlock,
+} from './shopItems';
 
-describe('catPrice', () => {
-  it('코인 고양이는 40에서 10씩 오르고, 6마리 전부 390', () => {
-    expect(catPrice('coin', 1)).toBe(40);
-    expect(catPrice('coin', 6)).toBe(90);
-    const total = [1, 2, 3, 4, 5, 6].reduce((sum, n) => sum + catPrice('coin', n), 0);
-    expect(total).toBe(390);
+describe('petPrice', () => {
+  it('코인 펫은 종별 등급 가격', () => {
+    expect(petPrice({ id: 'cat_white', species: 'cat', currency: 'coin' })).toBe(40);
+    expect(petPrice({ id: 'robot_red', species: 'robot', currency: 'coin' })).toBe(100);
   });
 
-  it('프리즘 고양이는 가진 수와 상관없이 고정', () => {
-    expect(catPrice('prism', 1)).toBe(PRISM_CAT_PRICE);
-    expect(catPrice('prism', 7)).toBe(PRISM_CAT_PRICE);
+  it('프리즘 펫은 30, 드래곤·골렘·미믹은 50', () => {
+    expect(petPrice({ id: 'cat_rainbow', species: 'cat', currency: 'prism' })).toBe(
+      PRISM_PET_PRICE
+    );
+    expect(petPrice({ id: 'dragon_ember', species: 'dragon', currency: 'prism' })).toBe(
+      LEGENDARY_PET_PRICE
+    );
+  });
+
+  it('코인 펫의 모든 종이 가격표에 있다 (새 종을 추가하면 가격도 정해야 한다)', () => {
+    for (const pet of PETS.filter((p) => p.currency === 'coin')) {
+      expect(COIN_PET_PRICE[pet.species]).toBeDefined();
+    }
   });
 });
 
-describe('catPurchaseBlock', () => {
-  const pink = { id: 'pink', currency: 'coin' as const };
-  const rainbow = { id: 'rainbow', currency: 'prism' as const };
+describe('petPurchaseBlock', () => {
+  const white = { id: 'cat_white', species: 'cat', currency: 'coin' as const };
+  const rainbow = { id: 'cat_rainbow', species: 'cat', currency: 'prism' as const };
 
-  it('코인 고양이는 코인으로, 프리즘 고양이는 프리즘으로 판단한다', () => {
-    expect(catPurchaseBlock({ coins: 40, prisms: 0 }, ['orange'], pink, 1)).toBeNull();
-    expect(catPurchaseBlock({ coins: 39, prisms: 99 }, ['orange'], pink, 1)).toBe(
+  it('코인 펫은 코인으로, 프리즘 펫은 프리즘으로 판단한다', () => {
+    expect(petPurchaseBlock({ coins: 40, prisms: 0 }, ['cat_orange'], white)).toBeNull();
+    expect(petPurchaseBlock({ coins: 39, prisms: 99 }, ['cat_orange'], white)).toBe(
       'not_enough_coins'
     );
-    expect(
-      catPurchaseBlock({ coins: 999, prisms: PRISM_CAT_PRICE - 1 }, ['orange'], rainbow, 1)
-    ).toBe('not_enough_prisms');
-    expect(
-      catPurchaseBlock({ coins: 0, prisms: PRISM_CAT_PRICE }, ['orange'], rainbow, 1)
-    ).toBeNull();
+    expect(petPurchaseBlock({ coins: 999, prisms: 29 }, ['cat_orange'], rainbow)).toBe(
+      'not_enough_prisms'
+    );
+    expect(petPurchaseBlock({ coins: 0, prisms: 30 }, ['cat_orange'], rainbow)).toBeNull();
   });
 
-  it('이미 가졌거나 없는 고양이면 막는다', () => {
-    expect(catPurchaseBlock({ coins: 999, prisms: 99 }, ['orange', 'pink'], pink, 2)).toBe(
+  it('이미 가졌거나 없는 펫이면 막는다', () => {
+    expect(petPurchaseBlock({ coins: 999, prisms: 99 }, ['cat_white'], white)).toBe(
       'already_owned'
     );
-    expect(catPurchaseBlock({ coins: 999, prisms: 99 }, [], undefined, 0)).toBe('unknown_cat');
+    expect(petPurchaseBlock({ coins: 999, prisms: 99 }, [], undefined)).toBe('unknown_pet');
   });
 });
 

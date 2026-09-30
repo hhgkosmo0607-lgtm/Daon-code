@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { StyleSheet } from 'react-native';
 
-import { ART_SCALE } from '../domain/catSheet';
+import { ART_SCALE } from '../domain/petSheet';
 import { DRILL, drillFrameOrigin } from '../domain/drill';
 import { useReduceMotion } from '../hooks/useReduceMotion';
-import { DRILL_SHEET } from './catAssets';
+import { DRILL_SHEET } from './petAssets';
 import { SheetCrop } from './SheetCrop';
 
 /**

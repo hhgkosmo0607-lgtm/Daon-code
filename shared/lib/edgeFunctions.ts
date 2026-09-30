@@ -75,15 +75,21 @@ export async function completePlacement(
   return invokeFunction<CompletePlacementResult>('complete-placement', { answers });
 }
 
-export interface PurchaseCatResult {
+export interface PurchasePetResult {
   coins: number;
   prisms: number;
-  ownedCats: string[];
+  ownedPets: string[];
+  teamPets: string[];
 }
 
-/** 상점에서 고양이 1마리 구매 (코인 고양이는 코인, 프리즘 고양이는 프리즘). 잔액 부족이면 한국어 메시지로 에러가 난다. */
-export async function purchaseCat(catId: string): Promise<PurchaseCatResult> {
-  return invokeFunction<PurchaseCatResult>('purchase', { item: 'cat', catId });
+/** 상점에서 펫 1마리 구매 (코인 펫은 코인, 프리즘 펫은 프리즘). 팀에 자리가 있으면 팀에도 들어간다. */
+export async function purchasePet(petId: string): Promise<PurchasePetResult> {
+  return invokeFunction<PurchasePetResult>('purchase', { item: 'pet', petId });
+}
+
+/** 팀(화면에 나오고 채굴하는 펫, 최대 8마리)을 정한다 */
+export async function setTeam(team: string[]): Promise<{ teamPets: string[] }> {
+  return invokeFunction<{ teamPets: string[] }>('set-team', { team });
 }
 
 export interface ExchangeResult {
@@ -101,13 +107,13 @@ export interface CheckInResult {
   gain: number;
   /** 이번 출석으로 나온 프리즘 */
   minted: number;
-  /** 일한 고양이 수 */
-  cats: number;
+  /** 일한 팀 펫 수 */
+  team: number;
   mineProgress: number;
   prisms: number;
 }
 
-/** 하루 한 번 출석 — 오늘 처음이면 고양이들이 캔 만큼 게이지가 차고 프리즘이 나온다. 여러 번 불러도 하루 한 번만. */
+/** 하루 한 번 출석 — 오늘 처음이면 팀 펫들이 캔 만큼 게이지가 차고 프리즘이 나온다. 여러 번 불러도 하루 한 번만. */
 export async function checkIn(): Promise<CheckInResult> {
   return invokeFunction<CheckInResult>('check-in', {});
 }
@@ -126,7 +132,7 @@ export type AdminAction =
   | { action: 'grant'; coins?: number; prisms?: number }
   | { action: 'reset_checkin' }
   | { action: 'miss_day' }
-  | { action: 'reset_cats' };
+  | { action: 'reset_pets' };
 
 /** 운영자 테스트 도구. 운영자 계정이 아니면 에러가 난다. */
 export async function adminTool(request: AdminAction): Promise<{ ok: true }> {

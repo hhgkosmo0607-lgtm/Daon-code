@@ -9,22 +9,38 @@
 export type Currency = 'coin' | 'prism';
 
 /*
- * 코인 고양이 — 처음 고양이(치즈)는 무료, 그다음부터 40코인에서 한 마리마다 10씩 오른다.
- *   40 · 50 · 60 · 70 · 80 · 90 (6마리 전부 390) — 빨리 모이게:
- *   매일 레슨 2개면 2주, 1개면 7주 (재화_경제.md 시뮬레이션)
+ * 코인 펫 — 종별 등급 가격 (한 종 7색은 같은 값). 처음 펫(치즈 고양이)은 무료.
+ * 레슨 2개/일(약 26코인)이면 팀 8마리가 11일, 91마리 전부는 약 8달 (재화_경제.md 시뮬레이션)
  */
-export const CAT_BASE_PRICE = 40;
-export const CAT_PRICE_STEP = 10;
+export const COIN_PET_PRICE: Record<string, number> = {
+  cat: 40,
+  dog: 40,
+  bunny: 40,
+  hamster: 60,
+  penguin: 60,
+  frog: 60,
+  hedgehog: 60,
+  fox: 80,
+  mole: 80,
+  mushroom: 80,
+  ghost: 100,
+  slime: 100,
+  robot: 100,
+};
+/** 표에 없는 종 (새로 추가됐는데 가격을 안 정한 경우) */
+export const COIN_PET_DEFAULT_PRICE = 100;
 
-/**
- * 프리즘 고양이(무지개) 가격 — 목표가 되게: 코인 고양이를 다 모은 뒤 두 달쯤 모아야 한다.
- * 고양이가 늘수록 채굴이 빨라지는 것까지 계산해서 매일 레슨 2개면 약 69일째.
+/*
+ * 프리즘 펫 — 특별한 색은 30, 전설 종(드래곤·골렘·미믹)은 50.
+ * 레슨 2개/일이면 첫 프리즘 펫이 약 39일째, 그 뒤 4주쯤마다 하나 (팀 채굴 포함)
  */
-export const PRISM_CAT_PRICE = 50;
+export const PRISM_PET_PRICE = 30;
+export const LEGENDARY_SPECIES = ['dragon', 'golem', 'mimic'];
+export const LEGENDARY_PET_PRICE = 50;
 
 /*
  * 프리즘 → 코인 교환 (한 방향만. 코인으로 프리즘은 못 산다 — 되돌려 사서 불리는 게 불가능하다).
- * 프리즘 20개면 코인 고양이 전부(390), 스트릭 지키기 1번(프리즘 1) ≈ 레슨 하루치 코인.
+ * 스트릭 지키기 1번(프리즘 1) ≈ 레슨 하루치 코인.
  */
 export const COINS_PER_PRISM = 20;
 /** 상점에서 한 번에 바꿀 수 있는 묶음 */
@@ -42,13 +58,19 @@ export function exchangeBlock(
 /** 하루 빠진 스트릭을 지키는 데 드는 프리즘 */
 export const STREAK_REPAIR_PRISMS = 1;
 
-/**
- * 고양이 가격.
- * @param ownedCoinCats 지금 가진 코인 고양이 수 (치즈 포함) — 코인 고양이 가격에만 쓴다
- */
-export function catPrice(currency: Currency, ownedCoinCats: number): number {
-  if (currency === 'prism') return PRISM_CAT_PRICE;
-  return CAT_BASE_PRICE + CAT_PRICE_STEP * Math.max(0, ownedCoinCats - 1);
+/** 가격을 매기는 데 필요한 펫 정보 (petCatalog.ts의 PetDef) */
+export interface PricedPet {
+  id: string;
+  species: string;
+  currency: Currency;
+}
+
+/** 펫 가격 (단위는 pet.currency) */
+export function petPrice(pet: PricedPet): number {
+  if (pet.currency === 'prism') {
+    return LEGENDARY_SPECIES.includes(pet.species) ? LEGENDARY_PET_PRICE : PRISM_PET_PRICE;
+  }
+  return COIN_PET_PRICE[pet.species] ?? COIN_PET_DEFAULT_PRICE;
 }
 
 export interface Wallet {
@@ -56,19 +78,18 @@ export interface Wallet {
   prisms: number;
 }
 
-export type CatPurchaseBlockReason =
-  'unknown_cat' | 'already_owned' | 'not_enough_coins' | 'not_enough_prisms';
+export type PetPurchaseBlockReason =
+  'unknown_pet' | 'already_owned' | 'not_enough_coins' | 'not_enough_prisms';
 
-/** 고양이를 살 수 있는지. 살 수 없으면 이유를, 살 수 있으면 null */
-export function catPurchaseBlock(
+/** 펫을 살 수 있는지. 살 수 없으면 이유를, 살 수 있으면 null */
+export function petPurchaseBlock(
   wallet: Wallet,
-  ownedCats: string[],
-  cat: { id: string; currency: Currency } | undefined,
-  ownedCoinCats: number
-): CatPurchaseBlockReason | null {
-  if (!cat) return 'unknown_cat';
-  if (ownedCats.includes(cat.id)) return 'already_owned';
-  const price = catPrice(cat.currency, ownedCoinCats);
-  if (cat.currency === 'prism') return wallet.prisms < price ? 'not_enough_prisms' : null;
+  ownedPets: string[],
+  pet: PricedPet | undefined
+): PetPurchaseBlockReason | null {
+  if (!pet) return 'unknown_pet';
+  if (ownedPets.includes(pet.id)) return 'already_owned';
+  const price = petPrice(pet);
+  if (pet.currency === 'prism') return wallet.prisms < price ? 'not_enough_prisms' : null;
   return wallet.coins < price ? 'not_enough_coins' : null;
 }

@@ -50,7 +50,7 @@ export function StreakRepairBanner({
       <Text style={styles.sub}>
         {enough
           ? `프리즘 ${STREAK_REPAIR_PRISMS}개로 지키면 오늘 풀 때 이어져요. 안 지키고 풀면 1일부터 다시 시작해요.`
-          : `지키려면 프리즘 ${STREAK_REPAIR_PRISMS}개가 필요해요 (지금 ${prisms}개) · 고양이가 출석마다 캐요`}
+          : `지키려면 프리즘 ${STREAK_REPAIR_PRISMS}개가 필요해요 (지금 ${prisms}개) · 팀 펫이 출석마다 캐요`}
       </Text>
       {error && <Text style={[styles.sub, { color: colors.error }]}>{error}</Text>}
 

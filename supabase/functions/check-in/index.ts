@@ -1,15 +1,20 @@
 import { createClient } from 'npm:@supabase/supabase-js@2.116.0';
 
 import { toKstDateString } from '../../../features/lesson/domain/streak.ts';
-import { CAT_POWER } from '../../../features/pet/domain/catSheet.ts';
-import { MINE_BASE, MINE_PER_CAT, MINE_PER_PRISM } from '../../../features/pet/domain/mining.ts';
+import { PET_POWER } from '../../../features/pet/domain/petCatalog.ts';
+import {
+  MINE_BASE,
+  MINE_PER_CAT,
+  MINE_PER_PRISM,
+  TEAM_MAX,
+} from '../../../features/pet/domain/mining.ts';
 
 /*
- * 하루 한 번 출석 — 그날 처음 앱에 들어오면 고양이들이 캔 만큼 채굴 게이지가 차고,
+ * 하루 한 번 출석 — 그날 처음 앱에 들어오면 팀 펫들이 캔 만큼 채굴 게이지가 차고,
  * 가득 차면 프리즘이 나온다. 레슨을 풀지 않아도 준다. (daon-content/재화_경제.md)
  *
  * 앱은 홈에 들어올 때마다 불러도 되고, 하루 한 번만 주는 판단은 check_in DB 함수가 한다.
- * 날짜는 기기 시계가 아니라 서버 시각의 한국 날짜로 정한다. (0007_prisms.sql)
+ * 날짜는 기기 시계가 아니라 서버 시각의 한국 날짜로 정한다. (0008_pets.sql)
  */
 
 const corsHeaders = {
@@ -54,7 +59,8 @@ Deno.serve(async (req) => {
       p_mine_base: MINE_BASE,
       p_mine_per_cat: MINE_PER_CAT,
       p_mine_per_prism: MINE_PER_PRISM,
-      p_cat_power: CAT_POWER,
+      p_pet_power: PET_POWER,
+      p_team_max: TEAM_MAX,
     });
     if (error) throw error;
 
@@ -65,7 +71,7 @@ Deno.serve(async (req) => {
     return json({
       gain: data.gain,
       minted: data.minted,
-      cats: data.cats,
+      team: data.team,
       mineProgress: data.mine_progress,
       prisms: data.prisms,
     });

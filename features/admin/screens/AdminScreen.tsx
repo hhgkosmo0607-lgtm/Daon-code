@@ -17,7 +17,7 @@ import { useUserProgress } from '../../lesson/hooks/useUserProgress';
 const TOOLS: { label: string; desc: string; request: AdminAction }[] = [
   {
     label: '코인 +1,000',
-    desc: '코인 고양이 구매 확인',
+    desc: '코인 펫 구매 확인',
     request: { action: 'grant', coins: 1000 },
   },
   {
@@ -35,7 +35,7 @@ const TOOLS: { label: string; desc: string; request: AdminAction }[] = [
     desc: '마지막 학습을 그저께로 → 홈에 "스트릭 지킬래요?" 배너',
     request: { action: 'miss_day' },
   },
-  { label: '고양이 초기화', desc: '치즈만 남기기', request: { action: 'reset_cats' } },
+  { label: '펫 초기화', desc: '치즈 고양이만 남기기 (팀도)', request: { action: 'reset_pets' } },
 ];
 
 export function AdminScreen() {
@@ -72,8 +72,8 @@ export function AdminScreen() {
       <ScrollView contentContainerStyle={styles.body}>
         {profile && (
           <Text style={styles.state}>
-            코인 {profile.coins} · 프리즘 {profile.prisms} · 스트릭 {profile.streak}일 · 고양이{' '}
-            {profile.owned_cats.length}마리{'\n'}
+            코인 {profile.coins} · 프리즘 {profile.prisms} · 스트릭 {profile.streak}일 · 펫{' '}
+            {profile.owned_pets.length}마리 (팀 {profile.team_pets.length}){'\n'}
             마지막 학습 {profile.last_study_date ?? '-'} · 마지막 출석{' '}
             {profile.last_checkin_date ?? '-'}
           </Text>

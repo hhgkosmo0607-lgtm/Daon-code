@@ -44,6 +44,7 @@ npx -y supabase functions deploy purchase --project-ref "$PROJECT_REF" --use-api
 npx -y supabase functions deploy repair-streak --project-ref "$PROJECT_REF" --use-api
 npx -y supabase functions deploy check-in --project-ref "$PROJECT_REF" --use-api
 npx -y supabase functions deploy admin-tools --project-ref "$PROJECT_REF" --use-api
+npx -y supabase functions deploy set-team --project-ref "$PROJECT_REF" --use-api
 
 echo "▶ 4/4 EAS Update 발행 (channel: $CHANNEL)"
 npx -y eas-cli@latest update --channel "$CHANNEL" --environment "$CHANNEL" --message "$MESSAGE" --non-interactive
