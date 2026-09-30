@@ -160,16 +160,6 @@ export function HomeScreen() {
             </Pressable>
           )}
           <View style={styles.rightGroup}>
-            {!error && user && (
-              <Pressable
-                style={styles.reviewButton}
-                onPress={() => router.push('/pets')}
-                accessibilityRole="button"
-                accessibilityLabel="펫 관리"
-              >
-                <Text style={styles.reviewButtonText}>펫 관리</Text>
-              </Pressable>
-            )}
             {wrongAnswerCount > 0 && (
               <Pressable
                 style={styles.reviewButton}
