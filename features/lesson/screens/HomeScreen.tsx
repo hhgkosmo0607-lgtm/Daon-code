@@ -221,7 +221,6 @@ export function HomeScreen() {
           readyPrisms={Math.floor(pending)}
           bubbleSeed={profile?.mine_collected_at}
           onCollect={profile ? collect : undefined}
-          onPetPress={profile ? () => router.push('/pets') : undefined}
         />
       </View>
 

@@ -53,8 +53,6 @@ interface Props {
   startX?: number;
   /** 곡괭이질할 때 서는 x 후보 (dp) — 광물마다 하나. 없으면 오른쪽 바위 앞 */
   mineSpots?: number[];
-  /** 펫을 누르면 (펫 관리로) */
-  onPress?: () => void;
   /** 머리 위 말풍선 — 받을 프리즘이 있을 때 이 펫이 알려 준다 */
   bubble?: { count: number; onPress: () => void };
 }
@@ -65,7 +63,6 @@ export function PetSprite({
   petId = DEFAULT_PET_ID,
   startX = 0,
   mineSpots,
-  onPress,
   bubble,
 }: Props) {
   const sheet = PET_SHEETS[petId] ?? PET_SHEETS[DEFAULT_PET_ID];
@@ -184,30 +181,22 @@ export function PetSprite({
 
   return (
     <Animated.View style={[styles.cat, { transform: [{ translateX: x }] }]}>
-      <Pressable
-        onPress={onPress}
-        disabled={!onPress}
-        accessibilityRole="button"
-        accessibilityLabel="펫 관리"
-        style={styles.fill}
+      <View
+        style={[
+          styles.fill,
+          facingLeft && { marginLeft: -FLIP_SHIFT, transform: [{ scaleX: -1 }] },
+        ]}
       >
-        <View
-          style={[
-            styles.fill,
-            facingLeft && { marginLeft: -FLIP_SHIFT, transform: [{ scaleX: -1 }] },
-          ]}
-        >
-          <SheetCrop
-            source={sheet}
-            sheetW={SHEET_W}
-            sheetH={SHEET_H}
-            x={origin.x}
-            y={origin.y}
-            w={CELL_W}
-            h={CELL_H}
-          />
-        </View>
-      </Pressable>
+        <SheetCrop
+          source={sheet}
+          sheetW={SHEET_W}
+          sheetH={SHEET_H}
+          x={origin.x}
+          y={origin.y}
+          w={CELL_W}
+          h={CELL_H}
+        />
+      </View>
 
       {striking && (
         <SheetCrop

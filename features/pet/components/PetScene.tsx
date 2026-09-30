@@ -62,7 +62,6 @@ export function PetScene({
   readyPrisms = 0,
   bubbleSeed = '',
   onCollect,
-  onPetPress,
 }: {
   /** 팀 펫 id 목록 (최대 8) — 이 펫들이 나온다 */
   petIds?: string[];
@@ -77,8 +76,6 @@ export function PetScene({
   /** 말풍선 펫 고르기 — 받을 때마다 바뀌는 값(마지막으로 받은 시각)으로 정한다 */
   bubbleSeed?: string;
   onCollect?: () => void;
-  /** 펫을 누르면 (펫 관리로) */
-  onPetPress?: () => void;
 }) {
   const [width, setWidth] = useState(0);
   const [page, setPage] = useState(0);
@@ -129,7 +126,6 @@ export function PetScene({
         place={place}
         rockLeft={rightLimit}
         mineSpots={place === 'mine' ? mineSpots : undefined}
-        onPress={onPetPress}
         bubble={
           place === 'mine' && i === bubbleIndex && onCollect && readyPrisms >= 1
             ? { count: readyPrisms, onPress: onCollect }
