@@ -70,6 +70,13 @@ function LessonScreen() {
 
 ## 3. 폴더 구조 (기능별)
 
+> 아래는 개발 착수 전에 그린 설계안입니다. 레이어 분리(`app/`는 배선만, 로직은
+> `features/`, 공통은 `shared/`) 원칙은 그대로 지키고 있지만, 실제 `features/` 하위
+> 폴더 이름과 개수는 많이 늘었습니다(현재: `admin, auth, grass, lesson, onboarding,
+> pet, profile, shop, theme, track` — `ls features`로 확인). `app/`도 그룹 라우트
+> `(tabs)`/`(onboarding)` 대신 평평한 구조(`ls app`)를 씁니다. 아래 그림은 "왜 이렇게
+> 나누는가"의 예시로만 보세요.
+
 ```
 daon-code/
 ├── app/                        Expo Router — 라우팅 배선만, 로직 없음

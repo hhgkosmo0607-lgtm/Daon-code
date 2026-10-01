@@ -2,21 +2,23 @@
 
 바이브코딩하는 사람을 위한 코드 읽기 학습 앱 (Expo + React Native)
 
-## 현재 상태 — Phase 8(출시 준비) 진행 중
+## 현재 상태
 
 ```
 ✅ Phase 0  프로젝트 뼈대, TypeScript strict, 폴더 구조
 🔶 Phase 1  Expo Router 배선 + 온보딩(위저드·배치고사·로그인 게이트) — 코드 작성 완료, 실기기 검증 필요
 ✅ Phase 2  로컬 콘텐츠 + 문제 4유형 렌더링
 ✅ Phase 3  Supabase 연동 — 이메일/구글/카카오/익명 로그인 전부 완료
-🔶 Phase 4  submitAnswer / complete-placement — 배포·백엔드 검증 완료, 앱 화면 확인만 남음
+✅ Phase 4  submitAnswer / complete-placement — 배포·검증 완료
 ⬜ Phase 5  복습 시스템 (라이트너 박스) — DB 테이블만 있고 화면·콘텐츠 없음
 ⬜ Phase 6  푸시 알림, EAS Update — 미착수
-✅ Phase 7  콘텐츠 — 자바스크립트 등 코딩 입문 트랙 외 언어별/자격증 트랙 13개 추가, 1850문제+
-🔶 Phase 8  출시 준비 — app.json/eas.json 정비, EAS 프로젝트 연결, 첫 개발 빌드 진행 중
+✅ Phase 7  콘텐츠 — 코딩 입문 트랙 + 언어별/자격증 트랙 13개, 1650문제+
+🔶 Phase 8  출시 준비 — 개발자 계정·개인정보처리방침 등 남음
+✅ 재화·상점·펫  코인·프리즘·펫 113마리·시간 채굴·상점 (브랜치 `feat/coins`, preview 배포 완료, **`main` 미병합**)
 ```
 
-상세는 `daon-content/Daon-code_할일.md` 참고.
+상세·최신 진행 상황은 `daon-content/Daon-code_할일.md`, 재화 수치는 `daon-content/재화_경제.md` 참고.
+지금 작업은 전부 `feat/coins` 브랜치에 있고, `main`은 Phase 8 착수 시점에 머물러 있다.
 
 ### Phase 4 — 배포·백엔드 검증 완료
 
@@ -74,24 +76,27 @@ Expo Go 앱으로 QR을 찍으면 실물 기기에서 바로 확인할 수 있�
 ## 폴더 구조
 
 ```
-app/                  Expo Router — 라우팅 배선만, 로직 없음
-features/             기능 단위 (협업 경계)
+app/                  Expo Router — 라우팅 배선만, 로직 없음 (그룹 없이 평평한 구조, `ls app`로 확인)
+features/             기능 단위 (협업 경계) — 지금 있는 것: admin, auth, grass, lesson,
+                       onboarding, pet, profile, shop, theme, track (`ls features`로 확인)
   lesson/
     domain/           타입 + 채점/XP/스트릭 순수 함수
     data/             콘텐츠 로더 (로컬 JSON)
-    hooks/            useLesson
+    hooks/            useLesson 등
     components/       문제 4유형 + 피드백 배너
     screens/          홈 / 레슨풀이 / 결과
   auth/
     AuthContext.tsx   로그인 상태 전역 공유 (isGuest 판별 포함)
-    authActions.ts    익명/이메일 로그인, 게스트→정식 계정 연결
+    authActions.ts    익명/이메일/구글/카카오 로그인, 게스트→정식 계정 연결
     screens/
-  review/ profile/ onboarding/
+  shop/ pet/           상점, 펫(113마리)·채굴·광산 화면 — 수치는 daon-content/재화_경제.md
+  admin/               운영자 전용 테스트 메뉴 (`/admin`, is_admin 계정만)
 shared/               여러 기능이 함께 쓰는 것
-  components/ hooks/ lib/ theme/
+  components/          Toast, BottomSheet 등
+  hooks/ lib/ theme/
 content/              레슨·문제 원본 (JSON)
 supabase/             마이그레이션, Edge Functions
-scripts/              콘텐츠 변환 스크립트
+scripts/              콘텐츠 변환 + 펫 에셋 빌드 스크립트
 ```
 
 ## 핵심 설계 결정
@@ -124,9 +129,16 @@ user_id가 유지되므로 progress·XP가 그대로 따라온다.
 - 게스트(익명) 만점 → 12 XP (80% 적용)
 - 이미 완료한 레슨 재도전 → 0 XP
 - 게스트 48XP 상태에서 로그인 → 12XP 보너스 환급
-- 스트릭: 같은 날 유지 / 어제 +1 / 하루 빠짐+프리즈 방어 / 프리즈 없으면 리셋
+- 스트릭: 같은 날 유지 / 어제 +1 / 하루 빠지면 리셋 (자동 보호 없음 — 프리즘으로 직접 선택해
+  지킬 수 있다. 예전 "프리즈 자동 소모" 방식은 `재화_경제.md` 4장에 변경 이력 있음)
 
 ## 문서
 
-- `Daon-code_기획서_v2.md` — 커리큘럼, DB 스키마, 온보딩, 아키텍처 원칙
-- `Daon-code_제작플랜.md` — 레이어 구조, 폴더 규칙, Phase별 빌드 순서
+전부 `daon-content/`에 있다. 문서 목록과 각각 언제 보는지는 `daon-content/README.md` 참고.
+가장 먼저 볼 두 개:
+
+- `Daon-code_할일.md` — 지금 뭘 하고 있는지, 다음 할 일 (최신 진행 상황의 기준)
+- `재화_경제.md` — 코인·프리즘·펫·채굴 수치와 정한 이유 (보상·상점을 바꿀 때)
+
+그 외: `Daon-code_기획서_v2.md`(커리큘럼·온보딩·아키텍처 원칙, 최초 기획안),
+`Daon-code_제작플랜.md`(레이어 구조·폴더 규칙)

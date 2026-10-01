@@ -2,6 +2,14 @@
 
 > 바이브코딩하는 사람을 위한 코드 읽기 학습 앱
 
+> **이 문서는 개발 시작 전에 쓴 최초 기획안입니다.** 컨셉·커리큘럼·아키텍처 원칙(1~6장,
+> 8장 암기 복습 설계, 11~13장 화면·리스크·문제 작성 기준)은 지금도 유효합니다. 다만 아래는
+> 실제로 구현하면서 많이 달라졌으니 구현 당시 수치가 아니라 최신 문서를 보세요.
+> - **게임화 수치·DB 스키마(7·9·10장)** → 지금 값은 [재화_경제.md](재화_경제.md),
+>   실제 스키마는 `supabase/migrations/*.sql`
+> - **진행 상황·다음 할 일(14장)** → [Daon-code_할일.md](Daon-code_할일.md)
+> - **폴더 구조** → [Daon-code_제작플랜.md](Daon-code_제작플랜.md) 상단 안내 참고
+
 ---
 
 ## 1. 서비스 개요
@@ -825,24 +833,9 @@ review_count  int      default 0
 
 ---
 
-## 14. 다음 할 일
+## 14. 다음 할 일 (이 장은 개발 착수 전 작성 — 전부 완료됨, 보관용)
 
-- [ ] 이름 표기 확정 (내부 `daon-code` / 스토어 `다온코드`)
-- [ ] 1단계 레슨 5개 문제 전량 작성 (1-1 완료, 1-2~1-5 남음)
-- [ ] 화면 목업 (Figma 또는 손그림)
-- [ ] Supabase 프로젝트 생성 및 스키마 적용 (progress/daily_xp/profiles/terms/user_term_review만 — 콘텐츠 테이블은 안 만듦)
-- [ ] RLS 정책 설정 (progress/daily_xp/profiles xp·streak 컬럼 — 클라이언트 쓰기 차단)
-- [ ] 익명 로그인(Anonymous Auth) + 계정 연결(link identity) 설정
-- [ ] 게스트 XP 80% 차등 지급 로직 (submitAnswer에 is_anonymous 분기)
-- [ ] pendingBonus 조회 API (로그인 화면에서 예상 보너스 미리 표시)
-- [ ] 1단계 완료 후 로그인 강제 게이트 화면 + 1-3 배너 구현
-- [ ] submitAnswer Edge Function 설계 (채점 시 최초 완료만 XP 지급, 하루 목표 보너스 1회 제한, Asia/Seoul 타임존 고정)
-- [ ] 배치고사 통과 시 건너뛴 레슨 progress 행 생성 로직
-- [ ] 구글/카카오 로그인 RN 플로우 구현 (expo-auth-session + 딥링크 + setSession)
-- [ ] 배치고사 결과 화면 → 로그인 강제 흐름 구현
-- [ ] 알림 발송 스케줄러 (pg_cron + Edge Function, Expo Push 연동)
-- [ ] EAS Update 설정 (콘텐츠 OTA 반영)
-- [ ] 콘텐츠 파이프라인 스크립트 (스프레드시트 → 로컬 JSON, Supabase 미사용 확정)
-- [ ] Expo 프로젝트 초기 세팅
-- [ ] 디자인 톤 결정 (색상, 캐릭터 유무)
-- [ ] 2~8단계 문제 순차 작성 (약 220~280문제)
+여기 적혀 있던 항목은 전부 끝났습니다(이름 확정 `다온코드`, Expo 세팅, Supabase 연동,
+익명 로그인·계정 연결, 게스트 80%, submitAnswer, 구글/카카오 로그인, EAS Update,
+커리큘럼 전체 작성 — 그리고 그 이후 자격증·언어별 트랙 13개, 코인·상점·펫 경제까지
+추가로 구현됐습니다). **지금 진행 상황과 다음에 할 일은 [Daon-code_할일.md](Daon-code_할일.md)를 보세요.**
