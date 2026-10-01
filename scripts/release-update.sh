@@ -22,6 +22,22 @@ PROJECT_REF="fjtjoqdsrndnemhiqbmc"
 
 cd "$(dirname "$0")/.."
 
+# 배포는 main에서만 한다. 다른 브랜치에서 내보내면 Edge Function과 업데이트가
+# 브랜치마다 서로 덮어써서, 설치된 앱과 서버가 서로 다른 코드를 보게 된다.
+# 커밋 안 된 변경도 막는다 — 배포된 것이 어느 커밋인지 알 수 없게 되기 때문이다.
+# 꼭 필요하면 ALLOW_BRANCH=1 npm run release -- ... 로 우회한다.
+BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+if [ "${ALLOW_BRANCH:-}" != "1" ]; then
+  if [ "$BRANCH" != "main" ]; then
+    echo "✖ release는 main에서만 실행해요 (지금: $BRANCH)" >&2
+    exit 1
+  fi
+  if ! git diff --quiet HEAD; then
+    echo "✖ 커밋 안 된 변경이 있어요. 커밋한 뒤에 배포해주세요" >&2
+    exit 1
+  fi
+fi
+
 # expo-updates가 node_modules에 없으면 EAS가 fingerprint를 계산하지 못하고
 # runtimeVersion을 "file:fingerprint"로 발행해서, 설치된 앱이 업데이트를 받지 못한다.
 if [ ! -d node_modules/expo-updates ]; then
