@@ -51,5 +51,8 @@
         "@react-native-async-storage/async-storage"
       ]
     }
+  },
+  "overrides": {
+    "react-native-worklets": "0.13.0"
   }
 }
