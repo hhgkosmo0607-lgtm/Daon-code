@@ -11,6 +11,7 @@
  * 원본은 1x 아래 characters/free · characters/premium · effects · spaces 폴더에 나눠 둔다.
  * 새 펫을 추가하면 원본을 알맞은 폴더에 넣고 이 스크립트를 다시 돌리면 된다.
  */
+import { Buffer } from 'node:buffer';
 import { mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { inflateSync, deflateSync } from 'node:zlib';
 
