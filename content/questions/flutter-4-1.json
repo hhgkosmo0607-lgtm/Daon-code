@@ -1,0 +1,63 @@
+[
+  {
+    "id": "flutter-4-1-q1",
+    "lessonId": "flutter-4-1",
+    "type": "choice",
+    "prompt": "Flutter에서 \"위젯\"에 해당하는 것은?",
+    "options": [
+      "버튼·글자처럼 눈에 보이는 것만",
+      "화면 전체를 감싸는 Scaffold 하나만",
+      "레이아웃 계산이 끝난 화면 픽셀",
+      "여백·정렬까지 포함한 화면의 거의 모든 것"
+    ],
+    "answer": 3,
+    "explanation": "Flutter는 Text, 버튼은 물론 Padding(여백), Center(가운데 정렬) 같은 배치도 전부 위젯이에요. 위젯을 겹겹이 감싸서 화면을 만들어요."
+  },
+  {
+    "id": "flutter-4-1-q2",
+    "lessonId": "flutter-4-1",
+    "type": "choice",
+    "prompt": "Scaffold가 주로 하는 일은?",
+    "code": "Scaffold(\n  appBar: AppBar(title: Text('홈')),\n  body: Center(child: Text('안녕')),\n)",
+    "language": "Dart",
+    "options": [
+      "앱바·본문·플로팅 버튼 같은 화면 기본 뼈대를 잡아준다",
+      "서버와 통신해서 화면에 보여줄 데이터를 받아온다",
+      "앱 전체의 화면 이동 경로와 주소를 정의한다",
+      "기기 화면 크기에 맞춰 글자 크기를 자동으로 바꾼다"
+    ],
+    "answer": 0,
+    "explanation": "Scaffold는 머티리얼 디자인 화면 한 장의 틀이에요. appBar, body, floatingActionButton 같은 자리를 정해 줘요."
+  },
+  {
+    "id": "flutter-4-1-q3",
+    "lessonId": "flutter-4-1",
+    "type": "order",
+    "prompt": "위젯 트리에서 바깥(위)부터 안쪽 순서로 놓아보세요.",
+    "options": [
+      "Text",
+      "MaterialApp",
+      "Scaffold"
+    ],
+    "answer": [
+      1,
+      2,
+      0
+    ],
+    "explanation": "보통 앱 전체 설정을 하는 MaterialApp이 가장 바깥, 그 안에 화면 틀 Scaffold, 그 안에 실제 내용 Text가 들어가요."
+  },
+  {
+    "id": "flutter-4-1-q4",
+    "lessonId": "flutter-4-1",
+    "type": "choice",
+    "prompt": "위젯 하나를 감쌀 때는 child, 여러 개를 감쌀 때는 무엇을 쓰나?",
+    "options": [
+      "childs",
+      "items",
+      "children",
+      "widgets"
+    ],
+    "answer": 2,
+    "explanation": "Center·Padding처럼 하나만 감싸는 위젯은 child, Row·Column처럼 여러 개를 나열하는 위젯은 children에 리스트를 넘겨요."
+  }
+]

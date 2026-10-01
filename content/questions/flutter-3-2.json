@@ -1,0 +1,67 @@
+[
+  {
+    "id": "flutter-3-2-q1",
+    "lessonId": "flutter-3-2",
+    "type": "choice",
+    "prompt": "출력 결과는?",
+    "code": "Future<String> fetchName() async => '민수';\n\nvoid main() {\n  print(fetchName());\n}",
+    "language": "Dart",
+    "options": [
+      "민수",
+      "Instance of 'Future<String>'",
+      "Instance of 'Future<dynamic>'",
+      "null"
+    ],
+    "answer": 1,
+    "explanation": "fetchName()은 바로 값이 아니라 \"나중에 올 값\"(Future)을 돌려줘요. 값을 꺼내려면 await fetchName()처럼 기다려야 해요."
+  },
+  {
+    "id": "flutter-3-2-q2",
+    "lessonId": "flutter-3-2",
+    "type": "choice",
+    "prompt": "await를 쓸 수 있는 곳은?",
+    "options": [
+      "어떤 함수 안에서든 쓸 수 있다",
+      "async가 붙은 함수 안에서만",
+      "main 함수 안에서만 쓸 수 있다",
+      "Future를 반환하는 줄에서만"
+    ],
+    "answer": 1,
+    "explanation": "await는 async 함수 안에서만 쓸 수 있어요. 쓰려면 함수 선언에 async를 붙이고, 반환 타입은 Future<...>가 돼요."
+  },
+  {
+    "id": "flutter-3-2-q3",
+    "lessonId": "flutter-3-2",
+    "type": "order",
+    "prompt": "아래 코드를 실행하면 출력되는 순서대로 놓아보세요.",
+    "code": "print('A');\nFuture.delayed(Duration(seconds: 1), () => print('B'));\nprint('C');",
+    "language": "Dart",
+    "options": [
+      "B",
+      "A",
+      "C"
+    ],
+    "answer": [
+      1,
+      2,
+      0
+    ],
+    "explanation": "Future.delayed 안의 코드는 기다렸다가 나중에 실행돼요. 그동안 다음 줄 print('C')가 먼저 돌아서 A → C → B 순서예요."
+  },
+  {
+    "id": "flutter-3-2-q4",
+    "lessonId": "flutter-3-2",
+    "type": "choice",
+    "prompt": "네트워크 요청이 실패했을 때 앱이 멈추지 않게 하려면?",
+    "code": "final res = await http.get(uri);",
+    "language": "Dart",
+    "options": [
+      "await 앞에 !를 붙인다",
+      "Future 대신 String을 반환한다",
+      "async를 지운다",
+      "await를 try/catch로 감싼다"
+    ],
+    "answer": 3,
+    "explanation": "await한 Future가 실패하면 그 자리에서 예외가 던져져요. try { ... } catch (e) { ... }로 감싸서 오류 화면을 보여주거나 다시 시도하게 해요."
+  }
+]

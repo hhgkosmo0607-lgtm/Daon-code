@@ -1,0 +1,60 @@
+[
+  {
+    "id": "flutter-4-3-q1",
+    "lessonId": "flutter-4-3",
+    "type": "choice",
+    "prompt": "Column에서 mainAxisAlignment: MainAxisAlignment.center는 무엇을 가운데로 맞추나?",
+    "options": [
+      "가로 방향",
+      "세로 방향",
+      "가로와 세로 모두",
+      "글자 정렬만"
+    ],
+    "answer": 1,
+    "explanation": "Column의 주축(main axis)은 세로예요. 가로 정렬은 crossAxisAlignment로 해요. Row는 반대로 주축이 가로예요."
+  },
+  {
+    "id": "flutter-4-3-q2",
+    "lessonId": "flutter-4-3",
+    "type": "choice",
+    "prompt": "Row 안에서 검색창이 남은 가로 공간을 전부 차지하게 하려면?",
+    "code": "Row(children: [\n  Icon(Icons.search),\n  TextField(),\n])",
+    "language": "Dart",
+    "options": [
+      "TextField를 SizedBox로 감싼다",
+      "TextField를 Center로 감싼다",
+      "TextField를 Expanded로 감싼다",
+      "Row를 Column으로 바꾼다"
+    ],
+    "answer": 2,
+    "explanation": "Expanded는 Row·Column 안에서 남는 공간을 채워요. 여러 개면 flex 값으로 비율을 나눠요."
+  },
+  {
+    "id": "flutter-4-3-q3",
+    "lessonId": "flutter-4-3",
+    "type": "compare",
+    "prompt": "버튼 두 개 사이에 16만큼 간격을 주는 코드로 더 알맞은 것은?",
+    "options": [
+      "Column(children: [\n  btnA,\n  SizedBox(height: 16),\n  btnB])",
+      "Column(children: [\n  btnA,\n  Text('\\n\\n'),\n  btnB])"
+    ],
+    "answer": 0,
+    "explanation": "간격은 SizedBox로 줘요. 빈 줄 Text는 글꼴 크기에 따라 간격이 들쭉날쭉해지고, 화면 읽기 프로그램이 빈 글자를 읽기도 해요."
+  },
+  {
+    "id": "flutter-4-3-q4",
+    "lessonId": "flutter-4-3",
+    "type": "choice",
+    "prompt": "위젯 바깥에 여백을 주는 위젯은?",
+    "code": "Padding(\n  padding: EdgeInsets.all(16),\n  child: Text('안녕'),\n)",
+    "language": "Dart",
+    "options": [
+      "Margin",
+      "Space",
+      "Gap",
+      "Padding"
+    ],
+    "answer": 3,
+    "explanation": "Flutter에는 Margin 위젯이 없어요. Padding으로 감싸서 EdgeInsets.all(16)처럼 여백을 줘요. Container의 margin 속성으로도 줄 수 있어요."
+  }
+]

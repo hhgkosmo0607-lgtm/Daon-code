@@ -1,0 +1,64 @@
+[
+  {
+    "id": "flutter-1-2-q1",
+    "lessonId": "flutter-1-2",
+    "type": "choice",
+    "prompt": "아래 코드에서 컴파일 오류가 나는 줄은?",
+    "code": "var count = 1;\ncount = 2;\nfinal name = '민수';\nname = '지수';",
+    "language": "Dart",
+    "options": [
+      "2번 줄",
+      "3번 줄",
+      "4번 줄",
+      "오류 없음"
+    ],
+    "answer": 2,
+    "explanation": "4번 줄에서 오류가 나요. final은 한 번 정한 값을 바꿀 수 없어요. var로 선언한 count는 같은 타입(int)이면 다시 대입할 수 있어요."
+  },
+  {
+    "id": "flutter-1-2-q2",
+    "lessonId": "flutter-1-2",
+    "type": "choice",
+    "prompt": "final과 const의 차이로 맞는 것은?",
+    "options": [
+      "const는 컴파일할 때 값이 정해져야 하고, final은 실행 중에 한 번 정해지면 된다",
+      "final은 클래스 안에서만 쓸 수 있고, const는 함수 안에서만 쓸 수 있다",
+      "const로 만든 값은 나중에 바꿀 수 있지만, final은 바꿀 수 없다",
+      "둘은 이름만 다를 뿐 동작이 완전히 같다"
+    ],
+    "answer": 0,
+    "explanation": "final now = DateTime.now();는 되지만 const now = DateTime.now();는 오류예요. 현재 시각은 실행해야 알 수 있는 값이라 const가 될 수 없어요."
+  },
+  {
+    "id": "flutter-1-2-q3",
+    "lessonId": "flutter-1-2",
+    "type": "blank",
+    "prompt": "이름을 넣어 \"안녕, 민수!\"를 출력하려고 한다. 빈칸에 들어갈 것은?",
+    "code": "final name = '민수';\nprint('안녕, ___!');",
+    "language": "Dart",
+    "options": [
+      "+name+",
+      "$name",
+      "{name}",
+      "%name"
+    ],
+    "answer": 1,
+    "explanation": "Dart는 문자열 안에 $변수로 값을 넣어요. 식을 넣을 때는 '${a + b}'처럼 중괄호를 써요."
+  },
+  {
+    "id": "flutter-1-2-q4",
+    "lessonId": "flutter-1-2",
+    "type": "choice",
+    "prompt": "출력 결과는?",
+    "code": "print(7 / 2);",
+    "language": "Dart",
+    "options": [
+      "3",
+      "3.0",
+      "3.5",
+      "4"
+    ],
+    "answer": 2,
+    "explanation": "Dart의 /는 정수끼리 나눠도 double을 돌려줘요. 몫만 원하면 7 ~/ 2처럼 ~/ 연산자를 써요(결과 3)."
+  }
+]

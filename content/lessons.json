@@ -953,6 +953,54 @@
       "stage": 8,
       "title": "정보통신 법·제도",
       "description": "정보통신망법, 개인정보보호법, 저작권과 정보통신 윤리"
+    },
+    {
+      "trackId": "flutter",
+      "stage": 1,
+      "title": "Dart 시작하기",
+      "description": "Flutter와 Dart, 변수·타입, null safety"
+    },
+    {
+      "trackId": "flutter",
+      "stage": 2,
+      "title": "함수와 컬렉션",
+      "description": "이름 있는 매개변수, 화살표 함수, List·Map"
+    },
+    {
+      "trackId": "flutter",
+      "stage": 3,
+      "title": "클래스와 비동기",
+      "description": "생성자, Future, async/await"
+    },
+    {
+      "trackId": "flutter",
+      "stage": 4,
+      "title": "위젯 기초",
+      "description": "위젯 트리, StatelessWidget, Row·Column 레이아웃"
+    },
+    {
+      "trackId": "flutter",
+      "stage": 5,
+      "title": "상태와 입력",
+      "description": "StatefulWidget, setState, TextField"
+    },
+    {
+      "trackId": "flutter",
+      "stage": 6,
+      "title": "목록과 화면 이동",
+      "description": "ListView.builder, Navigator"
+    },
+    {
+      "trackId": "flutter",
+      "stage": 7,
+      "title": "서버 데이터",
+      "description": "http 패키지, JSON 변환, FutureBuilder"
+    },
+    {
+      "trackId": "flutter",
+      "stage": 8,
+      "title": "실무 소양",
+      "description": "상태관리, 자주 보는 오류, AI가 짠 코드 검토"
     }
   ],
   "lessons": [
@@ -4337,6 +4385,177 @@
       "stage": 8,
       "title": "저작권과 정보통신 윤리",
       "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "flutter",
+      "id": "flutter-1-1",
+      "stage": 1,
+      "title": "Flutter와 Dart",
+      "subtitle": "한 코드로 안드로이드·iOS",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "flutter",
+      "id": "flutter-1-2",
+      "stage": 1,
+      "title": "변수와 타입",
+      "subtitle": "var, final, const, 문자열 보간",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "flutter",
+      "id": "flutter-1-3",
+      "stage": 1,
+      "title": "null safety",
+      "subtitle": "?, !, ??, late",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "flutter",
+      "id": "flutter-2-1",
+      "stage": 2,
+      "title": "함수",
+      "subtitle": "화살표 함수, 이름 있는 매개변수",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "flutter",
+      "id": "flutter-2-2",
+      "stage": 2,
+      "title": "List와 Map",
+      "subtitle": "map, where, 스프레드, collection if",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "flutter",
+      "id": "flutter-3-1",
+      "stage": 3,
+      "title": "클래스",
+      "subtitle": "생성자, final 필드, 이름 있는 생성자",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "flutter",
+      "id": "flutter-3-2",
+      "stage": 3,
+      "title": "Future와 async/await",
+      "subtitle": "기다렸다가 결과 받기",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "flutter",
+      "id": "flutter-4-1",
+      "stage": 4,
+      "title": "모든 것은 위젯",
+      "subtitle": "runApp, MaterialApp, Scaffold",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "flutter",
+      "id": "flutter-4-2",
+      "stage": 4,
+      "title": "StatelessWidget",
+      "subtitle": "build와 const",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "flutter",
+      "id": "flutter-4-3",
+      "stage": 4,
+      "title": "레이아웃",
+      "subtitle": "Row, Column, Expanded, Padding",
+      "orderNo": 3,
+      "xpReward": 10
+    },
+    {
+      "trackId": "flutter",
+      "id": "flutter-5-1",
+      "stage": 5,
+      "title": "StatefulWidget과 setState",
+      "subtitle": "값이 바뀌면 다시 그리기",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "flutter",
+      "id": "flutter-5-2",
+      "stage": 5,
+      "title": "입력 다루기",
+      "subtitle": "TextField, 컨트롤러, dispose",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "flutter",
+      "id": "flutter-6-1",
+      "stage": 6,
+      "title": "ListView",
+      "subtitle": "긴 목록을 효율적으로",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "flutter",
+      "id": "flutter-6-2",
+      "stage": 6,
+      "title": "화면 이동",
+      "subtitle": "Navigator push/pop, 값 주고받기",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "flutter",
+      "id": "flutter-7-1",
+      "stage": 7,
+      "title": "http와 JSON",
+      "subtitle": "pubspec.yaml, jsonDecode, fromJson",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "flutter",
+      "id": "flutter-7-2",
+      "stage": 7,
+      "title": "FutureBuilder",
+      "subtitle": "로딩·오류·데이터 화면",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "flutter",
+      "id": "flutter-8-1",
+      "stage": 8,
+      "title": "상태관리 맛보기",
+      "subtitle": "상태 끌어올리기, Provider",
+      "orderNo": 1,
+      "xpReward": 10
+    },
+    {
+      "trackId": "flutter",
+      "id": "flutter-8-2",
+      "stage": 8,
+      "title": "자주 보는 오류",
+      "subtitle": "overflow, dispose 후 setState, context",
+      "orderNo": 2,
+      "xpReward": 10
+    },
+    {
+      "trackId": "flutter",
+      "id": "flutter-8-3",
+      "stage": 8,
+      "title": "AI가 짠 Flutter 코드 검토",
+      "subtitle": "돌아가지만 위험한 코드",
+      "orderNo": 3,
       "xpReward": 10
     }
   ]

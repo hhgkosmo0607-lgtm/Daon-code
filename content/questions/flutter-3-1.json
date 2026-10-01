@@ -1,0 +1,64 @@
+[
+  {
+    "id": "flutter-3-1-q1",
+    "lessonId": "flutter-3-1",
+    "type": "blank",
+    "prompt": "생성자에서 받은 값을 바로 필드에 넣는 가장 짧은 방법은?",
+    "code": "class User {\n  final String name;\n  ___;\n}",
+    "language": "Dart",
+    "options": [
+      "User(name)",
+      "User(this.name)",
+      "User(name = this.name)",
+      "User(String this)"
+    ],
+    "answer": 1,
+    "explanation": "this.name을 생성자 매개변수에 쓰면 받은 값이 그대로 name 필드에 들어가요. Flutter 위젯 생성자에서 거의 항상 이렇게 써요."
+  },
+  {
+    "id": "flutter-3-1-q2",
+    "lessonId": "flutter-3-1",
+    "type": "choice",
+    "prompt": "User.guest()는 무엇인가?",
+    "code": "class User {\n  final String name;\n  User(this.name);\n  User.guest() : name = '게스트';\n}",
+    "language": "Dart",
+    "options": [
+      "User를 상속한 새 클래스",
+      "User 안에 있는 static 변수",
+      "이름이 붙은 또 다른 생성자",
+      "guest라는 이름의 일반 메서드"
+    ],
+    "answer": 2,
+    "explanation": "Dart는 생성자 이름을 겹칠 수 없어서 User.guest()처럼 이름 있는 생성자를 만들어요. 위젯의 ListView.builder()도 같은 방식이에요."
+  },
+  {
+    "id": "flutter-3-1-q3",
+    "lessonId": "flutter-3-1",
+    "type": "choice",
+    "prompt": "final user = User('민수'); 다음에 user.name = '지수';를 하면?",
+    "code": "class User {\n  final String name;\n  User(this.name);\n}",
+    "language": "Dart",
+    "options": [
+      "컴파일 오류가 난다",
+      "name이 '지수'로 바뀐다",
+      "user 변수 자체가 새 User로 바뀐다",
+      "실행 중에만 오류가 난다"
+    ],
+    "answer": 0,
+    "explanation": "name 필드가 final이라서 만든 뒤에는 바꿀 수 없어요. Flutter는 위젯 필드를 final로 두는 게 원칙이라, 바꾸려면 새 객체를 만들어요."
+  },
+  {
+    "id": "flutter-3-1-q4",
+    "lessonId": "flutter-3-1",
+    "type": "choice",
+    "prompt": "Flutter 코드에서 new를 거의 볼 수 없는 이유는?",
+    "options": [
+      "Flutter에서는 객체를 만들 수 없어서",
+      "Dart에서 new는 생략할 수 있어서",
+      "new는 웹에서만 동작해서",
+      "const만 객체를 만들 수 있어서"
+    ],
+    "answer": 1,
+    "explanation": "Dart 2부터 new는 선택 사항이에요. Text('안녕')처럼 클래스 이름만 써도 새 객체가 만들어져요."
+  }
+]

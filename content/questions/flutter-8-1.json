@@ -1,0 +1,60 @@
+[
+  {
+    "id": "flutter-8-1-q1",
+    "lessonId": "flutter-8-1",
+    "type": "choice",
+    "prompt": "두 화면이 같은 장바구니 개수를 보여줘야 한다. 가장 먼저 떠올릴 방법은?",
+    "options": [
+      "두 화면에 각자 count 변수를 두고 값을 맞춘다",
+      "한 곳(공통 부모·상태관리 객체)에 두고 두 화면이 본다",
+      "파일에 저장해 두고 두 화면이 1초마다 읽는다",
+      "두 화면을 하나의 큰 위젯으로 합쳐 버린다"
+    ],
+    "answer": 1,
+    "explanation": "같은 값을 두 곳에 두면 언젠가 어긋나요. 값은 한 곳에 두고 여러 화면이 그 값을 보게 하는 게 상태관리의 기본이에요."
+  },
+  {
+    "id": "flutter-8-1-q2",
+    "lessonId": "flutter-8-1",
+    "type": "blank",
+    "prompt": "Provider로 쓰는 ChangeNotifier에서 값이 바뀐 걸 알리는 빈칸은?",
+    "code": "class Cart extends ChangeNotifier {\n  int count = 0;\n  void add() {\n    count++;\n    ___;\n  }\n}",
+    "language": "Dart",
+    "options": [
+      "setState()",
+      "notifyChanged()",
+      "notifyListeners()",
+      "updateListeners()"
+    ],
+    "answer": 2,
+    "explanation": "ChangeNotifier는 값을 바꾼 뒤 notifyListeners()를 불러야 이 값을 보고 있는 위젯들이 다시 그려져요."
+  },
+  {
+    "id": "flutter-8-1-q3",
+    "lessonId": "flutter-8-1",
+    "type": "choice",
+    "prompt": "버튼 onPressed 안에서 cart.add()만 부를 때 context.watch 대신 context.read를 쓰는 이유는?",
+    "options": [
+      "read가 watch보다 항상 더 최신 값을 줘서",
+      "watch는 onPressed 안에서 컴파일이 안 돼서",
+      "read를 써야 notifyListeners가 동작해서",
+      "이벤트에선 값만 쓰면 되고 다시 그릴 필요가 없어서"
+    ],
+    "answer": 3,
+    "explanation": "watch는 \"값이 바뀌면 나를 다시 그려줘\"라는 구독이라 build 안에서 써요. 이벤트 처리처럼 한 번 쓰고 마는 곳은 read를 써요."
+  },
+  {
+    "id": "flutter-8-1-q4",
+    "lessonId": "flutter-8-1",
+    "type": "choice",
+    "prompt": "Provider·Riverpod·Bloc 같은 상태관리 도구에 대한 설명으로 맞는 것은?",
+    "options": [
+      "앱마다 반드시 셋 다 써야 한다",
+      "setState를 쓰면 앱이 스토어 심사에서 떨어진다",
+      "목적은 같고 방식이 다르니 팀에서 하나를 정해 일관되게 쓴다",
+      "Bloc은 웹에서만 동작한다"
+    ],
+    "answer": 2,
+    "explanation": "셋 다 \"공유할 상태를 한 곳에 두고 화면이 따라 바뀌게\" 하는 도구예요. 작은 화면 상태는 setState로 충분하고, 여러 화면이 공유하면 도구를 써요."
+  }
+]

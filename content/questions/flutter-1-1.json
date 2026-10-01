@@ -1,0 +1,60 @@
+[
+  {
+    "id": "flutter-1-1-q1",
+    "lessonId": "flutter-1-1",
+    "type": "choice",
+    "prompt": "Flutter를 가장 정확하게 설명한 것은?",
+    "options": [
+      "안드로이드 전용 앱을 만드는 자바 라이브러리",
+      "웹페이지를 앱처럼 감싸서 보여주는 브라우저",
+      "하나의 Dart 코드로 여러 플랫폼 화면을 그리는 UI 툴킷",
+      "서버에서 화면을 만들어 앱으로 내려보내는 프레임워크"
+    ],
+    "answer": 2,
+    "explanation": "Flutter는 구글이 만든 UI 툴킷이에요. Dart로 쓴 코드 하나로 안드로이드·iOS·웹·데스크톱 화면을 그리고, 화면은 Flutter 엔진이 직접 그려요."
+  },
+  {
+    "id": "flutter-1-1-q2",
+    "lessonId": "flutter-1-1",
+    "type": "choice",
+    "prompt": "Flutter 앱이 실행될 때 가장 먼저 호출되는 함수는?",
+    "code": "void main() {\n  runApp(const MyApp());\n}",
+    "language": "Dart",
+    "options": [
+      "main()",
+      "build()",
+      "initState()",
+      "runApp()"
+    ],
+    "answer": 0,
+    "explanation": "Dart 프로그램은 항상 main()에서 시작해요. Flutter 앱은 main() 안에서 runApp()을 불러 첫 위젯을 화면에 띄워요."
+  },
+  {
+    "id": "flutter-1-1-q3",
+    "lessonId": "flutter-1-1",
+    "type": "choice",
+    "prompt": "앱을 실행한 채로 버튼 글자만 바꿨다. 지금 화면 상태(입력한 값, 카운터)를 유지하면서 바로 반영하려면?",
+    "options": [
+      "앱을 지우고 다시 설치한다",
+      "핫 리로드(hot reload)를 한다",
+      "핫 리스타트(hot restart)를 한다",
+      "flutter clean 후 다시 빌드한다"
+    ],
+    "answer": 1,
+    "explanation": "핫 리로드는 바뀐 코드만 끼워 넣고 상태는 그대로 둬요. 핫 리스타트는 앱을 처음부터 다시 시작해서 상태가 초기화돼요."
+  },
+  {
+    "id": "flutter-1-1-q4",
+    "lessonId": "flutter-1-1",
+    "type": "choice",
+    "prompt": "initState() 안의 코드를 고쳤는데 핫 리로드를 해도 반영되지 않는다. 이유는?",
+    "options": [
+      "핫 리로드는 Dart 코드 변경을 지원하지 않아서",
+      "initState는 디버그 모드에서 실행되지 않아서",
+      "핫 리로드는 이미지와 글꼴만 다시 불러와서",
+      "initState는 위젯이 처음 만들어질 때 한 번만 실행돼서"
+    ],
+    "answer": 3,
+    "explanation": "핫 리로드는 상태를 유지한 채 build만 다시 해요. 이미 지나간 initState는 다시 돌지 않으니, 핫 리스타트로 처음부터 실행해야 반영돼요."
+  }
+]

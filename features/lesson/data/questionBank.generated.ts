@@ -133,6 +133,25 @@ import q_flask_6_1 from '../../../content/questions/flask-6-1.json';
 import q_flask_6_2 from '../../../content/questions/flask-6-2.json';
 import q_flask_7_1 from '../../../content/questions/flask-7-1.json';
 import q_flask_7_2 from '../../../content/questions/flask-7-2.json';
+import q_flutter_1_1 from '../../../content/questions/flutter-1-1.json';
+import q_flutter_1_2 from '../../../content/questions/flutter-1-2.json';
+import q_flutter_1_3 from '../../../content/questions/flutter-1-3.json';
+import q_flutter_2_1 from '../../../content/questions/flutter-2-1.json';
+import q_flutter_2_2 from '../../../content/questions/flutter-2-2.json';
+import q_flutter_3_1 from '../../../content/questions/flutter-3-1.json';
+import q_flutter_3_2 from '../../../content/questions/flutter-3-2.json';
+import q_flutter_4_1 from '../../../content/questions/flutter-4-1.json';
+import q_flutter_4_2 from '../../../content/questions/flutter-4-2.json';
+import q_flutter_4_3 from '../../../content/questions/flutter-4-3.json';
+import q_flutter_5_1 from '../../../content/questions/flutter-5-1.json';
+import q_flutter_5_2 from '../../../content/questions/flutter-5-2.json';
+import q_flutter_6_1 from '../../../content/questions/flutter-6-1.json';
+import q_flutter_6_2 from '../../../content/questions/flutter-6-2.json';
+import q_flutter_7_1 from '../../../content/questions/flutter-7-1.json';
+import q_flutter_7_2 from '../../../content/questions/flutter-7-2.json';
+import q_flutter_8_1 from '../../../content/questions/flutter-8-1.json';
+import q_flutter_8_2 from '../../../content/questions/flutter-8-2.json';
+import q_flutter_8_3 from '../../../content/questions/flutter-8-3.json';
 import q_html_1_1 from '../../../content/questions/html-1-1.json';
 import q_html_1_2 from '../../../content/questions/html-1-2.json';
 import q_html_2_1 from '../../../content/questions/html-2-1.json';
@@ -532,6 +551,25 @@ export const QUESTION_BANK: Record<string, unknown> = {
   'flask-6-2': q_flask_6_2,
   'flask-7-1': q_flask_7_1,
   'flask-7-2': q_flask_7_2,
+  'flutter-1-1': q_flutter_1_1,
+  'flutter-1-2': q_flutter_1_2,
+  'flutter-1-3': q_flutter_1_3,
+  'flutter-2-1': q_flutter_2_1,
+  'flutter-2-2': q_flutter_2_2,
+  'flutter-3-1': q_flutter_3_1,
+  'flutter-3-2': q_flutter_3_2,
+  'flutter-4-1': q_flutter_4_1,
+  'flutter-4-2': q_flutter_4_2,
+  'flutter-4-3': q_flutter_4_3,
+  'flutter-5-1': q_flutter_5_1,
+  'flutter-5-2': q_flutter_5_2,
+  'flutter-6-1': q_flutter_6_1,
+  'flutter-6-2': q_flutter_6_2,
+  'flutter-7-1': q_flutter_7_1,
+  'flutter-7-2': q_flutter_7_2,
+  'flutter-8-1': q_flutter_8_1,
+  'flutter-8-2': q_flutter_8_2,
+  'flutter-8-3': q_flutter_8_3,
   'html-1-1': q_html_1_1,
   'html-1-2': q_html_1_2,
   'html-2-1': q_html_2_1,

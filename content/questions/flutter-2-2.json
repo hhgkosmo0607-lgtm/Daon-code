@@ -1,0 +1,64 @@
+[
+  {
+    "id": "flutter-2-2-q1",
+    "lessonId": "flutter-2-2",
+    "type": "choice",
+    "prompt": "출력 결과는?",
+    "code": "final nums = [1, 2, 3];\nprint(nums.map((n) => n * 2));",
+    "language": "Dart",
+    "options": [
+      "[2, 4, 6]",
+      "(2, 4, 6)",
+      "[1, 2, 3]",
+      "6"
+    ],
+    "answer": 1,
+    "explanation": "map()은 List가 아니라 Iterable을 돌려줘요. 출력하면 괄호로 보여요. List가 필요하면 .toList()를 붙여요. 위젯 children에 넣을 때 자주 빠뜨려요."
+  },
+  {
+    "id": "flutter-2-2-q2",
+    "lessonId": "flutter-2-2",
+    "type": "choice",
+    "prompt": "짝수만 골라낸 리스트를 만드는 코드는?",
+    "options": [
+      "nums.map((n) => n % 2 == 0).toList()",
+      "nums.filter((n) => n % 2 == 0)",
+      "nums.where((n) => n % 2 == 0).toList()",
+      "nums.find((n) => n % 2 == 0)"
+    ],
+    "answer": 2,
+    "explanation": "Dart에서 조건으로 거르는 건 where예요(JS의 filter). map에 조건식을 넣으면 [false, true, ...]처럼 참/거짓 리스트가 돼요."
+  },
+  {
+    "id": "flutter-2-2-q3",
+    "lessonId": "flutter-2-2",
+    "type": "choice",
+    "prompt": "isAdmin이 false일 때 menu는?",
+    "code": "final menu = ['홈', if (isAdmin) '관리', '설정'];",
+    "language": "Dart",
+    "options": [
+      "['홈', '설정']",
+      "['홈', null, '설정']",
+      "['홈', false, '설정']",
+      "['홈', '관리', '설정']"
+    ],
+    "answer": 0,
+    "explanation": "리스트 안의 if는 조건이 거짓이면 그 항목을 아예 넣지 않아요. 위젯 children에서 조건부로 위젯을 넣을 때 많이 써요."
+  },
+  {
+    "id": "flutter-2-2-q4",
+    "lessonId": "flutter-2-2",
+    "type": "choice",
+    "prompt": "scores['영희']의 값은?",
+    "code": "final scores = {'민수': 90, '지수': 85};\nprint(scores['영희']);",
+    "language": "Dart",
+    "options": [
+      "0",
+      "null",
+      "오류가 나서 앱이 멈춘다",
+      "빈 문자열 ''"
+    ],
+    "answer": 1,
+    "explanation": "Map에 없는 키를 읽으면 null이 나와요. 그래서 scores['영희']의 타입은 int?예요. 기본값이 필요하면 scores['영희'] ?? 0처럼 써요."
+  }
+]

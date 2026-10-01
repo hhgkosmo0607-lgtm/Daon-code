@@ -1,0 +1,65 @@
+[
+  {
+    "id": "flutter-5-2-q1",
+    "lessonId": "flutter-5-2",
+    "type": "choice",
+    "prompt": "TextField에 입력된 글자를 버튼을 눌렀을 때 읽으려면?",
+    "options": [
+      "TextField 위젯의 value 속성을 직접 읽는다",
+      "컨트롤러를 연결하고 controller.text를 읽는다",
+      "build를 다시 호출해서 반환값에서 꺼낸다",
+      "context.text로 화면에 입력된 글자를 읽는다"
+    ],
+    "answer": 1,
+    "explanation": "TextEditingController를 State 필드로 만들고 TextField(controller: _controller)로 연결하면, 언제든 _controller.text로 입력값을 읽을 수 있어요."
+  },
+  {
+    "id": "flutter-5-2-q2",
+    "lessonId": "flutter-5-2",
+    "type": "choice",
+    "prompt": "State의 dispose()에서 controller.dispose()를 하는 이유는?",
+    "code": "@override\nvoid dispose() {\n  _controller.dispose();\n  super.dispose();\n}",
+    "language": "Dart",
+    "options": [
+      "화면이 닫히기 전에 입력된 글자를 서버에 저장하려고",
+      "화면이 닫힐 때 열려 있던 키보드를 내리려고",
+      "화면이 사라진 뒤에도 메모리를 잡고 있지 않게 하려고",
+      "입력한 값을 다음 화면의 컨트롤러로 넘기려고"
+    ],
+    "answer": 2,
+    "explanation": "컨트롤러는 직접 만든 자원이라 직접 정리해야 해요. 안 하면 화면을 열고 닫을 때마다 메모리가 새요. AI가 짠 코드에서 자주 빠지는 부분이에요."
+  },
+  {
+    "id": "flutter-5-2-q3",
+    "lessonId": "flutter-5-2",
+    "type": "choice",
+    "prompt": "입력창이 비어 있을 때 버튼을 비활성(회색)으로 만드는 방법은?",
+    "options": [
+      "onPressed에 null을 넘긴다",
+      "enabled: false 속성을 준다",
+      "버튼을 Opacity로 흐리게 한다",
+      "onPressed 안에서 return만 한다"
+    ],
+    "answer": 0,
+    "explanation": "ElevatedButton은 onPressed가 null이면 자동으로 비활성 모양이 되고 눌리지 않아요. onPressed: text.isEmpty ? null : _submit처럼 써요."
+  },
+  {
+    "id": "flutter-5-2-q4",
+    "lessonId": "flutter-5-2",
+    "type": "order",
+    "prompt": "입력값을 읽는 컨트롤러를 쓰는 순서대로 놓아보세요.",
+    "options": [
+      "dispose()에서 정리한다",
+      "State 필드로 컨트롤러를 만든다",
+      "TextField(controller: ...)로 연결한다",
+      "버튼을 누르면 controller.text를 읽는다"
+    ],
+    "answer": [
+      1,
+      2,
+      3,
+      0
+    ],
+    "explanation": "만들고 → 연결하고 → 쓰고 → 화면이 사라질 때 정리해요."
+  }
+]

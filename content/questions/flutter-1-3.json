@@ -1,0 +1,60 @@
+[
+  {
+    "id": "flutter-1-3-q1",
+    "lessonId": "flutter-1-3",
+    "type": "choice",
+    "prompt": "아래 코드가 컴파일되지 않는 이유는?",
+    "code": "String nickname = null;",
+    "language": "Dart",
+    "options": [
+      "문자열 변수에는 처음 값을 꼭 넣어야 해서",
+      "String 타입에는 null을 넣을 수 없어서",
+      "null은 Dart에 없는 키워드라서",
+      "변수 이름 nickname이 예약어라서"
+    ],
+    "answer": 1,
+    "explanation": "Dart는 기본적으로 null을 허용하지 않아요. null이 들어갈 수 있는 변수는 String? nickname처럼 타입 뒤에 ?를 붙여요."
+  },
+  {
+    "id": "flutter-1-3-q2",
+    "lessonId": "flutter-1-3",
+    "type": "choice",
+    "prompt": "nickname이 null일 때 출력 결과는?",
+    "code": "String? nickname;\nprint(nickname ?? '손님');",
+    "language": "Dart",
+    "options": [
+      "null",
+      "빈 문자열",
+      "실행 중 오류",
+      "손님"
+    ],
+    "answer": 3,
+    "explanation": "??는 왼쪽 값이 null이면 오른쪽 값을 써요. 기본값을 줄 때 가장 많이 써요."
+  },
+  {
+    "id": "flutter-1-3-q3",
+    "lessonId": "flutter-1-3",
+    "type": "choice",
+    "prompt": "user가 null일 때 user!.name을 실행하면?",
+    "options": [
+      "실행 중 오류가 난다",
+      "null이 반환된다",
+      "빈 문자열이 반환된다",
+      "컴파일이 안 된다"
+    ],
+    "answer": 0,
+    "explanation": "!는 \"절대 null이 아니다\"라고 컴파일러에게 장담하는 표시예요. 장담이 틀리면 실행 중에 오류로 앱이 멈춰요. null일 수 있으면 user?.name이 안전해요."
+  },
+  {
+    "id": "flutter-1-3-q4",
+    "lessonId": "flutter-1-3",
+    "type": "compare",
+    "prompt": "user가 null일 수 있을 때, 앱이 멈추지 않는 코드는?",
+    "options": [
+      "final len = user?.name.length;",
+      "final len = user!.name.length;"
+    ],
+    "answer": 0,
+    "explanation": "?.는 앞이 null이면 뒤를 실행하지 않고 null을 돌려줘요. !는 null이면 바로 오류예요. AI가 오류를 없애려고 !를 남발하는 경우가 많으니 꼭 확인하세요."
+  }
+]

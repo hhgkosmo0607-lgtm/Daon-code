@@ -40,6 +40,11 @@
     "description": "컴포넌트·state부터 라우터, useEffect, 전역 상태, React 19 훅, 실무 소양까지"
   },
   {
+    "id": "flutter",
+    "label": "Flutter 앱 만들기",
+    "description": "Dart 기초부터 위젯·상태·화면 이동·서버 데이터, AI가 짠 Flutter 코드 검토까지"
+  },
+  {
     "id": "flask",
     "label": "Flask 웹 개발 기초",
     "description": "웹 요청-응답 흐름부터 폼·세션·파일 업로드, 웹 보안 기초까지"

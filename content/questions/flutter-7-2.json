@@ -1,0 +1,56 @@
+[
+  {
+    "id": "flutter-7-2-q1",
+    "lessonId": "flutter-7-2",
+    "type": "choice",
+    "prompt": "FutureBuilder에서 아직 응답을 기다리는 중인지 확인하는 조건은?",
+    "options": [
+      "snapshot.connectionState == ConnectionState.done",
+      "snapshot.connectionState == ConnectionState.none",
+      "snapshot.hasError == true",
+      "snapshot.connectionState == ConnectionState.waiting"
+    ],
+    "answer": 3,
+    "explanation": "기다리는 중이면 로딩 표시, hasError면 오류 화면, hasData면 데이터를 보여주는 세 갈래로 나눠요."
+  },
+  {
+    "id": "flutter-7-2-q2",
+    "lessonId": "flutter-7-2",
+    "type": "compare",
+    "prompt": "화면이 다시 그려질 때마다 요청이 또 나가는 코드는?",
+    "options": [
+      "late final _future = fetchUser();\n\nWidget build(BuildContext context) =>\n  FutureBuilder(future: _future, ...);",
+      "Widget build(BuildContext context) =>\n  FutureBuilder(future: fetchUser(), ...);"
+    ],
+    "answer": 1,
+    "explanation": "build 안에서 fetchUser()를 부르면 setState, 키보드, 화면 회전 등으로 다시 그려질 때마다 새 요청이 나가요. Future는 State 필드나 initState에서 한 번만 만들어요."
+  },
+  {
+    "id": "flutter-7-2-q3",
+    "lessonId": "flutter-7-2",
+    "type": "choice",
+    "prompt": "snapshot.hasError일 때 보여줄 화면으로 가장 알맞은 것은?",
+    "options": [
+      "빈 화면",
+      "로딩 표시를 계속 보여준다",
+      "오류 안내와 \"다시 시도\" 버튼",
+      "앱을 종료한다"
+    ],
+    "answer": 2,
+    "explanation": "오류를 무시하면 사용자는 영원히 로딩만 봐요. 무엇이 잘못됐는지 짧게 알려주고 다시 시도할 방법을 주는 게 기본이에요."
+  },
+  {
+    "id": "flutter-7-2-q4",
+    "lessonId": "flutter-7-2",
+    "type": "choice",
+    "prompt": "snapshot.data!.name에서 !를 써도 안전한 곳은?",
+    "options": [
+      "hasData를 확인한 분기 안",
+      "build 메서드 맨 처음",
+      "connectionState가 waiting일 때",
+      "어디서든 항상"
+    ],
+    "answer": 0,
+    "explanation": "데이터가 도착하기 전에는 snapshot.data가 null이에요. hasData를 확인한 다음에만 !로 꺼내야 앱이 멈추지 않아요."
+  }
+]

@@ -1,0 +1,58 @@
+[
+  {
+    "id": "flutter-8-3-q1",
+    "lessonId": "flutter-8-3",
+    "type": "choice",
+    "prompt": "AI가 만든 코드에 API 비밀 키가 Dart 상수로 들어 있다. 문제는?",
+    "code": "const openAiKey = 'sk-...';",
+    "language": "Dart",
+    "options": [
+      "앱 파일에서 키를 꺼내 누구나 그 키로 요청할 수 있다",
+      "키 문자열이 길어서 앱을 켤 때 실행이 느려진다",
+      "Dart는 const로 긴 문자열을 선언할 수 없다",
+      "키가 들어 있는 파일은 핫 리로드가 되지 않는다"
+    ],
+    "answer": 0,
+    "explanation": "앱 안에 넣은 값은 비밀이 아니에요. 비밀 키가 필요한 요청은 서버(백엔드 함수)를 거치게 하고, 앱에는 공개돼도 되는 값만 둬요."
+  },
+  {
+    "id": "flutter-8-3-q2",
+    "lessonId": "flutter-8-3",
+    "type": "compare",
+    "prompt": "두 코드 중 null 처리가 더 안전한 쪽은?",
+    "options": [
+      "Text(user!.profile!.nickname!)",
+      "Text(user?.profile?.nickname ?? '이름 없음')"
+    ],
+    "answer": 1,
+    "explanation": "!를 이어 붙이면 하나라도 null이면 앱이 멈춰요. AI가 컴파일 오류를 없애려고 !를 붙이는 경우가 많아요. ?.와 ??로 기본값을 주는 쪽이 안전해요."
+  },
+  {
+    "id": "flutter-8-3-q3",
+    "lessonId": "flutter-8-3",
+    "type": "choice",
+    "prompt": "AI가 만든 StatefulWidget에서 TextEditingController와 Timer를 만들어 쓰는데 dispose()가 없다. 어떻게 해야 하나?",
+    "options": [
+      "문제없다. 화면이 닫히면 Flutter가 자동으로 정리한다",
+      "컨트롤러와 타이머를 build 메서드 안으로 옮긴다",
+      "dispose()에서 controller.dispose()와 timer.cancel()을 부른다",
+      "StatelessWidget으로 바꿔서 상태를 없앤다"
+    ],
+    "answer": 2,
+    "explanation": "직접 만든 컨트롤러·타이머·구독은 직접 정리해야 해요. 특히 Timer는 화면이 닫혀도 계속 돌면서 setState를 불러 오류를 내요."
+  },
+  {
+    "id": "flutter-8-3-q4",
+    "lessonId": "flutter-8-3",
+    "type": "choice",
+    "prompt": "AI에게 \"로딩 중엔 스피너, 실패하면 다시 시도 버튼\"을 요청했는데 hasError 분기가 없다. 실제로 생길 일은?",
+    "options": [
+      "실패하면 FutureBuilder가 알아서 다시 요청한다",
+      "네트워크가 끊기면 로딩이나 빈 화면만 계속 보게 된다",
+      "컴파일 오류가 나서 빌드 단계에서 바로 알 수 있다",
+      "기기 기본 오류 메시지가 자동으로 화면에 뜬다"
+    ],
+    "answer": 1,
+    "explanation": "오류 분기를 빠뜨려도 컴파일은 돼요. 그래서 비행기 모드로 켜 보는 것처럼 실패 상황을 직접 만들어 확인해야 해요."
+  }
+]

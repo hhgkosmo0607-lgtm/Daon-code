@@ -1,0 +1,60 @@
+[
+  {
+    "id": "flutter-6-1-q1",
+    "lessonId": "flutter-6-1",
+    "type": "choice",
+    "prompt": "항목이 1,000개인 목록에 ListView.builder를 쓰는 이유는?",
+    "options": [
+      "항목에 자동으로 번호를 붙여줘서",
+      "화면에 보이는 항목만 그때그때 만들어서",
+      "스크롤을 막아줘서",
+      "항목을 알파벳순으로 정렬해줘서"
+    ],
+    "answer": 1,
+    "explanation": "ListView(children: [...])는 1,000개를 처음에 다 만들어요. builder는 보이는 항목만 만들고 스크롤하면 그때 만들어서 훨씬 가벼워요."
+  },
+  {
+    "id": "flutter-6-1-q2",
+    "lessonId": "flutter-6-1",
+    "type": "blank",
+    "prompt": "항목 수를 알려주는 빈칸은?",
+    "code": "ListView.builder(\n  ___: items.length,\n  itemBuilder: (context, index) => Text(items[index]),\n)",
+    "language": "Dart",
+    "options": [
+      "itemLength",
+      "itemCount",
+      "childCount",
+      "itemSize"
+    ],
+    "answer": 1,
+    "explanation": "itemCount를 빼면 무한 목록으로 취급해서 items[index]가 범위를 넘어 오류가 나요."
+  },
+  {
+    "id": "flutter-6-1-q3",
+    "lessonId": "flutter-6-1",
+    "type": "choice",
+    "prompt": "Column 안에 ListView를 그냥 넣었더니 \"unbounded height\" 오류가 났다. 가장 흔한 해결책은?",
+    "options": [
+      "ListView를 Expanded로 감싼다",
+      "Column을 Row로 바꾼다",
+      "ListView 대신 Text를 쓴다",
+      "itemCount를 0으로 바꾼다"
+    ],
+    "answer": 0,
+    "explanation": "Column은 자식에게 높이 제한을 주지 않고, ListView는 끝없이 늘어나려 해서 충돌해요. Expanded로 감싸서 \"남은 높이만큼만\"이라고 정해 줘요."
+  },
+  {
+    "id": "flutter-6-1-q4",
+    "lessonId": "flutter-6-1",
+    "type": "choice",
+    "prompt": "목록 항목을 삭제·재정렬할 때 각 항목에 Key(예: ValueKey(item.id))를 주는 이유는?",
+    "options": [
+      "항목마다 글자 색과 배경색을 다르게 지정하려고",
+      "스크롤할 때 항목을 미리 만들어 속도를 높이려고",
+      "itemCount 대신 항목 수를 자동으로 세게 하려고",
+      "어떤 항목이 어떤 항목인지 구분해 상태가 엉뚱한 곳에 붙지 않게"
+    ],
+    "answer": 3,
+    "explanation": "Key가 없으면 Flutter는 위치로만 항목을 짝지어요. 중간 항목을 지우면 체크 상태 같은 State가 다음 항목으로 밀려 붙는 버그가 생겨요."
+  }
+]

@@ -1,0 +1,60 @@
+[
+  {
+    "id": "flutter-4-2-q1",
+    "lessonId": "flutter-4-2",
+    "type": "blank",
+    "prompt": "StatelessWidget이 화면을 그릴 때 반드시 구현하는 메서드는?",
+    "code": "class Hello extends StatelessWidget {\n  const Hello({super.key});\n  @override\n  Widget ___(BuildContext context) => Text('안녕');\n}",
+    "language": "Dart",
+    "options": [
+      "render",
+      "build",
+      "draw",
+      "paint"
+    ],
+    "answer": 1,
+    "explanation": "build(BuildContext context)가 이 위젯이 어떻게 보일지를 위젯으로 돌려줘요. 화면이 다시 그려질 때마다 호출돼요."
+  },
+  {
+    "id": "flutter-4-2-q2",
+    "lessonId": "flutter-4-2",
+    "type": "choice",
+    "prompt": "StatelessWidget이 알맞은 경우는?",
+    "options": [
+      "버튼을 누를 때마다 숫자가 바뀌는 카운터",
+      "타이핑할 때마다 글자 수를 보여주는 입력창",
+      "체크할 때마다 색이 바뀌는 체크박스",
+      "받은 값을 보여주기만 하는 프로필 카드"
+    ],
+    "answer": 3,
+    "explanation": "스스로 바뀌는 값이 없으면 StatelessWidget이에요. 위젯 안에서 값이 바뀌어 다시 그려야 하면 StatefulWidget을 써요."
+  },
+  {
+    "id": "flutter-4-2-q3",
+    "lessonId": "flutter-4-2",
+    "type": "choice",
+    "prompt": "const Text('제목')처럼 const를 붙이면 좋은 점은?",
+    "options": [
+      "부모가 다시 그려져도 이 위젯은 새로 만들지 않고 재사용한다",
+      "글자가 더 빠르게 화면에 나타나는 애니메이션이 생긴다",
+      "앱 용량이 절반으로 줄어든다",
+      "다크 모드에서 색이 자동으로 바뀐다"
+    ],
+    "answer": 0,
+    "explanation": "const 위젯은 컴파일할 때 한 번 만들어 두고 계속 같은 객체를 써요. 다시 그릴 때 비교·재생성 비용이 줄어서, 바뀌지 않는 위젯에는 const를 붙이는 게 관례예요."
+  },
+  {
+    "id": "flutter-4-2-q4",
+    "lessonId": "flutter-4-2",
+    "type": "choice",
+    "prompt": "BuildContext는 무엇을 알려주나?",
+    "options": [
+      "앱이 실행 중인 기기의 배터리 상태",
+      "이 위젯이 위젯 트리의 어디에 있는지",
+      "지금 몇 번째로 build가 호출됐는지",
+      "마지막으로 눌린 버튼"
+    ],
+    "answer": 1,
+    "explanation": "context는 트리 속 위치예요. 그 위치에서 위로 올라가 Theme.of(context), Navigator.of(context)처럼 위쪽 위젯이 주는 정보를 찾아요."
+  }
+]

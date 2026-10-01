@@ -1,0 +1,62 @@
+[
+  {
+    "id": "flutter-8-2-q1",
+    "lessonId": "flutter-8-2",
+    "type": "choice",
+    "prompt": "화면 오른쪽에 노란·검은 줄무늬와 \"A RenderFlex overflowed by 42 pixels on the right\"가 떴다. 원인은?",
+    "options": [
+      "Row 안의 내용이 화면 가로 폭보다 넓어서",
+      "서버 응답이 42바이트를 넘게 와서",
+      "이미지 파일이 깨져서 표시할 수 없어서",
+      "앱에 쓴 글꼴이 기기에 설치되지 않아서"
+    ],
+    "answer": 0,
+    "explanation": "Row·Column은 자식이 넘쳐도 스스로 줄이지 않아요. 긴 Text를 Expanded로 감싸고 overflow: TextOverflow.ellipsis를 주는 식으로 고쳐요."
+  },
+  {
+    "id": "flutter-8-2-q2",
+    "lessonId": "flutter-8-2",
+    "type": "choice",
+    "prompt": "\"setState() called after dispose()\" 오류가 나는 흔한 상황은?",
+    "code": "final data = await fetch();\nif (!mounted) return;\nsetState(() => _data = data);",
+    "language": "Dart",
+    "options": [
+      "build 안에서 같은 Text 위젯을 두 번 썼을 때",
+      "응답을 기다리는 사이 화면이 닫혔는데 setState를 불렀을 때",
+      "const를 붙인 위젯 안에서 값을 바꾸려 했을 때",
+      "initState에서 State 필드를 초기화했을 때"
+    ],
+    "answer": 1,
+    "explanation": "await 뒤에 setState를 부를 때는 if (!mounted) return;으로 화면이 아직 살아 있는지 먼저 확인해요."
+  },
+  {
+    "id": "flutter-8-2-q3",
+    "lessonId": "flutter-8-2",
+    "type": "choice",
+    "prompt": "\"Don't use 'BuildContext's across async gaps\" 경고가 뜬 코드다. 고치는 방법은?",
+    "code": "await save();\nNavigator.pop(context);",
+    "language": "Dart",
+    "options": [
+      "await를 지우고 then으로 바꿔 쓴다",
+      "context 대신 null을 넘겨서 경고를 없앤다",
+      "await 다음에 if (!context.mounted) return;을 넣는다",
+      "// ignore 주석으로 경고만 끄면 항상 안전하다"
+    ],
+    "answer": 2,
+    "explanation": "await 하는 동안 화면이 닫히면 그 context는 이미 트리에서 빠졌어요. 그 context로 화면을 이동하면 오류가 나므로 mounted를 먼저 확인해요."
+  },
+  {
+    "id": "flutter-8-2-q4",
+    "lessonId": "flutter-8-2",
+    "type": "choice",
+    "prompt": "\"Incorrect use of ParentDataWidget\" 오류가 났다. 가장 흔한 원인은?",
+    "options": [
+      "Padding 안에 Text를 child로 바로 넣어서",
+      "한 화면에서 Scaffold를 두 번 겹쳐 써서",
+      "ListView.builder에 itemCount를 함께 줘서",
+      "Expanded를 Row·Column 밖의 위젯에 바로 넣어서"
+    ],
+    "answer": 3,
+    "explanation": "Expanded·Flexible은 Row·Column(Flex) 바로 아래에서만 동작해요. Container나 Padding 안에 바로 넣으면 이 오류가 나요."
+  }
+]

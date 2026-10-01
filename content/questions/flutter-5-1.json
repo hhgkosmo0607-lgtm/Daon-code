@@ -1,0 +1,62 @@
+[
+  {
+    "id": "flutter-5-1-q1",
+    "lessonId": "flutter-5-1",
+    "type": "choice",
+    "prompt": "버튼을 눌러도 화면의 숫자가 그대로인 이유는?",
+    "code": "int count = 0;\n...\nElevatedButton(\n  onPressed: () { count++; },\n  child: Text('$count'),\n)",
+    "language": "Dart",
+    "options": [
+      "int 변수는 Text 위젯에서 바로 표시할 수 없어서",
+      "onPressed는 앱 실행 후 처음 한 번만 호출돼서",
+      "setState 없이 값만 바꿔서 다시 그려지지 않아서",
+      "ElevatedButton의 child는 처음 값으로 고정돼서"
+    ],
+    "answer": 2,
+    "explanation": "값을 바꾼 것만으로는 Flutter가 알 수 없어요. setState(() { count++; })로 바꿔야 \"다시 그려야 한다\"고 알리고 build가 다시 호출돼요."
+  },
+  {
+    "id": "flutter-5-1-q2",
+    "lessonId": "flutter-5-1",
+    "type": "blank",
+    "prompt": "숫자를 올리고 화면을 다시 그리게 하려면 빈칸에는?",
+    "code": "onPressed: () {\n  ___(() {\n    count++;\n  });\n},",
+    "language": "Dart",
+    "options": [
+      "setState",
+      "build",
+      "refresh",
+      "update"
+    ],
+    "answer": 0,
+    "explanation": "setState에 넘긴 함수 안에서 값을 바꾸면, 그 뒤 build가 다시 실행돼서 새 값이 화면에 나와요."
+  },
+  {
+    "id": "flutter-5-1-q3",
+    "lessonId": "flutter-5-1",
+    "type": "choice",
+    "prompt": "StatefulWidget을 만들면 클래스가 두 개 생긴다. 바뀌는 값(count)은 어디에 두나?",
+    "options": [
+      "StatefulWidget 클래스의 final 필드",
+      "State 클래스의 필드",
+      "main() 함수 안",
+      "build 메서드 안의 지역 변수"
+    ],
+    "answer": 1,
+    "explanation": "위젯 클래스는 설정값만 담고 매번 새로 만들어져요. 계속 유지돼야 하는 값은 State 클래스에 둬요. build 안에 두면 다시 그릴 때마다 초기화돼요."
+  },
+  {
+    "id": "flutter-5-1-q4",
+    "lessonId": "flutter-5-1",
+    "type": "choice",
+    "prompt": "build 안에서 setState를 부르면?",
+    "options": [
+      "화면이 한 번 더 그려지고 그대로 끝난다",
+      "아무 일도 일어나지 않고 무시된다",
+      "첫 화면을 그릴 때만 한 번 동작한다",
+      "다시 그리기가 끝없이 반복되거나 오류가 난다"
+    ],
+    "answer": 3,
+    "explanation": "setState는 다시 그리기를 요청하는데, 그리는 중에 또 요청하면 Flutter가 오류를 내요. 값은 이벤트(onPressed 등)나 데이터 도착 시점에 바꿔요."
+  }
+]

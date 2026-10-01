@@ -1,0 +1,62 @@
+[
+  {
+    "id": "flutter-2-1-q1",
+    "lessonId": "flutter-2-1",
+    "type": "compare",
+    "prompt": "두 함수 중 컴파일 오류가 나는 것은?",
+    "options": [
+      "int square(int x) => x * x;",
+      "int square(int x) {\n  x * x;\n}"
+    ],
+    "answer": 1,
+    "explanation": "=> 식은 \"이 식의 값을 return\"과 같아요. 중괄호 본문에서는 return을 직접 써야 해요. 두 번째는 return이 없어서 컴파일 오류가 나요."
+  },
+  {
+    "id": "flutter-2-1-q2",
+    "lessonId": "flutter-2-1",
+    "type": "choice",
+    "prompt": "이 함수를 올바르게 호출한 것은?",
+    "code": "void greet({required String name, int age = 0}) {\n  print('$name $age');\n}",
+    "language": "Dart",
+    "options": [
+      "greet('민수', 20);",
+      "greet(name: '민수', age: 20);",
+      "greet(age = 20, name = '민수');",
+      "greet({'name': '민수', 'age': 20});"
+    ],
+    "answer": 1,
+    "explanation": "중괄호 { }로 감싼 매개변수는 이름 있는 매개변수예요. 호출할 때 name: 값 형태로 이름을 붙여서 넘기고, 순서는 상관없어요."
+  },
+  {
+    "id": "flutter-2-1-q3",
+    "lessonId": "flutter-2-1",
+    "type": "choice",
+    "prompt": "greet(age: 20);처럼 name을 빼고 부르면?",
+    "code": "void greet({required String name, int age = 0}) {}",
+    "language": "Dart",
+    "options": [
+      "name에 null이 들어간다",
+      "name에 빈 문자열이 들어간다",
+      "컴파일 오류가 난다",
+      "실행 중에만 오류가 난다"
+    ],
+    "answer": 2,
+    "explanation": "required가 붙은 이름 있는 매개변수는 꼭 넘겨야 해요. 빠뜨리면 실행하기 전에 컴파일러가 막아줘요."
+  },
+  {
+    "id": "flutter-2-1-q4",
+    "lessonId": "flutter-2-1",
+    "type": "blank",
+    "prompt": "title을 넘겨도 되고 안 넘겨도 되는 위치 매개변수로 만들려고 한다. 빈칸은?",
+    "code": "void showNotice(String message, ___) {}",
+    "language": "Dart",
+    "options": [
+      "(String? title)",
+      "[String? title]",
+      "{String title}",
+      "<String title>"
+    ],
+    "answer": 1,
+    "explanation": "대괄호 [ ]로 감싸면 생략 가능한 위치 매개변수예요. 생략하면 null이 되므로 타입에 ?를 붙이거나 기본값을 줘요."
+  }
+]

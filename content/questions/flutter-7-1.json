@@ -1,0 +1,67 @@
+[
+  {
+    "id": "flutter-7-1-q1",
+    "lessonId": "flutter-7-1",
+    "type": "order",
+    "prompt": "http 패키지로 서버 데이터를 처음 받아올 때의 순서대로 놓아보세요.",
+    "options": [
+      "코드에서 import 'package:http/http.dart' as http;",
+      "pubspec.yaml의 dependencies에 http를 추가",
+      "flutter pub get으로 패키지 내려받기",
+      "await http.get(Uri.parse(url))로 요청"
+    ],
+    "answer": [
+      1,
+      2,
+      0,
+      3
+    ],
+    "explanation": "패키지는 pubspec.yaml에 적고 pub get으로 받아야 import할 수 있어요. flutter pub add http 명령은 앞의 두 단계를 한 번에 해줘요."
+  },
+  {
+    "id": "flutter-7-1-q2",
+    "lessonId": "flutter-7-1",
+    "type": "choice",
+    "prompt": "jsonDecode(res.body)의 결과를 user['name']처럼 쓸 수 있는 이유는?",
+    "options": [
+      "jsonDecode가 자동으로 User 클래스를 만들어줘서",
+      "응답 본문이 원래 Dart 객체라서",
+      "JSON 객체가 Map<String, dynamic>으로 바뀌어서",
+      "res.body가 이미 Map이라서"
+    ],
+    "answer": 2,
+    "explanation": "res.body는 문자열이에요. dart:convert의 jsonDecode가 JSON 객체를 Map으로, 배열을 List로 바꿔요. 타입은 dynamic이라 잘못된 키를 써도 컴파일러가 못 잡아요."
+  },
+  {
+    "id": "flutter-7-1-q3",
+    "lessonId": "flutter-7-1",
+    "type": "choice",
+    "prompt": "Map을 그대로 쓰지 않고 User.fromJson 같은 변환을 두는 이유는?",
+    "code": "factory User.fromJson(Map<String, dynamic> json) {\n  return User(name: json['name'] as String);\n}",
+    "language": "Dart",
+    "options": [
+      "Map은 Flutter 위젯에 직접 넣을 수 없어서",
+      "키 오타·타입 실수를 변환하는 한 곳에서 잡으려고",
+      "같은 데이터를 서버에 다시 요청하지 않으려고",
+      "JSON 응답의 크기를 줄여 더 빨리 받으려고"
+    ],
+    "answer": 1,
+    "explanation": "user['nmae']처럼 오타를 내도 Map은 그냥 null을 줘요. fromJson에서 한 번 변환해 두면 이후에는 user.name으로 쓰고, 틀리면 컴파일러가 잡아줘요."
+  },
+  {
+    "id": "flutter-7-1-q4",
+    "lessonId": "flutter-7-1",
+    "type": "choice",
+    "prompt": "디버그로는 잘 되던 서버 요청이 안드로이드 릴리스 APK에서만 실패한다. 먼저 확인할 것은?",
+    "code": "<uses-permission android:name=\"android.permission.INTERNET\"/>",
+    "language": "XML",
+    "options": [
+      "main AndroidManifest.xml에 INTERNET 권한이 있는지",
+      "pubspec.yaml의 version 번호가 올라갔는지",
+      "릴리스 빌드에서도 핫 리로드가 켜져 있는지",
+      "android/app의 앱 아이콘 크기가 맞는지"
+    ],
+    "answer": 0,
+    "explanation": "Flutter 기본 템플릿은 디버그용 매니페스트에만 INTERNET 권한이 있어요. 릴리스에서 인터넷을 쓰려면 android/app/src/main/AndroidManifest.xml에 직접 추가해야 해요."
+  }
+]
