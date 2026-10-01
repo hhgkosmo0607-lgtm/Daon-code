@@ -10,6 +10,7 @@ import { useTheme } from '../../../shared/theme/ThemeContext';
 import { fonts, radius, spacing } from '../../../shared/theme/theme';
 import type { ThemeColors } from '../../../shared/theme/themes';
 import { useAuth } from '../../auth/AuthContext';
+import { hasShownGuestPrompt, markGuestPromptShown } from '../../auth/data/guestPrompt';
 import { PetPanel, type LastCollect } from '../../pet/components/PetPanel';
 import { pendingPrisms } from '../../pet/domain/mining';
 import { miningPower } from '../../pet/domain/petCatalog';
@@ -18,6 +19,7 @@ import { PixelCoin } from '../../pet/components/PixelCoin';
 import { PixelDiamond } from '../../pet/components/PixelDiamond';
 import { useTrack } from '../../track/TrackContext';
 import { getLessons, getStages, hasContent } from '../data/contentRepository';
+import { pickNextLesson } from '../domain/nextLesson';
 import { XP_PER_LEVEL, levelProgress } from '../domain/scoring';
 import { StreakRepairBanner } from '../components/StreakRepairBanner';
 import { displayStreak, streakStatus, toKstDateString } from '../domain/streak';
@@ -28,7 +30,8 @@ import { useWrongAnswerCount } from '../hooks/useWrongAnswerCount';
  * 홈 — 학습 경로 화면.
  *
  * 레슨은 순서와 상관없이 전부 자유롭게 눌러볼 수 있다 (잠금 없음).
- * 완료 표시(●)만 실제 진도(progress 테이블, useUserProgress)를 그대로 보여준다.
+ * 완료 표시(●)는 실제 진도(progress 테이블, useUserProgress)를 그대로 보여주고,
+ * 이어서 할 레슨(배치고사 시작점 포함)에는 ▶ 다음 표시를 붙인다 (pickNextLesson).
  */
 
 /** 쌓인 프리즘을 다시 계산하는 간격 — 1개가 넘으면 광산의 펫이 말풍선으로 알려 준다 */
@@ -113,18 +116,28 @@ export function HomeScreen() {
   const statusOf = (lessonId: string) => {
     return statusMap[lessonId] ?? 'open';
   };
+  // 진도를 불러오기 전에는 표시하지 않는다 (첫 레슨에 잠깐 붙었다가 옮겨가는 깜빡임 방지)
+  const nextLessonId =
+    loading || error ? null : pickNextLesson(lessons.map((l) => l.id), statusMap);
 
-  // 배치고사를 안 본 게스트가 1단계(5레슨)를 다 풀면 그 시점에 로그인을 강제한다.
-  // (기획서 6번 — "게스트로 놓친 XP를 돌려받아요") isGuest가 true라서
-  // AuthScreen이 알아서 "나중에 하기"를 숨긴다.
+  // 게스트가 1단계를 다 풀면 계정 연결을 한 번 권한다. (기획서 6번 — "게스트로 놓친 XP를 돌려받아요")
+  // 강제하지 않는다: 이메일 인증을 기다리는 동안에도 학습은 이어져야 하고, 닫은 뒤에는
+  // "게스트" 배지 → 계정 화면에서 언제든 연결할 수 있다. 기기당 한 번만 띄운다.
   useEffect(() => {
     if (loading || !isGuest) return;
     const stage1Lessons = lessons.filter((l) => l.stage === 1);
     const stage1AllDone =
       stage1Lessons.length > 0 && stage1Lessons.every((l) => statusOf(l.id) === 'completed');
-    if (stage1AllDone) {
-      router.replace('/auth');
-    }
+    if (!stage1AllDone) return;
+    let cancelled = false;
+    hasShownGuestPrompt().then((shown) => {
+      if (cancelled || shown) return;
+      markGuestPromptShown();
+      router.push('/auth');
+    });
+    return () => {
+      cancelled = true;
+    };
     // 커리큘럼을 바꾸면(track.id) 그 트랙의 1단계 기준으로 다시 확인한다
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loading, isGuest, statusMap, track.id]);
@@ -258,6 +271,7 @@ export function HomeScreen() {
               .map((lesson) => {
                 const status = statusOf(lesson.id);
                 const ready = hasContent(lesson.id);
+                const isNext = lesson.id === nextLessonId;
 
                 return (
                   <Pressable
@@ -269,15 +283,19 @@ export function HomeScreen() {
                       status === 'completed' && styles.completed,
                       status === 'open' && styles.open,
                       status === 'locked' && styles.locked,
+                      isNext && styles.next,
                     ]}
                   >
-                    <Text style={[styles.dot, status !== 'completed' && styles.mutedText]}>
-                      {status === 'completed' ? '●' : status === 'open' ? '◉' : '○'}
+                    <Text style={[styles.dot, status !== 'completed' && !isNext && styles.mutedText]}>
+                      {isNext ? '▶' : status === 'completed' ? '●' : status === 'open' ? '◉' : '○'}
                     </Text>
 
                     <View style={styles.lessonText}>
                       <Text
-                        style={[styles.lessonTitle, status !== 'completed' && styles.mutedText]}
+                        style={[
+                          styles.lessonTitle,
+                          status !== 'completed' && !isNext && styles.mutedText,
+                        ]}
                       >
                         {lesson.id} {lesson.title}
                       </Text>
@@ -287,6 +305,7 @@ export function HomeScreen() {
                     </View>
 
                     {!ready && <Text style={styles.soon}>준비중</Text>}
+                    {ready && isNext && <Text style={styles.nextTag}>다음</Text>}
                   </Pressable>
                 );
               })}
@@ -389,6 +408,8 @@ const createStyles = (colors: ThemeColors) =>
     completed: { borderColor: colors.success },
     open: { borderColor: colors.textMuted },
     locked: { borderStyle: 'dashed', borderColor: colors.textMuted },
+    next: { borderColor: colors.accent },
+    nextTag: { fontSize: 12, fontWeight: '700', color: colors.accent, fontFamily: fonts.mono },
     dot: { fontSize: 18, color: colors.accent },
     lessonText: { flex: 1 },
     lessonTitle: { fontSize: 15, fontWeight: '600', color: colors.text },

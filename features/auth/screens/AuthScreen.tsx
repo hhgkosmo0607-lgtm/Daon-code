@@ -30,7 +30,7 @@ import {
  *
  * 이 화면은 두 경로에서 재사용된다 (기획서 6번 온보딩):
  *  - 배치고사를 본 사람: ?allowGuest=false&context=placement — "나중에 하기" 없음
- *  - 1단계를 게스트로 다 푼 사람: isGuest=true라서 아래에서 자동으로 "나중에 하기"가 숨겨짐
+ *  - 1단계를 게스트로 다 푼 사람(한 번 권함)·계정 화면에서 온 게스트: "나중에 하기"는 닫기만 한다
  *  - 배치고사를 안 본 사람이 온보딩 마지막에 처음 보는 로그인: 기본값(둘 다 허용)
  */
 export function AuthScreen() {
@@ -231,6 +231,16 @@ export function AuthScreen() {
 
         {showGuestOption && (
           <Pressable style={styles.ghost} onPress={() => run(signInAsGuest)} disabled={busy}>
+            <Text style={styles.ghostText}>나중에 하기</Text>
+          </Pressable>
+        )}
+        {/* 이미 게스트면 닫기만 한다 — 게스트 그대로 학습을 이어간다 */}
+        {isGuest && (
+          <Pressable
+            style={styles.ghost}
+            onPress={() => (router.canGoBack() ? router.back() : router.dismissTo('/'))}
+            disabled={busy}
+          >
             <Text style={styles.ghostText}>나중에 하기</Text>
           </Pressable>
         )}
