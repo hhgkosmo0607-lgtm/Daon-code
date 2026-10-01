@@ -20,6 +20,7 @@ import {
   COINS_PER_PRISM,
   EXCHANGE_BUNDLES,
   PRISM_PACKS,
+  PRISM_PURCHASE_ENABLED,
   exchangeBlock,
   packBonusPercent,
   petPrice,
@@ -30,7 +31,7 @@ import {
  * 상점 — 펫을 2열로 보여준다. 프리즘 펫이 먼저, 코인 펫은 가격 등급별로 묶는다.
  * 카드를 누르면 아래에서 확인 시트가 올라오고, "구매하기"를 눌러야 산다 (실수로 사는 것 방지).
  * 결과는 토스트로 알린다. 프리즘은 코인으로 바꿀 수 있고, 프리즘 충전(현금 결제)은
- * 스토어 출시 때 붙인다. (daon-content/재화_경제.md)
+ * Play Billing을 붙일 때까지 숨겨 둔다(PRISM_PURCHASE_ENABLED). (daon-content/재화_경제.md)
  *
  * 버튼 활성화는 화면에서 미리 판단하지만(shopItems.ts), 실제 차감은
  * 서버(purchase Edge Function)가 DB 잔액으로 다시 확인한다.
@@ -261,31 +262,33 @@ export function ShopScreen() {
           </View>
         </View>
 
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>프리즘 충전</Text>
-          <View style={styles.grid}>
-            {PRISM_PACKS.map((pack) => {
-              const bonus = packBonusPercent(pack);
-              return (
-                <Pressable
-                  key={pack.id}
-                  style={({ pressed }) => [styles.card, styles.packCard, pressed && styles.pressed]}
-                  onPress={() => toast.show('스토어 출시 후 결제할 수 있어요')}
-                  accessibilityRole="button"
-                  accessibilityLabel={`프리즘 ${pack.prisms}개, ${pack.priceKrw.toLocaleString('ko-KR')}원, 출시 후 구매 가능`}
-                >
-                  {bonus > 0 && <Text style={styles.bonus}>+{bonus}%</Text>}
-                  <PixelDiamond pixel={3} />
-                  <Text style={styles.packCount}>{pack.prisms}개</Text>
-                  <Text style={styles.packPrice}>₩{pack.priceKrw.toLocaleString('ko-KR')}</Text>
-                </Pressable>
-              );
-            })}
+        {PRISM_PURCHASE_ENABLED && (
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>프리즘 충전</Text>
+            <View style={styles.grid}>
+              {PRISM_PACKS.map((pack) => {
+                const bonus = packBonusPercent(pack);
+                return (
+                  <Pressable
+                    key={pack.id}
+                    style={({ pressed }) => [styles.card, styles.packCard, pressed && styles.pressed]}
+                    onPress={() => toast.show('스토어 출시 후 결제할 수 있어요')}
+                    accessibilityRole="button"
+                    accessibilityLabel={`프리즘 ${pack.prisms}개, ${pack.priceKrw.toLocaleString('ko-KR')}원, 출시 후 구매 가능`}
+                  >
+                    {bonus > 0 && <Text style={styles.bonus}>+{bonus}%</Text>}
+                    <PixelDiamond pixel={3} />
+                    <Text style={styles.packCount}>{pack.prisms}개</Text>
+                    <Text style={styles.packPrice}>₩{pack.priceKrw.toLocaleString('ko-KR')}</Text>
+                  </Pressable>
+                );
+              })}
+            </View>
+            <Text style={styles.soon}>
+              결제는 스토어 출시 후 열려요 · 지금은 팀 펫이 시간마다 캐요
+            </Text>
           </View>
-          <Text style={styles.soon}>
-            결제는 스토어 출시 후 열려요 · 지금은 팀 펫이 시간마다 캐요
-          </Text>
-        </View>
+        )}
       </ScrollView>
 
       <BottomSheet visible={!!selected} onClose={() => !busy && setSelected(null)}>

@@ -94,8 +94,14 @@ export function petPurchaseBlock(
   return wallet.coins < price ? 'not_enough_coins' : null;
 }
 
+/**
+ * 프리즘 충전 상품을 상점에 보여줄지. 구글 플레이 결제(Play Billing)를 붙이기 전까지는 끈다 —
+ * 살 수 없는 유료 상품에 가격을 붙여 보여주면 스토어 심사에서 문제가 될 수 있다.
+ */
+export const PRISM_PURCHASE_ENABLED = false;
+
 /*
- * 프리즘 충전(현금) 상품 — 지금은 목록·가격만 보여주고, 결제는 스토어 출시 때 붙인다.
+ * 프리즘 충전(현금) 상품 — 결제는 Play Billing을 붙일 때 연결한다 (PRISM_PURCHASE_ENABLED).
  * 기준: 10개 = 1,000원. 큰 묶음일수록 보너스 (프리즘 펫 30개 ≈ 3천 원, 전설 50개 ≈ 4~5천 원).
  * 결제를 붙일 때 id를 스토어(구글 플레이) 인앱 상품 id로 그대로 쓴다.
  */
