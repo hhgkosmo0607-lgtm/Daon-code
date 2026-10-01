@@ -54,6 +54,8 @@ function AppShell() {
         <Stack.Screen name="lesson/[id]" options={{ presentation: 'modal' }} />
         <Stack.Screen name="settings/theme" options={{ presentation: 'modal' }} />
         <Stack.Screen name="settings/track" options={{ presentation: 'modal' }} />
+        <Stack.Screen name="settings/account" options={{ presentation: 'modal' }} />
+        <Stack.Screen name="settings/privacy" options={{ presentation: 'modal' }} />
         <Stack.Screen name="shop" options={{ presentation: 'modal' }} />
         <Stack.Screen name="pets" options={{ presentation: 'modal' }} />
         <Stack.Screen name="admin" options={{ presentation: 'modal' }} />

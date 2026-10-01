@@ -200,9 +200,14 @@ export function HomeScreen() {
             >
               <Text style={styles.themeButton}>◐</Text>
             </Pressable>
-            <Pressable style={styles.badgeWrap} onPress={() => router.push('/auth')}>
-              {!user && <Text style={styles.badge}>로그인</Text>}
-              {isGuest && <Text style={styles.badge}>게스트</Text>}
+            <Pressable
+              style={styles.badgeWrap}
+              onPress={() => router.push(user ? '/settings/account' : '/auth')}
+              hitSlop={8}
+              accessibilityRole="button"
+              accessibilityLabel={!user ? '로그인' : isGuest ? '게스트 계정 관리' : '계정 관리'}
+            >
+              <Text style={styles.badge}>{!user ? '로그인' : isGuest ? '게스트' : '계정'}</Text>
             </Pressable>
           </View>
         </View>

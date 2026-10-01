@@ -38,13 +38,20 @@ export function AuthScreen() {
   const { colors } = useTheme();
   const styles = useMemo(() => createStyles(colors), [colors]);
   const { user, isGuest } = useAuth();
-  const { allowGuest, context } = useLocalSearchParams<{ allowGuest?: string; context?: string }>();
+  const { allowGuest, context, guestMode: initialGuestMode } = useLocalSearchParams<{
+    allowGuest?: string;
+    context?: string;
+    /** 계정 화면의 "이미 있는 계정으로 로그인"에서 오면 'signin'으로 바로 연다 */
+    guestMode?: string;
+  }>();
   const isPlacementGate = context === 'placement' && !isGuest;
   const showGuestOption = !isGuest && allowGuest !== 'false';
 
   const [mode, setMode] = useState<'signin' | 'signup'>('signin');
   // 게스트: 'link' = 지금 기록에 이메일을 붙여 계정 연결, 'signin' = 이미 있는 계정(운영자·테스트 등)으로 로그인
-  const [guestMode, setGuestMode] = useState<'link' | 'signin'>('link');
+  const [guestMode, setGuestMode] = useState<'link' | 'signin'>(
+    initialGuestMode === 'signin' ? 'signin' : 'link'
+  );
   const linking = isGuest && guestMode === 'link';
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -86,7 +93,8 @@ export function AuthScreen() {
       const hasSession = !!(result && typeof result === 'object' && 'session' in result && result.session);
 
       if (hasSession) {
-        router.replace('/');
+        // replace('/')는 모달 위에 홈을 하나 더 쌓는다. 이미 있는 홈까지 닫고, 없으면 홈으로 바꾼다.
+        router.dismissTo('/');
       } else {
         setNotice(pendingMessage ?? '메일함에서 인증 링크를 눌러 완료해주세요.');
       }

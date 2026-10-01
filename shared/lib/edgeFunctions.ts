@@ -141,3 +141,8 @@ export type AdminAction =
 export async function adminTool(request: AdminAction): Promise<{ ok: true }> {
   return invokeFunction<{ ok: true }>('admin-tools', request);
 }
+
+/** 지금 로그인한 계정(게스트 포함)과 그 계정의 모든 기록을 지운다. 되돌릴 수 없다. */
+export async function deleteAccount(): Promise<void> {
+  await invokeFunction<{ ok: true }>('delete-account', { confirm: 'DELETE' });
+}

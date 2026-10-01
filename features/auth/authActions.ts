@@ -1,6 +1,7 @@
 import * as QueryParams from 'expo-auth-session/build/QueryParams';
 import * as Linking from 'expo-linking';
 import * as WebBrowser from 'expo-web-browser';
+import { deleteAccount } from '../../shared/lib/edgeFunctions';
 import { supabase } from '../../shared/lib/supabase';
 
 /*
@@ -112,4 +113,13 @@ export async function upgradeGuestToEmail(email: string, password: string) {
 export async function signOut() {
   const { error } = await supabase.auth.signOut();
   if (error) throw error;
+}
+
+/**
+ * 계정 삭제 — 서버에서 계정과 모든 기록을 지운 뒤, 기기에 남은 세션만 정리한다.
+ * 서버 쪽 세션은 계정과 함께 이미 사라졌으므로 scope: 'local'로 이 기기만 로그아웃한다.
+ */
+export async function deleteAccountAndSignOut() {
+  await deleteAccount();
+  await supabase.auth.signOut({ scope: 'local' });
 }
