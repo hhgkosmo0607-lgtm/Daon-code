@@ -87,12 +87,12 @@ export function LessonResultScreen({ lesson, result, wrongCount, onRetryWrong }:
           <Pressable style={styles.button} onPress={onRetryWrong}>
             <Text style={styles.buttonText}>틀린 문제 {wrongCount}개 바로 풀기</Text>
           </Pressable>
-          <Pressable style={styles.skipButton} onPress={() => router.replace('/')}>
+          <Pressable style={styles.skipButton} onPress={() => router.dismissTo('/')}>
             <Text style={styles.skipButtonText}>건너뛰고 계속하기</Text>
           </Pressable>
         </>
       ) : (
-        <Pressable style={styles.button} onPress={() => router.replace('/')}>
+        <Pressable style={styles.button} onPress={() => router.dismissTo('/')}>
           <Text style={styles.buttonText}>계속하기</Text>
         </Pressable>
       )}

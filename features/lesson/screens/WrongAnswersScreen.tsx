@@ -86,7 +86,7 @@ export function WrongAnswersScreen({ seedQuestions }: { seedQuestions?: Question
           {total}문제 중 {clearedCount}개를 맞혀서 오답노트에서 뺐어요
         </Text>
         {/* replace로 홈을 다시 마운트해야 상단 오답노트 배지 숫자가 새로 반영된다 */}
-        <Pressable style={styles.ghostButton} onPress={() => router.replace('/')}>
+        <Pressable style={styles.ghostButton} onPress={() => router.dismissTo('/')}>
           <Text style={styles.ghostButtonText}>홈으로</Text>
         </Pressable>
       </SafeAreaView>
@@ -98,7 +98,7 @@ export function WrongAnswersScreen({ seedQuestions }: { seedQuestions?: Question
       <View style={styles.header}>
         {/* 레슨 화면과 달리 도중에 나가도 이미 맞힌 문제는 지워진 상태라,
             back 대신 replace로 홈을 다시 마운트해서 오답노트 배지를 갱신한다 */}
-        <Pressable onPress={() => router.replace('/')} hitSlop={12}>
+        <Pressable onPress={() => router.dismissTo('/')} hitSlop={12}>
           <Text style={styles.close}>✕</Text>
         </Pressable>
         <ProgressBar current={index} total={total} />
