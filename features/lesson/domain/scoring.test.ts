@@ -3,6 +3,7 @@ import {
   calculateCoins,
   calculatePendingBonus,
   calculateXp,
+  isAnswerComplete,
   isCorrect,
   levelFromXp,
   levelProgress,
@@ -155,5 +156,23 @@ describe('calculateCoins', () => {
 
   it('이미 완료한 레슨 재도전은 0', () => {
     expect(calculateCoins({ ...base, alreadyCompleted: true, reachesDailyGoalFirstTime: true })).toBe(0);
+  });
+});
+
+describe('isAnswerComplete', () => {
+  it('보기 하나를 고르는 문제는 정수 인덱스면 완성', () => {
+    expect(isAnswerComplete(choiceQuestion, 0)).toBe(true);
+    expect(isAnswerComplete(choiceQuestion, undefined)).toBe(false);
+    expect(isAnswerComplete(choiceQuestion, null)).toBe(false);
+    expect(isAnswerComplete(choiceQuestion, '1')).toBe(false);
+    expect(isAnswerComplete(choiceQuestion, [1])).toBe(false);
+  });
+
+  it('순서 문제는 보기를 전부 올려야 완성 (오답이어도 완성은 완성)', () => {
+    const n = (orderQuestion.answer as number[]).length;
+    expect(isAnswerComplete(orderQuestion, [...Array(n).keys()].reverse())).toBe(true);
+    expect(isAnswerComplete(orderQuestion, [0])).toBe(false);
+    expect(isAnswerComplete(orderQuestion, [])).toBe(false);
+    expect(isAnswerComplete(orderQuestion, 0)).toBe(false);
   });
 });

@@ -20,6 +20,22 @@ export function isCorrect(question: Question, submitted: number | number[]): boo
   return submitted === question.answer;
 }
 
+/**
+ * 답을 끝까지 골랐는가.
+ * 순서 문제는 보기를 전부 올려야 완성이다 — 일부만 올린 채 확인을 누를 수 없게 화면이 쓰고,
+ * 서버는 같은 기준으로 빈 답·덜 고른 답이 섞인 제출을 거부한다 (빈 제출로 XP·코인 받기 방지).
+ */
+export function isAnswerComplete(question: Question, submitted: unknown): submitted is number | number[] {
+  if (Array.isArray(question.answer)) {
+    return (
+      Array.isArray(submitted) &&
+      submitted.length === question.answer.length &&
+      submitted.every((v) => Number.isInteger(v))
+    );
+  }
+  return Number.isInteger(submitted);
+}
+
 export const XP_PER_LESSON = 10;
 export const XP_PERFECT_BONUS = 5;
 export const XP_DAILY_GOAL_BONUS = 20;

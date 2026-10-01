@@ -1,6 +1,11 @@
 import { createClient } from 'npm:@supabase/supabase-js@2.116.0';
 
-import { calculateCoins, calculateXp, isCorrect } from '../../../features/lesson/domain/scoring.ts';
+import {
+  calculateCoins,
+  calculateXp,
+  isAnswerComplete,
+  isCorrect,
+} from '../../../features/lesson/domain/scoring.ts';
 import { toKstDateString, updateStreak } from '../../../features/lesson/domain/streak.ts';
 import { getLesson, getNextLesson, getQuestions } from '../_shared/content.ts';
 
@@ -93,6 +98,12 @@ Deno.serve(async (req) => {
       return json({ error: '존재하지 않는 레슨이에요' }, 400);
     }
 
+    // 모든 문제에 끝까지 답한 제출만 받는다. 앱은 문제를 다 풀어야 제출하므로, 빈 답이 섞였다면
+    // 앱을 거치지 않은 요청이다 — 받아주면 answers: {}만 보내 레슨 완료·XP·코인을 챙길 수 있다.
+    if (!questions.every((q) => isAnswerComplete(q, body.answers[q.id]))) {
+      return json({ error: '모든 문제에 답해야 제출할 수 있어요' }, 400);
+    }
+
     // 실제 쓰기는 전부 service_role로 한다 (RLS를 우회하는 유일한 경로).
     const admin = createClient(supabaseUrl, serviceRoleKey);
 
@@ -100,8 +111,7 @@ Deno.serve(async (req) => {
     let correctCount = 0;
     const wrongQuestionIds: string[] = [];
     for (const q of questions) {
-      const submitted = body.answers[q.id];
-      if (submitted !== undefined && isCorrect(q, submitted)) {
+      if (isCorrect(q, body.answers[q.id])) {
         correctCount += 1;
       } else {
         wrongQuestionIds.push(q.id);

@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useAuth } from '../../auth/AuthContext';
 import { getQuestionById } from '../data/contentRepository';
 import { fetchWrongAnswers, removeWrongAnswer } from '../data/wrongAnswerRepository';
-import { isCorrect } from '../domain/scoring';
+import { isAnswerComplete, isCorrect } from '../domain/scoring';
 import type { Question } from '../domain/types';
 
 export type Answer = number | number[] | null;
@@ -104,7 +104,8 @@ export function useWrongAnswers(seedQuestions?: Question[]) {
     setIndex((i) => i + 1);
   }, []);
 
-  const canCheck = answer !== null && !checked;
+  // 순서 문제는 보기를 전부 올려야 확인할 수 있다
+  const canCheck = !checked && !!current && isAnswerComplete(current, answer);
 
   return {
     loading,

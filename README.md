@@ -68,6 +68,7 @@ Expo Go 앱으로 QR을 찍으면 실물 기기에서 바로 확인할 수 있�
    - `0007_prisms.sql` → 프리즈를 프리즘으로(컬럼 prisms, 한도 없음), 먹이 제거·출석 자동 채굴, 스트릭 직접 지키기, 코인·프리즘 고양이, 프리즘→코인 교환 (**함수 배포 전에** 실행)
    - `0008_pets.sql` → 펫 113마리: owned_cats → owned_pets, 팀(team_pets, 최대 8마리만 채굴), 펫 구매·팀 정하기 (**purchase·check-in·set-team·admin-tools 배포 전에** 실행)
    - `0009_time_mining.sql` → 시간 채굴: 팀이 시간마다 캐고 최대 24시간치를 앱을 켤 때 받음 (**collect-mining·admin-tools 배포 전에** 실행)
+   - `0010_profile_constraints.sql` → daily_goal 10~100 제한(0으로 바꿔 매일 목표 보너스 받기 차단) + handle_new_user search_path 고정 (재실행 안전)
    - CLI로는 `npx supabase@latest db push` (프로젝트 link 필요, `--dry-run`으로 미리보기)
 2. **Authentication → Providers**
    - Email 활성화 (기본 켜짐)
